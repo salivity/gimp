@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP PNG Transparent Export Settings - gimp</title>
+    <meta name="description" content="Exporting an image with a transparent background in GIMP requires selecting the correct file format and configuring specific export settings to preserve alpha channels. This guide covers the exact checkbox configurations, compression levels, and pixel fo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-png-transparent-export-settings">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP PNG Transparent Export Settings - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-png-transparent-export-settings" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting an image with a transparent background in GIMP requires selecting the correct file format and configuring specific export settings to preserve alpha channels. This guide covers the exact checkbox configurations, compression levels, and pixel fo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-png-transparent-export-settings">GIMP PNG Transparent
+Export Settings</h1>
+<p>Exporting an image with a transparent background in GIMP requires
+selecting the correct file format and configuring specific export
+settings to preserve alpha channels. This guide covers the exact
+checkbox configurations, compression levels, and pixel format settings
+needed to ensure your background remains fully transparent when saving
+as a PNG.</p>
+<h3 id="preparing-your-image-for-transparency">Preparing Your Image for
+Transparency</h3>
+<p>Before exporting, you must ensure your image actually possesses
+transparency data.</p>
+<ul>
+<li><strong>Add an Alpha Channel:</strong> Right-click your current
+layer in the Layers dialog and select <strong>Add Alpha
+Channel</strong>. If this option is grayed out, your layer already
+supports transparency.</li>
+<li><strong>Remove the Background:</strong> Use selection tools (like
+the Fuzzy Select Tool) to select the background area and press
+<strong>Delete</strong> to reveal the checkerboard pattern, which
+indicates transparency.</li>
+</ul>
+<h3 id="the-best-export-settings-for-transparent-pngs">The Best Export
+Settings for Transparent PNGs</h3>
+<p>To begin the export process, navigate to <strong>File &gt; Export
+As…</strong>, name your file with the <code>.png</code> extension, and
+click <strong>Export</strong>. A dialog box will appear with several
+configuration options. For optimal results, use the settings outlined
+below:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Setting Name</th>
+<th>Recommended Choice</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Save background color</strong></td>
+<td><strong>Unchecked</strong></td>
+<td>Prevents GIMP from filling transparent pixels with the background
+color.</td>
+</tr>
+<tr>
+<td><strong>Save gamma</strong></td>
+<td><strong>Checked</strong></td>
+<td>Maintains consistent color brightness across different screens.</td>
+</tr>
+<tr>
+<td><strong>Save layer offset</strong></td>
+<td><strong>Unchecked</strong></td>
+<td>Irrelevant for standard web images; can cause positioning
+issues.</td>
+</tr>
+<tr>
+<td><strong>Save resolution</strong></td>
+<td><strong>Checked</strong></td>
+<td>Retains the DPI (dots per inch) data for print or scaling.</td>
+</tr>
+<tr>
+<td><strong>Save creation time</strong></td>
+<td><strong>Optional</strong></td>
+<td>Stores metadata about when the file was created; does not affect
+transparency.</td>
+</tr>
+<tr>
+<td><strong>Save comment</strong></td>
+<td><strong>Optional</strong></td>
+<td>Stores text metadata; does not affect transparency.</td>
+</tr>
+<tr>
+<td><strong>Save EXIF data</strong></td>
+<td><strong>Optional</strong></td>
+<td>Stores camera/image metadata; does not affect transparency.</td>
+</tr>
+<tr>
+<td><strong>Save XMP data</strong></td>
+<td><strong>Optional</strong></td>
+<td>Stores advanced XML metadata; does not affect transparency.</td>
+</tr>
+<tr>
+<td><strong>Save thumbnail</strong></td>
+<td><strong>Optional</strong></td>
+<td>Creates a small preview icon for your operating system’s file
+explorer.</td>
+</tr>
+<tr>
+<td><strong>Save color profile</strong></td>
+<td><strong>Checked</strong></td>
+<td>Ensures color accuracy across different devices and monitors.</td>
+</tr>
+<tr>
+<td><strong>Compression level</strong></td>
+<td><strong>9</strong></td>
+<td>Maximizes file size reduction without any loss in image
+quality.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="understanding-compression-and-pixel-formats">Understanding
+Compression and Pixel Formats</h3>
+<p>PNG is a lossless compression format, meaning that raising the
+compression level to 9 will reduce the file size as much as possible
+without sacrificing a single pixel of clarity. It merely takes a few
+seconds longer to process during the export phase.</p>
+<p>In the advanced section of the export dialog, ensure that the
+<strong>Pixel format</strong> is set to <strong>8bpc RGBA</strong> or
+<strong>Auto</strong>. The “A” in RGBA stands for Alpha, which is the
+channel responsible for handling the transparency levels of your image.
+Selecting an RGB format without the Alpha channel will cause the
+transparent areas to render as solid black or white.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Automate Tasks in GIMP with Script-Fu? - gimp</title>
+    <meta name="description" content="This article provides a concise guide on how to automate repetitive image editing tasks in GIMP using Script-Fu, its native scripting language. You will learn the core concepts of Script-Fu, how to write a basic Scheme-based script, and the steps to exec">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-automate-tasks-in-gimp-with-script-fu">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Automate Tasks in GIMP with Script-Fu? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-automate-tasks-in-gimp-with-script-fu" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a concise guide on how to automate repetitive image editing tasks in GIMP using Script-Fu, its native scripting language. You will learn the core concepts of Script-Fu, how to write a basic Scheme-based script, and the steps to exec" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-automate-tasks-in-gimp-with-script-fu">How to Automate
+Tasks in GIMP with Script-Fu?</h1>
+<p>This article provides a concise guide on how to automate repetitive
+image editing tasks in GIMP using Script-Fu, its native scripting
+language. You will learn the core concepts of Script-Fu, how to write a
+basic Scheme-based script, and the steps to execute your automated
+workflows directly within the software. By leveraging these scripting
+capabilities, you can significantly streamline your design pipeline and
+save valuable time on bulk operations.</p>
+<h2 id="understanding-script-fu-in-gimp">Understanding Script-Fu in
+GIMP</h2>
+<p>Script-Fu is GIMP’s primary scripting extension, built on a dialect
+of the Lisp programming language called Scheme. It allows you to
+interact with GIMP’s internal functions programmatically. Instead of
+manually clicking through menus to apply filters, resize images, or
+adjust colors, Script-Fu lets you bundle these actions into a single
+reusable command.</p>
+<p>While the syntax uses a prefix notation—meaning the operator comes
+before the arguments, such as <code>(+ 2 3)</code>—it is highly
+efficient for executing sequential image processing tasks once you
+understand the basic structure.</p>
+<h2 id="writing-your-first-script-fu-script">Writing Your First
+Script-Fu Script</h2>
+<p>To create a Script-Fu automation, you need to write a script and save
+it as a text file with a <code>.scm</code> extension. This file must be
+placed in GIMP’s scripts folder, which you can locate by navigating to
+<strong>Edit &gt; Preferences &gt; Folders &gt; Scripts</strong> inside
+GIMP.</p>
+<p>Here is a simple blueprint of how a Script-Fu script is
+structured:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="ex">define</span><span class="fu"> </span>(<span class="fu">script-fu-invert-and-blur </span>image drawable blur-radius)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  (gimp-image-undo-group-start image)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (gimp-drawable-invert drawable FALSE)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  (plug-in-gauss-iir2 RUN-NONINTERACTIVE image drawable blur-radius blur-radius)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  (gimp-image-undo-group-end image)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  (gimp-displays-flush)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>(script-fu-register <span class="st">&quot;script-fu-invert-and-blur&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Invert and Blur&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Inverts the colors of a layer and applies a Gaussian blur.&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Your Name&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Copyright Your Name&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2026&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;RGB*, GRAY*&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  SF-IMAGE    <span class="st">&quot;Image&quot;</span>    <span class="dv">0</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  SF-DRAWABLE <span class="st">&quot;Current Layer&quot;</span> <span class="dv">0</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  SF-ADJUSTMENT <span class="st">&quot;Blur Radius&quot;</span> &#39;(<span class="dv">5</span> <span class="dv">1</span> <span class="dv">100</span> <span class="dv">1</span> <span class="dv">10</span> <span class="dv">0</span> <span class="dv">0</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>(script-fu-menu-register <span class="st">&quot;script-fu-invert-and-blur&quot;</span> <span class="st">&quot;&lt;Image&gt;/Filters/MyScripts&quot;</span>)</span></code></pre></div>
+<h3 id="key-components-explained">Key Components Explained</h3>
+<ul>
+<li><strong>The Function Definition (<code>define</code>):</strong> This
+block contains the actual logic. The commands look up GIMP’s internal
+Procedures Database (PDB) to execute actions like inverting colors or
+applying Gaussian blur.</li>
+<li><strong>The Registration (<code>script-fu-register</code>):</strong>
+This section tells GIMP about your script, defining its name,
+description, author, and the parameters it requires (like the image,
+current layer, and user inputs).</li>
+<li><strong>The Menu Placement
+(<code>script-fu-menu-register</code>):</strong> This line dictates
+exactly where your script will appear within GIMP’s top menu bar
+interface.</li>
+</ul>
+<h2 id="how-to-run-your-automated-script">How to Run Your Automated
+Script</h2>
+<p>Once your script is saved in the correct directory, you can easily
+load and run it without restarting the application.</p>
+<ul>
+<li>Go to the top menu and select <strong>Filters &gt; Script-Fu &gt;
+Refresh Scripts</strong>. GIMP will scan your folder and load the new
+automation.</li>
+<li>Open an image that you want to test.</li>
+<li>Navigate to the menu location you defined in your script (e.g.,
+<strong>Filters &gt; MyScripts &gt; Invert and Blur</strong>).</li>
+<li>Adjust any parameters in the pop-up dialog box and click
+<strong>OK</strong> to run the automation.</li>
+</ul>
+<p>For advanced users, Script-Fu can also be executed via the command
+line or through GIMP’s batch mode, allowing you to process entire
+folders of images automatically without ever opening the graphical user
+interface.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Adjust Brightness and Contrast in GIMP - gimp</title>
+    <meta name="description" content="This article provides a quick overview and step-by-step guide on how to modify the brightness and contrast of an image using GIMP (GNU Image Manipulation Program). You will learn about the quick Brightness-Contrast tool for simple adjustments, as well as">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-adjust-brightness-and-contrast-in-gimp">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Adjust Brightness and Contrast in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-adjust-brightness-and-contrast-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a quick overview and step-by-step guide on how to modify the brightness and contrast of an image using GIMP (GNU Image Manipulation Program). You will learn about the quick Brightness-Contrast tool for simple adjustments, as well as" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-adjust-brightness-and-contrast-in-gimp">How to Adjust
+Brightness and Contrast in GIMP</h1>
+<p>This article provides a quick overview and step-by-step guide on how
+to modify the brightness and contrast of an image using GIMP (GNU Image
+Manipulation Program). You will learn about the quick
+Brightness-Contrast tool for simple adjustments, as well as the more
+advanced Levels and Curves tools for precise, professional control over
+your image’s highlights, shadows, and midtones.</p>
+<h3 id="method-1-the-brightness-contrast-tool">Method 1: The
+Brightness-Contrast Tool</h3>
+<p>The most straightforward way to tweak your image is by using the
+dedicated Brightness-Contrast dialog. This method is ideal for quick
+fixes where you need uniform changes across the entire image.</p>
+<ul>
+<li><p><strong>Open the Tool:</strong> With your image open in GIMP,
+navigate to the top menu and select <strong>Colors &gt;
+Brightness-Contrast…</strong></p></li>
+<li><p><strong>Adjust the Sliders:</strong> A dialog box will appear
+with two sliders:</p></li>
+<li><p><strong>Brightness:</strong> Drag to the right to lighten the
+image or to the left to darken it.</p></li>
+<li><p><strong>Contrast:</strong> Drag to the right to increase the
+difference between light and dark areas, making the image pop. Drag to
+the left to decrease the difference, creating a softer, flatter
+look.</p></li>
+<li><p><strong>Preview and Confirm:</strong> Ensure the
+<strong>Preview</strong> checkbox is ticked so you can see the changes
+in real-time. Once you are satisfied with the look, click
+<strong>OK</strong> to apply the changes.</p></li>
+</ul>
+<h3 id="method-2-the-levels-tool">Method 2: The Levels Tool</h3>
+<p>For better control over the tonal range of your photo, the Levels
+tool is a powerful alternative. It allows you to define the exact black
+points, white points, and midtones of your image.</p>
+<ul>
+<li><p><strong>Open the Tool:</strong> Navigate to <strong>Colors &gt;
+Levels…</strong> in the top menu.</p></li>
+<li><p><strong>Understand the Histogram:</strong> You will see a graph
+(histogram) representing the dark pixels on the left, midtones in the
+middle, and light pixels on the right.</p></li>
+<li><p><strong>Adjust Tonal Range:</strong> Beneath the histogram, there
+are three triangular sliders:</p></li>
+<li><p><strong>Black Slider (Left):</strong> Drag this to the right to
+deepen the shadows and increase contrast.</p></li>
+<li><p><strong>White Slider (Right):</strong> Drag this to the left to
+brighten the highlights.</p></li>
+<li><p><strong>Gray Slider (Middle):</strong> Drag this left or right to
+adjust the brightness of the midtones without affecting the absolute
+darkest or lightest areas.</p></li>
+<li><p><strong>Apply:</strong> Click <strong>OK</strong> to save your
+adjustments.</p></li>
+</ul>
+<h3 id="method-3-the-curves-tool">Method 3: The Curves Tool</h3>
+<p>The Curves tool offers the highest level of precision for adjusting
+both brightness and contrast simultaneously by allowing you to
+manipulate specific tonal regions.</p>
+<ul>
+<li><p><strong>Open the Tool:</strong> Go to <strong>Colors &gt;
+Curves…</strong> from the main menu.</p></li>
+<li><p><strong>Manipulate the Curve:</strong> You will see a diagonal
+line charting from the bottom-left (shadows) to the top-right
+(highlights). Click anywhere on the line to create an anchor point and
+drag it:</p></li>
+<li><p><strong>Brighten/Darken:</strong> Dragging the center of the line
+upward brightens the image, while dragging it downward darkens
+it.</p></li>
+<li><p><strong>Add Contrast (S-Curve):</strong> To increase contrast
+dramatically, click in the upper-right quadrant and drag slightly up
+(brightening highlights), then click in the lower-left quadrant and drag
+slightly down (deepening shadows). This creates an “S” shape, which is a
+classic technique for making flat images look vibrant.</p></li>
+<li><p><strong>Finalize:</strong> Click <strong>OK</strong> to commit
+the changes to your canvas.</p></li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

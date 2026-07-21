@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use GIMP Color Picker to Sample Pixels? - gimp</title>
+    <meta name="description" content="The Color Picker tool in GIMP allows users to select and match exact colors from any image on their canvas. By activating the tool, adjusting its settings for pixel-level precision, and clicking on a specific point, you can instantly set your foreground">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-gimp-color-picker-to-sample-pixels">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use GIMP Color Picker to Sample Pixels? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-gimp-color-picker-to-sample-pixels" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Color Picker tool in GIMP allows users to select and match exact colors from any image on their canvas. By activating the tool, adjusting its settings for pixel-level precision, and clicking on a specific point, you can instantly set your foreground" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-gimp-color-picker-to-sample-pixels">How to Use GIMP
+Color Picker to Sample Pixels?</h1>
+<p>The Color Picker tool in GIMP allows users to select and match exact
+colors from any image on their canvas. By activating the tool, adjusting
+its settings for pixel-level precision, and clicking on a specific
+point, you can instantly set your foreground or background color to
+match that exact pixel. This guide provides a straightforward,
+step-by-step breakdown of how to locate the tool, configure it for
+single-pixel accuracy, and use it efficiently in your design
+workflow.</p>
+<h3 id="step-1-open-your-image-and-zoom-in">Step 1: Open Your Image and
+Zoom In</h3>
+<p>Before sampling a precise pixel, it is best to zoom in close to your
+target area to ensure accuracy.</p>
+<ul>
+<li>Open your project in GIMP.</li>
+<li>Select the <strong>Zoom Tool</strong> from the toolbox (or press
+<strong>Z</strong>).</li>
+<li>Click and drag over the area containing the color you want to sample
+until you can clearly see the individual pixels.</li>
+</ul>
+<h3 id="step-2-activate-the-color-picker-tool">Step 2: Activate the
+Color Picker Tool</h3>
+<p>There are multiple quick ways to select the Color Picker tool in
+GIMP:</p>
+<ul>
+<li><strong>Keyboard Shortcut:</strong> Press <strong>O</strong> on your
+keyboard.</li>
+<li><strong>Toolbox:</strong> Click the eye-dropper icon in the main
+GIMP toolbox.</li>
+<li><strong>Menus:</strong> Go to the top menu and navigate to
+<strong>Tools &gt; Color Picker</strong>.</li>
+</ul>
+<h3 id="step-3-configure-tool-options-for-single-pixel-precision">Step
+3: Configure Tool Options for Single Pixel Precision</h3>
+<p>To ensure you are sampling a single, specific pixel rather than an
+average of the surrounding area, check the <strong>Tool Options</strong>
+dock (usually located below the toolbox).</p>
+<ul>
+<li>Locate the <strong>Sample Average</strong> checkbox.</li>
+<li><strong>Uncheck</strong> this box to sample the exact pixel you
+click on.</li>
+<li><em>Note: If you leave “Sample Average” checked, GIMP will blend the
+colors of the surrounding pixels based on the radius you set, which will
+not give you the exact color of a single pixel.</em></li>
+</ul>
+<h3 id="step-4-choose-your-target-action">Step 4: Choose Your Target
+Action</h3>
+<p>In the same Tool Options panel, look at the <strong>Pick
+Mode</strong> settings to decide what GIMP should do with the sampled
+color:</p>
+<ul>
+<li><strong>Set Foreground Color:</strong> This is the default option.
+It replaces your current active painting color with the sampled pixel’s
+color.</li>
+<li><strong>Set Background Color:</strong> This assigns the sampled
+color to your background color slot.</li>
+<li><strong>Add to Palette:</strong> This sends the selected color
+directly to your active color palette for future use.</li>
+</ul>
+<h3 id="step-5-click-to-sample-the-pixel">Step 5: Click to Sample the
+Pixel</h3>
+<p>Hover your mouse cursor over the specific pixel you want to capture.
+The cursor will turn into an eye-dropper icon.
+<strong>Left-click</strong> directly on the pixel.</p>
+<p>Your active foreground (or background) color block in the GIMP
+interface will instantly change to the exact color of the sampled pixel.
+You can now use this color with the brush, bucket fill, or any other
+drawing tool.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

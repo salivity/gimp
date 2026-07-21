@@ -1,0 +1,602 @@
+[
+  [
+    100,
+    "How to Map 2D Images to 3D Objects in GIMP?",
+    "Mapping a 2D image onto a 3D shape is a great way to create realistic mockups, labels, and textures. By using GIMP’s built-in Map Object filter, you can wrap any flat layer around basic geometric shapes like spheres, cubes, cylinders, and planes. This",
+    false
+  ],
+  [
+    99,
+    "How to Use the GIMP Gradient Tool?",
+    "This guide provides a step-by-step walkthrough on how to use the Gradient tool in GIMP to create flawless, smooth color transitions. You will learn how to select the tool, choose and customize your colors, apply the gradient to your canvas, and adjust th",
+    false
+  ],
+  [
+    98,
+    "How to Use Quick Mask Mode in GIMP?",
+    "Quick Mask mode is a powerful selection tool in GIMP that allows you to create and edit precise selections using standard painting tools instead of traditional vector paths or marquee shapes. By toggling this mode, the unselected areas of your image are",
+    false
+  ],
+  [
+    97,
+    "How to Create a Custom Color Palette in GIMP",
+    "Creating a custom color palette in GIMP is a straightforward process that allows you to save and reuse specific hex codes for digital art, web design, or branding projects. This guide will walk you through the essential steps to build, edit, and export y",
+    false
+  ],
+  [
+    96,
+    "How to Customize GIMP Keyboard Shortcuts?",
+    "Customizing keyboard shortcuts in GIMP is one of the most effective ways to streamline your digital editing workflow and save valuable time. By mapping your most frequently used tools, filters, and layer actions to personalized key combinations, you can",
+    false
+  ],
+  [
+    95,
+    "What is the GIMP Undo History Dialog?",
+    "The Undo History dialog in GIMP is a powerful utility that provides users with a visual, chronological log of all actions performed on an open image. Unlike traditional single-step undo commands, this dialog allows you to view your entire editing history",
+    false
+  ],
+  [
+    94,
+    "How to Recover a Lost GIMP Project?",
+    "Losing progress on a graphic design project can be incredibly frustrating, but GIMP offers a built-in Document History feature that can help you recover unsaved or lost work. This guide will walk you through accessing GIMP’s recent file logs, configuri",
+    false
+  ],
+  [
+    93,
+    "How to Measure Distance and Angle in GIMP",
+    "Measuring the precise distance and angle between two points in GIMP is a straightforward process thanks to the dedicated Measure Tool. This article provides a quick, step-by-step guide on how to activate this tool, use it on your canvas, and interpret th",
+    false
+  ],
+  [
+    92,
+    "How to Use Guides in GIMP",
+    "Guides in GIMP are temporary, non-printing reference lines that help you align layers, selections, and paths with precision. This article provides a quick overview of what guides are, explains how to enable and drag them directly onto your canvas from th",
+    false
+  ],
+  [
+    91,
+    "How to Use Grid and Snap to Grid in GIMP?",
+    "This article provides a quick, step-by-step guide on how to set up a visible grid and enable the \"snap to grid\" feature in GIMP. By configuring these tools, you can easily align layers, text, and selections with pixel-perfect accuracy. You will learn how",
+    false
+  ],
+  [
+    90,
+    "How to Create a Seamless Texture in GIMP?",
+    "This article provides a straightforward, step-by-step guide on how to transform any standard image into a seamless tiling texture using the GNU Image Manipulation Program (GIMP). You will learn how to prepare your image, use the Offset tool to expose hid",
+    false
+  ],
+  [
+    89,
+    "What is the Difference Between 8-bit and 32-bit in GIMP?",
+    "When editing images in GIMP, choosing the right precision determines how much color data your image can hold and how smoothly it can handle complex edits. While 8-bit precision limits you to 256 levels of color per channel—often resulting in visible co",
+    false
+  ],
+  [
+    88,
+    "How to Convert GIMP Images to CMYK for Printing?",
+    "GIMP operates natively in the RGB color space, which is ideal for digital screens but can cause color shifting when sending files to a professional commercial printer that requires CMYK. Because GIMP does not have full native CMYK editing capabilities, a",
+    false
+  ],
+  [
+    87,
+    "What Color Space Does GIMP Use by Default?",
+    "GNU Image Manipulation Program (GIMP) is a powerful, free, and open-source image editor used by photographers and designers worldwide. If you are working on digital art, photo editing, or preparing graphics for the web, understanding how GIMP handles col",
+    false
+  ],
+  [
+    86,
+    "How to Optimize Images for Web in GIMP?",
+    "Optimizing images for the web is a crucial step in web development and design that directly impacts website loading speed, user experience, and SEO rankings. This article provides a comprehensive, step-by-step guide on how to prepare, compress, and corre",
+    false
+  ],
+  [
+    85,
+    "Can GIMP Open and Edit Photoshop PSD Files?",
+    "This article provides a straightforward guide on whether GNU Image Manipulation Program (GIMP) can open and edit Adobe Photoshop (PSD) files. It explores GIMP's native capabilities, potential formatting limitations during file conversion, and best practi",
+    false
+  ],
+  [
+    84,
+    "How to Export a GIF Animation in GIMP",
+    "Exporting an animated GIF in GIMP is a straightforward process that involves organizing your animation frames into layers and using the correct export settings. This guide provides a step-by-step walkthrough for turning your GIMP layers into a looping an",
+    false
+  ],
+  [
+    83,
+    "GIMP PNG Transparent Export Settings",
+    "Exporting an image with a transparent background in GIMP requires selecting the correct file format and configuring specific export settings to preserve alpha channels. This guide covers the exact checkbox configurations, compression levels, and pixel fo",
+    false
+  ],
+  [
+    82,
+    "How to Export GIMP to JPEG",
+    "Exporting a GIMP project as a JPEG file is a quick and straightforward process, though it requires using the \"Export As\" function rather than the standard \"Save\" command. This article provides a step-by-step guide to successfully converting your GIMP pro",
+    false
+  ],
+  [
+    81,
+    "What Is the GIMP Plugin Registry and Its History?",
+    "The GIMP Plugin Registry was a centralized online repository that served as the primary hub for sharing user-created extensions, scripts, and plugins for the GNU Image Manipulation Program (GIMP). For years, it allowed developers to upload their tools an",
+    false
+  ],
+  [
+    80,
+    "How to Install Plugins in GIMP?",
+    "This article provides a straightforward, step-by-step guide on how to install third-party plugins in GIMP (GNU Image Manipulation Program) to extend its functionality. You will learn how to locate your GIMP preferences folder, place plugin files in the c",
+    false
+  ],
+  [
+    79,
+    "What is Python-Fu vs Script-Fu in GIMP?",
+    "GIMP (GNU Image Manipulation Program) offers powerful automation capabilities through two primary scripting interfaces: Python-Fu and Script-Fu. While both tools allow users to automate repetitive tasks, create custom filters, and extend GIMP's functiona",
+    false
+  ],
+  [
+    78,
+    "How to Automate Tasks in GIMP with Script-Fu?",
+    "This article provides a concise guide on how to automate repetitive image editing tasks in GIMP using Script-Fu, its native scripting language. You will learn the core concepts of Script-Fu, how to write a basic Scheme-based script, and the steps to exec",
+    false
+  ],
+  [
+    77,
+    "How to Use GIMP Cage Transform Tool?",
+    "The Cage Transform tool in GIMP is a powerful feature that allows you to warp, stretch, and deform specific areas of an image by creating a custom anchor-point cage around them. Unlike global transformation tools, it gives you surgical control over a sel",
+    false
+  ],
+  [
+    76,
+    "How to Flip an Image in GIMP?",
+    "Flipping an image horizontally or vertically in GIMP is a straightforward process that can be accomplished using either the Transform Tools from the main menu or the dedicated Flip Tool from the toolbox. Whether you need to create a mirror effect (horizo",
+    false
+  ],
+  [
+    75,
+    "What Does the GIMP Unified Transform Tool Do?",
+    "The Unified Transform tool in GIMP is a powerful, all-in-one feature designed to streamline image manipulation by combining multiple transformation functions into a single interface. Instead of constantly switching between separate tools to alter a layer",
+    false
+  ],
+  [
+    74,
+    "How to Use GIMP Perspective Tool to Fix Distortion?",
+    "Architectural photography often suffers from perspective distortion, where tall buildings appear to lean backward or look warped due to the camera's angle. This article provides a straightforward, step-by-step guide on how to use the Perspective Tool in",
+    false
+  ],
+  [
+    73,
+    "What Does the Shear Tool Do in GIMP?",
+    "The Shear tool in GIMP is a powerful transform tool used to shift one part of an image, layer, selection, or path in one direction and the opposing part in the opposite direction. This article provides a quick overview of how the Shear tool works, its pr",
+    false
+  ],
+  [
+    72,
+    "How to Rotate a Layer by a Custom Angle in GIMP?",
+    "Rotating a specific layer by a precise, custom angle in GIMP is a fundamental skill for photo editing and graphic design. This article provides a straightforward, step-by-step guide on how to use GIMP's Unified Transform and Rotate tools to achieve exact",
+    false
+  ],
+  [
+    71,
+    "How to Crop to an Aspect Ratio in GIMP?",
+    "Cropping an image to a specific aspect ratio in GIMP is a straightforward process that ensures your photos fit perfectly into designated frames, social media banners, or print sizes without stretching or distorting. By using the Crop Tool and enabling it",
+    false
+  ],
+  [
+    70,
+    "Canvas Resizing vs. Image Scaling in GIMP",
+    "When editing images in GIMP, altering the size of your working project is a common task, but beginners often confuse Resizing the Canvas with Scaling the Image. While both actions change the dimensions of your project, they do so in fundamentally differe",
+    false
+  ],
+  [
+    69,
+    "How to Scale an Image in GIMP?",
+    "Scaling an image to a different resolution in GIMP is a straightforward process that allows you to change a photo's dimensions while preserving its quality. By utilizing the built-in Scale Image tool, you can adjust the pixel width and height, modify the",
+    false
+  ],
+  [
+    68,
+    "What Is the GIMP Lens Distortion Correction Filter?",
+    "The lens distortion correction filter in GIMP is a built-in digital manipulation tool designed to fix optical aberrations caused by camera lenses, specifically barrel and pincushion distortion. By shifting pixels outward or inward from the center of an i",
+    false
+  ],
+  [
+    67,
+    "How to Warp an Image in GIMP Using Distort Filters?",
+    "Warping images in GIMP is a powerful way to create surreal effects, correct perspective issues, or add dynamic motion to your graphics. This guide provides a straightforward walkthrough of how to locate and use the Distorts filter menu to manipulate your",
+    false
+  ],
+  [
+    66,
+    "How to Add Noise or Film Grain in GIMP?",
+    "Adding noise or film grain to a digital photograph is a powerful way to introduce texture, create a vintage aesthetic, or mask digital imperfections. GIMP provides several built-in tools to achieve this effect, ranging from quick automatic filters to hig",
+    false
+  ],
+  [
+    65,
+    "What Are Render Filters in GIMP?",
+    "Render filters in GIMP are powerful, built-in tools that generate entirely new textures, patterns, and geometric shapes from scratch rather than modifying existing pixels on a canvas. Unlike traditional filters that blur, sharpen, or distort an image, re",
+    false
+  ],
+  [
+    64,
+    "How to Use GIMP Resynthesizer for Content-Aware Fill?",
+    "The Resynthesizer plugin is a powerful, free extension for GIMP that replicates the \"Content-Aware Fill\" feature found in Adobe Photoshop. By analyzing surrounding pixels, it allows users to seamlessly erase unwanted objects, heal blemishes, or texture-m",
+    false
+  ],
+  [
+    63,
+    "How to Create a Drop Shadow in GIMP?",
+    "Adding a drop shadow is a fundamental graphic design technique used to separate an object from its background, creating a sense of depth and dimension. In GIMP (GNU Image Manipulation Program), this effect can be achieved quickly and precisely using buil",
+    false
+  ],
+  [
+    62,
+    "What Is the Unsharp Mask Filter Used For in GIMP?",
+    "The Unsharp Mask filter in GIMP is a powerful image processing tool used primarily to enhance the perceived sharpness and clarity of digital photographs. Despite its confusing name, it does not blur your image; instead, it detects edges within a photo an",
+    false
+  ],
+  [
+    61,
+    "How to Apply Gaussian Blur in GIMP",
+    "This article provides a straightforward, step-by-step guide on how to apply a Gaussian Blur filter to an image using the GNU Image Manipulation Program (GIMP). You will learn how to locate the filter, adjust its settings for optimal results, and apply it",
+    false
+  ],
+  [
+    60,
+    "What is GEGL and how does it relate to GIMP?",
+    "This article provides a comprehensive overview of GEGL (Generic Graphics Library), an advanced image processing framework, and its critical relationship with GIMP (GNU Image Manipulation Program). You will discover how GEGL evolved from a supplemental pr",
+    false
+  ],
+  [
+    59,
+    "How to Use GIMP Color Picker to Sample Pixels?",
+    "The Color Picker tool in GIMP allows users to select and match exact colors from any image on their canvas. By activating the tool, adjusting its settings for pixel-level precision, and clicking on a specific point, you can instantly set your foreground",
+    false
+  ],
+  [
+    58,
+    "What is the GIMP Shadows-Highlights Tool?",
+    "The Shadows-Highlights tool in GIMP is a powerful exposure-correction feature designed to reclaim lost details in the darkest and brightest areas of an image. Unlike global exposure adjustments that shift the brightness of the entire photo, this tool spe",
+    false
+  ],
+  [
+    57,
+    "How to Convert Color to High Quality B&W in GIMP?",
+    "Converting a color image to high-quality black and white in GIMP involves more than just stripping away the saturation. While a simple desaturation can leave photos looking flat and muddy, advanced techniques allow you to control the tonal contrast and c",
+    false
+  ],
+  [
+    56,
+    "How to Correct White Balance in GIMP?",
+    "Correcting the white balance of a photograph is a crucial step in photo editing that removes unrealistic color casts, ensuring your images look natural and true to life. This guide provides a straightforward, step-by-step walkthrough on how to fix white",
+    false
+  ],
+  [
+    55,
+    "What is the Colorize Tool in GIMP?",
+    "The Colorize tool in GIMP is a powerful feature designed to turn any image into a monochromatic or duotone masterpiece by applying a single, uniform hue across all pixels. Unlike simply adding a colored overlay, this tool intelligently preserves the orig",
+    false
+  ],
+  [
+    54,
+    "How to Change Color Hue, Saturation, and Lightness in GIMP?",
+    "Adjusting the specific colors of an image is a fundamental skill in digital photo editing, allowing you to enhance vibrant tones or alter specific elements without affecting the rest of the canvas. In GIMP, this is primarily achieved using the built-in H",
+    false
+  ],
+  [
+    53,
+    "How to Use GIMP Curves Tool for Tonal Adjustments?",
+    "The Curves tool in GIMP is one of the most powerful features for digital image editing, allowing you to manipulate brightness, contrast, and color channels with absolute precision. Unlike the simpler Brightness-Contrast slider, the Curves tool maps input",
+    false
+  ],
+  [
+    52,
+    "What is the GIMP Levels Tool Used For?",
+    "The Levels tool in GIMP is a fundamental color correction feature used to adjust the brightness, contrast, and tonal range of an image by manipulating its histogram. By modifying the shadows, midtones, and highlights, it allows editors to fix underexpose",
+    false
+  ],
+  [
+    51,
+    "How to Adjust Brightness and Contrast in GIMP",
+    "This article provides a quick overview and step-by-step guide on how to modify the brightness and contrast of an image using GIMP (GNU Image Manipulation Program). You will learn about the quick Brightness-Contrast tool for simple adjustments, as well as",
+    false
+  ],
+  [
+    50,
+    "How to Align Text to an Object's Edge in GIMP",
+    "This article provides a step-by-step guide on how to precisely align text along the edge of an object or layer in GIMP. You will learn how to use the Alignment Tool, leverage guides for manual snapping, and utilize the \"Text along Path\" feature for align",
+    false
+  ],
+  [
+    49,
+    "What Happens When You Filter Text in GIMP?",
+    "Applying a filter to a text layer in GIMP automatically opens a dialog box prompting you to either \"Rasterize\" the text or \"Discard text information.\" Because GIMP treats text as a collection of vector shapes and fonts, most pixel-based filters cannot be",
+    false
+  ],
+  [
+    48,
+    "How to Curve Text in GIMP?",
+    "Making text follow a curved path in GIMP is a powerful way to create dynamic logos, badges, and graphic designs. While GIMP doesn't have a single-click \"warp text\" button like some other design software, the process is straightforward once you understand",
+    false
+  ],
+  [
+    47,
+    "How to Change Text Font Size and Color in GIMP",
+    "This article provides a straightforward, step-by-step guide on how to modify the font, size, and color of a text layer in the GNU Image Manipulation Program (GIMP). Whether you are looking to change settings for new text or edit existing text layers, you",
+    false
+  ],
+  [
+    46,
+    "How to Add Text to an Image Using GIMP?",
+    "Adding text to an image is one of the most common tasks in graphic editing, whether you are creating a meme, designing a book cover, or adding a watermark. In GIMP (GNU Image Manipulation Program), this process is handled entirely through the dedicated T",
+    false
+  ],
+  [
+    45,
+    "How to Draw a Straight Line in GIMP",
+    "This article provides a quick overview and step-by-step guide on how to draw perfectly straight lines in GIMP using the Brush tool. You will learn the essential keyboard shortcuts, brush settings, and alternative path tools required to create precise geo",
+    false
+  ],
+  [
+    44,
+    "Purpose of Smudge Tool in GIMP?",
+    "The Smudge tool in GIMP is a powerful digital painting and photo editing tool used to blend pixels together, mimicking the effect of dragging a wet finger or brush through wet paint. It allows users to smooth out harsh lines, soften transitions between c",
+    false
+  ],
+  [
+    43,
+    "How to Use Perspective Clone Tool in GIMP",
+    "The Perspective Clone tool in GIMP allows you to duplicate parts of an image while automatically adjusting the scale and angle to match the perspective of a target area. Unlike the standard Clone tool, which copies pixels exactly as they are, this tool u",
+    false
+  ],
+  [
+    42,
+    "How Does GIMP's Healing Tool Differ From the Clone Tool?",
+    "When editing images in GIMP, the Healing tool and the Clone tool are the two primary features used for retouching and removing unwanted elements. While both tools function by copying pixels from a source area and painting them onto a target area, they pr",
+    false
+  ],
+  [
+    41,
+    "What Is the Function of the Clone Tool in GIMP?",
+    "The Clone tool in GIMP is a powerful image editing feature designed to copy pixels from one specific area of an image and paint them onto another. By utilizing a user-defined source point, it allows creators to seamlessly duplicate elements, patch up imp",
+    false
+  ],
+  [
+    40,
+    "How to Change Brush Size and Hardness in GIMP?",
+    "Adjusting the size and hardness of your brush in GIMP is a fundamental skill that allows you to control the scale and edge sharpness of your digital strokes. This article provides a quick, step-by-step guide on how to modify these settings using the Tool",
+    false
+  ],
+  [
+    39,
+    "How to Install Custom Brushes in GIMP?",
+    "Installing custom brushes in GIMP is a quick way to expand your digital art toolkit, requiring you to download brush files and place them into GIMP's designated brushes directory. This guide covers where to find high-quality brushes, how to locate your G",
+    false
+  ],
+  [
+    38,
+    "Paintbrush vs Pencil in GIMP: What is the Difference?",
+    "When editing images in GIMP, the Paintbrush and Pencil tools may seem identical at first glance since they both apply color to your canvas using your selected brush tip. However, the fundamental difference lies in pixel aliasing and edge handling. While",
+    false
+  ],
+  [
+    37,
+    "How to Edit Path Anchor Points in GIMP?",
+    "Editing anchor points in GIMP allows you to reshape vector paths for precise selections, custom shapes, and complex digital artwork. This guide covers how to activate the Paths tool, select existing anchor points, move them, adjust their control handles,",
+    false
+  ],
+  [
+    36,
+    "How to Stroke a Path with a Brush in GIMP?",
+    "Stroking a path with a specific brush in GIMP allows you to apply stylized, dynamic textures and shapes along a vector line rather than just a flat, solid color. This technique is essential for digital artists and graphic designers who want to create cle",
+    false
+  ],
+  [
+    35,
+    "How to Convert a Path to a Selection in GIMP?",
+    "Converting a drawn path into an active selection is a fundamental skill in GIMP that allows for precise image editing, isolated coloring, and advanced masking. This guide provides a straightforward, step-by-step walkthrough of the process, covering the q",
+    false
+  ],
+  [
+    34,
+    "What Is the Purpose of the Paths Tool in GIMP?",
+    "The Paths tool in GIMP is a powerful and versatile feature used to create precise, scalable vector curves called paths. Unlike pixel-based selections, paths are mathematically defined, meaning they can be resized, reshaped, and manipulated without any lo",
+    false
+  ],
+  [
+    33,
+    "How to Isolate Colors Using RGB Channels in GIMP?",
+    "Isolating a specific color in an image allows you to highlight a subject, create dramatic visual contrast, or perform targeted color corrections. By utilizing GIMP’s powerful built-in channel tools, you can decompose an image into its individual Red, G",
+    false
+  ],
+  [
+    32,
+    "What Are Color Channels in GIMP?",
+    "Color channels are the foundational components that GIMP uses to decompose, edit, and reconstruct the colors in your digital images. This article provides a clear breakdown of how color channels function in GIMP, the differences between RGB and grayscale",
+    false
+  ],
+  [
+    31,
+    "How to Disable a Layer Mask in GIMP?",
+    "This article provides a quick, step-by-step guide on how to temporarily disable and re-enable a layer mask in GIMP (GNU Image Manipulation Program). Layer masks are essential for non-destructive editing, allowing you to hide or reveal parts of a layer wi",
+    false
+  ],
+  [
+    30,
+    "How to Edit a Layer Mask Directly in GIMP",
+    "Editing a layer mask directly in GIMP allows you to precisely control transparency, blend images seamlessly, and refine complex selections without altering the original image data. While layer masks are typically edited indirectly while viewing the main",
+    false
+  ],
+  [
+    29,
+    "Difference Between White and Black GIMP Layer Masks?",
+    "Layer masks in GIMP are powerful, non-destructive tools used to control the transparency of specific parts of a layer. The fundamental difference between a white layer mask and a black layer mask lies in their initial visibility state: a white mask keeps",
+    false
+  ],
+  [
+    28,
+    "How to Apply a Layer Mask Permanently in GIMP?",
+    "This article provides a quick, step-by-step guide on how to permanently apply a layer mask to an image layer in GIMP. When working with layer masks, the changes remain non-destructive, meaning the masked areas are hidden but not deleted. Permanently appl",
+    false
+  ],
+  [
+    27,
+    "How to Use Layer Masks in GIMP?",
+    "Layer masks are one of the most powerful non-destructive editing tools in GIMP, allowing you to selectively alter the visibility of a layer without permanently erasing any pixels. By using grayscale values where white reveals, black conceals, and gray cr",
+    false
+  ],
+  [
+    26,
+    "How to Duplicate a Layer in GIMP?",
+    "Duplicating a layer in GIMP is a fundamental skill that allows you to experiment with effects, create backups of your work, or blend multiple elements without destroying your original image. This guide provides a straightforward, step-by-step walkthrough",
+    false
+  ],
+  [
+    25,
+    "Why Lock a Layer's Alpha Channel in GIMP?",
+    "Locking a layer's alpha channel in GIMP is a fundamental technique used to protect the transparent areas of a specific layer from being altered. When this feature is enabled, any painting, editing, or filtering tools will only affect the pixels that alre",
+    false
+  ],
+  [
+    24,
+    "How to Group Layers in GIMP?",
+    "Grouping multiple layers in GIMP is a fundamental skill that keeps your projects organized, makes complex editing manageable, and allows you to apply transformations or visibility changes to several layers at once. This guide provides a straightforward,",
+    false
+  ],
+  [
+    23,
+    "How to Adjust Layer Opacity in GIMP",
+    "Adjusting the opacity of a specific layer in GIMP allows you to control its transparency, blending it smoothly with the layers underneath. This article provides a quick, step-by-step guide on how to locate the Layers dialog, use the opacity slider, and t",
+    false
+  ],
+  [
+    22,
+    "Merging Down vs Flattening in GIMP: Differences",
+    "This article explains the practical differences between the \"Merge Down\" and \"Flatten Image\" commands in GIMP (GNU Image Manipulation Program). While both functions combine multiple layers into a single layer, they serve entirely different purposes depen",
+    false
+  ],
+  [
+    21,
+    "How to Change Layer Blending Modes in GIMP",
+    "Changing the blending mode of a layer in GIMP allows you to control how pixels on one layer interact visually with the layers beneath it. This article provides a straightforward, step-by-step guide on how to locate and adjust these blend modes, highlight",
+    false
+  ],
+  [
+    20,
+    "How to Create a Transparent Layer in GIMP",
+    "Creating a transparent layer in the GNU Image Manipulation Program (GIMP) allows you to edit images, add text, or build complex compositions without altering your original background. This article provides a quick, step-by-step guide on how to add a new",
+    false
+  ],
+  [
+    19,
+    "What is the Role of Layers in a GIMP Project?",
+    "Layers are the fundamental building blocks of any project in GIMP (GNU Image Manipulation Program), acting like a stack of transparent sheets that allow you to isolate and edit different elements of an image independently. This article provides a compreh",
+    false
+  ],
+  [
+    18,
+    "How to Subtract from a Selection in GIMP",
+    "Subtracting from an existing selection in GIMP is a fundamental skill for precise image editing, allowing you to remove unwanted areas from an active selection using shortcut keys, tool options, or the Selection Editor. This guide covers the quickest met",
+    false
+  ],
+  [
+    17,
+    "What Does the Foreground Select Tool Do in GIMP?",
+    "The Foreground Select tool in GIMP is a powerful, semi-automated feature designed to precisely isolate a complex subject from its background. By combining manual rough outlining with brush-based color detection, it allows users to extract intricate objec",
+    false
+  ],
+  [
+    16,
+    "How to Invert Selection in GIMP",
+    "Inverting a selection in GIMP allows you to quickly select everything outside of your current selection, which is incredibly useful for isolating objects, removing backgrounds, or applying effects to specific parts of an image. This article covers the st",
+    false
+  ],
+  [
+    15,
+    "How to Save a Selection to a Channel in GIMP",
+    "Saving a specific selection to a channel in GIMP is a fundamental technique for preserving complex selection shapes, allowing you to reload them at any point during your editing process. This article provides a quick, step-by-step guide on how to convert",
+    false
+  ],
+  [
+    14,
+    "What is the Purpose of the Free Select Tool in GIMP?",
+    "The Free Select tool in GIMP, also known as the Lasso tool, allows users to create custom, flexible selections by drawing freehand segments or connecting straight lines. It is primarily used for isolating irregular shapes, cutting out specific objects fr",
+    false
+  ],
+  [
+    13,
+    "How to Feather Selection Edges in GIMP",
+    "Feathering edges in GIMP is a fundamental technique used to blur the boundaries of a selection, creating a smooth transition between the selected area and its surroundings. This article provides a straightforward, step-by-step guide on how to apply feath",
+    false
+  ],
+  [
+    12,
+    "How Does the GIMP Fuzzy Select Tool Work?",
+    "The Fuzzy Select tool in GIMP, also known as the Magic Wand, is a powerful selection tool designed to select contiguous regions of a layer based on color similarity. By clicking a single point on the canvas, the tool automatically expands the selection o",
+    false
+  ],
+  [
+    11,
+    "What Are the Selection Tools in GIMP?",
+    "GIMP (GNU Image Manipulation Program) offers a robust suite of selection tools designed to isolate specific areas of an image for editing, cutting, or color correction. These tools range from basic geometric shapes to advanced, AI-driven edge detection f",
+    false
+  ],
+  [
+    10,
+    "How to Create a New Canvas in GIMP",
+    "This article provides a quick, step-by-step guide on how to create a new blank canvas in the GNU Image Manipulation Program (GIMP). You will learn how to navigate the menu options, customize your canvas dimensions, and adjust advanced settings like resol",
+    false
+  ],
+  [
+    9,
+    "What Is the Purpose of the Tool Options Dialog in GIMP?",
+    "The Tool Options dialog in GIMP is a fundamental component of the user interface that allows users to customize and control the behavior of the currently selected tool. Positioned by default directly underneath the main Toolbox, this dialog dynamically u",
+    false
+  ],
+  [
+    8,
+    "How to Add New Dockable Dialogs in GIMP?",
+    "Managing your workspace efficiently in GIMP requires knowing how to customize your interface by adding, moving, and organizing dockable dialogs. This article provides a straightforward, step-by-step guide on how to find missing menus, open new dialogs, a",
+    false
+  ],
+  [
+    7,
+    "What is the GIMP Toolbox Purpose and Function?",
+    "The Toolbox is the central command hub of the GNU Image Manipulation Program (GIMP), serving as the primary location for accessing essential editing, drawing, and transformation tools. This article explores the core functions of the Toolbox, explains how",
+    false
+  ],
+  [
+    6,
+    "How to Switch Window Modes in GIMP?",
+    "Switching between single-window mode and multi-window mode in the GNU Image Manipulation Program (GIMP) allows you to customize your workspace for better productivity. While single-window mode groups all dialogs, docks, and image canvases into a single,",
+    false
+  ],
+  [
+    5,
+    "What Is the Native GIMP File Format for Layers?",
+    "This article provides a quick overview of the native file format used by the GNU Image Manipulation Program (GIMP). You will learn about the format's primary extension, its capability to preserve layers and channels, and how it compares to standard web i",
+    false
+  ],
+  [
+    4,
+    "How to Customize the UI Layout in GIMP?",
+    "The GNU Image Manipulation Program (GIMP) offers a highly flexible user interface that allows you to tailor your workspace to fit your specific editing workflow. This article provides a quick overview of how to switch between single-window and multi-wind",
+    false
+  ],
+  [
+    3,
+    "What Operating Systems Support GIMP?",
+    "This article provides a comprehensive overview of the operating systems officially supported by the GNU Image Manipulation Program (GIMP). As a powerful, free, and open-source raster graphics editor, GIMP is designed to be cross-platform, ensuring access",
+    false
+  ],
+  [
+    2,
+    "How Does GIMP Differ From Adobe Photoshop?",
+    "This article provides a direct comparison between GIMP (GNU Image Manipulation Program) and Adobe Photoshop, highlighting their core differences in licensing, cost, user interface, and feature sets. While Photoshop remains the industry standard for profe",
+    false
+  ],
+  [
+    1,
+    "What is the primary purpose of GIMP?",
+    "This article explores the primary purpose of the GNU Image Manipulation Program (GIMP), detailing its core functions as a versatile, open-source raster graphics editor. We will examine its main uses, including image retouching, digital composition, forma",
+    false
+  ]
+]

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is the Colorize Tool in GIMP? - gimp</title>
+    <meta name="description" content="The Colorize tool in GIMP is a powerful feature designed to turn any image into a monochromatic or duotone masterpiece by applying a single, uniform hue across all pixels. Unlike simply adding a colored overlay, this tool intelligently preserves the orig">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/what-is-the-colorize-tool-in-gimp">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What is the Colorize Tool in GIMP? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/what-is-the-colorize-tool-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Colorize tool in GIMP is a powerful feature designed to turn any image into a monochromatic or duotone masterpiece by applying a single, uniform hue across all pixels. Unlike simply adding a colored overlay, this tool intelligently preserves the orig" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-is-the-colorize-tool-in-gimp">What is the Colorize Tool in
+GIMP?</h1>
+<p>The Colorize tool in GIMP is a powerful feature designed to turn any
+image into a monochromatic or duotone masterpiece by applying a single,
+uniform hue across all pixels. Unlike simply adding a colored overlay,
+this tool intelligently preserves the original image’s luminosity,
+meaning the shadows, highlights, and midtones remain completely intact
+while adopting the new color. Whether you are looking to create a
+vintage sepia effect, design a dramatic stylized graphic, or quickly
+tint a specific layer, understanding how to use the Colorize tool is
+essential for efficient photo editing.</p>
+<h2 id="how-the-colorize-tool-works">How the Colorize Tool Works</h2>
+<p>When you activate the Colorize tool, GIMP strips away the existing
+color information of your layer or selection and replaces it with a hue
+of your choice. It does this by mapping the grayscale values of the
+image to a new color spectrum.</p>
+<ul>
+<li><strong>Preserving Details:</strong> Because the tool focuses on the
+lightness values of the original image, you don’t lose the depth or
+texture of your photo. The dark areas stay dark, and the bright areas
+stay bright, just tinted with the new color.</li>
+<li><strong>Global vs. Local Adjustments:</strong> By default, the tool
+applies the effect to the entire active layer. However, if you make a
+selection first using the Lasso or Magic Wand tools, GIMP will restrict
+the colorization to just that specific area.</li>
+</ul>
+<h2 id="key-sliders-and-settings">Key Sliders and Settings</h2>
+<p>The Colorize interface is straightforward, featuring three primary
+adjustment sliders that give you full control over the final look:</p>
+<h3 id="color-hue">Color Hue</h3>
+<p>This slider determines the actual color you want to apply to the
+image. Moving the slider takes you through the entire rainbow spectrum
+(from 0 to 360 degrees on the color wheel), allowing you to select
+anything from a deep blue to a vibrant red.</p>
+<h3 id="color-saturation">Color Saturation</h3>
+<p>This control dictates the intensity or purity of the chosen color.
+Lowering the saturation shifts the image toward a muted, gray-toned
+pastel look, while maxing it out creates an incredibly rich,
+high-contrast monochrome effect.</p>
+<h3 id="color-lightness">Color Lightness</h3>
+<p>This slider adjusts the overall brightness of the image. While the
+tool naturally preserves your original highlights and shadows, you can
+use this slider to artificially brighten or darken the entire
+composition to better suit your project’s mood.</p>
+<h2 id="common-creative-uses">Common Creative Uses</h2>
+<p>Graphic designers and photographers frequently turn to the Colorize
+tool for several specific workflows:</p>
+<ul>
+<li><strong>Creating Sepia and Vintage Tones:</strong> By choosing a
+warm brown or amber hue and lowering the saturation, you can instantly
+give a modern digital photo an antique, historical feel.</li>
+<li><strong>Matching Asset Color Schemes:</strong> If you are building a
+website or a marketing banner and need various icons or background
+images to match a specific brand color, Colorize lets you force those
+assets into the exact color palette required.</li>
+<li><strong>Tinting Backgrounds:</strong> You can separate a subject
+from its background, colorize the background with a cool blue or green
+hue, and make the main subject pop dramatically.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

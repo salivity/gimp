@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Customize the UI Layout in GIMP? - gimp</title>
+    <meta name="description" content="The GNU Image Manipulation Program (GIMP) offers a highly flexible user interface that allows you to tailor your workspace to fit your specific editing workflow. This article provides a quick overview of how to switch between single-window and multi-wind">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-customize-the-ui-layout-in-gimp">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Customize the UI Layout in GIMP? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-customize-the-ui-layout-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GNU Image Manipulation Program (GIMP) offers a highly flexible user interface that allows you to tailor your workspace to fit your specific editing workflow. This article provides a quick overview of how to switch between single-window and multi-wind" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-customize-the-ui-layout-in-gimp">How to Customize the UI
+Layout in GIMP?</h1>
+<p>The GNU Image Manipulation Program (GIMP) offers a highly flexible
+user interface that allows you to tailor your workspace to fit your
+specific editing workflow. This article provides a quick overview of how
+to switch between single-window and multi-window modes, dock and undock
+dialog panels, customize the icon theme and toolbox, and save your
+custom configurations so your ideal layout opens every single time.</p>
+<h3 id="switching-between-single-and-multi-window-mode">Switching
+Between Single and Multi-Window Mode</h3>
+<p>GIMP allows you to choose how your workspace is structured. By
+default, modern versions of GIMP use a unified layout, but you can
+change this easily:</p>
+<ul>
+<li>Go to the top menu and select <strong>Windows</strong>.</li>
+<li>Click on <strong>Single-Window Mode</strong> to toggle it on or
+off.</li>
+<li>When enabled, all tools, layers, and brushes are contained within
+one window. When disabled, the canvas and panels split into independent,
+floating windows, which is ideal for multi-monitor setups.</li>
+</ul>
+<h3 id="managing-and-docking-dialog-panels">Managing and Docking Dialog
+Panels</h3>
+<p>GIMP uses “Docks” to group dialogs like Layers, Channels, Paths, and
+Tool Options together. You can add, remove, or rearrange these panels to
+maximize your screen real estate:</p>
+<ul>
+<li><strong>Adding Panels:</strong> If you accidentally close a panel,
+go to <strong>Windows &gt; Dockable Dialogs</strong> and select the one
+you need (e.g., Layers or Brushes).</li>
+<li><strong>Moving and Docking:</strong> Click and drag the
+<strong>tab</strong> of a dialog panel. As you drag it over another
+dock, you will see highlighting. Drop it to nest it as a new tab, or
+drop it on the edges to stack it horizontally or vertically.</li>
+<li><strong>Undocking:</strong> Drag a tab away from its current dock
+and drop it onto an empty space on your desktop to turn it into a
+floating window.</li>
+</ul>
+<h3 id="personalizing-the-toolbox-and-themes">Personalizing the Toolbox
+and Themes</h3>
+<p>You can streamline your daily workflow by changing how your tools
+look and how they are grouped together in the main toolbox:</p>
+<ul>
+<li><strong>Grouping Tools:</strong> Go to <strong>Edit &gt; Preferences
+&gt; Interface &gt; Toolbox</strong>. Here, you can check or uncheck
+“Use tool groups” to toggle between a compact, categorized tool list and
+a classic layout where every tool is visible at once.</li>
+<li><strong>Changing Themes:</strong> In the same
+<strong>Preferences</strong> menu, navigate to <strong>Interface &gt;
+Theme</strong> or <strong>Icon Theme</strong>. GIMP offers Dark, Light,
+and System themes, alongside various icon styles (like symbolic or
+legacy color icons) to improve visibility and reduce eye strain.</li>
+</ul>
+<h3 id="saving-your-custom-layout">Saving Your Custom Layout</h3>
+<p>Once you have arranged the panels, toolboxes, and windows to your
+liking, you need to ensure GIMP remembers your setup for future
+sessions:</p>
+<ul>
+<li>Open the <strong>Edit</strong> menu and select
+<strong>Preferences</strong>.</li>
+<li>Navigate to the <strong>Window Management</strong> category on the
+left sidebar.</li>
+<li>Click the <strong>Save Window Positions Now</strong> button to lock
+in your current layout.</li>
+<li>To make this automatic, check the box that says <strong>Save window
+positions on exit</strong>, and GIMP will always open exactly how you
+left it.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

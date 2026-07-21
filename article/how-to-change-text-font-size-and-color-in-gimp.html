@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Change Text Font Size and Color in GIMP - gimp</title>
+    <meta name="description" content="This article provides a straightforward, step-by-step guide on how to modify the font, size, and color of a text layer in the GNU Image Manipulation Program (GIMP). Whether you are looking to change settings for new text or edit existing text layers, you">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-change-text-font-size-and-color-in-gimp">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Change Text Font Size and Color in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-change-text-font-size-and-color-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a straightforward, step-by-step guide on how to modify the font, size, and color of a text layer in the GNU Image Manipulation Program (GIMP). Whether you are looking to change settings for new text or edit existing text layers, you" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-change-text-font-size-and-color-in-gimp">How to Change
+Text Font Size and Color in GIMP</h1>
+<p>This article provides a straightforward, step-by-step guide on how to
+modify the font, size, and color of a text layer in the GNU Image
+Manipulation Program (GIMP). Whether you are looking to change settings
+for new text or edit existing text layers, you will learn how to
+navigate both the Tool Options dockable dialog and the on-canvas text
+editor pop-up. By the end of this guide, you will be able to customize
+your typography efficiently to enhance your digital designs.</p>
+<h3 id="accessing-the-text-tool">Accessing the Text Tool</h3>
+<p>To make any changes to text in GIMP, you must first activate the Text
+Tool. You can do this by clicking the <strong>Text Tool icon (the
+capital ‘A’)</strong> in the main Toolbox, or by pressing the
+<strong>T</strong> shortcut key on your keyboard. Once active, clicking
+anywhere on your canvas will create a new text layer, while clicking
+directly on top of existing text will allow you to edit that specific
+layer.</p>
+<h3 id="changing-the-font">Changing the Font</h3>
+<p>GIMP offers two primary ways to alter the typeface of your text
+layer.</p>
+<ul>
+<li><strong>Via Tool Options:</strong> With the Text Tool active, look
+at the “Tool Options” panel (usually located below the Toolbox). Click
+on the font button (which displays the current font name) to open a
+drop-down list of all installed fonts on your system, then select your
+desired typeface.</li>
+<li><strong>Via On-Canvas Editor:</strong> When you click inside an
+existing text box, a small floating toolbar appears directly above the
+text. Click the font shape icon on the far left of this toolbar to type
+in or select a new font.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> To apply changes via the on-canvas editor to
+only a specific part of your text, highlight the target letters or words
+first. If no text is highlighted, changes applied here may not take
+effect.</p>
+</blockquote>
+<h3 id="adjusting-the-text-size">Adjusting the Text Size</h3>
+<p>Resizing your text helps establish visual hierarchy in your project.
+You can scale your text using the same two interfaces:</p>
+<ul>
+<li><strong>In the Tool Options Panel:</strong> Locate the “Size” field.
+You can use the up and down arrows to adjust the size pixel by pixel,
+drag your mouse inside the field, or manually type a specific numerical
+value. Next to the size value, a drop-down menu allows you to change the
+unit of measurement (e.g., from pixels <code>px</code> to points
+<code>pt</code> or inches <code>in</code>).</li>
+<li><strong>In the On-Canvas Editor:</strong> Use the size input box on
+the floating toolbar to quickly change the size of the highlighted
+text.</li>
+</ul>
+<h3 id="modifying-the-text-color">Modifying the Text Color</h3>
+<p>Adding color to your text layer can make your design pop or match a
+specific brand color palette.</p>
+<ul>
+<li><strong>Using Tool Options:</strong> Click on the color rectangle in
+the Tool Options panel. This opens the “Change Text Color” dialogue box.
+You can select a color visually from the color scale, use the
+eye-dropper tool to pick a color directly from your canvas, or input a
+specific Hex web color code. Click <strong>OK</strong> to apply it.</li>
+<li><strong>Using the On-Canvas Editor:</strong> Click the color box on
+the floating toolbar to open the color picker. This method is highly
+precise, as it allows you to change the color of individual highlighted
+letters within the same text layer rather than changing the entire
+block.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

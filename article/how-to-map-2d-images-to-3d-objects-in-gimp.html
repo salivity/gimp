@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Map 2D Images to 3D Objects in GIMP? - gimp</title>
+    <meta name="description" content="Mapping a 2D image onto a 3D shape is a great way to create realistic mockups, labels, and textures. By using GIMP’s built-in Map Object filter, you can wrap any flat layer around basic geometric shapes like spheres, cubes, cylinders, and planes. This">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-map-2d-images-to-3d-objects-in-gimp">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Map 2D Images to 3D Objects in GIMP? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-map-2d-images-to-3d-objects-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Mapping a 2D image onto a 3D shape is a great way to create realistic mockups, labels, and textures. By using GIMP’s built-in Map Object filter, you can wrap any flat layer around basic geometric shapes like spheres, cubes, cylinders, and planes. This" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-map-2d-images-to-3d-objects-in-gimp">How to Map 2D Images
+to 3D Objects in GIMP?</h1>
+<p>Mapping a 2D image onto a 3D shape is a great way to create realistic
+mockups, labels, and textures. By using GIMP’s built-in Map Object
+filter, you can wrap any flat layer around basic geometric shapes like
+spheres, cubes, cylinders, and planes. This guide covers how to prepare
+your layers, configure the filter settings, and adjust lighting and
+material properties to achieve a clean 3D effect.</p>
+<h2 id="step-1-prepare-your-layers">Step 1: Prepare Your Layers</h2>
+<p>Before opening the filter, you need to set up your GIMP project
+correctly. The Map Object filter requires a source layer to wrap and a
+destination canvas.</p>
+<ul>
+<li><strong>Create the 3D Texture:</strong> Open or design the 2D image
+you want to wrap (like a product label or a world map).</li>
+<li><strong>Match Layer Sizes:</strong> For the best results, ensure
+your image layer is the same size as your main canvas. You can do this
+by right-clicking the layer in the Layers dialogue and selecting
+<strong>Layer to Image Size</strong>.</li>
+<li><strong>Add a Target Layer:</strong> Create a new, transparent layer
+where your 3D object will live, keeping your original 2D artwork safely
+untouched.</li>
+</ul>
+<h2 id="step-2-open-the-map-object-filter">Step 2: Open the Map Object
+Filter</h2>
+<p>With your target layer selected, navigate to the top menu and go to
+<strong>Filters &gt; Light and Shadow &gt; Map Object…</strong>. A
+dedicated preview window will open with several configuration tabs.</p>
+<h2 id="step-3-configure-the-3d-shape-settings">Step 3: Configure the 3D
+Shape Settings</h2>
+<p>The <strong>Options</strong> tab is where you define the geometry of
+your 3D object.</p>
+<ul>
+<li><strong>Map to:</strong> Choose your desired shape from the dropdown
+menu (Plane, Sphere, Box, or Cylinder).</li>
+<li><strong>Transparent Background:</strong> Check this box if you want
+the area around your 3D object to remain see-through.</li>
+<li><strong>Tile Source Image:</strong> Enable this if your 2D image is
+small and needs to repeat across the surface of the 3D object.</li>
+<li><strong>Create New Layer:</strong> Checking this option forces GIMP
+to output the final 3D shape onto its own separate layer
+automatically.</li>
+</ul>
+<h2 id="step-4-refine-the-material-and-lighting">Step 4: Refine the
+Material and Lighting</h2>
+<p>To make the object look dimensional rather than flat, you need to
+adjust how it interacts with light.</p>
+<ul>
+<li><strong>Light Tab:</strong> Here you can change the light source
+type (Point light or Directional light), alter its color, and position
+it in 3D space using X, Y, and Z coordinates.</li>
+<li><strong>Material Tab:</strong> This controls the surface properties
+of your object. You can adjust <strong>Ambient</strong> (how much
+environmental light it reflects), <strong>Diffuse</strong> (its natural
+color under direct light), and <strong>Specular/Highlight</strong> (how
+shiny or matte the surface appears).</li>
+</ul>
+<h2 id="step-5-position-and-rotate-the-object">Step 5: Position and
+Rotate the Object</h2>
+<p>The <strong>Orientation</strong> tab gives you full control over how
+the object is viewed on your canvas.</p>
+<ul>
+<li><strong>Position:</strong> Move the object along the X (horizontal),
+Y (vertical), and Z (depth) axes.</li>
+<li><strong>Rotation:</strong> Spin the object around the X, Y, or Z
+axes to find the perfect angle. For example, rotating a cube slightly on
+all three axes will reveal three of its sides simultaneously.</li>
+</ul>
+<p>Once you are satisfied with the preview, click <strong>OK</strong>.
+GIMP will render the 2D image onto the 3D shape directly onto your
+canvas.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

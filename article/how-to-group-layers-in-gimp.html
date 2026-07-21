@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Group Layers in GIMP? - gimp</title>
+    <meta name="description" content="Grouping multiple layers in GIMP is a fundamental skill that keeps your projects organized, makes complex editing manageable, and allows you to apply transformations or visibility changes to several layers at once. This guide provides a straightforward,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-group-layers-in-gimp">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Group Layers in GIMP? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-group-layers-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Grouping multiple layers in GIMP is a fundamental skill that keeps your projects organized, makes complex editing manageable, and allows you to apply transformations or visibility changes to several layers at once. This guide provides a straightforward," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-group-layers-in-gimp">How to Group Layers in GIMP?</h1>
+<p>Grouping multiple layers in GIMP is a fundamental skill that keeps
+your projects organized, makes complex editing manageable, and allows
+you to apply transformations or visibility changes to several layers at
+once. This guide provides a straightforward, step-by-step walkthrough on
+how to create layer groups, add existing layers to them, and effectively
+manage your layer hierarchy to streamline your digital editing
+workflow.</p>
+<h2 id="step-1-create-a-new-layer-group">Step 1: Create a New Layer
+Group</h2>
+<p>Before you can group your layers, you need to create a dedicated
+folder container within your layers dock.</p>
+<ul>
+<li>Look at the <strong>Layers Dialog</strong> (usually on the right
+side of your screen).</li>
+<li>Click the <strong>Create a new layer group</strong> icon at the
+bottom of the dialog panel. It looks like a small folder.</li>
+<li>Alternatively, you can right-click anywhere inside the Layers Dialog
+and select <strong>New Layer Group</strong> from the context menu.</li>
+<li>A new folder item will appear in your layers list, typically named
+“Layer Group”.</li>
+</ul>
+<h2 id="step-2-add-layers-to-the-group">Step 2: Add Layers to the
+Group</h2>
+<p>Once your group folder is created, you can easily populate it with
+your project layers using a simple drag-and-drop method.</p>
+<ul>
+<li>Left-click and hold the layer you want to move.</li>
+<li>Drag the layer upward or downward and hover directly over the new
+<strong>Layer Group</strong> folder.</li>
+<li>Release the mouse button. You will know it succeeded because the
+layer thumbnail will appear slightly indented to the right beneath the
+folder, signaling that it is now a “child” of that group.</li>
+<li>Repeat this process for all other layers you wish to combine.</li>
+</ul>
+<h2 id="step-3-manage-your-layer-groups">Step 3: Manage Your Layer
+Groups</h2>
+<p>Now that your layers are grouped, you can utilize several
+organizational features to maximize your efficiency.</p>
+<ul>
+<li><strong>Renaming:</strong> Double-click the name “Layer Group” to
+type a custom, descriptive name (e.g., “Background Elements” or “Text
+Effects”) so you can find things quickly later.</li>
+<li><strong>Collapsing and Expanding:</strong> Click the small
+<strong>+</strong> or <strong>-</strong> icon (or the small arrow,
+depending on your GIMP theme) next to the folder icon to hide or show
+the layers inside, saving valuable screen space in your layers
+panel.</li>
+<li><strong>Bulk Actions:</strong> Clicking the eye icon next to the
+main Layer Group folder will instantly hide or show every layer inside
+that group. You can also duplicate, move, or scale the entire group as
+if it were a single layer.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
