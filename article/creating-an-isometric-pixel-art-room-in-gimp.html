@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating an Isometric Pixel Art Room in GIMP - gimp</title>
+    <meta name="description" content="Simulating a 3D isometric pixel art room in GIMP requires a blend of traditional 2D pixel drafting and structured isometric projection techniques. This guide outlines the essential steps to build a complete low-resolution 3D interior from scratch, coveri">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/creating-an-isometric-pixel-art-room-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Creating an Isometric Pixel Art Room in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/creating-an-isometric-pixel-art-room-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating a 3D isometric pixel art room in GIMP requires a blend of traditional 2D pixel drafting and structured isometric projection techniques. This guide outlines the essential steps to build a complete low-resolution 3D interior from scratch, coveri" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="creating-an-isometric-pixel-art-room-in-gimp">Creating an
+Isometric Pixel Art Room in GIMP</h1>
+<p>Simulating a 3D isometric pixel art room in GIMP requires a blend of
+traditional 2D pixel drafting and structured isometric projection
+techniques. This guide outlines the essential steps to build a complete
+low-resolution 3D interior from scratch, covering canvas configuration,
+isometric grid alignment, foundational room construction, asset
+placement, lighting and shading, and final scaling.</p>
+<h3 id="step-1-canvas-and-tool-setup">Step 1: Canvas and Tool Setup</h3>
+<ol type="1">
+<li><strong>Create a Canvas:</strong> Open GIMP and create a new
+project. For pixel art, start small (e.g., 128×128 or 256×256
+pixels).</li>
+<li><strong>Configure the Pencil Tool:</strong> Select the
+<strong>Pencil Tool</strong> (<code>N</code>) rather than the Paintbrush
+to ensure hard-edged pixels without anti-aliasing. Set the brush size to
+<code>1px</code> and choose the basic pixel brush
+(<code>1. Pixel</code>).</li>
+<li><strong>Configure the Eraser:</strong> Set the <strong>Eraser
+Tool</strong> (<code>Shift + E</code>) to "Hard edge" mode in the Tool
+Options to prevent feathered transparency.</li>
+</ol>
+<h3 id="step-2-establish-the-isometric-angle-21-projection">Step 2:
+Establish the Isometric Angle (2:1 Projection)</h3>
+<p>Pixel art relies on a standard "dimetric" projection often called
+isometric pixel art, using a 2:1 pixel ratio (two horizontal pixels for
+every one vertical pixel) to avoid jagged artifacts.</p>
+<ol type="1">
+<li>Draw a horizontal step pattern: place two pixels horizontally, move
+up or down one pixel, and repeat to form a clean ~26.565° diagonal
+line.</li>
+<li>Construct a diamond-shaped floor boundary using these 2:1
+lines.</li>
+<li>Draw perfectly straight vertical lines upward from the floor corners
+to create the back and side walls.</li>
+</ol>
+<h3 id="step-3-block-out-room-geometry-on-separate-layers">Step 3: Block
+Out Room Geometry on Separate Layers</h3>
+<ol type="1">
+<li><strong>Floor and Walls:</strong> Dedicate one layer to the main
+room shell. Fill the back walls and floor with flat base colors.</li>
+<li><strong>Object Blocking:</strong> Create new transparent layers for
+furniture (e.g., bed, desk, chair).</li>
+<li><strong>Isometric Box Technique:</strong> Build all interior items
+using bounding boxes drawn with the 2:1 diagonal rule for horizontal
+edges and straight 90° lines for vertical edges. Carve shapes out of
+these boxes to design complex furniture.</li>
+</ol>
+<h3 id="step-4-define-lighting-and-palette-shading">Step 4: Define
+Lighting and Palette Shading</h3>
+<ol type="1">
+<li><strong>Select a Light Source:</strong> Choose a fixed direction for
+the primary light, such as top-left-front.</li>
+<li><strong>Apply Value Planes:</strong>
+<ul>
+<li><strong>Top surfaces:</strong> Lightest value (direct light).</li>
+<li><strong>Left-facing surfaces:</strong> Mid-tone value.</li>
+<li><strong>Right-facing surfaces:</strong> Darkest value (shadow
+side).</li>
+</ul></li>
+<li><strong>Cast Shadows:</strong> Add semi-transparent or darkened
+polygons on the floor directly beneath objects according to the light
+source.</li>
+</ol>
+<h3 id="step-5-clean-up-and-detail">Step 5: Clean Up and Detail</h3>
+<ol type="1">
+<li><strong>Dithering and Textures:</strong> Add subtle textures (wood
+grain, fabric weave, floor tiles) using minimal pixel patterns or
+checkerboard dithering.</li>
+<li><strong>Color the Outlines (Sel-out):</strong> Replace pure black
+internal outlines with darker shades of the adjacent surface colors to
+make the room look cohesive and natural.</li>
+<li><strong>Remove Stray Pixels:</strong> Delete double pixels
+("jaggies") along curves and straight edges to maintain sharp
+lines.</li>
+</ol>
+<h3 id="step-6-scale-and-export">Step 6: Scale and Export</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Multiply the original dimensions by whole integers (e.g., 400%,
+600%, or 800%) to preserve sharpness on modern displays.</li>
+<li>Set the <strong>Interpolation</strong> method strictly to
+<strong>None</strong> (Nearest Neighbor).</li>
+<li>Export the final artwork as a PNG file via <strong>File &gt; Export
+As</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

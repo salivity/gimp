@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequency Separation in GIMP: Step-by-Step Guide - gimp</title>
+    <meta name="description" content="Frequency separation is a portrait retouching technique that separates an image into two distinct layers: low frequency (colors, tones, and shadows) and high frequency (fine details, pores, and textures). This method allows you to smooth skin tones, fix">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/frequency-separation-in-gimp-step-by-step-guide">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Frequency Separation in GIMP: Step-by-Step Guide - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/frequency-separation-in-gimp-step-by-step-guide" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Frequency separation is a portrait retouching technique that separates an image into two distinct layers: low frequency (colors, tones, and shadows) and high frequency (fine details, pores, and textures). This method allows you to smooth skin tones, fix" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="frequency-separation-in-gimp-step-by-step-guide">Frequency
+Separation in GIMP: Step-by-Step Guide</h1>
+<p>Frequency separation is a portrait retouching technique that
+separates an image into two distinct layers: low frequency (colors,
+tones, and shadows) and high frequency (fine details, pores, and
+textures). This method allows you to smooth skin tones, fix
+discoloration, and remove blemishes independently without creating an
+artificial, overly airbrushed look. This guide explains the exact steps
+to manually set up frequency separation in GIMP and how to retouch
+portraits effectively.</p>
+<h2 id="step-1-prepare-your-layers">Step 1: Prepare Your Layers</h2>
+<ol type="1">
+<li>Open your portrait image in GIMP.</li>
+<li>In the <strong>Layers</strong> panel, right-click the base layer and
+select <strong>Duplicate Layer</strong> twice.</li>
+<li>Rename the middle layer to <code>Low Frequency</code>.</li>
+<li>Rename the top layer to <code>High Frequency</code>.</li>
+</ol>
+<h2 id="step-2-set-up-the-low-frequency-layer">Step 2: Set Up the Low
+Frequency Layer</h2>
+<p>The low-frequency layer isolates the colors, lighting, and general
+skin tones by removing the fine texture.</p>
+<ol type="1">
+<li>Click the eye icon next to the <code>High Frequency</code> layer to
+temporarily hide it.</li>
+<li>Click on the <code>Low Frequency</code> layer to make it
+active.</li>
+<li>Navigate to <strong>Filters &gt; Blur &gt; Gaussian
+Blur</strong>.</li>
+<li>Adjust the <strong>Size X</strong> and <strong>Size Y</strong>
+radius values. Increase the blur just until the fine skin textures and
+pores disappear, but the main features (edges of eyes, lips, and facial
+contours) remain recognizable. A value between 5.0 and 10.0 is typical,
+depending on the image resolution.</li>
+<li>Click <strong>OK</strong> to apply the blur.</li>
+</ol>
+<h2 id="step-3-set-up-the-high-frequency-layer">Step 3: Set Up the High
+Frequency Layer</h2>
+<p>The high-frequency layer extracts only the sharp texture details,
+such as pores, hairs, and wrinkles.</p>
+<ol type="1">
+<li>Turn the visibility of the <code>High Frequency</code> layer back on
+and select it.</li>
+<li>Go to <strong>Image &gt; Apply Image</strong> (or use the grain
+subtraction method):
+<ul>
+<li>Set the <strong>Source</strong> layer to
+<code>Low Frequency</code>.</li>
+<li>Set the <strong>Mode</strong> (or Blending) to
+<strong>Subtract</strong>.</li>
+<li>Set <strong>Scale</strong> to <code>2</code> and
+<strong>Offset</strong> to <code>128</code>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+<li>With the <code>High Frequency</code> layer still selected, change
+its <strong>Layer Mode</strong> dropdown at the top of the Layers panel
+from <strong>Normal</strong> to <strong>Grain Merge</strong> (or
+<strong>Linear Light</strong>).</li>
+</ol>
+<p>Your image should now look identical to the original unedited photo,
+confirming that the high and low frequencies have been split
+accurately.</p>
+<p><em>(Alternative Method: You can also use GIMP's built-in tool by
+selecting your original image and going to <strong>Filters &gt; Enhance
+&gt; Wavelet Decompose</strong>, setting the scales to 2, and checking
+"Create a layer group".)</em></p>
+<h2 id="step-4-retouching-the-portrait">Step 4: Retouching the
+Portrait</h2>
+<h3 id="fixing-skin-tones-low-frequency">Fixing Skin Tones (Low
+Frequency)</h3>
+<ol type="1">
+<li>Select the <code>Low Frequency</code> layer.</li>
+<li>Choose the <strong>Free Select Tool</strong> (Lasso) and set a
+feather radius (around 15 to 30 px) in the tool options.</li>
+<li>Select an area of uneven skin tone (such as the forehead or cheek),
+avoiding the eyes, lips, and sharp edges.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur</strong> and
+increase the blur radius until the tone transitions blend smoothly.</li>
+<li>Alternatively, use a soft <strong>Paintbrush</strong> (with low
+opacity) or the <strong>Healing Tool</strong> (set to <em>Current
+Layer</em>) to blend color patches directly.</li>
+</ol>
+<h3 id="removing-blemishes-and-texture-flaws-high-frequency">Removing
+Blemishes and Texture Flaws (High Frequency)</h3>
+<ol type="1">
+<li>Select the <code>High Frequency</code> layer.</li>
+<li>Choose the <strong>Healing Tool</strong> or <strong>Clone
+Tool</strong> from the toolbox.</li>
+<li>In the Tool Options, ensure the <strong>Sample</strong> mode is set
+to <strong>Current Layer</strong> (not "Image" or "Sample Merged").</li>
+<li>Hold <code>Ctrl</code> and click on a clean area of skin texture
+nearby to set the source.</li>
+<li>Paint over pimples, stray hairs, flakes, or harsh wrinkles to
+replace the flawed texture with clean texture while leaving underlying
+lighting and skin tones untouched.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

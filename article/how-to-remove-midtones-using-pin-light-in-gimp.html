@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Midtones Using Pin Light in GIMP - gimp</title>
+    <meta name="description" content="The Pin Light blend mode in GIMP provides a unique mathematical approach to tonal manipulation by combining the Darken and Lighten algorithms based on pixel brightness. By effectively ignoring neutral gray values and clamping tonal transitions, Pin Light">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-midtones-using-pin-light-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Midtones Using Pin Light in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-midtones-using-pin-light-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Pin Light blend mode in GIMP provides a unique mathematical approach to tonal manipulation by combining the Darken and Lighten algorithms based on pixel brightness. By effectively ignoring neutral gray values and clamping tonal transitions, Pin Light" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-remove-midtones-using-pin-light-in-gimp">How to Remove
+Midtones Using Pin Light in GIMP</h1>
+<p>The Pin Light blend mode in GIMP provides a unique mathematical
+approach to tonal manipulation by combining the Darken and Lighten
+algorithms based on pixel brightness. By effectively ignoring neutral
+gray values and clamping tonal transitions, Pin Light allows editors to
+strip away flat, muddy midtones from an image while leaving specular
+highlights and rich, deep shadows completely intact. This makes it an
+indispensable tool for targeted contrast enhancements, dramatic artistic
+styling, and precise texture blending.</p>
+<h3 id="the-mechanics-of-the-pin-light-blend-mode">The Mechanics of the
+Pin Light Blend Mode</h3>
+<p>To understand why Pin Light targets midtones, you must understand its
+underlying formula. Pin Light evaluates the blend layer against the base
+layer using a 50% neutral gray midpoint as its operational
+threshold:</p>
+<ul>
+<li><strong>If the blend pixel is lighter than 50% gray:</strong> GIMP
+applies a Lighten comparison. Any base pixels darker than the
+calculation <code>2 * (Blend - 0.5)</code> are replaced by the blend
+pixel, while base pixels brighter than this threshold remain completely
+untouched.</li>
+<li><strong>If the blend pixel is darker than 50% gray:</strong> GIMP
+applies a Darken comparison. Any base pixels brighter than
+<code>2 * Blend</code> are replaced by the blend pixel, while darker
+pixels remain untouched.</li>
+</ul>
+<p>Because this mode relies entirely on hard replacement rather than the
+smooth multiplicative or additive blending found in modes like Overlay
+or Soft Light, it does not blend tonal transitions smoothly. It forces a
+hard cut.</p>
+<h3 id="why-midtones-get-removed">Why Midtones Get Removed</h3>
+<p>Midtones naturally occupy the tonal space surrounding 50% gray. In
+typical blending modes, midtones are gently shifted toward lighter or
+darker states. In Pin Light, however, the formula aggressively replaces
+pixels that fall within the middle dynamic range whenever the active
+blend layer deviates from true neutral gray.</p>
+<p>When a high-contrast blend layer—such as a High Pass filter or a
+Curves-adjusted layer—is set to Pin Light, the broad, gradual shifts of
+the midtone spectrum are overwritten. The transition zones between light
+and dark are snapped to extremes, effectively eliminating gray haze and
+muddy transitions from the final composite.</p>
+<h3 id="preservation-of-specular-highlights">Preservation of Specular
+Highlights</h3>
+<p>Specular highlights represent the upper extreme of the luminance
+scale—pure or near-pure white reflections. Under the Pin Light formula,
+when the blend layer features extreme highlights, base pixels that are
+already brighter than the replacement threshold are left unaltered.</p>
+<p>Unlike blend modes such as Screen or Add, which continuously add
+luminosity and can easily blow out fine highlight details into flat
+white patches, Pin Light preserves the crisp integrity of true specular
+reflections. It allows bright highlights to shine through without
+artificially overexposing them.</p>
+<h3 id="preservation-of-deep-shadows">Preservation of Deep Shadows</h3>
+<p>Deep shadows occupy the lowest end of the dynamic range. When Pin
+Light executes its darkening phase, it only overwrites pixels that are
+<em>brighter</em> than twice the blend layer's value.</p>
+<p>Because true deep shadows are already near zero luminance, they sit
+safely below the replacement threshold. As a result, the deepest blacks
+do not get elevated, muddied, or washed out. The base image retains its
+absolute black point and structural shadow depth, avoiding the flat,
+gray-tinted blacks common in other editing methods.</p>
+<h3 id="summary-of-practical-use">Summary of Practical Use</h3>
+<p>Using Pin Light in GIMP is most effective when working with
+duplicated, high-contrast layers. By stripping the middle grays out of
+the equation and maintaining only the extreme edges of the luminance
+scale, you achieve a punchy, sharp aesthetic with pure whites, deep
+blacks, and zero midtone clutter.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a 19th-Century Tintype Photo in GIMP - gimp</title>
+    <meta name="description" content="Transforming a modern digital portrait into an authentic 19th-century tintype using GIMP involves replicating the unique physical and chemical characteristics of wet-plate collodion photography. This guide covers how to simulate orthochromatic light sens">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-a-19-th-century-tintype-photo-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create a 19th-Century Tintype Photo in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-a-19-th-century-tintype-photo-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming a modern digital portrait into an authentic 19th-century tintype using GIMP involves replicating the unique physical and chemical characteristics of wet-plate collodion photography. This guide covers how to simulate orthochromatic light sens" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-a-19th-century-tintype-photo-in-gimp">Create a
+19th-Century Tintype Photo in GIMP</h1>
+<p>Transforming a modern digital portrait into an authentic 19th-century
+tintype using GIMP involves replicating the unique physical and chemical
+characteristics of wet-plate collodion photography. This guide covers
+how to simulate orthochromatic light sensitivity, high-contrast tonal
+depth, vintage Petzval lens blur, metallic chemical color toning, and
+authentic surface imperfections like scratches, dust, and uneven
+collodion borders.</p>
+<h3 id="step-1-prepare-and-crop-the-base-portrait">Step 1: Prepare and
+Crop the Base Portrait</h3>
+<p>Open your portrait in GIMP. Historical tintype portraits typically
+featured formal, centered compositions with subjects maintaining static
+poses. Use the <strong>Crop Tool (Shift + C)</strong> to crop your image
+into a standard 4:5 or 1:1 aspect ratio, keeping the subject's face
+centrally aligned.</p>
+<h3 id="step-2-simulate-orthochromatic-light-sensitivity">Step 2:
+Simulate Orthochromatic Light Sensitivity</h3>
+<p>Nineteenth-century tintype emulsions were sensitive primarily to blue
+and ultraviolet light, rendering warm tones like red and yellow much
+darker than modern black-and-white conversions.</p>
+<ol type="1">
+<li>Navigate to <strong>Colors &gt; Components &gt; Mono
+Mixer</strong>.</li>
+<li>Increase the <strong>Blue Channel</strong> slider to roughly
+60–80%.</li>
+<li>Lower the <strong>Red Channel</strong> slider to 0–20%.</li>
+<li>Adjust the <strong>Green Channel</strong> to fill in the mid-tones
+until the skin tones appear slightly darker and the eyes become distinct
+and luminous.</li>
+</ol>
+<h3 id="step-3-dial-in-high-contrast-with-curves">Step 3: Dial in High
+Contrast with Curves</h3>
+<p>Tintypes are characterized by deep, crushed shadows and bright,
+silver-like highlights.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Curves</strong>.</li>
+<li>Create an aggressive "S-curve" by dragging the bottom-left quadrant
+down to deepen the dark areas and pulling the top-right quadrant upward
+to boost highlight intensity.</li>
+<li>Slightly raise the bottom-left black endpoint off the absolute
+baseline to simulate the milky, non-pure blacks typical of iron plate
+exposures.</li>
+</ol>
+<h3 id="step-4-replicate-period-lens-softness-and-vignette">Step 4:
+Replicate Period Lens Softness and Vignette</h3>
+<p>Historical Petzval lenses produced sharp central subjects surrounded
+by radial, swirly softness and significant corner falloff.</p>
+<ol type="1">
+<li>Duplicate your working layer with <strong>Layer &gt; Duplicate Layer
+(Shift + Ctrl + D)</strong>.</li>
+<li>Select the top layer and apply <strong>Filters &gt; Blur &gt; Focus
+Blur</strong> (or <strong>Vignette</strong> combined with
+<strong>Filters &gt; Blur &gt; Gaussian Blur</strong>).</li>
+<li>Set the blur shape to radial, positioning the sharp focal area
+directly over the subject's eyes and face.</li>
+<li>Increase the blur radius to soften the edges and shoulders.</li>
+<li>Go to <strong>Filters &gt; Light and Shadow &gt; Vignette</strong>
+on the underlying layer to darken the corners heavily.</li>
+</ol>
+<h3 id="step-5-apply-the-chemical-and-metallic-color-tint">Step 5: Apply
+the Chemical and Metallic Color Tint</h3>
+<p>Tintypes were exposed on dark-lacquered metal plates, giving them a
+distinct cool charcoal, warm amber, or silvery-brown cast.</p>
+<ol type="1">
+<li>Create a new transparent layer on top named "Color Tone".</li>
+<li>Set your foreground color to a dark sepia-charcoal (e.g.,
+<code>#3A322D</code>) and background to a pale warm cream (e.g.,
+<code>#EFE6D8</code>).</li>
+<li>Select <strong>Colors &gt; Map &gt; Gradient Map</strong> using the
+Foreground to Background gradient.</li>
+<li>In the Layers panel, set the layer blending mode to
+<strong>Color</strong> or <strong>Soft Light</strong> and lower the
+<strong>Opacity</strong> between 30% and 50% depending on the desired
+metallic warmth.</li>
+</ol>
+<h3 id="step-6-add-wet-plate-collodion-textures-and-artifacts">Step 6:
+Add Wet Plate Collodion Textures and Artifacts</h3>
+<p>Authentic tintypes feature imperfections from chemical pouring,
+silver pooling, dust particles, and plate scratches.</p>
+<ol type="1">
+<li>Import a high-resolution collodion or grunge texture into your
+project as a new top layer (<strong>File &gt; Open as
+Layers</strong>).</li>
+<li>Desaturate the texture layer using <strong>Colors &gt; Desaturate
+&gt; Desaturate</strong>.</li>
+<li>Set the layer blending mode to <strong>Overlay</strong>,
+<strong>Screen</strong>, or <strong>Soft Light</strong> depending on the
+texture's lightness values.</li>
+<li>Use the <strong>Eraser Tool (Shift + E)</strong> with a soft brush
+and low opacity to gently clear heavy scratches or dust away from
+critical facial features like the eyes and mouth.</li>
+<li>If desired, use a rough grunge brush on a new black layer to paint
+an uneven, dark chemical border around the edges of the frame to mimic
+hand-poured collodion runoff.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

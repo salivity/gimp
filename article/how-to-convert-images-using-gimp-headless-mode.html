@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Convert Images Using GIMP Headless Mode - gimp</title>
+    <meta name="description" content="This article explains how to execute the GNU Image Manipulation Program (GIMP) in headless mode via the command line to automate image format conversion. It covers the required command-line switches, the exact Script-Fu syntax needed to open, convert, an">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-convert-images-using-gimp-headless-mode">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Convert Images Using GIMP Headless Mode - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-convert-images-using-gimp-headless-mode" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to execute the GNU Image Manipulation Program (GIMP) in headless mode via the command line to automate image format conversion. It covers the required command-line switches, the exact Script-Fu syntax needed to open, convert, an" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-convert-images-using-gimp-headless-mode">How to Convert
+Images Using GIMP Headless Mode</h1>
+<p>This article explains how to execute the GNU Image Manipulation
+Program (GIMP) in headless mode via the command line to automate image
+format conversion. It covers the required command-line switches, the
+exact Script-Fu syntax needed to open, convert, and save images
+non-interactively, and a practical example for converting common file
+formats like PNG to JPEG.</p>
+<h2 id="the-headless-conversion-command">The Headless Conversion
+Command</h2>
+<p>To process and convert an image entirely without a graphical user
+interface, call the <code>gimp</code> binary with the <code>-i</code>
+(or <code>--no-interface</code>) flag and execute Scheme (Script-Fu)
+commands using the <code>-b</code> (or <code>--batch</code>) flag.</p>
+<p>Here is the complete syntax to convert an image named
+<code>input.png</code> to <code>output.jpg</code>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;(let* ((image (car (gimp-file-load RUN-NONINTERACTIVE &quot;input.png&quot; &quot;input.png&quot;)))</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">                  (drawable (car (gimp-image-get-active-layer image))))</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">              (gimp-file-save RUN-NONINTERACTIVE image drawable &quot;output.jpg&quot; &quot;output.jpg&quot;)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">              (gimp-image-delete image))&#39;</span> <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<h2 id="command-breakdown">Command Breakdown</h2>
+<ul>
+<li><code>-i</code>: Disables the graphical user interface completely,
+running GIMP headlessly.</li>
+<li><code>-b '&lt;command&gt;'</code>: Evaluates a batch command written
+in Script-Fu (Scheme syntax).</li>
+<li><code>let*</code>: Binds local variables within the batch process:
+<ul>
+<li><code>image</code>: Loads the source file into memory using
+<code>(gimp-file-load RUN-NONINTERACTIVE filename raw-filename)</code>.</li>
+<li><code>drawable</code>: Retrieves the active layer of the image using
+<code>(gimp-image-get-active-layer image)</code>, which is required by
+the export procedure.</li>
+</ul></li>
+<li><code>gimp-file-save</code>: Saves the loaded image to the
+destination filename using the specified active drawable. GIMP
+automatically determines the export format based on the file extension
+(<code>.jpg</code>, <code>.png</code>, <code>.webp</code>, etc.).</li>
+<li><code>gimp-image-delete</code>: Flushes the image from memory to
+prevent memory leaks during execution.</li>
+<li><code>-b '(gimp-quit 0)'</code>: A secondary batch argument that
+instructs the GIMP process to terminate immediately with an exit code of
+<code>0</code>. Omitting this command will cause the process to hang in
+the terminal after completing the file export.</li>
+</ul>
+<h2 id="automating-multiple-files">Automating Multiple Files</h2>
+<p>To convert multiple files in a directory using a standard Bash loop,
+wrap the command in a shell script:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.png<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">output</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${file</span><span class="op">%</span>.png<span class="va">}</span><span class="st">.jpg&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&quot;(let* ((image (car (gimp-file-load RUN-NONINTERACTIVE </span><span class="dt">\&quot;</span><span class="va">$file</span><span class="dt">\&quot;</span><span class="st"> </span><span class="dt">\&quot;</span><span class="va">$file</span><span class="dt">\&quot;</span><span class="st">)))</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">                    (drawable (car (gimp-image-get-active-layer image))))</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">                (gimp-file-save RUN-NONINTERACTIVE image drawable </span><span class="dt">\&quot;</span><span class="va">$output</span><span class="dt">\&quot;</span><span class="st"> </span><span class="dt">\&quot;</span><span class="va">$output</span><span class="dt">\&quot;</span><span class="st">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">                (gimp-image-delete image))&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

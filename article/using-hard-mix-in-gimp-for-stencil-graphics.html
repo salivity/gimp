@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Hard Mix in GIMP for Stencil Graphics - gimp</title>
+    <meta name="description" content="This article explains how the Hard Mix blend mode functions in GIMP to streamline the preparation of high-contrast stencil graphics. By forcing all image channels to extreme minimum or maximum values, Hard Mix eliminates smooth gradients and midtones, cr">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/using-hard-mix-in-gimp-for-stencil-graphics">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using Hard Mix in GIMP for Stencil Graphics - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/using-hard-mix-in-gimp-for-stencil-graphics" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the Hard Mix blend mode functions in GIMP to streamline the preparation of high-contrast stencil graphics. By forcing all image channels to extreme minimum or maximum values, Hard Mix eliminates smooth gradients and midtones, cr" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="using-hard-mix-in-gimp-for-stencil-graphics">Using Hard Mix in
+GIMP for Stencil Graphics</h1>
+<p>This article explains how the Hard Mix blend mode functions in GIMP
+to streamline the preparation of high-contrast stencil graphics. By
+forcing all image channels to extreme minimum or maximum values, Hard
+Mix eliminates smooth gradients and midtones, creating flat, crisp
+boundaries required for physical stencils, screen printing, and vinyl
+cutting.</p>
+<h3 id="the-mechanics-of-hard-mix">The Mechanics of Hard Mix</h3>
+<p>The Hard Mix blend mode operates by evaluating the RGB channel values
+of the blend layer and the underlying base layer. It adds the color
+channel values together. If the sum of a specific color channel equals
+or exceeds the maximum threshold (value 255 in 8-bit color depth), GIMP
+assigns that channel the full value of 255. If the sum is less than 255,
+the channel is reduced to 0.</p>
+<p>When applied to grayscale images, this mathematical operation results
+in a strictly binary output consisting entirely of pure white (RGB 255,
+255, 255) and pure black (RGB 0, 0, 0) pixels. When applied to color
+images, it flattens the image into eight primary and secondary colors
+(red, green, blue, cyan, magenta, yellow, black, and white).</p>
+<h3 id="value-for-stencil-preparation">Value for Stencil
+Preparation</h3>
+<p>Creating functional stencils requires distinct separation between
+positive and negative space without intermediate gray areas or soft edge
+transitions. Hard Mix fulfills this requirement through several
+functional advantages:</p>
+<ul>
+<li><strong>Elimination of Anti-Aliasing and Gradients:</strong>
+Physical cutting plotters and laser cutters interpret vector lines
+derived from solid color boundaries. Hard Mix completely strips
+feathering and anti-aliasing, ensuring vector tracing tools (like GIMP's
+Path tool or external vector software) generate clean, continuous cut
+paths.</li>
+<li><strong>Non-Destructive Adjustments:</strong> Unlike applying a
+destructive permanent threshold directly to an image, using Hard Mix as
+a layer mode allows for real-time adjustments. Changing the opacity of
+the blend layer or editing the underlying artwork dynamically alters the
+shape and weight of the stencil cutouts.</li>
+<li><strong>Edge Softness Control via Blur:</strong> Applying a Gaussian
+Blur to a layer set to Hard Mix does not produce a blurry image.
+Instead, the blur alters the gradient falloff, which the Hard Mix mode
+converts into smoother, rounded contours rather than jagged, pixelated
+threshold edges.</li>
+</ul>
+<h3 id="practical-workflow-in-gimp">Practical Workflow in GIMP</h3>
+<p>To prepare a stencil graphic using Hard Mix in GIMP:</p>
+<ol type="1">
+<li>Place your target artwork on the bottom layer and convert it to
+grayscale if you require a simple two-tone stencil.</li>
+<li>Duplicate the base layer or add an adjustment layer above it.</li>
+<li>Set the upper layer's blend mode to <strong>Hard Mix</strong> (found
+under the layer mode drop-down menu in the Layers dialog).</li>
+<li>Apply adjustments such as Curves, Levels, or Brightness/Contrast to
+the layers beneath to control the distribution and balance of black and
+white shapes dynamically.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

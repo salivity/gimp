@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Extract Hair from Background in GIMP - gimp</title>
+    <meta name="description" content="Isolating fine details like hair strands during background extraction is one of the most challenging tasks in photo editing. In GIMP, the most effective method relies on high-contrast channel manipulation combined with layer masks rather than basic selec">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-extract-hair-from-background-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Extract Hair from Background in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-extract-hair-from-background-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating fine details like hair strands during background extraction is one of the most challenging tasks in photo editing. In GIMP, the most effective method relies on high-contrast channel manipulation combined with layer masks rather than basic selec" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-extract-hair-from-background-in-gimp">How to Extract Hair
+from Background in GIMP</h1>
+<p>Isolating fine details like hair strands during background extraction
+is one of the most challenging tasks in photo editing. In GIMP, the most
+effective method relies on high-contrast channel manipulation combined
+with layer masks rather than basic selection tools. This guide provides
+a straightforward, step-by-step procedure using channel-based masking
+and edge refinement to seamlessly separate complex hair from any
+background without losing fine strands.</p>
+<h3 id="step-1-prepare-the-image-layer">Step 1: Prepare the Image
+Layer</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click your image layer and select <strong>Add Alpha
+Channel</strong> (if not already enabled) to ensure transparency is
+supported.</li>
+<li>Duplicate the layer by clicking <strong>Layer &gt; Duplicate
+Layer</strong> so you have a non-destructive backup.</li>
+</ol>
+<h3 id="step-2-find-the-highest-contrast-channel">Step 2: Find the
+Highest-Contrast Channel</h3>
+<p>Hair extraction works best by finding the channel with the most
+separation between the subject and the background.</p>
+<ol type="1">
+<li>Open the <strong>Channels</strong> dialog (<strong>Windows &gt;
+Dockable Dialogs &gt; Channels</strong>).</li>
+<li>Click through the <strong>Red</strong>, <strong>Green</strong>, and
+<strong>Blue</strong> channels individually to see which one provides
+the strongest contrast between the hair strands and the background.</li>
+<li>Right-click the channel with the highest contrast and select
+<strong>Duplicate Channel</strong>.</li>
+<li>Make only this new duplicate channel visible by clicking the eye
+icon next to it.</li>
+</ol>
+<h3 id="step-3-boost-contrast-using-levels">Step 3: Boost Contrast Using
+Levels</h3>
+<ol type="1">
+<li>With the duplicated channel selected, go to <strong>Colors &gt;
+Levels</strong>.</li>
+<li>Drag the <strong>Black Input Slider</strong> to the right to darken
+the hair and subject.</li>
+<li>Drag the <strong>White Input Slider</strong> to the left to lighten
+the background.</li>
+<li>Adjust the <strong>Middle (Gamma) Slider</strong> until individual
+hair strands stand out sharply against a clean background without
+introducing too much pixel noise.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-4-fill-the-interior-of-the-subject">Step 4: Fill the
+Interior of the Subject</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>).</li>
+<li>Set your foreground color to pure black (if isolating a dark subject
+on a light background) or pure white (if creating a direct mask).</li>
+<li>Paint over the solid inside areas of the subject's body and face so
+the entire silhouette is solid, leaving the delicate hair edges intact
+where the fine channel contrast remains.</li>
+<li>If there are stray background artifacts, switch your brush color and
+paint them out.</li>
+</ol>
+<h3 id="step-5-convert-the-channel-into-a-layer-mask">Step 5: Convert
+the Channel into a Layer Mask</h3>
+<ol type="1">
+<li>Right-click the duplicate channel in the <strong>Channels</strong>
+panel and select <strong>Channel to Selection</strong>.</li>
+<li>Return to the <strong>Layers</strong> panel and select your working
+image layer.</li>
+<li>Right-click the layer and select <strong>Add Layer
+Mask</strong>.</li>
+<li>In the dialog, choose <strong>Selection</strong> and check
+<strong>Invert Mask</strong> if necessary (the subject should remain
+visible while the background turns transparent).</li>
+<li>Click <strong>Add</strong>.</li>
+</ol>
+<h3 id="step-6-clean-up-color-fringe-decontamination">Step 6: Clean Up
+Color Fringe (Decontamination)</h3>
+<p>Hair strands often retain color reflections from the removed
+background.</p>
+<ol type="1">
+<li>Create a new transparent layer directly above your subject
+layer.</li>
+<li>Right-click the new layer and select <strong>Mask to
+Selection</strong> using the subject layer's mask, or clip the layer to
+the subject.</li>
+<li>Select the <strong>Color Picker Tool</strong> (<code>O</code>) and
+sample the natural color of the hair near the edges.</li>
+<li>Set the new layer's blend mode to <strong>Color</strong> or
+<strong>Multiply</strong>.</li>
+<li>Use a soft <strong>Paintbrush Tool</strong> with low opacity to
+gently paint over the outer hair edges to neutralize background color
+halos.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding GIMP Vivid Light Blend Mode - gimp</title>
+    <meta name="description" content="The Vivid Light blend mode in GIMP is an extreme contrast-enhancing tool that dynamically alters an image's tonal values based on the brightness of the active layer. By using neutral 50% gray as a threshold, Vivid Light applies Color Burn to darken tones">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/understanding-gimp-vivid-light-blend-mode">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Understanding GIMP Vivid Light Blend Mode - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/understanding-gimp-vivid-light-blend-mode" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Vivid Light blend mode in GIMP is an extreme contrast-enhancing tool that dynamically alters an image's tonal values based on the brightness of the active layer. By using neutral 50% gray as a threshold, Vivid Light applies Color Burn to darken tones" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="understanding-gimp-vivid-light-blend-mode">Understanding GIMP
+Vivid Light Blend Mode</h1>
+<p>The Vivid Light blend mode in GIMP is an extreme contrast-enhancing
+tool that dynamically alters an image's tonal values based on the
+brightness of the active layer. By using neutral 50% gray as a
+threshold, Vivid Light applies Color Burn to darken tones beneath pixels
+darker than mid-gray and Color Dodge to brighten tones beneath pixels
+lighter than mid-gray. This dual-action approach produces intense,
+punchy results characterized by deeply saturated colors and high
+contrast.</p>
+<h3 id="the-50-gray-threshold">The 50% Gray Threshold</h3>
+<p>In digital imaging, neutral gray represents a luminance value of 50%
+(an RGB value of 128 on an 8-bit scale from 0 to 255). In GIMP's Vivid
+Light mode, this mid-point serves as the neutral dividing line:</p>
+<ul>
+<li><strong>Blend pixels at exactly 50% gray</strong> have no effect on
+the underlying base layer.</li>
+<li><strong>Blend pixels darker than 50% gray</strong> trigger the Color
+Burn algorithm.</li>
+<li><strong>Blend pixels lighter than 50% gray</strong> trigger the
+Color Dodge algorithm.</li>
+</ul>
+<h3 id="darker-pixels-activating-color-burn">Darker Pixels: Activating
+Color Burn</h3>
+<p>When a pixel on the blend layer has a brightness value below 50%
+gray, Vivid Light behaves like an intensified Color Burn.</p>
+<p>Instead of standard darkening methods like Multiply, Color Burn
+increases contrast by heavily compressing midtones and driving darker
+values toward pure black. As a result, any areas on the base layer
+corresponding to dark areas on the blend layer experience significant
+darkening, shadow crushing, and an increase in color saturation. Pure
+black on the blend layer forces the underlying base pixel directly to
+black.</p>
+<h3 id="lighter-pixels-activating-color-dodge">Lighter Pixels:
+Activating Color Dodge</h3>
+<p>When a pixel on the blend layer has a brightness value above 50%
+gray, Vivid Light transitions to an intensified Color Dodge.</p>
+<p>Unlike gentle brightening methods like Screen, Color Dodge decreases
+contrast in the upper midtones while aggressively pushing highlights
+toward pure white. Base layer pixels under light blend pixels are blown
+out and brightened rapidly, creating vivid, high-key highlights. Pure
+white on the blend layer forces the underlying base pixel directly to
+white.</p>
+<h3 id="comparison-to-other-contrast-modes">Comparison to Other Contrast
+Modes</h3>
+<p>Vivid Light belongs to the contrast-blending family alongside
+Overlay, Soft Light, Hard Light, and Linear Light. While Overlay and
+Hard Light combine Multiply and Screen for a natural tonal curve, Vivid
+Light combines the harsher curves of Color Burn and Color Dodge. This
+makes Vivid Light far less subtle, producing sharp cutoffs, clipped
+highlights, deep shadows, and extreme saturation shifts unless the layer
+opacity is significantly reduced.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

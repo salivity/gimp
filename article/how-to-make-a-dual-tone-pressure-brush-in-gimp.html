@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make a Dual-Tone Pressure Brush in GIMP - gimp</title>
+    <meta name="description" content="Creating a dual-tone brush in GIMP allows digital artists to seamlessly blend between the active foreground and background colors using the pressure of a graphics tablet stylus. This effect is achieved through GIMP’s Paint Dynamics engine by mapping st">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-a-dual-tone-pressure-brush-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make a Dual-Tone Pressure Brush in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-a-dual-tone-pressure-brush-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a dual-tone brush in GIMP allows digital artists to seamlessly blend between the active foreground and background colors using the pressure of a graphics tablet stylus. This effect is achieved through GIMP’s Paint Dynamics engine by mapping st" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-a-dual-tone-pressure-brush-in-gimp">How to Make a
+Dual-Tone Pressure Brush in GIMP</h1>
+<p>Creating a dual-tone brush in GIMP allows digital artists to
+seamlessly blend between the active foreground and background colors
+using the pressure of a graphics tablet stylus. This effect is achieved
+through GIMP’s Paint Dynamics engine by mapping stylus pressure directly
+to the brush's color output using an active Foreground-to-Background
+gradient. Following the steps below, you will configure a custom
+dynamic, assign the correct gradient, and achieve dynamic two-color
+blending in your strokes.</p>
+<h3 id="step-1-open-the-paint-dynamics-dialog">Step 1: Open the Paint
+Dynamics Dialog</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>In the top menu, navigate to <strong>Windows &gt; Dockable Dialogs
+&gt; Paint Dynamics</strong>.</li>
+<li>In the Paint Dynamics panel, click the <strong>Create new
+dynamics</strong> button (the notepad icon at the bottom of the panel).
+This opens the Paint Dynamics Editor.</li>
+</ol>
+<h3 id="step-2-configure-the-pressure-to-color-dynamic">Step 2:
+Configure the Pressure-to-Color Dynamic</h3>
+<ol type="1">
+<li>In the Paint Dynamics Editor, name your preset (for example,
+"Pressure Color Blend").</li>
+<li>Locate the dynamics matrix, which lists inputs along the vertical
+axis and outputs along the horizontal axis.</li>
+<li>Find the <strong>Pressure</strong> row and track across to the
+<strong>Color</strong> column.</li>
+<li>Check the box at the intersection of <strong>Pressure</strong> and
+<strong>Color</strong>.</li>
+<li>Close the Paint Dynamics Editor. The new dynamic is automatically
+saved.</li>
+</ol>
+<h3 id="step-3-configure-the-brush-tool-options">Step 3: Configure the
+Brush Tool Options</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>) from
+the Toolbox.</li>
+<li>Go to the <strong>Tool Options</strong> panel.</li>
+<li>Under the <strong>Dynamics</strong> section, click the dynamic
+preview icon and select your newly created dynamic ("Pressure Color
+Blend").</li>
+<li>Expand the <strong>Color Options</strong> subsection located beneath
+Dynamics in the Tool Options panel.</li>
+<li>Set the <strong>Gradient</strong> to <strong>FG to BG
+(RGB)</strong>.</li>
+<li>Ensure the <strong>Repeat</strong> option is set to
+<strong>None</strong>.</li>
+</ol>
+<h3 id="step-4-set-swatches-and-paint">Step 4: Set Swatches and
+Paint</h3>
+<ol type="1">
+<li>Click the active <strong>Foreground Color</strong> swatch in the
+toolbox and pick your starting tone (e.g., light blue).</li>
+<li>Click the active <strong>Background Color</strong> swatch and pick
+your secondary tone (e.g., deep purple).</li>
+<li>Test your brush on the canvas using your pressure-sensitive stylus.
+Applying minimal pressure outputs the foreground tone, while increasing
+pressure progressively blends the stroke into the background tone.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

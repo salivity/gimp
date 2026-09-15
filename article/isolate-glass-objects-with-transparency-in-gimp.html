@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isolate Glass Objects with Transparency in GIMP - gimp</title>
+    <meta name="description" content="Isolating transparent glass in GIMP requires capturing both the bright reflections and the dark refractions separately rather than relying on a standard cutout. This tutorial outlines the standard multi-layer technique using blending modes and layer mask">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/isolate-glass-objects-with-transparency-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Isolate Glass Objects with Transparency in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/isolate-glass-objects-with-transparency-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating transparent glass in GIMP requires capturing both the bright reflections and the dark refractions separately rather than relying on a standard cutout. This tutorial outlines the standard multi-layer technique using blending modes and layer mask" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="isolate-glass-objects-with-transparency-in-gimp">Isolate Glass
+Objects with Transparency in GIMP</h1>
+<p>Isolating transparent glass in GIMP requires capturing both the
+bright reflections and the dark refractions separately rather than
+relying on a standard cutout. This tutorial outlines the standard
+multi-layer technique using blending modes and layer masks, allowing you
+to seamlessly place glass items onto any new background while preserving
+genuine transparency.</p>
+<h3 id="step-1-prepare-the-image-and-base-selection">Step 1: Prepare the
+Image and Base Selection</h3>
+<ol type="1">
+<li>Open your image in GIMP and ensure the layer has transparency by
+right-clicking it in the <strong>Layers</strong> panel and selecting
+<strong>Add Alpha Channel</strong>.</li>
+<li>Select the <strong>Paths Tool</strong> (<code>B</code>) from the
+toolbox and trace the outer contour of the glass object.</li>
+<li>Once the path is closed, click <strong>Selection from Path</strong>
+in the Tool Options.</li>
+<li>Go to <strong>Select &gt; Save to Channel</strong> so you can recall
+this shape at any time.</li>
+</ol>
+<h3 id="step-2-set-up-the-working-layers">Step 2: Set Up the Working
+Layers</h3>
+<ol type="1">
+<li>Duplicate the original background layer three times.</li>
+<li>Rename the layers from top to bottom:
+<ul>
+<li><code>Highlights</code></li>
+<li><code>Shadows</code></li>
+<li><code>Base Silhouette</code></li>
+<li><code>Original Background</code> (turn off visibility for
+reference)</li>
+</ul></li>
+<li>Create a new layer group, name it <code>Glass Object</code>, and
+drag the <code>Highlights</code>, <code>Shadows</code>, and
+<code>Base Silhouette</code> layers into this group.</li>
+<li>Right-click the <code>Glass Object</code> group, choose <strong>Add
+Layer Mask</strong>, select <strong>Channel</strong>, and choose the
+selection channel saved in Step 1. This prevents any adjustments from
+spilling outside the glass edges.</li>
+</ol>
+<h3 id="step-3-extract-the-highlights-reflections">Step 3: Extract the
+Highlights (Reflections)</h3>
+<ol type="1">
+<li>Select the <code>Highlights</code> layer and go to <strong>Colors
+&gt; Desaturate &gt; Desaturate</strong> to remove color casts from
+reflections.</li>
+<li>Open <strong>Colors &gt; Levels</strong>.</li>
+<li>Drag the black input slider to the right until the background and
+mid-tones become completely black, leaving only the white highlights and
+glares visible. Click <strong>OK</strong>.</li>
+<li>Change the blend mode of the <code>Highlights</code> layer to
+<strong>Screen</strong> (or <strong>Addition</strong>). This makes all
+black pixels transparent while keeping the light reflections
+visible.</li>
+</ol>
+<h3 id="step-4-extract-the-shadows-refraction-and-edges">Step 4: Extract
+the Shadows (Refraction and Edges)</h3>
+<ol type="1">
+<li>Select the <code>Shadows</code> layer and go to <strong>Colors &gt;
+Desaturate &gt; Desaturate</strong>.</li>
+<li>Open <strong>Colors &gt; Levels</strong>.</li>
+<li>Drag the white input slider to the left until the background turns
+completely white, leaving the dark outlines, refractions, and base
+shadows visible. Click <strong>OK</strong>.</li>
+<li>Change the blend mode of the <code>Shadows</code> layer to
+<strong>Multiply</strong>. This makes all pure white pixels transparent
+while preserving dark tones and shadows.</li>
+</ol>
+<h3 id="step-5-test-and-refine">Step 5: Test and Refine</h3>
+<ol type="1">
+<li>Create a new layer beneath the <code>Glass Object</code> group and
+fill it with a contrasting color or a test background image to inspect
+transparency.</li>
+<li>If the glass appears too faint, duplicate either the
+<code>Highlights</code> or <code>Shadows</code> layer to boost
+intensity.</li>
+<li>Adjust the <strong>Opacity</strong> sliders of the
+<code>Highlights</code> and <code>Shadows</code> layers individually
+until the balance between transparency and reflection looks
+natural.</li>
+<li>If internal colored liquid or solid elements exist inside the glass,
+use the <code>Base Silhouette</code> layer with a layer mask to paint
+back the opaque regions using a soft white brush.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

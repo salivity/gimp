@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Reposition Gradient Stops in GIMP - gimp</title>
+    <meta name="description" content="GIMP’s on-canvas Gradient tool allows you to manipulate color transitions directly within your workspace rather than relying solely on dialog menus. By utilizing interactive on-canvas stop widgets—represented by square markers along the gradient line">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-reposition-gradient-stops-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Reposition Gradient Stops in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-reposition-gradient-stops-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s on-canvas Gradient tool allows you to manipulate color transitions directly within your workspace rather than relying solely on dialog menus. By utilizing interactive on-canvas stop widgets—represented by square markers along the gradient line" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-reposition-gradient-stops-in-gimp">How to Reposition
+Gradient Stops in GIMP</h1>
+<p>GIMP’s on-canvas Gradient tool allows you to manipulate color
+transitions directly within your workspace rather than relying solely on
+dialog menus. By utilizing interactive on-canvas stop
+widgets—represented by square markers along the gradient line—you can
+dynamically reposition color nodes, modify blending distances, and
+fine-tune your color transitions in real time. This guide outlines how
+to activate the tool, locate these widgets, and drag color stops along
+the gradient vector to achieve precise positioning.</p>
+<h3 id="1-activate-the-gradient-tool">1. Activate the Gradient Tool</h3>
+<p>Select the <strong>Gradient Tool</strong> from the main toolbox or
+press the keyboard shortcut <strong>G</strong>. In the Tool Options
+dock, ensure your desired base gradient and shape (such as Linear or
+Radial) are selected.</p>
+<h3 id="2-draw-the-initial-gradient-vector">2. Draw the Initial Gradient
+Vector</h3>
+<p>Click and drag across your canvas or active selection to establish
+the gradient's direction and length. Releasing the mouse button reveals
+the interactive on-canvas line with endpoints and intermediate
+markers.</p>
+<h3 id="3-identify-the-stop-widgets">3. Identify the Stop Widgets</h3>
+<p>On the gradient line, GIMP displays two primary types of interactive
+widgets:</p>
+<ul>
+<li><strong>Square Handles:</strong> These represent color stops (nodes)
+where specific colors are anchored. The starting and ending points are
+squares, as are any custom color stops added between them.</li>
+<li><strong>Round/Diamond Handles:</strong> These represent midpoints
+between two color stops, controlling the balance and transition rate
+between adjacent colors.</li>
+</ul>
+<h3 id="4-reposition-color-nodes-stops">4. Reposition Color Nodes
+(Stops)</h3>
+<p>To reposition an intermediate color stop:</p>
+<ol type="1">
+<li>Hover your cursor over the square stop widget you wish to move until
+the cursor indicates it can interact with the point.</li>
+<li>Click and hold the square handle.</li>
+<li>Drag the handle forward or backward along the gradient line. The
+color blend will update interactively across the canvas.</li>
+<li>Release the mouse button at the desired location.</li>
+</ol>
+<p>To reposition the start or end nodes, click and drag the outer square
+handles. Unlike intermediate stops, moving the endpoints changes the
+overall length, orientation, and angle of the entire gradient.</p>
+<h3 id="5-add-and-adjust-new-stops">5. Add and Adjust New Stops</h3>
+<p>If your gradient requires more color transitions:</p>
+<ul>
+<li>Click anywhere directly on the gradient line where there is no
+existing widget. GIMP will insert a new square stop node.</li>
+<li>Click and drag this newly created square widget along the line to
+place it at the exact percentage or position you require.</li>
+</ul>
+<h3 id="6-fine-tune-position-via-tool-options">6. Fine-Tune Position via
+Tool Options</h3>
+<p>For mathematically precise placement:</p>
+<ol type="1">
+<li>Click the square stop handle to make it the active stop (it will
+change color to show it is selected).</li>
+<li>Look at the floating gradient bar on the canvas or the <strong>Tool
+Options</strong> panel.</li>
+<li>Adjust the <strong>Position</strong> numerical slider to set the
+exact position of the stop as a percentage (from 0% to 100%) along the
+segment.</li>
+</ol>
+<h3 id="7-commit-the-changes">7. Commit the Changes</h3>
+<p>Once the color stops are in their correct positions, press
+<strong>Enter</strong> or switch to another tool to commit the gradient
+to the layer.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

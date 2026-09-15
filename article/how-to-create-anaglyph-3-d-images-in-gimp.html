@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Anaglyph 3D Images in GIMP - gimp</title>
+    <meta name="description" content="Creating anaglyph stereoscopic 3D images in GIMP is a straightforward process that transforms two offset photographs into a single image viewable with standard red-cyan 3D glasses. This guide walks you through preparing your left and right source images,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-anaglyph-3-d-images-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Anaglyph 3D Images in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-anaglyph-3-d-images-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating anaglyph stereoscopic 3D images in GIMP is a straightforward process that transforms two offset photographs into a single image viewable with standard red-cyan 3D glasses. This guide walks you through preparing your left and right source images," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-anaglyph-3d-images-in-gimp">How to Create Anaglyph
+3D Images in GIMP</h1>
+<p>Creating anaglyph stereoscopic 3D images in GIMP is a straightforward
+process that transforms two offset photographs into a single image
+viewable with standard red-cyan 3D glasses. This guide walks you through
+preparing your left and right source images, isolating the specific
+color channels for each eye, blending the layers together, and aligning
+the focal points to achieve a clean, immersive 3D effect.</p>
+<h3 id="step-1-prepare-your-stereo-pair">Step 1: Prepare Your Stereo
+Pair</h3>
+<p>To create a true 3D effect, you need two separate images of the same
+subject:</p>
+<ol type="1">
+<li><strong>Left Image:</strong> A photo taken from the left
+perspective.</li>
+<li><strong>Right Image:</strong> A photo taken approximately 2.5 inches
+(the distance between human eyes) to the right of the first photo,
+focused on the exact same subject.</li>
+</ol>
+<h3 id="step-2-open-the-images-as-layers">Step 2: Open the Images as
+Layers</h3>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>Go to <strong>File &gt; Open as Layers...</strong></li>
+<li>Select both the left and right images and click
+<strong>Open</strong>.</li>
+<li>In the <strong>Layers</strong> panel on the right, rename the top
+layer to <code>Left</code> and the bottom layer to <code>Right</code> to
+avoid confusion.</li>
+</ol>
+<h3 id="step-3-filter-the-left-image-red-channel">Step 3: Filter the
+Left Image (Red Channel)</h3>
+<ol type="1">
+<li>Select the <strong>Left</strong> layer in the Layers panel.</li>
+<li>Navigate to <strong>Colors &gt; Levels...</strong> in the top
+menu.</li>
+<li>In the dialog box, find the <strong>Channel</strong> dropdown menu
+(which defaults to "Value").</li>
+<li>Select the <strong>Green</strong> channel, then drag the
+<strong>Output Levels</strong> right slider (white point) all the way to
+<code>0</code>.</li>
+<li>Select the <strong>Blue</strong> channel, then drag the
+<strong>Output Levels</strong> right slider all the way to
+<code>0</code>.</li>
+<li>Leave the <strong>Red</strong> channel untouched and click
+<strong>OK</strong>. The left image will now appear entirely red.</li>
+</ol>
+<h3 id="step-4-filter-the-right-image-cyan-channel">Step 4: Filter the
+Right Image (Cyan Channel)</h3>
+<ol type="1">
+<li>Select the <strong>Right</strong> layer in the Layers panel.</li>
+<li>Navigate to <strong>Colors &gt; Levels...</strong></li>
+<li>In the <strong>Channel</strong> dropdown, select the
+<strong>Red</strong> channel.</li>
+<li>Drag the <strong>Output Levels</strong> right slider all the way to
+<code>0</code>.</li>
+<li>Leave the <strong>Green</strong> and <strong>Blue</strong> channels
+untouched and click <strong>OK</strong>. The right image will now appear
+cyan (blue-green).</li>
+</ol>
+<h3 id="step-5-blend-the-layers">Step 5: Blend the Layers</h3>
+<ol type="1">
+<li>Select the top layer (<strong>Left</strong>).</li>
+<li>At the top of the Layers panel, change the <strong>Mode</strong>
+dropdown from <strong>Normal</strong> to <strong>Screen</strong> (or
+<strong>Addition</strong>).</li>
+<li>The two layers will merge, restoring the original colors of the
+scene while creating visible red and cyan fringes along the edges of
+objects.</li>
+</ol>
+<h3 id="step-6-align-the-focal-point-convergence">Step 6: Align the
+Focal Point (Convergence)</h3>
+<ol type="1">
+<li>Put on your red-cyan 3D glasses (red lens over the left eye, cyan
+lens over the right eye).</li>
+<li>Select the <strong>Move Tool</strong> (<code>M</code> on your
+keyboard).</li>
+<li>Click on the top layer and use the arrow keys on your keyboard to
+shift it left or right.</li>
+<li>Align the primary subject of your photo until the red and cyan
+fringing on that specific object overlaps as closely as possible.
+Objects in front of or behind this focal point will naturally maintain
+separation, creating depth.</li>
+</ol>
+<h3 id="step-7-crop-and-export">Step 7: Crop and Export</h3>
+<ol type="1">
+<li>Select the <strong>Crop Tool</strong> (<code>Shift + C</code>).</li>
+<li>Draw a box around the usable area of the image to remove the uneven
+edges caused by shifting the layers.</li>
+<li>Press <strong>Enter</strong> to apply the crop.</li>
+<li>Go to <strong>File &gt; Export As...</strong>, choose your preferred
+format (such as <code>.jpg</code> or <code>.png</code>), and click
+<strong>Export</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

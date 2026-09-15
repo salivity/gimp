@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Adjust Saturation in GIMP Using HSL vs LCH - gimp</title>
+    <meta name="description" content="This article explains how to adjust color intensity in GIMP using two distinct color models: the traditional HSL (Hue, Saturation, Lightness) model and the perceptually uniform LCH (Lightness, Chroma, Hue) model. You will learn the fundamental difference">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-adjust-saturation-in-gimp-using-hsl-vs-lch">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Adjust Saturation in GIMP Using HSL vs LCH - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-adjust-saturation-in-gimp-using-hsl-vs-lch" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to adjust color intensity in GIMP using two distinct color models: the traditional HSL (Hue, Saturation, Lightness) model and the perceptually uniform LCH (Lightness, Chroma, Hue) model. You will learn the fundamental difference" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-adjust-saturation-in-gimp-using-hsl-vs-lch">How to Adjust
+Saturation in GIMP Using HSL vs LCH</h1>
+<p>This article explains how to adjust color intensity in GIMP using two
+distinct color models: the traditional HSL (Hue, Saturation, Lightness)
+model and the perceptually uniform LCH (Lightness, Chroma, Hue) model.
+You will learn the fundamental differences between these color spaces,
+step-by-step instructions for applying each method, and guidelines for
+choosing the right tool to achieve natural photo edits or vivid graphic
+effects.</p>
+<hr />
+<h3 id="understanding-hsl-vs-lch">Understanding HSL vs. LCH</h3>
+<ul>
+<li><strong>HSL (Hue, Saturation, Lightness):</strong> A standard
+cylindrical coordinate representation of RGB. In HSL, saturation
+adjustments scale color values purely based on mathematical RGB limits.
+This often leads to perceived shifts in brightness or hue—for instance,
+boosting saturation on yellow or blue can make them appear artificially
+harsh or cause clipping.</li>
+<li><strong>LCH (Lightness, Chroma, Hue):</strong> Derived from the CIE
+L*a*b* color space, LCH is designed around human visual perception.
+Adjusting "Chroma" (the LCH equivalent of saturation) alters color
+purity while keeping perceived lightness and hue strictly stable,
+resulting in smooth, natural gradients without blown-out channels.</li>
+</ul>
+<hr />
+<h3 id="adjusting-saturation-with-native-hsl">Adjusting Saturation with
+Native HSL</h3>
+<p>The native HSL tool is best for quick global adjustments or stylistic
+color shifts where perceptual accuracy is not critical.</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Navigate to the top menu and select <strong>Colors &gt;
+Hue-Saturation...</strong>.</li>
+<li>Under the <strong>Preset</strong> section, leave
+<strong>Master</strong> selected to adjust the entire image, or select a
+specific color radio button (Red, Green, Blue, Cyan, Magenta, Yellow) to
+target a specific range.</li>
+<li>Move the <strong>Saturation</strong> slider:
+<ul>
+<li>Drag to the right to increase color intensity.</li>
+<li>Drag to the left to desaturate the image toward grayscale.</li>
+</ul></li>
+<li><em>(Optional)</em> Fine-tune the <strong>Overlap</strong> slider if
+you selected a specific color range to smooth the transition between
+adjacent hues.</li>
+<li>Click <strong>OK</strong> to apply the changes.</li>
+</ol>
+<hr />
+<h3 id="adjusting-saturation-with-lch-hue-chroma">Adjusting Saturation
+with LCH (Hue-Chroma)</h3>
+<p>The LCH model is the preferred method for photographic retouching,
+skin tones, and subtle tonal adjustments because it prevents color
+clipping and maintains authentic image contrast.</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Navigate to the top menu and select <strong>Colors &gt;
+Hue-Chroma...</strong>.</li>
+<li>Locate the <strong>Chroma</strong> slider (Chroma represents color
+intensity/saturation in the LCH model).</li>
+<li>Adjust the settings:
+<ul>
+<li>Drag the <strong>Chroma</strong> slider to the right to intensify
+colors without shifting perceived brightness.</li>
+<li>Drag the <strong>Chroma</strong> slider to the left to reduce color
+purity uniformly.</li>
+</ul></li>
+<li>If necessary, adjust the <strong>Lightness</strong> or
+<strong>Hue</strong> sliders independently without distorting the chroma
+levels you just set.</li>
+<li>Click <strong>OK</strong> to apply the changes.</li>
+</ol>
+<hr />
+<h3 id="which-method-should-you-choose">Which Method Should You
+Choose?</h3>
+<ul>
+<li><strong>Use LCH (Hue-Chroma)</strong> when working with photographs,
+portraits, landscape scenes, or whenever you need color boosts that
+maintain natural shadows, highlights, and skin tones.</li>
+<li><strong>Use HSL (Hue-Saturation)</strong> when you need targeted
+edits on specific primary/secondary color bands or when creating
+stylized, highly saturated graphic illustrations.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

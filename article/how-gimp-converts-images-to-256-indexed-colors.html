@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Converts Images to 256 Indexed Colors - gimp</title>
+    <meta name="description" content="Converting a full-color RGB image to an indexed color mode with an optimized 256-color palette in GIMP is a process known as color quantization. GIMP analyzes the millions of potential colors in an image and reduces them to a representative lookup table">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-converts-images-to-256-indexed-colors">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Converts Images to 256 Indexed Colors - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-converts-images-to-256-indexed-colors" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a full-color RGB image to an indexed color mode with an optimized 256-color palette in GIMP is a process known as color quantization. GIMP analyzes the millions of potential colors in an image and reduces them to a representative lookup table" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-converts-images-to-256-indexed-colors">How GIMP
+Converts Images to 256 Indexed Colors</h1>
+<p>Converting a full-color RGB image to an indexed color mode with an
+optimized 256-color palette in GIMP is a process known as color
+quantization. GIMP analyzes the millions of potential colors in an image
+and reduces them to a representative lookup table of just 256 colors
+using the Median Cut algorithm, reassigns every pixel to its closest
+palette match, and optionally applies error-diffusion dithering to
+preserve visual gradients.</p>
+<h3 id="1-color-space-sampling">1. Color Space Sampling</h3>
+<p>A standard 24-bit RGB image contains up to 16.7 million potential
+colors. When the conversion process begins, GIMP scans the entire image
+to catalog the distribution and frequency of all existing RGB values.
+This data is mapped into a three-dimensional color space defined by red,
+green, and blue axes.</p>
+<h3 id="2-the-median-cut-quantization-algorithm">2. The Median Cut
+Quantization Algorithm</h3>
+<p>To reduce millions of colors down to precisely 256, GIMP historically
+and fundamentally relies on Paul Heckbert’s Median Cut algorithm. The
+process operates as follows:</p>
+<ul>
+<li><strong>Bounding Box Creation:</strong> A 3D bounding box is placed
+around all active color points in the RGB color space.</li>
+<li><strong>Axis Splitting:</strong> The algorithm finds the color
+channel (Red, Green, or Blue) that has the largest range (longest
+dimension) within that box.</li>
+<li><strong>Median Division:</strong> The box is sorted along this
+longest axis and split at the median point, creating two smaller boxes
+that each contain an equal number of pixels.</li>
+<li><strong>Recursive Subdivision:</strong> This splitting process is
+repeated recursively on the resulting sub-boxes until exactly 256
+individual color clusters (boxes) are formed.</li>
+</ul>
+<h3 id="3-palette-generation">3. Palette Generation</h3>
+<p>Once 256 discrete color regions are established, GIMP creates the
+optimized palette. For each of the 256 boxes, GIMP calculates the
+centroid—the average RGB value of all pixels contained within that
+specific cluster. These 256 calculated RGB averages become the
+definitive entries in the image's new color lookup table (CLUT or
+palette).</p>
+<h3 id="4-pixel-mapping-and-distance-matching">4. Pixel Mapping and
+Distance Matching</h3>
+<p>With the palette finalized, GIMP re-evaluates every pixel in the
+original image. The software measures the Euclidean distance between a
+pixel's original RGB value and the 256 colors in the newly generated
+palette:</p>
+<p><span class="math display">\[\text{Distance} = \sqrt{(R_2 - R_1)^2 +
+(G_2 - G_1)^2 + (B_2 - B_1)^2}\]</span></p>
+<p>The pixel is then mapped to the index of whichever palette color has
+the shortest distance (the closest perceptual match).</p>
+<h3 id="5-error-diffusion-dithering-optional">5. Error-Diffusion
+Dithering (Optional)</h3>
+<p>Because reducing colors can cause visible banding across smooth
+gradients, GIMP allows the application of dithering (most notably the
+Floyd-Steinberg algorithm). When dithering is enabled, the difference
+(quantization error) between the original pixel color and the selected
+palette color is calculated. This error value is then mathematically
+pushed onto neighboring, unquantized pixels according to specific
+fractional weights. This technique scatters contrasting colored pixels
+near each other, creating the optical illusion of colors that are not
+actually present in the 256-color palette.</p>
+<h3 id="6-restructuring-to-an-8-bit-indexed-format">6. Restructuring to
+an 8-bit Indexed Format</h3>
+<p>Finally, GIMP transforms the underlying file architecture. Instead of
+storing 24 bits of direct color data per pixel (8 bits each for R, G,
+and B), the image structure is updated so that each pixel holds a single
+8-bit integer (ranging from 0 to 255). This integer serves as a pointer
+to an entry in the 256-color palette, significantly reducing the image's
+raw memory footprint while maintaining the best possible visual
+fidelity.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

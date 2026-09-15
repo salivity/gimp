@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulate Cyanotype Botanical Prints in GIMP - gimp</title>
+    <meta name="description" content="Simulating an authentic cyanotype botanical print in GIMP involves turning a standard plant photograph into a high-contrast monochrome negative and toning it with the signature Prussian blue palette. This guide provides a step-by-step method to isolate b">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/simulate-cyanotype-botanical-prints-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Simulate Cyanotype Botanical Prints in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/simulate-cyanotype-botanical-prints-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating an authentic cyanotype botanical print in GIMP involves turning a standard plant photograph into a high-contrast monochrome negative and toning it with the signature Prussian blue palette. This guide provides a step-by-step method to isolate b" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="simulate-cyanotype-botanical-prints-in-gimp">Simulate Cyanotype
+Botanical Prints in GIMP</h1>
+<p>Simulating an authentic cyanotype botanical print in GIMP involves
+turning a standard plant photograph into a high-contrast monochrome
+negative and toning it with the signature Prussian blue palette. This
+guide provides a step-by-step method to isolate botanical subjects,
+invert tones to mimic historical sun-print contact sheets, apply
+accurate cyanotype color gradations, and add subtle paper texture for a
+realistic, handmade aesthetic.</p>
+<h3 id="step-1-isolate-the-botanical-subject">Step 1: Isolate the
+Botanical Subject</h3>
+<ol type="1">
+<li>Open your botanical image in GIMP (<strong>File &gt; Open</strong>).
+Images with well-defined leaves, stems, or flowers work best.</li>
+<li>Select the botanical element using the <strong>Fuzzy Select Tool
+(U)</strong>, <strong>Select by Color</strong>, or the <strong>Paths
+Tool (B)</strong> depending on the background complexity.</li>
+<li>Invert the selection if necessary (<strong>Select &gt;
+Invert</strong>) and delete the background, leaving the plant on a
+clean, pure white background.</li>
+</ol>
+<h3 id="step-2-convert-to-a-high-contrast-monochrome-negative">Step 2:
+Convert to a High-Contrast Monochrome Negative</h3>
+<p>Traditional cyanotypes are photographic contact prints made using the
+subject as a silhouette or negative.</p>
+<ol type="1">
+<li>Convert the image to black and white by going to <strong>Colors &gt;
+Desaturate &gt; Desaturate</strong> and choosing
+<strong>Luminance</strong>.</li>
+<li>Invert the tonal values by navigating to <strong>Colors &gt;
+Invert</strong>. The plant should now appear light/white, while the
+surrounding area turns black.</li>
+<li>Adjust the dynamic range via <strong>Colors &gt; Levels</strong> or
+<strong>Colors &gt; Curves</strong>. Increase the contrast so the
+background is solid black and the internal details of the leaves retain
+soft gray midtones.</li>
+</ol>
+<h3 id="step-3-apply-the-prussian-blue-gradient-map">Step 3: Apply the
+Prussian Blue Gradient Map</h3>
+<p>The defining characteristic of a cyanotype is its rich, Prussian blue
+hue ranging from deep navy shadows to pale blue or paper-white
+highlights.</p>
+<ol type="1">
+<li>In the <strong>Color Palette</strong>, set your <strong>Foreground
+Color</strong> to a deep Prussian blue (HTML notation:
+<code>#0b2545</code> or <code>#003153</code>).</li>
+<li>Set your <strong>Background Color</strong> to a soft, off-white
+paper tone (HTML notation: <code>#f4f6f0</code>) or pure white
+(<code>#ffffff</code>).</li>
+<li>Create a custom two-color gradient from Foreground to Background in
+the <strong>Gradients</strong> dialog.</li>
+<li>With your botanical layer selected, go to <strong>Colors &gt; Map
+&gt; Gradient Map</strong>. This automatically maps the dark areas of
+your negative to Prussian blue and the light areas to the pale highlight
+color.</li>
+</ol>
+<h3 id="step-4-add-watercolor-paper-texture">Step 4: Add Watercolor
+Paper Texture</h3>
+<p>Authentic cyanotypes are coated onto textured watercolor or rag
+paper.</p>
+<ol type="1">
+<li>Create a new layer on top named "Paper Texture" and fill it with a
+neutral gray or import a seamless watercolor paper texture.</li>
+<li>Set the layer blend mode to <strong>Multiply</strong> or
+<strong>Overlay</strong> in the Layers panel.</li>
+<li>Lower the opacity to between <strong>30% and 50%</strong> so the
+texture subtly shows through the blue emulsion without overpowering the
+details.</li>
+</ol>
+<h3 id="step-5-simulate-hand-coated-chemical-edges-optional">Step 5:
+Simulate Hand-Coated Chemical Edges (Optional)</h3>
+<p>To replicate the look of brushed-on light-sensitive chemicals:</p>
+<ol type="1">
+<li>Add a Layer Mask to the cyanotype layer (<strong>Layer &gt; Mask
+&gt; Add Layer Mask</strong>).</li>
+<li>Select the <strong>Paintbrush Tool (P)</strong> and choose a rough,
+textured, or grunge brush.</li>
+<li>Paint with black around the outer borders of the image to create
+uneven, streaky brush edges typical of traditional hand-prepared
+cyanotype paper.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floyd-Steinberg Dithering in GIMP Indexed Color - gimp</title>
+    <meta name="description" content="When converting full-color images to indexed color mode in GIMP, reducing the palette to 256 colors or fewer often introduces harsh color banding and loss of detail. The Floyd-Steinberg dithering algorithm addresses this issue through error diffusion, bl">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/floyd-steinberg-dithering-in-gimp-indexed-color">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Floyd-Steinberg Dithering in GIMP Indexed Color - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/floyd-steinberg-dithering-in-gimp-indexed-color" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When converting full-color images to indexed color mode in GIMP, reducing the palette to 256 colors or fewer often introduces harsh color banding and loss of detail. The Floyd-Steinberg dithering algorithm addresses this issue through error diffusion, bl" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="floyd-steinberg-dithering-in-gimp-indexed-color">Floyd-Steinberg
+Dithering in GIMP Indexed Color</h1>
+<p>When converting full-color images to indexed color mode in GIMP,
+reducing the palette to 256 colors or fewer often introduces harsh color
+banding and loss of detail. The Floyd-Steinberg dithering algorithm
+addresses this issue through error diffusion, blending existing palette
+colors across adjacent pixels to simulate missing tones and preserve
+smooth gradients. This article explains how the Floyd-Steinberg
+algorithm functions within GIMP, the mechanics of error diffusion, and
+why it is essential for high-quality indexed color conversion.</p>
+<h3 id="the-purpose-of-indexed-color-conversion">The Purpose of Indexed
+Color Conversion</h3>
+<p>In GIMP, converting an RGB image to Indexed Mode
+(<code>Image &gt; Mode &gt; Indexed</code>) reduces the image’s color
+depth from millions of colors to a restricted palette, typically between
+2 and 256 colors. This reduction is commonly used to optimize file sizes
+for formats like GIF, prepare assets for retro game engines, or achieve
+specific stylistic constraints.</p>
+<p>Without dithering, GIMP maps every pixel in the original image
+directly to the nearest available color in the target palette. While
+computationally fast, this nearest-match method removes continuous
+tones, turning subtle shadows and gradients into flat blocks of color, a
+visual defect known as posterization or color banding.</p>
+<h3 id="how-the-floyd-steinberg-algorithm-operates">How the
+Floyd-Steinberg Algorithm Operates</h3>
+<p>The Floyd-Steinberg algorithm prevents color banding by using an
+error-diffusion technique. Instead of discarding the difference between
+the original pixel color and the selected palette color, the algorithm
+distributes this residual difference—known as the quantization error—to
+neighboring pixels that have not yet been processed.</p>
+<p>The conversion follows a systematic, left-to-right, top-to-bottom
+scan:</p>
+<ol type="1">
+<li><strong>Quantization:</strong> GIMP evaluates a pixel and selects
+the closest matching color available in the chosen indexed palette.</li>
+<li><strong>Error Calculation:</strong> The algorithm subtracts the
+chosen palette color from the original pixel color to calculate the
+numeric error for red, green, and blue channels.</li>
+<li><strong>Error Diffusion:</strong> The calculated error is
+mathematically distributed to four neighboring, unprocessed pixels
+according to the Floyd-Steinberg distribution coefficients:
+<ul>
+<li><strong>7/16</strong> added to the pixel directly to the right.</li>
+<li><strong>3/16</strong> added to the pixel down and to the left.</li>
+<li><strong>5/16</strong> added to the pixel directly below.</li>
+<li><strong>1/16</strong> added to the pixel down and to the right.</li>
+</ul></li>
+<li><strong>Perceptual Blending:</strong> As adjacent pixels receive
+portions of this error, their values shift. When the algorithm
+subsequently processes those neighboring pixels, the adjusted values
+cause different palette colors to be chosen. Across an area, this
+generates an interleaved pattern of colored pixels (stippling) that
+human vision blends into intermediate shades not physically present in
+the palette.</li>
+</ol>
+<h3 id="floyd-steinberg-options-in-gimp">Floyd-Steinberg Options in
+GIMP</h3>
+<p>When configuring indexed conversion in GIMP, the interface provides
+two Floyd-Steinberg dithering variations under the
+<strong>Dithering</strong> dropdown:</p>
+<ul>
+<li><strong>Floyd-Steinberg (normal):</strong> Applies standard error
+diffusion across all channels. This mode produces the smoothest
+gradients and retains the highest amount of perceived dynamic range, but
+it can introduce visible noise or "grain" in flat areas.</li>
+<li><strong>Floyd-Steinberg (reduced color bleeding):</strong> Modifies
+the diffusion threshold so that errors are not pushed across distinct
+edges or into areas where a color change would cause distracting visual
+artifacts. This is ideal for images containing sharp line art, user
+interface elements, or text combined with photographic elements.</li>
+</ul>
+<p>By diffusing quantization error rather than truncating color data,
+the Floyd-Steinberg algorithm in GIMP enables images to retain
+photographic quality, depth, and edge definition even within extremely
+restricted color palettes.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

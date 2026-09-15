@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the GEGL Graph Filter in GIMP - gimp</title>
+    <meta name="description" content="The GEGL Graph filter in GIMP enables advanced users to create non-destructive, node-based image processing pipelines using text-based composition. By leveraging GEGL (Generic Graphics Library)—GIMP’s core processing engine—you can construct custom">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-the-gegl-graph-filter-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the GEGL Graph Filter in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-the-gegl-graph-filter-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Graph filter in GIMP enables advanced users to create non-destructive, node-based image processing pipelines using text-based composition. By leveraging GEGL (Generic Graphics Library)—GIMP’s core processing engine—you can construct custom" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-gegl-graph-filter-in-gimp">How to Use the GEGL
+Graph Filter in GIMP</h1>
+<p>The GEGL Graph filter in GIMP enables advanced users to create
+non-destructive, node-based image processing pipelines using text-based
+composition. By leveraging GEGL (Generic Graphics Library)—GIMP’s core
+processing engine—you can construct custom filter trees, chain complex
+effects, and split or merge image data streams directly within a single
+operation window. This guide walks you through accessing the tool,
+understanding node syntax, and constructing linear and branching filter
+networks.</p>
+<h3 id="accessing-the-gegl-graph">Accessing the GEGL Graph</h3>
+<p>To open the GEGL Graph interface in GIMP:</p>
+<ol type="1">
+<li>Open your image or create a new layer.</li>
+<li>Navigate to the top menu and select <strong>Filters</strong> &gt;
+<strong>Generic</strong> &gt; <strong>GEGL Graph...</strong></li>
+<li>A dialog window will appear with a text input area where you can
+write custom graph scripts. Ensure the <strong>Preview</strong> checkbox
+is enabled to see real-time updates on your canvas.</li>
+</ol>
+<hr />
+<h3 id="understanding-the-syntax">Understanding the Syntax</h3>
+<p>GEGL interprets commands sequentially from top to bottom by default.
+Each line represents a processing node or an operation parameter.</p>
+<ul>
+<li><strong>Operations:</strong> Specified by their GEGL operation name
+(e.g., <code>gegl:gaussian-blur</code>, <code>gegl:opacity</code>,
+<code>gegl:over</code>).</li>
+<li><strong>Properties:</strong> Assigned on the same line using
+<code>key=value</code> pairs.</li>
+<li><strong>Nodes and References:</strong> You can label nodes with
+<code>id=name</code> to store intermediate outputs, and recall them
+later using <code>ref=name</code>.</li>
+<li><strong>Compositing:</strong> Blend nodes like
+<code>gegl:over</code> take an auxiliary input (<code>aux</code>) to
+blend one node stream over another.</li>
+</ul>
+<hr />
+<h3 id="building-a-linear-filter-chain">Building a Linear Filter
+Chain</h3>
+<p>A linear chain applies effects sequentially to the input image,
+passing the result of one operation into the next.</p>
+<p>Enter the following script into the GEGL Graph dialog:</p>
+<pre class="text"><code>gegl:gaussian-blur std-dev-x=8 std-dev-y=8
+gegl:color-temperature target-temperature=8000
+gegl:vignette radius=1.2 softness=0.8</code></pre>
+<p>In this example:</p>
+<ol type="1">
+<li>The image is blurred horizontally and vertically by 8 pixels.</li>
+<li>The color temperature of the blurred output is shifted warmer to
+8000K.</li>
+<li>A vignette is applied to the final result.</li>
+</ol>
+<hr />
+<h3 id="building-a-branching-node-tree">Building a Branching Node
+Tree</h3>
+<p>To create complex effects, you can branch the image stream into
+separate paths and combine them using composition operations.</p>
+<h4 id="example-creating-a-soft-glow-effect">Example: Creating a Soft
+Glow Effect</h4>
+<p>The following graph duplicates the source stream, applies a blur and
+color boost to the duplicated branch, and blends it over the original
+sharp image using an addition blend mode:</p>
+<pre class="text"><code># Step 1: Label the original input
+id=original
+
+# Step 2: Create the glow layer
+gegl:gaussian-blur std-dev-x=20 std-dev-y=20
+gegl:color-temperature target-temperature=9000
+id=glow_layer
+
+# Step 3: Blend the glow over the original
+ref=original
+gegl:add aux=[ ref=glow_layer ]</code></pre>
+<h4 id="how-the-branching-works">How the Branching Works:</h4>
+<ol type="1">
+<li><code>id=original</code> assigns a reference name to the unprocessed
+source image.</li>
+<li>The blur and color shift run down the chain to form the glowing
+element, saved as <code>id=glow_layer</code>.</li>
+<li><code>ref=original</code> resets the active stream back to the sharp
+source image.</li>
+<li><code>gegl:add</code> combines the active stream with the auxiliary
+stream defined inside the square brackets
+(<code>aux=[ ref=glow_layer ]</code>).</li>
+</ol>
+<hr />
+<h3 id="applying-and-saving-graphs">Applying and Saving Graphs</h3>
+<ul>
+<li><strong>Applying Changes:</strong> Click <strong>OK</strong> once
+you are satisfied with the preview. GIMP will render the entire tree
+onto the active layer.</li>
+<li><strong>Reusing Graphs:</strong> GEGL Graph configurations are plain
+text. Save your commonly used node trees in an external text file to
+copy and paste them into future projects whenever needed.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

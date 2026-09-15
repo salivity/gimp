@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize GIMP Canvas Title for Bit Depth and Color Space - gimp</title>
+    <meta name="description" content="This guide explains how to customize the canvas title template in GIMP to display an active document’s bit depth and color space directly on the image window header. By using GIMP’s built-in format variables in the application preferences, you can mo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/customize-gimp-canvas-title-for-bit-depth-and-color-space">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Customize GIMP Canvas Title for Bit Depth and Color Space - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/customize-gimp-canvas-title-for-bit-depth-and-color-space" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to customize the canvas title template in GIMP to display an active document’s bit depth and color space directly on the image window header. By using GIMP’s built-in format variables in the application preferences, you can mo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="customize-gimp-canvas-title-for-bit-depth-and-color-space">Customize
+GIMP Canvas Title for Bit Depth and Color Space</h1>
+<p>This guide explains how to customize the canvas title template in
+GIMP to display an active document’s bit depth and color space directly
+on the image window header. By using GIMP’s built-in format variables in
+the application preferences, you can monitor document precision and
+color profiles at a glance without opening extra dialog menus.</p>
+<h3 id="step-1-open-gimp-preferences">Step 1: Open GIMP Preferences</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Navigate to the top menu and select <strong>Edit</strong> &gt;
+<strong>Preferences</strong> (on macOS, select <strong>GIMP</strong>
+&gt; <strong>Preferences</strong>).</li>
+</ol>
+<h3 id="step-2-navigate-to-title--status-settings">Step 2: Navigate to
+Title &amp; Status Settings</h3>
+<ol type="1">
+<li>In the Preferences dialog, expand the <strong>Image Windows</strong>
+category in the left sidebar.</li>
+<li>Click on <strong>Title &amp; Status</strong>.</li>
+</ol>
+<p>Here, you will find two primary input fields:</p>
+<ul>
+<li><strong>Image title format:</strong> Controls what appears in the
+title bar of the image window.</li>
+<li><strong>Image status format:</strong> Controls what appears in the
+status bar at the bottom of the window.</li>
+</ul>
+<h3 id="step-3-identify-the-required-format-variables">Step 3: Identify
+the Required Format Variables</h3>
+<p>GIMP uses specific character codes (variables preceded by a percent
+sign) to dynamically display file information:</p>
+<ul>
+<li><strong><code>%z</code></strong> – Precision and bit depth (e.g.,
+8-bit integer, 16-bit integer, 32-bit floating point).</li>
+<li><strong><code>%c</code></strong> – Color profile name (the assigned
+ICC color profile/color space, such as sRGB or Display P3).</li>
+<li><strong><code>%t</code></strong> – Image type/mode (e.g., RGB,
+Grayscale, Indexed).</li>
+</ul>
+<h3 id="step-4-edit-the-image-title-format-string">Step 4: Edit the
+Image Title Format String</h3>
+<p>Click inside the <strong>Image title format</strong> text field. You
+can combine existing placeholders (such as <code>%f</code> for filename)
+with the bit depth and color space codes.</p>
+<p><strong>Recommended Title Template:</strong></p>
+<pre class="text"><code>%f-%p.%v (%t, %z, %c)</code></pre>
+<p><strong>What this outputs in your title bar:</strong></p>
+<ul>
+<li><code>%f</code>: File name</li>
+<li><code>%p</code>: Image ID</li>
+<li><code>%v</code>: View number</li>
+<li><code>%t</code>: Color mode (e.g., RGB color)</li>
+<li><code>%z</code>: Bit depth / precision (e.g., 16-bit gamma
+integer)</li>
+<li><code>%c</code>: Color profile (e.g., sRGB built-in)</li>
+</ul>
+<h3 id="step-5-save-and-apply-changes">Step 5: Save and Apply
+Changes</h3>
+<ol type="1">
+<li>Click <strong>OK</strong> at the bottom of the Preferences dialog to
+save your settings.</li>
+<li>The window title will immediately update on any open images to
+reflect the newly specified bit depth and color space information.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Rotate 90° Clockwise Image Command - gimp</title>
+    <meta name="description" content="The "Rotate 90° Clockwise" command in GIMP is a global transform tool that reorients an entire image project a quarter-turn to the right. This article explains how the command alters the canvas, its impact on all project layers and elements, and how it">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-rotate-90-clockwise-image-command">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Rotate 90° Clockwise Image Command - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-rotate-90-clockwise-image-command" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The "Rotate 90° Clockwise" command in GIMP is a global transform tool that reorients an entire image project a quarter-turn to the right. This article explains how the command alters the canvas, its impact on all project layers and elements, and how it" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-rotate-90-clockwise-image-command">GIMP Rotate 90°
+Clockwise Image Command</h1>
+<p>The "Rotate 90° Clockwise" command in GIMP is a global transform tool
+that reorients an entire image project a quarter-turn to the right. This
+article explains how the command alters the canvas, its impact on all
+project layers and elements, and how it differs from single-layer
+transformations to help you manage document orientation efficiently.</p>
+<p>To access this command, navigate to the top menu and select
+<strong>Image &gt; Transform &gt; Rotate 90° clockwise</strong>.</p>
+<p>When executed at the document level, the command's primary function
+is to flip the canvas dimensions while shifting all graphical data 90
+degrees to the right. If your original image is 1920 pixels wide by 1080
+pixels high, the rotated document instantly becomes 1080 pixels wide by
+1920 pixels high. This automatic dimension swap ensures that your visual
+content remains completely within the bounds of the canvas, preventing
+any clipping or unwanted cropping.</p>
+<p>Applying this command to the whole image affects every single asset
+within the file simultaneously. Unlike the layer-specific rotate tools,
+the document-level rotation applies to:</p>
+<ul>
+<li><strong>All Layers:</strong> Every visible, hidden, or locked layer
+is rotated around the center of the canvas in unison, preserving their
+exact spatial relationships to one another.</li>
+<li><strong>Layer Masks and Channels:</strong> Any alpha channels, layer
+masks, and selection channels are rotated alongside their respective
+image data.</li>
+<li><strong>Paths and Guides:</strong> Vector paths and user-placed
+reference guides shift automatically to match the new orientation.</li>
+</ul>
+<p>Because 90 degrees is an orthogonal angle, the operation transforms
+the pixel grid without requiring complex resampling or interpolation.
+This means the rotation is virtually lossless, keeping your edges sharp
+and preventing the blurriness often caused by arbitrary, free-angle
+rotations.</p>
+<p>The primary use case for this command is correcting sideways
+photographs—frequently seen in portrait photos imported without proper
+EXIF orientation metadata—or repurposing landscape graphics into
+portrait layouts before beginning detailed composition work.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

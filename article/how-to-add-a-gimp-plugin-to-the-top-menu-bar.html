@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add a GIMP Plugin to the Top Menu Bar - gimp</title>
+    <meta name="description" content="Registering a custom plugin to appear directly in GIMP's top-level menu bar requires writing a compatible script, configuring the registration call with the appropriate menu path, setting correct file permissions, and installing the file in GIMP's design">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-add-a-gimp-plugin-to-the-top-menu-bar">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add a GIMP Plugin to the Top Menu Bar - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-add-a-gimp-plugin-to-the-top-menu-bar" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Registering a custom plugin to appear directly in GIMP's top-level menu bar requires writing a compatible script, configuring the registration call with the appropriate menu path, setting correct file permissions, and installing the file in GIMP's design" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-a-gimp-plugin-to-the-top-menu-bar">How to Add a GIMP
+Plugin to the Top Menu Bar</h1>
+<p>Registering a custom plugin to appear directly in GIMP's top-level
+menu bar requires writing a compatible script, configuring the
+registration call with the appropriate menu path, setting correct file
+permissions, and installing the file in GIMP's designated plug-ins
+directory. This guide outlines the exact steps needed to create and
+expose a Python plugin directly in the primary interface of GIMP.</p>
+<h3 id="1-write-the-plugin-function">1. Write the Plugin Function</h3>
+<p>Create a Python script (e.g., <code>custom_menu_item.py</code>) and
+import the required GIMP modules. Define the main function that will
+execute when the menu item is clicked.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gimpfu <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_custom_task(image, drawable):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your processing code here</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    gimp.message(<span class="st">&quot;Plugin executed successfully!&quot;</span>)</span></code></pre></div>
+<h3 id="2-define-the-top-level-menu-path-in-the-register-call">2. Define
+the Top-Level Menu Path in the <code>register</code> Call</h3>
+<p>The key to placing an item on GIMP’s top-level menu bar lies in the
+<code>menu</code> parameter of the <code>register()</code> function.</p>
+<p>Prepend the path with <code>&lt;Image&gt;/</code> followed by the
+name of the top-level menu you want to create or append to:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>register(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;python_fu_custom_task&quot;</span>,              <span class="co"># Internal procedure name</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;A short description of the plugin&quot;</span>,  <span class="co"># Blurb</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Detailed help information&quot;</span>,          <span class="co"># Help</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Your Name&quot;</span>,                          <span class="co"># Author</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Your Name&quot;</span>,                          <span class="co"># Copyright</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;2024&quot;</span>,                               <span class="co"># Year</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Run Custom Task&quot;</span>,                    <span class="co"># Label displayed in the menu</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;*&quot;</span>,                                  <span class="co"># Image types supported (* for all)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        (PF_IMAGE, <span class="st">&quot;image&quot;</span>, <span class="st">&quot;Input image&quot;</span>, <span class="va">None</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        (PF_DRAWABLE, <span class="st">&quot;drawable&quot;</span>, <span class="st">&quot;Input drawable&quot;</span>, <span class="va">None</span>),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    [],</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    my_custom_task,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    menu<span class="op">=</span><span class="st">&quot;&lt;Image&gt;/MyCustomMenu&quot;</span>            <span class="co"># Top-level menu path</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div>
+<p>Using <code>&lt;Image&gt;/MyCustomMenu</code> instructs GIMP to
+create a new top-level menu named <strong>MyCustomMenu</strong> on the
+main window bar. If you prefer to place it under an existing top-level
+menu (such as <strong>Filters</strong> or <strong>Tools</strong>), set
+the path accordingly (e.g.,
+<code>&lt;Image&gt;/Filters/MySubMenu</code>).</p>
+<h3 id="3-make-the-script-executable">3. Make the Script Executable</h3>
+<p>GIMP requires plugin files to have executable permissions on
+Unix-based systems (Linux and macOS).</p>
+<p>Open your terminal and run:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x custom_menu_item.py</span></code></pre></div>
+<p><em>(On Windows, ensure the script retains the <code>.py</code>
+extension.)</em></p>
+<h3 id="4-install-the-plugin-in-the-plug-ins-directory">4. Install the
+Plugin in the Plug-ins Directory</h3>
+<p>GIMP looks for custom plugins in user-specific directory paths. In
+modern versions of GIMP (2.10 and later), each plugin should typically
+reside in its own folder with the same name as the script.</p>
+<ol type="1">
+<li>Navigate to the GIMP plug-ins folder:
+<ul>
+<li><strong>Linux:</strong>
+<code>~/.config/GIMP/2.10/plug-ins/</code></li>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\GIMP\2.10\plug-ins\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/GIMP/2.10/plug-ins/</code></li>
+</ul></li>
+<li>Create a folder named <code>custom_menu_item</code>.</li>
+<li>Move <code>custom_menu_item.py</code> into this folder.</li>
+</ol>
+<h3 id="5-launch-and-verify">5. Launch and Verify</h3>
+<p>Restart GIMP. Upon startup, GIMP queries the plug-in directory,
+registers the metadata, and adds <strong>MyCustomMenu</strong> to the
+primary menu bar alongside defaults like File, Edit, and Select.
+Clicking the menu item will execute your defined Python function.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

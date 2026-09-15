@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Embossed 3D Stamp Textures in GIMP - gimp</title>
+    <meta name="description" content="Transforming flat 2D raster art into tactile, embossed 3D stamp textures is an effective way to simulate physical impressions on surfaces like leather, paper, wood, or wax. This guide walks you through preparing your 2D artwork, generating a smoothed hei">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-embossed-3-d-stamp-textures-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Embossed 3D Stamp Textures in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-embossed-3-d-stamp-textures-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming flat 2D raster art into tactile, embossed 3D stamp textures is an effective way to simulate physical impressions on surfaces like leather, paper, wood, or wax. This guide walks you through preparing your 2D artwork, generating a smoothed hei" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-embossed-3d-stamp-textures-in-gimp">Create Embossed 3D
+Stamp Textures in GIMP</h1>
+<p>Transforming flat 2D raster art into tactile, embossed 3D stamp
+textures is an effective way to simulate physical impressions on
+surfaces like leather, paper, wood, or wax. This guide walks you through
+preparing your 2D artwork, generating a smoothed height map, applying
+GIMP's Bump Map filter to generate realistic depth and shadows, and
+fine-tuning the surface lighting for an authentic stamped finish.</p>
+<h3 id="step-1-prepare-the-2d-artwork">Step 1: Prepare the 2D
+Artwork</h3>
+<ol type="1">
+<li>Open your background texture (such as leather or cardstock) in
+GIMP.</li>
+<li>Import your 2D artwork (logo, silhouette, or text) onto a new layer
+above the background.</li>
+<li>Ensure the graphic has high contrast. The ideal source is pure white
+on a transparent background, or black on white.</li>
+<li>If your artwork is colored, go to <strong>Colors &gt; Desaturate
+&gt; Desaturate</strong> to convert it to grayscale, then use
+<strong>Colors &gt; Levels</strong> to push the graphic toward pure
+black and pure white.</li>
+</ol>
+<h3 id="step-2-generate-the-height-map-layer">Step 2: Generate the
+Height Map Layer</h3>
+<p>3D rendering filters interpret pixel brightness as height (white
+represents the highest point, black represents the lowest).</p>
+<ol type="1">
+<li>Duplicate the prepared 2D art layer and name it
+<code>Height Map</code>.</li>
+<li>Hide the original 2D art layer.</li>
+<li>If you want a <strong>raised (embossed)</strong> stamp, make sure
+the graphic is white and the surrounding area is black or neutral gray
+(50% gray: <code>#808080</code>).</li>
+<li>If you want an <strong>indented (debossed)</strong> stamp, go to
+<strong>Colors &gt; Invert</strong> so the graphic is dark and the
+background is light.</li>
+<li>Soften the transitions to create angled edges rather than sharp,
+unnatural cuts: go to <strong>Filters &gt; Blur &gt; Gaussian
+Blur</strong>, and apply a radius of 2 to 6 pixels depending on your
+image resolution.</li>
+</ol>
+<h3 id="step-3-apply-the-bump-map-filter">Step 3: Apply the Bump Map
+Filter</h3>
+<ol type="1">
+<li>Select your background texture layer in the Layers panel.</li>
+<li>Navigate to <strong>Filters &gt; Map &gt; Bump Map...</strong>.</li>
+<li>In the settings dialog, click the <strong>Aux Input</strong> button
+to choose the texture source, and select your <code>Height Map</code>
+layer.</li>
+<li>Adjust the following properties:
+<ul>
+<li><strong>Type:</strong> Set to <em>Linear</em> or <em>Spherical</em>
+for smooth, curved edges.</li>
+<li><strong>Depth:</strong> Increase or decrease to control how deep or
+elevated the stamp appears.</li>
+<li><strong>Azimuth:</strong> Adjust the dial to control the light
+direction (usually matches the ambient light source of your scene,
+typically top-left around 135°).</li>
+<li><strong>Elevation:</strong> Control the angle of the light relative
+to the surface plane (values around 30° to 45° yield natural
+shadows).</li>
+</ul></li>
+<li>Click <strong>OK</strong> to apply the effect directly to the
+background texture.</li>
+</ol>
+<h3 id="step-4-add-realistic-depth-and-wear">Step 4: Add Realistic Depth
+and Wear</h3>
+<p>To make the stamp look truly pressed into the material:</p>
+<ol type="1">
+<li>Unhide your original 2D art layer and place it on top.</li>
+<li>Set its layer blend mode to <strong>Overlay</strong>, <strong>Soft
+Light</strong>, or <strong>Multiply</strong> depending on whether the
+impression should darken the surface.</li>
+<li>Lower the layer opacity to between 15% and 40% to subtly tint the
+pressed area.</li>
+<li>Go to <strong>Filters &gt; Light and Shadow &gt; Drop
+Shadow...</strong> on this layer with a minimal offset (X: 1, Y: 1),
+high blur, and low opacity to give the inner rim of the stamp subtle
+contact shadows.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

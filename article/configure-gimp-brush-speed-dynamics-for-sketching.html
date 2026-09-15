@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure GIMP Brush Speed Dynamics for Sketching - gimp</title>
+    <meta name="description" content="This guide explains how to configure custom brush dynamics in GIMP by mapping drawing speed to essential brush parameters such as size, opacity, and angle. By leveraging GIMP's Paint Dynamics Matrix and Dynamics Curves, artists can simulate the responsiv">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-gimp-brush-speed-dynamics-for-sketching">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure GIMP Brush Speed Dynamics for Sketching - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-gimp-brush-speed-dynamics-for-sketching" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure custom brush dynamics in GIMP by mapping drawing speed to essential brush parameters such as size, opacity, and angle. By leveraging GIMP's Paint Dynamics Matrix and Dynamics Curves, artists can simulate the responsiv" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-gimp-brush-speed-dynamics-for-sketching">Configure
+GIMP Brush Speed Dynamics for Sketching</h1>
+<p>This guide explains how to configure custom brush dynamics in GIMP by
+mapping drawing speed to essential brush parameters such as size,
+opacity, and angle. By leveraging GIMP's Paint Dynamics Matrix and
+Dynamics Curves, artists can simulate the responsive feel of traditional
+charcoal and ink, enabling fluid, expressive gesture sketching that
+reacts naturally to the velocity of hand movements.</p>
+<h2 id="1-create-a-new-paint-dynamic">1. Create a New Paint Dynamic</h2>
+<p>To avoid altering default presets, create a dedicated dynamics
+profile for gesture sketching:</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Windows &gt; Dockable Dialogs &gt;
+Paint Dynamics</strong>.</li>
+<li>Click the <strong>Create a new dynamics</strong> icon (the blank
+page symbol) at the bottom of the Paint Dynamics dialog.</li>
+<li>Name your new preset (e.g., <em>Gesture Sketching Speed</em>). The
+<strong>Paint Dynamics Editor</strong> dialog will open
+automatically.</li>
+</ol>
+<h2 id="2-map-speed-to-brush-behaviors-in-the-matrix">2. Map Speed to
+Brush Behaviors in the Matrix</h2>
+<p>In the Paint Dynamics Editor, locate the <strong>Speed</strong>
+column in the mapping matrix. Check the following boxes to establish
+gesture-responsive behavior:</p>
+<ul>
+<li><strong>Speed to Size:</strong> Check this box to alter line
+thickness based on stroke speed. By default, faster strokes create
+thinner lines, which mimics lifting a pen during rapid flicking
+motions.</li>
+<li><strong>Speed to Opacity:</strong> Check this box so quick
+construction strokes remain faint and transparent, while slower,
+deliberate contour strokes appear darker and more opaque.</li>
+<li><strong>Speed to Force or Flow (Optional):</strong> Check this box
+if using textured brushes (like chalk or pencil) to deposit less pigment
+during swift sweeps across the canvas.</li>
+</ul>
+<h2 id="3-fine-tune-the-dynamic-curves">3. Fine-Tune the Dynamic
+Curves</h2>
+<p>The checkbox matrix provides a linear response, which can feel abrupt
+during fast hand movements. Adjust the response curves to make the
+dynamic feel natural:</p>
+<ol type="1">
+<li>In the Paint Dynamics Editor, select the <strong>Dynamics
+Properties</strong> tab or click on the specific mapped property (e.g.,
+<strong>Size</strong> or <strong>Opacity</strong>) from the curve
+dropdown menu.</li>
+<li>Ensure the active dynamic input is set to <strong>Velocity
+(Speed)</strong>.</li>
+<li>Adjust the curve graph:
+<ul>
+<li><strong>For Tapering (Thin on Fast Strokes):</strong> Pull the curve
+downward on the right side of the graph. A slight concave curve produces
+smooth, gradual tapering instead of an immediate drop-off.</li>
+<li><strong>For Expanding (Thick on Fast Strokes):</strong> Invert the
+curve so that lower speeds register at the bottom left and higher speeds
+rise toward the top right.</li>
+<li><strong>For Soft Construction Lines:</strong> Create a steep
+exponential curve under <strong>Opacity</strong> so opacity stays below
+30% until your stroke slows significantly.</li>
+</ul></li>
+</ol>
+<h2 id="4-optimize-tool-options-for-gesture-drawing">4. Optimize Tool
+Options for Gesture Drawing</h2>
+<p>Apply your new dynamics profile to the <strong>Paintbrush</strong> or
+<strong>MyPaint Brush</strong> tool and adjust brush behavior:</p>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool (P)</strong>.</li>
+<li>In the <strong>Tool Options</strong> panel, set
+<strong>Dynamics</strong> to your newly created preset.</li>
+<li>Lower <strong>Brush Spacing</strong> to between <code>1.0%</code>
+and <code>5.0%</code> in the Brush settings to prevent visible stepping
+or stuttering during high-speed strokes.</li>
+<li>Disable <strong>Smooth Stroke</strong> (stabilization) or keep its
+weight low (around <code>10–20</code>) to prevent latency from smoothing
+out your quick hand gestures.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

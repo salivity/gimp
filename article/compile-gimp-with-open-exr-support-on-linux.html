@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compile GIMP with OpenEXR Support on Linux - gimp</title>
+    <meta name="description" content="Compiling the GNU Image Manipulation Program (GIMP) with OpenEXR support enables the software to import, process, and export high dynamic range (HDR) multilayer raster images. To achieve this on a Linux build machine, you must install baseline compilatio">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/compile-gimp-with-open-exr-support-on-linux">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Compile GIMP with OpenEXR Support on Linux - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/compile-gimp-with-open-exr-support-on-linux" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Compiling the GNU Image Manipulation Program (GIMP) with OpenEXR support enables the software to import, process, and export high dynamic range (HDR) multilayer raster images. To achieve this on a Linux build machine, you must install baseline compilatio" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="compile-gimp-with-openexr-support-on-linux">Compile GIMP with
+OpenEXR Support on Linux</h1>
+<p>Compiling the GNU Image Manipulation Program (GIMP) with OpenEXR
+support enables the software to import, process, and export high dynamic
+range (HDR) multilayer raster images. To achieve this on a Linux build
+machine, you must install baseline compilation utilities, primary GIMP
+developer libraries, and specific OpenEXR and Imath development
+packages. This guide details the exact package requirements and
+distribution-specific commands necessary to prepare your
+environment.</p>
+<h3 id="core-build-tools">Core Build Tools</h3>
+<p>GIMP uses the Meson build system alongside Ninja. You must install
+the modern compilation toolchain before handling library
+dependencies:</p>
+<ul>
+<li><strong>Compiler:</strong> GCC (<code>gcc</code>, <code>g++</code>)
+or Clang</li>
+<li><strong>Build Systems:</strong> <code>meson</code> (version 0.58.0
+or newer) and <code>ninja-build</code></li>
+<li><strong>Source Control &amp; Retrieval:</strong>
+<code>git</code></li>
+<li><strong>Configuration Tools:</strong> <code>pkg-config</code> (or
+<code>pkgconf</code>) and <code>cmake</code> (frequently used by
+underlying dependencies)</li>
+</ul>
+<h3 id="openexr-specific-dependencies">OpenEXR Specific
+Dependencies</h3>
+<p>OpenEXR format handling relies on OpenEXR and its vector/math
+library, Imath. In newer releases (OpenEXR 3+), Imath is packaged
+separately.</p>
+<ul>
+<li><strong>OpenEXR Development Headers:</strong>
+<code>libopenexr-dev</code> (Debian/Ubuntu) or
+<code>openexr-devel</code> (Fedora/RHEL/openSUSE)</li>
+<li><strong>Imath Development Headers:</strong>
+<code>libimath-dev</code> (Debian/Ubuntu) or <code>imath-devel</code>
+(Fedora/RHEL/openSUSE)</li>
+<li><strong>Compression Library:</strong> <code>zlib1g-dev</code> or
+<code>zlib-devel</code> (required by OpenEXR for compression
+routines)</li>
+</ul>
+<h3 id="gegl-and-babl-requirements">GEGL and Babl Requirements</h3>
+<p>GIMP's image processing core relies heavily on GEGL (Generic Graphics
+Library) and Babl. Full OpenEXR capability requires GEGL to also detect
+OpenEXR at compile time:</p>
+<ul>
+<li><strong>babl:</strong> Color space conversion library development
+headers (<code>libbabl-dev</code> or <code>babl-devel</code>).</li>
+<li><strong>gegl:</strong> Graph based image processing framework
+headers (<code>libgegl-dev</code> or <code>gegl-devel</code>). Ensure
+GEGL itself is compiled with <code>libopenexr</code> support enabled, as
+GIMP delegates buffer manipulation and format loading routines through
+GEGL operations.</li>
+</ul>
+<h3 id="core-gimp-platform-dependencies">Core GIMP Platform
+Dependencies</h3>
+<p>GIMP relies on the GNOME stack and several media-handling
+libraries:</p>
+<ul>
+<li><strong>GTK+ 3 Stack:</strong> <code>libgtk-3-dev</code>,
+<code>libglib2.0-dev</code>, <code>libpango1.0-dev</code>,
+<code>libcairo2-dev</code>, <code>libgdk-pixbuf-2.0-dev</code></li>
+<li><strong>Image Handling &amp; Metadata:</strong>
+<code>liblcms2-dev</code> (Little CMS for color profiles),
+<code>libgexiv2-dev</code> (Exiv2 metadata handling),
+<code>libpng-dev</code>, <code>libjpeg-dev</code>,
+<code>libtiff-dev</code></li>
+<li><strong>Vector &amp; Graphics Utilities:</strong>
+<code>libfontconfig1-dev</code>, <code>libfreetype6-dev</code>,
+<code>libharfbuzz-dev</code></li>
+<li><strong>Component Libraries:</strong> <code>libmypaint-dev</code>,
+<code>libjson-c-dev</code>, <code>libjson-glib-dev</code></li>
+</ul>
+<h3 id="installation-commands-by-distribution">Installation Commands by
+Distribution</h3>
+<h4 id="debian--ubuntu--linux-mint">Debian / Ubuntu / Linux Mint</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">-y</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    build-essential <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    meson <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ninja-build <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    pkg-config <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    git <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    libopenexr-dev <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    libimath-dev <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    zlib1g-dev <span class="dt">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    libgtk-3-dev <span class="dt">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    libglib2.0-dev <span class="dt">\</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    libgegl-dev <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    libbabl-dev <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    liblcms2-dev <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    libgexiv2-dev <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    libmypaint-dev <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    libjson-c-dev</span></code></pre></div>
+<h4 id="fedora--rhel--rocky-linux">Fedora / RHEL / Rocky Linux</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf groupinstall <span class="at">-y</span> <span class="st">&quot;Development Tools&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install <span class="at">-y</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    meson <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    ninja-build <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    pkgconf-pkg-config <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    git <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    openexr-devel <span class="dt">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    imath-devel <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    zlib-devel <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    gtk3-devel <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    glib2-devel <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    gegl04-devel <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    babl-devel <span class="dt">\</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    lcms2-devel <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    libgexiv2-devel <span class="dt">\</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    libmypaint-devel <span class="dt">\</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    json-c-devel</span></code></pre></div>
+<h4 id="arch-linux">Arch Linux</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-Syu</span> <span class="at">--needed</span> <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    base-devel <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    meson <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    ninja <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    pkgconf <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    git <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    openexr <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    imath <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    zlib <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    gtk3 <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    glib2 <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    gegl <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    babl <span class="dt">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    lcms2 <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    libgexiv2 <span class="dt">\</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    libmypaint <span class="dt">\</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    json-c</span></code></pre></div>
+<h3 id="verification">Verification</h3>
+<p>When running <code>meson setup _build</code> from the root of the
+GIMP source tree, inspect the output summary table. Ensure the
+<code>openexr</code> entry under the optional plug-ins section displays
+<code>yes</code> or <code>enabled</code>. If it shows
+<code>disabled</code> or <code>not found</code>, verify that
+<code>pkg-config --modversion OpenEXR</code> correctly outputs the
+installed OpenEXR version on your system.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

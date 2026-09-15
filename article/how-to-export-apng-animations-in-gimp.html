@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export APNG Animations in GIMP - gimp</title>
+    <meta name="description" content="Exporting layered animations as Animated Portable Network Graphics (APNG) in GIMP allows you to create high-quality, 24-bit color animations with full alpha transparency, surpassing the limitations of traditional GIFs. This guide provides a direct, step-">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-export-apng-animations-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export APNG Animations in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-export-apng-animations-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting layered animations as Animated Portable Network Graphics (APNG) in GIMP allows you to create high-quality, 24-bit color animations with full alpha transparency, surpassing the limitations of traditional GIFs. This guide provides a direct, step-" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-apng-animations-in-gimp">How to Export APNG
+Animations in GIMP</h1>
+<p>Exporting layered animations as Animated Portable Network Graphics
+(APNG) in GIMP allows you to create high-quality, 24-bit color
+animations with full alpha transparency, surpassing the limitations of
+traditional GIFs. This guide provides a direct, step-by-step walkthrough
+on organizing your project layers, configuring frame timing and disposal
+methods, and saving your final animation using GIMP's native PNG export
+settings.</p>
+<h2 id="1-arrange-and-name-your-layers">1. Arrange and Name Your
+Layers</h2>
+<p>GIMP reads layers from the bottom up to generate animation frames.
+The lowest layer in the <strong>Layers</strong> panel serves as the
+first frame, and the top layer serves as the last.</p>
+<ol type="1">
+<li>Open your project or create your artwork with each frame placed on
+an individual layer.</li>
+<li>Order your layers from bottom (Frame 1) to top (final Frame).</li>
+<li><em>(Optional)</em> Set specific frame durations and disposal
+methods by renaming your layers. Double-click a layer name and append
+the duration in milliseconds and the mode in parentheses:
+<ul>
+<li><strong>Timing:</strong> Add <code>(100ms)</code> to set that
+specific frame's display time to 100 milliseconds.</li>
+<li><strong>Disposal Mode:</strong> Add <code>(combine)</code> to
+overlay the frame onto the previous one, or <code>(replace)</code> to
+clear the previous frame before displaying the new one.</li>
+<li><em>Example Layer Name:</em>
+<code>Frame 1 (150ms) (replace)</code></li>
+</ul></li>
+</ol>
+<h2 id="2-preview-the-animation">2. Preview the Animation</h2>
+<p>Before exporting, verify the timing and motion:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Filters &gt; Animation &gt;
+Playback...</strong></li>
+<li>Click <strong>Play</strong> in the playback window to review your
+animation speed and transitions.</li>
+<li>Close the playback dialog once you are satisfied.</li>
+</ol>
+<h2 id="3-export-as-apng">3. Export as APNG</h2>
+<ol type="1">
+<li>Click <strong>File &gt; Export As...</strong></li>
+<li>In the <strong>Name</strong> field, enter your file name ending with
+the <code>.png</code> extension (e.g., <code>animation.png</code>).
+Alternatively, expand <strong>Select File Type (By Extension)</strong>
+at the bottom and choose <strong>PNG Image</strong>.</li>
+<li>Click <strong>Export</strong>. The <em>Export Image as PNG</em>
+options dialog will appear.</li>
+</ol>
+<h2 id="4-configure-export-settings">4. Configure Export Settings</h2>
+<p>In the PNG export dialog window, enable the animation features:</p>
+<ol type="1">
+<li>Check the box labeled <strong>As animation</strong>.</li>
+<li>Check <strong>Loop forever</strong> if you want the animation to
+repeat continuously, or leave it unchecked for a single playback.</li>
+<li>Set the <strong>Delay between frames where unspecified</strong>
+(default is usually 100 milliseconds). This value applies to any layer
+where a specific millisecond duration was not written into the layer
+name.</li>
+<li>Set the <strong>Frame disposal where unspecified</strong> to either
+<strong>Cumulative layers (combine)</strong> or <strong>One frame per
+layer (replace)</strong> based on your project design.</li>
+<li>Check <strong>Use delay entered above for all frames</strong> or
+<strong>Use disposal entered above for all frames</strong> only if you
+wish to override custom layer names.</li>
+<li>Click <strong>Export</strong> to finalize and generate your APNG
+file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import DICOM Scans and View Metadata in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to import DICOM (Digital Imaging and Communications in Medicine) files into the GNU Image Manipulation Program (GIMP) and inspect embedded slice metadata directly within the software. By utilizing GIMP’s built-in file handlers,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/import-dicom-scans-and-view-metadata-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import DICOM Scans and View Metadata in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/import-dicom-scans-and-view-metadata-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to import DICOM (Digital Imaging and Communications in Medicine) files into the GNU Image Manipulation Program (GIMP) and inspect embedded slice metadata directly within the software. By utilizing GIMP’s built-in file handlers," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="import-dicom-scans-and-view-metadata-in-gimp">Import DICOM Scans
+and View Metadata in GIMP</h1>
+<p>This guide explains how to import DICOM (Digital Imaging and
+Communications in Medicine) files into the GNU Image Manipulation
+Program (GIMP) and inspect embedded slice metadata directly within the
+software. By utilizing GIMP’s built-in file handlers, users can view
+high-bit-depth medical imaging slices, manage multi-slice datasets as
+layers, and extract vital diagnostic tags without requiring proprietary
+PACS viewers.</p>
+<h3 id="importing-dicom-files-into-gimp">Importing DICOM Files into
+GIMP</h3>
+<p>GIMP features native support for single-frame DICOM files
+(<code>.dcm</code> extension) through its integrated file-loading
+plug-in.</p>
+<ol type="1">
+<li><p><strong>Open a Single Slice:</strong></p>
+<ul>
+<li>Launch GIMP.</li>
+<li>Go to <strong>File &gt; Open</strong>.</li>
+<li>Locate your DICOM file (<code>.dcm</code> or extensionless DICOM
+files) and click <strong>Open</strong>.</li>
+<li>GIMP automatically reads the grayscale pixel data and opens it in an
+image window.</li>
+</ul></li>
+<li><p><strong>Open a Series as Layers:</strong></p>
+<ul>
+<li>If working with an anatomical volume or a sequence of continuous
+slices:</li>
+<li>Go to <strong>File &gt; Open as Layers</strong>.</li>
+<li>Select all relevant <code>.dcm</code> files in the directory and
+click <strong>Open</strong>.</li>
+<li>Each slice loads as an individual layer in chronological or
+alphabetical order, allowing you to cycle through the depth of the scan
+using the Layers dialog.</li>
+</ul></li>
+</ol>
+<h3 id="handling-dynamic-range-and-bit-depth">Handling Dynamic Range and
+Bit Depth</h3>
+<p>Medical scans commonly use 12-bit or 16-bit integer formats. GIMP
+handles high bit-depth precision natively:</p>
+<ul>
+<li>Go to <strong>Image &gt; Precision</strong> to verify that the image
+is set to <strong>16-bit integer</strong> or higher, preserving
+radiological density information.</li>
+<li>If the scan appears pitch-black or washed out due to narrow
+windowing, adjust the visualization by navigating to <strong>Colors &gt;
+Levels</strong> or <strong>Colors &gt; Curves</strong> to match the
+desired Window Width (WW) and Window Level (WL) values.</li>
+</ul>
+<h3 id="inspecting-slice-metadata">Inspecting Slice Metadata</h3>
+<p>DICOM files store essential acquisition and patient data within a
+standardized header prepended to the raw image data. To read these tags
+in GIMP:</p>
+<ol type="1">
+<li><strong>Access the Metadata Viewer:</strong>
+<ul>
+<li>Navigate to the top menu and select <strong>Image &gt; Metadata &gt;
+View Metadata</strong>.</li>
+</ul></li>
+<li><strong>Review DICOM Header Tags:</strong>
+<ul>
+<li>The Metadata Viewer displays embedded information categorized across
+different tabs (such as Exif, XMP, or general tags depending on how the
+DICOM parser maps the elements).</li>
+<li>Key metadata fields typically include:
+<ul>
+<li><strong>Modality:</strong> Identifies the imaging technique (e.g.,
+CT, MR, CR, US).</li>
+<li><strong>Patient Data:</strong> Patient name, ID, and acquisition
+date (if not anonymized).</li>
+<li><strong>Scan Parameters:</strong> Slice thickness, pixel spacing,
+KVP, and exposure time.</li>
+<li><strong>Window Center/Width:</strong> Original display settings
+recommended by the scanner.</li>
+</ul></li>
+</ul></li>
+<li><strong>Alternative Method via Image Properties:</strong>
+<ul>
+<li>Go to <strong>Image &gt; Image Properties</strong>.</li>
+<li>Switch to the <strong>Comment</strong> or
+<strong>Properties</strong> tab to see raw header notes or embedded text
+generated during the import process.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

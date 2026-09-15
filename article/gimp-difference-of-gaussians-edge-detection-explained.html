@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Difference of Gaussians Edge Detection Explained - gimp</title>
+    <meta name="description" content="The Difference of Gaussians (DoG) filter in GIMP is an edge-detection and feature-enhancement tool designed to isolate lines, boundaries, and specific detail levels within an image. By calculating the difference between two copies of an image blurred at">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-difference-of-gaussians-edge-detection-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Difference of Gaussians Edge Detection Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-difference-of-gaussians-edge-detection-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Difference of Gaussians (DoG) filter in GIMP is an edge-detection and feature-enhancement tool designed to isolate lines, boundaries, and specific detail levels within an image. By calculating the difference between two copies of an image blurred at" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-difference-of-gaussians-edge-detection-explained">GIMP
+Difference of Gaussians Edge Detection Explained</h1>
+<p>The Difference of Gaussians (DoG) filter in GIMP is an edge-detection
+and feature-enhancement tool designed to isolate lines, boundaries, and
+specific detail levels within an image. By calculating the difference
+between two copies of an image blurred at different intensities, this
+filter acts as a bandpass filter that suppresses homogeneous areas and
+high-frequency noise while emphasizing structural edges. This article
+explains how the DoG filter works, its core purposes in graphic editing,
+and how to effectively utilize its parameters in GIMP.</p>
+<h2 id="how-the-difference-of-gaussians-algorithm-works">How the
+Difference of Gaussians Algorithm Works</h2>
+<p>The Difference of Gaussians algorithm operates on a simple
+mathematical principle:</p>
+<ol type="1">
+<li>The original image is duplicated into two separate instances.</li>
+<li>A Gaussian blur is applied to both instances using two distinct blur
+radii (e.g., Radius 1 and Radius 2).</li>
+<li>One blurred image is subtracted from the other.</li>
+</ol>
+<p>Because a Gaussian blur smooths out spatial details, subtracting a
+more blurred image from a less blurred image cancels out low-frequency
+information (such as smooth gradients and flat backgrounds) and extreme
+high-frequency artifacts. What remains are the intermediate frequencies
+representing the edges and transitions in the image.</p>
+<h2 id="primary-purposes-of-the-filter-in-gimp">Primary Purposes of the
+Filter in GIMP</h2>
+<h3 id="1-edge-detection-and-line-extraction">1. Edge Detection and Line
+Extraction</h3>
+<p>The primary function of the DoG filter is identifying spatial
+transitions where brightness or color changes abruptly. Graphic artists
+frequently use it to extract line art from photographs, generate
+sketches, or prepare masks based on object silhouettes.</p>
+<h3 id="2-multi-scale-feature-detection">2. Multi-Scale Feature
+Detection</h3>
+<p>Unlike standard edge detectors (such as Sobel or Laplace) that
+operate at a fixed pixel scale, DoG allows users to target edges of
+varying thickness. By altering the blur radii, you can isolate fine
+details (thin lines) or broad outlines (large object boundaries).</p>
+<h3 id="3-noise-resistant-edge-extraction">3. Noise-Resistant Edge
+Extraction</h3>
+<p>Standard derivative-based edge filters often amplify image noise
+(such as sensor grain or compression artifacts). Because Gaussian
+blurring acts as a low-pass smoothing filter, DoG effectively eliminates
+single-pixel noise before calculating differences, resulting in cleaner,
+more continuous edge boundaries.</p>
+<h3 id="4-texture-and-detail-enhancement">4. Texture and Detail
+Enhancement</h3>
+<p>In advanced photo manipulation, the DoG output can be layered over
+the original image using blend modes like <em>Overlay</em>, <em>Soft
+Light</em>, or <em>Linear Light</em>. This technique enables frequency
+separation, allowing editors to selectively sharpen textures, enhance
+local contrast, or retouch skin without altering underlying color
+tones.</p>
+<h2 id="key-settings-in-gimp">Key Settings in GIMP</h2>
+<p>When accessing the filter via <strong>Filters &gt; Edge-Detect &gt;
+Difference of Gaussians...</strong>, you are presented with several
+adjustable parameters:</p>
+<ul>
+<li><strong>Radius 1 and Radius 2:</strong> These controls determine the
+standard deviation of the two Gaussian blurs. The difference between
+these two values dictates the width and sensitivity of the detected
+edges. Setting the radii close together extracts very fine lines, while
+a larger gap captures broader tonal shifts.</li>
+<li><strong>Normalize:</strong> When enabled, this option scales the
+resulting pixel values across the full dynamic range (0 to 255),
+enhancing visibility and contrast in the output.</li>
+<li><strong>Invert:</strong> This flips the output colors, transforming
+white-on-black edge maps into black-on-white line drawings, which is
+useful for artistic sketch effects.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

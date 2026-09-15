@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Subtract Blend Mode for Shadow Comparison - gimp</title>
+    <meta name="description" content="The Subtract blend mode in GIMP serves as an analytical tool for measuring luminance discrepancies and tonal loss between two aligned images. When applied to shadow comparison, this mode subtracts the pixel values of the active top layer from the base bo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-subtract-blend-mode-for-shadow-comparison">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Subtract Blend Mode for Shadow Comparison - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-subtract-blend-mode-for-shadow-comparison" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Subtract blend mode in GIMP serves as an analytical tool for measuring luminance discrepancies and tonal loss between two aligned images. When applied to shadow comparison, this mode subtracts the pixel values of the active top layer from the base bo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-subtract-blend-mode-for-shadow-comparison">GIMP Subtract
+Blend Mode for Shadow Comparison</h1>
+<p>The Subtract blend mode in GIMP serves as an analytical tool for
+measuring luminance discrepancies and tonal loss between two aligned
+images. When applied to shadow comparison, this mode subtracts the pixel
+values of the active top layer from the base bottom layer, making it
+straightforward to identify crushed blacks, dynamic range loss, color
+shifts, and sensor noise in dark regions. This article breaks down the
+mathematical function of the Subtract blend mode and how to interpret
+its results when evaluating shadow details.</p>
+<h3 id="how-the-subtract-mode-works-mathematically">How the Subtract
+Mode Works Mathematically</h3>
+<p>The Subtract blend mode evaluates every pixel channel across two
+overlapping layers using a simple mathematical formula:</p>
+<p><span class="math display">\[\text{Result} = \text{Base Layer Value}
+- \text{Active Layer Value}\]</span></p>
+<p>Because digital color values cannot fall below zero, any calculation
+that results in a negative number is automatically clipped to zero (pure
+black).</p>
+<p>When comparing two identical images, identical pixel values
+subtracted from each other yield zero, rendering the entire canvas
+black. However, when shadow details differ between the two layers, the
+remaining non-zero values reveal exactly where and how the tones
+diverge.</p>
+<h3 id="key-functions-in-shadow-analysis">Key Functions in Shadow
+Analysis</h3>
+<h4 id="1-identifying-crushed-shadow-detail">1. Identifying Crushed
+Shadow Detail</h4>
+<p>When comparing an original raw image (as the base layer) with a
+processed or compressed image (as the top layer), the Subtract mode
+immediately reveals where shadows have been crushed. If the top layer
+was over-darkened, its low-luminance values fail to completely subtract
+the original base values, leaving glowing, non-zero pixels that
+highlight where detail was lost.</p>
+<h4 id="2-evaluating-sensor-noise-and-compression-artifacts">2.
+Evaluating Sensor Noise and Compression Artifacts</h4>
+<p>Shadows typically contain the highest concentration of sensor noise
+and digital compression artifacts. By subtracting a processed image from
+a reference frame, any uneven pixel clustering or blocking in the dark
+tones stands out against the uniform black background, allowing for
+objective quality assessments.</p>
+<h4 id="3-checking-color-casts-in-dark-regions">3. Checking Color Casts
+in Dark Regions</h4>
+<p>If a color grade or tone adjustment has introduced an unintended
+color tint to the shadows, the subtraction will yield different values
+across the Red, Green, and Blue channels. This results in colored
+patches appearing in the shadow areas rather than neutral gray or black
+differences, indicating a channel imbalance.</p>
+<h3 id="interpreting-shadow-results-in-gimp">Interpreting Shadow Results
+in GIMP</h3>
+<ul>
+<li><strong>Pure Black (<span class="math inline">\(0, 0,
+0\)</span>):</strong> Indicates that the shadows in the top layer are
+either identical in brightness to the bottom layer or darker than the
+bottom layer (since negative results clip to black).</li>
+<li><strong>Visible Gray or Colored Details:</strong> Indicates that the
+bottom layer contains brighter shadow information or color data that was
+not present in the top layer.</li>
+<li><strong>Layer Swapping Requirement:</strong> Because the Subtract
+mode is non-commutative (subtracting A from B does not yield the same
+result as B from A due to zero-clipping), you must invert the layer
+order to test both directions. If the top layer has brighter shadows
+than the base layer, you must move the top layer beneath the base layer
+to reveal those brighter details.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

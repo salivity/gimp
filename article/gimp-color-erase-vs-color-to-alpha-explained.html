@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Color Erase vs Color to Alpha Explained - gimp</title>
+    <meta name="description" content="In GIMP, both the Color Erase and Color to Alpha functions allow you to replace a specific color with transparency, but they serve different workflows and scopes. Color to Alpha operates as an automated, layer-wide filter that algorithmically extracts a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-color-erase-vs-color-to-alpha-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Color Erase vs Color to Alpha Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-color-erase-vs-color-to-alpha-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, both the Color Erase and Color to Alpha functions allow you to replace a specific color with transparency, but they serve different workflows and scopes. Color to Alpha operates as an automated, layer-wide filter that algorithmically extracts a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-color-erase-vs-color-to-alpha-explained">GIMP Color Erase
+vs Color to Alpha Explained</h1>
+<p>In GIMP, both the Color Erase and Color to Alpha functions allow you
+to replace a specific color with transparency, but they serve different
+workflows and scopes. Color to Alpha operates as an automated,
+layer-wide filter that algorithmically extracts a targeted color across
+an entire image or selection. In contrast, Color Erase functions
+primarily as a paint-tool blending mode, allowing you to selectively
+brush away a chosen color with manual strokes.</p>
+<h3 id="what-is-color-to-alpha">What is Color to Alpha?</h3>
+<p>Color to Alpha is a dedicated filter located under <strong>Colors
+&gt; Color to Alpha</strong>. It processes the active layer or an active
+selection automatically based on a chosen target color.</p>
+<p>Instead of abruptly deleting pixels, Color to Alpha performs a
+mathematical color de-mixing process. It calculates how much of the
+target color exists in every pixel and removes that amount, replacing it
+with an equivalent level of alpha (transparency). When the transparent
+result is placed over a background of the original target color, the
+image appears visually identical to the original. Modern versions of
+GIMP also provide threshold and opacity sliders to fine-tune the
+transition between opaque and transparent areas.</p>
+<p><strong>Best used for:</strong></p>
+<ul>
+<li>Removing solid backgrounds (such as green screen footage or white
+studio backdrops).</li>
+<li>Global background extraction across an entire layer.</li>
+<li>Preserving semi-transparent details like hair, smoke, glass, and
+anti-aliased edges.</li>
+</ul>
+<h3 id="what-is-color-erase">What is Color Erase?</h3>
+<p>Color Erase is a blending mode found in GIMP’s paint tools (such as
+the Paintbrush, Pencil, or Airbrush) as well as layer blending modes.
+When using a brush set to the Color Erase mode, GIMP removes the current
+foreground color from the pixels you manually paint over.</p>
+<p>Instead of applying a global algorithm to the entire canvas, Color
+Erase gives you localized, tactile control. Wherever you paint, the tool
+calculates the difference between the pixel under the brush and the
+active foreground color, converting matching hues into transparency
+based on your brush opacity, size, and hardness settings.</p>
+<p><strong>Best used for:</strong></p>
+<ul>
+<li>Manual retouching in specific, localized areas without affecting the
+rest of the layer.</li>
+<li>Removing a color from one part of an image where the same color
+needs to remain untouched elsewhere.</li>
+<li>Blending edges manually using custom brush dynamics.</li>
+</ul>
+<h3 id="key-differences-summary">Key Differences Summary</h3>
+<ul>
+<li><strong>Application Method:</strong> Color to Alpha is an automated
+filter applied to the entire layer or selection through a dialog box.
+Color Erase is an interactive brush mode applied by hand.</li>
+<li><strong>Target Color Selection:</strong> Color to Alpha lets you
+pick a color directly inside its dedicated settings window. Color Erase
+uses whatever color is currently set as your active foreground
+color.</li>
+<li><strong>Control:</strong> Color to Alpha controls transparency using
+global numerical thresholds. Color Erase controls transparency via brush
+pressure, opacity, and stroke placement.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

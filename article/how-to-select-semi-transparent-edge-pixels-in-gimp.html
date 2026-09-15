@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Select Semi-Transparent Edge Pixels in GIMP - gimp</title>
+    <meta name="description" content="Selecting only the semi-transparent edge pixels of a rasterized object in GIMP allows you to remove color fringing, adjust anti-aliasing, or refine cutouts without affecting the solid interior. Because standard alpha-selection tools select both solid and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-select-semi-transparent-edge-pixels-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Select Semi-Transparent Edge Pixels in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-select-semi-transparent-edge-pixels-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Selecting only the semi-transparent edge pixels of a rasterized object in GIMP allows you to remove color fringing, adjust anti-aliasing, or refine cutouts without affecting the solid interior. Because standard alpha-selection tools select both solid and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-select-semi-transparent-edge-pixels-in-gimp">How to
+Select Semi-Transparent Edge Pixels in GIMP</h1>
+<p>Selecting only the semi-transparent edge pixels of a rasterized
+object in GIMP allows you to remove color fringing, adjust
+anti-aliasing, or refine cutouts without affecting the solid interior.
+Because standard alpha-selection tools select both solid and translucent
+areas simultaneously, isolating strictly the semi-transparent edges
+requires separating the completely opaque core from the total boundary
+and subtracting it.</p>
+<h3 id="step-1-select-the-entire-object-footprint">Step 1: Select the
+Entire Object Footprint</h3>
+<ol type="1">
+<li>Open your project in GIMP and ensure the layer has an alpha channel
+(right-click the layer in the <strong>Layers Dialog</strong>; if
+<strong>Add Alpha Channel</strong> is not grayed out, click it).</li>
+<li>Right-click the layer and choose <strong>Alpha to
+Selection</strong>. This selects all pixels that contain any opacity
+greater than zero.</li>
+</ol>
+<h3 id="step-2-duplicate-the-layer-to-isolate-opaque-pixels">Step 2:
+Duplicate the Layer to Isolate Opaque Pixels</h3>
+<ol type="1">
+<li>Select the layer and go to <strong>Layer &gt; Duplicate
+Layer</strong> (or press <code>Shift + Ctrl + D</code>).</li>
+<li>Make sure the duplicated layer is active.</li>
+</ol>
+<h3 id="step-3-filter-out-semi-transparent-pixels">Step 3: Filter Out
+Semi-Transparent Pixels</h3>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Threshold Alpha...</strong> in the top
+menu.</li>
+<li>Move the slider all the way to the right (a value of
+<code>1.000</code> or <code>255</code>).</li>
+<li>Click <strong>OK</strong>. This operation converts all
+semi-transparent pixels into fully transparent pixels, leaving behind
+only the 100% opaque core of your object.</li>
+</ol>
+<h3 id="step-4-subtract-the-opaque-core-from-the-selection">Step 4:
+Subtract the Opaque Core from the Selection</h3>
+<ol type="1">
+<li>Right-click the duplicated layer in the <strong>Layers
+Dialog</strong>.</li>
+<li>Select <strong>Subtract from Selection</strong>.</li>
+<li>Delete or hide the duplicated layer by clicking the eye icon next to
+it, then click back onto your original layer.</li>
+</ol>
+<p>The active selection ("marching ants") now encompasses strictly the
+semi-transparent edge pixels, leaving both the transparent background
+and the solid interior completely untouched. You can now adjust their
+color, feather them, or clear them entirely using the standard edit
+tools.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

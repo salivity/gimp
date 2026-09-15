@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Smooth Stroke and Weight for Smooth Line Art - gimp</title>
+    <meta name="description" content="Digital artists using GIMP often experience jagged or shaky lines caused by hardware sensitivity or natural hand tremors. The Smooth Stroke feature and its associated Weight slider provide a built-in stabilization system designed to eliminate brush jitte">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-smooth-stroke-and-weight-for-smooth-line-art">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Smooth Stroke and Weight for Smooth Line Art - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-smooth-stroke-and-weight-for-smooth-line-art" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Digital artists using GIMP often experience jagged or shaky lines caused by hardware sensitivity or natural hand tremors. The Smooth Stroke feature and its associated Weight slider provide a built-in stabilization system designed to eliminate brush jitte" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-smooth-stroke-and-weight-for-smooth-line-art">GIMP Smooth
+Stroke and Weight for Smooth Line Art</h1>
+<p>Digital artists using GIMP often experience jagged or shaky lines
+caused by hardware sensitivity or natural hand tremors. The Smooth
+Stroke feature and its associated Weight slider provide a built-in
+stabilization system designed to eliminate brush jitter, giving creators
+the ability to draw clean, fluid line art with precision.</p>
+<h2 id="the-function-of-smooth-stroke">The Function of Smooth
+Stroke</h2>
+<p>Smooth Stroke acts as an algorithmic stabilizer for freehand drawing
+tools such as the Paintbrush, Pencil, and Airbrush. When enabled, it
+changes the way GIMP registers input from a mouse, stylus, or drawing
+tablet.</p>
+<p>Instead of placing pixels directly beneath the instantaneous position
+of the cursor—which captures micro-movements and hand shakiness—Smooth
+Stroke introduces an interpolation buffer. The brush lags slightly
+behind the cursor, calculating an averaged path between the input
+points. This dynamic dampening softens sharp, accidental angles into
+smooth, continuous curves.</p>
+<h2 id="the-role-of-the-weight-slider">The Role of the Weight
+Slider</h2>
+<p>The Weight slider controls the strength of the stabilization effect.
+It determines the radius or distance the brush trailing behind your
+physical cursor will follow, effectively functioning as digital
+inertia.</p>
+<ul>
+<li><strong>Low Weight Values (1–10):</strong> Minimal stabilization.
+The brush closely follows the cursor with almost no perceptible lag.
+This setting is ideal for fast sketching, writing small text, or
+rendering intricate, tight details where high responsiveness is
+necessary.</li>
+<li><strong>Medium Weight Values (10–30):</strong> Balanced
+stabilization. This is the optimal range for general inking and line
+art. It removes jitter while maintaining enough responsiveness for
+controlled curves and natural hand movements.</li>
+<li><strong>High Weight Values (30–100+):</strong> Heavy stabilization.
+The brush noticeably lags behind the cursor, strongly smoothing out
+large gestures. This is best suited for long, sweeping arcs, decorative
+curves, or when drawing with a mouse, though it requires slower
+deliberate strokes to avoid cutting corners.</li>
+</ul>
+<h2 id="how-to-enable-and-adjust-the-settings">How to Enable and Adjust
+the Settings</h2>
+<p>To use these tools in GIMP:</p>
+<ol type="1">
+<li>Select a drawing tool (such as the <strong>Paintbrush Tool</strong>)
+from the Toolbox.</li>
+<li>In the <strong>Tool Options</strong> dockable dialog, scroll down to
+the <strong>Smooth stroke</strong> checkbox and ensure it is
+checked.</li>
+<li>Adjust the <strong>Quality</strong> setting to determine the
+mathematical precision of the calculation (higher values offer smoother
+curves at a minor computational cost).</li>
+<li>Move the <strong>Weight</strong> slider to match the scale and speed
+of your intended stroke.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

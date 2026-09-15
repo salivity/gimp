@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Matrix Rain Effect in GIMP - gimp</title>
+    <meta name="description" content="This tutorial provides a step-by-step guide to generating a realistic Matrix-style digital rain effect using standard tools and filters in GIMP. You will learn how to create the falling digital streaks, colorize them with the iconic neon green palette, a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-matrix-rain-effect-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Matrix Rain Effect in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-matrix-rain-effect-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This tutorial provides a step-by-step guide to generating a realistic Matrix-style digital rain effect using standard tools and filters in GIMP. You will learn how to create the falling digital streaks, colorize them with the iconic neon green palette, a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-a-matrix-rain-effect-in-gimp">How to Create a
+Matrix Rain Effect in GIMP</h1>
+<p>This tutorial provides a step-by-step guide to generating a realistic
+Matrix-style digital rain effect using standard tools and filters in
+GIMP. You will learn how to create the falling digital streaks, colorize
+them with the iconic neon green palette, add glowing character glyphs,
+and create realistic bright trailing tips.</p>
+<h3 id="step-1-set-up-the-canvas-and-base-layer">Step 1: Set Up the
+Canvas and Base Layer</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>. Set your desired
+dimensions (e.g., 1920x1080 pixels) and click <strong>OK</strong>.</li>
+<li>Select the <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>), set the foreground color to pure black
+(<code>#000000</code>), and click the canvas to fill the
+background.</li>
+</ol>
+<h3 id="step-2-generate-the-digital-noise-pattern">Step 2: Generate the
+Digital Noise Pattern</h3>
+<ol type="1">
+<li>Create a new transparent layer by clicking <strong>Layer &gt; New
+Layer</strong> and name it <code>Noise Base</code>.</li>
+<li>Go to <strong>Filters &gt; Noise &gt; RGB Noise</strong>. Uncheck
+<em>Independent Channels</em>, increase the <strong>Alpha</strong> and
+<strong>Value</strong> sliders until you have a dense, uniform field of
+white speckles, and click <strong>OK</strong>.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Pixelise</strong>. Set the
+<strong>Pixel Width</strong> and <strong>Pixel Height</strong> to around
+8 to 10 pixels to turn the random noise into sharp, digital-looking
+squares.</li>
+</ol>
+<h3 id="step-3-create-the-vertical-streaks">Step 3: Create the Vertical
+Streaks</h3>
+<ol type="1">
+<li>Go to <strong>Filters &gt; Blur &gt; Linear Motion
+Blur</strong>.</li>
+<li>Set the <strong>Angle</strong> to <code>90</code> degrees (straight
+down) and increase the <strong>Length</strong> to roughly 50–100 pixels
+depending on your canvas resolution. Click <strong>OK</strong>.</li>
+<li>Duplicate this layer by pressing <code>Shift + Ctrl + D</code>.</li>
+<li>On the duplicated layer, apply another linear motion blur with a
+higher length (e.g., 150–200 pixels) to create varied stream
+lengths.</li>
+<li>Merge the two streak layers by going to <strong>Layer &gt; Merge
+Down</strong>.</li>
+</ol>
+<h3 id="step-4-apply-the-matrix-green-color">Step 4: Apply the Matrix
+Green Color</h3>
+<ol type="1">
+<li>With the merged streak layer selected, go to <strong>Colors &gt;
+Colorize</strong>.</li>
+<li>Set the <strong>Hue</strong> to approximately <code>0.33</code>
+(pure green), increase <strong>Saturation</strong> to <code>1.0</code>,
+and adjust <strong>Lightness</strong> to around <code>-0.2</code> to get
+a deep emerald shade.</li>
+<li>To enhance contrast, go to <strong>Colors &gt; Levels</strong> and
+drag the black point slider to the right to remove faint background haze
+while keeping the bright streams vivid.</li>
+</ol>
+<h3 id="step-5-add-code-characters-and-glyphs">Step 5: Add Code
+Characters and Glyphs</h3>
+<ol type="1">
+<li>Create a new layer named <code>Characters</code>.</li>
+<li>Select the <strong>Text Tool</strong> (<code>T</code>), choose a
+monospaced font or a dedicated Matrix/Katakana digital font, and set the
+text color to a bright neon green (<code>#00FF66</code>).</li>
+<li>Type random characters, katakana symbols, or numbers in vertical
+lines across the canvas, leaving small gaps to match the trails.</li>
+<li>Set the <code>Characters</code> layer mode to
+<strong>Screen</strong> or <strong>Addition</strong> in the Layers
+panel.</li>
+</ol>
+<h3 id="step-6-create-glowing-highlights-and-leading-characters">Step 6:
+Create Glowing Highlights and Leading Characters</h3>
+<ol type="1">
+<li>Create a new layer named <code>Highlights</code>.</li>
+<li>Select a hard round brush, set the color to white
+(<code>#FFFFFF</code>) or very pale green (<code>#D4FFD4</code>), and
+place small dots or type individual bright characters at the very bottom
+tips of select falling streams.</li>
+<li>Duplicate the <code>Highlights</code> layer, go to <strong>Filters
+&gt; Blur &gt; Gaussian Blur</strong>, and set a blur radius of 4–6
+pixels to create a natural neon glow around the leading code
+fragments.</li>
+<li>Adjust the opacity of individual layers until the digital rain has
+depth, varying luminance, and a high-contrast falloff.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

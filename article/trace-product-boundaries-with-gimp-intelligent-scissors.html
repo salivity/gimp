@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace Product Boundaries with GIMP Intelligent Scissors - gimp</title>
+    <meta name="description" content="The Intelligent Scissors tool in GIMP allows you to quickly isolate products and subjects from their backgrounds by automatically snapping selection paths to high-contrast edges. This guide explains how to activate the tool, place and adjust anchor point">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/trace-product-boundaries-with-gimp-intelligent-scissors">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Trace Product Boundaries with GIMP Intelligent Scissors - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/trace-product-boundaries-with-gimp-intelligent-scissors" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Intelligent Scissors tool in GIMP allows you to quickly isolate products and subjects from their backgrounds by automatically snapping selection paths to high-contrast edges. This guide explains how to activate the tool, place and adjust anchor point" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="trace-product-boundaries-with-gimp-intelligent-scissors">Trace
+Product Boundaries with GIMP Intelligent Scissors</h1>
+<p>The Intelligent Scissors tool in GIMP allows you to quickly isolate
+products and subjects from their backgrounds by automatically snapping
+selection paths to high-contrast edges. This guide explains how to
+activate the tool, place and adjust anchor points around a product
+boundary, convert your path into an active selection, and cleanly
+extract your subject for product photography workflows.</p>
+<h2 id="setting-up-the-intelligent-scissors-tool">Setting Up the
+Intelligent Scissors Tool</h2>
+<ol type="1">
+<li>Open your product image in GIMP by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Select the <strong>Scissors Select Tool</strong> from the main
+toolbox, or use the keyboard shortcut <strong>I</strong>.</li>
+<li>In the <strong>Tool Options</strong> dock on the left, configure the
+following settings for the best edge quality:
+<ul>
+<li><strong>Antialiasing:</strong> Check this box to prevent jagged,
+pixelated edges.</li>
+<li><strong>Feather edges:</strong> Leave this unchecked initially to
+keep the selection sharp; you can soften it later if needed.</li>
+<li><strong>Interactive boundary:</strong> Check this option. This
+allows you to preview the snapping line in real time as you move your
+cursor along the product's edge.</li>
+</ul></li>
+</ol>
+<h2 id="tracing-the-product-boundary">Tracing the Product Boundary</h2>
+<ol type="1">
+<li><strong>Place the First Anchor Point:</strong> Click on a distinct
+edge of the product to place your starting node.</li>
+<li><strong>Follow the Edge:</strong> Move your cursor along the edge of
+the product. The Intelligent Scissors algorithm calculates the path of
+highest contrast between the current cursor position and the previous
+node. Click to drop a new anchor point whenever the boundary curves
+sharply or contrast dips.</li>
+<li><strong>Adjust Placed Nodes:</strong> If a line segment strays from
+the product border, click and drag an existing point to reposition it.
+You can also click anywhere along an existing line segment to insert a
+new node and pull it onto the correct contour.</li>
+<li><strong>Close the Loop:</strong> Move your cursor back to the very
+first node you created and click on it. The individual segments will
+merge into a single, closed loop around the product.</li>
+</ol>
+<h2 id="converting-to-a-selection-and-isolating-the-product">Converting
+to a Selection and Isolating the Product</h2>
+<ol type="1">
+<li><strong>Activate the Selection:</strong> Click anywhere inside the
+closed boundary. The path will transform into an active selection,
+marked by moving dashed lines (marching ants).</li>
+<li><strong>Add an Alpha Channel:</strong> Right-click the image layer
+in the <strong>Layers</strong> panel and select <strong>Add Alpha
+Channel</strong> to ensure the layer supports transparency.</li>
+<li><strong>Isolate the Product:</strong>
+<ul>
+<li>To delete the background directly, invert the selection by pressing
+<strong>Ctrl + I</strong> (or <strong>Select &gt; Invert</strong>) and
+press the <strong>Delete</strong> key.</li>
+<li>Alternatively, to keep your workflow non-destructive, click
+<strong>Layer &gt; Mask &gt; Add Layer Mask</strong> and choose
+<strong>Selection</strong>. This hides the background while keeping the
+original image intact for future adjustments.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

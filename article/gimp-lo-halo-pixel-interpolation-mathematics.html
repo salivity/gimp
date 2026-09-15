@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP LoHalo Pixel Interpolation Mathematics - gimp</title>
+    <meta name="description" content="This article details the mathematical operations occurring within the GEGL (Generic Graphics Library) engine of GIMP when using the LoHalo (Low Halo) interpolation algorithm. LoHalo addresses the ringing artifacts (Gibbs phenomenon) commonly produced by">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-lo-halo-pixel-interpolation-mathematics">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP LoHalo Pixel Interpolation Mathematics - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-lo-halo-pixel-interpolation-mathematics" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article details the mathematical operations occurring within the GEGL (Generic Graphics Library) engine of GIMP when using the LoHalo (Low Halo) interpolation algorithm. LoHalo addresses the ringing artifacts (Gibbs phenomenon) commonly produced by" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-lohalo-pixel-interpolation-mathematics">GIMP LoHalo Pixel
+Interpolation Mathematics</h1>
+<p>This article details the mathematical operations occurring within the
+GEGL (Generic Graphics Library) engine of GIMP when using the LoHalo
+(Low Halo) interpolation algorithm. LoHalo addresses the ringing
+artifacts (Gibbs phenomenon) commonly produced by high-order
+interpolation filters during spatial transformations. It achieves this
+by adaptively combining high-order interpolation kernels with
+lower-order, halo-free methods using localized gradient analysis, matrix
+transformations, and dynamic clamping.</p>
+<h3 id="1-coordinate-mapping-and-jacobian-transformation">1. Coordinate
+Mapping and Jacobian Transformation</h3>
+<p>When an image undergoes scaling, rotation, or affine transformation,
+GIMP calculates the relationship between the target output grid and the
+source pixel coordinate space.</p>
+<ul>
+<li><strong>Jacobian Matrix:</strong> For any sampling point <span
+class="math inline">\((x, y)\)</span>, the algorithm computes the <span
+class="math inline">\(2 \times 2\)</span> Jacobian matrix of the
+transformation function: <span class="math display">\[J =
+\begin{bmatrix} \frac{\partial u}{\partial x} &amp; \frac{\partial
+u}{\partial y} \\ \frac{\partial v}{\partial x} &amp; \frac{\partial
+v}{\partial y} \end{bmatrix}\]</span></li>
+<li><strong>Footprint Geometry:</strong> The eigenvalues and determinant
+of <span class="math inline">\(J\)</span> define an elliptical footprint
+in the source image space. This footprint determines whether the
+operation acts primarily as an upsampling (magnification) or
+downsampling (minification) operation along each principal axis,
+establishing the width and orientation of the sampling kernel.</li>
+</ul>
+<h3 id="2-high-order-kernel-weighting">2. High-Order Kernel
+Weighting</h3>
+<p>For reconstructing continuous intensity surfaces, LoHalo employs
+higher-order weighting functions—typically cubic convolution or windowed
+sinc functions (Lanczos).</p>
+<ul>
+<li><strong>Distance Metrics:</strong> For each neighbor pixel <span
+class="math inline">\(P_i\)</span> located at <span
+class="math inline">\((u_i, v_i)\)</span> relative to the continuous
+target position <span class="math inline">\((u_0, v_0)\)</span>, a
+normalized Euclidean or elliptical distance <span
+class="math inline">\(d_i\)</span> is evaluated: <span
+class="math display">\[d_i = \sqrt{(\Delta u)^2 + (\Delta
+v)^2}\]</span></li>
+<li><strong>Polynomial Weight Calculation:</strong> Weights <span
+class="math inline">\(w_i\)</span> are assigned using a piecewise cubic
+kernel: <span class="math display">\[W(d) = \begin{cases} (a + 2)|d|^3 -
+(a + 3)|d|^2 + 1 &amp; \text{for } |d| \le 1 \\ a|d|^3 - 5a|d|^2 + 8a|d|
+- 4a &amp; \text{for } 1 &lt; |d| &lt; 2 \\ 0 &amp; \text{otherwise}
+\end{cases}\]</span> <em>(where <span class="math inline">\(a\)</span>
+typically equals <span class="math inline">\(-0.5\)</span> or <span
+class="math inline">\(-0.75\)</span>)</em>.</li>
+<li><strong>Normalization:</strong> The preliminary high-order sample
+<span class="math inline">\(I_{\text{high}}\)</span> is computed as the
+normalized dot product of the weights and pixel values: <span
+class="math display">\[I_{\text{high}} = \frac{\sum_{i} w_i \cdot
+P_i}{\sum_{i} w_i}\]</span></li>
+</ul>
+<p>Negative lobes in these cubic and sinc kernels introduce sharpening,
+but they also cause negative and excessive values (halos) near sharp
+transitions.</p>
+<h3 id="3-local-extrema-evaluation">3. Local Extrema Evaluation</h3>
+<p>To counter ringing, LoHalo inspects the immediate <span
+class="math inline">\(2 \times 2\)</span> pixel neighborhood surrounding
+the target coordinate <span class="math inline">\((u_0,
+v_0)\)</span>.</p>
+<ul>
+<li><strong>Bound Constraints:</strong> The minimum and maximum pixel
+values within this local neighborhood are extracted: <span
+class="math display">\[V_{\min} = \min(P_{0,0}, P_{0,1}, P_{1,0},
+P_{1,1})\]</span> <span class="math display">\[V_{\max} = \max(P_{0,0},
+P_{0,1}, P_{1,0}, P_{1,1})\]</span></li>
+</ul>
+<p>These bounds represent the allowable dynamic range for a monotonic
+reconstruction. Any value outside this range constitutes an overshoot or
+undershoot (a halo).</p>
+<h3 id="4-bilinear-and-area-based-fallback">4. Bilinear and Area-Based
+Fallback</h3>
+<p>Concurrently, LoHalo computes a low-order estimate <span
+class="math inline">\(I_{\text{low}}\)</span> using bilinear
+interpolation:</p>
+<p><span class="math display">\[I_{\text{low}} = (1 - s)(1 - t)P_{0,0} +
+s(1 - t)P_{1,0} + (1 - s)tP_{0,1} + stP_{1,1}\]</span></p>
+<p>where <span class="math inline">\(s = u_0 - \lfloor u_0
+\rfloor\)</span> and <span class="math inline">\(t = v_0 - \lfloor v_0
+\rfloor\)</span>. Because bilinear interpolation weights are strictly
+positive and sum to one, <span
+class="math inline">\(I_{\text{low}}\)</span> is mathematically
+guaranteed to fall entirely within the interval <span
+class="math inline">\([V_{\min}, V_{\max}]\)</span>, producing zero
+halos.</p>
+<h3 id="5-adaptive-blending-and-clamping">5. Adaptive Blending and
+Clamping</h3>
+<p>The final pixel value is determined through dynamic blending and
+clamping functions:</p>
+<ul>
+<li><strong>Hard Clamping Mode:</strong> In strict edge conditions, the
+high-order result is bounded using a simple median/clamping function:
+<span class="math display">\[I_{\text{clamped}} = \max(V_{\min},
+\min(V_{\max}, I_{\text{high}}))\]</span></li>
+<li><strong>Gradient-Weighted Convex Combination:</strong> To avoid
+harsh boundary artifacts from hard clamping, LoHalo calculates a
+blending parameter <span class="math inline">\(\alpha \in [0,
+1]\)</span> derived from the local contrast (gradient magnitude <span
+class="math inline">\(\|\nabla I\|\)</span>). The final interpolated
+intensity <span class="math inline">\(I_{\text{final}}\)</span> is
+determined by a linear blend: <span
+class="math display">\[I_{\text{final}} = \alpha \cdot
+I_{\text{clamped}} + (1 - \alpha) \cdot I_{\text{low}}\]</span></li>
+</ul>
+<p>This mathematical pipeline ensures that smooth gradients retain the
+high sharpness and frequency retention of higher-order cubic/sinc
+sampling, while high-contrast edges automatically collapse to
+non-oscillating, monotonic bounds to eliminate visual halos.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

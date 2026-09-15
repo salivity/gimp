@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a VHS Glitch Effect in GIMP - gimp</title>
+    <meta name="description" content="Simulating an authentic 1980s VHS tape aesthetic involves breaking down modern digital images to recreate the technical limitations of analog video. This tutorial provides a step-by-step walkthrough for achieving a retro VHS glitch effect in GIMP by sepa">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-vhs-glitch-effect-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a VHS Glitch Effect in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-vhs-glitch-effect-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating an authentic 1980s VHS tape aesthetic involves breaking down modern digital images to recreate the technical limitations of analog video. This tutorial provides a step-by-step walkthrough for achieving a retro VHS glitch effect in GIMP by sepa" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-a-vhs-glitch-effect-in-gimp">How to Create a VHS
+Glitch Effect in GIMP</h1>
+<p>Simulating an authentic 1980s VHS tape aesthetic involves breaking
+down modern digital images to recreate the technical limitations of
+analog video. This tutorial provides a step-by-step walkthrough for
+achieving a retro VHS glitch effect in GIMP by separating RGB color
+channels, offsetting them for chromatic aberration, adding horizontal
+tracking distortions, and applying scanlines, noise, and analog color
+grading.</p>
+<h3 id="step-1-prepare-the-base-image">Step 1: Prepare the Base
+Image</h3>
+<ol type="1">
+<li>Open your image in GIMP (<code>File &gt; Open</code>).</li>
+<li>Ensure the image is in RGB mode by navigating to
+<code>Image &gt; Mode &gt; RGB</code>.</li>
+<li>Right-click the background layer in the <strong>Layers</strong>
+panel and select <strong>Duplicate Layer</strong> twice so you have
+three identical layers.</li>
+<li>Rename these three layers from top to bottom: <strong>Red</strong>,
+<strong>Green</strong>, and <strong>Blue</strong>.</li>
+</ol>
+<h3 id="step-2-separate-and-shift-the-rgb-channels">Step 2: Separate and
+Shift the RGB Channels</h3>
+<ol type="1">
+<li><strong>Isolate the Red Channel:</strong>
+<ul>
+<li>Select the <strong>Red</strong> layer.</li>
+<li>Go to <code>Colors &gt; Levels</code>.</li>
+<li>In the <strong>Channel</strong> dropdown, select
+<strong>Green</strong> and set the <em>Output Levels</em> high point to
+<code>0</code>.</li>
+<li>Switch the <strong>Channel</strong> dropdown to
+<strong>Blue</strong> and set the <em>Output Levels</em> high point to
+<code>0</code>. Click <strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Isolate the Green Channel:</strong>
+<ul>
+<li>Select the <strong>Green</strong> layer.</li>
+<li>Go to <code>Colors &gt; Levels</code>.</li>
+<li>Set the <strong>Red</strong> channel output high point to
+<code>0</code>, and the <strong>Blue</strong> channel output high point
+to <code>0</code>. Click <strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Isolate the Blue Channel:</strong>
+<ul>
+<li>Select the <strong>Blue</strong> layer.</li>
+<li>Go to <code>Colors &gt; Levels</code>.</li>
+<li>Set the <strong>Red</strong> channel output high point to
+<code>0</code>, and the <strong>Green</strong> channel output high point
+to <code>0</code>. Click <strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Blend the Layers:</strong>
+<ul>
+<li>Set the layer mode for both the <strong>Red</strong> and
+<strong>Green</strong> layers to <strong>Screen</strong> (or
+<strong>Addition</strong>). Leave the <strong>Blue</strong> layer set to
+<strong>Normal</strong>. The image will now appear in full, natural
+color.</li>
+</ul></li>
+<li><strong>Shift the Channels:</strong>
+<ul>
+<li>Select the <strong>Move Tool</strong> (<code>M</code>).</li>
+<li>Click on the <strong>Red</strong> layer and use the arrow keys on
+your keyboard to nudge it 3 to 6 pixels to the left.</li>
+<li>Select the <strong>Blue</strong> layer and nudge it 3 to 6 pixels to
+the right.</li>
+<li>This creates the classic RGB misalignment (chromatic aberration)
+seen on worn magnetic tape.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-create-horizontal-tape-distortions-and-glitches">Step 3:
+Create Horizontal Tape Distortions and Glitches</h3>
+<ol type="1">
+<li>Right-click the top layer and choose <strong>New from
+Visible</strong> to create a flattened copy of your shifted
+channels.</li>
+<li>Select the <strong>Rectangle Select Tool</strong>
+(<code>R</code>).</li>
+<li>Draw a thin, horizontal selection across a section of your
+image.</li>
+<li>Switch to the <strong>Move Tool</strong> (<code>M</code>), hold
+<code>Alt</code> (or choose "Move Selection Content" in tool options),
+and drag the selected strip a few pixels to the left or right to
+simulate tracking error.</li>
+<li>Repeat this process across 3 to 5 random horizontal bands of varying
+heights.</li>
+<li>To add a wave distortion to certain areas, make a horizontal
+selection, then go to <code>Filters &gt; Distorts &gt; Ripple</code> and
+apply a horizontal sinusoidal wave with low amplitude.</li>
+</ol>
+<h3 id="step-4-apply-scanlines">Step 4: Apply Scanlines</h3>
+<ol type="1">
+<li>Create a new transparent layer on top of your layer stack and name
+it <strong>Scanlines</strong>.</li>
+<li>Go to <code>Filters &gt; Render &gt; Pattern &gt; Grid</code>.</li>
+<li>Set the <strong>Horizontal</strong> line width to <code>1</code>,
+height to <code>0</code>, and spacing to <code>2</code> or
+<code>4</code> pixels.</li>
+<li>Set the grid color to black and click <strong>OK</strong>.</li>
+<li>Lower the opacity of the <strong>Scanlines</strong> layer to between
+<strong>10% and 25%</strong> so the lines are subtle.</li>
+</ol>
+<h3 id="step-5-add-noise-and-analog-softness">Step 5: Add Noise and
+Analog Softness</h3>
+<ol type="1">
+<li>Create another layer using <strong>New from Visible</strong> at the
+top of the stack.</li>
+<li><strong>Add VHS Softness:</strong> Analog video has significantly
+lower resolution than digital formats. Go to
+<code>Filters &gt; Blur &gt; Gaussian Blur</code> and apply a blur with
+an <strong>X</strong> size of <code>1.5</code> and a <strong>Y</strong>
+size of <code>0.5</code> to soften horizontal details.</li>
+<li><strong>Add Grain:</strong> Go to
+<code>Filters &gt; Noise &gt; RGB Noise</code>. Uncheck <em>Independent
+RGB</em>, set the value to roughly <code>0.10</code> to
+<code>0.20</code>, and click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-6-adjust-contrast-and-color-grading">Step 6: Adjust
+Contrast and Color Grading</h3>
+<ol type="1">
+<li>Go to <code>Colors &gt; Curves</code>.</li>
+<li>In the <strong>Value</strong> channel, slightly raise the
+bottom-left point (blacks) upwards to create faded, washed-out tape
+shadows.</li>
+<li>Pull the center of the curve down slightly to reduce midtone
+brightness.</li>
+<li>Switch to the <strong>Blue</strong> channel in the Curves tool and
+slightly raise the black point to give dark areas a subtle retro
+blue-green tint.</li>
+<li>Click <strong>OK</strong> to finalize the 1980s VHS tape
+aesthetic.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

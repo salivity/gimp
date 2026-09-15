@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Accesses Network Shares in Sandboxes - gimp</title>
+    <meta name="description" content="Modern desktop environments increasingly deploy GIMP through sandboxed packaging formats like Flatpak and Snap to enhance system security. This article examines how sandboxed GIMP navigates filesystem isolation when opening and saving files on local netw">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-accesses-network-shares-in-sandboxes">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Accesses Network Shares in Sandboxes - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-accesses-network-shares-in-sandboxes" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern desktop environments increasingly deploy GIMP through sandboxed packaging formats like Flatpak and Snap to enhance system security. This article examines how sandboxed GIMP navigates filesystem isolation when opening and saving files on local netw" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-accesses-network-shares-in-sandboxes">How GIMP Accesses
+Network Shares in Sandboxes</h1>
+<p>Modern desktop environments increasingly deploy GIMP through
+sandboxed packaging formats like Flatpak and Snap to enhance system
+security. This article examines how sandboxed GIMP navigates filesystem
+isolation when opening and saving files on local network shares,
+detailing the roles of the XDG Desktop Portal, virtual filesystem
+(GVfs/KIO) abstractions, FUSE mounts, and permission override
+mechanisms.</p>
+<h3 id="sandboxing-mechanisms-in-gimp">Sandboxing Mechanisms in
+GIMP</h3>
+<p>When packaged as a Flatpak or Snap, GIMP runs within an isolated
+environment. Technologies like Bubblewrap (for Flatpak) and
+AppArmor/cgroups (for Snap) restrict the application's direct access to
+the host filesystem, system calls, and external network resources.
+Because GIMP does not possess native, unrestricted access to the root
+filesystem by default, it cannot directly browse arbitrary local network
+paths, such as SMB, NFS, or SSHFS locations, without dedicated bridging
+layers.</p>
+<h3 id="the-role-of-xdg-desktop-portals">The Role of XDG Desktop
+Portals</h3>
+<p>Modern Linux desktop environments (such as GNOME and KDE Plasma)
+solve sandbox boundaries primarily through the XDG Desktop Portal system
+(<code>xdg-desktop-portal</code>).</p>
+<p>When a user triggers the "Open" or "Save As" dialogue in a sandboxed
+version of GIMP:</p>
+<ol type="1">
+<li>GIMP does not spawn its internal GTK file chooser directly against
+the host filesystem.</li>
+<li>It sends an IPC request via D-Bus to the desktop portal.</li>
+<li>The desktop environment renders a trusted host-level file picker
+outside the sandbox.</li>
+<li>The user navigates to the network share (e.g., a Windows SMB share
+mounted via the desktop file manager).</li>
+<li>Once a file is selected, the portal grants GIMP access to that
+specific file via the Document Portal
+(<code>/run/user/&lt;UID&gt;/doc/</code>), passing a virtualized path
+and file descriptor to the application.</li>
+</ol>
+<p>This mechanism ensures GIMP can read and write to the network share
+without granting the entire sandbox blanket access to your local network
+infrastructure.</p>
+<h3 id="gvfs-and-kio-network-abstraction">GVfs and KIO Network
+Abstraction</h3>
+<p>Modern desktops mount remote network shares dynamically in user space
+using GVfs (GNOME) or KIO (KDE).</p>
+<p>When a network share is mounted through a file manager:</p>
+<ul>
+<li><strong>GVfs</strong> maps the remote share to a local FUSE
+(Filesystem in Userspace) daemon, typically located at
+<code>/run/user/&lt;UID&gt;/gvfs/</code>.</li>
+<li>If GIMP’s sandbox configuration permits access to this runtime path,
+GIMP can interact with the network files as if they were local
+files.</li>
+<li>Flatpak’s upstream GIMP manifest includes integration with the GVfs
+portal, allowing these mapped network directories to appear natively
+within the file selector.</li>
+</ul>
+<h3 id="direct-mounts-and-permission-overrides">Direct Mounts and
+Permission Overrides</h3>
+<p>If network shares are mounted via <code>/etc/fstab</code> or systemd
+into directories like <code>/mnt</code> or <code>/media</code>,
+sandboxed GIMP may fail to display them because these system directories
+are shielded by default sandbox security policies.</p>
+<p>To resolve these restrictions, modern environments rely on explicit
+filesystem grants:</p>
+<ul>
+<li><strong>Flatpak Overrides:</strong> Users can extend GIMP's sandbox
+boundaries by granting access to the mount directory. This is managed
+through the command-line interface:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--user</span> <span class="at">--filesystem</span><span class="op">=</span>/mnt org.gimp.GIMP</span></code></pre></div>
+Alternatively, users configure these permissions graphically using
+utilities like Flatseal.</li>
+<li><strong>Snap Interfaces:</strong> For Snap distributions of GIMP,
+access to removable and external network storage points often requires
+connecting the <code>removable-media</code> plug:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> snap connect gimp:removable-media</span></code></pre></div></li>
+</ul>
+<p>By combining host-level file portals for user-driven file selection
+and explicit permission overrides for permanent mounts, modern sandboxed
+GIMP installations maintain process isolation while retaining access to
+shared network storage.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Dissolve Blending Mode Uses Dithering - gimp</title>
+    <meta name="description" content="The Dissolve layer blending mode in GIMP creates a textured, stippled appearance by replacing smooth transparency gradients with a binary scatter of pixels. Instead of blending the color values of overlapping layers using standard alpha compositing, Diss">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-dissolve-blending-mode-uses-dithering">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Dissolve Blending Mode Uses Dithering - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-dissolve-blending-mode-uses-dithering" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Dissolve layer blending mode in GIMP creates a textured, stippled appearance by replacing smooth transparency gradients with a binary scatter of pixels. Instead of blending the color values of overlapping layers using standard alpha compositing, Diss" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-dissolve-blending-mode-uses-dithering">How GIMP
+Dissolve Blending Mode Uses Dithering</h1>
+<p>The Dissolve layer blending mode in GIMP creates a textured, stippled
+appearance by replacing smooth transparency gradients with a binary
+scatter of pixels. Instead of blending the color values of overlapping
+layers using standard alpha compositing, Dissolve evaluates each pixel's
+opacity against a pseudo-random threshold. This article explains how
+GIMP determines whether a pixel remains visible or becomes completely
+transparent, how dithering patterns are generated, and how opacity
+translates into visual density.</p>
+<h3 id="binary-alpha-conversion">Binary Alpha Conversion</h3>
+<p>In standard blend modes like Normal, pixels with intermediate alpha
+values (between 0% and 100%) allow underlying colors to bleed through
+proportionally. The Dissolve mode completely eliminates
+semi-transparency by enforcing a strictly binary alpha state: every
+pixel on the active layer becomes either 100% opaque or 100%
+transparent. The perception of a gradient or lowered opacity is achieved
+entirely through the spatial frequency of these binary dots, similar to
+traditional print halftoning or digital dithering.</p>
+<h3 id="the-threshold-evaluation-formula">The Threshold Evaluation
+Formula</h3>
+<p>GIMP (via its underlying GEGL processing engine) determines the state
+of each pixel by comparing its existing alpha value against a calculated
+threshold value. The mathematical process for any given pixel coordinate
+<span class="math inline">\((x, y)\)</span> functions as follows:</p>
+<ol type="1">
+<li><strong>Alpha Normalization:</strong> The pixel's alpha channel
+value (<span class="math inline">\(A\)</span>) is normalized to a
+floating-point range between <span class="math inline">\(0.0\)</span>
+(fully transparent) and <span class="math inline">\(1.0\)</span> (fully
+opaque). This value represents the combined opacity of the pixel's
+native alpha and the overall layer opacity slider.</li>
+<li><strong>Threshold Generation:</strong> A deterministic pseudo-random
+number or dither threshold (<span class="math inline">\(T\)</span>)
+between <span class="math inline">\(0.0\)</span> and <span
+class="math inline">\(1.0\)</span> is generated based on the pixel's
+coordinate position.</li>
+<li><strong>Comparison:</strong>
+<ul>
+<li>If <span class="math inline">\(A &gt; T\)</span>, the pixel's alpha
+is set to <span class="math inline">\(1.0\)</span> (fully opaque),
+retaining its original RGB color values.</li>
+<li>If <span class="math inline">\(A \le T\)</span>, the pixel's alpha
+is set to <span class="math inline">\(0.0\)</span> (fully transparent),
+completely exposing the pixel from the layer directly beneath it.</li>
+</ul></li>
+</ol>
+<p>Because the probability of <span class="math inline">\(A &gt;
+T\)</span> is directly proportional to the magnitude of <span
+class="math inline">\(A\)</span>, regions with high opacity yield a high
+density of solid pixels, while regions with low opacity produce sparse,
+isolated pixels.</p>
+<h3 id="dither-pattern-generation">Dither Pattern Generation</h3>
+<p>GIMP avoids using temporal or fluctuating random functions so that
+rendering remains stable during zooms, exports, and redraws. To produce
+the dither effect, the engine utilizes a spatial noise function tied
+directly to the canvas coordinate space <span class="math inline">\((x,
+y)\)</span>:</p>
+<ul>
+<li><strong>Coordinate Hashing:</strong> A mathematical hash function
+takes the integer coordinates of the pixel as seeds. This ensures that
+every coordinate always generates the exact same pseudo-random value
+between operations, preventing flickering during rendering.</li>
+<li><strong>White Noise Distribution:</strong> The distribution of the
+generated threshold values follows a uniform distribution (white noise).
+Unlike ordered dithering algorithms (such as Bayer matrices) which
+create repeating crosshatch grids, GIMP's Dissolve mode produces a
+uniform, non-repeating grain that closely mimics film grain or
+sandpaper.</li>
+<li><strong>Resolution Independence:</strong> The coordinates used in
+the calculation are mapped directly to image pixel coordinates rather
+than display viewport coordinates. Consequently, zooming in or out does
+not change which pixels are dropped; the dither pattern remains fixed
+relative to the image canvas.</li>
+</ul>
+<h3 id="interaction-with-layer-masks-and-brushes">Interaction with Layer
+Masks and Brushes</h3>
+<p>Any tool or setting that modifies the alpha channel alters the local
+threshold outcome in Dissolve mode:</p>
+<ul>
+<li><strong>Soft Brushes:</strong> A brush with a soft, anti-aliased
+edge consists of a falloff from high alpha at the center to zero alpha
+at the perimeter. In Dissolve mode, this smooth falloff is converted
+into a high-density cluster of opaque pixels at the core that scatters
+outward into increasingly dispersed speckles.</li>
+<li><strong>Layer Opacity:</strong> Reducing the global opacity slider
+reduces the <span class="math inline">\(A\)</span> value across the
+entire layer uniformly, proportionally increasing the number of pixels
+that fail the threshold test and disappear.</li>
+<li><strong>Layer Masks:</strong> Grayscale values in a layer mask
+multiply directly with the layer's alpha channel before the threshold
+comparison occurs, turning mask gradients into dithered
+transitions.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

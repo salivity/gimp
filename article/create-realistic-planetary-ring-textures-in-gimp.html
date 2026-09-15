@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Realistic Planetary Ring Textures in GIMP - gimp</title>
+    <meta name="description" content="Creating realistic planetary ring textures requires turning linear noise and color gradients into concentric circular bands with varying levels of opacity. This tutorial provides a step-by-step method for generating ring textures in GIMP using procedural">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-realistic-planetary-ring-textures-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Realistic Planetary Ring Textures in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-realistic-planetary-ring-textures-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating realistic planetary ring textures requires turning linear noise and color gradients into concentric circular bands with varying levels of opacity. This tutorial provides a step-by-step method for generating ring textures in GIMP using procedural" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-realistic-planetary-ring-textures-in-gimp">Create
+Realistic Planetary Ring Textures in GIMP</h1>
+<p>Creating realistic planetary ring textures requires turning linear
+noise and color gradients into concentric circular bands with varying
+levels of opacity. This tutorial provides a step-by-step method for
+generating ring textures in GIMP using procedural noise, custom gradient
+transformations, and the Polar Coordinates filter. By mastering these
+techniques, you can produce authentic-looking ring systems complete with
+natural gaps, density variations, and realistic transparency for 3D
+models or 2D space scenes.</p>
+<h3 id="step-1-set-up-the-canvas">Step 1: Set Up the Canvas</h3>
+<ol type="1">
+<li>Open GIMP and create a new project by going to <strong>File &gt;
+New</strong>.</li>
+<li>Set the dimensions to <strong>4096 x 4096 pixels</strong> (or a 2:1
+ratio such as 4096 x 2048 if creating a linear texture for a 3D mapping
+shader). A high resolution ensures fine, sharp ringlets without
+pixelation.</li>
+<li>Fill the background layer with pure black
+(<code>#000000</code>).</li>
+</ol>
+<h3 id="step-2-generate-the-base-linear-striping">Step 2: Generate the
+Base Linear Striping</h3>
+<ol type="1">
+<li>Create a new transparent layer and name it
+<code>Ring Noise</code>.</li>
+<li>Go to <strong>Filters &gt; Render &gt; Noise &gt; Solid
+Noise</strong>.</li>
+<li>Set the <strong>Detail</strong> to 15, and adjust <strong>X
+Size</strong> to 1.0 and <strong>Y Size</strong> to 16.0. This elongates
+the noise vertically.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Motion Blur</strong> (Linear).
+Set the <strong>Angle</strong> to 90 degrees and the
+<strong>Length</strong> to roughly 50–100 pixels to stretch the noise
+into uniform horizontal bands.</li>
+</ol>
+<h3 id="step-3-add-structure-and-divisions">Step 3: Add Structure and
+Divisions</h3>
+<ol type="1">
+<li>Planetary rings have distinct bands and prominent gaps (such as the
+Cassini Division on Saturn). Select the <strong>Rectangle Select
+Tool</strong>.</li>
+<li>Create horizontal selections across your texture where you want
+major gaps to appear.</li>
+<li>Press <strong>Delete</strong> (or fill with black) within these
+selections to clear the noise and create sharp division boundaries.</li>
+<li>Soften the transitions slightly by applying a subtle Gaussian blur
+(<strong>Filters &gt; Blur &gt; Gaussian Blur</strong>) with a radius of
+1–2 pixels to avoid unnatural, razor-sharp edges.</li>
+</ol>
+<h3 id="step-4-apply-color-via-gradient-transformation">Step 4: Apply
+Color via Gradient Transformation</h3>
+<ol type="1">
+<li>Open the <strong>Gradients Dialog</strong> (<strong>Windows &gt;
+Dockable Dialogs &gt; Gradients</strong>) and select or create a
+gradient that reflects planetary dust and ice (e.g., subtle beige, grey,
+pale blue, and white tones).</li>
+<li>With the <code>Ring Noise</code> layer active, navigate to
+<strong>Colors &gt; Map &gt; Gradient Map</strong>.</li>
+<li>GIMP will replace the grayscale values of your noise with the
+corresponding colors from your active gradient, creating complex color
+banding across the ring profile.</li>
+</ol>
+<h3 id="step-5-convert-linear-bands-to-concentric-rings">Step 5: Convert
+Linear Bands to Concentric Rings</h3>
+<ol type="1">
+<li>If your texture was built horizontally, ensure the bands run
+left-to-right.</li>
+<li>Go to <strong>Filters &gt; Distorts &gt; Polar
+Coordinates</strong>.</li>
+<li>Set <strong>Circle Depth in Percent</strong> to 100%.</li>
+<li>Ensure <strong>Map from Top</strong> is selected and <strong>To
+Polar</strong> is checked.</li>
+<li>Click <strong>OK</strong>. GIMP will wrap the horizontal linear
+stripes around the center point, creating perfectly concentric planetary
+rings.</li>
+</ol>
+<h3 id="step-6-create-realistic-transparency-and-fading">Step 6: Create
+Realistic Transparency and Fading</h3>
+<ol type="1">
+<li>Add a Layer Mask to your ring layer by right-clicking the layer and
+selecting <strong>Add Layer Mask &gt; White (Full
+Opacity)</strong>.</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>) and
+choose the <strong>Radial</strong> shape with a
+<code>Black to White</code> gradient.</li>
+<li>Drag from the exact center of the canvas outward to mask out the
+inner area where the planet sits and fade the outermost edge into empty
+space.</li>
+<li>For fine-tuned opacity, go to <strong>Colors &gt; Curves</strong> on
+the layer mask to adjust how sharply or gradually the rings fade toward
+their edges.</li>
+</ol>
+<h3 id="step-7-export-the-texture">Step 7: Export the Texture</h3>
+<ol type="1">
+<li>Hide or delete the solid black background layer if you need an alpha
+channel for 3D software.</li>
+<li>Go to <strong>File &gt; Export As...</strong></li>
+<li>Save the file as a <strong>PNG</strong> or <strong>TIFF</strong> to
+preserve 16-bit color depth and full alpha transparency.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

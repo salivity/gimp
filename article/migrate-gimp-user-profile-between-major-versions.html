@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migrate GIMP User Profile Between Major Versions - gimp</title>
+    <meta name="description" content="Upgrading between major releases of GIMP—such as moving from version 2.8 to 2.10 or preparing for 3.0—often leaves behind custom user configurations, brushes, scripts, and tool presets. While GIMP sometimes offers an automated migration prompt upon t">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/migrate-gimp-user-profile-between-major-versions">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Migrate GIMP User Profile Between Major Versions - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/migrate-gimp-user-profile-between-major-versions" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Upgrading between major releases of GIMP—such as moving from version 2.8 to 2.10 or preparing for 3.0—often leaves behind custom user configurations, brushes, scripts, and tool presets. While GIMP sometimes offers an automated migration prompt upon t" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="migrate-gimp-user-profile-between-major-versions">Migrate GIMP
+User Profile Between Major Versions</h1>
+<p>Upgrading between major releases of GIMP—such as moving from version
+2.8 to 2.10 or preparing for 3.0—often leaves behind custom user
+configurations, brushes, scripts, and tool presets. While GIMP sometimes
+offers an automated migration prompt upon the first launch of a new
+version, this process can fail or be skipped accidentally. This guide
+explains how to locate your old user profile directory, identify which
+assets to transfer, and safely copy them into the newer version's file
+structure to ensure your workflow remains uninterrupted.</p>
+<h3 id="step-1-locate-the-profile-directories">Step 1: Locate the
+Profile Directories</h3>
+<p>GIMP stores user configurations in version-specific directories named
+after the release number (for example, <code>2.10</code> or
+<code>3.0</code>). Before migrating, close all active instances of
+GIMP.</p>
+<p>Open your file manager and navigate to the base GIMP configuration
+path for your operating system:</p>
+<ul>
+<li><strong>Windows:</strong> Press <code>Win + R</code>, type
+<code>%APPDATA%\GIMP</code>, and press Enter. You will see versioned
+folders such as <code>2.10</code> and <code>3.0</code>.</li>
+<li><strong>macOS:</strong> Open Finder, press
+<code>Cmd + Shift + G</code>, and enter
+<code>~/Library/Application Support/GIMP/</code>.</li>
+<li><strong>Linux (Standard/Package Manager):</strong> Navigate to
+<code>~/.config/GIMP/</code>.</li>
+<li><strong>Linux (Flatpak):</strong> Navigate to
+<code>~/.var/app/org.gimp.GIMP/config/GIMP/</code>.</li>
+</ul>
+<h3 id="step-2-identify-assets-to-migrate">Step 2: Identify Assets to
+Migrate</h3>
+<p>Do not copy the entire old directory directly over the new one.
+Overwriting core configuration files like <code>gimprc</code>,
+<code>sessionrc</code>, or <code>menurc</code> across major releases can
+cause interface instability or launch crashes.</p>
+<p>Instead, focus on transferring custom content folders from the old
+version directory to the new version directory:</p>
+<ul>
+<li><code>scripts/</code> – Script-Fu files (<code>.scm</code>)</li>
+<li><code>plug-ins/</code> – Custom binaries or third-party
+plug-ins</li>
+<li><code>brushes/</code> – Custom brushes (<code>.gbr</code>,
+<code>.gih</code>, <code>.vbr</code>)</li>
+<li><code>patterns/</code> – Seamless fill patterns
+(<code>.pat</code>)</li>
+<li><code>palettes/</code> – Color palettes (<code>.gpl</code>)</li>
+<li><code>gradients/</code> – Custom gradients (<code>.ggr</code>)</li>
+<li><code>dynamics/</code> and <code>tool-presets/</code> – Saved brush
+behaviors and custom tool configurations</li>
+</ul>
+<h3 id="step-3-copy-the-files">Step 3: Copy the Files</h3>
+<ol type="1">
+<li>Open the older version folder (e.g., <code>2.10</code>) and the
+newer version folder (e.g., <code>3.0</code>) in separate file
+windows.</li>
+<li>If the newer version folder does not yet exist, launch the new GIMP
+installation once to generate its default profile structure, then close
+it.</li>
+<li>Open each individual asset folder in the old profile, copy the
+contents, and paste them into the corresponding folder inside the new
+profile directory.</li>
+</ol>
+<h3 id="step-4-address-script-and-plug-in-compatibility">Step 4: Address
+Script and Plug-in Compatibility</h3>
+<p>While brushes, patterns, and gradients transfer seamlessly across all
+major versions, scripts and plug-ins may encounter compatibility
+hurdles:</p>
+<ul>
+<li><strong>Python Scripts:</strong> Major upgrades frequently change
+underlying scripting environments (such as the shift from Python 2 in
+GIMP 2.10 to Python 3 in GIMP 3.0). Older Python plug-ins will not run
+until updated by their developers.</li>
+<li><strong>Compiled Binaries:</strong> Third-party <code>.exe</code> or
+compiled C plug-ins must be recompiled for the major library changes of
+the newer release.</li>
+<li>If GIMP fails to launch or displays errors during startup after
+migrating, remove the copied files from the <code>plug-ins/</code>
+directory one by one to isolate the incompatible item.</li>
+</ul>
+<h3 id="alternative-method-linking-folders-in-preferences">Alternative
+Method: Linking Folders in Preferences</h3>
+<p>If you prefer not to duplicate files on your drive, you can map the
+new GIMP installation to read directly from your old directories:</p>
+<ol type="1">
+<li>Launch the new version of GIMP.</li>
+<li>Go to <strong>Edit &gt; Preferences</strong> (Windows/Linux) or
+<strong>GIMP &gt; Preferences</strong> (macOS).</li>
+<li>Expand the <strong>Folders</strong> tree in the left sidebar.</li>
+<li>Select the category you want to map (such as
+<strong>Brushes</strong> or <strong>Scripts</strong>).</li>
+<li>Click the <strong>Add a new folder</strong> icon, click the file
+browser button, and select the corresponding folder from your old
+version profile.</li>
+<li>Click <strong>OK</strong> and restart GIMP.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

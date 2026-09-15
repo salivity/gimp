@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Feather Radius and Linear Falloff Explained - gimp</title>
+    <meta name="description" content="In GIMP, the feather radius setting softens the boundary of a selection by replacing hard, binary edges with a progressive gradient of transparency. This article explains how GIMP uses the feather radius to calculate the linear falloff zone, detailing ho">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-feather-radius-and-linear-falloff-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Feather Radius and Linear Falloff Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-feather-radius-and-linear-falloff-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the feather radius setting softens the boundary of a selection by replacing hard, binary edges with a progressive gradient of transparency. This article explains how GIMP uses the feather radius to calculate the linear falloff zone, detailing ho" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-feather-radius-and-linear-falloff-explained">GIMP Feather
+Radius and Linear Falloff Explained</h1>
+<p>In GIMP, the feather radius setting softens the boundary of a
+selection by replacing hard, binary edges with a progressive gradient of
+transparency. This article explains how GIMP uses the feather radius to
+calculate the linear falloff zone, detailing how spatial distance from
+the selection boundary maps to opacity values in the underlying
+selection mask.</p>
+<h3 id="the-underlying-selection-mask">The Underlying Selection
+Mask</h3>
+<p>In GIMP, a selection is not merely a coordinate boundary; it is
+stored as an 8-bit or floating-point grayscale channel known as a
+selection mask. In this mask, an intensity value of 255 (or 1.0 in
+floating-point precision) represents a fully selected pixel, while a
+value of 0 represents an unselected pixel. Any value between 0 and 255
+represents partial selection, which translates directly to partial
+opacity when performing edits, fills, or deletions.</p>
+<h3 id="defining-the-transition-zone">Defining the Transition Zone</h3>
+<p>When you feather a selection, the feather radius parameter defines
+the spatial reach of the softening effect measured in pixels.</p>
+<p>The original, unfeathered selection edge acts as the baseline (the
+50% opacity midpoint). Rather than applying the blur entirely inside or
+entirely outside the selection, GIMP distributes the falloff
+symmetrically across this border. A feather radius of <span
+class="math inline">\(r\)</span> establishes a transition band that
+extends <span class="math inline">\(r\)</span> pixels inward toward the
+center of the selection and <span class="math inline">\(r\)</span>
+pixels outward into the unselected canvas. This results in a total
+transition zone width equal to <span class="math inline">\(2r\)</span>
+pixels.</p>
+<h3 id="the-distance-transform-and-linear-calculation">The Distance
+Transform and Linear Calculation</h3>
+<p>To calculate a linear falloff across this <span
+class="math inline">\(2r\)</span> window, GIMP evaluates the Euclidean
+distance of each pixel relative to the original border vector:</p>
+<ol type="1">
+<li><strong>Euclidean Distance Measurement:</strong> For any pixel
+within the transition zone, the algorithm computes its shortest
+perpendicular distance (<span class="math inline">\(d\)</span>) to the
+original selection boundary.</li>
+<li><strong>Normalized Position:</strong> This distance is assigned a
+signed value where distances inside the selection are positive (<span
+class="math inline">\(+d\)</span>) and distances outside are negative
+(<span class="math inline">\(-d\)</span>).</li>
+<li><strong>Linear Mapping Function:</strong> The mask value (<span
+class="math inline">\(\alpha\)</span>) is computed linearly based on
+where the pixel falls within the range <span class="math inline">\([-r,
++r]\)</span>:</li>
+</ol>
+<p><span class="math display">\[\alpha = \frac{d + r}{2r}\]</span></p>
+<p>When scaled to an 8-bit channel (0 to 255):</p>
+<ul>
+<li>At <span class="math inline">\(d = -r\)</span> (the outer boundary
+of the falloff zone), <span class="math inline">\(\alpha = 0\)</span>,
+meaning the pixel is completely unselected.</li>
+<li>At <span class="math inline">\(d = 0\)</span> (the exact original
+vector line), <span class="math inline">\(\alpha = 0.5\)</span>,
+yielding a mask value of 128 (50% opacity).</li>
+<li>At <span class="math inline">\(d = +r\)</span> (the inner boundary
+of the falloff zone), <span class="math inline">\(\alpha = 1.0\)</span>,
+yielding a mask value of 255 (fully selected).</li>
+</ul>
+<h3 id="sub-pixel-sampling-and-anti-aliasing">Sub-Pixel Sampling and
+Anti-Aliasing</h3>
+<p>Because selection borders rarely align perfectly with the square
+pixel grid, GIMP calculates distances using floating-point sub-pixel
+coordinates. For pixels that straddle the edge of the feather radius,
+the software samples the area coverage to prevent stepping artifacts
+(aliasing). The resulting continuous rate of change across the <span
+class="math inline">\(2r\)</span> span produces an even, straight-line
+slope in mask density, ensuring that image adjustments blend seamlessly
+into surrounding areas without visible seams.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

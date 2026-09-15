@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge-Lit Acrylic Sign Mockup Guide in GIMP - gimp</title>
+    <meta name="description" content="Creating a realistic edge-lit cast acrylic sign mockup in GIMP requires simulating optical physics, specifically how light travels through polished polymer and catches on engraved surfaces and outer borders. This guide outlines the exact workflow for est">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/edge-lit-acrylic-sign-mockup-guide-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Edge-Lit Acrylic Sign Mockup Guide in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/edge-lit-acrylic-sign-mockup-guide-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a realistic edge-lit cast acrylic sign mockup in GIMP requires simulating optical physics, specifically how light travels through polished polymer and catches on engraved surfaces and outer borders. This guide outlines the exact workflow for est" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="edge-lit-acrylic-sign-mockup-guide-in-gimp">Edge-Lit Acrylic
+Sign Mockup Guide in GIMP</h1>
+<p>Creating a realistic edge-lit cast acrylic sign mockup in GIMP
+requires simulating optical physics, specifically how light travels
+through polished polymer and catches on engraved surfaces and outer
+borders. This guide outlines the exact workflow for establishing a dark
+environment, rendering the clear acrylic panel, applying engraved vector
+artwork, and generating multi-layered LED diffusion glows using native
+GIMP tools like blend modes, layer masks, and Gaussian blur.</p>
+<h3 id="step-1-canvas-setup-and-background">Step 1: Canvas Setup and
+Background</h3>
+<ol type="1">
+<li>Open GIMP and create a new project with dimensions suited for
+display mockups, such as 3840×2160 or 1920×1080 pixels at 300 DPI.</li>
+<li>Fill the background layer with a dark tone, such as charcoal gray,
+dark brick, or a textured wall. Edge-lit acrylic requires high contrast
+to appear photorealistic, as the light effect is barely visible on
+bright backgrounds.</li>
+<li>Lower the exposure or brightness of the background slightly to
+ensure the light source will pop.</li>
+</ol>
+<h3 id="step-2-construct-the-clear-acrylic-panel">Step 2: Construct the
+Clear Acrylic Panel</h3>
+<ol type="1">
+<li>Create a new transparent layer named <code>Acrylic Base</code>.</li>
+<li>Use the <strong>Rectangle Select Tool</strong> (with rounded corners
+enabled, radius set around 15–25 px) to draw the shape of your acrylic
+sheet.</li>
+<li>Fill the selection with white, then lower the layer
+<strong>Opacity</strong> to roughly 3% to 5%.</li>
+<li>Right-click the layer, select <strong>Alpha to Selection</strong>,
+and create a new layer named <code>Panel Edge</code>.</li>
+<li>Go to <strong>Select &gt; Border</strong> and set the border width
+to 2 or 3 pixels. Fill this border with white and set the layer opacity
+to 25% with the blend mode set to <strong>Screen</strong>. This defines
+the polished outer boundary of the cast acrylic plate.</li>
+</ol>
+<h3 id="step-3-insert-the-engraved-graphic">Step 3: Insert the Engraved
+Graphic</h3>
+<ol type="1">
+<li>Import your logo, typography, or vector design onto a new layer
+named <code>Engraving</code> and position it centered on the panel.</li>
+<li>Convert the graphic to pure white (<code>#FFFFFF</code>).</li>
+<li>Set the layer blend mode to <strong>Screen</strong> or
+<strong>Normal</strong> with an opacity between 70% and 85%.</li>
+<li>Cast acrylic laser engravings appear frosty and semi-opaque. To
+simulate this texture, go to <strong>Filters &gt; Noise &gt; CIE lch
+Noise</strong> and add a microscopic amount of lightness noise (under
+2%) to scatter the light across the engraved area.</li>
+</ol>
+<h3 id="step-4-generate-the-led-light-source">Step 4: Generate the LED
+Light Source</h3>
+<p>Edge illumination originates from an LED strip, typically mounted in
+an aluminum base or standoffs at the bottom or top of the sign.</p>
+<ol type="1">
+<li>Create a new transparent layer named <code>LED Core Light</code>
+directly beneath the <code>Engraving</code> layer.</li>
+<li>Choose your LED accent color (such as cyan, warm white, or neon
+green) as your foreground color.</li>
+<li>Select the <strong>Gradient Tool</strong>, set the shape to
+<strong>Linear</strong>, and configure the gradient to transition from
+the chosen color to transparent.</li>
+<li>Drag the gradient upward from the base of the sign toward the top,
+covering about one-third of the panel height. Set this layer mode to
+<strong>Linear Light</strong> or <strong>Addition</strong>, lowering
+opacity to 40%.</li>
+</ol>
+<h3 id="step-5-render-the-internal-glow-on-engravings">Step 5: Render
+the Internal Glow on Engravings</h3>
+<p>Light in clear acrylic only scatters where the surface is broken by
+engraving.</p>
+<ol type="1">
+<li>Duplicate the <code>Engraving</code> layer twice.</li>
+<li>Name the first duplicate <code>Inner Glow</code> and the second
+<code>Scatter Glow</code>.</li>
+<li>Select <code>Inner Glow</code>, lock its alpha channel, fill it
+completely with your chosen LED color, and unlock the alpha
+channel.</li>
+<li>Apply a tight blur via <strong>Filters &gt; Blur &gt; Gaussian
+Blur</strong> with a radius between 3 and 6 pixels. Set the blend mode
+to <strong>Addition</strong> with 100% opacity.</li>
+<li>Select <code>Scatter Glow</code>, fill it with the same LED color,
+and apply a wide Gaussian Blur with a radius between 25 and 40 pixels.
+Set the blend mode to <strong>Screen</strong> and reduce the opacity to
+50%. This simulates light dispersing into the surrounding transparent
+medium.</li>
+</ol>
+<h3 id="step-6-illuminate-the-outer-acrylic-edges">Step 6: Illuminate
+the Outer Acrylic Edges</h3>
+<ol type="1">
+<li>Return to the <code>Panel Edge</code> layer created in Step 2.</li>
+<li>Duplicate it and rename it <code>Illuminated Edge</code>.</li>
+<li>Lock the alpha channel, fill it with your LED color, and unlock
+it.</li>
+<li>Use the <strong>Eraser Tool</strong> with a soft brush to remove the
+color from edges that are farthest from the LED source, leaving the most
+intense illumination closest to the light strip mount.</li>
+<li>Apply a Gaussian Blur of 4 to 8 pixels to give the illuminated rim a
+soft bloom, and set the blend mode to <strong>Addition</strong>.</li>
+</ol>
+<h3 id="step-7-final-specular-highlights-and-polish">Step 7: Final
+Specular Highlights and Polish</h3>
+<ol type="1">
+<li>Create a top layer set to <strong>Addition (Glow)</strong>
+mode.</li>
+<li>Use a soft, circular white brush with low opacity to tap single
+highlights on the corners of the panel closest to the light source, as
+well as the sharpest apexes of the engraved graphic.</li>
+<li>If mounting hardware like aluminum standoffs or a bottom track is
+present, cast a subtle drop shadow beneath them using a soft black brush
+on a layer set to <strong>Multiply</strong> placed right above the
+background.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

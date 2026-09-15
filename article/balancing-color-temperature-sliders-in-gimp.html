@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balancing Color Temperature Sliders in GIMP - gimp</title>
+    <meta name="description" content="In GIMP, the Color Temperature tool corrects color casts by calculating the difference between two primary controls: the Original Temperature slider and the Intended Temperature slider. Mastering this tool requires understanding how GIMP compensates for">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/balancing-color-temperature-sliders-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Balancing Color Temperature Sliders in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/balancing-color-temperature-sliders-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the Color Temperature tool corrects color casts by calculating the difference between two primary controls: the Original Temperature slider and the Intended Temperature slider. Mastering this tool requires understanding how GIMP compensates for" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="balancing-color-temperature-sliders-in-gimp">Balancing Color
+Temperature Sliders in GIMP</h1>
+<p>In GIMP, the Color Temperature tool corrects color casts by
+calculating the difference between two primary controls: the Original
+Temperature slider and the Intended Temperature slider. Mastering this
+tool requires understanding how GIMP compensates for different light
+sources by comparing the lighting conditions under which the photo was
+captured against the desired lighting target. By aligning the Original
+Temperature slider with the photo's real-world lighting and adjusting
+the Intended Temperature to your target aesthetic, you can quickly
+neutralize warm or cool casts and achieve accurate white balance.</p>
+<h3 id="understanding-the-two-sliders">Understanding the Two
+Sliders</h3>
+<p>The Color Temperature dialog operates on the Kelvin scale, ranging
+from warm candlelight (around 1500K) to deep blue daylight/shade (up to
+12000K). To balance them effectively, you must understand their distinct
+roles:</p>
+<ul>
+<li><strong>Original Temperature:</strong> Tells GIMP the estimated
+color temperature of the ambient light when the photo was shot.</li>
+<li><strong>Intended Temperature:</strong> Tells GIMP the color
+temperature you <em>want</em> the image to have after correction, where
+6500K represents standard neutral daylight.</li>
+</ul>
+<p>GIMP shifts the colors based on the relationship between these two
+values:</p>
+<ul>
+<li><strong>If Original is lower than Intended:</strong> GIMP assumes
+the original scene was lit by warm, yellow-orange light (such as
+tungsten bulbs) and adds blue to cool the image down.</li>
+<li><strong>If Original is higher than Intended:</strong> GIMP assumes
+the scene was lit by cool, blue light (such as deep shade or an overcast
+sky) and adds amber/red to warm the image up.</li>
+<li><strong>If Original equals Intended:</strong> No color correction is
+applied, regardless of the numerical Kelvin value.</li>
+</ul>
+<h3 id="the-recommended-balancing-workflow">The Recommended Balancing
+Workflow</h3>
+<p>To achieve natural results without trial-and-error guessing, balance
+the sliders using the following method:</p>
+<ol type="1">
+<li><strong>Access the Dialog:</strong> Go to <strong>Colors &gt; Color
+Temperature...</strong> in the top menu. Ensure the
+<strong>Preview</strong> box is checked so you can view adjustments in
+real time.</li>
+<li><strong>Lock the Intended Temperature First:</strong> Set the
+<strong>Intended Temperature</strong> to <strong>6500K</strong>
+(standard daylight) and leave it there initially. 6500K serves as the
+neutral baseline for human vision in digital color spaces.</li>
+<li><strong>Adjust the Original Temperature to Match the Light
+Source:</strong> Drag the <strong>Original Temperature</strong> slider
+to reflect the actual lighting in your photo:
+<ul>
+<li><strong>2500K – 3500K:</strong> Indoor household bulbs, candlelight,
+or warm streetlights.</li>
+<li><strong>4000K – 5000K:</strong> Fluorescent office lighting or early
+morning/late afternoon sun.</li>
+<li><strong>5500K – 6500K:</strong> Direct midday sunlight or standard
+electronic camera flash.</li>
+<li><strong>7000K – 9000K:</strong> Overcast skies, open shade, or
+dusk.</li>
+</ul></li>
+<li><strong>Evaluate Neutral Tones:</strong> Look at areas in your photo
+that should be pure white or neutral gray. If whites appear too yellow,
+increase the Original Temperature slider. If whites appear too blue,
+decrease it.</li>
+</ol>
+<h3 id="fine-tuning-for-creative-adjustments">Fine-Tuning for Creative
+Adjustments</h3>
+<p>Once neutral white balance is achieved using the Original slider, use
+the <strong>Intended Temperature</strong> slider to establish the
+overall mood:</p>
+<ul>
+<li><strong>For a warmer, golden look:</strong> Raise the Intended
+Temperature slightly above 6500K (e.g., 7000K–7500K) while keeping your
+calibrated Original setting intact.</li>
+<li><strong>For a cooler, cinematic look:</strong> Lower the Intended
+Temperature below 6500K (e.g., 5500K–6000K).</li>
+</ul>
+<p>By treating the Original slider strictly as a diagnostic tool to
+describe your scene's raw lighting and using the Intended slider to
+dictate the final mood, you maintain precise control over your image's
+color balance.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

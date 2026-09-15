@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Burn Blend Mode in GIMP Explained - gimp</title>
+    <meta name="description" content="The Linear Burn blend mode in GIMP is a dark composite mode designed to significantly darken images and intensify contrast by summing pixel values and subtracting brightness. This article provides a comprehensive breakdown of the mathematical function be">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/linear-burn-blend-mode-in-gimp-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Linear Burn Blend Mode in GIMP Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/linear-burn-blend-mode-in-gimp-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Linear Burn blend mode in GIMP is a dark composite mode designed to significantly darken images and intensify contrast by summing pixel values and subtracting brightness. This article provides a comprehensive breakdown of the mathematical function be" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="linear-burn-blend-mode-in-gimp-explained">Linear Burn Blend Mode
+in GIMP Explained</h1>
+<p>The Linear Burn blend mode in GIMP is a dark composite mode designed
+to significantly darken images and intensify contrast by summing pixel
+values and subtracting brightness. This article provides a comprehensive
+breakdown of the mathematical function behind Linear Burn, its visual
+characteristics compared to other darken modes, and its primary
+applications in digital image editing and compositing.</p>
+<h3 id="how-linear-burn-works">How Linear Burn Works</h3>
+<p>Linear Burn belongs to the "Darken" family of blend modes in GIMP. It
+evaluates the color information in both the active (upper) layer and the
+base (lower) layer, decreasing the brightness of the base layer based on
+the darkness of the blend layer.</p>
+<p>Mathematically, Linear Burn adds the pixel values of the blend layer
+and the base layer together and then subtracts the maximum value (1.0 in
+normalized float values, or 255 in 8-bit color depth):</p>
+<p><span class="math display">\[\text{Result} = \text{Base} +
+\text{Blend} - 1.0\]</span></p>
+<p>If the resulting value is less than zero, GIMP clips it directly to
+pure black (<span class="math inline">\(0\)</span>).</p>
+<h3 id="key-characteristics-of-linear-burn">Key Characteristics of
+Linear Burn</h3>
+<ul>
+<li><strong>Aggressive Darkening:</strong> Because it uses a linear
+subtraction method rather than a multiplicative curve, Linear Burn
+darkens images faster and more aggressively than the Multiply blend
+mode.</li>
+<li><strong>Shadow Clipping:</strong> Shadow tones quickly clip to pure
+black wherever the combined values of the base and blend layers are
+low.</li>
+<li><strong>Neutral Color:</strong> Pure white (<span
+class="math inline">\(255, 255, 255\)</span>) acts as the neutral color.
+Blending a white layer using Linear Burn results in no change to the
+underlying image. Pure black on the blend layer forces the base image
+directly to pure black.</li>
+<li><strong>Color Saturation:</strong> In areas where colors do not clip
+to black, Linear Burn produces highly saturated midtones and deep, rich
+shadow transitions.</li>
+</ul>
+<h3 id="linear-burn-vs-multiply-and-color-burn">Linear Burn vs. Multiply
+and Color Burn</h3>
+<p>While all three modes belong to the Darken category, their
+mathematical operations produce distinct visual results:</p>
+<ul>
+<li><strong>Multiply:</strong> Multiplies pixel values together. It
+preserves shadow details better and produces a natural darkening effect
+without harsh clipping.</li>
+<li><strong>Color Burn:</strong> Increases contrast by dividing the
+inverted base layer by the blend layer. It produces intense midtone
+saturation and high contrast, but leaves highlights relatively
+intact.</li>
+<li><strong>Linear Burn:</strong> Decreases overall brightness uniformly
+through linear subtraction. It clips shadows much earlier than Multiply
+and produces darker overall results than Color Burn without the extreme
+midtone contrast boost.</li>
+</ul>
+<h3 id="practical-applications-in-gimp">Practical Applications in
+GIMP</h3>
+<ol type="1">
+<li><strong>Texture Integration:</strong> Applying grungy or paper
+textures to artwork where deep, stark shadows are needed.</li>
+<li><strong>Dynamic Shading:</strong> Creating harsh, dramatic lighting
+effects by painting with desaturated or complementary colors on a
+separate layer.</li>
+<li><strong>Ink and Line Art Blending:</strong> Merging scanned line art
+onto colored backgrounds while ensuring the ink remains deep and
+solid.</li>
+<li><strong>Vignetting and Light Leaks:</strong> Creating dark, moody
+edge vignettes to draw focus toward the center of a composition.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

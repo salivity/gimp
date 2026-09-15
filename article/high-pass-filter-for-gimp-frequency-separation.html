@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Pass Filter for GIMP Frequency Separation - gimp</title>
+    <meta name="description" content="Frequency separation is an advanced retouching technique that splits an image into two distinct layers: low frequency for color and tone, and high frequency for texture and fine detail. In GIMP, the High Pass filter serves as the primary engine for creat">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/high-pass-filter-for-gimp-frequency-separation">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="High Pass Filter for GIMP Frequency Separation - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/high-pass-filter-for-gimp-frequency-separation" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Frequency separation is an advanced retouching technique that splits an image into two distinct layers: low frequency for color and tone, and high frequency for texture and fine detail. In GIMP, the High Pass filter serves as the primary engine for creat" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="high-pass-filter-for-gimp-frequency-separation">High Pass Filter
+for GIMP Frequency Separation</h1>
+<p>Frequency separation is an advanced retouching technique that splits
+an image into two distinct layers: low frequency for color and tone, and
+high frequency for texture and fine detail. In GIMP, the High Pass
+filter serves as the primary engine for creating the high-frequency
+layer. By isolating fine details such as skin pores, hairs, and minor
+blemishes while discarding underlying color gradients, the High Pass
+filter allows editors to smooth skin tones without creating an
+artificial, blurry appearance.</p>
+<h3 id="extracting-high-frequency-details">Extracting High-Frequency
+Details</h3>
+<p>The primary function of the High Pass filter is edge detection and
+detail isolation. Natural skin contains both broad tonal transitions
+(shadows, highlights, redness) and micro-textures (pores, wrinkles,
+imperfections).</p>
+<p>When applied to a duplicated image layer, the High Pass filter strips
+away the broad tonal variations (low frequencies) and retains only the
+sharp, high-contrast transitions. The result is a neutral gray layer
+where fine textures appear as embossed relief outlines.</p>
+<h3 id="reconstructing-the-image-with-blend-modes">Reconstructing the
+Image with Blend Modes</h3>
+<p>For frequency separation to work, the isolated texture layer must be
+recombined with the smoothed color layer to replicate the original image
+seamlessly.</p>
+<ol type="1">
+<li><strong>Low-Frequency Layer:</strong> Created by applying a Gaussian
+Blur to blur out texture while preserving color and skin tone.</li>
+<li><strong>High-Frequency Layer:</strong> Created by applying the High
+Pass filter with a radius matching the blur applied to the low-frequency
+layer.</li>
+<li><strong>Blending:</strong> The High Pass layer is set to the
+<strong>Grain Merge</strong> blending mode (or <strong>Linear
+Light</strong>, depending on the setup method). Because the neutral 50%
+gray base of the High Pass layer is completely invisible under these
+modes, only the extracted texture pixels are overlaid onto the softened
+color layer below.</li>
+</ol>
+<h3 id="the-benefit-in-practical-skin-retouching">The Benefit in
+Practical Skin Retouching</h3>
+<p>Using the High Pass filter to separate texture unlocks independent
+control over different aspects of the skin:</p>
+<ul>
+<li><strong>Texture Correction:</strong> Retouchers can use the Clone
+Tool or Healing Tool directly on the High Pass layer to remove pimples,
+stray hairs, and flaking skin without smearing or altering the
+underlying skin color.</li>
+<li><strong>Tonal Smoothing:</strong> Editors can paint, blend, or blur
+the low-frequency layer to fix uneven blotchiness, makeup transitions,
+and harsh shadows without losing realistic skin pores.</li>
+</ul>
+<p>By isolating texture via the High Pass filter, GIMP enables
+non-destructive, natural-looking portrait retouching that preserves
+professional detail.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Pin Light Blend Mode for Tonal Clamping - gimp</title>
+    <meta name="description" content="The Pin Light blend mode in GIMP is a hybrid contrast mode designed to selectively replace base layer colors based on the lightness of the blend layer, making it an effective tool for extreme tonal clamping. By combining the behaviors of the Darken and L">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-pin-light-blend-mode-for-tonal-clamping">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Pin Light Blend Mode for Tonal Clamping - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-pin-light-blend-mode-for-tonal-clamping" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Pin Light blend mode in GIMP is a hybrid contrast mode designed to selectively replace base layer colors based on the lightness of the blend layer, making it an effective tool for extreme tonal clamping. By combining the behaviors of the Darken and L" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-pin-light-blend-mode-for-tonal-clamping">GIMP Pin Light
+Blend Mode for Tonal Clamping</h1>
+<p>The Pin Light blend mode in GIMP is a hybrid contrast mode designed
+to selectively replace base layer colors based on the lightness of the
+blend layer, making it an effective tool for extreme tonal clamping. By
+combining the behaviors of the Darken and Lighten blend modes
+simultaneously, it discards intermediate gradations and forces pixel
+values to snap to distinct highlight and shadow thresholds. This article
+explains the underlying mechanics of Pin Light in GIMP and how
+compositors utilize it to enforce hard tonal limits and remove
+midtones.</p>
+<h3 id="how-the-pin-light-algorithm-functions">How the Pin Light
+Algorithm Functions</h3>
+<p>Pin Light operates by evaluating the luminance of the blend (top)
+layer against a 50% neutral gray threshold:</p>
+<ul>
+<li><strong>When the blend layer is lighter than 50% gray:</strong> GIMP
+evaluates the base layer and replaces any pixels that are darker than
+the value calculated by the formula <code>2 * (Blend - 128)</code>.
+Pixels lighter than this threshold remain completely unaffected.</li>
+<li><strong>When the blend layer is darker than 50% gray:</strong> GIMP
+replaces any base layer pixels that are lighter than the value
+calculated by <code>2 * Blend</code>. Pixels darker than this calculated
+threshold remain unchanged.</li>
+<li><strong>When the blend layer is exactly 50% gray:</strong> No change
+occurs to the base image, as 50% gray acts as the neutral point.</li>
+</ul>
+<h3 id="mechanics-of-extreme-tonal-clamping">Mechanics of Extreme Tonal
+Clamping</h3>
+<p>Standard contrast modes like Overlay or Soft Light smoothly compress
+tonal ranges using continuous curve multiplication. In contrast, Pin
+Light performs conditional replacement without blending or feathering
+pixel edges.</p>
+<p>When applied over an image, Pin Light eliminates the base layer's
+midtones wherever the blend layer contains strong light or dark values.
+Instead of scaling or attenuating the underlying values, it hard-clamps
+them:</p>
+<ol type="1">
+<li><strong>Highlight Clamping:</strong> Light areas in the blend layer
+set a floor below which no base pixels can fall. Darker values are
+abruptly clipped up to the threshold value.</li>
+<li><strong>Shadow Clamping:</strong> Dark areas in the blend layer set
+a ceiling above which no base pixels can rise. Lighter values are
+abruptly clipped down to the threshold value.</li>
+</ol>
+<p>This binary replacement creates hard transitions, resulting in
+extreme dynamic range restriction and solarization-like effects.</p>
+<h3 id="practical-applications-in-compositing">Practical Applications in
+Compositing</h3>
+<p>In GIMP compositing workflows, Pin Light is primarily deployed when
+smooth gradients must be destroyed in favor of hard-edged
+thresholding:</p>
+<ul>
+<li><strong>Matte and Mask Generation:</strong> High-contrast textures
+blended via Pin Light allow compositors to isolate specular highlights
+or deep shadows while clipping out distracting midtone data.</li>
+<li><strong>Stylized Effects and Posterization:</strong> Applying
+high-frequency noise or custom gradient maps set to Pin Light creates
+posterized, harsh graphic effects with stark cutoffs.</li>
+<li><strong>Specialized Texture Integration:</strong> Compositors use
+Pin Light to stamp hard visual artifacts—such as glitches, chromatic
+aberrations, or stark lighting cutouts—directly onto base plates without
+allowing the underlying tone to wash out the effect.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

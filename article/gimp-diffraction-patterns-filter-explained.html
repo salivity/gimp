@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Diffraction Patterns Filter Explained - gimp</title>
+    <meta name="description" content="The Diffraction Patterns filter in GIMP is a procedural rendering tool designed to generate complex, wave-like textures based on the physics of light diffraction and interference. This article explains the primary purpose of the filter, how it mathematic">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-diffraction-patterns-filter-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Diffraction Patterns Filter Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-diffraction-patterns-filter-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Diffraction Patterns filter in GIMP is a procedural rendering tool designed to generate complex, wave-like textures based on the physics of light diffraction and interference. This article explains the primary purpose of the filter, how it mathematic" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-diffraction-patterns-filter-explained">GIMP Diffraction
+Patterns Filter Explained</h1>
+<p>The Diffraction Patterns filter in GIMP is a procedural rendering
+tool designed to generate complex, wave-like textures based on the
+physics of light diffraction and interference. This article explains the
+primary purpose of the filter, how it mathematically generates intricate
+organic and geometric designs, its main parameter controls, and the
+practical use cases for graphic designers and digital artists.</p>
+<h2 id="what-is-the-diffraction-patterns-filter">What Is the Diffraction
+Patterns Filter?</h2>
+<p>Found under <strong>Filters &gt; Render &gt; Pattern &gt; Diffraction
+Patterns</strong>, this filter simulates the visual effect of light
+passing through narrow slits or grating. Instead of modifying an
+existing image, it generates completely new algorithmic patterns by
+calculating interference waves across red, green, and blue color
+channels.</p>
+<p>The primary purpose of the filter is to produce complex,
+mathematically perfect textures without requiring manual drawing or
+external assets.</p>
+<h2 id="key-functions-and-parameter-controls">Key Functions and
+Parameter Controls</h2>
+<p>The filter uses mathematical equations based on wave optics, giving
+you control over several specific properties:</p>
+<ul>
+<li><strong>Frequencies (X and Y):</strong> Adjusts the frequency of the
+light waves along the horizontal and vertical axes. Increasing frequency
+creates tighter, denser patterns, while lower values produce broader,
+smoother bands.</li>
+<li><strong>Contours:</strong> Controls the number and sharpness of the
+interference rings, creating layered, topographic-like edges.</li>
+<li><strong>Sharp Edges:</strong> Modifies the transition between wave
+gradients, transforming soft sine waves into sharp, high-contrast
+ridges.</li>
+<li><strong>Brightness and Scattering:</strong> Dictates the overall
+light intensity and disperses the rays across the canvas to simulate
+different lighting conditions.</li>
+<li><strong>Polarization:</strong> Changes the angle and orientation of
+the color channels, producing rainbow-like dispersion or chromatic
+shifts.</li>
+</ul>
+<h2 id="common-use-cases">Common Use Cases</h2>
+<p>The Diffraction Patterns filter serves several practical functions in
+image editing and design workflows:</p>
+<h3 id="1-abstract-backgrounds-and-artwork">1. Abstract Backgrounds and
+Artwork</h3>
+<p>The filter can generate intricate, psychedelic, and fractal-like
+visuals instantly. By layering multiple diffraction patterns using
+different blend modes (such as Overlay or Screen), artists can create
+complex celestial, sci-fi, or kaleidoscopic artwork.</p>
+<h3 id="2-holographic-and-optical-effects">2. Holographic and Optical
+Effects</h3>
+<p>Because the tool simulates the physical behavior of light, it is
+ideal for replicating iridescent surfaces, holograms, laser scattering,
+and optical grating effects on materials like CDs, credit card security
+strips, or futuristic interfaces.</p>
+<h3 id="3-procedural-texture-and-bump-maps">3. Procedural Texture and
+Bump Maps</h3>
+<p>3D artists and texture designers use diffraction outputs as
+displacement, bump, or normal maps. The fine lines and wave crests
+provide precise height data for simulating woven fabrics, corrugated
+metals, brushed surfaces, and crystalline structures.</p>
+<h3 id="4-distortion-and-displacement-in-2d">4. Distortion and
+Displacement in 2D</h3>
+<p>Applying a rendered diffraction pattern as a displacement map to text
+or photos allows you to create custom glitch art, water ripple
+distortions, and glass refraction effects.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

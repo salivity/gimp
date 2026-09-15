@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use GEGL Drop Shadow for UI in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to use the GEGL-based Drop Shadow filter in GIMP to create realistic, modern floating user interface (UI) elements. You will learn how to prepare your UI layers, configure shadow geometry and blur settings for realistic elevation,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-gegl-drop-shadow-for-ui-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use GEGL Drop Shadow for UI in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-gegl-drop-shadow-for-ui-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the GEGL-based Drop Shadow filter in GIMP to create realistic, modern floating user interface (UI) elements. You will learn how to prepare your UI layers, configure shadow geometry and blur settings for realistic elevation," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-gegl-drop-shadow-for-ui-in-gimp">How to Use GEGL Drop
+Shadow for UI in GIMP</h1>
+<p>This guide explains how to use the GEGL-based Drop Shadow filter in
+GIMP to create realistic, modern floating user interface (UI) elements.
+You will learn how to prepare your UI layers, configure shadow geometry
+and blur settings for realistic elevation, and apply multi-layered
+shadow techniques to give buttons, cards, and modal windows a polished,
+floating appearance.</p>
+<h2 id="1-prepare-your-ui-element-layer">1. Prepare Your UI Element
+Layer</h2>
+<p>To apply a shadow correctly, the UI element must exist on an isolated
+layer with transparency:</p>
+<ol type="1">
+<li>Create a new transparent layer
+(<code>Layer &gt; New Layer</code>).</li>
+<li>Draw your UI shape (such as a rounded rectangle for a card or
+button) and fill it with your desired background color.</li>
+<li>Ensure the layer boundaries have sufficient transparent padding
+around the shape to prevent the shadow from clipping. If necessary,
+resize the layer to image size via
+<code>Layer &gt; Layer to Image Size</code>.</li>
+</ol>
+<h2 id="2-open-the-gegl-drop-shadow-filter">2. Open the GEGL Drop Shadow
+Filter</h2>
+<ol type="1">
+<li>Select your UI element layer in the Layers panel.</li>
+<li>Navigate to <strong>Filters &gt; Light and Shadow &gt; Drop
+Shadow...</strong></li>
+<li>Ensure the <strong>Preview</strong> checkbox is enabled in the
+dialog window to see real-time updates directly on your canvas.</li>
+</ol>
+<h2 id="3-configure-shadow-parameters-for-modern-ui-styling">3.
+Configure Shadow Parameters for Modern UI Styling</h2>
+<p>Modern floating UI design relies on soft, diffused shadows with
+subtle top-down lighting rather than harsh, dark outlines. Adjust the
+filter sliders as follows:</p>
+<ul>
+<li><strong>X Offset:</strong> Set to <code>0.0</code>. Centering the
+horizontal offset maintains a balanced, natural look for interface cards
+and modals.</li>
+<li><strong>Y Offset:</strong> Set between <code>4.0</code> and
+<code>16.0</code> pixels depending on the desired elevation. A small Y
+offset creates a subtle lift, while a larger offset simulates an element
+floating higher off the background.</li>
+<li><strong>Blur Radius:</strong> Increase the value significantly
+(typically between <code>16.0</code> and <code>32.0</code> pixels). A
+large blur radius creates the soft diffusion characteristic of modern UI
+components.</li>
+<li><strong>Grow Radius:</strong> Leave at <code>0.0</code> or slightly
+negative to avoid harsh borders.</li>
+<li><strong>Color:</strong> Pure black (<code>#000000</code>) often
+looks artificial. Choose a very dark shade tinted with your interface's
+primary background tone (for example, a deep blue or slate).</li>
+<li><strong>Opacity:</strong> Lower the opacity slider to between
+<code>0.10</code> and <code>0.25</code> (10% to 25%). UI shadows should
+remain subtle and unobtrusive.</li>
+</ul>
+<h2 id="4-advanced-create-a-dual-layer-elevation-shadow">4. Advanced:
+Create a Dual-Layer Elevation Shadow</h2>
+<p>For high-end interface components like active modals or floating
+action buttons, use two stacked shadows to simulate both ambient
+occlusion and direct elevation:</p>
+<ol type="1">
+<li><strong>Ambient Shadow (Layer 1):</strong> Apply a Drop Shadow with
+<code>X: 0</code>, <code>Y: 2</code>, <code>Blur Radius: 4</code>, and
+<code>Opacity: 0.12</code>. Click <strong>OK</strong>.</li>
+<li><strong>Key Light Shadow (Layer 2):</strong> Reopen the Drop Shadow
+filter on the same layer and apply <code>X: 0</code>,
+<code>Y: 12</code>, <code>Blur Radius: 24</code>, and
+<code>Opacity: 0.10</code>. Click <strong>OK</strong>.</li>
+</ol>
+<p>Combining a tight, dark shadow with a wide, soft shadow creates depth
+and separates the element cleanly from the background canvas.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Overlay Blend Mode for Texture Overlaying - gimp</title>
+    <meta name="description" content="The Overlay blend mode in GIMP is a powerful compositing tool designed to seamlessly blend textures into underlying images without destroying existing lighting and shadows. This article explains how the Overlay blend mode functions, why it is the standar">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-overlay-blend-mode-for-texture-overlaying">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Overlay Blend Mode for Texture Overlaying - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-overlay-blend-mode-for-texture-overlaying" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Overlay blend mode in GIMP is a powerful compositing tool designed to seamlessly blend textures into underlying images without destroying existing lighting and shadows. This article explains how the Overlay blend mode functions, why it is the standar" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-overlay-blend-mode-for-texture-overlaying">GIMP Overlay
+Blend Mode for Texture Overlaying</h1>
+<p>The Overlay blend mode in GIMP is a powerful compositing tool
+designed to seamlessly blend textures into underlying images without
+destroying existing lighting and shadows. This article explains how the
+Overlay blend mode functions, why it is the standard choice for texture
+overlaying, and how to apply it effectively in your GIMP projects to
+achieve realistic, professional results.</p>
+<h2 id="how-the-overlay-mode-works">How the Overlay Mode Works</h2>
+<p>The Overlay blend mode is a combination of two basic blend modes:
+Multiply and Screen. Its behavior depends entirely on the brightness
+values of the underlying base layer:</p>
+<ul>
+<li><strong>Dark Areas (Below 50% Gray):</strong> When the base layer is
+darker than 50% neutral gray, GIMP applies the <strong>Multiply</strong>
+mode. This deepens the darks and shadows of the image while
+incorporating the texture's details.</li>
+<li><strong>Light Areas (Above 50% Gray):</strong> When the base layer
+is lighter than 50% neutral gray, GIMP applies the
+<strong>Screen</strong> mode. This brightens highlights and preserves
+the upper midtones while mapping the texture over them.</li>
+<li><strong>Neutral Gray (Exactly 50% Gray):</strong> Any area of the
+texture layer that is 50% gray becomes completely transparent, leaving
+the base image unchanged.</li>
+</ul>
+<h2 id="why-overlay-is-ideal-for-textures">Why Overlay Is Ideal for
+Textures</h2>
+<p>When adding materials like paper grain, grunge, wood, canvas, or
+fabric to a photo or digital painting, traditional blending methods
+often wash out colors or make the image unnaturally dark. Overlay solves
+this problem by preserving the tonal range of the original image.</p>
+<p>Instead of replacing the base pixels, the texture modulates the
+existing contrast. The midtones receive the bulk of the textural detail,
+while the deepest blacks and brightest whites remain intact, resulting
+in a natural, cohesive look.</p>
+<h2 id="how-to-apply-a-texture-in-gimp-using-overlay">How to Apply a
+Texture in GIMP Using Overlay</h2>
+<ol type="1">
+<li><strong>Open Your Project:</strong> Load your base image into
+GIMP.</li>
+<li><strong>Import the Texture:</strong> Go to <strong>File &gt; Open as
+Layers</strong> and select your texture file. Ensure the texture layer
+is positioned directly above the target layer in the
+<strong>Layers</strong> panel.</li>
+<li><strong>Scale and Position:</strong> Use the <strong>Scale Tool
+(Shift + S)</strong> to fit the texture across the canvas as
+needed.</li>
+<li><strong>Change the Blend Mode:</strong> Select the texture layer in
+the Layers dialog, click the <strong>Mode</strong> dropdown menu (which
+defaults to <em>Normal</em>), and select <strong>Overlay</strong>.</li>
+<li><strong>Adjust the Opacity:</strong> Lower the layer
+<strong>Opacity</strong> slider (typically between 30% and 70%) to
+achieve the desired intensity of the texture effect.</li>
+</ol>
+<h2 id="best-practices-for-overlay-texturing">Best Practices for Overlay
+Texturing</h2>
+<ul>
+<li><strong>Desaturate the Texture:</strong> If you only want the
+tactile grain of a texture without altering your image's colors,
+desaturate the texture layer first (<strong>Colors &gt; Desaturation
+&gt; Desaturate</strong>).</li>
+<li><strong>Adjust Contrast with Levels:</strong> Use <strong>Colors
+&gt; Levels</strong> or <strong>Curves</strong> on the texture layer.
+Increasing the contrast will make the texture more pronounced, while
+bringing tones closer to 50% gray will soften the effect.</li>
+<li><strong>Use Layer Masks:</strong> Add a layer mask to the texture
+layer to paint away the texture from areas where it is unwanted, such as
+skin tones, faces, or focal points.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

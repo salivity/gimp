@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Cartoon Filter: Mask Radius and Black - gimp</title>
+    <meta name="description" content="The Cartoon filter in GIMP transforms photographs into comic-style illustrations by simulating ink outlines and tonal shading. Achieving a clean, professional result depends entirely on how you balance two core parameters: Mask Radius and Percent Black.">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-cartoon-filter-mask-radius-and-black">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Cartoon Filter: Mask Radius and Black - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-cartoon-filter-mask-radius-and-black" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Cartoon filter in GIMP transforms photographs into comic-style illustrations by simulating ink outlines and tonal shading. Achieving a clean, professional result depends entirely on how you balance two core parameters: Mask Radius and Percent Black." />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-cartoon-filter-mask-radius-and-black">GIMP Cartoon Filter:
+Mask Radius and Black</h1>
+<p>The Cartoon filter in GIMP transforms photographs into comic-style
+illustrations by simulating ink outlines and tonal shading. Achieving a
+clean, professional result depends entirely on how you balance two core
+parameters: Mask Radius and Percent Black. This guide breaks down the
+functions of both sliders, explains how they interact, and provides
+practical workflows to help you dial in the exact look you want without
+muddying your image.</p>
+<h3 id="understanding-the-two-parameters">Understanding the Two
+Parameters</h3>
+<p>The Cartoon filter (found under <strong>Filters &gt; Artistic &gt;
+Cartoon</strong>) works by analyzing the contrast between neighboring
+pixels to generate simulated ink outlines and dark shadows.</p>
+<ul>
+<li><strong>Mask Radius:</strong> This setting determines the width and
+spread of the filter's calculations. A lower radius limits the edge
+detection to tight, fine areas, resulting in thin, delicate lines that
+preserve small details. A higher radius broadens the sample area,
+producing thick, heavy brush strokes and generalized tonal patches while
+smoothing over finer textures.</li>
+<li><strong>Percent Black:</strong> This setting controls the density
+and quantity of black ink applied across the image. It acts as a
+threshold: lower percentages add ink only to the strongest contrast
+edges, while higher percentages force midtones and darker shades toward
+pure black, creating a dramatic, high-contrast graphic novel
+aesthetic.</li>
+</ul>
+<h3 id="the-dynamics-of-balancing-both-settings">The Dynamics of
+Balancing Both Settings</h3>
+<p>The two sliders directly influence one another. Adjusting one often
+requires counter-adjusting the other to prevent unwanted visual
+artifacts.</p>
+<ol type="1">
+<li><strong>High Mask Radius + High Percent Black:</strong> This
+combination produces a heavy, woodcut or stencil effect. Fine details
+disappear completely, replaced by large, aggressive slabs of pure black.
+Use this sparingly, typically for minimalist silhouettes or graphic
+logos.</li>
+<li><strong>Low Mask Radius + High Percent Black:</strong> This yields
+sharp, intense line work similar to an intricate pen-and-ink drawing.
+The lines remain thin because of the low radius, but the high black
+percentage fills in almost every micro-contrast edge.</li>
+<li><strong>High Mask Radius + Low Percent Black:</strong> This creates
+soft, posterized shading with sparse outlines. It works well for
+mimicking watercolor or soft cel-shading where harsh ink lines are not
+desired.</li>
+<li><strong>Low Mask Radius + Low Percent Black:</strong> This results
+in a subtle, clean comic book style. Outlines are crisp and light, while
+the subject's base colors and gradients remain intact.</li>
+</ol>
+<h3 id="recommended-workflow-for-best-results">Recommended Workflow for
+Best Results</h3>
+<p>To achieve the proper balance on any image, adjust the sliders
+systematically rather than tweaking both at once:</p>
+<ol type="1">
+<li><strong>Set Percent Black to a Low Baseline:</strong> Start by
+moving the Percent Black slider down to approximately 0.100 to 0.200.
+This minimizes visual clutter while you define your lines.</li>
+<li><strong>Dial In the Mask Radius:</strong> Increase the Mask Radius
+until the outlines match your desired thickness. For detailed portraits,
+keep the radius low (roughly 4.0 to 10.0) to avoid turning facial
+features into dark smudges. For landscapes or objects with bold shapes,
+higher values (15.0 to 30.0+) often yield better stylized
+silhouettes.</li>
+<li><strong>Increase Percent Black to Set Weight:</strong> Once your
+outline structure is established, slowly raise the Percent Black slider.
+Stop when shadows have sufficient punch without swallowing critical
+highlights or textures.</li>
+<li><strong>Counter Digital Noise:</strong> If the filter creates
+speckled, noisy black dots in smooth areas like skies or skin tones,
+lower the Percent Black slightly and increase the Mask Radius.
+Alternatively, apply a slight Gaussian Blur to the layer before running
+the Cartoon filter to smooth out pixel noise.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Lighten Blend Mode for Star Trails in GIMP - gimp</title>
+    <meta name="description" content="This article explains how GIMP’s Lighten blend mode functions to combine multiple consecutive night-sky exposures into a single, continuous star trail photograph. You will learn the underlying mechanics of how the blend mode evaluates pixel brightness,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/using-lighten-blend-mode-for-star-trails-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using Lighten Blend Mode for Star Trails in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/using-lighten-blend-mode-for-star-trails-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how GIMP’s Lighten blend mode functions to combine multiple consecutive night-sky exposures into a single, continuous star trail photograph. You will learn the underlying mechanics of how the blend mode evaluates pixel brightness," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="using-lighten-blend-mode-for-star-trails-in-gimp">Using Lighten
+Blend Mode for Star Trails in GIMP</h1>
+<p>This article explains how GIMP’s Lighten blend mode functions to
+combine multiple consecutive night-sky exposures into a single,
+continuous star trail photograph. You will learn the underlying
+mechanics of how the blend mode evaluates pixel brightness, why it
+prevents overexposure and noise accumulation, and how to apply it
+efficiently to your astrophotography workflow in GIMP.</p>
+<h2 id="how-the-lighten-blend-mode-works">How the Lighten Blend Mode
+Works</h2>
+<p>The Lighten blend mode (often labeled as "Lighten Only" in GIMP)
+compares the color and brightness values of corresponding pixels between
+overlapping layers. For every individual pixel coordinate, the software
+evaluates the active layer against the layer beneath it and keeps only
+the pixel with the higher luminance value. Any pixel that is darker than
+the underlying pixel is ignored and rendered transparent in the
+blend.</p>
+<h2 id="why-lighten-mode-creates-seamless-star-trails">Why Lighten Mode
+Creates Seamless Star Trails</h2>
+<p>Earth’s rotation causes stars to appear to move across the night sky
+over time. When you capture a series of sequential short exposures (such
+as 20 to 30 seconds each):</p>
+<ul>
+<li><strong>Moving Stars:</strong> Because the stars shift position in
+each consecutive frame, the bright pixels of a star in a newer frame
+will overlay the dark sky background of previous frames. The Lighten
+mode automatically selects these bright star pixels, connecting the
+points of light into continuous, sweeping trails.</li>
+<li><strong>Static Dark Sky:</strong> The dark areas of the sky remain
+consistently low in brightness across all frames. Because the blend mode
+only selects the brightest value rather than adding luminance together,
+the background sky maintains its natural dark tone without blowing out
+or turning gray.</li>
+</ul>
+<h2 id="preventing-overexposure-and-reducing-noise">Preventing
+Overexposure and Reducing Noise</h2>
+<p>In traditional long exposures lasting hours, sensors generate
+significant thermal noise, and ambient light pollution can quickly
+overexpose the entire scene. Stacking multiple shorter exposures using
+the Lighten blend mode solves both issues:</p>
+<ol type="1">
+<li><strong>No Light Accumulation:</strong> Unlike additive blend modes
+(such as "Addition" or "Screen"), Lighten does not combine brightness
+values. Static light sources, like a lit foreground landscape, stay at
+their single-exposure brightness level rather than compounding into an
+overexposed white mass.</li>
+<li><strong>Noise Containment:</strong> Sensor noise present in the
+shadow areas is not amplified across frames. Only bright artifacts (such
+as hot pixels or passing satellite trails) are retained, which can be
+easily cloned or masked out later.</li>
+</ol>
+<h2 id="how-to-apply-lighten-mode-in-gimp">How to Apply Lighten Mode in
+GIMP</h2>
+<ol type="1">
+<li><strong>Load the Exposures:</strong> Go to <strong>File &gt; Open as
+Layers</strong> and select all your sequential star photos.</li>
+<li><strong>Select the Layers:</strong> Keep the bottom layer (the base
+image) set to the <strong>Normal</strong> mode.</li>
+<li><strong>Change Blend Mode:</strong> Select the layer above the base
+layer, open the <strong>Mode</strong> dropdown menu in the Layers dock,
+and choose <strong>Lighten Only</strong> (or <strong>Lighten</strong>
+depending on your GIMP version).</li>
+<li><strong>Apply to All Layers:</strong> Repeat this mode change for
+all layers above the base layer.</li>
+<li><strong>Export the Final Image:</strong> Once all layers are set to
+Lighten Only, go to <strong>Image &gt; Merge Visible Layers</strong> and
+export your final star trail photograph.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

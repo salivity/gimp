@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Isolate Luminance in GIMP Using Blend Modes - gimp</title>
+    <meta name="description" content="Isolating the luminance (the brightness and tone information) of an image allows you to adjust contrast, sharpness, and exposure without altering the underlying colors. This guide explains how to quickly and non-destructively separate luminance from chro">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-isolate-luminance-in-gimp-using-blend-modes">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Isolate Luminance in GIMP Using Blend Modes - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-isolate-luminance-in-gimp-using-blend-modes" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating the luminance (the brightness and tone information) of an image allows you to adjust contrast, sharpness, and exposure without altering the underlying colors. This guide explains how to quickly and non-destructively separate luminance from chro" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-isolate-luminance-in-gimp-using-blend-modes">How to
+Isolate Luminance in GIMP Using Blend Modes</h1>
+<p>Isolating the luminance (the brightness and tone information) of an
+image allows you to adjust contrast, sharpness, and exposure without
+altering the underlying colors. This guide explains how to quickly and
+non-destructively separate luminance from chrominance in GIMP by
+utilizing the program's built-in layer blending modes.</p>
+<h3 id="method-1-using-a-solid-color-layer-set-to-color-lch">Method 1:
+Using a Solid Color Layer Set to Color (LCH)</h3>
+<p>This is the fastest method to strip color data and view only the
+perceptual luminance of your image.</p>
+<ol type="1">
+<li><strong>Open your image</strong> in GIMP.</li>
+<li><strong>Create a new layer</strong> by clicking the <strong>New
+Layer</strong> icon in the Layers panel or pressing
+<code>Shift + Ctrl + N</code>.</li>
+<li>In the dialog, name the layer "Color Neutralizer" and set
+<strong>Fill with</strong> to <strong>White</strong> (or 50% gray).</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Select the new solid layer in the Layers panel.</li>
+<li>Change the <strong>Mode</strong> dropdown at the top of the Layers
+panel from <em>Normal</em> to <strong>Color (LCH)</strong> (located
+under the <em>Color</em> category).</li>
+</ol>
+<p>Because the solid layer has no saturation, the <strong>Color
+(LCH)</strong> mode replaces all color information below it with neutral
+gray while retaining 100% of the original image's luminance values.</p>
+<hr />
+<h3 id="method-2-isolating-luminance-onto-a-neutral-background">Method
+2: Isolating Luminance onto a Neutral Background</h3>
+<p>If you want the image layer itself to act as the luminance source
+over another layer:</p>
+<ol type="1">
+<li><strong>Open your image</strong> and create a new layer filled with
+pure black, pure white, or 50% neutral gray.</li>
+<li>Place this solid color layer <strong>beneath</strong> your active
+image layer.</li>
+<li>Select your image layer.</li>
+<li>Set the image layer's blend mode to <strong>Luminance
+(LCH)</strong>.</li>
+</ol>
+<p>This instructs GIMP to take only the lightness data from your photo
+and apply it directly to the neutral base layer, discarding the photo's
+original hue and chroma.</p>
+<hr />
+<h3 id="why-use-lch-over-hsv-in-gimp">Why Use LCH Over HSV in GIMP?</h3>
+<p>When working with modern versions of GIMP, always prefer
+<strong>Color (LCH)</strong> or <strong>Luminance (LCH)</strong> over
+the older <strong>HSV</strong> or <strong>HSL</strong> equivalents.</p>
+<ul>
+<li><strong>HSV/HSL Color Modes:</strong> Mathematically simple, but
+they do not account for how the human eye perceives brightness (for
+example, pure yellow appears naturally brighter to human vision than
+pure blue).</li>
+<li><strong>LCH Blend Modes:</strong> Designed around human visual
+perception, ensuring that the isolated luminance map maintains accurate
+perceptual tonal weight across all color ranges.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

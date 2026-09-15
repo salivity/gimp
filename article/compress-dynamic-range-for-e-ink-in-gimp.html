@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress Dynamic Range for E-Ink in GIMP - gimp</title>
+    <meta name="description" content="Electronic paper (e-ink) displays feature significantly lower contrast ratios and limited grayscale palettes compared to standard LCD or OLED panels. This guide details the exact settings in GIMP—primarily within the Levels, Curves, and Indexed Color t">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/compress-dynamic-range-for-e-ink-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Compress Dynamic Range for E-Ink in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/compress-dynamic-range-for-e-ink-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Electronic paper (e-ink) displays feature significantly lower contrast ratios and limited grayscale palettes compared to standard LCD or OLED panels. This guide details the exact settings in GIMP—primarily within the Levels, Curves, and Indexed Color t" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="compress-dynamic-range-for-e-ink-in-gimp">Compress Dynamic Range
+for E-Ink in GIMP</h1>
+<p>Electronic paper (e-ink) displays feature significantly lower
+contrast ratios and limited grayscale palettes compared to standard LCD
+or OLED panels. This guide details the exact settings in GIMP—primarily
+within the Levels, Curves, and Indexed Color tools—required to compress
+and remap an image's tonal dynamic range. By following these steps, you
+will prevent shadow crushing, eliminate washed-out highlights, and
+maximize visibility on low-contrast e-ink screens.</p>
+<h3 id="1-convert-to-grayscale">1. Convert to Grayscale</h3>
+<p>Before adjusting tonal ranges, remove color data to evaluate contrast
+accurately:</p>
+<ul>
+<li>Navigate to <strong>Image &gt; Mode &gt; Grayscale</strong>.</li>
+<li>Alternatively, use <strong>Colors &gt; Desaturate &gt;
+Desaturate</strong> and choose <strong>Luminance</strong> to preserve
+perceptual brightness based on human vision.</li>
+</ul>
+<h3 id="2-compress-dynamic-range-with-the-levels-tool">2. Compress
+Dynamic Range with the Levels Tool</h3>
+<p>The Levels tool is the most direct way to compress dynamic range by
+constraining the absolute white and black boundaries of an image.</p>
+<ul>
+<li>Open the tool via <strong>Colors &gt; Levels</strong>.</li>
+<li>Locate the <strong>Output Levels</strong> section at the bottom of
+the dialog (this features a gradient bar with two sliders: Black at 0
+and White at 255).</li>
+<li><strong>Lift the Black Point:</strong> Drag the black Output slider
+to the right (typically between <strong>15 and 35</strong>). This
+prevents deep shadows from pooling into muddy, unreadable blacks on
+e-ink panels.</li>
+<li><strong>Lower the White Point:</strong> Drag the white Output slider
+to the left (typically between <strong>220 and 240</strong>). This pulls
+bright highlights down to a range the reflective display can render
+without clipping.</li>
+<li><strong>Adjust Midtone Gamma:</strong> Under <strong>Input
+Levels</strong>, move the middle gray slider. Setting this between
+<strong>1.10 and 1.30</strong> brightens midtones, which helps prevent
+medium grays from dropping into the compressed dark regions.</li>
+</ul>
+<h3 id="3-fine-tune-transitions-with-the-curves-tool">3. Fine-Tune
+Transitions with the Curves Tool</h3>
+<p>If an image requires selective tonal compression rather than a
+uniform squeeze, use the Curves tool.</p>
+<ul>
+<li>Open <strong>Colors &gt; Curves</strong>.</li>
+<li><strong>Lift Shadows:</strong> Click the bottom-left anchor point
+(representing pure black) and move it upward along the vertical axis to
+an input/output value of roughly <strong>0 / 20</strong>.</li>
+<li><strong>Tame Highlights:</strong> Click the top-right anchor point
+(pure white) and drag it downward along the vertical axis to roughly
+<strong>255 / 235</strong>.</li>
+<li><strong>Flatten the Curve Ends:</strong> Create a slight reverse-S
+curve by gently pulling down the upper-midtones and pushing up the
+lower-midtones to compress contrast further, keeping image details
+centered in the panel’s most legible gray band.</li>
+</ul>
+<h3 id="4-apply-spatial-dithering-via-indexed-color">4. Apply Spatial
+Dithering via Indexed Color</h3>
+<p>Most e-ink screens only support 1-bit (black and white) or 4-bit (16
+levels of gray) rendering. Once the tonal range is compressed, quantize
+the image:</p>
+<ul>
+<li>Navigate to <strong>Image &gt; Mode &gt; Indexed</strong>.</li>
+<li>Select <strong>Generate optimum palette</strong> and set the number
+of colors to <strong>16</strong> (or <strong>4</strong>, depending on
+your specific display's hardware support).</li>
+<li>Set <strong>Color dithering</strong> to <strong>Floyd-Steinberg
+(normal)</strong> or <strong>Floyd-Steinberg (reduced color
+bleeding)</strong>. Dithering breaks up the compressed tones into
+micro-patterns that eliminate harsh banding artifacts across the
+low-contrast medium.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

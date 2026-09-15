@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Floral Wedding Invitations in GIMP - gimp</title>
+    <meta name="description" content="Designing custom, print-ready wedding invitations with floral borders in GIMP allows you to create high-end stationery without expensive design software. This guide walks you through setting up a print-accurate canvas with bleed margins, placing and arra">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-floral-wedding-invitations-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Floral Wedding Invitations in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-floral-wedding-invitations-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom, print-ready wedding invitations with floral borders in GIMP allows you to create high-end stationery without expensive design software. This guide walks you through setting up a print-accurate canvas with bleed margins, placing and arra" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-floral-wedding-invitations-in-gimp">Design Floral Wedding
+Invitations in GIMP</h1>
+<p>Designing custom, print-ready wedding invitations with floral borders
+in GIMP allows you to create high-end stationery without expensive
+design software. This guide walks you through setting up a
+print-accurate canvas with bleed margins, placing and arranging floral
+graphics, pairing elegant typography, and exporting your final file in a
+print-ready format to ensure crisp, professional results.</p>
+<h3 id="step-1-set-up-the-print-canvas-with-bleed">Step 1: Set Up the
+Print Canvas with Bleed</h3>
+<p>A standard wedding invitation is 5x7 inches. For professional
+printing, you must include a standard 0.125-inch bleed on all sides to
+prevent white borders after trimming.</p>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Change the unit of measurement to <strong>Inches</strong>.</li>
+<li>Set <strong>Width</strong> to <code>5.25</code> and
+<strong>Height</strong> to <code>7.25</code>.</li>
+<li>Click <strong>Advanced Options</strong>.</li>
+<li>Set both <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <code>300</code> pixels/inch.</li>
+<li>Set <strong>Color space</strong> to <strong>RGB color</strong>
+(commercial printers will convert this to CMYK, or you can convert later
+with a color profile plugin).</li>
+<li>Set <strong>Fill with</strong> to <strong>White</strong> and click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-configure-margins-and-safe-zones">Step 2: Configure
+Margins and Safe Zones</h3>
+<p>Guides ensure critical text stays away from the cut line.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)</strong>.</li>
+<li>Add horizontal and vertical guides to mark the center for easy
+alignment.</li>
+<li>Go to <strong>Image &gt; Guides &gt; New Guide...</strong> to
+manually add the 0.125-inch trim line (37.5 pixels at 300 DPI) and an
+additional 0.25-inch safety margin inside the trim area. Keep all
+important text inside this safety zone.</li>
+</ol>
+<h3 id="step-3-arrange-the-floral-borders">Step 3: Arrange the Floral
+Borders</h3>
+<p>Transparent PNG floral illustrations work best for building
+borders.</p>
+<ol type="1">
+<li>Open your floral artwork by going to <strong>File &gt; Open as
+Layers...</strong>.</li>
+<li>Select the <strong>Scale Tool (Shift + S)</strong> to resize the
+floral element proportionally while holding <strong>Ctrl</strong>.</li>
+<li>Use the <strong>Move Tool (M)</strong> to position elements along
+the corners and outer edges.</li>
+<li>Duplicate layers (<strong>Layer &gt; Duplicate Layer</strong>) and
+use <strong>Layer &gt; Transform &gt; Flip Horizontally</strong> or
+<strong>Flip Vertically</strong> to balance corners symmetrically, or
+arrange individual botanical stems manually for an organic, asymmetrical
+look.</li>
+<li>Once your border looks complete, group these layers into a single
+folder named "Floral Border" to keep the layer stack organized.</li>
+</ol>
+<h3 id="step-4-add-and-style-the-text">Step 4: Add and Style the
+Text</h3>
+<p>Hierarchy is essential for invitation design. Pair an elegant script
+font for the couple's names with a clean serif or sans-serif font for
+the event details.</p>
+<ol type="1">
+<li>Select the <strong>Text Tool (T)</strong>.</li>
+<li>Click near the top center and type the introductory line (e.g.,
+"Together with their families"). Use a clean serif font at a modest
+size.</li>
+<li>Create a separate text layer for the couple's names using your
+chosen script or calligraphy font at a significantly larger size.</li>
+<li>Create additional text layers for the date, time, venue, and
+reception details.</li>
+<li>Select each text layer and use the <strong>Align Tool (Q)</strong>
+to center the text horizontally relative to the canvas.</li>
+<li>Use the <strong>Color Picker</strong> within the text tool to sample
+a deep color from your floral graphics (such as dark forest green, navy,
+or burgundy) to create visual harmony.</li>
+</ol>
+<h3 id="step-5-export-for-high-quality-printing">Step 5: Export for
+High-Quality Printing</h3>
+<p>Printers require uncompressed, high-resolution files to produce sharp
+text and vibrant graphics.</p>
+<ol type="1">
+<li>Save a native project file first by going to <strong>File &gt; Save
+As...</strong> to preserve your layers.</li>
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Choose <strong>PDF</strong> or <strong>TIFF</strong> from the file
+format list (PDF is standard for most print shops).</li>
+<li>For PDF export, ensure vector text is retained where possible and
+quality settings are set to maximum. For TIFF, ensure LZW or no
+compression is selected at 300 DPI.</li>
+<li>Provide the exported file to your professional printer, specifying
+that the file includes an integrated 0.125-inch bleed.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

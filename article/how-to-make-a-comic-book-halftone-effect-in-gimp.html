@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make a Comic Book Halftone Effect in GIMP - gimp</title>
+    <meta name="description" content="This tutorial provides a step-by-step guide on transforming any standard photograph into a vintage comic book illustration using GIMP. By separating your image into distinct line art and color layers, applying color quantization, and utilizing GIMP's bui">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-a-comic-book-halftone-effect-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make a Comic Book Halftone Effect in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-a-comic-book-halftone-effect-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This tutorial provides a step-by-step guide on transforming any standard photograph into a vintage comic book illustration using GIMP. By separating your image into distinct line art and color layers, applying color quantization, and utilizing GIMP's bui" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-a-comic-book-halftone-effect-in-gimp">How to Make a
+Comic Book Halftone Effect in GIMP</h1>
+<p>This tutorial provides a step-by-step guide on transforming any
+standard photograph into a vintage comic book illustration using GIMP.
+By separating your image into distinct line art and color layers,
+applying color quantization, and utilizing GIMP's built-in Newsprint
+distortion filter, you can accurately recreate the classic CMYK halftone
+dot pattern typical of mid-century print media.</p>
+<h3 id="step-1-prepare-your-workspace-and-image">Step 1: Prepare Your
+Workspace and Image</h3>
+<ol type="1">
+<li>Open your target image in GIMP by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Go to the <strong>Layers</strong> panel (press <code>Ctrl + L</code>
+if it is not visible).</li>
+<li>Right-click the base image layer and select <strong>Duplicate
+Layer</strong> twice so you have three layers in total.</li>
+<li>Rename the layers from top to bottom:
+<ul>
+<li><strong>Inks</strong> (Top)</li>
+<li><strong>Colors</strong> (Middle)</li>
+<li><strong>Original</strong> (Bottom)</li>
+</ul></li>
+</ol>
+<h3 id="step-2-create-the-comic-inked-line-art">Step 2: Create the Comic
+Inked Line Art</h3>
+<ol type="1">
+<li>Select the <strong>Inks</strong> layer and make sure it is
+visible.</li>
+<li>Desaturate the layer by going to <strong>Colors &gt; Desaturate &gt;
+Desaturate</strong>, choose <strong>Luminance</strong>, and click
+<strong>OK</strong>.</li>
+<li>Apply an edge-detection filter via <strong>Filters &gt; Edge-Detect
+&gt; Edge</strong>. Set the algorithm to <strong>Sobel</strong> and
+increase the amount until distinct contours appear, then click
+<strong>OK</strong>.</li>
+<li>Invert the colors to get black lines on a white background by
+navigating to <strong>Colors &gt; Invert</strong>.</li>
+<li>Clean up stray grays by going to <strong>Colors &gt;
+Threshold</strong>. Adjust the sliders until you have sharp black
+outlines and a pure white background.</li>
+<li>In the Layers panel, change the <strong>Mode</strong> of the
+<strong>Inks</strong> layer from <em>Normal</em> to
+<strong>Multiply</strong>. This makes the white areas transparent,
+showing the underlying layers through the black lines.</li>
+</ol>
+<h3 id="step-3-posterize-and-enhance-the-colors">Step 3: Posterize and
+Enhance the Colors</h3>
+<ol type="1">
+<li>Hide the <strong>Inks</strong> layer temporarily and select the
+<strong>Colors</strong> layer.</li>
+<li>Boost the image saturation to mimic vintage comic inks by going to
+<strong>Colors &gt; Saturation</strong> and increasing the scale to
+around <strong>1.5</strong> or <strong>2.0</strong>.</li>
+<li>Simplify the color palette by going to <strong>Colors &gt;
+Posterize</strong>. Set the <strong>Posterize levels</strong> to between
+<strong>4</strong> and <strong>6</strong> to reduce color gradations
+into flat blocks.</li>
+</ol>
+<h3 id="step-4-apply-the-halftone-screen-print-filter">Step 4: Apply the
+Halftone Screen Print Filter</h3>
+<ol type="1">
+<li>With the <strong>Colors</strong> layer still selected, navigate to
+<strong>Filters &gt; Distorts &gt; Newsprint</strong>.</li>
+<li>In the Newsprint dialog:
+<ul>
+<li>Set the <strong>Color model</strong> to <strong>CMYK</strong>.</li>
+<li>Set the <strong>Pattern</strong> to <strong>Circle</strong>
+(Halftone dots).</li>
+<li>Adjust the <strong>Period</strong> slider to control the size of the
+dots (lower values produce finer print dots; higher values produce
+large, stylized retro dots).</li>
+<li>Under the <strong>Angle</strong> settings, use standard offset
+printing angles to avoid moiré patterns: Cyan at <strong>15°</strong>,
+Magenta at <strong>75°</strong>, Yellow at <strong>0°</strong>, and
+Black at <strong>45°</strong>.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to render the halftone dot screen.</li>
+</ol>
+<h3 id="step-5-final-assembly-and-paper-aging">Step 5: Final Assembly
+and Paper Aging</h3>
+<ol type="1">
+<li>Make the <strong>Inks</strong> layer visible again so the black
+outlines sit directly over the halftone pattern.</li>
+<li>If the effect appears too sharp, add a vintage paper texture by
+creating a new layer above the <strong>Original</strong> layer, filling
+it with an off-white/pale cream color (<code>#FDF6E2</code>), and
+setting the layer mode to <strong>Multiply</strong> at <strong>20–30%
+Opacity</strong>.</li>
+<li>Export the final artwork by going to <strong>File &gt; Export
+As</strong> and choosing your preferred format, such as PNG or
+JPEG.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

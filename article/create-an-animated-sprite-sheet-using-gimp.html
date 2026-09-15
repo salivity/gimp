@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Animated Sprite Sheet Using GIMP - gimp</title>
+    <meta name="description" content="Creating an animated sprite sheet in GIMP involves arranging individual animation frames—typically stored as separate layers—into a single, organized image grid. This guide explains how to set up your animation frames, calculate the required canvas d">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-an-animated-sprite-sheet-using-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create an Animated Sprite Sheet Using GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-an-animated-sprite-sheet-using-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating an animated sprite sheet in GIMP involves arranging individual animation frames—typically stored as separate layers—into a single, organized image grid. This guide explains how to set up your animation frames, calculate the required canvas d" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-an-animated-sprite-sheet-using-gimp">Create an Animated
+Sprite Sheet Using GIMP</h1>
+<p>Creating an animated sprite sheet in GIMP involves arranging
+individual animation frames—typically stored as separate layers—into a
+single, organized image grid. This guide explains how to set up your
+animation frames, calculate the required canvas dimensions, align the
+sprites precisely using built-in grid tools, and export the final sprite
+sheet for use in game engines and web projects.</p>
+<h2 id="step-1-prepare-your-animation-frames">Step 1: Prepare Your
+Animation Frames</h2>
+<ol type="1">
+<li>Open GIMP and load your animation frames. If your frames are
+separate image files, go to <strong>File &gt; Open as Layers...</strong>
+and select all the frames in order.</li>
+<li>Ensure every layer is cropped to the exact same dimensions. You can
+verify this by checking <strong>Layer &gt; Layer Boundary
+Size</strong>.</li>
+<li>Order your layers chronologically in the <strong>Layers</strong>
+panel, with the first frame at the top or bottom depending on your
+preferred workflow.</li>
+</ol>
+<h2 id="step-2-calculate-the-canvas-size">Step 2: Calculate the Canvas
+Size</h2>
+<p>Determine how your sprite sheet will be laid out (a single horizontal
+strip, a vertical strip, or a grid):</p>
+<ul>
+<li><strong>Horizontal Strip:</strong> Canvas Width =
+<code>Frame Width × Total Number of Frames</code>; Canvas Height =
+<code>Frame Height</code>.</li>
+<li><strong>Grid (e.g., 4x4):</strong> Canvas Width =
+<code>Frame Width × Columns</code>; Canvas Height =
+<code>Frame Height × Rows</code>.</li>
+</ul>
+<p>Once calculated, expand your workspace:</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Canvas Size...</strong>.</li>
+<li>Enter the calculated width and height.</li>
+<li>Click <strong>Resize</strong>.</li>
+</ol>
+<h2 id="step-3-configure-grids-and-snapping">Step 3: Configure Grids and
+Snapping</h2>
+<p>Using a grid ensures that frames are spaced evenly and do not
+overlap.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Configure Grid...</strong>.</li>
+<li>Set the <strong>Spacing</strong> width and height to match the
+dimensions of a single animation frame.</li>
+<li>Go to <strong>View &gt; Show Grid</strong> and <strong>View &gt;
+Snap to Grid</strong>.</li>
+</ol>
+<h2 id="step-4-position-the-layers">Step 4: Position the Layers</h2>
+<ol type="1">
+<li>Select the <strong>Move Tool</strong> (shortcut: <code>M</code>)
+from the toolbox.</li>
+<li>In the Tool Options, set the tool to <strong>Move the active
+layer</strong>.</li>
+<li>Select each layer individually from the Layers panel and drag it to
+its designated slot on the grid. The snapping feature will lock each
+frame into its precise cell.</li>
+</ol>
+<h2 id="step-5-merge-and-export-the-sprite-sheet">Step 5: Merge and
+Export the Sprite Sheet</h2>
+<ol type="1">
+<li>Check the image to ensure all background elements are transparent,
+unless a solid background is required.</li>
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Choose a format that supports transparency, such as
+<strong>PNG</strong>.</li>
+<li>Set the file name (e.g.,
+<code>character_walk_spritesheet.png</code>) and click
+<strong>Export</strong>.</li>
+<li>In the export settings dialog, ensure <strong>Save layer
+offset</strong> and <strong>Save background color</strong> are unchecked
+if you want a clean transparent sheet, then confirm by clicking
+<strong>Export</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

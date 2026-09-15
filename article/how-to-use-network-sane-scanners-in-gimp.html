@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Network SANE Scanners in GIMP - gimp</title>
+    <meta name="description" content="Integrating GIMP with a network-attached SANE (Scanner Access Now Easy) device allows you to capture scans directly onto your digital canvas without using standalone third-party utilities. This setup requires configuring the local SANE network backend to">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-network-sane-scanners-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Network SANE Scanners in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-network-sane-scanners-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Integrating GIMP with a network-attached SANE (Scanner Access Now Easy) device allows you to capture scans directly onto your digital canvas without using standalone third-party utilities. This setup requires configuring the local SANE network backend to" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-network-sane-scanners-in-gimp">How to Use Network
+SANE Scanners in GIMP</h1>
+<p>Integrating GIMP with a network-attached SANE (Scanner Access Now
+Easy) device allows you to capture scans directly onto your digital
+canvas without using standalone third-party utilities. This setup
+requires configuring the local SANE network backend to locate the remote
+scanner on your local network, installing the XSane integration plugin,
+and initiating the scan sequence from GIMP's file creation menu.</p>
+<h3 id="step-1-install-sane-tools-and-the-xsane-gimp-plugin">Step 1:
+Install SANE Tools and the XSane GIMP Plugin</h3>
+<p>GIMP relies on external frontends like XSane to bridge the connection
+between the application and SANE backends. Install the required SANE
+utilities and XSane packages using your distribution's package
+manager.</p>
+<p>On Debian, Ubuntu, or derivative distributions, run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sane-utils xsane</span></code></pre></div>
+<p>On Fedora or RHEL-based distributions:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install sane-backends-utils xsane xsane-gimp</span></code></pre></div>
+<p>Installing <code>xsane</code> automatically places the integration
+binary in GIMP's plugin directory.</p>
+<h3 id="step-2-configure-the-sane-network-backend">Step 2: Configure the
+SANE Network Backend</h3>
+<p>To allow your workstation to find a network-attached SANE scanner (or
+a remote system hosting a scanner via <code>saned</code>), edit the
+network configuration file:</p>
+<ol type="1">
+<li>Open <code>/etc/sane.d/net.conf</code> in a text editor with
+administrative privileges:
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nano /etc/sane.d/net.conf</span></code></pre></div></li>
+<li>Scroll to the end of the file and enter the IP address or resolvable
+hostname of the network scanner or SANE server:
+<pre class="text"><code>192.168.1.50</code></pre></li>
+<li>Save and exit the editor.</li>
+</ol>
+<h3 id="step-3-verify-network-scanner-detection">Step 3: Verify Network
+Scanner Detection</h3>
+<p>Ensure your workstation can discover the device over the network
+before launching GIMP. In the terminal, execute:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scanimage</span> <span class="at">-L</span></span></code></pre></div>
+<p>If configured properly, the output will display your network
+scanner's device string, such as:</p>
+<pre class="text"><code>device `net:192.168.1.50:pixma:04A91760&#39; is a CANON Canon PIXMA multi-function peripheral</code></pre>
+<p>If the device is not listed, verify that port 6566 (the default SANE
+daemon port) is open between your client machine and the scanner
+host.</p>
+<h3 id="step-4-acquire-images-inside-gimp">Step 4: Acquire Images Inside
+GIMP</h3>
+<p>Once the network connection is confirmed:</p>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>Navigate to <strong>File</strong> &gt; <strong>Create</strong> &gt;
+<strong>XSane</strong> (or <strong>Scanner/Camera</strong> depending on
+your desktop environment).</li>
+<li>Select your network scanner from the device list.</li>
+<li>The XSane dialog will open. Configure your scan parameters
+(resolution, color mode, and scan area) and click
+<strong>Scan</strong>.</li>
+</ol>
+<p>The acquired image will automatically open as a new canvas layer
+inside GIMP, ready for editing.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

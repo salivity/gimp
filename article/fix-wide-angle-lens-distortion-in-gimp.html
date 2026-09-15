@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Wide-Angle Lens Distortion in GIMP - gimp</title>
+    <meta name="description" content="Wide-angle lenses are essential for capturing tight interior spaces in real estate photography, but they frequently introduce barrel curvature and converging vertical lines. This guide provides a straightforward, step-by-step process to correct both barr">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/fix-wide-angle-lens-distortion-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Wide-Angle Lens Distortion in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/fix-wide-angle-lens-distortion-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Wide-angle lenses are essential for capturing tight interior spaces in real estate photography, but they frequently introduce barrel curvature and converging vertical lines. This guide provides a straightforward, step-by-step process to correct both barr" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-wide-angle-lens-distortion-in-gimp">Fix Wide-Angle Lens
+Distortion in GIMP</h1>
+<p>Wide-angle lenses are essential for capturing tight interior spaces
+in real estate photography, but they frequently introduce barrel
+curvature and converging vertical lines. This guide provides a
+straightforward, step-by-step process to correct both barrel distortion
+and perspective issues using GIMP's built-in transform and filter tools,
+ensuring your interior photos have clean, perfectly straight walls and
+natural proportions.</p>
+<h2 id="step-1-set-up-alignment-guides">Step 1: Set Up Alignment
+Guides</h2>
+<p>Before applying corrections, create visual guides to measure straight
+vertical and horizontal lines.</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>If rulers are not visible, enable them via <strong>View &gt; Show
+Rulers</strong> (or press <code>Ctrl + Shift + R</code>).</li>
+<li>Click on the vertical ruler on the left side and drag your cursor
+onto the canvas to place a vertical guide line along a door frame,
+corner wall, or window edge.</li>
+<li>Place 2–3 vertical guides across different areas of the room to
+check alignment.</li>
+</ol>
+<h2 id="step-2-fix-barrel-distortion-curved-lines">Step 2: Fix Barrel
+Distortion (Curved Lines)</h2>
+<p>Wide-angle lenses naturally curve straight lines near the edges of
+the frame. Correct this curvature first.</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Filters &gt; Distorts &gt;
+Lens Distortion...</strong>.</li>
+<li>Locate the <strong>Main</strong> slider:
+<ul>
+<li>Drag the slider to the <strong>negative</strong> side to counteract
+outward barrel distortion (curved walls bending outward).</li>
+<li>If the corners are stretched inward (pincushion), move the slider
+toward the positive side.</li>
+</ul></li>
+<li>Adjust the <strong>Edge</strong> slider to fine-tune the outer
+borders of the frame.</li>
+<li>Adjust the <strong>Zoom</strong> slider if black borders appear
+around the canvas edges.</li>
+<li>Click <strong>OK</strong> once the curved walls and ceilings align
+straight with your guide lines.</li>
+</ol>
+<h2 id="step-3-correct-keystoning-converging-verticals">Step 3: Correct
+Keystoning (Converging Verticals)</h2>
+<p>Tilting the camera up or down creates converging vertical lines where
+walls appear to lean backward or forward.</p>
+<ol type="1">
+<li>Select the <strong>Perspective Tool</strong> from the Toolbox, or
+press <code>Shift + P</code>.</li>
+<li>In the Tool Options panel, ensure <strong>Direction</strong> is set
+to <strong>Normal (Forward)</strong> and <strong>Interpolation</strong>
+is set to <strong>Cubic</strong> or <strong>NoHalo</strong> for the best
+quality.</li>
+<li>Under the <strong>Guides</strong> setting in the Tool Options,
+select <strong>Grid</strong> or <strong>Number of lines</strong> to
+display an overlay grid.</li>
+<li>Click on the image to activate the transformation grid.</li>
+<li>Click and drag the top-left and top-right corner handles outward if
+the walls lean inward at the top, or drag them inward if the walls tilt
+outward.</li>
+<li>Align the structural lines of the room (wall joints, columns,
+cabinet edges) so they are parallel to the vertical grid lines.</li>
+<li>Click the <strong>Transform</strong> button in the floating dialog
+to apply the correction.</li>
+</ol>
+<h2 id="step-4-crop-the-final-image">Step 4: Crop the Final Image</h2>
+<p>Correcting lens distortions leaves empty, transparent wedges around
+the borders of the canvas.</p>
+<ol type="1">
+<li>Select the <strong>Crop Tool</strong> from the Toolbox, or press
+<code>Shift + C</code>.</li>
+<li>In the Tool Options, you can check <strong>Fixed: Aspect
+ratio</strong> if you need standard dimensions (e.g., 3:2 or 16:9).</li>
+<li>Drag a bounding box inside the corrected image area, excluding all
+transparent edges.</li>
+<li>Press <strong>Enter</strong> to crop the image.</li>
+<li>Go to <strong>File &gt; Export As...</strong> to save your final,
+corrected interior photo.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

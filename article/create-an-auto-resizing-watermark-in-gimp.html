@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Auto-Resizing Watermark in GIMP - gimp</title>
+    <meta name="description" content="Applying a consistent text watermark across varying document resolutions in GIMP requires creating a resolution-independent asset and defining relative scaling rules. Because GIMP treats text as rasterized pixels once placed onto standard layers, this gu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-an-auto-resizing-watermark-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create an Auto-Resizing Watermark in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-an-auto-resizing-watermark-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Applying a consistent text watermark across varying document resolutions in GIMP requires creating a resolution-independent asset and defining relative scaling rules. Because GIMP treats text as rasterized pixels once placed onto standard layers, this gu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-an-auto-resizing-watermark-in-gimp">Create an
+Auto-Resizing Watermark in GIMP</h1>
+<p>Applying a consistent text watermark across varying document
+resolutions in GIMP requires creating a resolution-independent asset and
+defining relative scaling rules. Because GIMP treats text as rasterized
+pixels once placed onto standard layers, this guide walks you through
+designing a vector-based text watermark, saving it as a reusable
+template, and applying it with automated percentage-based scaling using
+GIMP's built-in toolset and the BIMP (Batch Image Manipulation Plugin)
+framework.</p>
+<h3 id="step-1-create-a-vector-based-text-watermark">Step 1: Create a
+Vector-Based Text Watermark</h3>
+<p>To prevent pixelation when scaling across different canvas
+dimensions, the base text watermark must be generated as a vector
+path.</p>
+<ol type="1">
+<li>Open GIMP and create a new canvas (<code>File</code> &gt;
+<code>New</code>) at 3000 × 1000 pixels with a transparent
+background.</li>
+<li>Select the <strong>Text Tool</strong> (<code>T</code>), click the
+canvas, and enter your watermark text or copyright notice. Set the font,
+spacing, and styling.</li>
+<li>In the <strong>Layers</strong> panel, right-click the text layer and
+select <strong>Text to Path</strong>. This converts the letterforms into
+scalable mathematical outlines.</li>
+<li>Go to the <strong>Paths</strong> tab (next to Layers), right-click
+your new path, and choose <strong>Export Path...</strong>.</li>
+<li>Save the file as <code>watermark.svg</code>. This vector file can
+now scale to any target resolution without loss of clarity.</li>
+</ol>
+<h3 id="step-2-set-up-automated-relative-scaling">Step 2: Set Up
+Automated Relative Scaling</h3>
+<p>GIMP documents do not natively support responsive, auto-scaling smart
+objects on an active canvas. To make the watermark automatically adapt
+to varying image sizes, utilize relative percentage scaling.</p>
+<h4 id="method-a-using-the-bimp-plugin-fully-automated">Method A: Using
+the BIMP Plugin (Fully Automated)</h4>
+<p>The Batch Image Manipulation Plugin for GIMP allows you to apply a
+watermark layer with dynamic relative dimensions across single or
+multiple documents:</p>
+<ol type="1">
+<li>Install and open BIMP from <code>File</code> &gt;
+<code>Batch Image Manipulation...</code>.</li>
+<li>Click <strong>Add images</strong> to import the documents requiring
+watermarks.</li>
+<li>Under <strong>Manipulation set</strong>, click <strong>Add</strong>
+&gt; <strong>Watermark</strong>.</li>
+<li>Browse to your watermark image file.</li>
+<li>In the size settings, change the scaling mode from fixed pixels to
+<strong>Relative to target image size</strong>.</li>
+<li>Set the proportional size (for example, set the width to 20% of the
+target document width).</li>
+<li>Select your alignment anchor (e.g., bottom-right corner) and define
+pad offsets in percentages.</li>
+<li>Run the process. The watermark will calculate each document's width
+and resize proportionally.</li>
+</ol>
+<h4 id="method-b-native-template-workflow-semi-automated">Method B:
+Native Template Workflow (Semi-Automated)</h4>
+<p>If you are working manually on individual documents of differing
+sizes without third-party plugins:</p>
+<ol type="1">
+<li>Open your target document in GIMP.</li>
+<li>Go to the <strong>Paths</strong> dialog, right-click in the empty
+space, and select <strong>Import Path...</strong>. Choose your
+<code>watermark.svg</code>. Check the <strong>Merge imported
+paths</strong> box.</li>
+<li>Select the imported path and click the <strong>Path to
+Selection</strong> button at the bottom of the Paths tab.</li>
+<li>If the path does not match the scale of the new canvas, select the
+<strong>Unified Transform Tool</strong> (<code>Shift</code> +
+<code>T</code>), set the transform mode in Tool Options to
+<strong>Transform: Path</strong>, and scale the outline while holding
+<code>Ctrl</code> to preserve the aspect ratio.</li>
+<li>Create a new transparent layer named "Watermark".</li>
+<li>Fill the active selection with white or light gray using the
+<strong>Bucket Fill Tool</strong> or via <code>Edit</code> &gt;
+<code>Fill with FG Color</code>.</li>
+</ol>
+<h3 id="step-3-configure-layer-blending-and-transparency">Step 3:
+Configure Layer Blending and Transparency</h3>
+<p>A reusable watermark must remain legible across both dark and light
+backgrounds regardless of the final output size:</p>
+<ol type="1">
+<li>Set the watermark layer <strong>Opacity</strong> between
+<strong>25%</strong> and <strong>40%</strong> in the Layers dialog.</li>
+<li>Change the layer <strong>Mode</strong> from <em>Normal</em> to
+<strong>Overlay</strong> or <strong>Soft Light</strong>. This allows the
+texture of the underlying image to show through while maintaining
+visibility.</li>
+<li>Optional: Add a subtle drop shadow (<code>Filters</code> &gt;
+<code>Light and Shadow</code> &gt; <code>Drop Shadow...</code>) with a
+small blur radius and low opacity. This ensures the text remains
+readable against backgrounds with high contrast variations.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

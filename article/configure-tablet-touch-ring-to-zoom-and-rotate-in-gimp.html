@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Tablet Touch Ring to Zoom and Rotate in GIMP - gimp</title>
+    <meta name="description" content="Configuring a graphics tablet's hardware touch ring to zoom and rotate the GIMP canvas interactively allows for a faster, more fluid digital painting workflow. This setup requires matching the touch ring's directional actions in your tablet's driver soft">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-tablet-touch-ring-to-zoom-and-rotate-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Tablet Touch Ring to Zoom and Rotate in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-tablet-touch-ring-to-zoom-and-rotate-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring a graphics tablet's hardware touch ring to zoom and rotate the GIMP canvas interactively allows for a faster, more fluid digital painting workflow. This setup requires matching the touch ring's directional actions in your tablet's driver soft" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="configure-tablet-touch-ring-to-zoom-and-rotate-in-gimp">Configure
+Tablet Touch Ring to Zoom and Rotate in GIMP</h1>
+<p>Configuring a graphics tablet's hardware touch ring to zoom and
+rotate the GIMP canvas interactively allows for a faster, more fluid
+digital painting workflow. This setup requires matching the touch ring's
+directional actions in your tablet's driver software with GIMP's
+internal shortcuts for canvas manipulation, enabling seamless navigation
+directly from your hardware.</p>
+<h3 id="1-identify-gimps-zoom-and-rotation-shortcuts">1. Identify GIMP's
+Zoom and Rotation Shortcuts</h3>
+<p>By default, GIMP handles smooth canvas adjustments using combination
+keys and mouse-wheel events:</p>
+<ul>
+<li><strong>Zoom In / Zoom Out:</strong>
+<code>Ctrl + Mouse Wheel Up</code> /
+<code>Ctrl + Mouse Wheel Down</code>, or the discrete keys
+<code>+</code> (plus) and <code>-</code> (minus).</li>
+<li><strong>Rotate Canvas Clockwise / Counter-Clockwise:</strong>
+<code>Shift + Mouse Wheel Up</code> /
+<code>Shift + Mouse Wheel Down</code>. Alternatively, arbitrary rotation
+can be mapped to custom single-key shortcuts if your tablet software
+prefers discrete keystrokes.</li>
+</ul>
+<p>If you prefer custom keys for discrete rotation increments:</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Edit &gt; Keyboard
+Shortcuts</strong>.</li>
+<li>Search for "Rotate" and locate <strong>View &gt; Rotate &gt; Rotate
+15° clockwise</strong> and <strong>Rotate 15° counter-clockwise</strong>
+(or smooth rotation options).</li>
+<li>Assign convenient keys (such as <code>]</code> for clockwise and
+<code>[</code> for counter-clockwise).</li>
+</ol>
+<h3 id="2-configure-the-tablet-driver-software">2. Configure the Tablet
+Driver Software</h3>
+<p>Most graphics tablets (such as Wacom, Huion, or XP-Pen) manage touch
+ring behaviors via their proprietary desktop control panel.</p>
+<ol type="1">
+<li>Open your tablet's configuration panel (e.g., <strong>Wacom Tablet
+Properties</strong> or <strong>Huion Tablet</strong>).</li>
+<li>Select your device and ensure <strong>GIMP</strong> is selected
+under the application list so changes only affect GIMP.</li>
+<li>Locate the <strong>Touch Ring</strong> or <strong>Roller</strong>
+settings.</li>
+<li>Set up two separate modes on the ring (usually switched via the
+central toggle button):</li>
+</ol>
+<h4 id="setting-up-the-zoom-function">Setting Up the Zoom Function</h4>
+<ul>
+<li>Select the first ring mode.</li>
+<li>If a dedicated <strong>Zoom</strong> or <strong>Auto
+Scroll/Zoom</strong> preset is available, select it.</li>
+<li>If entering manual keystrokes:
+<ul>
+<li><strong>Clockwise:</strong> Set to <code>Ctrl + +</code> (or Mouse
+Wheel Up).</li>
+<li><strong>Counter-Clockwise:</strong> Set to <code>Ctrl + -</code> (or
+Mouse Wheel Down).</li>
+</ul></li>
+</ul>
+<h4 id="setting-up-the-canvas-rotation-function">Setting Up the Canvas
+Rotation Function</h4>
+<ul>
+<li>Select the second ring mode.</li>
+<li>Choose <strong>Keystroke</strong> as the action type.</li>
+<li><strong>Clockwise:</strong> Assign the keystroke combination for
+rotating clockwise (e.g., the custom <code>]</code> shortcut or
+<code>Shift + Mouse Wheel Up</code>).</li>
+<li><strong>Counter-Clockwise:</strong> Assign the keystroke combination
+for rotating counter-clockwise (e.g., the custom <code>[</code> shortcut
+or <code>Shift + Mouse Wheel Down</code>).</li>
+<li>Name the mode "Rotate Canvas" for easy on-screen display
+reference.</li>
+</ul>
+<h3 id="3-verify-gimp-input-controllers-optional">3. Verify GIMP Input
+Controllers (Optional)</h3>
+<p>If your tablet driver maps the touch ring directly as a standard
+mouse wheel instead of sending keystrokes, ensure GIMP is set to
+interpret the wheel events:</p>
+<ol type="1">
+<li>In GIMP, go to <strong>Edit &gt; Preferences</strong>.</li>
+<li>Select <strong>Input Devices &gt; Input Controllers</strong>.</li>
+<li>Under <strong>Active Controllers</strong>, double-click <strong>Main
+Mouse Wheel</strong>.</li>
+<li>Check that <strong>Scroll Up (Ctrl)</strong> is mapped to
+<code>View Zoom In</code> and <strong>Scroll Down (Ctrl)</strong> is
+mapped to <code>View Zoom Out</code>.</li>
+<li>Check that <strong>Scroll Up (Shift)</strong> is mapped to
+<code>View Rotate 15° Clockwise</code> and <strong>Scroll Down
+(Shift)</strong> is mapped to
+<code>View Rotate 15° Counter-Clockwise</code>.</li>
+<li>Click <strong>OK</strong> to save and apply.</li>
+</ol>
+<h3 id="4-test-the-behavior">4. Test the Behavior</h3>
+<p>Return to an open image in GIMP. Use the center toggle button on the
+tablet ring to cycle between Zoom and Rotate modes. Turning the ring
+clockwise or counter-clockwise will now smoothly zoom into details or
+rotate the canvas to your preferred drawing angle without needing
+keyboard input.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

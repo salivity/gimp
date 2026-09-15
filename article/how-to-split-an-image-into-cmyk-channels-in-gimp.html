@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Split an Image into CMYK Channels in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to separate an image into individual Cyan, Magenta, Yellow, and Black (CMYK) color channels using GIMP. While GIMP works natively in the RGB color space, its built-in decomposition tool allows you to easily extract CMYK channels i">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-split-an-image-into-cmyk-channels-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Split an Image into CMYK Channels in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-split-an-image-into-cmyk-channels-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to separate an image into individual Cyan, Magenta, Yellow, and Black (CMYK) color channels using GIMP. While GIMP works natively in the RGB color space, its built-in decomposition tool allows you to easily extract CMYK channels i" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-split-an-image-into-cmyk-channels-in-gimp">How to Split
+an Image into CMYK Channels in GIMP</h1>
+<p>This guide explains how to separate an image into individual Cyan,
+Magenta, Yellow, and Black (CMYK) color channels using GIMP. While GIMP
+works natively in the RGB color space, its built-in decomposition tool
+allows you to easily extract CMYK channels into separate grayscale
+layers or individual image files for commercial printing preparation or
+channel-specific editing.</p>
+<h3 id="step-1-open-your-image-in-gimp">Step 1: Open Your Image in
+GIMP</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Go to <strong>File</strong> &gt; <strong>Open</strong> and select
+the image you want to process.</li>
+</ol>
+<h3 id="step-2-open-the-decompose-tool">Step 2: Open the Decompose
+Tool</h3>
+<ol type="1">
+<li>In the top menu bar, click on <strong>Colors</strong>.</li>
+<li>Hover over the <strong>Components</strong> submenu.</li>
+<li>Click on <strong>Decompose...</strong> from the list of
+options.</li>
+</ol>
+<h3 id="step-3-select-cmyk-color-model">Step 3: Select CMYK Color
+Model</h3>
+<ol type="1">
+<li>In the <strong>Decompose</strong> dialog window that appears, locate
+the <strong>Color model</strong> dropdown menu.</li>
+<li>Select <strong>CMYK</strong> (or <strong>CMYKA</strong> if your
+image contains an alpha/transparency channel).</li>
+<li>Choose your desired output format:
+<ul>
+<li><strong>Decompose to layers (checked):</strong> Creates a single new
+image file containing four distinct layers named Cyan, Magenta, Yellow,
+and Black.</li>
+<li><strong>Decompose to layers (unchecked):</strong> Opens four
+separate grayscale image windows, one for each color channel.</li>
+</ul></li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-4-work-with-or-export-the-channels">Step 4: Work with or
+Export the Channels</h3>
+<ul>
+<li><strong>Understanding the output:</strong> Each channel appears as a
+grayscale image where white represents 100% ink density and black
+represents 0% ink density for that specific color.</li>
+<li><strong>Saving individual channels:</strong> If you decomposed to
+layers, toggle layer visibility to isolate a channel, then go to
+<strong>File</strong> &gt; <strong>Export As...</strong> to save it in
+your preferred format (such as TIFF or PNG). If decomposed to separate
+windows, export each window individually.</li>
+</ul>
+<h3 id="recombining-the-channels-optional">Recombining the Channels
+(Optional)</h3>
+<p>If you edit the individual channels and want to merge them back into
+a single image:</p>
+<ol type="1">
+<li>Ensure all channel layers are active in the decomposed image.</li>
+<li>Go to <strong>Colors</strong> &gt; <strong>Components</strong> &gt;
+<strong>Recompose</strong> (or <strong>Compose...</strong> if working
+with separate image windows).</li>
+<li>Set the color model to RGB to convert the CMYK values back into a
+standard digital display format.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

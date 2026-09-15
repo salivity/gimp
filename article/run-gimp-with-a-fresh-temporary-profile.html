@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run GIMP with a Fresh Temporary Profile - gimp</title>
+    <meta name="description" content="This guide explains how to launch GIMP with a clean, temporary configuration profile using command-line arguments. Running GIMP with isolated settings is ideal for troubleshooting corrupted preferences, debugging third-party scripts, or testing clean ins">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/run-gimp-with-a-fresh-temporary-profile">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Run GIMP with a Fresh Temporary Profile - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/run-gimp-with-a-fresh-temporary-profile" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to launch GIMP with a clean, temporary configuration profile using command-line arguments. Running GIMP with isolated settings is ideal for troubleshooting corrupted preferences, debugging third-party scripts, or testing clean ins" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="run-gimp-with-a-fresh-temporary-profile">Run GIMP with a Fresh
+Temporary Profile</h1>
+<p>This guide explains how to launch GIMP with a clean, temporary
+configuration profile using command-line arguments. Running GIMP with
+isolated settings is ideal for troubleshooting corrupted preferences,
+debugging third-party scripts, or testing clean installations without
+overwriting your existing presets, brushes, and keybindings.</p>
+<p>To force GIMP to use a temporary profile, you must redirect its
+configuration directory using the <code>--gimpdir</code> switch and
+ensure it opens as an isolated process using the
+<code>--new-instance</code> switch.</p>
+<h3 id="key-command-line-arguments">Key Command-Line Arguments</h3>
+<ul>
+<li><strong><code>--gimpdir &lt;dir&gt;</code></strong> (or
+<strong><code>-g &lt;dir&gt;</code></strong>): Tells GIMP to look for
+and store user settings, profiles, brushes, and plugin caches in the
+specified folder rather than the default user directory. Pointing this
+to an empty or non-existent directory forces GIMP to initialize a fresh,
+default profile.</li>
+<li><strong><code>--new-instance</code></strong> (or
+<strong><code>-n</code></strong>): Forces GIMP to launch a brand-new
+process rather than communicating with an already open GIMP session that
+uses your regular profile.</li>
+</ul>
+<h3 id="platform-specific-examples">Platform-Specific Examples</h3>
+<h4 id="linux-and-macos">Linux and macOS</h4>
+<p>On Unix-like systems, you can create a disposable temporary directory
+on the fly using the <code>mktemp</code> command:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">--new-instance</span> <span class="at">--gimpdir</span> <span class="va">$(</span><span class="fu">mktemp</span> <span class="at">-d</span><span class="va">)</span></span></code></pre></div>
+<p>This dynamically creates an empty folder in your system's temporary
+directory, runs GIMP with a default configuration, and keeps your
+original configuration untouched.</p>
+<p>To run GIMP in a dedicated testing folder you can delete later:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> /tmp/gimp-test</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-n</span> <span class="at">-g</span> /tmp/gimp-test</span></code></pre></div>
+<h4 id="windows">Windows</h4>
+<p>On Windows, you must provide a path to a non-existent or empty
+folder. Run the following command in Command Prompt (adjusting the path
+to your <code>gimp.exe</code> if necessary):</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C:\Program Files\GIMP 2\bin\gimp-2.10.exe&quot;</span> --new-instance -<span class="at">-gimpdir</span> <span class="st">&quot;</span><span class="pp">%</span><span class="va">TEMP</span><span class="pp">%</span><span class="st">\gimp-temp&quot;</span></span></code></pre></div>
+<p>In Windows PowerShell:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> <span class="st">&quot;C:\Program Files\GIMP 2\bin\gimp-2.10.exe&quot;</span> <span class="op">-</span>n <span class="op">-</span>g <span class="st">&quot;</span><span class="va">$env</span><span class="op">:</span><span class="va">TEMP</span><span class="st">\gimp-temp&quot;</span></span></code></pre></div>
+<h3 id="cleanup">Cleanup</h3>
+<p>Because GIMP populates the target directory with fresh configuration
+files upon opening, you can discard this temporary profile at any time
+by simply deleting the target folder (<code>/tmp/gimp-test</code> or
+<code>%TEMP%\gimp-temp</code>) after closing GIMP.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libtiff for Tiled and Multi-Page TIFFs in GIMP - gimp</title>
+    <meta name="description" content="The open-source libtiff library serves as the foundational backend engine for GIMP’s TIFF plug-in, handling the low-level encoding, decoding, and parsing of Tagged Image File Format structures. By utilizing libtiff, GIMP can accurately read and write c">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/libtiff-for-tiled-and-multi-page-tif-fs-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Libtiff for Tiled and Multi-Page TIFFs in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/libtiff-for-tiled-and-multi-page-tif-fs-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The open-source libtiff library serves as the foundational backend engine for GIMP’s TIFF plug-in, handling the low-level encoding, decoding, and parsing of Tagged Image File Format structures. By utilizing libtiff, GIMP can accurately read and write c" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="libtiff-for-tiled-and-multi-page-tiffs-in-gimp">Libtiff for
+Tiled and Multi-Page TIFFs in GIMP</h1>
+<p>The open-source <code>libtiff</code> library serves as the
+foundational backend engine for GIMP’s TIFF plug-in, handling the
+low-level encoding, decoding, and parsing of Tagged Image File Format
+structures. By utilizing <code>libtiff</code>, GIMP can accurately read
+and write complex TIFF variants without reinventing file-level
+specifications. Specifically, <code>libtiff</code> abstracts the
+complexities of Image File Directories (IFDs) to support multi-page
+documents as individual layers, while providing tile-based stream
+processing to efficiently load and save massive, high-resolution tiled
+images without overwhelming system memory.</p>
+<h3 id="the-role-of-libtiff-in-gimp-architecture">The Role of libtiff in
+GIMP Architecture</h3>
+<p>GIMP does not natively parse raw TIFF binary data within its core
+codebase. Instead, it relies on its dedicated TIFF plug-in
+(<code>file-tiff-load</code> and <code>file-tiff-save</code>), which
+directly links against the <code>libtiff</code> C library. When an image
+operation takes place, GIMP delegates header reading, tag
+identification, color profile extraction, and compression handling (such
+as LZW, Deflate, or JPEG within TIFF) to <code>libtiff</code>. This
+separation allows GIMP to focus on graphical processing and layer
+composition while <code>libtiff</code> ensures strict compliance with
+standard TIFF specifications.</p>
+<h3 id="managing-multi-page-tiff-files">Managing Multi-Page TIFF
+Files</h3>
+<p>In a TIFF container, multiple sub-files or pages are organized into
+separate Image File Directories (IFDs). Managing these structures
+requires traversing linked lists of metadata within the file:</p>
+<ul>
+<li><strong>Input (Loading):</strong> During the import process, GIMP
+queries <code>libtiff</code> using directory-traversal functions like
+<code>TIFFReadDirectory()</code> and <code>TIFFSetDirectory()</code>.
+<code>libtiff</code> iterates through each IFD sequentially, extracting
+image dimensions, color space definitions, and pixel data for each page.
+GIMP then converts each of these discrete pages into a separate layer,
+allowing users to view and edit multi-page documents—such as multi-page
+fax documents or digital scans—within a single workspace.</li>
+<li><strong>Output (Exporting):</strong> When exporting multi-layered
+compositions, GIMP can serialize each layer as an individual page.
+<code>libtiff</code> facilitates this through
+<code>TIFFWriteDirectory()</code>, which flushes current image data and
+metadata tags to the output stream and establishes a new IFD for the
+subsequent layer. This allows users to generate fully compliant
+multi-page TIFF archives directly from GIMP's layer stack.</li>
+</ul>
+<h3 id="handling-tiled-tiff-input-and-output">Handling Tiled TIFF Input
+and Output</h3>
+<p>Unlike conventional stripped TIFFs that break images into horizontal
+bands, tiled TIFFs divide the canvas into a two-dimensional grid of
+rectangular blocks. This layout is standard in medical imaging,
+cartography, and large-format printing:</p>
+<ul>
+<li><strong>Memory Efficiency:</strong> Tiled layouts prevent the need
+to load multi-gigabyte files into system RAM all at once. Through
+<code>libtiff</code>’s specialized API functions—such as
+<code>TIFFReadTile()</code> and <code>TIFFWriteTile()</code>—GIMP can
+access isolated regions of an image on demand.</li>
+<li><strong>Alignment with GEGL:</strong> GIMP’s core processing engine,
+GEGL (Generic Graphical Library), natively organizes pixel data into
+internal memory tiles. <code>libtiff</code>’s tile-oriented I/O matches
+this architecture closely. During input, tiles read by
+<code>libtiff</code> can be directly mapped into GEGL's tile cache,
+dramatically speeding up rendering and reducing memory consumption
+during panning and zooming.</li>
+<li><strong>Exporting Tiled Structures:</strong> When configured to
+export tiled files, GIMP divides the image canvas according to specified
+tile dimensions (commonly 256x256 or 512x512 pixels). GIMP feeds these
+discrete blocks to <code>libtiff</code>, which handles the internal
+offset tables, per-tile compression, and boundary-tile padding required
+by the TIFF standard.</li>
+</ul>
+<p>By utilizing <code>libtiff</code> for these demanding operations,
+GIMP maintains high standards-compliance, reliable data integrity, and
+optimal performance across large-scale and multi-layered image
+workflows.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

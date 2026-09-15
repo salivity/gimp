@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Focus Stack in GIMP for Macro Photography - gimp</title>
+    <meta name="description" content="Focus stacking is a specialized editing technique that combines multiple images focused at different depths to produce a final composite with an extended depth of field. While GIMP does not feature a single-click native focus stacking button, you can ach">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-focus-stack-in-gimp-for-macro-photography">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Focus Stack in GIMP for Macro Photography - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-focus-stack-in-gimp-for-macro-photography" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Focus stacking is a specialized editing technique that combines multiple images focused at different depths to produce a final composite with an extended depth of field. While GIMP does not feature a single-click native focus stacking button, you can ach" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-focus-stack-in-gimp-for-macro-photography">How to Focus
+Stack in GIMP for Macro Photography</h1>
+<p>Focus stacking is a specialized editing technique that combines
+multiple images focused at different depths to produce a final composite
+with an extended depth of field. While GIMP does not feature a
+single-click native focus stacking button, you can achieve professional
+results by importing your image sequence as layers, aligning them to
+correct for focus breathing, and using layer masks to reveal only the
+sharpest regions of each frame.</p>
+<h3 id="step-1-open-images-as-layers">Step 1: Open Images as Layers</h3>
+<p>Launch GIMP and navigate to <strong>File &gt; Open as
+Layers</strong>. Select all the macro photographs from your focus
+bracket sequence and open them. In the Layers panel, arrange the images
+in order, typically with the shot focused on the closest element at the
+bottom and the furthest focus point at the top, or vice versa.</p>
+<h3 id="step-2-align-the-image-layers">Step 2: Align the Image
+Layers</h3>
+<p>Focus stacking requires precise alignment because adjusting the focus
+ring introduces minor focal length shifts, known as focus breathing.</p>
+<p>To align layers natively in GIMP:</p>
+<ol type="1">
+<li>Turn down the opacity of the active layer to around 50% so the layer
+below is visible.</li>
+<li>Select the <strong>Move Tool</strong> (or <strong>Unified Transform
+Tool</strong>) to adjust the position, scale, and rotation until the
+overlapping features match.</li>
+<li>Reset opacity to 100% and repeat this alignment sequentially for
+every layer.</li>
+</ol>
+<p>Alternatively, you can install the third-party GIMP plugin
+<strong>Align Image Layers</strong> or pre-align your images using
+<strong>Hugin</strong> command-line tools before importing them into
+GIMP.</p>
+<h3 id="step-3-apply-layer-masks">Step 3: Apply Layer Masks</h3>
+<p>Once aligned, you must isolate the in-focus sections of each
+layer:</p>
+<ol type="1">
+<li>Right-click the top layer in the Layers panel and select <strong>Add
+Layer Mask</strong>. Choose <strong>White (full opacity)</strong>.</li>
+<li>Select the <strong>Paintbrush Tool</strong> with a soft-edged
+brush.</li>
+<li>Set your foreground color to <strong>Black</strong> and paint away
+the blurry areas of the top layer to reveal the sharper areas from the
+layer directly beneath it.</li>
+<li>To refine the process, hide lower layers periodically to verify that
+you are keeping only crisp, high-contrast details.</li>
+<li>Move down through the layer stack, adding a white mask to each
+consecutive layer and painting out out-of-focus areas until all in-focus
+planes are visible simultaneously.</li>
+</ol>
+<h3 id="step-4-utilize-edge-detection-for-semi-automated-masks">Step 4:
+Utilize Edge Detection for Semi-Automated Masks</h3>
+<p>For complex subjects with many fine details:</p>
+<ol type="1">
+<li>Duplicate a layer.</li>
+<li>Go to <strong>Filters &gt; Edge-Detect &gt; Edge...</strong> or
+<strong>Sobel</strong> to generate an edge map highlighting areas of
+high contrast (sharp focus).</li>
+<li>Desaturate the edge-detected layer (<strong>Colors &gt;
+Desaturate</strong>) and increase its contrast via <strong>Colors &gt;
+Levels</strong>.</li>
+<li>Copy this high-contrast edge map directly into the layer mask of
+your original image layer to automatically mask out soft background
+elements.</li>
+</ol>
+<h3 id="step-5-merge-and-crop-the-final-composite">Step 5: Merge and
+Crop the Final Composite</h3>
+<ol type="1">
+<li>Go to <strong>Layer &gt; New from Visible</strong> to merge the
+combined stack into a single top layer.</li>
+<li>Inspect the edges of the frame. Because the images shifted during
+alignment, the borders will likely contain uneven or empty areas.</li>
+<li>Select the <strong>Crop Tool</strong> and trim the edges to frame
+your final, fully sharp macro photograph.</li>
+<li>Go to <strong>File &gt; Export As</strong> to save your composite
+image in your preferred format.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

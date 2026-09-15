@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use GEGL Tileable Blur in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to use GIMP's GEGL Tileable Blur filter to eliminate visible boundary seams in repeating textures. You will learn the process of testing your texture for edge mismatches, configuring the Tileable Blur filter to smooth opposing edg">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-gegl-tileable-blur-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use GEGL Tileable Blur in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-gegl-tileable-blur-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use GIMP's GEGL Tileable Blur filter to eliminate visible boundary seams in repeating textures. You will learn the process of testing your texture for edge mismatches, configuring the Tileable Blur filter to smooth opposing edg" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-gegl-tileable-blur-in-gimp">How to Use GEGL Tileable
+Blur in GIMP</h1>
+<p>This guide explains how to use GIMP's GEGL Tileable Blur filter to
+eliminate visible boundary seams in repeating textures. You will learn
+the process of testing your texture for edge mismatches, configuring the
+Tileable Blur filter to smooth opposing edges, and verifying the final
+result to produce seamless assets for 3D modeling, game design, or web
+backgrounds.</p>
+<h3 id="step-1-prepare-the-source-image">Step 1: Prepare the Source
+Image</h3>
+<ol type="1">
+<li>Open GIMP and load your texture image via <strong>File &gt;
+Open</strong>.</li>
+<li>Crop the image to your desired dimensions using the <strong>Crop
+Tool (Shift + C)</strong>. For game engines or standard 3D workflows,
+consider scaling to power-of-two dimensions (such as 1024×1024 or
+2048×2048) by selecting <strong>Image &gt; Scale Image</strong>.</li>
+<li>Ensure the layer matches the image size by right-clicking the layer
+in the Layers panel and choosing <strong>Layer to Image
+Size</strong>.</li>
+</ol>
+<h3 id="step-2-apply-the-tileable-blur-filter">Step 2: Apply the
+Tileable Blur Filter</h3>
+<p>Unlike a standard Gaussian blur that softens the entire canvas, the
+Tileable Blur filter blends opposing boundaries (left with right, top
+with bottom) so that the edges transition smoothly when placed side by
+side.</p>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Filters &gt; Blur &gt;
+Tileable Blur...</strong></li>
+<li>In the dialog box, ensure the <strong>Preview</strong> checkbox is
+enabled to monitor your changes in real time.</li>
+<li>Configure the blur parameters:
+<ul>
+<li><strong>Radius</strong>: Determines how far into the image the blur
+extends from the borders. Set a value that is large enough to disguise
+harsh seams without washing out the texture details in the
+interior.</li>
+<li><strong>Horizontal / Vertical</strong>: You can unchain these values
+if your texture tiles in only one direction (e.g., horizontal
+floorboards or vertical stripes). Keep them chained for two-dimensional
+tiling.</li>
+<li><strong>Blur Type</strong>: Choose between <strong>IIR</strong>
+(Infinite Impulse Response) and <strong>RLE</strong> (Run-Length
+Encoded). IIR is best suited for photographic textures and smooth
+gradients, while RLE works better for sharper, computer-generated
+graphics.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to apply the filter.</li>
+</ol>
+<h3 id="step-3-inspect-the-texture-using-the-offset-tool">Step 3:
+Inspect the Texture Using the Offset Tool</h3>
+<p>To verify that the boundary seams have been fully eliminated, offset
+the texture so that its borders meet at the center of the canvas.</p>
+<ol type="1">
+<li>Go to <strong>Layer &gt; Transform &gt; Offset...</strong> (or press
+<strong>Shift + Ctrl + O</strong>).</li>
+<li>Click the <strong>By width/2, height/2</strong> button. This shifts
+the layer so the outer edges run directly across the middle of the
+screen.</li>
+<li>Set the <strong>Edge Behavior</strong> to <strong>Wrap
+around</strong> and click <strong>OK</strong>.</li>
+<li>Examine the center horizontal and vertical cross-sections of the
+image:
+<ul>
+<li>If the seams are invisible, your texture is seamless.</li>
+<li>If a visible line remains, use the <strong>Clone Tool (C)</strong>
+or <strong>Healing Tool (H)</strong> at low opacity to blend any
+remaining hard edges across the cross-section.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-export-the-seamless-texture">Step 4: Export the Seamless
+Texture</h3>
+<p>Once the borders blend cleanly without visible lines:</p>
+<ol type="1">
+<li>Optionally offset the image once more using the
+<strong>Offset</strong> tool to return it to its original layout, or
+leave it as is, since the texture now wraps perfectly regardless of
+alignment.</li>
+<li>Go to <strong>File &gt; Export As...</strong></li>
+<li>Choose your preferred format (such as PNG for lossless quality or
+JPEG for compressed web assets) and save the final file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

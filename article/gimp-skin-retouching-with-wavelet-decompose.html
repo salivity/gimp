@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Skin Retouching with Wavelet Decompose - gimp</title>
+    <meta name="description" content="This guide explains how to achieve professional, non-destructive skin retouching in GIMP using the Wavelet Decompose filter. By splitting your portrait into distinct layers of texture and color, you can remove acne, scars, and blemishes on high-frequency">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-skin-retouching-with-wavelet-decompose">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Skin Retouching with Wavelet Decompose - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-skin-retouching-with-wavelet-decompose" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to achieve professional, non-destructive skin retouching in GIMP using the Wavelet Decompose filter. By splitting your portrait into distinct layers of texture and color, you can remove acne, scars, and blemishes on high-frequency" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-skin-retouching-with-wavelet-decompose">GIMP Skin
+Retouching with Wavelet Decompose</h1>
+<p>This guide explains how to achieve professional, non-destructive skin
+retouching in GIMP using the Wavelet Decompose filter. By splitting your
+portrait into distinct layers of texture and color, you can remove acne,
+scars, and blemishes on high-frequency layers while simultaneously
+smoothing uneven skin tones on low-frequency layers, guaranteeing that
+natural pore structure remains crisp and sharp rather than artificially
+blurred.</p>
+<h3 id="step-1-apply-wavelet-decompose">Step 1: Apply Wavelet
+Decompose</h3>
+<ol type="1">
+<li>Open your portrait in GIMP and duplicate the base image layer
+(<code>Ctrl + Shift + D</code> or <code>Cmd + Shift + D</code>) to
+preserve an original backup.</li>
+<li>Select the duplicated layer and navigate to <strong>Filters &gt;
+Enhance &gt; Wavelet Decompose</strong>.</li>
+<li>Set the <strong>Scales</strong> slider between 5 and 7 (5 or 6 works
+best for standard portraits; higher resolutions may require 7).</li>
+<li>Ensure <strong>Create a layer group</strong> is checked.</li>
+<li>Click <strong>OK</strong>. GIMP will generate a folder containing a
+series of grey "Scale" layers (fine-to-coarse details) and a single
+"Residual" layer at the bottom (broad color and tone).</li>
+</ol>
+<h3 id="step-2-identify-your-texture-layers">Step 2: Identify Your
+Texture Layers</h3>
+<ul>
+<li><strong>Scales 1 and 2 (High Frequency):</strong> Contain
+micro-textures such as fine pores, individual hairs, small flakes, and
+tiny pimples.</li>
+<li><strong>Scales 3 to 5 (Medium Frequency):</strong> Contain larger
+bumps, deep wrinkles, and localized shadows.</li>
+<li><strong>Residual (Low Frequency):</strong> Contains all the base
+color, redness, highlights, and broad skin tones with no sharp
+detail.</li>
+</ul>
+<h3 id="step-3-remove-blemishes-on-high-frequency-layers">Step 3: Remove
+Blemishes on High-Frequency Layers</h3>
+<p>To remove pimples, ingrown hairs, and surface flaws without
+blurring:</p>
+<ol type="1">
+<li>Select <strong>Scale 1</strong> or <strong>Scale 2</strong> in the
+Layers panel (identify which layer contains the visible defect by
+toggling layer visibility).</li>
+<li>Select the <strong>Healing Tool</strong> (<code>H</code>) or the
+<strong>Clone Tool</strong> (<code>C</code>).</li>
+<li>In the Tool Options, set the <strong>Source</strong> to
+<strong>Image</strong> and ensure <strong>Sample merged</strong> is
+<strong>unchecked</strong>. The tool must only sample the active grey
+layer.</li>
+<li>Set brush hardness to around 50–75% so texture borders blend
+naturally.</li>
+<li>Hold <code>Ctrl</code> (or <code>Cmd</code>) and click an adjacent,
+clean patch of skin on the active grey layer to set your sample
+point.</li>
+<li>Paint over the blemish. The tool copies clean pore texture over the
+flaw without altering underlying skin tones or creating soft, blurry
+artifacts.</li>
+</ol>
+<h3 id="step-4-smooth-skin-tone-on-the-low-frequency-layer">Step 4:
+Smooth Skin Tone on the Low-Frequency Layer</h3>
+<p>To eliminate blotchiness, redness, or dark circles without touching
+the pores:</p>
+<ol type="1">
+<li>Select the <strong>Residual</strong> layer at the bottom of the
+wavelet group.</li>
+<li>Select the <strong>Healing Tool</strong> or a soft
+<strong>Paintbrush/Airbrush</strong> set to a low opacity (15–25%).</li>
+<li>With <strong>Sample merged</strong> unchecked, sample an area with
+smooth, ideal skin tone.</li>
+<li>Gently paint over blotchy patches, redness around the nose, or
+uneven shadows under the eyes.</li>
+<li>Alternatively, use the <strong>Free Select Tool</strong>
+(<code>F</code>) with a feathered edge to outline an uneven color region
+on the Residual layer, then apply <strong>Filters &gt; Blur &gt;
+Gaussian Blur</strong> with a low radius (5–15 px). Because the
+high-frequency scales sit above the Residual layer in the stack, this
+blur only affects color transitions, leaving pore definition completely
+sharp.</li>
+</ol>
+<h3 id="step-5-final-review">Step 5: Final Review</h3>
+<ol type="1">
+<li>Zoom out to 100% to evaluate the result in context.</li>
+<li>If any area looks overly edited, select the specific Scale layer and
+lower its layer opacity slightly to reintroduce a controlled amount of
+original variation.</li>
+<li>Once satisfied, right-click the Wavelet Decompose layer group and
+select <strong>Merge Layer Group</strong> or <strong>New from
+Visible</strong> to complete the edit.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

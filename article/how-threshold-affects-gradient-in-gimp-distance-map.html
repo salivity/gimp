@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Threshold Affects Gradient in GIMP Distance Map - gimp</title>
+    <meta name="description" content="In GIMP, the Distance Map filter generates a grayscale gradient where pixel brightness represents the physical distance to the nearest boundary. The Threshold parameter directly controls the binarization cutoff point that defines these boundaries from se">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-threshold-affects-gradient-in-gimp-distance-map">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Threshold Affects Gradient in GIMP Distance Map - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-threshold-affects-gradient-in-gimp-distance-map" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the Distance Map filter generates a grayscale gradient where pixel brightness represents the physical distance to the nearest boundary. The Threshold parameter directly controls the binarization cutoff point that defines these boundaries from se" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-threshold-affects-gradient-in-gimp-distance-map">How
+Threshold Affects Gradient in GIMP Distance Map</h1>
+<p>In GIMP, the Distance Map filter generates a grayscale gradient where
+pixel brightness represents the physical distance to the nearest
+boundary. The <strong>Threshold</strong> parameter directly controls the
+binarization cutoff point that defines these boundaries from
+semi-transparent or anti-aliased inputs. By shifting the exact pixel
+coordinates where an edge begins, the threshold expands or contracts the
+source geometry, directly dictating where the distance calculation
+starts and how wide the resulting gradient radius extends across the
+canvas.</p>
+<h3 id="the-role-of-threshold-in-edge-detection">The Role of Threshold
+in Edge Detection</h3>
+<p>The Distance Map filter relies on clear binary boundaries (inside vs.
+outside) to calculate spatial distances. When working with anti-aliased
+text, feathered selections, or images with smooth alpha transitions,
+pixels contain intermediate opacity or brightness values between 0 and
+255 (or 0.0 to 1.0 in GEGL).</p>
+<p>The threshold parameter establishes the exact value cutoff:</p>
+<ul>
+<li>Any pixel with an intensity or alpha value above the threshold is
+treated as solid obstacle/source geometry.</li>
+<li>Any pixel below the threshold is treated as empty space across which
+distance is calculated.</li>
+</ul>
+<h3 id="how-threshold-alters-gradient-radius">How Threshold Alters
+Gradient Radius</h3>
+<p>Because the gradient radius measures the distance outward (or inward)
+from the detected boundary, moving the boundary directly alters the
+visible spread of the gradient.</p>
+<ol type="1">
+<li><p><strong>Expanding the Source (Lower Threshold):</strong> Lowering
+the threshold forces faint, semi-transparent pixels on soft edges to be
+classified as part of the source object. This physically expands the
+detected perimeter outward. As a result, outward distance gradients
+begin further away from the object's visual core, expanding the exterior
+reach of the gradient while shrinking any inward gradients.</p></li>
+<li><p><strong>Shrinking the Source (Higher Threshold):</strong>
+Increasing the threshold requires pixels to be much denser or brighter
+to be considered part of the shape. Soft edges are discarded as empty
+space, effectively eroding the geometry. This contracts the detected
+perimeter inward, causing outward distance gradients to start closer to
+the center and inward gradients to terminate sooner.</p></li>
+<li><p><strong>Steepness and Perceived Radius:</strong> The Distance Map
+calculates distances linearly up to a specified maximum value. While the
+mathematical slope of the distance calculation remains constant per
+pixel, the spatial placement of that ramp shifts based on the threshold.
+On shapes with shallow, gradual opacity fades, a slight adjustment to
+the threshold produces a large shift in the starting point of the
+gradient, noticeably stretching or compressing the visible radius of the
+distance field.</p></li>
+</ol>
+<h3 id="practical-application">Practical Application</h3>
+<p>To maintain an accurate, predictable gradient radius:</p>
+<ul>
+<li><strong>For crisp, hard-edged shapes:</strong> The threshold has
+minimal impact on the gradient radius because the boundary does not
+contain intermediate values.</li>
+<li><strong>For blurred, feathered, or soft-edged shapes:</strong> Set
+the threshold to <code>0.5</code> (or mid-gray) for a balanced
+representation of the visual boundary. Lower the threshold if you need
+the gradient radius to encapsulate subtle glows or transparent fringes,
+or raise it to isolate only the fully opaque core before generating the
+distance falloff.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Matting Levin in GIMP - gimp</title>
+    <meta name="description" content="GIMP’s Foreground Select Tool includes the Matting Levin algorithm, a specialized matting engine designed to extract complex subjects like hair, fur, and semi-transparent objects from intricate backgrounds. This guide outlines how to select the Matting">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-matting-levin-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Matting Levin in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-matting-levin-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s Foreground Select Tool includes the Matting Levin algorithm, a specialized matting engine designed to extract complex subjects like hair, fur, and semi-transparent objects from intricate backgrounds. This guide outlines how to select the Matting" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-matting-levin-in-gimp">How to Use Matting Levin in
+GIMP</h1>
+<p>GIMP’s Foreground Select Tool includes the Matting Levin algorithm, a
+specialized matting engine designed to extract complex subjects like
+hair, fur, and semi-transparent objects from intricate backgrounds. This
+guide outlines how to select the Matting Levin engine, paint strokes to
+define your subject, and extract a clean foreground mask directly in
+GIMP.</p>
+<h3 id="step-1-open-your-image-and-activate-the-tool">Step 1: Open Your
+Image and Activate the Tool</h3>
+<ol type="1">
+<li>Open your image in GIMP by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Select the <strong>Foreground Select Tool</strong> from the Toolbox,
+or navigate to <strong>Tools &gt; Selection Tools &gt; Foreground
+Select</strong>.</li>
+</ol>
+<h3 id="step-2-create-the-initial-rough-selection">Step 2: Create the
+Initial Rough Selection</h3>
+<ol type="1">
+<li>Click and drag your mouse around the subject you want to extract to
+create a rough boundary enclosing the subject.</li>
+<li>Close the loop around the subject and press <strong>Enter</strong>.
+A colored overlay (usually dark blue) will cover the unselected
+background area.</li>
+</ol>
+<h3 id="step-3-switch-the-engine-to-matting-levin">Step 3: Switch the
+Engine to Matting Levin</h3>
+<ol type="1">
+<li>Look at the <strong>Tool Options</strong> panel on the side of your
+workspace.</li>
+<li>Find the <strong>Engine</strong> dropdown menu.</li>
+<li>Select <strong>Matting Levin</strong> from the list (the default is
+often set to Matting Global).</li>
+<li>Optionally, adjust the <strong>Levels</strong> and <strong>Active
+Levels</strong> settings to balance extraction accuracy and processing
+performance.</li>
+</ol>
+<h3 id="step-4-mark-foreground-and-background-areas">Step 4: Mark
+Foreground and Background Areas</h3>
+<ol type="1">
+<li>Ensure the <strong>Draw foreground</strong> radio button is selected
+in the Tool Options.</li>
+<li>Use the brush to paint a continuous stroke across the main body of
+the subject you wish to keep. You do not need to cover the entire
+subject—focus on covering the dominant colors and core areas.</li>
+<li>If the background contains complex areas close to the edges, switch
+to <strong>Draw background</strong> in the Tool Options and paint over
+those background sections.</li>
+<li>If you need to refine semi-transparent edges, select <strong>Draw
+unknown</strong> and paint directly over the ambiguous boundaries (such
+as fine strands of hair).</li>
+</ol>
+<h3 id="step-5-preview-and-generate-the-selection">Step 5: Preview and
+Generate the Selection</h3>
+<ol type="1">
+<li>Check the <strong>Preview mask</strong> box in the Tool Options
+dialog to see how the Matting Levin algorithm processes the edges.</li>
+<li>If edges are missing or background elements are included, paint
+additional foreground or background strokes until the preview is
+accurate.</li>
+<li>Once satisfied with the matte, press <strong>Enter</strong> or click
+the <strong>Select</strong> button in the floating dialog.</li>
+<li>GIMP will convert the matte into an active selection boundary
+(marching ants).</li>
+</ol>
+<h3 id="step-6-isolate-the-foreground">Step 6: Isolate the
+Foreground</h3>
+<ol type="1">
+<li>Copy the selection using <strong>Ctrl + C</strong> (Windows/Linux)
+or <strong>Cmd + C</strong> (macOS) and paste it into a new layer.</li>
+<li>Alternatively, go to <strong>Layer &gt; Mask &gt; Add Layer
+Mask</strong>, choose <strong>Selection</strong>, and click
+<strong>Add</strong> to apply the extraction non-destructively.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

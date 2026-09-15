@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16-Bit Integer vs 32-Bit Float in GIMP Explained - gimp</title>
+    <meta name="description" content="In GIMP, choosing between 16-bit integer precision and 32-bit floating-point precision fundamentally dictates how color depth, dynamic range, and editing headroom are handled. While 16-bit integer precision provides ample color depth to eliminate banding">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/16-bit-integer-vs-32-bit-float-in-gimp-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="16-Bit Integer vs 32-Bit Float in GIMP Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/16-bit-integer-vs-32-bit-float-in-gimp-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, choosing between 16-bit integer precision and 32-bit floating-point precision fundamentally dictates how color depth, dynamic range, and editing headroom are handled. While 16-bit integer precision provides ample color depth to eliminate banding" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="16-bit-integer-vs-32-bit-float-in-gimp-explained">16-Bit Integer
+vs 32-Bit Float in GIMP Explained</h1>
+<p>In GIMP, choosing between 16-bit integer precision and 32-bit
+floating-point precision fundamentally dictates how color depth, dynamic
+range, and editing headroom are handled. While 16-bit integer precision
+provides ample color depth to eliminate banding in standard photography
+with moderate resource usage, 32-bit floating-point precision unlocks
+high dynamic range (HDR) capabilities and unclamped color values at the
+cost of higher memory and processing demands.</p>
+<h3 id="understanding-16-bit-integer-precision">Understanding 16-Bit
+Integer Precision</h3>
+<p>In 16-bit integer mode, color values are stored as whole numbers
+ranging from 0 to 65,535 per color channel. This is a massive upgrade
+over standard 8-bit images (which only offer 256 values per channel),
+effectively eliminating color banding, posterization, and quantization
+errors during standard tone adjustments.</p>
+<p>However, integer math is "clamped." The minimum value (0) represents
+pure black, and the maximum value (65,535) represents pure white. Any
+operation that pushes a pixel value below zero or above the maximum will
+discard that data instantly. Once highlights are clipped or shadows are
+crushed in 16-bit integer mode, the lost data cannot be recovered by
+subsequent adjustments.</p>
+<h3 id="understanding-32-bit-floating-point-precision">Understanding
+32-Bit Floating-Point Precision</h3>
+<p>In 32-bit floating-point mode, colors are calculated using decimal
+numbers, typically mapped from 0.0 (black) to 1.0 (white). Because it
+uses floating-point arithmetic, GIMP is not bound by fixed upper and
+lower limits. Values can drop below 0.0 or rise far above 1.0.</p>
+<p>This unclamped range provides true High Dynamic Range (HDR)
+processing. If an aggressive curves or exposure adjustment temporarily
+pushes highlights into pure white, the pixel data above 1.0 is preserved
+rather than clipped. Lowering the exposure later in the edit will
+completely restore the highlight details. Floating-point precision also
+prevents rounding errors over dozens of consecutive layer blend
+operations and complex filter passes.</p>
+<h3 id="key-differences-at-a-glance">Key Differences at a Glance</h3>
+<ul>
+<li><strong>Dynamic Range and Clipping:</strong> 16-bit integer clips
+values strictly between black (0%) and white (100%). 32-bit
+floating-point supports values brighter than white and darker than
+black, allowing non-destructive exposure recovery.</li>
+<li><strong>Accuracy:</strong> 32-bit floating-point virtually
+eliminates mathematical rounding errors across multiple complex
+adjustments, while 16-bit integer may introduce tiny rounding artifacts
+over extended workflows.</li>
+<li><strong>System Resource Usage:</strong> 32-bit floating-point images
+require double the RAM and scratch disk space of 16-bit integer files,
+and quadruple that of standard 8-bit files. Operations and brush strokes
+can be noticeably slower on older hardware.</li>
+<li><strong>Export Compatibility:</strong> Most standard web formats
+(JPEG, standard PNG) cannot display floating-point data and will clip
+out-of-range values during export. 32-bit float is mainly useful
+<em>during</em> the editing process or when exporting to specialized
+formats like OpenEXR or Radiance HDR.</li>
+</ul>
+<h3 id="which-precision-should-you-choose">Which Precision Should You
+Choose?</h3>
+<p>Choose <strong>16-bit integer</strong> precision if you are editing
+standard RAW photographs for web display or print. It provides more than
+enough tonal smoothness to prevent banding while keeping GIMP responsive
+and memory usage manageable.</p>
+<p>Choose <strong>32-bit floating-point</strong> precision if you are
+working with multi-exposure HDR composites, CGI rendering passes,
+scientific imagery, or workflows involving drastic color grading and
+exposure manipulation where highlight recovery is essential.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

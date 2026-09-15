@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run GIMP Script from Command Line and Exit - gimp</title>
+    <meta name="description" content="Running GIMP in batch mode allows you to automate image processing tasks by executing scripts directly from the terminal. By combining headless operation flags with the batch evaluation command and a termination call, GIMP can execute custom Script-Fu or">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/run-gimp-script-from-command-line-and-exit">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Run GIMP Script from Command Line and Exit - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/run-gimp-script-from-command-line-and-exit" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Running GIMP in batch mode allows you to automate image processing tasks by executing scripts directly from the terminal. By combining headless operation flags with the batch evaluation command and a termination call, GIMP can execute custom Script-Fu or" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="run-gimp-script-from-command-line-and-exit">Run GIMP Script from
+Command Line and Exit</h1>
+<p>Running GIMP in batch mode allows you to automate image processing
+tasks by executing scripts directly from the terminal. By combining
+headless operation flags with the batch evaluation command and a
+termination call, GIMP can execute custom Script-Fu or Python-Fu
+routines and shut down automatically once execution completes, freeing
+up system resources without requiring manual user interaction.</p>
+<h3 id="the-essential-command-line-arguments">The Essential Command-Line
+Arguments</h3>
+<p>To run a script and immediately terminate the GIMP process, you must
+combine the <code>--no-interface</code> flag with two
+<code>--batch</code> commands:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;(your-script-call argument1 argument2)&#39;</span> <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<ul>
+<li><strong><code>-i</code> or <code>--no-interface</code></strong>:
+Launches GIMP without loading the graphical user interface. This is
+required for headless environments, automated shell scripts, or remote
+server jobs.</li>
+<li><strong><code>-b</code> or
+<code>--batch &lt;command&gt;</code></strong>: Instructs GIMP to execute
+the provided command string using its internal interpreter (Script-Fu by
+default).</li>
+<li><strong><code>-b '(gimp-quit 0)'</code></strong>: Forces the GIMP
+process to cleanly terminate with an exit code of <code>0</code> once
+the preceding batch commands have finished processing. If you omit this
+argument, GIMP will execute your script and remain open in the
+background indefinitely, waiting for standard input.</li>
+</ul>
+<h3 id="practical-script-fu-example">Practical Script-Fu Example</h3>
+<p>To call a native Script-Fu function and exit, execute:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;(script-fu-invert-colors &quot;image.png&quot;)&#39;</span> <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<p>GIMP evaluates multiple <code>-b</code> parameters in sequential
+order. The image processing script runs first, and the subsequent
+<code>(gimp-quit 0)</code> command executes only after the first command
+has finished.</p>
+<h3 id="python-fu-execution">Python-Fu Execution</h3>
+<p>If your automation uses Python-Fu instead of Scheme/Script-Fu, the
+same termination argument applies, but the script invocation
+changes:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;import my_script; my_script.run(&quot;image.png&quot;)&#39;</span> <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<p>You can also call the procedure database directly in Python syntax,
+but passing the final <code>(gimp-quit 0)</code> via Script-Fu remains
+the cleanest, universal method for process termination across all GIMP
+installations.</p>
+<h3 id="platform-consideration-for-windows">Platform Consideration for
+Windows</h3>
+<p>On Windows systems, use <code>gimp-console.exe</code> instead of
+<code>gimp.exe</code>. While <code>gimp.exe</code> opens a detached
+background process that hides terminal output,
+<code>gimp-console.exe</code> connects standard input and standard
+output directly to your command prompt:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gimp-console-2.10.exe <span class="at">-i</span> <span class="at">-b</span> <span class="st">&quot;(your-script)&quot;</span> <span class="at">-b</span> <span class="st">&quot;(gimp-quit 0)&quot;</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

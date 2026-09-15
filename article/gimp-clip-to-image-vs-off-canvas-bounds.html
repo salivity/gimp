@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP: Clip to Image vs Off-Canvas Bounds - gimp</title>
+    <meta name="description" content="In GIMP, manipulating layers often involves content that extends past the active canvas borders, requiring you to choose between discarding or retaining those external pixels. Understanding the difference between clipping a layer to image bounds and pres">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-clip-to-image-vs-off-canvas-bounds">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP: Clip to Image vs Off-Canvas Bounds - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-clip-to-image-vs-off-canvas-bounds" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, manipulating layers often involves content that extends past the active canvas borders, requiring you to choose between discarding or retaining those external pixels. Understanding the difference between clipping a layer to image bounds and pres" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-clip-to-image-vs-off-canvas-bounds">GIMP: Clip to Image vs
+Off-Canvas Bounds</h1>
+<p>In GIMP, manipulating layers often involves content that extends past
+the active canvas borders, requiring you to choose between discarding or
+retaining those external pixels. Understanding the difference between
+clipping a layer to image bounds and preserving off-canvas bounds
+determines whether your workflow is destructive or non-destructive,
+directly affecting your ability to reposition elements later and manage
+system memory.</p>
+<h3 id="clipping-a-layer-to-image-bounds">Clipping a Layer to Image
+Bounds</h3>
+<p>Clipping a layer to the image bounds means that any pixel data
+falling outside the established canvas boundaries is permanently cropped
+and discarded. When a transformation tool (like Rotate, Scale, or Shear)
+is set to "Clip to image," GIMP automatically slices the layer
+boundaries so they align flush with the edges of the image canvas.</p>
+<p>This process is destructive to the areas of the layer extending
+beyond the canvas frame. Once clipped, those out-of-frame pixels cannot
+be recovered later by moving the layer or enlarging the canvas. The
+primary advantage of this approach is performance: reducing layer
+dimensions to only what is visible reduces memory overhead and decreases
+file size in complex, multi-layered projects.</p>
+<h3 id="preserving-off-canvas-bounds">Preserving Off-Canvas Bounds</h3>
+<p>Preserving off-canvas bounds keeps all pixel information intact, even
+if it extends beyond the visible workspace. In GIMP, layer boundaries
+can exist independently of the canvas size, denoted by yellow and black
+dashed lines. When set to preserve bounds (or when using settings like
+"Adjust" or "Keep aspect"), pixels moved or transformed outside the
+frame remain stored in memory.</p>
+<p>You can view these hidden areas at any time by navigating to
+<strong>View &gt; Show All</strong>, which reveals the extended
+workspace in a semi-transparent gray zone around the main canvas. If you
+later choose to reposition the layer using the Move Tool, or expand the
+canvas via <strong>Image &gt; Fit Canvas to Layers</strong>, all of the
+original off-canvas imagery remains completely preserved and ready to
+use.</p>
+<h3 id="core-differences">Core Differences</h3>
+<ul>
+<li><strong>Data Retention:</strong> Clipping permanently removes
+content outside the visible canvas, whereas preserving off-canvas bounds
+retains hidden pixels within the document.</li>
+<li><strong>Editing Flexibility:</strong> Preserved bounds support a
+non-destructive workflow, allowing you to reposition, rotate, or reveal
+elements later. Clipped layers lose all external context, limiting
+future layout adjustments.</li>
+<li><strong>Canvas Expansion:</strong> If you expand the overall canvas
+size later, a preserved layer reveals its original content in the newly
+exposed area, while a clipped layer leaves transparent or empty
+space.</li>
+<li><strong>Resource Usage:</strong> Preserving large off-canvas
+elements requires more RAM and produces larger <code>.xcf</code> project
+files, while clipping streamlines performance by storing only visible
+pixels.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

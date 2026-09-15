@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Image Precision and 16-Bit Integer Explained - gimp</title>
+    <meta name="description" content="This article explains the function of the Image Precision menu options in GIMP, focusing on bit depth formats such as 8-bit, 16-bit, and 32-bit integer and floating-point settings. You will learn how these settings affect color depth, tonal transitions,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-image-precision-and-16-bit-integer-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Image Precision and 16-Bit Integer Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-image-precision-and-16-bit-integer-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the function of the Image Precision menu options in GIMP, focusing on bit depth formats such as 8-bit, 16-bit, and 32-bit integer and floating-point settings. You will learn how these settings affect color depth, tonal transitions," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-image-precision-and-16-bit-integer-explained">GIMP Image
+Precision and 16-Bit Integer Explained</h1>
+<p>This article explains the function of the Image Precision menu
+options in GIMP, focusing on bit depth formats such as 8-bit, 16-bit,
+and 32-bit integer and floating-point settings. You will learn how these
+settings affect color depth, tonal transitions, dynamic range, and
+system performance, with particular emphasis on why 16-bit integer
+precision is an essential standard for high-quality image editing.</p>
+<p>The Image Precision menu in GIMP (found under <strong>Image &gt;
+Precision</strong>) controls the bit depth and data format used to
+calculate and store the color information of every pixel in your image.
+In digital graphics, bit depth dictates how many tonal values are
+available per color channel (Red, Green, Blue, and Alpha). Choosing the
+correct precision ensures your edits maintain maximum visual fidelity
+without unnecessary performance overhead.</p>
+<h3 id="understanding-the-bit-depth-options">Understanding the Bit Depth
+Options</h3>
+<ul>
+<li><strong>8-bit Integer:</strong> The traditional standard for web
+graphics, JPEGs, and standard PNGs. It provides 256 tonal steps per
+channel (0–255), yielding approximately 16.7 million possible colors in
+RGB mode. While lightweight on system memory, heavy adjustments to
+exposure, levels, or tone curves in 8-bit precision can quickly cause
+"banding" or posterization in smooth gradients.</li>
+<li><strong>16-bit Integer:</strong> Provides 65,536 tonal steps per
+channel (0–65,535). This massive increase in available values allows for
+smooth, seamless gradients and non-destructive adjustments. It is the
+recommended working format for RAW photography development, detailed
+retouching, and complex layer blending. The 16-bit integer format
+strikes the ideal balance between professional color fidelity and
+efficient computer memory usage.</li>
+<li><strong>32-bit Integer:</strong> Offers over 4.29 billion tonal
+values per channel. While it provides extreme precision, integer
+processing cannot store values outside the standard minimum (black) and
+maximum (white) range. For most workflows, it offers diminishing visual
+returns compared to 16-bit integer while consuming significantly more
+RAM.</li>
+<li><strong>16-bit and 32-bit Floating Point:</strong> Unlike integer
+precision, floating-point formats allow values below zero (sub-blacks)
+and above one (super-whites). This enables High Dynamic Range (HDR)
+editing, allowing you to recover clipped highlights or underexposed
+shadows that would otherwise be permanently lost in integer
+formats.</li>
+</ul>
+<h3 id="channel-encoding-linear-vs-perceptual-srgb">Channel Encoding:
+Linear vs. Perceptual (sRGB)</h3>
+<p>Along with bit depth, the Image Precision menu allows you to choose
+between two channel encodings:</p>
+<ul>
+<li><strong>Linear Light:</strong> Pixel values are stored
+proportionally to physical light intensity. This mode produces
+mathematically accurate results for operations like Gaussian blur,
+scaling, and natural light compositing.</li>
+<li><strong>Perceptual (sRGB):</strong> Pixel values are gamma-corrected
+to match how human vision perceives brightness differences. This mode is
+traditional for painting and standard digital art workflows.</li>
+</ul>
+<h3 id="best-practices">Best Practices</h3>
+<p>For standard editing of RAW photos or high-quality artwork, convert
+your image to <strong>16-bit integer</strong> or <strong>32-bit floating
+point</strong> at the beginning of your workflow. Perform all exposure
+adjustments, color grading, and filtering in this higher bit depth to
+prevent compression artifacts. Once editing is complete, you can export
+the final image to an 8-bit format (such as standard JPEG or PNG) for
+web distribution.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

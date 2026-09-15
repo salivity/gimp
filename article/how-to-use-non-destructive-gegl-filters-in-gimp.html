@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Non-Destructive GEGL Filters in GIMP - gimp</title>
+    <meta name="description" content="This article provides a straightforward guide to performing non-destructive editing in GIMP using GEGL (Generic Graphical Library) filters. You will learn how GEGL handles image processing, how to apply dynamic filter effects directly to layers without p">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-non-destructive-gegl-filters-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Non-Destructive GEGL Filters in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-non-destructive-gegl-filters-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a straightforward guide to performing non-destructive editing in GIMP using GEGL (Generic Graphical Library) filters. You will learn how GEGL handles image processing, how to apply dynamic filter effects directly to layers without p" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-non-destructive-gegl-filters-in-gimp">How to Use
+Non-Destructive GEGL Filters in GIMP</h1>
+<p>This article provides a straightforward guide to performing
+non-destructive editing in GIMP using GEGL (Generic Graphical Library)
+filters. You will learn how GEGL handles image processing, how to apply
+dynamic filter effects directly to layers without permanently
+overwriting original pixels, how to modify filter settings at any time,
+and best practices for saving your projects to preserve editability.</p>
+<h2 id="what-is-gegl-non-destructive-editing">What Is GEGL
+Non-Destructive Editing?</h2>
+<p>GEGL is the core image processing engine behind modern versions of
+GIMP. Non-destructive editing means applying adjustments, filters, and
+color corrections as dynamic operations rather than permanently altering
+the underlying pixel data. This allows you to revisit, adjust, reorder,
+or completely remove filter effects at any stage of your workflow.</p>
+<h2 id="step-by-step-applying-non-destructive-filters">Step-by-Step:
+Applying Non-Destructive Filters</h2>
+<p>In modern GIMP releases (starting with the GIMP 2.99 development
+branch and GIMP 3.0+), GEGL filters can be attached directly to layers
+as non-destructive effects.</p>
+<h3 id="1-select-the-target-layer">1. Select the Target Layer</h3>
+<p>Open your project and navigate to the <strong>Layers</strong>
+dockable dialog. Click on the layer you wish to modify.</p>
+<h3 id="2-apply-a-gegl-filter">2. Apply a GEGL Filter</h3>
+<ol type="1">
+<li>Go to the top menu and select <strong>Filters</strong> (or open
+<strong>Tools &gt; GEGL Operation</strong>).</li>
+<li>Choose the filter you want to apply, such as <strong>Gaussian
+Blur</strong>, <strong>Unsharp Mask</strong>, or <strong>Color
+Temperature</strong>.</li>
+<li>A settings dialog will appear. Adjust the sliders to achieve the
+desired look.</li>
+<li>Ensure the dynamic preview is checked so you can view changes in
+real time.</li>
+<li>Click <strong>OK</strong> to apply the filter.</li>
+</ol>
+<h3 id="3-re-editing-applied-filters">3. Re-Editing Applied Filters</h3>
+<p>Because the filter is applied non-destructively, it appears as an
+attached effect in your layer stack:</p>
+<ul>
+<li>Locate the effect icon or sub-item directly underneath the target
+layer in the <strong>Layers</strong> panel.</li>
+<li>Double-click the filter entry to reopen its settings dialog.</li>
+<li>Modify the values, change blend modes, or adjust opacity specific to
+that effect.</li>
+<li>Click <strong>OK</strong> to update the effect instantly.</li>
+</ul>
+<h3 id="4-toggling-and-removing-effects">4. Toggling and Removing
+Effects</h3>
+<ul>
+<li><strong>Hide an effect:</strong> Click the eye icon next to the
+filter name to temporarily disable it.</li>
+<li><strong>Delete an effect:</strong> Right-click the filter in the
+layer stack and select <strong>Remove Effect</strong>, or select it and
+press the delete icon.</li>
+</ul>
+<h2 id="non-destructive-gegl-workflow-in-gimp-210">Non-Destructive GEGL
+Workflow in GIMP 2.10</h2>
+<p>If you are using GIMP 2.10, which does not fully support persistent
+layer effect stacks, you can still maintain a non-destructive workflow
+using duplicate layers and layer masks:</p>
+<ol type="1">
+<li><strong>Duplicate the Original Layer:</strong> Right-click your base
+layer and select <strong>Duplicate Layer</strong>
+(<code>Ctrl + Shift + D</code> or <code>Cmd + Shift + D</code>).</li>
+<li><strong>Apply the GEGL Filter:</strong> Select the duplicated layer
+and run your GEGL filter via the <strong>Filters</strong> menu.</li>
+<li><strong>Add a Layer Mask:</strong> Right-click the filtered layer
+and choose <strong>Add Layer Mask</strong>. Paint with black to conceal
+the filter or white to reveal it.</li>
+<li><strong>Adjust Opacity and Blending:</strong> Tweak the layer’s
+opacity and blend mode to blend the effect non-destructively with the
+original layer underneath.</li>
+</ol>
+<h2 id="saving-your-non-destructive-work">Saving Your Non-Destructive
+Work</h2>
+<p>To keep all GEGL filter parameters editable for future sessions:</p>
+<ul>
+<li>Always save your master project in GIMP's native format by going to
+<strong>File &gt; Save As</strong> and selecting the <code>.xcf</code>
+file extension.</li>
+<li>Standard export formats such as <code>.png</code>,
+<code>.jpeg</code>, or <code>.webp</code> will flatten your effects into
+a single pixel layer, making subsequent non-destructive adjustments
+impossible.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

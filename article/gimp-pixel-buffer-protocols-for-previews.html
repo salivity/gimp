@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Pixel Buffer Protocols for Previews - gimp</title>
+    <meta name="description" content="This article examines the internal mechanisms and communication protocols GIMP uses to transfer pixel data from its core image processing engine to external preview windows and plug-in dialogs. When rendering interactive previews, GIMP relies on a decoup">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-pixel-buffer-protocols-for-previews">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Pixel Buffer Protocols for Previews - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-pixel-buffer-protocols-for-previews" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines the internal mechanisms and communication protocols GIMP uses to transfer pixel data from its core image processing engine to external preview windows and plug-in dialogs. When rendering interactive previews, GIMP relies on a decoup" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-pixel-buffer-protocols-for-previews">GIMP Pixel Buffer
+Protocols for Previews</h1>
+<p>This article examines the internal mechanisms and communication
+protocols GIMP uses to transfer pixel data from its core image
+processing engine to external preview windows and plug-in dialogs. When
+rendering interactive previews, GIMP relies on a decoupled architecture
+powered by GEGL (Generic Graphics Library) graph evaluation, an
+Inter-Process Communication (IPC) wire protocol, shared memory (SHM)
+transports, and Babl color conversions to stream downsampled regions of
+interest efficiently without degrading application performance.</p>
+<h3 id="gegl-processing-and-region-of-interest-roi-negotiation">GEGL
+Processing and Region of Interest (ROI) Negotiation</h3>
+<p>GIMP delegates core pixel manipulation to GEGL. Instead of copying
+full-resolution canvas data to a preview window, the system evaluates a
+targeted sub-graph.</p>
+<p>When an external preview window or plug-in requests visual data, it
+queries a scaled-down bounding box known as the Region of Interest
+(ROI). Using <code>gegl_node_blit()</code> or
+<code>gegl_buffer_get()</code>, GIMP requests only the coordinates and
+mipmap levels visible inside the preview viewport. This minimizes the
+computing overhead before any data transfer begins.</p>
+<h3 id="the-gimp-wire-protocol">The GIMP Wire Protocol</h3>
+<p>Most external preview dialogs run in dedicated plug-in processes
+outside the core <code>gimp</code> executable. Communication between the
+main GIMP process and these out-of-process preview windows is mediated
+by the internal GIMP IPC Wire Protocol.</p>
+<p>Operating over standard UNIX domain sockets (or named pipes on
+Windows), the wire protocol serializes procedure calls between
+<code>libgimp</code> in the client process and the Procedural Database
+(PDB) in the host process:</p>
+<ul>
+<li><strong>Control Commands:</strong> The preview widget sends requests
+detailing the target drawable ID, zoom scale, and clipping
+rectangle.</li>
+<li><strong>Synchronization:</strong> Handshake messages establish
+synchronization points, notifying the host that a preview needs
+redrawing due to parameter adjustments.</li>
+<li><strong>Transport Indicators:</strong> The protocol negotiates
+whether the actual raster data should be written directly to the IPC
+pipe or mapped through an external memory transport.</li>
+</ul>
+<h3 id="shared-memory-shm-buffer-transport">Shared Memory (SHM) Buffer
+Transport</h3>
+<p>Streaming uncompressed pixel arrays over standard socket file
+descriptors incurs severe serialization latency. To eliminate this
+bottleneck, GIMP uses an OS-level shared memory subsystem
+(<code>gimp_shm</code>) whenever available.</p>
+<ol type="1">
+<li><strong>Segment Allocation:</strong> At startup, GIMP establishes a
+shared memory segment using POSIX <code>shm_open</code> or System V IPC
+(<code>shmget</code>/<code>shmat</code>) on Unix-like systems, or file
+mapping objects on Windows.</li>
+<li><strong>Buffer Mapping:</strong> When an external preview requires
+pixel data, the core writes the evaluated GEGL ROI directly into this
+mapped shared memory block.</li>
+<li><strong>Payload Notification:</strong> Instead of sending megabytes
+of pixel data across the wire socket, the GIMP core transmits a
+lightweight notification containing the memory offset, tile stride,
+pixel dimensions, and byte depth.</li>
+<li><strong>Zero-Copy Consumption:</strong> The client process reads the
+buffer directly from the shared memory segment and renders it to its
+local drawing surface (such as a Cairo surface embedded in a GTK
+widget).</li>
+</ol>
+<p>If shared memory allocation fails or is disabled via configuration,
+GIMP falls back to serializing raw byte streams in chunked packets
+directly through the IPC pipe.</p>
+<h3 id="pixel-format-normalization-via-babl">Pixel Format Normalization
+via Babl</h3>
+<p>Pixel buffers inside the core GEGL pipeline often exist as 32-bit
+floating-point linear formats or custom color profiles. External preview
+surfaces typically expect 8-bit non-linear RGBA (sRGB) data compatible
+with standard display engines and GTK drawing pipelines.</p>
+<p>Before the buffer is committed to the shared memory segment or wire
+protocol, GIMP uses the Babl library to execute high-speed pixel format
+conversions. Babl detects CPU extensions (such as AVX or SSE) to
+normalize floating-point buffers into the packed 8-bit
+<code>R'G'B'A u8</code> format required by the client preview widget in
+a single pass.</p>
+<h3
+id="client-side-integration-gimppreview-and-gimpdrawablepreview">Client-Side
+Integration: GimpPreview and GimpDrawablePreview</h3>
+<p>In the plug-in process, the UI integrates using
+<code>GimpPreview</code> or <code>GimpDrawablePreview</code> widgets
+provided by <code>libgimpui</code>. These widgets wrap the lower-level
+IPC and SHM routines:</p>
+<ul>
+<li><strong>Event Debouncing:</strong> As users adjust sliders or
+interact with parameters, the widget debounces update events to avoid
+saturating the IPC pipe with redundant requests.</li>
+<li><strong>Tile Invalidation:</strong> The preview widget flags local
+cached regions as dirty and calls internal functions such as
+<code>gimp_preview_draw()</code> to trigger the wire protocol
+query.</li>
+<li><strong>Cairo Rendering:</strong> Once the shared memory segment
+signals that new data is available, the client-side library wraps the
+memory pointer in a <code>cairo_image_surface_create_for_data()</code>
+call, rendering the pixel buffer natively to screen coordinates.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duotone Print Preparation in GIMP Step-by-Step - gimp</title>
+    <meta name="description" content="Preparing a duotone image for print in GIMP involves converting a standard full-color photograph into a rich, two-tone image mapped to specific inks or spot colors. This process requires stripping existing color information, optimizing tonal contrast for">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/duotone-print-preparation-in-gimp-step-by-step">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Duotone Print Preparation in GIMP Step-by-Step - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/duotone-print-preparation-in-gimp-step-by-step" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing a duotone image for print in GIMP involves converting a standard full-color photograph into a rich, two-tone image mapped to specific inks or spot colors. This process requires stripping existing color information, optimizing tonal contrast for" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="duotone-print-preparation-in-gimp-step-by-step">Duotone Print
+Preparation in GIMP Step-by-Step</h1>
+<p>Preparing a duotone image for print in GIMP involves converting a
+standard full-color photograph into a rich, two-tone image mapped to
+specific inks or spot colors. This process requires stripping existing
+color information, optimizing tonal contrast for ink saturation,
+applying a targeted dual-color gradient, and properly formatting the
+file resolution and color plates for commercial offset or digital
+printing.</p>
+<h3 id="step-1-set-up-and-convert-to-grayscale">Step 1: Set Up and
+Convert to Grayscale</h3>
+<ol type="1">
+<li>Open your image in GIMP by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Strip the standard RGB or CMYK data by going to <strong>Image &gt;
+Mode &gt; Grayscale</strong>.</li>
+<li>Ensure proper print resolution by selecting <strong>Image &gt; Print
+Size</strong>. Set the <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <strong>300 pixels/in (DPI)</strong>, and verify
+that the physical dimensions match your target print size.</li>
+</ol>
+<h3 id="step-2-adjust-image-contrast">Step 2: Adjust Image Contrast</h3>
+<p>Duotone printing relies entirely on tonal values to distribute ink.
+Deepen your contrast so both highlights and shadows have distinct
+definition:</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Curves</strong> or <strong>Colors &gt;
+Levels</strong>.</li>
+<li>Increase the contrast slightly by creating an "S-curve" in the
+Curves tool—pull down the lower quadrant (shadows) and pull up the upper
+quadrant (highlights).</li>
+<li>Ensure highlights are not completely blown out (pure white) unless
+desired, as paper will show through without ink.</li>
+</ol>
+<h3 id="step-3-switch-mode-to-rgb">Step 3: Switch Mode to RGB</h3>
+<p>To apply color tones within GIMP's digital workspace, convert the
+image back to a color-capable mode:</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Mode &gt; RGB</strong>.</li>
+<li>The image will still appear black and white, but the color channels
+are now unlocked for duotone mapping.</li>
+</ol>
+<h3 id="step-4-apply-the-duotone-via-gradient-map">Step 4: Apply the
+Duotone via Gradient Map</h3>
+<ol type="1">
+<li>Open the <strong>Gradients</strong> dialog via <strong>Windows &gt;
+Dockable Dialogs &gt; Gradients</strong>.</li>
+<li>Click the <strong>Create a new gradient</strong> button at the
+bottom of the dialog.</li>
+<li>In the Gradient Editor, set the left endpoint (representing
+shadows/dark tones) to your primary dark ink color (e.g., Black, Deep
+Navy, or a specific Pantone-equivalent RGB hex code).</li>
+<li>Set the right endpoint (representing highlights/light tones) to your
+second ink color (e.g., Warm Yellow, Cyan, or Orange) or pure white if
+paper will act as the base.</li>
+<li>Name the gradient and close the editor.</li>
+<li>With the new gradient selected as your active gradient, go to
+<strong>Colors &gt; Map &gt; Gradient Map</strong>. GIMP maps the
+shadows to your first color and the highlights to your second
+color.</li>
+</ol>
+<h3 id="step-5-fine-tune-plate-separation">Step 5: Fine-Tune Plate
+Separation</h3>
+<p>For traditional two-plate offset printing where distinct ink
+separations are required:</p>
+<ol type="1">
+<li>Duplicate your base layer via <strong>Layer &gt; Duplicate
+Layer</strong>.</li>
+<li>Name one layer for your primary ink (e.g., "Ink 1 - Base") and the
+other for your secondary ink (e.g., "Ink 2 - Accent").</li>
+<li>Use <strong>Colors &gt; Curves</strong> on each layer independently
+to isolate which values will be printed by which plate. Pull highlights
+out of the shadow plate and shadows out of the highlight plate.</li>
+<li>If your print shop requires separated grayscale plates, convert each
+isolated layer to grayscale and export them as individual files labeled
+with their respective spot color names.</li>
+</ol>
+<h3 id="step-6-export-for-print">Step 6: Export for Print</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As</strong>.</li>
+<li>Select *<em>TIFF image (*.tif, <em>.tiff)</em></em> or
+<strong>PDF</strong> from the file format list to preserve image quality
+without compression artifacts.</li>
+<li>In the export settings dialog, ensure compression is set to
+<strong>None</strong> or <strong>LZW</strong>, and keep the color
+profile embedded.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

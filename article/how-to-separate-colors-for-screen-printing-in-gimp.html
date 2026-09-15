@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Separate Colors for Screen Printing in GIMP - gimp</title>
+    <meta name="description" content="Preparing multi-color separations for silkscreen printing in GIMP involves isolating each unique color from your artwork onto its own individual black-and-white layer. This step-by-step guide covers the process of sizing your artwork, indexing the palett">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-separate-colors-for-screen-printing-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Separate Colors for Screen Printing in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-separate-colors-for-screen-printing-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing multi-color separations for silkscreen printing in GIMP involves isolating each unique color from your artwork onto its own individual black-and-white layer. This step-by-step guide covers the process of sizing your artwork, indexing the palett" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-separate-colors-for-screen-printing-in-gimp">How to
+Separate Colors for Screen Printing in GIMP</h1>
+<p>Preparing multi-color separations for silkscreen printing in GIMP
+involves isolating each unique color from your artwork onto its own
+individual black-and-white layer. This step-by-step guide covers the
+process of sizing your artwork, indexing the palette, extracting
+individual color layers, converting them into opaque black positives
+(including halftoning if gradients are present), and adding registration
+marks to ensure accurate multi-screen alignment on the press.</p>
+<h3 id="step-1-prepare-document-resolution-and-dimensions">Step 1:
+Prepare Document Resolution and Dimensions</h3>
+<p>Silkscreen positives require high-resolution output to prevent jagged
+edges on screen stencils.</p>
+<ol type="1">
+<li>Open your artwork in GIMP.</li>
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Set the <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <strong>300 pixels/in</strong> (or up to 600 for
+extremely fine line work).</li>
+<li>Set the <strong>Width</strong> and <strong>Height</strong> to the
+exact physical print dimensions intended for the garment or
+substrate.</li>
+</ol>
+<h3 id="step-2-reduce-the-color-count-indexed-mode">Step 2: Reduce the
+Color Count (Indexed Mode)</h3>
+<p>To prepare clean spot colors, you must limit the artwork to the exact
+number of ink colors you plan to print.</p>
+<ol type="1">
+<li>Duplicate your main artwork layer to preserve the original.</li>
+<li>Go to <strong>Image &gt; Mode &gt; Indexed</strong>.</li>
+<li>Under <strong>Colormap</strong>, select <strong>Generate optimum
+palette</strong> and enter the maximum number of colors (e.g., 3 for a
+3-color print plus a background color).</li>
+<li>Set <strong>Color dithering</strong> to <strong>None</strong> for
+solid spot colors, or <strong>Floyd-Steinberg</strong> if you are
+intentionally creating a simulated process separation with
+blending.</li>
+<li>Click <strong>Convert</strong>.</li>
+<li>Switch the image back to RGB mode by selecting <strong>Image &gt;
+Mode &gt; RGB</strong> so you can continue editing layers freely.</li>
+</ol>
+<h3 id="step-3-isolate-each-color-onto-a-new-layer">Step 3: Isolate Each
+Color Onto a New Layer</h3>
+<p>Each ink requires its own distinct stencil positive.</p>
+<ol type="1">
+<li>Select the <strong>Select by Color Tool</strong>
+(<code>Shift + O</code>).</li>
+<li>In the Tool Options, set the <strong>Threshold</strong> to
+<code>0</code> (since the image is already indexed).</li>
+<li>Click on the first color you wish to separate.</li>
+<li>Create a new transparent layer (<strong>Layer &gt; New
+Layer</strong>) and name it after the ink color (e.g., "Screen 1 -
+Red").</li>
+<li>Keep the selection active.</li>
+</ol>
+<h3 id="step-4-convert-selections-to-pure-black">Step 4: Convert
+Selections to Pure Black</h3>
+<p>Silkscreen exposure units require dense, opaque black artwork on
+transparent film to block UV light.</p>
+<ol type="1">
+<li>Set your foreground color to pure black (<code>#000000</code>).</li>
+<li>With the target color layer selected, use the <strong>Bucket Fill
+Tool</strong> (<code>Shift + B</code>) to fill the active selection with
+black. Ensure the fill mode covers the whole selection.</li>
+<li>Repeat <strong>Step 3</strong> and <strong>Step 4</strong> for every
+remaining color in the artwork, creating a separate black-filled layer
+for each ink.</li>
+</ol>
+<h3 id="step-5-generate-halftones-for-gradients-optional">Step 5:
+Generate Halftones for Gradients (Optional)</h3>
+<p>If your design contains gradients, shadows, or tonal transitions
+rather than flat spot colors:</p>
+<ol type="1">
+<li>Select the layer containing the grayscale or tonal information.</li>
+<li>Go to <strong>Filters &gt; Distorts &gt; Newsprint</strong>.</li>
+<li>Choose the appropriate screen angle (e.g., standard angles like
+22.5° or 45° to avoid moiré patterns) and select <strong>Round</strong>
+or <strong>Line</strong> spot types.</li>
+<li>Set the line frequency (LPI) based on your silk screen mesh count (a
+standard rule of thumb is dividing mesh count by 4.5 or 5).</li>
+<li>Apply the filter to convert the shades into printable dot
+patterns.</li>
+</ol>
+<h3 id="step-6-add-registration-marks">Step 6: Add Registration
+Marks</h3>
+<p>Registration marks allow you to line up all screens accurately on the
+press.</p>
+<ol type="1">
+<li>Create a new top layer named "Registration".</li>
+<li>Use the <strong>Pencil Tool</strong> to draw registration targets (a
+crosshair inside a small circle) in each corner of the document, well
+outside the printable art area.</li>
+<li>Keep this layer visible across all separations.</li>
+</ol>
+<h3 id="step-7-export-stencils-for-film-printing">Step 7: Export
+Stencils for Film Printing</h3>
+<ol type="1">
+<li>Turn off all artwork layers except for one color separation layer
+and the "Registration" layer.</li>
+<li>Go to <strong>File &gt; Export As...</strong> and save the layer as
+a high-resolution PDF or TIFF file.</li>
+<li>Hide that layer, enable the next color layer, and export again.</li>
+<li>Repeat until you have exported a separate black-and-white film
+positive file for every ink color.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

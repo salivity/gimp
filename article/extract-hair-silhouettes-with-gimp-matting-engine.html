@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Hair Silhouettes with GIMP Matting Engine - gimp</title>
+    <meta name="description" content="Extracting fine details like hair from a complex background is one of the most challenging editing tasks. This guide outlines the exact process for using the Foreground Select tool and its Matting Levin engine in GIMP to isolate intricate hair strands an">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/extract-hair-silhouettes-with-gimp-matting-engine">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Extract Hair Silhouettes with GIMP Matting Engine - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/extract-hair-silhouettes-with-gimp-matting-engine" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Extracting fine details like hair from a complex background is one of the most challenging editing tasks. This guide outlines the exact process for using the Foreground Select tool and its Matting Levin engine in GIMP to isolate intricate hair strands an" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="extract-hair-silhouettes-with-gimp-matting-engine">Extract Hair
+Silhouettes with GIMP Matting Engine</h1>
+<p>Extracting fine details like hair from a complex background is one of
+the most challenging editing tasks. This guide outlines the exact
+process for using the Foreground Select tool and its Matting Levin
+engine in GIMP to isolate intricate hair strands and convert them into
+clean silhouette cutouts.</p>
+<h3 id="step-1-prepare-the-image-layer">Step 1: Prepare the Image
+Layer</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click your image layer and select <strong>Add Alpha
+Channel</strong> (if grayed out, transparency is already
+supported).</li>
+<li>Duplicate the layer by clicking the <strong>Duplicate Layer</strong>
+icon to preserve a backup of the original photo.</li>
+</ol>
+<h3 id="step-2-activate-the-foreground-select-tool">Step 2: Activate the
+Foreground Select Tool</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Tools &gt; Selection
+Tools &gt; Foreground Select</strong>.</li>
+<li>Alternatively, locate the tool grouped under the selection icons in
+the main Toolbox.</li>
+</ol>
+<h3 id="step-3-draw-the-initial-rough-boundary">Step 3: Draw the Initial
+Rough Boundary</h3>
+<ol type="1">
+<li>Click and drag around the subject to draw a rough lasso
+contour.</li>
+<li>Ensure you leave a small margin of background around the hair to
+give the matting algorithm enough context.</li>
+<li>Close the loop by clicking on your starting point, then press
+<strong>Enter</strong>. A dark blue mask overlay will cover the
+unselected outer area.</li>
+</ol>
+<h3 id="step-4-configure-the-matting-engine">Step 4: Configure the
+Matting Engine</h3>
+<ol type="1">
+<li>In the <strong>Tool Options</strong> panel (typically on the left),
+locate the <strong>Engine</strong> section.</li>
+<li>Ensure the engine dropdown is set to <strong>Matting Levin</strong>
+(which produces superior results for soft boundaries like hair compared
+to standard engines).</li>
+<li>Adjust the <strong>Stroke width</strong> to a size suitable for
+brushing over the hair details.</li>
+</ol>
+<h3 id="step-5-paint-the-foreground-strands">Step 5: Paint the
+Foreground Strands</h3>
+<ol type="1">
+<li>Ensure the brush mode is set to <strong>Draw foreground</strong>
+(indicated by a green icon or radio button).</li>
+<li>Paint directly over the solid areas of the subject and swipe through
+the hair strands where they overlap the background. You do not need to
+fill every pixel—simply draw strokes across the transitions.</li>
+<li>If necessary, switch to <strong>Draw background</strong> to brush
+over any background areas erroneously trapped near the hair.</li>
+</ol>
+<h3 id="step-6-compute-and-preview-the-mask">Step 6: Compute and Preview
+the Mask</h3>
+<ol type="1">
+<li>Check the box labeled <strong>Preview mask</strong> in the Tool
+Options dialog.</li>
+<li>GIMP will process the Levin algorithm and render an alpha extraction
+preview.</li>
+<li>Inspect the flyaway hairs against the preview background. If fine
+strands are missing, uncheck the preview, brush over those areas with
+the foreground stroke, and check <strong>Preview mask</strong>
+again.</li>
+</ol>
+<h3 id="step-7-create-the-active-selection">Step 7: Create the Active
+Selection</h3>
+<ol type="1">
+<li>Once the preview accurately captures the hair details, click the
+<strong>Select</strong> button in the floating dialog box or press
+<strong>Enter</strong>.</li>
+<li>The mask will convert into an active selection boundary (marching
+ants) around your subject and hair details.</li>
+</ol>
+<h3 id="step-8-generate-the-silhouette">Step 8: Generate the
+Silhouette</h3>
+<ol type="1">
+<li>Create a new transparent layer by clicking <strong>Layer &gt; New
+Layer</strong> and label it "Silhouette".</li>
+<li>Set your Foreground color to black (or your chosen silhouette
+color).</li>
+<li>With the selection still active, click <strong>Edit &gt; Fill with
+FG Color</strong>.</li>
+<li>Deselect the active area by pressing <strong>Shift + Ctrl +
+A</strong> (or <strong>Shift + Command + A</strong> on macOS).</li>
+<li>Hide the original photo layer in the Layers panel to reveal the
+isolated hair silhouette.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Control Docked Tab Merging in GIMP - gimp</title>
+    <meta name="description" content="This article explains how GIMP manages dockable dialogs, detailing the configuration settings and interface controls that determine whether newly docked windows merge into existing tabs or remain separate panels. You will learn the exact steps to manage">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-control-docked-tab-merging-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Control Docked Tab Merging in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-control-docked-tab-merging-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how GIMP manages dockable dialogs, detailing the configuration settings and interface controls that determine whether newly docked windows merge into existing tabs or remain separate panels. You will learn the exact steps to manage" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-control-docked-tab-merging-in-gimp">How to Control Docked
+Tab Merging in GIMP</h1>
+<p>This article explains how GIMP manages dockable dialogs, detailing
+the configuration settings and interface controls that determine whether
+newly docked windows merge into existing tabs or remain separate panels.
+You will learn the exact steps to manage tab behavior, lock layouts, and
+configure interface preferences to maintain your preferred workspace
+structure.</p>
+<hr />
+<h3 id="the-tab-merging-mechanism-drop-zones">The Tab Merging Mechanism:
+Drop Zones</h3>
+<p>Unlike a single binary toggle in the preferences menu, GIMP controls
+whether a dialog merges into an existing tab stack primarily through
+<strong>interactive drop zones</strong> during the docking process:</p>
+<ol type="1">
+<li>Click and drag the dialog by its tab title or drag handle.</li>
+<li>Drag the cursor into an existing dockable panel:
+<ul>
+<li><strong>To merge as a tab:</strong> Hover over the top tab bar or
+directly in the center of the existing dialog until a solid border
+highlights the entire tab area. Release the mouse button, and the window
+will merge as a new tab alongside the existing ones.</li>
+<li><strong>To dock separately (without merging):</strong> Drag the
+window toward the top, bottom, or side edges of an existing dock until a
+narrow highlight line appears along that boundary. Releasing the mouse
+creates an independent row or column inside the dock rather than a
+shared tab group.</li>
+</ul></li>
+</ol>
+<h3 id="single-window-mode">Single-Window Mode</h3>
+<p>The primary global configuration setting affecting how dialogs
+interact with one another is <strong>Single-Window Mode</strong>.</p>
+<ul>
+<li>Navigate to the top menu and select <strong>Windows &gt;
+Single-Window Mode</strong>.</li>
+</ul>
+<p>When Single-Window Mode is enabled, all floating utility windows,
+tool options, and image canvases are bound to a unified application
+window. In this mode, newly opened default dialogs automatically
+integrate into predefined side columns. Dragging dialogs within
+Single-Window Mode snaps them cleanly into tab bars or split panels
+rather than leaving them as loose floating windows.</p>
+<h3 id="locking-tabs-to-prevent-unwanted-changes">Locking Tabs to
+Prevent Unwanted Changes</h3>
+<p>To stop existing tab configurations from accidentally merging,
+detaching, or shifting:</p>
+<ol type="1">
+<li>Open the dock containing your grouped tabs.</li>
+<li>Click the small tab options menu (the small arrow icon
+<strong><code>▾</code></strong> in the upper-right corner of the tab
+bar).</li>
+<li>Select <strong>Tab Menu &gt; Lock Tab to Dock</strong>.</li>
+</ol>
+<p>Enabling this option locks the tab in place, disabling the drag
+handle and preventing other dragged windows from altering that specific
+tab's position.</p>
+<h3 id="window-management-preferences">Window Management
+Preferences</h3>
+<p>To manage how GIMP coordinates floating panels at the system level
+before they are docked:</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or <strong>GIMP &gt;
+Preferences</strong> on macOS).</li>
+<li>Expand the <strong>Interface</strong> section in the left sidebar
+and select <strong>Window Management</strong>.</li>
+<li>Under <strong>Window Manager Hints</strong>, configure the
+<strong>Hint for the docks and the toolbox</strong>:
+<ul>
+<li><strong>Utility Window:</strong> Treats floating docks as secondary
+palettes that snap cleanly together.</li>
+<li><strong>Keep Above:</strong> Keeps floating docks visible above the
+canvas.</li>
+<li><strong>Normal Window:</strong> Treats docks as standard independent
+operating system windows.</li>
+</ul></li>
+<li>Check or uncheck <strong>Save window positions on exit</strong> to
+decide whether custom tab arrangements and docked states persist between
+sessions. Click <strong>OK</strong> to apply changes.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

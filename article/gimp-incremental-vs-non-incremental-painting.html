@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Incremental vs Non-Incremental Painting - gimp</title>
+    <meta name="description" content="This article explains the core differences between the Incremental and Non-incremental painting modes in GIMP's brush tools. Understanding how these two modes affect brush strokes, opacity buildup, and blending allows you to choose the right setting for">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-incremental-vs-non-incremental-painting">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Incremental vs Non-Incremental Painting - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-incremental-vs-non-incremental-painting" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the core differences between the Incremental and Non-incremental painting modes in GIMP's brush tools. Understanding how these two modes affect brush strokes, opacity buildup, and blending allows you to choose the right setting for" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-incremental-vs-non-incremental-painting">GIMP Incremental
+vs Non-Incremental Painting</h1>
+<p>This article explains the core differences between the Incremental
+and Non-incremental painting modes in GIMP's brush tools. Understanding
+how these two modes affect brush strokes, opacity buildup, and blending
+allows you to choose the right setting for sketching, digital painting,
+or photo retouching.</p>
+<h3 id="the-core-difference-opacity-accumulation">The Core Difference:
+Opacity Accumulation</h3>
+<p>The primary difference between Incremental and Non-incremental
+painting is how GIMP handles opacity during a single continuous brush
+stroke.</p>
+<ul>
+<li><strong>Non-incremental Mode (Default):</strong> When you set your
+brush opacity below 100% (for example, 40%) and draw a continuous line
+without releasing the mouse button or lifting your stylus, the opacity
+will never exceed 40%, even if you loop back and paint over the stroke
+you just made. The stroke behaves as a single uniform layer. To add more
+paint or build up darkness, you must release the input and begin a
+second, separate stroke.</li>
+<li><strong>Incremental Mode:</strong> When the "Incremental" box is
+checked in the Tool Options, the brush behaves like a traditional
+physical marker or repeated glaze. Even during a single continuous
+stroke, crossing over an area you just painted immediately adds another
+layer of color, increasing the opacity and density in that overlapping
+spot until it reaches 100%.</li>
+</ul>
+<h3 id="practical-comparison">Practical Comparison</h3>
+<p>To easily visualize how the two modes function, consider setting your
+brush opacity to 30% with a black color on a white canvas:</p>
+<ol type="1">
+<li><strong>In Non-incremental mode:</strong> Draw a continuous squiggle
+over the same spot multiple times without releasing the mouse button.
+The entire stroke remains a consistent light gray. No matter how many
+times you pass over the area, it stays capped at 30% gray until you lift
+the mouse and click again.</li>
+<li><strong>In Incremental mode:</strong> Draw the exact same continuous
+squiggle. Everywhere the stroke overlaps itself, the gray tone darkens
+(to roughly 51%, then 66%, and so on) until it becomes solid black, all
+within that single drag of the cursor.</li>
+</ol>
+<h3 id="when-to-use-each-mode">When to Use Each Mode</h3>
+<ul>
+<li><strong>Use Non-incremental mode</strong> when you need smooth, even
+coverage across an area. It is ideal for flat coloring, consistent
+shading, soft airbrushing, and blending, as it prevents accidental
+blotches or uneven streaks caused by overlapping hand movements.</li>
+<li><strong>Use Incremental mode</strong> when you want a workflow that
+mimics physical wet media, such as markers, watercolor washes, or
+charcoal sketching. It is useful for rapidly building up depth, shadows,
+and values organically without having to constantly lift your stylus or
+adjust brush opacity sliders.</li>
+</ul>
+<h3 id="how-to-toggle-the-setting">How to Toggle the Setting</h3>
+<p>To switch between modes, select any compatible brush tool (such as
+the Paintbrush, Pencil, or Eraser) and navigate to the <strong>Tool
+Options</strong> panel. Locate the <strong>Incremental</strong> checkbox
+directly beneath the tool opacity and brush size controls. Checking the
+box activates Incremental mode; leaving it unchecked keeps the tool in
+standard Non-incremental mode.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

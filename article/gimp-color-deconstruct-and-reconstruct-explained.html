@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Color Deconstruct and Reconstruct Explained - gimp</title>
+    <meta name="description" content="GIMP provides powerful tools for manipulating color data at a fundamental level, most notably through its Deconstruct (Decompose) and Reconstruct (Compose) commands. These tools allow editors to break an image down into its individual color model compone">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-color-deconstruct-and-reconstruct-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Color Deconstruct and Reconstruct Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-color-deconstruct-and-reconstruct-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP provides powerful tools for manipulating color data at a fundamental level, most notably through its Deconstruct (Decompose) and Reconstruct (Compose) commands. These tools allow editors to break an image down into its individual color model compone" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-color-deconstruct-and-reconstruct-explained">GIMP Color
+Deconstruct and Reconstruct Explained</h1>
+<p>GIMP provides powerful tools for manipulating color data at a
+fundamental level, most notably through its Deconstruct (Decompose) and
+Reconstruct (Compose) commands. These tools allow editors to break an
+image down into its individual color model components, edit those
+isolated channels directly in grayscale, and recombine them into a
+unified full-color image.</p>
+<h3 id="what-is-color-deconstruct-decompose">What is Color Deconstruct
+(Decompose)?</h3>
+<p>The Color Deconstruct command—found in GIMP under <strong>Colors &gt;
+Components &gt; Decompose</strong>—splits an active layer or image into
+its separate color channels. Instead of editing all color channels at
+once, Deconstruct extracts the specific data from a chosen color space
+and represents each channel as a separate grayscale layer or standalone
+image.</p>
+<p>When running this command, GIMP allows you to extract channels using
+several color models:</p>
+<ul>
+<li><strong>RGB:</strong> Separates the image into Red, Green, and Blue
+channels.</li>
+<li><strong>HSV / HSL:</strong> Extracts Hue (color tone), Saturation
+(color intensity), and Value/Lightness (brightness).</li>
+<li><strong>LAB:</strong> Separates Lightness (<span
+class="math inline">\(L\)</span>) from color-opponent dimensions (<span
+class="math inline">\(A\)</span> for green-red, and <span
+class="math inline">\(B\)</span> for blue-yellow).</li>
+<li><strong>CMYK:</strong> Breaks the image into Cyan, Magenta, Yellow,
+and Key (Black) plates.</li>
+<li><strong>YCbCr:</strong> Splits luminance from blue-difference and
+red-difference chroma components.</li>
+</ul>
+<h3 id="what-is-color-reconstruct-compose">What is Color Reconstruct
+(Compose)?</h3>
+<p>The Color Reconstruct command—located under <strong>Colors &gt;
+Components &gt; Compose</strong>—performs the exact reverse operation.
+It takes separate grayscale channel layers and merges them back together
+into a single, full-color image.</p>
+<p>To reconstruct an image, you specify the color model that corresponds
+to the layers you are using (such as RGB or LAB) and assign the
+appropriate source layer to each channel slot. GIMP then computes the
+values from each layer to render the final composite.</p>
+<h3 id="primary-purposes-and-use-cases">Primary Purposes and Use
+Cases</h3>
+<p>Using the Deconstruct and Reconstruct workflow serves several
+critical functions in photo editing and graphic design:</p>
+<ol type="1">
+<li><strong>Targeted Retouching and Noise Reduction:</strong> By
+decomposing into the LAB or HSV space, you can isolate luminance or
+value channels from color data. This lets you apply sharpening, blur, or
+noise reduction exclusively to details without introducing color
+artifacts.</li>
+<li><strong>Precise Mask Creation:</strong> Extracting high-contrast
+single channels (such as the Blue channel in landscapes or the Green
+channel in portraits) makes it easier to create complex alpha masks for
+hair, foliage, and sky replacements.</li>
+<li><strong>Creative Color Grading and Channel Swapping:</strong>
+Reconstructing an image with mismatched source layers (for instance,
+mapping the Red channel input to a Green layer) enables unique artistic
+effects, infrared simulations, and false-color grading.</li>
+<li><strong>Print and Separation Analysis:</strong> Deconstructing into
+CMYK allows designers to inspect individual ink plates before sending
+graphics to prepress workflows.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

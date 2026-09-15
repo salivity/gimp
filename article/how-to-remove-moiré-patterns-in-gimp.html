@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Moiré Patterns in GIMP - gimp</title>
+    <meta name="description" content="Moiré patterns are unwanted visual artifacts caused by interference between the halftone dot grid of a printed image and the digital sensor grid of a scanner. This guide explains how to eliminate or significantly reduce moiré patterns in GIMP using thr">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-moiré-patterns-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Moiré Patterns in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-moiré-patterns-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Moiré patterns are unwanted visual artifacts caused by interference between the halftone dot grid of a printed image and the digital sensor grid of a scanner. This guide explains how to eliminate or significantly reduce moiré patterns in GIMP using thr" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-remove-moiré-patterns-in-gimp">How to Remove Moiré
+Patterns in GIMP</h1>
+<p>Moiré patterns are unwanted visual artifacts caused by interference
+between the halftone dot grid of a printed image and the digital sensor
+grid of a scanner. This guide explains how to eliminate or significantly
+reduce moiré patterns in GIMP using three straightforward methods: the
+scan-and-downscale technique, built-in blur and sharpening filters, and
+the G'MIC Fourier Transform filter for severe distortion.</p>
+<h2 id="method-1-scan-at-high-resolution-and-downscale">Method 1: Scan
+at High Resolution and Downscale</h2>
+<p>The cleanest way to remove moiré is to prevent it during the scanning
+phase by capturing excess data and shrinking the image to blend the
+halftone dots naturally.</p>
+<ol type="1">
+<li><strong>Scan the original material</strong> at double or quadruple
+your target resolution (e.g., 600 DPI to 1200 DPI).</li>
+<li><strong>Open the scan</strong> in GIMP.</li>
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Set the <strong>Interpolation</strong> method to
+<strong>Cubic</strong> or <strong>NoHalo</strong>.</li>
+<li>Reduce the image dimensions by 50% or down to your desired final
+resolution (e.g., 300 DPI) and click <strong>Scale</strong>.</li>
+<li>The scaling process averages adjacent pixels together, naturally
+neutralizing most halftone grids.</li>
+</ol>
+<h2 id="method-2-use-gaussian-blur-and-sharpening">Method 2: Use
+Gaussian Blur and Sharpening</h2>
+<p>If rescanning is not an option, you can remove the pattern directly
+in GIMP using standard filtering tools.</p>
+<ol type="1">
+<li>Open your image and duplicate the base layer by clicking
+<strong>Layer &gt; Duplicate Layer</strong>.</li>
+<li>Select the top layer and navigate to <strong>Filters &gt; Blur &gt;
+Gaussian Blur</strong>.</li>
+<li>Increase the <strong>Size X</strong> and <strong>Size Y</strong>
+sliders incrementally until the repeating dot pattern just disappears.
+Keep the blur radius as low as possible to preserve details (usually
+between 1.0 and 3.0 pixels). Click <strong>OK</strong>.</li>
+<li>Go to <strong>Filters &gt; Enhance &gt; Sharpen (Unsharp
+Mask)</strong>.</li>
+<li>Increase the <strong>Radius</strong> slightly and adjust the
+<strong>Amount</strong> to restore edge sharpness lost during the blur
+step without reintroducing the moiré noise. Click
+<strong>OK</strong>.</li>
+<li>Set the top layer’s blending mode or opacity in the
+<strong>Layers</strong> panel if you need to balance sharpness and
+pattern reduction.</li>
+</ol>
+<h2 id="method-3-use-the-despeckle-filter">Method 3: Use the Despeckle
+Filter</h2>
+<p>The Despeckle filter targets specific pixel-level anomalies, making
+it ideal for mild moiré on solid backgrounds.</p>
+<ol type="1">
+<li>Select the affected area using the <strong>Rectangle Select</strong>
+or <strong>Free Select (Lasso)</strong> tool, or apply it to the entire
+layer.</li>
+<li>Navigate to <strong>Filters &gt; Enhance &gt;
+Despeckle</strong>.</li>
+<li>Set the <strong>Radius</strong> to 1 or 2.</li>
+<li>Adjust the <strong>Black level</strong> and <strong>White
+level</strong> sliders while watching the preview window until the
+halftone texture smoothens out.</li>
+<li>Click <strong>OK</strong> to apply the filter.</li>
+</ol>
+<h2 id="method-4-fft-filtering-with-gmic-for-severe-patterns">Method 4:
+FFT Filtering with G'MIC (For Severe Patterns)</h2>
+<p>For stubborn, regular geometric patterns, the free G'MIC plugin
+provides frequency separation via Fast Fourier Transform (FFT).</p>
+<ol type="1">
+<li>Install and open the <strong>G'MIC-Qt</strong> plugin via
+<strong>Filters &gt; G'MIC</strong>.</li>
+<li>Search for <strong>Fourier Transform</strong> or
+<strong>Descreen</strong>.</li>
+<li>Use the <strong>Descreen</strong> filter to automatically identify
+and suppress the frequency spikes responsible for the moiré
+pattern.</li>
+<li>Adjust the threshold parameters in the preview pane to isolate the
+pattern from image details.</li>
+<li>Click <strong>Apply</strong> to remove the interference grid while
+retaining sharp edges.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

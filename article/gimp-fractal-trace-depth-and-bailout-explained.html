@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Fractal Trace: Depth and Bailout Explained - gimp</title>
+    <meta name="description" content="The Fractal Trace filter in GIMP maps an existing image onto the complex geometry of a Mandelbrot fractal, transforming standard pixel layers into intricate, self-repeating patterns. At the core of this transformation are two critical settings: Depth and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-fractal-trace-depth-and-bailout-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Fractal Trace: Depth and Bailout Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-fractal-trace-depth-and-bailout-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Fractal Trace filter in GIMP maps an existing image onto the complex geometry of a Mandelbrot fractal, transforming standard pixel layers into intricate, self-repeating patterns. At the core of this transformation are two critical settings: Depth and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-fractal-trace-depth-and-bailout-explained">GIMP Fractal
+Trace: Depth and Bailout Explained</h1>
+<p>The Fractal Trace filter in GIMP maps an existing image onto the
+complex geometry of a Mandelbrot fractal, transforming standard pixel
+layers into intricate, self-repeating patterns. At the core of this
+transformation are two critical settings: Depth and Bailout. Together,
+these parameters determine how many times the source image repeats along
+fractal boundaries and where the mathematical distortion begins and ends
+across the canvas.</p>
+<h3 id="the-role-of-the-depth-parameter">The Role of the Depth
+Parameter</h3>
+<p>The Depth parameter (often labeled as Depth or Iterations) dictates
+the maximum number of calculation cycles the algorithm performs for each
+pixel. In visual terms, it controls the recursion level and complexity
+of the mapped image.</p>
+<ul>
+<li><strong>Low Depth Values:</strong> When set to a low value, the
+algorithm stops calculating early. This produces broad, simplified
+shapes with fewer recursive copies of the original image. The visual
+result is softer, less chaotic, and preserves more of the source image's
+broad color regions.</li>
+<li><strong>High Depth Values:</strong> Increasing the depth forces the
+algorithm to calculate deeper into the fractal boundary. This causes the
+source image to tile and shrink infinitely into finer, micro-level
+repetitions. While this adds extreme detail and dramatic geometric
+complexity, excessively high values can make the mapped image look noisy
+and significantly increase rendering time.</li>
+</ul>
+<h3 id="the-role-of-the-bailout-parameter">The Role of the Bailout
+Parameter</h3>
+<p>The Bailout parameter defines the escape radius—the numerical
+threshold used to decide whether an iterated calculation has "escaped"
+toward infinity or belongs to the interior set. In the context of image
+mapping, Bailout controls the contrast, scale, and boundary transition
+zones between the interior fractal core and the exterior mapped
+space.</p>
+<ul>
+<li><strong>Low Bailout Values:</strong> A smaller bailout value causes
+pixels to exit the calculation loop quickly. This compresses the
+transition zone, resulting in tighter, more localized distortions and
+sharper, abrupt cutoffs between the fractal layers and the background
+image.</li>
+<li><strong>High Bailout Values:</strong> A higher bailout value expands
+the escape boundary. This extends the distance over which the image is
+warped, resulting in smoother gradients, stretched pixel bands, and a
+wider distribution of the image across the fractal's exterior arms.</li>
+</ul>
+<h3 id="balancing-depth-and-bailout">Balancing Depth and Bailout</h3>
+<p>The interplay between Depth and Bailout defines the overall aesthetic
+of the output. If you want a recognizable version of your image nestled
+inside clean, geometric swirls, use a moderate Bailout with a
+low-to-medium Depth. Conversely, if you want dense, infinitely repeating
+kaleidoscopic textures where the original image serves merely as a color
+palette, set Depth high and adjust Bailout to fine-tune the sharpness
+and spread of the fractal filaments.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

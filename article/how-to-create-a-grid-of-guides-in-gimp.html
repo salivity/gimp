@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Grid of Guides in GIMP - gimp</title>
+    <meta name="description" content="Creating a uniform grid of guides in GIMP allows you to align elements, establish layout structures, and maintain consistent spacing across your project. This guide outlines the straightforward procedures for setting up a complete, uniform grid of rows a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-grid-of-guides-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Grid of Guides in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-grid-of-guides-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a uniform grid of guides in GIMP allows you to align elements, establish layout structures, and maintain consistent spacing across your project. This guide outlines the straightforward procedures for setting up a complete, uniform grid of rows a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-a-grid-of-guides-in-gimp">How to Create a Grid of
+Guides in GIMP</h1>
+<p>Creating a uniform grid of guides in GIMP allows you to align
+elements, establish layout structures, and maintain consistent spacing
+across your project. This guide outlines the straightforward procedures
+for setting up a complete, uniform grid of rows and columns using GIMP's
+built-in canvas grid settings and percentage-based guide tools.</p>
+<h2 id="method-1-using-the-configurable-canvas-grid">Method 1: Using the
+Configurable Canvas Grid</h2>
+<p>The fastest way to generate a complete, uniform grid across an entire
+image is through GIMP's native Grid configuration tool.</p>
+<ol type="1">
+<li><strong>Open Grid Settings:</strong> With your image open, go to the
+top menu and select <strong>Image</strong> &gt; <strong>Configure
+Grid...</strong>.</li>
+<li><strong>Set the Spacing:</strong> In the <strong>Appearance</strong>
+tab, locate the <strong>Spacing</strong> section. By default, the width
+and height are linked (indicated by an unbroken chain icon).
+<ul>
+<li>Enter your desired width for columns.</li>
+<li>Enter your desired height for rows. If you want square cells, keep
+the chain icon linked. If you need rectangular cells, click the chain
+icon to unlink the dimensions and set horizontal and vertical spacing
+independently.</li>
+</ul></li>
+<li><strong>Set the Offset (Optional):</strong> If your grid needs to
+start at an offset rather than the top-left corner (0,0), adjust the
+values in the <strong>Offset</strong> section.</li>
+<li><strong>Customize Line Style:</strong> Choose your preferred line
+style (e.g., Intersections, Dashed, Double Dashed, or Solid) and pick a
+foreground/background color that contrasts well with your canvas.</li>
+<li><strong>Apply Settings:</strong> Click <strong>OK</strong> to save
+the grid parameters.</li>
+<li><strong>Display the Grid:</strong> Go to <strong>View</strong> &gt;
+<strong>Show Grid</strong> (or press <strong>Ctrl + Shift +
+'</strong>).</li>
+<li><strong>Enable Snapping:</strong> Go to <strong>View</strong> &gt;
+<strong>Snap to Grid</strong> to ensure layers, selections, and tools
+automatically align with your grid intersections.</li>
+</ol>
+<h2 id="method-2-creating-guide-lines-by-percentage">Method 2: Creating
+Guide Lines by Percentage</h2>
+<p>If you require standard draggable guide lines rather than the canvas
+grid overlay, you can place them at uniform intervals using
+percentages.</p>
+<ol type="1">
+<li><p><strong>Add Vertical Guides (Columns):</strong></p>
+<ul>
+<li>Go to <strong>Image</strong> &gt; <strong>Guides</strong> &gt;
+<strong>New Guide (by Percent)...</strong>.</li>
+<li>Set <strong>Direction</strong> to <strong>Vertical</strong>.</li>
+<li>Enter the percentage for the division (e.g., <code>25</code> for a
+four-column layout).</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Repeat the step for subsequent columns (e.g., <code>50</code> and
+<code>75</code>).</li>
+</ul></li>
+<li><p><strong>Add Horizontal Guides (Rows):</strong></p>
+<ul>
+<li>Go to <strong>Image</strong> &gt; <strong>Guides</strong> &gt;
+<strong>New Guide (by Percent)...</strong>.</li>
+<li>Set <strong>Direction</strong> to <strong>Horizontal</strong>.</li>
+<li>Enter the percentage for the row division (e.g., <code>33.3</code>
+for a three-row layout).</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Repeat for the remaining rows (e.g., <code>66.6</code>).</li>
+</ul></li>
+<li><p><strong>Enable Snapping to Guides:</strong></p>
+<ul>
+<li>Verify that snapping is active by checking <strong>View</strong>
+&gt; <strong>Snap to Guides</strong>.</li>
+</ul></li>
+</ol>
+<h2 id="managing-your-guides">Managing Your Guides</h2>
+<ul>
+<li><strong>Hide or Show Guides:</strong> Toggle visibility anytime
+using <strong>View</strong> &gt; <strong>Show Guides</strong>.</li>
+<li><strong>Clear Guides:</strong> Remove all manual guide lines at once
+by navigating to <strong>Image</strong> &gt; <strong>Guides</strong>
+&gt; <strong>Remove all Guides</strong>.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

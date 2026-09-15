@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Print-Ready PDFs in GIMP - gimp</title>
+    <meta name="description" content="Exporting a print-ready PDF from GIMP requires configuring the correct document resolution, setting up proper dimensions with bleed margins, and applying the right PDF export parameters. While GIMP is primarily a raster graphics editor, following a stand">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-export-print-ready-pd-fs-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Print-Ready PDFs in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-export-print-ready-pd-fs-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting a print-ready PDF from GIMP requires configuring the correct document resolution, setting up proper dimensions with bleed margins, and applying the right PDF export parameters. While GIMP is primarily a raster graphics editor, following a stand" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-print-ready-pdfs-in-gimp">How to Export
+Print-Ready PDFs in GIMP</h1>
+<p>Exporting a print-ready PDF from GIMP requires configuring the
+correct document resolution, setting up proper dimensions with bleed
+margins, and applying the right PDF export parameters. While GIMP is
+primarily a raster graphics editor, following a standardized preparation
+and export workflow ensures your final PDF maintains high-definition
+clarity and correct sizing for commercial or home printing.</p>
+<h2 id="1-set-the-correct-print-resolution-300-dpi">1. Set the Correct
+Print Resolution (300 DPI)</h2>
+<p>Print-quality documents require a resolution of at least 300 pixels
+per inch (DPI/PPI).</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Print Size</strong>.</li>
+<li>Set the <strong>X Resolution</strong> and <strong>Y
+Resolution</strong> to <code>300</code>.</li>
+<li>Ensure the unit dropdown is set to <strong>pixels/in</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p>If you are creating a new document from scratch, click <strong>File
+&gt; New</strong>, expand <strong>Advanced Options</strong>, and set
+both the X and Y resolutions to <code>300</code> before creating the
+canvas.</p>
+<h2 id="2-configure-bleed-and-margins">2. Configure Bleed and
+Margins</h2>
+<p>Commercial printers typically require an extra margin (bleed) around
+the artwork—usually 0.125 inches (3 mm)—to prevent white borders after
+cutting.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Canvas Size</strong>.</li>
+<li>Add the required bleed width and height to your total
+dimensions.</li>
+<li>Center the existing artwork using the <strong>Offset</strong>
+controls or the <strong>Center</strong> button.</li>
+<li>Click <strong>Resize</strong>.</li>
+<li>Use <strong>Image &gt; Guides &gt; New Guide</strong> to mark your
+safety zones and trim lines inside the bleed area.</li>
+</ol>
+<h2 id="3-manage-color-profiles">3. Manage Color Profiles</h2>
+<p>GIMP natively works in the RGB color space. While modern digital
+printers can accurately convert RGB PDFs:</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Color Management</strong>.</li>
+<li>Ensure <strong>Color Managed Display</strong> or <strong>Convert to
+Color Profile</strong> is configured with a standard profile like sRGB
+or Adobe RGB.</li>
+<li>If your print shop strictly requires CMYK, soft-proof the artwork
+under <strong>View &gt; Color Management &gt; Proofing</strong> using
+the print shop's provided ICC profile to check for color shifts before
+exporting.</li>
+</ol>
+<h2 id="4-export-the-document-as-pdf">4. Export the Document as PDF</h2>
+<p>Once your artwork is finalized and saved in the native
+<code>.xcf</code> format:</p>
+<ol type="1">
+<li>Click <strong>File &gt; Export As...</strong></li>
+<li>Name your file and add the <code>.pdf</code> extension (e.g.,
+<code>document.pdf</code>), or select <strong>Portable Document Format
+(*.pdf)</strong> from the <strong>Select File Type (By
+Extension)</strong> menu at the bottom.</li>
+<li>Click <strong>Export</strong>.</li>
+</ol>
+<h2 id="5-configure-pdf-export-settings">5. Configure PDF Export
+Settings</h2>
+<p>A dialog box with PDF-specific settings will appear:</p>
+<ul>
+<li><strong>Apply layer masks before saving:</strong> Check this option
+to ensure masked elements render properly.</li>
+<li><strong>Convert bitmaps to vector:</strong> Leave unchecked unless
+your project specifically requires bitmap tracing.</li>
+<li><strong>Omit hidden layers and layers with zero opacity:</strong>
+Check this to reduce file size and remove non-visible elements.</li>
+<li><strong>Layers as pages:</strong> Leave unchecked for single-page
+documents. Check this only if you created a multi-page document where
+each top-level layer represents a separate page.</li>
+</ul>
+<p>Click <strong>Export</strong> to generate your print-ready PDF.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

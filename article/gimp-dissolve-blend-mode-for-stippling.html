@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Dissolve Blend Mode for Stippling - gimp</title>
+    <meta name="description" content="The Dissolve blend mode in GIMP generates a stippled, textured effect by converting semi-transparent pixels and smooth tonal gradients into a scattered pattern of solid dots. Instead of blending pixel colors smoothly, it applies a random dither based on">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-dissolve-blend-mode-for-stippling">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Dissolve Blend Mode for Stippling - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-dissolve-blend-mode-for-stippling" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Dissolve blend mode in GIMP generates a stippled, textured effect by converting semi-transparent pixels and smooth tonal gradients into a scattered pattern of solid dots. Instead of blending pixel colors smoothly, it applies a random dither based on" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-dissolve-blend-mode-for-stippling">GIMP Dissolve Blend Mode
+for Stippling</h1>
+<p>The Dissolve blend mode in GIMP generates a stippled, textured effect
+by converting semi-transparent pixels and smooth tonal gradients into a
+scattered pattern of solid dots. Instead of blending pixel colors
+smoothly, it applies a random dither based on opacity levels, making it
+a primary digital tool for replicating traditional ink stippling,
+vintage shading, and grain effects.</p>
+<h2 id="how-the-dissolve-blend-mode-works">How the Dissolve Blend Mode
+Works</h2>
+<p>Traditional blend modes calculate mathematical averages between layer
+colors and alpha channels to create smooth, transparent transitions.
+Dissolve replaces this continuous gradient with a binary noise
+pattern.</p>
+<p>Every pixel affected by Dissolve is either rendered at 100% opacity
+or 0% opacity. The probability of a pixel remaining visible depends
+directly on the original opacity of that specific point:</p>
+<ul>
+<li><strong>High Opacity (80%–99%):</strong> High concentration of solid
+pixels with few transparent gaps.</li>
+<li><strong>Mid-Tone Opacity (~50%):</strong> A balanced, evenly
+distributed field of dots.</li>
+<li><strong>Low Opacity (1%–20%):</strong> Widely scattered, sparse
+individual dots.</li>
+</ul>
+<h2 id="function-in-stipple-rendering">Function in Stipple
+Rendering</h2>
+<p>In manual illustration, stippling is the technique of building tone,
+depth, and texture using distinct dots of varied density. In GIMP, the
+Dissolve blend mode automates this process digitally.</p>
+<h3 id="translating-gradients-into-dot-density">Translating Gradients
+into Dot Density</h3>
+<p>Applying soft brushes, the Airbrush tool, or the Gradient tool under
+normal modes produces smooth, digital transitions. Setting either the
+paint tool or the layer blend mode to <strong>Dissolve</strong>
+instantly converts these soft gradients into stippled texture, where
+density replaces smooth transparency to represent value.</p>
+<h3 id="dynamic-shading-control">Dynamic Shading Control</h3>
+<p>Artists can control the spread and density of the stipple effect in
+real time by adjusting:</p>
+<ul>
+<li><strong>Brush Opacity:</strong> Lowering opacity increases dot
+spacing, creating lighter tones.</li>
+<li><strong>Brush Dynamics:</strong> Linking opacity to stylus pressure
+allows smooth transitions from heavy, dense stippling to sparse dots in
+a single stroke.</li>
+<li><strong>Brush Hardness/Softness:</strong> Using soft-edged brushes
+creates a natural falloff where dots disperse gradually toward the outer
+edge of the stroke.</li>
+</ul>
+<h2 id="practical-applications">Practical Applications</h2>
+<ul>
+<li><strong>Retro and Comic Shading:</strong> Simulates low-fidelity
+printing, newsprint, and vintage risograph textures.</li>
+<li><strong>Vector-Style Texturing:</strong> Provides a non-blurry way
+to shade flat-color illustrations without introducing semi-transparent
+anti-aliased edges.</li>
+<li><strong>Ink and Line Art Depth:</strong> Enhances traditional
+ink-style drawings by adding authentic, hand-stippled shadows and
+highlights along contour lines.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

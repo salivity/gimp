@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Color Accent Technique in GIMP - gimp</title>
+    <meta name="description" content="The color accent technique, commonly known as selective color or the color splash effect, emphasizes a specific subject by retaining its natural hue while converting the surrounding background to black and white. In GIMP, achieving this effect is straigh">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-the-color-accent-technique-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Color Accent Technique in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-the-color-accent-technique-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The color accent technique, commonly known as selective color or the color splash effect, emphasizes a specific subject by retaining its natural hue while converting the surrounding background to black and white. In GIMP, achieving this effect is straigh" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-color-accent-technique-in-gimp">How to Use the
+Color Accent Technique in GIMP</h1>
+<p>The color accent technique, commonly known as selective color or the
+color splash effect, emphasizes a specific subject by retaining its
+natural hue while converting the surrounding background to black and
+white. In GIMP, achieving this effect is straightforward and
+non-destructive using duplicate layers and layer masks. This
+step-by-step guide explains how to isolate a single color against a
+monochrome background with precision.</p>
+<h3 id="step-1-open-your-image-and-duplicate-the-layer">Step 1: Open
+Your Image and Duplicate the Layer</h3>
+<ol type="1">
+<li>Launch GIMP and open your photo by going to <strong>File &gt;
+Open</strong>.</li>
+<li>Open the <strong>Layers</strong> dialog panel (<code>Ctrl + L</code>
+on Windows/Linux or <code>Cmd + L</code> on macOS) if it is not already
+visible.</li>
+<li>Right-click the base layer and select <strong>Duplicate
+Layer</strong> (or press <code>Shift + Ctrl + D</code>).</li>
+<li>Rename the top layer to "Monochrome" and keep the bottom layer as
+"Original Color" to stay organized.</li>
+</ol>
+<h3 id="step-2-desaturate-the-top-layer">Step 2: Desaturate the Top
+Layer</h3>
+<ol type="1">
+<li>Click on the top "Monochrome" layer to select it.</li>
+<li>Navigate to <strong>Colors &gt; Desaturate &gt;
+Desaturate...</strong> in the top menu.</li>
+<li>In the dialog box, choose your preferred conversion mode (such as
+<strong>Luminance</strong> or <strong>Luma</strong>) depending on which
+provides the best contrast for your photo.</li>
+<li>Click <strong>OK</strong> to apply the monochrome effect to the top
+layer.</li>
+</ol>
+<h3 id="step-3-add-a-layer-mask">Step 3: Add a Layer Mask</h3>
+<ol type="1">
+<li>Right-click the "Monochrome" layer in the Layers panel and select
+<strong>Add Layer Mask...</strong></li>
+<li>In the options window, select <strong>White (full opacity)</strong>
+and click <strong>Add</strong>.</li>
+<li>A white rectangle will appear next to the layer thumbnail,
+indicating that the mask is active.</li>
+</ol>
+<h3 id="step-4-paint-to-reveal-the-accent-color">Step 4: Paint to Reveal
+the Accent Color</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>) from
+the Toolbox.</li>
+<li>Set the foreground color to pure <strong>Black</strong>
+(<code>#000000</code>).</li>
+<li>Choose a soft-edged brush (such as <code>Hardness 050</code>) to
+ensure smooth blending along the edges of your subject.</li>
+<li>Paint over the areas of the image where you want the original color
+to show through. Painting with black creates transparency on the
+monochrome layer, exposing the vibrant color layer underneath.</li>
+<li>If you make a mistake and reveal color outside your intended area,
+switch the foreground color to pure <strong>White</strong>
+(<code>#FFFFFF</code>) and paint over the mistake to restore the
+monochrome background.</li>
+</ol>
+<h3 id="step-5-refine-and-enhance-the-color">Step 5: Refine and Enhance
+the Color</h3>
+<ol type="1">
+<li>Zoom in (<code>+</code> key) to clean up fine edges around the
+colored object using a smaller brush size.</li>
+<li>To make the isolated color stand out even more, select the bottom
+"Original Color" layer and go to <strong>Colors &gt;
+Saturation...</strong> to slightly increase the color intensity.</li>
+<li>Once satisfied with the result, navigate to <strong>File &gt; Export
+As...</strong> to save your final image in your desired format (e.g.,
+JPEG or PNG).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

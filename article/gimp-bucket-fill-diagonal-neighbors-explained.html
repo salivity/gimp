@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Bucket Fill Diagonal Neighbors Explained - gimp</title>
+    <meta name="description" content="The Diagonal Neighbors option in GIMP modifies how the Bucket Fill tool detects connected pixels, expanding the algorithm from standard orthogonal evaluation to include diagonal connections. This article explains how enabling this setting alters pixel co">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-bucket-fill-diagonal-neighbors-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Bucket Fill Diagonal Neighbors Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-bucket-fill-diagonal-neighbors-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Diagonal Neighbors option in GIMP modifies how the Bucket Fill tool detects connected pixels, expanding the algorithm from standard orthogonal evaluation to include diagonal connections. This article explains how enabling this setting alters pixel co" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-bucket-fill-diagonal-neighbors-explained">GIMP Bucket Fill
+Diagonal Neighbors Explained</h1>
+<p>The Diagonal Neighbors option in GIMP modifies how the Bucket Fill
+tool detects connected pixels, expanding the algorithm from standard
+orthogonal evaluation to include diagonal connections. This article
+explains how enabling this setting alters pixel connectivity, how it
+changes the boundary limits of your fills, and the practical scenarios
+where it prevents or causes color bleeding across pixel art and line
+drawings.</p>
+<h3 id="understanding-pixel-connectivity-in-gimp">Understanding Pixel
+Connectivity in GIMP</h3>
+<p>By default, GIMP’s Bucket Fill tool uses a 4-connected pixel method
+(orthogonal connectivity). When you click an area to fill it, GIMP
+evaluates adjacent pixels strictly in four directions: up, down, left,
+and right. If two similarly colored pixels only touch at their
+corners—sharing a vertex rather than an edge—the tool views them as
+separate entities and stops the fill at the boundary.</p>
+<h3 id="how-diagonal-neighbors-changes-the-fill-area">How Diagonal
+Neighbors Changes the Fill Area</h3>
+<p>Enabling the <strong>Diagonal neighbors</strong> checkbox switches
+the tool to an 8-connected pixel method. In this mode, GIMP searches in
+all eight directions surrounding a pixel: up, down, left, right, and all
+four diagonal corners.</p>
+<p>This fundamentally alters the filled area in two ways:</p>
+<ol type="1">
+<li><strong>Bypasses Diagonal Barriers:</strong> In standard mode, a
+diagonal line of pixels (such as a 1-pixel-wide line sloping at 45
+degrees) acts as an impenetrable barrier because the pixels only share
+corners. With Diagonal Neighbors enabled, the fill considers those
+diagonal points connected, allowing the color to spread along the
+diagonal path.</li>
+<li><strong>Permits Color Leaks Through Gaps:</strong> Conversely, if
+your line art relies on corner-to-corner pixels to seal off an interior
+space, enabling Diagonal Neighbors will cause the fill color to pass
+directly through the diagonal gaps between the interior and exterior of
+your outline, flooding adjacent regions.</li>
+</ol>
+<h3 id="when-to-use-diagonal-neighbors">When to Use Diagonal
+Neighbors</h3>
+<ul>
+<li><strong>Pixel Art Cleanup:</strong> When recoloring intricate pixel
+art, lines often consist of individual, corner-touching pixels. Enabling
+Diagonal Neighbors lets you select or fill an entire continuous diagonal
+stroke in a single click without manually filling each detached
+corner.</li>
+<li><strong>Segmented Patterns:</strong> If you are filling checkerboard
+or cross-hatched patterns where matching colors touch only at the
+vertices, this option allows the fill to spread across the entire grid
+seamlessly.</li>
+</ul>
+<h3 id="when-to-keep-it-disabled">When to Keep It Disabled</h3>
+<p>Keep Diagonal Neighbors unchecked for standard line art coloring.
+Most hand-drawn digital sketches contain tiny diagonal gaps at corners.
+Leaving the setting off ensures the Bucket Fill treats strictly enclosed
+4-way spaces as closed containers, preventing accidental color overflow
+into the rest of your canvas.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

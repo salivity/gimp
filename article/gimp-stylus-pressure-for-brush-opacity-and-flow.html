@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Stylus Pressure for Brush Opacity and Flow - gimp</title>
+    <meta name="description" content="Configuring dynamic stylus pressure to control both brush opacity and flow simultaneously in GIMP allows digital painters to achieve natural, buildable blending similar to traditional media. This guide covers how to create a custom Paint Dynamic, map sty">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-stylus-pressure-for-brush-opacity-and-flow">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Stylus Pressure for Brush Opacity and Flow - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-stylus-pressure-for-brush-opacity-and-flow" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring dynamic stylus pressure to control both brush opacity and flow simultaneously in GIMP allows digital painters to achieve natural, buildable blending similar to traditional media. This guide covers how to create a custom Paint Dynamic, map sty" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-stylus-pressure-for-brush-opacity-and-flow">GIMP Stylus
+Pressure for Brush Opacity and Flow</h1>
+<p>Configuring dynamic stylus pressure to control both brush opacity and
+flow simultaneously in GIMP allows digital painters to achieve natural,
+buildable blending similar to traditional media. This guide covers how
+to create a custom Paint Dynamic, map stylus pressure to both opacity
+and flow within the Dynamics Matrix, and fine-tune individual response
+curves to ensure a responsive, seamless drawing experience.</p>
+<h3 id="step-1-open-the-paint-dynamics-panel">Step 1: Open the Paint
+Dynamics Panel</h3>
+<p>Default presets in GIMP are locked against editing, so you must
+create a custom dynamic preset to modify the curves.</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Windows &gt; Dockable Dialogs &gt;
+Paint Dynamics</strong>.</li>
+<li>In the Paint Dynamics dock, click the <strong>Create a new
+dynamic</strong> button (represented by a blank document icon) at the
+bottom, or duplicate an existing profile.</li>
+<li>Name your new profile (for example, "Pressure Opacity and
+Flow").</li>
+</ol>
+<h3 id="step-2-configure-the-mapping-matrix">Step 2: Configure the
+Mapping Matrix</h3>
+<p>Opening or double-clicking your new preset opens the <strong>Paint
+Dynamics Editor</strong>.</p>
+<ol type="1">
+<li>Locate the <strong>Mapping Matrix</strong> grid, which maps hardware
+inputs (rows) to brush behaviors (columns).</li>
+<li>Find the row labeled <strong>Pressure</strong>.</li>
+<li>Check the box under the <strong>Opacity</strong> column.</li>
+<li>Check the box under the <strong>Flow</strong> column.</li>
+</ol>
+<p>Enabling both boxes links your stylus pressure to the overall
+transparency (opacity) and the accumulation rate of the pigment per dab
+(flow).</p>
+<h3 id="step-3-calibrate-the-dynamic-pressure-curves">Step 3: Calibrate
+the Dynamic Pressure Curves</h3>
+<p>To avoid abrupt transitions, you must adjust the individual response
+curve for each attribute.</p>
+<ol type="1">
+<li>Below the matrix in the Paint Dynamics Editor, locate the
+<strong>Dynamics Curves</strong> section.</li>
+<li>From the dropdown menu, select <strong>Opacity</strong>. A graph
+plotting stylus pressure (horizontal axis) against opacity output
+(vertical axis) will appear.</li>
+<li>Click and drag the curve to adjust the response. A gentle "S-curve"
+or slight exponential curve prevents maximum opacity from triggering too
+early.</li>
+<li>Switch the dropdown menu to <strong>Flow</strong>.</li>
+<li>Adjust the Flow curve. A steeper initial incline for flow often
+works best, allowing ink to start laying down at light pressure while
+opacity remains low, yielding soft, glaze-like strokes that darken as
+pressure increases.</li>
+</ol>
+<h3 id="step-4-apply-and-test-the-preset">Step 4: Apply and Test the
+Preset</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush</strong> tool from the Tools
+panel.</li>
+<li>In the <strong>Tool Options</strong> dock, expand the
+<strong>Dynamics</strong> section.</li>
+<li>Click the dynamics icon and select your newly configured preset from
+the list.</li>
+<li>Set the base <strong>Opacity</strong> and <strong>Flow</strong>
+sliders in the Tool Options to 100% to allow the dynamics to manage the
+full dynamic range (0% to 100%) based on your pen pressure.</li>
+<li>Test the brush on the canvas, adjusting the curves in the Dynamics
+Editor until the tactile response matches your painting style.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

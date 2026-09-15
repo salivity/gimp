@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Multi-Page PDFs Using GIMP Layers - gimp</title>
+    <meta name="description" content="This article explains how the "Layers as pages" option in GIMP's PDF export dialog transforms individual image layers into sequential pages of a single PDF document. You will learn how the layer stack dictates the sequence of pages, how visibility and la">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-multi-page-pd-fs-using-gimp-layers">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Multi-Page PDFs Using GIMP Layers - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-multi-page-pd-fs-using-gimp-layers" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the "Layers as pages" option in GIMP's PDF export dialog transforms individual image layers into sequential pages of a single PDF document. You will learn how the layer stack dictates the sequence of pages, how visibility and la" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-multi-page-pdfs-using-gimp-layers">How to Create
+Multi-Page PDFs Using GIMP Layers</h1>
+<p>This article explains how the "Layers as pages" option in GIMP's PDF
+export dialog transforms individual image layers into sequential pages
+of a single PDF document. You will learn how the layer stack dictates
+the sequence of pages, how visibility and layer dimensions affect the
+final output, and the exact process to export your document cleanly.</p>
+<h3 id="how-the-feature-works">How the Feature Works</h3>
+<p>When you export an image as a Portable Document Format (PDF) file in
+GIMP, enabling the <strong>Layers as pages</strong> option instructs
+GIMP to parse each individual layer in your project as a separate page,
+rather than flattening the entire layer stack into a single image. The
+export engine evaluates each layer sequentially, writing its raster data
+and dimensions into distinct page objects within the PDF file
+structure.</p>
+<h3 id="page-sequencing-and-layer-hierarchy">Page Sequencing and Layer
+Hierarchy</h3>
+<p>The order of pages in the exported PDF is directly determined by the
+visual hierarchy of your layers in the Layers panel:</p>
+<ul>
+<li><strong>Default Order:</strong> By default, GIMP reads the layer
+stack from top to bottom. The uppermost layer becomes Page 1, the layer
+beneath it becomes Page 2, and the bottom layer becomes the final page
+of the document.</li>
+<li><strong>Reverse Order:</strong> The export dialog includes a
+<strong>Reverse the pages order</strong> checkbox. Enabling this option
+inverts the sequence, making the bottom-most layer Page 1 and the top
+layer the final page. This is particularly useful if you build your
+document sequentially from bottom to top.</li>
+</ul>
+<h3 id="layer-visibility-and-sizing">Layer Visibility and Sizing</h3>
+<p>GIMP’s PDF engine relies on specific layer attributes to generate
+each page:</p>
+<ul>
+<li><strong>Visibility:</strong> By default, the export dialog offers an
+option to apply pages only to visible layers. Hidden layers (those with
+the eye icon toggled off) can be excluded from the generated PDF
+entirely, allowing you to keep draft layers or reference materials in
+your <code>.xcf</code> file without having them appear in the final
+export.</li>
+<li><strong>Canvas and Layer Dimensions:</strong> Each page in the
+resulting PDF adopts the dimensions of the respective layer. If all
+layers match the overall canvas size, every page in the PDF will be
+uniform. If individual layers are smaller or larger than the canvas,
+each PDF page will scale to fit the bounding box of that specific layer,
+which can result in mixed page dimensions in the final document.</li>
+</ul>
+<h3 id="steps-to-export-a-multi-page-pdf">Steps to Export a Multi-Page
+PDF</h3>
+<ol type="1">
+<li>Arrange your content so that each page of your intended document
+exists as its own layer in the Layers panel.</li>
+<li>Ensure layer boundaries match your desired page dimensions by
+navigating to <strong>Layer &gt; Layer to Canvas Size</strong> for each
+layer if uniform dimensions are required.</li>
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>In the export window, type a filename ending in <code>.pdf</code> or
+select <strong>Portable Document Format (PDF)</strong> from the file
+type menu, then click <strong>Export</strong>.</li>
+<li>In the PDF Export dialog box, check the box labeled <strong>Layers
+as pages</strong>.</li>
+<li>Choose whether to check <strong>Reverse the pages order</strong>
+based on your preferred reading direction.</li>
+<li>Uncheck <strong>Omit hidden layers and layers with zero
+opacity</strong> if you intend to include every layer, or leave it
+checked to export visible pages only.</li>
+<li>Click <strong>Export</strong> to generate the multi-page PDF
+document.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

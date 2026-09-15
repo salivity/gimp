@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set GIMP Process Priority in Linux Using Nice - gimp</title>
+    <meta name="description" content="Managing the CPU scheduling priority of GIMP allows you to optimize system performance, ensuring image rendering either receives maximum processing power or runs quietly in the background without freezing other applications. This guide explains how to us">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/set-gimp-process-priority-in-linux-using-nice">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Set GIMP Process Priority in Linux Using Nice - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/set-gimp-process-priority-in-linux-using-nice" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Managing the CPU scheduling priority of GIMP allows you to optimize system performance, ensuring image rendering either receives maximum processing power or runs quietly in the background without freezing other applications. This guide explains how to us" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="set-gimp-process-priority-in-linux-using-nice">Set GIMP Process
+Priority in Linux Using Nice</h1>
+<p>Managing the CPU scheduling priority of GIMP allows you to optimize
+system performance, ensuring image rendering either receives maximum
+processing power or runs quietly in the background without freezing
+other applications. This guide explains how to use the Linux
+command-line utilities <code>nice</code> and <code>renice</code> to
+launch GIMP with a specific priority or adjust the priority of an
+already running GIMP instance.</p>
+<h3 id="understanding-linux-niceness-values">Understanding Linux
+Niceness Values</h3>
+<p>Linux process priority is controlled by a "niceness" scale ranging
+from <code>-20</code> to <code>19</code>:</p>
+<ul>
+<li><strong>-20:</strong> Highest priority (least "nice" to other
+processes, gets the most CPU time). Setting a negative value requires
+<code>sudo</code> privileges.</li>
+<li><strong>0:</strong> The default priority for standard user
+applications.</li>
+<li><strong>19:</strong> Lowest priority (most "nice," yields CPU
+resources to all other processes).</li>
+</ul>
+<hr />
+<h3 id="launching-gimp-with-nice">Launching GIMP with
+<code>nice</code></h3>
+<p>The <code>nice</code> command sets the priority level of a program at
+the moment it is launched.</p>
+<h4 id="1-lowering-gimps-priority">1. Lowering GIMP's Priority</h4>
+<p>If you are running a heavy batch export or complex filter and want to
+keep your desktop responsive for web browsing or other tasks, start GIMP
+with a positive nice value:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nice</span> <span class="at">-n</span> 10 gimp <span class="kw">&amp;</span></span></code></pre></div>
+<h4 id="2-increasing-gimps-priority">2. Increasing GIMP's Priority</h4>
+<p>To allocate more CPU time to GIMP for faster performance during heavy
+operations, use a negative value. This command requires elevated
+permissions:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> nice <span class="at">-n</span> <span class="at">-10</span> gimp <span class="kw">&amp;</span></span></code></pre></div>
+<p><em>(Note: The <code>&amp;</code> symbol runs the application in the
+background, freeing up your terminal.)</em></p>
+<hr />
+<h3 id="adjusting-a-running-gimp-instance-with-renice">Adjusting a
+Running GIMP Instance with <code>renice</code></h3>
+<p>If GIMP is already open, use <code>renice</code> to alter its
+priority without restarting the application.</p>
+<h4 id="1-find-the-process-id-pid">1. Find the Process ID (PID)</h4>
+<p>Locate the PID of your running GIMP session:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pgrep</span> gimp</span></code></pre></div>
+<p>Alternatively, you can use:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pidof</span> gimp</span></code></pre></div>
+<h4 id="2-apply-the-new-priority">2. Apply the New Priority</h4>
+<p>Once you have the PID, run <code>renice</code> followed by the new
+value and the target PID:</p>
+<ul>
+<li><p><strong>To lower priority (e.g., to 5):</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">renice</span> <span class="at">-n</span> 5 <span class="at">-p</span> <span class="op">&lt;</span>PID<span class="op">&gt;</span></span></code></pre></div></li>
+<li><p><strong>To raise priority (e.g., to -5):</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> renice <span class="at">-n</span> <span class="at">-5</span> <span class="at">-p</span> <span class="op">&lt;</span>PID<span class="op">&gt;</span></span></code></pre></div></li>
+</ul>
+<p>Replace <code>&lt;PID&gt;</code> with the actual process ID returned
+in step 1.</p>
+<h4 id="3-change-priority-using-a-single-command">3. Change Priority
+Using a Single Command</h4>
+<p>You can combine finding the PID and changing the priority into a
+single step:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">renice</span> <span class="at">-n</span> 8 <span class="at">-p</span> <span class="va">$(</span><span class="ex">pgrep</span> gimp<span class="va">)</span></span></code></pre></div>
+<hr />
+<h3 id="verifying-the-priority">Verifying the Priority</h3>
+<p>To confirm that the new niceness value has been applied to GIMP,
+check the process attributes using <code>ps</code>:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-o</span> pid,comm,ni <span class="at">-p</span> <span class="va">$(</span><span class="ex">pgrep</span> gimp<span class="va">)</span></span></code></pre></div>
+<p>The output displays the PID, the process name, and the
+<code>NI</code> column, which reflects the current nice level assigned
+to GIMP.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

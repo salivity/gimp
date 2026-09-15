@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear vs Perceptual Gamma in GIMP Explained - gimp</title>
+    <meta name="description" content="In GIMP, choosing between Linear and Perceptual gamma modes dictates how color and brightness values are mathematically calculated during editing. Perceptual gamma matches how human vision interprets brightness, making it ideal for standard visual adjust">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/linear-vs-perceptual-gamma-in-gimp-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Linear vs Perceptual Gamma in GIMP Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/linear-vs-perceptual-gamma-in-gimp-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, choosing between Linear and Perceptual gamma modes dictates how color and brightness values are mathematically calculated during editing. Perceptual gamma matches how human vision interprets brightness, making it ideal for standard visual adjust" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="linear-vs-perceptual-gamma-in-gimp-explained">Linear vs
+Perceptual Gamma in GIMP Explained</h1>
+<p>In GIMP, choosing between Linear and Perceptual gamma modes dictates
+how color and brightness values are mathematically calculated during
+editing. Perceptual gamma matches how human vision interprets
+brightness, making it ideal for standard visual adjustments, while
+Linear gamma calculates light based on physical, real-world intensity.
+Understanding the distinction between these modes is essential for
+achieving accurate color blending, realistic lighting effects, and
+proper image scaling.</p>
+<h3 id="understanding-the-core-concepts">Understanding the Core
+Concepts</h3>
+<ul>
+<li><strong>Perceptual Gamma (Non-Linear/sRGB):</strong> Human eyes are
+naturally more sensitive to subtle differences in dark tones than in
+bright highlights. Perceptual gamma applies a curve (traditionally the
+sRGB gamma curve) that allocates more data to shadow details so images
+look balanced to human vision on standard computer displays.</li>
+<li><strong>Linear Gamma (Linear Light):</strong> In physics, doubling
+the amount of light doubles the energy. Linear gamma processes color
+values using direct, proportional mathematics where zero is black, one
+is white, and intermediate values represent the exact physical amount of
+light without any perceptual correction curve.</li>
+</ul>
+<h3 id="key-practical-differences-in-gimp">Key Practical Differences in
+GIMP</h3>
+<h4 id="1-color-blending-and-gradients">1. Color Blending and
+Gradients</h4>
+<ul>
+<li><strong>Perceptual:</strong> Blending two high-contrast colors (such
+as red and green) often produces a muddy, dark band in the middle.</li>
+<li><strong>Linear:</strong> Generates smooth, physically accurate
+transitions. The colors mix as real light rays would, eliminating
+unnatural dark fringes between complementary colors.</li>
+</ul>
+<h4 id="2-blurring-and-filters">2. Blurring and Filters</h4>
+<ul>
+<li><strong>Perceptual:</strong> Applying a Gaussian blur to bright
+elements on a dark background can cause the bright areas to dim
+significantly because the non-linear math underestimates the strength of
+the light.</li>
+<li><strong>Linear:</strong> Retains the true intensity of highlights
+when blurred, resulting in natural-looking glows, bokeh effects, and
+realistic light diffusion.</li>
+</ul>
+<h4 id="3-image-scaling-and-resampling">3. Image Scaling and
+Resampling</h4>
+<ul>
+<li><strong>Perceptual:</strong> Downscaling an image with fine,
+high-contrast details (like black-and-white patterns or sharp text)
+often darkens the overall image.</li>
+<li><strong>Linear:</strong> Preserves the correct average luminance
+when resizing, preventing unwanted shifts in exposure.</li>
+</ul>
+<h4 id="4-layer-modes-and-compositing">4. Layer Modes and
+Compositing</h4>
+<ul>
+<li><strong>Perceptual:</strong> Layer blending modes (such as Multiply,
+Screen, or Overlay) produce the classic behavior found in older 8-bit
+digital imaging software.</li>
+<li><strong>Linear:</strong> Compositing calculates light addition and
+subtraction realistically, which is standard practice in professional
+visual effects (VFX) and 3D rendering pipelines.</li>
+</ul>
+<h3 id="when-to-use-each-mode">When to Use Each Mode</h3>
+<ul>
+<li><strong>Use Linear Mode for:</strong> Resizing images, applying
+blurs, compositing lighting effects, rendering 3D textures, and creating
+smooth color gradients.</li>
+<li><strong>Use Perceptual Mode for:</strong> Final tone curve
+adjustments, traditional digital painting where brush behavior is
+expected to mimic classic software, and legacy workflows requiring exact
+visual matching to older sRGB-only projects.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

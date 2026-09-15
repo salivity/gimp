@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure JPEG 2000 for Archival in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to properly configure JPEG 2000 (JP2) export settings in the GNU Image Manipulation Program (GIMP) to meet standard digital preservation requirements. Long-term archival preservation mandates zero image degradation, complete color">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-jpeg-2000-for-archival-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure JPEG 2000 for Archival in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-jpeg-2000-for-archival-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to properly configure JPEG 2000 (JP2) export settings in the GNU Image Manipulation Program (GIMP) to meet standard digital preservation requirements. Long-term archival preservation mandates zero image degradation, complete color" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-jpeg-2000-for-archival-in-gimp">Configure JPEG 2000
+for Archival in GIMP</h1>
+<p>This guide explains how to properly configure JPEG 2000 (JP2) export
+settings in the GNU Image Manipulation Program (GIMP) to meet standard
+digital preservation requirements. Long-term archival preservation
+mandates zero image degradation, complete color fidelity, and the
+retention of technical and descriptive metadata. By configuring GIMP's
+OpenJPEG export engine correctly, you can create compliant master
+preservation files.</p>
+<h3 id="step-1-open-the-export-dialog">Step 1: Open the Export
+Dialog</h3>
+<ol type="1">
+<li>Open your master image in GIMP.</li>
+<li>Navigate to <strong>File &gt; Export As...</strong>.</li>
+<li>In the export window, type a file name ending in <code>.jp2</code>
+(e.g., <code>archival_master.jp2</code>), or expand <strong>Select File
+Type (By Extension)</strong> at the bottom and select <strong>JPEG 2000
+image</strong>.</li>
+<li>Click <strong>Export</strong> to bring up the JPEG 2000 options
+dialog.</li>
+</ol>
+<h3 id="step-2-configure-critical-archival-settings">Step 2: Configure
+Critical Archival Settings</h3>
+<p>In the <strong>Export Image as JPEG 2000</strong> dialog, configure
+the following options to guarantee archival standards:</p>
+<ul>
+<li><strong>Format</strong>: Select <strong>jp2</strong>. The standard
+<code>.jp2</code> container format supports essential color profile
+definitions and metadata wrappers, whereas raw codestreams
+(<code>.j2k</code>) do not.</li>
+<li><strong>Lossless</strong>: <strong>Enable (Check)</strong> this
+option. This is the single most critical setting for preservation.
+Enabling "Lossless" forces reversible 5/3 wavelet filter compression,
+ensuring that every pixel is preserved identically with zero visual or
+mathematical degradation.</li>
+<li><strong>Quality</strong>: When "Lossless" is checked, quality is
+locked or mathematically irrelevant. If the slider is active, set it to
+<strong>100</strong> to ensure no lossy rate-allocation algorithms are
+applied.</li>
+<li><strong>Tile size</strong>: Leave set to <strong>0</strong> (or
+disabled) unless standard multi-resolution streaming is explicitly
+required by your repository. A single-tile codestream prevents tiling
+artifacts and ensures simpler decodability for future software
+implementations.</li>
+</ul>
+<h3 id="step-3-retain-metadata-and-color-profiles">Step 3: Retain
+Metadata and Color Profiles</h3>
+<p>Archival standards require embedded provenance and rendering data.
+Expand the <strong>Advanced Options</strong> and
+<strong>Metadata</strong> sections (if presented separately depending on
+your GIMP version):</p>
+<ul>
+<li><strong>Save color profile</strong>: <strong>Enable
+(Check)</strong>. Archival master files must contain the embedded ICC
+profile (such as Adobe RGB 1998, ProPhoto RGB, or sRGB) to ensure
+accurate color reproduction across different display and print devices
+over time.</li>
+<li><strong>Save Exif data</strong>: <strong>Enable (Check)</strong> to
+retain hardware and capture settings.</li>
+<li><strong>Save XMP data</strong>: <strong>Enable (Check)</strong> to
+maintain preservation metadata, rights information, and structural
+schemas.</li>
+<li><strong>Save IPTC data</strong>: <strong>Enable (Check)</strong> to
+preserve cataloging and editorial tags.</li>
+</ul>
+<h3 id="step-4-finalize-the-export">Step 4: Finalize the Export</h3>
+<p>Click <strong>Export</strong> to generate your archival master file.
+Once exported, reopen the <code>.jp2</code> file in GIMP and check
+<strong>Image &gt; Image Properties</strong> to verify that dimensions,
+color profiles, and metadata channels remain intact.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

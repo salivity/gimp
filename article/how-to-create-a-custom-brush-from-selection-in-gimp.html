@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Custom Brush from Selection in GIMP - gimp</title>
+    <meta name="description" content="Creating a custom brush from an existing canvas selection in GIMP is a quick way to add personalized stamps, textures, and shapes to your digital artwork. This guide explains how to convert any canvas selection into an immediate temporary brush using the">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-custom-brush-from-selection-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Custom Brush from Selection in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-custom-brush-from-selection-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a custom brush from an existing canvas selection in GIMP is a quick way to add personalized stamps, textures, and shapes to your digital artwork. This guide explains how to convert any canvas selection into an immediate temporary brush using the" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-a-custom-brush-from-selection-in-gimp">How to
+Create a Custom Brush from Selection in GIMP</h1>
+<p>Creating a custom brush from an existing canvas selection in GIMP is
+a quick way to add personalized stamps, textures, and shapes to your
+digital artwork. This guide explains how to convert any canvas selection
+into an immediate temporary brush using the clipboard, as well as how to
+export and save it permanently as a GIMP brush file (<code>.gbr</code>)
+for future use.</p>
+<h2 id="method-1-create-an-instant-temporary-brush-clipboard">Method 1:
+Create an Instant Temporary Brush (Clipboard)</h2>
+<p>The fastest way to use a selection as a brush is via the Clipboard
+Brush feature.</p>
+<ol type="1">
+<li><strong>Make a Selection:</strong> Use any selection tool (such as
+the <strong>Rectangle Select</strong>, <strong>Ellipse Select</strong>,
+or <strong>Free Select Tool</strong>) to outline the area of your canvas
+you want to use.</li>
+<li><strong>Copy the Selection:</strong> Press <code>Ctrl + C</code>
+(Windows/Linux) or <code>Cmd + C</code> (macOS), or go to <strong>Edit
+&gt; Copy</strong>.</li>
+<li><strong>Select the Paintbrush:</strong> Activate the
+<strong>Paintbrush Tool</strong> (<code>P</code>).</li>
+<li><strong>Choose the Clipboard Brush:</strong> Open the
+<strong>Brushes</strong> dialog dock. The very first brush displayed
+will be the <strong>Clipboard Image</strong> (or <strong>Clipboard
+Mask</strong>). Select it to immediately start painting with your copied
+canvas region.</li>
+</ol>
+<p><em>Note: This brush remains available until you copy something else
+to your clipboard.</em></p>
+<h2 id="method-2-save-a-permanent-custom-brush-gbr">Method 2: Save a
+Permanent Custom Brush (.gbr)</h2>
+<p>To keep your custom brush permanently across all future GIMP
+sessions, save it as a <code>.gbr</code> file.</p>
+<h3 id="step-1-isolate-the-selection">Step 1: Isolate the Selection</h3>
+<ol type="1">
+<li>Select the desired area on your canvas.</li>
+<li>Copy it by pressing <code>Ctrl + C</code> or
+<code>Cmd + C</code>.</li>
+<li>Go to <strong>Edit &gt; Paste As &gt; New Image</strong> (or press
+<code>Shift + Ctrl + V</code>).</li>
+<li><em>(Optional)</em> If you want the brush to change color with your
+active foreground color, convert the image to grayscale by navigating to
+<strong>Image &gt; Mode &gt; Grayscale</strong>. White areas will be
+fully transparent, black areas will be fully opaque, and gray tones will
+have varying levels of opacity.</li>
+</ol>
+<h3 id="step-2-export-the-brush">Step 2: Export the Brush</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Name your file and add the <code>.gbr</code> extension (for example,
+<code>my_custom_brush.gbr</code>).</li>
+<li>Set the save destination to GIMP's <strong>brushes</strong> folder:
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\[Username]\AppData\Roaming\GIMP\2.10\brushes</code></li>
+<li><strong>macOS:</strong>
+<code>/Users/[Username]/Library/Application Support/GIMP/2.10/brushes</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/GIMP/2.10/brushes</code></li>
+</ul></li>
+<li>Click <strong>Export</strong>. A dialog box will appear asking for
+<strong>Spacing</strong> (set between 10% and 25% for general painting)
+and a <strong>Description</strong> (the name displayed in the brush
+menu).</li>
+<li>Click <strong>Export</strong> to finalize.</li>
+</ol>
+<h3 id="step-3-refresh-the-brush-list">Step 3: Refresh the Brush
+List</h3>
+<ol type="1">
+<li>Open the <strong>Brushes</strong> dock (<strong>Windows &gt;
+Dockable Dialogs &gt; Brushes</strong>).</li>
+<li>Click the <strong>Refresh</strong> icon (two curved arrows) at the
+bottom of the panel.</li>
+<li>Your new custom brush will appear in the list, ready for permanent
+use.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure GIMP Dynamic Brush Flow for Airbrushing - gimp</title>
+    <meta name="description" content="Achieving realistic airbrushing in GIMP requires fine-tuning tool options and configuring custom Paint Dynamics to simulate physical paint flow. This guide details how to set up the Airbrush tool, create dynamic flow behaviors tied to stylus pressure and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-gimp-dynamic-brush-flow-for-airbrushing">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure GIMP Dynamic Brush Flow for Airbrushing - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-gimp-dynamic-brush-flow-for-airbrushing" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Achieving realistic airbrushing in GIMP requires fine-tuning tool options and configuring custom Paint Dynamics to simulate physical paint flow. This guide details how to set up the Airbrush tool, create dynamic flow behaviors tied to stylus pressure and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-gimp-dynamic-brush-flow-for-airbrushing">Configure
+GIMP Dynamic Brush Flow for Airbrushing</h1>
+<p>Achieving realistic airbrushing in GIMP requires fine-tuning tool
+options and configuring custom Paint Dynamics to simulate physical paint
+flow. This guide details how to set up the Airbrush tool, create dynamic
+flow behaviors tied to stylus pressure and speed, and adjust spacing and
+rate for smooth, authentic gradients.</p>
+<h3 id="1-select-the-airbrush-tool">1. Select the Airbrush Tool</h3>
+<p>Unlike the standard Paintbrush, which only applies color during
+movement, the Airbrush tool continuously applies paint even when
+stationary.</p>
+<ol type="1">
+<li>Select the <strong>Airbrush Tool</strong> from the Toolbox (or press
+<strong>A</strong>).</li>
+<li>Open the <strong>Tool Options</strong> dockable dialog.</li>
+</ol>
+<h3 id="2-configure-basic-airbrush-tool-options">2. Configure Basic
+Airbrush Tool Options</h3>
+<p>Set the baseline parameters to control how paint discharges onto your
+canvas:</p>
+<ul>
+<li><strong>Rate:</strong> Set between <strong>15 and 40</strong>. The
+rate defines the speed at which paint bursts are applied over time.
+Lower values provide better control for subtle shading.</li>
+<li><strong>Flow:</strong> Set between <strong>10 and 30</strong>. Flow
+controls the density of paint emitted per burst. Keeping this low
+prevents immediate oversaturation.</li>
+<li><strong>Brush:</strong> Choose a soft round brush, such as
+<strong>Hardness 050</strong> or <strong>Hardness 025</strong>.</li>
+<li><strong>Spacing:</strong> Set the brush spacing to <strong>5.0% or
+lower</strong> in the brush settings to eliminate visible stepping
+artifacts and create seamless blending.</li>
+</ul>
+<h3 id="3-create-a-custom-dynamic-for-realistic-flow">3. Create a Custom
+Dynamic for Realistic Flow</h3>
+<p>To make the airbrush react realistically to a graphics tablet stylus,
+create a custom Paint Dynamic mapping pressure and velocity to flow and
+opacity.</p>
+<ol type="1">
+<li>Go to <strong>Windows &gt; Dockable Dialogs &gt; Paint
+Dynamics</strong>.</li>
+<li>Click the <strong>Create New Dynamics</strong> icon at the bottom of
+the dialog.</li>
+<li>Open the <strong>Paint Dynamics Editor</strong> to view the mapping
+matrix.</li>
+<li>Set the following checkboxes in the matrix:
+<ul>
+<li><strong>Pressure row:</strong> Check <strong>Opacity</strong>,
+<strong>Size</strong>, and <strong>Flow</strong>. Increasing stylus
+pressure will simultaneously widen the spray and increase paint
+volume.</li>
+<li><strong>Velocity row:</strong> Optional: Check <strong>Flow</strong>
+to decrease ink output during rapid strokes, mirroring the behavior of
+real-world airbrush guns.</li>
+</ul></li>
+</ol>
+<h3 id="4-fine-tune-dynamics-curves">4. Fine-Tune Dynamics Curves</h3>
+<p>To mimic the non-linear trigger response of a physical airbrush:</p>
+<ol type="1">
+<li>In the <strong>Paint Dynamics Editor</strong>, select the specific
+dynamic curve (e.g., <strong>Pressure &gt; Flow</strong>).</li>
+<li>Adjust the curve into a slight <strong>S-curve</strong> or
+<strong>exponential curve</strong>. This ensures light touches yield
+faint mists while firm pressure quickly delivers solid coverage.</li>
+</ol>
+<h3 id="5-enable-stroke-smoothing">5. Enable Stroke Smoothing</h3>
+<p>Real airbrushes produce continuous, smooth lines without jitter.</p>
+<ol type="1">
+<li>Return to the <strong>Tool Options</strong> tab for the
+Airbrush.</li>
+<li>Check the <strong>Smooth Stroke</strong> box.</li>
+<li>Set <strong>Quality</strong> to <strong>50</strong> or higher and
+<strong>Weight</strong> to approximately <strong>10 to 20</strong> to
+stabilize hand movements without introducing noticeable input lag.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

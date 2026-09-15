@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hue LCH Blend Mode in GIMP Selective Recoloring - gimp</title>
+    <meta name="description" content="The Hue (LCH) blend mode in GIMP is an advanced compositing tool designed to modify the underlying color hue of an image while precisely preserving its perceived lightness and chroma (saturation). By utilizing a perceptually uniform color space, it allow">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/hue-lch-blend-mode-in-gimp-selective-recoloring">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hue LCH Blend Mode in GIMP Selective Recoloring - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/hue-lch-blend-mode-in-gimp-selective-recoloring" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Hue (LCH) blend mode in GIMP is an advanced compositing tool designed to modify the underlying color hue of an image while precisely preserving its perceived lightness and chroma (saturation). By utilizing a perceptually uniform color space, it allow" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="hue-lch-blend-mode-in-gimp-selective-recoloring">Hue LCH Blend
+Mode in GIMP Selective Recoloring</h1>
+<p>The Hue (LCH) blend mode in GIMP is an advanced compositing tool
+designed to modify the underlying color hue of an image while precisely
+preserving its perceived lightness and chroma (saturation). By utilizing
+a perceptually uniform color space, it allows editors to selectively
+recolor objects, clothing, or backgrounds naturally without introducing
+tonal clipping, artificial darkening, or loss of texture details.</p>
+<h3 id="how-hue-lch-works">How Hue (LCH) Works</h3>
+<p>The LCH color model separates an image into three distinct visual
+components: Lightness (perceived brightness), Chroma (saturation or
+color purity), and Hue (the actual color family, such as red, green, or
+blue).</p>
+<p>When a layer is set to the <strong>Hue (LCH)</strong> blend mode,
+GIMP extracts only the Hue values from the top (active) layer and
+applies them directly to the bottom (target) layer. Crucially, the
+target layer retains 100% of its original Lightness and Chroma
+values.</p>
+<h3 id="why-use-lch-over-standard-hsv-hue">Why Use LCH Over Standard HSV
+Hue</h3>
+<p>Traditional color blending in photo editing software relies on the
+HSV (Hue, Saturation, Value) or HSL models. These mathematical models do
+not account for how human eyes perceive brightness across different
+spectrums—for example, human vision naturally perceives pure yellow as
+significantly brighter than pure blue.</p>
+<p>Using standard HSV Hue to change a blue object to yellow often causes
+the object to look unnaturally washed out, while changing yellow to blue
+creates muddy, dark artifacts. The <strong>Hue (LCH)</strong> blend mode
+solves this by operating in a perceptually uniform space. When you
+change the hue using LCH:</p>
+<ul>
+<li><strong>Shadows and Highlights Remain Intact:</strong> Deep shadows
+and bright highlights keep their exact tonal depth.</li>
+<li><strong>Textures are Preserved:</strong> Surface details, grain, and
+fabric weaves are not flattened by color changes.</li>
+<li><strong>No Unwanted Lightness Shifts:</strong> The recolored area
+maintains the correct perceived luminescence relative to the rest of the
+image.</li>
+</ul>
+<h3 id="practical-workflow-for-selective-recoloring">Practical Workflow
+for Selective Recoloring</h3>
+<ol type="1">
+<li><strong>Create a Recolor Layer:</strong> Add a transparent layer
+above your target image or duplicate the base layer.</li>
+<li><strong>Set the Mode:</strong> Change the layer blend mode to
+<strong>Hue (LCH)</strong> (located under the <em>Color</em> category in
+GIMP's layer mode dropdown).</li>
+<li><strong>Apply the New Color:</strong> Paint over the desired area
+using a brush set to the replacement color, or fill the entire layer
+with a solid color.</li>
+<li><strong>Isolate with a Layer Mask:</strong> Add a white or black
+layer mask to the recolor layer, then use soft brushes or selection
+tools to restrict the color change precisely to the target subject.</li>
+</ol>
+<p>This workflow ensures non-destructive, realistic selective recoloring
+that blends seamlessly with the natural lighting and shadows of the
+original photograph.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Script-Fu Scheme in the GIMP Console - gimp</title>
+    <meta name="description" content="This guide explains how to write and execute Scheme-based Script-Fu commands directly in GIMP's interactive Script-Fu Console. You will learn the fundamental syntax of Scheme, how to structure multi-step commands using local variable bindings, and how to">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/run-script-fu-scheme-in-the-gimp-console">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Run Script-Fu Scheme in the GIMP Console - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/run-script-fu-scheme-in-the-gimp-console" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to write and execute Scheme-based Script-Fu commands directly in GIMP's interactive Script-Fu Console. You will learn the fundamental syntax of Scheme, how to structure multi-step commands using local variable bindings, and how to" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="run-script-fu-scheme-in-the-gimp-console">Run Script-Fu Scheme
+in the GIMP Console</h1>
+<p>This guide explains how to write and execute Scheme-based Script-Fu
+commands directly in GIMP's interactive Script-Fu Console. You will
+learn the fundamental syntax of Scheme, how to structure multi-step
+commands using local variable bindings, and how to query and execute
+GIMP's Procedural Database (PDB) functions directly from the command
+line interface without writing external plugin files.</p>
+<h3 id="accessing-the-script-fu-console">Accessing the Script-Fu
+Console</h3>
+<p>To open the console in GIMP, navigate to the top menu and select
+<strong>Filters &gt; Development &gt; Script-Fu &gt; Console</strong>
+(or <strong>Filters &gt; Script-Fu &gt; Console</strong> in older GIMP
+releases). The console provides an interactive Read-Eval-Print Loop
+(REPL) where you can type commands into the bottom input field and view
+the results in the main output window.</p>
+<h3 id="basic-scheme-syntax">Basic Scheme Syntax</h3>
+<p>Script-Fu is based on TinyScheme, a lightweight implementation of the
+Scheme programming language. It uses prefix notation, meaning the
+operator or function name always comes first, enclosed within
+parentheses along with its arguments:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(function-name argument1 argument2 <span class="op">...</span>)</span></code></pre></div>
+<p>Basic mathematical and string operations follow this structure:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">+</span> <span class="dv">10</span> <span class="dv">25</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">*</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">string-append</span> <span class="st">&quot;Hello, &quot;</span> <span class="st">&quot;GIMP!&quot;</span>)</span></code></pre></div>
+<h3 id="calling-gimp-pdb-functions">Calling GIMP PDB Functions</h3>
+<p>GIMP exposes its functionality through the Procedural Database (PDB).
+In Script-Fu, PDB functions are invoked like standard Scheme procedures,
+typically using hyphenated naming conventions.</p>
+<p>Most GIMP functions return values wrapped inside a list. When
+capturing a return value (such as an image or layer ID), you must use
+the <code>car</code> function to extract the first element:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">car</span> (gimp-image-new <span class="dv">800</span> <span class="dv">600</span> RGB))</span></code></pre></div>
+<p>To search for available functions, argument types, and return
+signatures, click the <strong>Browse...</strong> button at the bottom of
+the Script-Fu Console window to inspect the PDB.</p>
+<h3 id="writing-a-multi-command-macro">Writing a Multi-Command
+Macro</h3>
+<p>To run a series of sequential commands or define temporary variables
+in the console, wrap the logic in a <code>let*</code> block. The
+<code>let*</code> form allows each defined variable to reference
+variables declared before it in the same block.</p>
+<p>The general structure is:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let*</span> (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       (variable1 value1)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       (variable2 value2)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  (statement1)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  (statement2)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="complete-console-example">Complete Console Example</h3>
+<p>Paste the following macro into the console input line to create a new
+500x500 image, add a transparent layer, fill it with a color, and
+display it in the workspace:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="kw">let*</span> (</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       (width <span class="dv">500</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       (height <span class="dv">500</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       (image (<span class="kw">car</span> (gimp-image-new width height RGB)))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       (layer (<span class="kw">car</span> (gimp-layer-new image width height RGBA-IMAGE <span class="st">&quot;Background&quot;</span> <span class="dv">100</span> LAYER-MODE-NORMAL-LEGACY)))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  (gimp-image-insert-layer image layer <span class="dv">0</span> <span class="dv">0</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  (gimp-context-set-foreground &#39;(<span class="dv">0</span> <span class="dv">128</span> <span class="dv">255</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  (gimp-drawable-fill layer FILL-FOREGROUND)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  (gimp-display-new image)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="executing-the-code">Executing the Code</h3>
+<ol type="1">
+<li>Paste or type the entire expression into the single-line input field
+at the bottom of the console.</li>
+<li>Ensure all opening parentheses have corresponding closing
+parentheses; mismatched brackets will cause a syntax error or leave the
+interpreter waiting for input.</li>
+<li>Press <strong>Enter</strong> to execute. The output window will
+return the value of the last evaluated expression or display an error
+message if an invalid identifier or argument type was provided.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

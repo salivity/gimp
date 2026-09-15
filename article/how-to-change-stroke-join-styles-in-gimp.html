@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Change Stroke Join Styles in GIMP - gimp</title>
+    <meta name="description" content="When stroking vector paths in GIMP, the appearance of sharp corners is governed by the Line Style settings within the Stroke Path dialog. By accessing these parameters, you can select between miter, round, and bevel corner joins, as well as configure the">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-change-stroke-join-styles-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Change Stroke Join Styles in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-change-stroke-join-styles-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When stroking vector paths in GIMP, the appearance of sharp corners is governed by the Line Style settings within the Stroke Path dialog. By accessing these parameters, you can select between miter, round, and bevel corner joins, as well as configure the" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-change-stroke-join-styles-in-gimp">How to Change Stroke
+Join Styles in GIMP</h1>
+<p>When stroking vector paths in GIMP, the appearance of sharp corners
+is governed by the Line Style settings within the Stroke Path dialog. By
+accessing these parameters, you can select between miter, round, and
+bevel corner joins, as well as configure the miter limit to control how
+excessively sharp angles behave.</p>
+<h3 id="accessing-the-stroke-path-dialog">Accessing the Stroke Path
+Dialog</h3>
+<p>To access the corner join settings, you must stroke a path using the
+dedicated dialog:</p>
+<ol type="1">
+<li>Create or select your path using the <strong>Paths Tool</strong>
+(<code>B</code>).</li>
+<li>Open the stroke settings by navigating to <strong>Edit &gt; Stroke
+Path...</strong> in the main menu, or by clicking the <strong>Paint
+along the path</strong> icon at the bottom of the <strong>Paths</strong>
+dockable dialog.</li>
+<li>In the dialog box that appears, select the <strong>Stroke
+line</strong> radio button.</li>
+</ol>
+<h3 id="join-style-settings">Join Style Settings</h3>
+<p>Expand the <strong>Line Style</strong> dropdown section within the
+dialog to reveal the options governing corners:</p>
+<ul>
+<li><strong>Join Style:</strong> This is the direct setting that
+controls how corners are rendered where two path segments meet:
+<ul>
+<li><strong>Miter:</strong> Extends the outer edges of the stroke lines
+until they intersect, creating a sharp, pointed corner.</li>
+<li><strong>Round:</strong> Rounds off the corner with a circular arc
+equal to the stroke width, producing smooth corners.</li>
+<li><strong>Bevel:</strong> Cuts the sharp point off flat across the
+corner, creating a squared-off angle.</li>
+</ul></li>
+</ul>
+<h3 id="the-miter-limit-setting">The Miter Limit Setting</h3>
+<p>When using the <strong>Miter</strong> join style, the <strong>Miter
+limit</strong> setting directly governs sharp corners:</p>
+<ul>
+<li><strong>Purpose:</strong> At very acute (sharp) angles, a miter join
+can extend far beyond the actual corner of the path, creating an
+unwanted, excessively long spike.</li>
+<li><strong>Behavior:</strong> The miter limit defines the maximum
+allowed ratio of the miter length to the stroke width.</li>
+<li><strong>Effect:</strong> If the angle is so sharp that the miter
+extends past this ratio threshold, GIMP automatically converts that
+specific corner into a <strong>Bevel</strong> join to prevent spikes
+from ruining the artwork. Increasing the miter limit allows sharper
+corners to remain pointed, while decreasing it causes corners to bevel
+at wider angles.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

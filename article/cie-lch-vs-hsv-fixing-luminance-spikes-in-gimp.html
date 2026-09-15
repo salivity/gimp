@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIE LCH vs HSV: Fixing Luminance Spikes in GIMP - gimp</title>
+    <meta name="description" content="Digital artists and photo editors often encounter unnatural, glowing bands of brightness when blending colors in software like GIMP. This article explains how traditional HSV (Hue, Saturation, Value) blending causes artificial luminance spiking due to it">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/cie-lch-vs-hsv-fixing-luminance-spikes-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CIE LCH vs HSV: Fixing Luminance Spikes in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/cie-lch-vs-hsv-fixing-luminance-spikes-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Digital artists and photo editors often encounter unnatural, glowing bands of brightness when blending colors in software like GIMP. This article explains how traditional HSV (Hue, Saturation, Value) blending causes artificial luminance spiking due to it" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="cie-lch-vs-hsv-fixing-luminance-spikes-in-gimp">CIE LCH vs HSV:
+Fixing Luminance Spikes in GIMP</h1>
+<p>Digital artists and photo editors often encounter unnatural, glowing
+bands of brightness when blending colors in software like GIMP. This
+article explains how traditional HSV (Hue, Saturation, Value) blending
+causes artificial luminance spiking due to its disregard for human
+visual biology, and how switching to the CIE LCH (Lightness, Chroma,
+Hue) color space solves this problem by enforcing perceptual uniformity
+during color transitions.</p>
+<h3 id="the-flaw-in-traditional-hsv-blending">The Flaw in Traditional
+HSV Blending</h3>
+<p>The traditional HSV color model is a simple mathematical
+transformation of the RGB color cube designed for computational
+convenience rather than visual accuracy. In HSV, "Value" represents the
+highest component value among Red, Green, and Blue. If any single
+channel reaches 100%, the Value is calculated as 100%.</p>
+<p>However, the human eye does not perceive all light wavelengths with
+equal brightness. Humans are far more sensitive to green light than to
+blue light; pure blue with an HSV Value of 100% appears dark to human
+eyes, whereas pure yellow or green at the same Value appears intensely
+bright.</p>
+<p>When GIMP blends two colors using HSV, it interpolates directly
+between their mathematical values. If you blend two saturated colors
+across the color wheel—such as red and green—the intermediate hue passes
+through yellow. Because HSV treats the "Value" of yellow the same as red
+or green, but the human eye perceives yellow as vastly brighter, the
+transition creates a glaring, artificial spike in perceived brightness
+along the transition zone.</p>
+<h3 id="how-cie-lch-prevents-luminance-spiking">How CIE LCH Prevents
+Luminance Spiking</h3>
+<p>CIE LCH is a cylindrical adaptation of the CIELAB color space, which
+was developed by the International Commission on Illumination to be
+mathematically aligned with human visual perception. It separates color
+into three distinct metrics:</p>
+<ul>
+<li><strong>L (Lightness):</strong> Represents perceptual brightness
+calibrated strictly to human eye sensitivity.</li>
+<li><strong>C (Chroma):</strong> Represents the purity or saturation of
+the color relative to white.</li>
+<li><strong>H (Hue angle):</strong> Represents the color family around
+the spectrum.</li>
+</ul>
+<p>Because Lightness (L) in CIE LCH is decoupled from Hue (H) and Chroma
+(C), it is treated as a completely independent dimension. When GIMP
+blends two colors in CIE LCH mode, the lightness component is
+interpolated in a strictly linear, perceptually uniform fashion.</p>
+<p>If GIMP transitions from a dark color to a light color, the Lightness
+values climb in an even, continuous gradient. When passing through
+intermediate hues like yellow or cyan, the algorithm does not inflate
+the actual perceived brightness to reach standard RGB saturation.
+Instead, it scales the Chroma to keep the perceived Lightness anchored
+to its intended linear path. This prevents the mid-tone hue from spiking
+into an over-bright, blown-out halo.</p>
+<h3 id="practical-impact-in-gimp">Practical Impact in GIMP</h3>
+<p>In practical workflows—such as digital painting, layer blending, and
+rendering gradients—using CIE LCH ensures that edges between contrasting
+colors maintain natural contrast. Shadow tones stay grounded, highlights
+do not exhibit harsh, discolored halos, and color gradients preserve the
+tonal balance intended by the artist. By anchoring blend calculations to
+perceptual lightness rather than mathematical channel maximums, GIMP's
+CIE LCH tools eliminate chromatic distortion and produce realistic,
+visually stable results.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

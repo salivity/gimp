@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure GIMP Scratch Disk on a RAM Disk - gimp</title>
+    <meta name="description" content="Configuring GIMP to use a temporary scratch directory on a high-speed RAM disk dramatically accelerates image editing performance, particularly when handling massive files, complex multi-layer projects, and heavy undo histories. By offloading GIMP's swap">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-gimp-scratch-disk-on-a-ram-disk">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure GIMP Scratch Disk on a RAM Disk - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-gimp-scratch-disk-on-a-ram-disk" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring GIMP to use a temporary scratch directory on a high-speed RAM disk dramatically accelerates image editing performance, particularly when handling massive files, complex multi-layer projects, and heavy undo histories. By offloading GIMP's swap" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-gimp-scratch-disk-on-a-ram-disk">Configure GIMP
+Scratch Disk on a RAM Disk</h1>
+<p>Configuring GIMP to use a temporary scratch directory on a high-speed
+RAM disk dramatically accelerates image editing performance,
+particularly when handling massive files, complex multi-layer projects,
+and heavy undo histories. By offloading GIMP's swap and temporary cache
+files from traditional SSDs or HDDs directly to volatile system memory,
+you eliminate drive read/write bottlenecks. This guide outlines how to
+prepare your RAM disk and update GIMP's directory preferences to
+establish an ultra-fast scratch workflow.</p>
+<h3 id="1-prepare-your-ram-disk">1. Prepare Your RAM Disk</h3>
+<p>Before adjusting GIMP settings, you must have an active RAM disk
+mounted on your operating system:</p>
+<ul>
+<li><strong>Linux:</strong> Linux typically mounts a dynamic RAM disk by
+default at <code>/dev/shm</code> or <code>/tmp</code> using
+<code>tmpfs</code>. You can create a dedicated directory by running
+<code>mkdir -p /dev/shm/gimp_scratch</code>.</li>
+<li><strong>Windows:</strong> Windows does not include a native RAM disk
+utility. Install a tool such as ImDisk Toolkit, create a new virtual
+disk (for example, drive letter <code>R:</code>), format it with NTFS,
+and create a folder named <code>R:\GIMP_Temp</code>.</li>
+<li><strong>macOS:</strong> Use the terminal command
+<code>diskutil erasevolume HFS+ "RAMDisk" $(hdiutil attach -nobrowse -nomount ram://[sectors])</code>
+to mount a RAM disk, where size is determined by sectors (1 GB =
+2,097,152 sectors).</li>
+</ul>
+<p>Ensure the allocated RAM disk size leaves sufficient system memory
+for the operating system and running applications.</p>
+<h3 id="2-access-gimp-preferences">2. Access GIMP Preferences</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Open the preferences dialog:
+<ul>
+<li>On <strong>Windows/Linux</strong>: Click <strong>Edit</strong> in
+the top menu bar, then select <strong>Preferences</strong>.</li>
+<li>On <strong>macOS</strong>: Click <strong>GIMP</strong> in the
+application menu, then select <strong>Preferences</strong>.</li>
+</ul></li>
+</ol>
+<h3 id="3-update-the-swap-and-temporary-folders">3. Update the Swap and
+Temporary Folders</h3>
+<ol type="1">
+<li>In the left-hand navigation pane of the Preferences window, scroll
+down and click the <strong>+</strong> (expand) icon next to
+<strong>Folders</strong>.</li>
+<li>Select <strong>Temporary Folders</strong>:
+<ul>
+<li>Click the <strong>Add a new folder</strong> icon (represented by an
+empty page).</li>
+<li>Click the <strong>Folder</strong> icon to browse your file system
+and navigate to your mounted RAM disk path (e.g.,
+<code>/dev/shm/gimp_scratch</code> or <code>R:\GIMP_Temp</code>).</li>
+<li>Select the previous default path and click the
+<strong>Delete</strong> icon to remove it, or ensure your RAM disk
+directory is set as the active target.</li>
+</ul></li>
+<li>Select <strong>Swap Folder</strong>:
+<ul>
+<li>Repeat the process by clicking the <strong>Folder</strong> icon next
+to the path entry.</li>
+<li>Point the swap directory to the same RAM disk location. GIMP uses
+this swap space as secondary tile storage whenever your active work
+exceeds its allocated internal cache.</li>
+</ul></li>
+</ol>
+<h3 id="4-adjust-tile-cache-consumption">4. Adjust Tile Cache
+Consumption</h3>
+<p>To ensure GIMP appropriately utilizes physical memory before writing
+to the swap directory:</p>
+<ol type="1">
+<li>In the Preferences left pane, click on <strong>System
+Resources</strong>.</li>
+<li>Locate the <strong>Resource Consumption</strong> section and find
+the <strong>Tile cache</strong> setting.</li>
+<li>If you have allocated a significant portion of your physical memory
+directly to the RAM disk, reduce the Tile Cache slightly to prevent
+out-of-memory errors. Conversely, if your RAM disk is small, keep the
+Tile Cache high so GIMP only writes to the RAM disk swap during peak
+workloads.</li>
+</ol>
+<h3 id="5-apply-and-restart">5. Apply and Restart</h3>
+<ol type="1">
+<li>Click <strong>OK</strong> at the bottom of the Preferences window to
+save your changes.</li>
+<li>Close and relaunch GIMP to ensure all scratch and swap processes
+initialize on the newly assigned RAM disk.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

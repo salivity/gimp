@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer GIMP Keyboard Shortcuts with menurc - gimp</title>
+    <meta name="description" content="This guide explains how to back up, edit, and migrate your custom keyboard shortcuts in GIMP using the menurc configuration file. GIMP stores all application menu bindings in this plain-text file, allowing you to quickly clone your workflow across multip">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/transfer-gimp-keyboard-shortcuts-with-menurc">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Transfer GIMP Keyboard Shortcuts with menurc - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/transfer-gimp-keyboard-shortcuts-with-menurc" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to back up, edit, and migrate your custom keyboard shortcuts in GIMP using the menurc configuration file. GIMP stores all application menu bindings in this plain-text file, allowing you to quickly clone your workflow across multip" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="transfer-gimp-keyboard-shortcuts-with-menurc">Transfer GIMP
+Keyboard Shortcuts with menurc</h1>
+<p>This guide explains how to back up, edit, and migrate your custom
+keyboard shortcuts in GIMP using the <code>menurc</code> configuration
+file. GIMP stores all application menu bindings in this plain-text file,
+allowing you to quickly clone your workflow across multiple operating
+systems, restore lost configurations, or manually bind key combinations
+that are difficult to set within the graphical interface.</p>
+<h3 id="understanding-the-menurc-file">Understanding the menurc
+File</h3>
+<p>GIMP records all user-defined and default menu shortcuts in a
+configuration file named <code>menurc</code>. Because it is written in
+standard plain text, it can be copied directly to another computer or
+opened in any text editor to adjust shortcuts without navigating GIMP's
+internal menus.</p>
+<h3 id="step-1-locate-the-menurc-file">Step 1: Locate the menurc
+File</h3>
+<p>Before interacting with the file, ensure <strong>GIMP is completely
+closed</strong>. GIMP reads this file upon launch and writes to it upon
+closing; editing it while the application is active will cause your
+modifications to be overwritten.</p>
+<p>The default locations for <code>menurc</code> across operating
+systems are:</p>
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\&lt;Username&gt;\AppData\Roaming\GIMP\2.10\menurc</code><br />
+<em>(You can also press <code>Win + R</code>, type
+<code>%APPDATA%\GIMP\2.10\</code>, and press Enter).</em></li>
+<li><strong>Linux:</strong>
+<code>~/.config/GIMP/2.10/menurc</code><br />
+<em>(If using Flatpak:
+<code>~/.var/app/org.gimp.GIMP/config/GIMP/2.10/menurc</code>)</em></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/GIMP/2.10/menurc</code></li>
+</ul>
+<p><em>(Note: Replace <code>2.10</code> with your active version of GIMP
+if different).</em></p>
+<h3 id="step-2-back-up-and-transfer-the-file">Step 2: Back Up and
+Transfer the File</h3>
+<p>To transfer shortcuts between installations:</p>
+<ol type="1">
+<li>Close GIMP on the source computer.</li>
+<li>Navigate to the directory listed above and copy the
+<code>menurc</code> file to a storage drive or cloud service.</li>
+<li>On the target computer, close GIMP.</li>
+<li>Navigate to the corresponding GIMP directory on the target
+system.</li>
+<li>Paste your copied <code>menurc</code> file, choosing to overwrite
+the existing file when prompted.</li>
+<li>Launch GIMP on the target computer. Your custom shortcuts will
+immediately be active.</li>
+</ol>
+<h3 id="step-3-manually-editing-shortcuts">Step 3: Manually Editing
+Shortcuts</h3>
+<p>You can manually reassign or clear shortcuts directly inside the file
+using a plain-text editor (such as Notepad, TextEdit, or VS Code).</p>
+<ol type="1">
+<li>Open <code>menurc</code> with your text editor.</li>
+<li>Lines starting with a semicolon (<code>;</code>) are commented out
+and represent default or inactive states. Active shortcuts do not start
+with a semicolon.</li>
+<li>Locate the action you want to modify using your editor's search
+function. Actions follow a path structure, such as:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">; (gtk_accel_path &quot;&lt;Actions&gt;/layers/layers-new&quot; &quot;&quot;)</span></span></code></pre></div></li>
+<li>To assign a shortcut, remove the leading semicolon and insert the
+key combination between the empty quotes:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(gtk_accel_path <span class="st">&quot;&lt;Actions&gt;/layers/layers-new&quot;</span> <span class="st">&quot;&lt;Primary&gt;&lt;Shift&gt;N&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Key modifiers include <code>&lt;Primary&gt;</code> (Ctrl on
+Windows/Linux, Cmd on macOS), <code>&lt;Shift&gt;</code>, and
+<code>&lt;Alt&gt;</code>.</li>
+</ul></li>
+<li>Save the file and restart GIMP.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

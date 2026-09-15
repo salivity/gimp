@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Change New Layer Fill Color in GIMP - gimp</title>
+    <meta name="description" content="In GIMP, whether a newly created layer initializes as transparent, white, a foreground color, or a background color is determined by the "Fill with" option inside the "Create a New Layer" dialog. GIMP defaults to remembering the last fill type you select">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-change-new-layer-fill-color-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Change New Layer Fill Color in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-change-new-layer-fill-color-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, whether a newly created layer initializes as transparent, white, a foreground color, or a background color is determined by the "Fill with" option inside the "Create a New Layer" dialog. GIMP defaults to remembering the last fill type you select" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-change-new-layer-fill-color-in-gimp">How to Change New
+Layer Fill Color in GIMP</h1>
+<p>In GIMP, whether a newly created layer initializes as transparent,
+white, a foreground color, or a background color is determined by the
+"Fill with" option inside the "Create a New Layer" dialog. GIMP defaults
+to remembering the last fill type you selected during your session,
+applying it automatically to subsequent layers unless manually adjusted.
+Understanding how to access this dialog and configure these settings
+ensures your workflow remains fast and predictable.</p>
+<h3 id="the-create-a-new-layer-dialog">The "Create a New Layer"
+Dialog</h3>
+<p>To access the fill settings for a new layer:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Layer &gt; New
+Layer...</strong>, press <strong>Shift + Ctrl + N</strong>, or click the
+<strong>Create a new layer</strong> icon (the blank page with a plus
+sign) at the bottom of the Layers dockable dialog.</li>
+<li>In the dialog window that appears, look for the <strong>Fill
+with</strong> drop-down menu near the bottom.</li>
+</ol>
+<h3 id="available-fill-options">Available Fill Options</h3>
+<p>Under the <strong>Fill with</strong> setting, you can choose from
+five initialization states:</p>
+<ul>
+<li><strong>Transparency:</strong> Creates an entirely transparent layer
+containing an alpha channel and no visible pixel data.</li>
+<li><strong>Foreground color:</strong> Fills the entire layer with the
+currently active foreground color shown in your main toolbox
+swatch.</li>
+<li><strong>Background color:</strong> Fills the layer with the
+currently active background color shown in your main toolbox
+swatch.</li>
+<li><strong>White:</strong> Fills the entire layer with pure white
+(<code>#FFFFFF</code>), regardless of your current palette colors.</li>
+<li><strong>Pattern:</strong> Fills the layer with whatever pattern is
+currently active in your Patterns dockable dialog.</li>
+</ul>
+<h3 id="how-gimp-remembers-your-choice">How GIMP Remembers Your
+Choice</h3>
+<p>GIMP preserves your choice from the "Fill with" menu for the
+remainder of your session. The next time you open the "Create a New
+Layer" dialog, the setting will stay on whichever option you chose
+last.</p>
+<p>If you hold <strong>Shift</strong> while clicking the <strong>Create
+a new layer</strong> button in the Layers dock, GIMP will bypass the
+dialog box entirely and immediately create a new layer using your
+previous settings, including your last-used "Fill with" selection.</p>
+<h3 id="new-canvas-defaults-vs-new-layer-defaults">New Canvas Defaults
+vs. New Layer Defaults</h3>
+<p>It is important to distinguish between creating a new layer within an
+open project and creating a brand-new project. While individual layer
+fills are controlled via the layer dialog, the initial fill of a
+brand-new canvas is controlled in <strong>Edit &gt; Preferences &gt;
+Default Image</strong>. Under the <strong>Advanced Options</strong> of
+that menu, you will find an identical <strong>Fill with</strong> setting
+that dictates the starting state of the very first background layer for
+newly generated documents.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

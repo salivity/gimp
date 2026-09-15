@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Isometric Pixel Art Grids in GIMP - gimp</title>
+    <meta name="description" content="Creating an isometric pixel art grid in GIMP allows you to maintain accurate scale, perspective, and angles across your sprites and environments. This guide outlines the exact steps required to configure your workspace, draw standard 2:1 pixel-perfect is">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-isometric-pixel-art-grids-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Isometric Pixel Art Grids in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-isometric-pixel-art-grids-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating an isometric pixel art grid in GIMP allows you to maintain accurate scale, perspective, and angles across your sprites and environments. This guide outlines the exact steps required to configure your workspace, draw standard 2:1 pixel-perfect is" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-isometric-pixel-art-grids-in-gimp">How to Make
+Isometric Pixel Art Grids in GIMP</h1>
+<p>Creating an isometric pixel art grid in GIMP allows you to maintain
+accurate scale, perspective, and angles across your sprites and
+environments. This guide outlines the exact steps required to configure
+your workspace, draw standard 2:1 pixel-perfect isometric lines,
+assemble a reusable tile grid, and lock it as a guide layer for your
+artwork.</p>
+<h3 id="1-set-up-the-canvas">1. Set Up the Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Set the canvas dimensions according to your project size (e.g.,
+256x256 or 512x512 pixels).</li>
+<li>Expand <strong>Advanced Options</strong> and set <strong>Fill
+with</strong> to <strong>Transparency</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Zoom in to at least 400% or 800% to ensure individual pixels are
+clearly visible.</li>
+</ol>
+<h3 id="2-configure-the-pencil-tool-for-pixel-precision">2. Configure
+the Pencil Tool for Pixel Precision</h3>
+<ol type="1">
+<li>Select the <strong>Pencil Tool</strong> (<code>N</code>) from the
+toolbox.</li>
+<li>In the <strong>Tool Options</strong> dock:
+<ul>
+<li>Select a standard hard brush like <strong>1. Pixel</strong> or
+<strong>2. Hardness 100</strong>.</li>
+<li>Set the <strong>Size</strong> to exactly <strong>1 px</strong>.</li>
+<li>Ensure <strong>Dynamics</strong> is set to <strong>Dynamics
+Off</strong>.</li>
+<li>Disable any smoothing or jitter options.</li>
+</ul></li>
+</ol>
+<h3 id="3-draw-the-base-21-isometric-diamond">3. Draw the Base 2:1
+Isometric Diamond</h3>
+<p>Standard pixel art isometric projection uses a 2:1 ratio (2 pixels
+horizontal for every 1 pixel vertical).</p>
+<ol type="1">
+<li>Create a new transparent layer named <code>Grid Tile</code>.</li>
+<li>Click once on the canvas with the Pencil tool to place a starting
+pixel.</li>
+<li>Move 2 pixels right and 1 pixel down, then place another pixel.
+Repeat this step-ladder pattern to form a downward slope (e.g., 32
+pixels wide by 16 pixels high).</li>
+<li>Mirror this process in all four directions to create a complete
+closed diamond shape:
+<ul>
+<li>Top-left to bottom-right (downward slope)</li>
+<li>Top-right to bottom-left (downward slope)</li>
+<li>Bottom-left to top-right (upward slope)</li>
+<li>Bottom-right to top-left (upward slope)</li>
+</ul></li>
+</ol>
+<h3 id="4-create-the-full-isometric-grid-pattern">4. Create the Full
+Isometric Grid Pattern</h3>
+<ol type="1">
+<li>Use the <strong>Rectangle Select Tool</strong> (<code>R</code>) to
+precisely select your diamond tile boundary.</li>
+<li>Go to <strong>Edit &gt; Copy</strong> (<code>Ctrl + C</code>), then
+<strong>Edit &gt; Paste</strong> (<code>Ctrl + V</code>).</li>
+<li>Use the <strong>Move Tool</strong> (<code>M</code>) to position the
+duplicated tile adjacent to the original, snapping the corners
+together.</li>
+<li>Anchor the floating layer into the <code>Grid Tile</code>
+layer.</li>
+<li>Repeat duplicating and shifting tiles horizontally and vertically
+until the canvas is fully covered with the grid.</li>
+</ol>
+<h3 id="5-convert-the-grid-into-a-reusable-overlay">5. Convert the Grid
+into a Reusable Overlay</h3>
+<ol type="1">
+<li>Lower the opacity of the <code>Grid Tile</code> layer to between
+<strong>20% and 40%</strong> in the <strong>Layers</strong> panel so it
+does not distract from your art.</li>
+<li>Click the lock icons at the top of the Layers panel to <strong>Lock
+pixels</strong> and <strong>Lock position and size</strong> to prevent
+accidental edits.</li>
+<li>Create a new transparent layer named <code>Artwork</code> above or
+below the grid layer to begin drawing your isometric assets.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

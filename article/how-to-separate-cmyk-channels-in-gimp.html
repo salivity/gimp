@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Separate CMYK Channels in GIMP - gimp</title>
+    <meta name="description" content="Preparing digital artwork for commercial offset printing requires converting and splitting color data into Cyan, Magenta, Yellow, and Black (CMYK) plates. While GIMP operates natively in an RGB color space, it provides built-in tools to extract and separ">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-separate-cmyk-channels-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Separate CMYK Channels in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-separate-cmyk-channels-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing digital artwork for commercial offset printing requires converting and splitting color data into Cyan, Magenta, Yellow, and Black (CMYK) plates. While GIMP operates natively in an RGB color space, it provides built-in tools to extract and separ" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-separate-cmyk-channels-in-gimp">How to Separate CMYK
+Channels in GIMP</h1>
+<p>Preparing digital artwork for commercial offset printing requires
+converting and splitting color data into Cyan, Magenta, Yellow, and
+Black (CMYK) plates. While GIMP operates natively in an RGB color space,
+it provides built-in tools to extract and separate these four discrete
+ink channels accurately. This guide walks you through decomposing an RGB
+image into distinct CMYK grayscale density maps and exporting them for
+commercial print production.</p>
+<h3 id="step-1-prepare-the-source-image">Step 1: Prepare the Source
+Image</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Ensure the resolution is suitable for commercial print, typically
+<strong>300 DPI</strong>. Check this by going to <strong>Image &gt;
+Print Size</strong> and adjusting the X and Y resolution if
+necessary.</li>
+<li>Perform all final retouching, cropping, and color adjustments before
+separating the channels.</li>
+</ol>
+<h3 id="step-2-decompose-the-image-into-cmyk">Step 2: Decompose the
+Image into CMYK</h3>
+<p>GIMP separates color channels using the Component Decompose
+function:</p>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Colors &gt; Components
+&gt; Decompose...</strong></li>
+<li>In the dialog box that appears, locate the <strong>Color
+model</strong> dropdown menu.</li>
+<li>Select <strong>CMYK</strong>.</li>
+<li>Check the box labeled <strong>Decompose to layers</strong> if you
+want the channels stacked in a single file, or leave it unchecked to
+generate four separate open image windows (one for each channel).</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p>GIMP will generate a new grayscale document containing four distinct
+layers or separate files named:</p>
+<ul>
+<li><strong>cyan</strong></li>
+<li><strong>magenta</strong></li>
+<li><strong>yellow</strong></li>
+<li><strong>black</strong></li>
+</ul>
+<h3 id="step-3-understand-the-grayscale-output">Step 3: Understand the
+Grayscale Output</h3>
+<p>In commercial print workflows, individual plates are represented by
+grayscale density masks:</p>
+<ul>
+<li><strong>White (or light areas):</strong> Represents 0% ink
+coverage.</li>
+<li><strong>Black (or dark areas):</strong> Represents 100% ink
+coverage.</li>
+</ul>
+<p>Inspect each layer to verify that the ink distribution corresponds
+correctly to your artwork. For example, deep shadows will show strong
+density on the <strong>black</strong> channel, while vibrant blues will
+show heavily on the <strong>cyan</strong> channel.</p>
+<h3 id="step-4-export-the-plates-for-pre-press">Step 4: Export the
+Plates for Pre-Press</h3>
+<p>Commercial plate-making systems require discrete, uncompressed files
+for each color plate:</p>
+<ol type="1">
+<li>Make only one channel visible at a time (e.g., make only the
+<strong>cyan</strong> layer visible).</li>
+<li>Go to <strong>File &gt; Export As...</strong></li>
+<li>Name the file clearly to indicate its ink channel (e.g.,
+<code>artwork_plate_Cyan.tif</code>).</li>
+<li>Select <strong>TIFF image</strong> as the file type to ensure a
+lossless format.</li>
+<li>In the TIFF export settings, ensure compression is set to
+<strong>None</strong> or <strong>LZW</strong> (lossless) and click
+<strong>Export</strong>.</li>
+<li>Repeat this process for the <strong>magenta</strong>,
+<strong>yellow</strong>, and <strong>black</strong> layers.</li>
+</ol>
+<p>Once exported, provide these four TIFF files directly to your
+commercial printer, specifying that they represent the discrete C, M, Y,
+and K plates for press setup.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

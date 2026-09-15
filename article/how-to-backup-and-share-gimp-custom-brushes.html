@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Backup and Share GIMP Custom Brushes - gimp</title>
+    <meta name="description" content="Backing up and sharing custom brush packs in GIMP is a simple process that involves finding your local brush directory, copying the relevant brush files, and compressing them into an archive for distribution. This guide explains how to identify your GIMP">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-backup-and-share-gimp-custom-brushes">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Backup and Share GIMP Custom Brushes - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-backup-and-share-gimp-custom-brushes" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Backing up and sharing custom brush packs in GIMP is a simple process that involves finding your local brush directory, copying the relevant brush files, and compressing them into an archive for distribution. This guide explains how to identify your GIMP" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-backup-and-share-gimp-custom-brushes">How to Backup and
+Share GIMP Custom Brushes</h1>
+<p>Backing up and sharing custom brush packs in GIMP is a simple process
+that involves finding your local brush directory, copying the relevant
+brush files, and compressing them into an archive for distribution. This
+guide explains how to identify your GIMP brush directory, which file
+formats to include, how to create a shareable backup pack, and how
+another user can import those brushes into their own installation.</p>
+<h3 id="locating-your-gimp-brushes-folder">Locating Your GIMP Brushes
+Folder</h3>
+<p>To access your custom brushes, you must first find the folder where
+GIMP stores them:</p>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>Navigate to <strong>Edit</strong> &gt; <strong>Preferences</strong>
+(on macOS, <strong>GIMP</strong> &gt;
+<strong>Preferences</strong>).</li>
+<li>In the left panel, expand the <strong>Folders</strong> menu by
+clicking the arrow next to it.</li>
+<li>Click on <strong>Brushes</strong>.</li>
+<li>You will see two or more directory paths. Select the path located in
+your user profile folder (not the system installation folder, which
+contains default brushes).</li>
+<li>Click the file cabinet icon on the right labeled <strong>Show file
+location in the file manager</strong> to open the folder directly on
+your system.</li>
+</ol>
+<p>Default paths generally follow these formats:</p>
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\[Username]\AppData\Roaming\GIMP\2.10\brushes</code></li>
+<li><strong>Linux:</strong>
+<code>/home/[username]/.config/GIMP/2.10/brushes</code></li>
+<li><strong>macOS:</strong>
+<code>/Users/[username]/Library/Application Support/GIMP/2.10/brushes</code></li>
+</ul>
+<h3 id="identifying-brush-file-formats">Identifying Brush File
+Formats</h3>
+<p>Before copying, identify the files you want to include. GIMP uses
+three primary formats for brushes:</p>
+<ul>
+<li><strong>.gbr (GIMP Brush):</strong> Standard static brushes.</li>
+<li><strong>.gih (GIMP Image Hose):</strong> Dynamic or animated brushes
+containing multiple layers.</li>
+<li><strong>.vbr (Parametric Brush):</strong> Vector-based brushes
+created directly in GIMP's Brush Editor.</li>
+</ul>
+<p>Select the specific brush files you wish to back up or share. You can
+also include subfolders if your brushes are organized by category.</p>
+<h3 id="backing-up-and-packaging-for-sharing">Backing Up and Packaging
+for Sharing</h3>
+<ol type="1">
+<li><strong>Create a Backup Folder:</strong> Create a new folder on your
+desktop or external drive (e.g.,
+<code>My_Custom_Brushes_Backup</code>).</li>
+<li><strong>Copy the Files:</strong> Copy your <code>.gbr</code>,
+<code>.gih</code>, or <code>.vbr</code> files from the GIMP
+<code>brushes</code> folder and paste them into your new backup
+folder.</li>
+<li><strong>Compress into an Archive:</strong> Right-click the backup
+folder and compress it into a <code>.zip</code> archive.</li>
+<li><strong>Share the Archive:</strong> You can now upload this
+<code>.zip</code> file to cloud storage (Google Drive, Dropbox), email
+it, or host it on creative asset platforms for other users to
+download.</li>
+</ol>
+<h3 id="how-recipients-install-the-brush-pack">How Recipients Install
+the Brush Pack</h3>
+<p>To load the shared brushes into their system, the recipient should
+follow these steps:</p>
+<ol type="1">
+<li>Extract the downloaded <code>.zip</code> file to access the brush
+files.</li>
+<li>Open GIMP and locate their user brush folder via
+<strong>Edit</strong> &gt; <strong>Preferences</strong> &gt;
+<strong>Folders</strong> &gt; <strong>Brushes</strong>.</li>
+<li>Paste the extracted brush files or folder into their
+<code>brushes</code> directory.</li>
+<li>Return to GIMP, open the <strong>Brushes</strong> dockable dialog
+(<strong>Windows</strong> &gt; <strong>Dockable Dialogs</strong> &gt;
+<strong>Brushes</strong>), and click the <strong>Refresh
+brushes</strong> button (the circular arrow icon at the bottom of the
+dialog).</li>
+</ol>
+<p>The new brushes will immediately appear in the panel without needing
+to restart the application.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

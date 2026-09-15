@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Landscape Displacement Maps with GIMP Simplex Noise - gimp</title>
+    <meta name="description" content="This guide provides a direct, step-by-step workflow for generating smooth, organic landscape displacement maps (heightmaps) in GIMP using the GEGL Simplex Noise engine. You will learn how to configure your canvas with the correct bit depth to eliminate b">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-landscape-displacement-maps-with-gimp-simplex-noise">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Landscape Displacement Maps with GIMP Simplex Noise - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-landscape-displacement-maps-with-gimp-simplex-noise" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a direct, step-by-step workflow for generating smooth, organic landscape displacement maps (heightmaps) in GIMP using the GEGL Simplex Noise engine. You will learn how to configure your canvas with the correct bit depth to eliminate b" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="create-landscape-displacement-maps-with-gimp-simplex-noise">Create
+Landscape Displacement Maps with GIMP Simplex Noise</h1>
+<p>This guide provides a direct, step-by-step workflow for generating
+smooth, organic landscape displacement maps (heightmaps) in GIMP using
+the GEGL Simplex Noise engine. You will learn how to configure your
+canvas with the correct bit depth to eliminate banding, dial in optimal
+noise parameters for natural topography, shape elevations using curves,
+and export high-precision maps ready for 3D applications or rendering
+engines.</p>
+<h3 id="1-configure-a-high-precision-canvas">1. Configure a
+High-Precision Canvas</h3>
+<p>Displacement maps require high precision to prevent stair-stepping
+artifacts during 3D displacement. Standard 8-bit images only provide 256
+elevation levels, which causes visible terraces in terrain geometry.</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>File &gt; New</strong>.</li>
+<li>Set your canvas dimensions to a square power-of-two resolution, such
+as <strong>2048 × 2048</strong> or <strong>4096 × 4096</strong>
+pixels.</li>
+<li>Go to <strong>Image &gt; Precision</strong>.</li>
+<li>Select <strong>16-bit floating point</strong> or <strong>32-bit
+floating point</strong>, and set the channel encoding to <strong>Linear
+light</strong> for mathematically accurate elevation calculation.</li>
+</ol>
+<h3 id="2-apply-the-gegl-simplex-noise-operation">2. Apply the GEGL
+Simplex Noise Operation</h3>
+<p>Simplex noise generates continuous, smooth gradients that mimic
+natural continental shelves, rolling hills, and mountain bases better
+than classic Perlin noise.</p>
+<ol type="1">
+<li>Create a new transparent layer named <code>Terrain Base</code>.</li>
+<li>Navigate to <strong>Tools &gt; GEGL Operation...</strong></li>
+<li>In the <strong>Operation</strong> drop-down menu, choose
+<strong>gegl:simplex-noise</strong>.</li>
+<li>Adjust the operational parameters:
+<ul>
+<li><strong>Scale</strong>: Controls the frequency of the landmasses.
+Set this to a lower value (around 0.001 to 0.005) to generate broad,
+rolling continental masses rather than high-frequency static.</li>
+<li><strong>Iterations (Octaves)</strong>: Controls surface complexity.
+A value of <strong>4 to 6</strong> introduces secondary ridges and
+foothills without adding excessive roughness.</li>
+<li><strong>Seed</strong>: Change this value randomly to generate a new
+landscape variation until you achieve a preferred natural distribution
+of masses.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to commit the operation.</li>
+</ol>
+<h3 id="3-shape-elevations-with-color-curves">3. Shape Elevations with
+Color Curves</h3>
+<p>Raw simplex noise yields a uniform bell-curve distribution of values,
+whereas real landscapes contain distinct geological features such as
+flat valleys, gentle plains, and sharp peaks.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Curves...</strong></li>
+<li>Ensure the <strong>Value</strong> channel is selected.</li>
+<li>Shape the curve:
+<ul>
+<li><strong>Flatten the bottom left</strong>: Pull the lower end of the
+curve down and keep it flat along the bottom to create flat plains,
+ocean floors, or river basins.</li>
+<li><strong>S-Curve the middle</strong>: Create a gentle upward slope
+through the midtones to represent gradual hill slopes.</li>
+<li><strong>Steepen the top right</strong>: Create an aggressive upward
+curve near the highlight area to force high-altitude areas into sharp
+peaks and ridgelines.</li>
+</ul></li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="4-layer-secondary-details-optional">4. Layer Secondary Details
+(Optional)</h3>
+<p>To add realistic variation such as sediment drift or fine surface
+erosion:</p>
+<ol type="1">
+<li>Create another layer above <code>Terrain Base</code> named
+<code>Terrain Detail</code>.</li>
+<li>Run <strong>Tools &gt; GEGL Operation... &gt;
+gegl:simplex-noise</strong> again.</li>
+<li>Double or triple the <strong>Scale</strong> relative to the base
+layer to create tighter, smaller noise pockets.</li>
+<li>Set the <code>Terrain Detail</code> layer blend mode to
+<strong>Overlay</strong> or <strong>Soft Light</strong>.</li>
+<li>Lower the layer opacity to between <strong>10% and 25%</strong> so
+it accents the primary landforms without dominating them.</li>
+<li>Right-click the top layer and select <strong>Merge Down</strong>
+into a single grayscale heightmap.</li>
+</ol>
+<h3 id="5-export-the-displacement-map">5. Export the Displacement
+Map</h3>
+<p>Retaining the high dynamic range during export is crucial for 3D
+displacement.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong></li>
+<li>Name your file with a <code>.png</code>, <code>.tif</code>, or
+<code>.exr</code> extension.</li>
+<li>In the format export dialog:
+<ul>
+<li>For <strong>PNG</strong>: Choose <strong>16bpc RGB</strong> or
+<strong>16bpc Gray</strong>.</li>
+<li>For <strong>TIFF</strong>: Ensure compression is set to
+<strong>None</strong> or <strong>LZW</strong>, with the data type
+retained as <strong>16-bit</strong> or <strong>32-bit
+float</strong>.</li>
+</ul></li>
+<li>Click <strong>Export</strong> to generate the final displacement
+map.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

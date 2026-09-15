@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design CD Labels in GIMP with Circular Guides - gimp</title>
+    <meta name="description" content="Designing custom printable CD label art requires precise dimensions and clear alignment boundaries to ensure your artwork prints accurately without critical elements being cut off by the outer edge or center hole. This guide explains how to set up a high">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-design-cd-labels-in-gimp-with-circular-guides">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design CD Labels in GIMP with Circular Guides - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-design-cd-labels-in-gimp-with-circular-guides" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom printable CD label art requires precise dimensions and clear alignment boundaries to ensure your artwork prints accurately without critical elements being cut off by the outer edge or center hole. This guide explains how to set up a high" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-cd-labels-in-gimp-with-circular-guides">How to
+Design CD Labels in GIMP with Circular Guides</h1>
+<p>Designing custom printable CD label art requires precise dimensions
+and clear alignment boundaries to ensure your artwork prints accurately
+without critical elements being cut off by the outer edge or center
+hole. This guide explains how to set up a high-resolution square canvas
+in GIMP, generate exact circular boundary guides for standard and
+full-face discs, organize your design within safe printing zones, and
+export the final file ready for printing.</p>
+<h2 id="1-set-up-the-canvas-dimensions-and-resolution">1. Set Up the
+Canvas Dimensions and Resolution</h2>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>File &gt; New</strong>.</li>
+<li>Set the <strong>Template</strong> or change the unit dropdown from
+pixels (px) to <strong>millimeters (mm)</strong>.</li>
+<li>Enter <code>120</code> mm for <strong>Width</strong> and
+<code>120</code> mm for <strong>Height</strong> (standard CD dimension).
+If your label paper includes extra bleed, you can increase this to
+<code>125</code> mm or <code>130</code> mm.</li>
+<li>Click <strong>Advanced Options</strong> and set both the <strong>X
+resolution</strong> and <strong>Y resolution</strong> to
+<code>300</code> pixels/in (DPI) for high-quality printing.</li>
+<li>Set <strong>Color space</strong> to <strong>RGB color</strong> and
+<strong>Fill with</strong> to <strong>White</strong> or
+<strong>Transparency</strong>, then click <strong>OK</strong>.</li>
+</ol>
+<h2 id="2-establish-center-guides">2. Establish Center Guides</h2>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide by
+Percent</strong>.</li>
+<li>Select <strong>Horizontal</strong>, set the position to
+<code>50%</code>, and click <strong>OK</strong>.</li>
+<li>Go back to <strong>Image &gt; Guides &gt; New Guide by
+Percent</strong>, select <strong>Vertical</strong>, set the position to
+<code>50%</code>, and click <strong>OK</strong>.</li>
+<li>You now have an exact intersection at the center of the canvas.</li>
+</ol>
+<h2 id="3-create-circular-boundary-guides">3. Create Circular Boundary
+Guides</h2>
+<p>To accurately visualize the printable area, create path-based
+circular guides for the outer edge, inner hole, and safety margins.</p>
+<h3 id="create-the-outer-boundary-118-mm-to-120-mm">Create the Outer
+Boundary (118 mm to 120 mm)</h3>
+<ol type="1">
+<li>Select the <strong>Ellipse Select Tool</strong>
+(<code>E</code>).</li>
+<li>In the <strong>Tool Options</strong> dock on the left, check
+<strong>Expand from center</strong> and <strong>Fixed:
+Size</strong>.</li>
+<li>Set the fixed size to <code>118mm x 118mm</code> (standard outer
+printable boundary) or <code>1400px x 1400px</code> at 300 DPI.</li>
+<li>Click directly on the center guide intersection.</li>
+<li>Go to <strong>Select &gt; To Path</strong>. This saves the circular
+boundary as a reusable vector guide in your <strong>Paths</strong>
+dock.</li>
+</ol>
+<h3 id="create-the-inner-hole-boundary-15-mm-to-40-mm">Create the Inner
+Hole Boundary (15 mm to 40 mm)</h3>
+<ol type="1">
+<li>Determine if your media is standard (approx. 40 mm hole) or
+hub-printable (approx. 15–20 mm hole).</li>
+<li>With the <strong>Ellipse Select Tool</strong> active, change the
+<strong>Fixed: Size</strong> in the Tool Options to
+<code>40mm x 40mm</code> (or <code>20mm x 20mm</code> for full-face
+printable discs).</li>
+<li>Click the center intersection.</li>
+<li>Go to <strong>Select &gt; To Path</strong>.</li>
+<li>Go to <strong>Select &gt; None</strong>
+(<code>Ctrl + Shift + A</code>) to clear the active selection.</li>
+</ol>
+<h3 id="view-the-circular-guides">View the Circular Guides</h3>
+<ol type="1">
+<li>Open the <strong>Paths</strong> panel (<strong>Windows &gt; Dockable
+Dialogs &gt; Paths</strong>).</li>
+<li>Click the eye icon next to your created paths to make the circular
+outlines visible on your canvas at all times.</li>
+</ol>
+<h2 id="4-add-design-layers-and-safe-zones">4. Add Design Layers and
+Safe Zones</h2>
+<ol type="1">
+<li>Go to the <strong>Layers</strong> panel and create a new layer for
+your background art.</li>
+<li>Extend background images, patterns, and colors completely across the
+canvas to account for print bleed.</li>
+<li>Keep all essential elements (titles, tracklists, logos) at least 2–3
+mm inside the outer path and 2–3 mm outside the inner hole path to
+prevent them from being cut off during alignment shifts.</li>
+<li>Use the <strong>Text Tool</strong> (<code>T</code>) to add disc
+details, arranging them around the central circular guide.</li>
+</ol>
+<h2 id="5-export-for-printing">5. Export for Printing</h2>
+<ol type="1">
+<li>Ensure the paths are purely vector guides on your screen and not
+drawn onto the artwork layer itself.</li>
+<li>If you created any dedicated reference/template layers with colored
+borders, hide or delete them before exporting.</li>
+<li>Navigate to <strong>File &gt; Export As...</strong>.</li>
+<li>Choose a high-quality format such as <strong>PNG</strong>,
+<strong>TIFF</strong>, or <strong>PDF</strong>.</li>
+<li>When printing, configure your printer software to print at
+<strong>100% Scale</strong> (Actual Size) without page scaling or "Fit
+to Page" enabled.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

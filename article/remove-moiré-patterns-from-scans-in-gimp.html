@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Moiré Patterns from Scans in GIMP - gimp</title>
+    <meta name="description" content="This guide outlines an efficient, step-by-step workflow for eliminating half-tone moiré patterns from high-resolution scans of vintage magazines using GIMP. By leveraging oversampled scan data, frequency separation via wavelet decomposition, selective b">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/remove-moiré-patterns-from-scans-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Remove Moiré Patterns from Scans in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/remove-moiré-patterns-from-scans-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines an efficient, step-by-step workflow for eliminating half-tone moiré patterns from high-resolution scans of vintage magazines using GIMP. By leveraging oversampled scan data, frequency separation via wavelet decomposition, selective b" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="remove-moiré-patterns-from-scans-in-gimp">Remove Moiré Patterns
+from Scans in GIMP</h1>
+<p>This guide outlines an efficient, step-by-step workflow for
+eliminating half-tone moiré patterns from high-resolution scans of
+vintage magazines using GIMP. By leveraging oversampled scan data,
+frequency separation via wavelet decomposition, selective blurring, and
+controlled downsampling, you can strip away mechanical print rosette
+patterns while retaining line art, typography, and core image
+detail.</p>
+<hr />
+<h3 id="phase-1-high-resolution-acquisition">Phase 1: High-Resolution
+Acquisition</h3>
+<p>Moiré occurs when the pixel grid of your scanner interferes with the
+half-tone screen of the printed page. To fix this digitally, you must
+capture the print pattern distinctly rather than letting the scanner
+alias it.</p>
+<ol type="1">
+<li><strong>Scan at High Resolution:</strong> Scan the page at a minimum
+of 600 DPI to 1200 DPI in 24-bit RGB or 16-bit color. Capturing the
+individual ink dots cleanly allows mathematical filters to target them
+precisely.</li>
+<li><strong>Import into GIMP:</strong> Open GIMP and load your scan via
+<strong>File &gt; Open</strong>.</li>
+<li><strong>Straighten the Document:</strong> If the scan is tilted, use
+the <strong>Measure Tool</strong> (<code>Shift + M</code>) along a
+baseline or margin and click <strong>Straighten</strong>. Rotating later
+can reintroduce uneven interference patterns.</li>
+</ol>
+<hr />
+<h3
+id="phase-2-method-a--wavelet-decomposition-native-gimp-workflow">Phase
+2: Method A – Wavelet Decomposition (Native GIMP Workflow)</h3>
+<p>Wavelet decomposition breaks your image into multiple layers based on
+frequency (detail scale), allowing you to blur the half-tone pattern
+without destroying the overall contrast or large-scale details.</p>
+<ol type="1">
+<li><strong>Duplicate the Layer:</strong> Right-click the scan layer in
+the Layers panel and select <strong>Duplicate Layer</strong> to preserve
+your original.</li>
+<li><strong>Run Wavelet Decompose:</strong>
+<ul>
+<li>Navigate to <strong>Filters &gt; Enhance &gt; Wavelet
+Decompose</strong>.</li>
+<li>Set the <strong>Scales</strong> slider to <code>5</code> or
+<code>6</code>.</li>
+<li>Check <strong>Create a layer group</strong> and click
+<strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Identify the Pattern Layer:</strong>
+<ul>
+<li>Open the newly created layer group.</li>
+<li>Toggle visibility (the eye icon) on the individual
+<code>Scale</code> layers (typically <code>Scale 1</code>,
+<code>Scale 2</code>, and <code>Scale 3</code>).</li>
+<li>Locate the specific layer(s) where the half-tone dot or rosette grid
+is most prominent. Usually, the dot screen resides entirely in
+<code>Scale 1</code> and <code>Scale 2</code>.</li>
+</ul></li>
+<li><strong>Blur the Screen Pattern:</strong>
+<ul>
+<li>Select the offending scale layer.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur</strong>.</li>
+<li>Apply a very small blur radius (e.g., <code>1.0</code> to
+<code>2.5</code> pixels) just until the dot texture smooths out.</li>
+<li>Repeat on adjacent scale layers only if the half-tone grid is
+visible there.</li>
+</ul></li>
+<li><strong>Flatten the Group:</strong>
+<ul>
+<li>Right-click the wavelet layer group and select <strong>Merge Layer
+Group</strong>.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="phase-3-method-b--fft-filtering-via-gmic-plugin-workflow">Phase
+3: Method B – FFT Filtering via G'MIC (Plugin Workflow)</h3>
+<p>If you have the free <strong>G'MIC-Qt</strong> plugin installed, Fast
+Fourier Transform (FFT) is the most precise way to eliminate moiré
+without blurring edge detail.</p>
+<ol type="1">
+<li>Go to <strong>Filters &gt; G'MIC</strong>.</li>
+<li>Search for <code>Fourier Transform</code> or navigate to
+<strong>Repair &gt; Fourier Transform</strong>.</li>
+<li>Locate the periodic spikes (bright symmetrical star-like dots)
+representing the repeating half-tone grid on the frequency spectrum
+canvas.</li>
+<li>Paint black over those frequency spikes using the filter's brush
+tool to eliminate the recurring frequency.</li>
+<li>Click <strong>Apply</strong> to invert the transform back to the
+image domain, leaving clean tones and intact edges.</li>
+</ol>
+<hr />
+<h3 id="phase-4-downsampling-to-target-resolution">Phase 4: Downsampling
+to Target Resolution</h3>
+<p>Because vintage magazines were printed at low screen frequencies
+(often 85 to 133 LPI), downsampling an oversampled scan averages out
+residual dot artifacts naturally.</p>
+<ol type="1">
+<li>Navigate to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Change the resolution units to percent or your target pixel
+dimensions (e.g., 300 DPI equivalent).</li>
+<li>Set the <strong>Interpolation</strong> method to
+<strong>Cubic</strong> or <strong>NoHalo</strong>.</li>
+<li>Click <strong>Scale</strong>. This step blends remaining
+micro-artifacts into smooth, continuous tones.</li>
+</ol>
+<hr />
+<h3 id="phase-5-detail-recovery-and-sharpening">Phase 5: Detail Recovery
+and Sharpening</h3>
+<p>After descreening and scaling down, the image may appear slightly
+soft. Restore edge crispness with a targeted high-pass sharpen.</p>
+<ol type="1">
+<li><strong>Duplicate the Descreened Layer:</strong> Press
+<code>Ctrl + Shift + D</code> (or <code>Cmd + Shift + D</code> on
+macOS).</li>
+<li><strong>Apply High Pass:</strong>
+<ul>
+<li>Go to <strong>Filters &gt; Enhance &gt; High Pass</strong>.</li>
+<li>Set the <strong>Std. Dev.</strong> between <code>1.0</code> and
+<code>3.0</code> so only high-contrast edges (like typography and
+outlines) are visible against gray.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Change Blend Mode:</strong> Set this layer's blend mode to
+<strong>Soft Light</strong> or <strong>Overlay</strong>.</li>
+<li><strong>Adjust Opacity:</strong> Lower the layer opacity to between
+<code>30%</code> and <code>60%</code> to restore sharpness without
+re-emphasizing background grain or remaining dot artifacts.</li>
+<li><strong>Export:</strong> Go to <strong>File &gt; Export As</strong>
+to save your final, descreened image.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

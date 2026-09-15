@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Glitch Art in GIMP Using Channel Displacement - gimp</title>
+    <meta name="description" content="Creating a glitch art effect using channel displacement in GIMP involves separating an image into its individual Red, Green, and Blue color channels, shifting those layers independently, and recombining them. This guide provides a straightforward, step-b">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-glitch-art-in-gimp-using-channel-displacement">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Glitch Art in GIMP Using Channel Displacement - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-glitch-art-in-gimp-using-channel-displacement" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a glitch art effect using channel displacement in GIMP involves separating an image into its individual Red, Green, and Blue color channels, shifting those layers independently, and recombining them. This guide provides a straightforward, step-b" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-glitch-art-in-gimp-using-channel-displacement">Create
+Glitch Art in GIMP Using Channel Displacement</h1>
+<p>Creating a glitch art effect using channel displacement in GIMP
+involves separating an image into its individual Red, Green, and Blue
+color channels, shifting those layers independently, and recombining
+them. This guide provides a straightforward, step-by-step process to
+achieve the popular chromatic aberration and digital glitch aesthetic
+using GIMP's built-in component tools.</p>
+<h3 id="step-1-prepare-your-image">Step 1: Prepare Your Image</h3>
+<ol type="1">
+<li>Open GIMP and load your image by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Ensure your image is in RGB mode by checking <strong>Image &gt; Mode
+&gt; RGB</strong>.</li>
+<li>Duplicate your background layer (<strong>Layer &gt; Duplicate
+Layer</strong>) to keep an untouched backup.</li>
+</ol>
+<h3 id="step-2-decompose-the-image-into-rgb-channels">Step 2: Decompose
+the Image into RGB Channels</h3>
+<ol type="1">
+<li>Go to the top menu and select <strong>Colors &gt; Components &gt;
+Decompose</strong>.</li>
+<li>In the dialog box that appears:
+<ul>
+<li>Set the <strong>Color model</strong> to <strong>RGB</strong>.</li>
+<li>Ensure <strong>Decompose to layers</strong> is checked.</li>
+</ul></li>
+<li>Click <strong>OK</strong>. GIMP will generate a new document
+containing three grayscale layers named <em>red</em>, <em>green</em>,
+and <em>blue</em>.</li>
+</ol>
+<h3 id="step-3-displace-the-channels">Step 3: Displace the Channels</h3>
+<ol type="1">
+<li>In the <strong>Layers</strong> panel of the new decomposed document,
+select the <strong>red</strong> layer.</li>
+<li>Select the <strong>Move Tool</strong> (shortcut <code>M</code>) from
+the toolbox.</li>
+<li>Click on the canvas and use the arrow keys on your keyboard to nudge
+the red layer horizontally or vertically (e.g., 10 to 20 pixels to the
+left).</li>
+<li>Select the <strong>blue</strong> layer and nudge it in the opposite
+direction (e.g., 10 to 20 pixels to the right).</li>
+<li>Leave the <strong>green</strong> layer centered to maintain a stable
+mid-point for the effect.</li>
+</ol>
+<h3 id="step-4-add-slice-glitches-optional">Step 4: Add Slice Glitches
+(Optional)</h3>
+<ol type="1">
+<li>Choose any of the channel layers (such as <em>red</em> or
+<em>blue</em>).</li>
+<li>Select the <strong>Rectangle Select Tool</strong> (shortcut
+<code>R</code>) and make thin, horizontal selections across parts of the
+image.</li>
+<li>Use the <strong>Move Tool</strong> or the <strong>Offset</strong>
+tool (<strong>Layer &gt; Transform &gt; Offset</strong>) to shift only
+the selected slice sideways.</li>
+<li>Repeat this with different selections on different channel layers to
+create distinct horizontal tearing.</li>
+</ol>
+<h3 id="step-5-recompose-the-final-glitch-image">Step 5: Recompose the
+Final Glitch Image</h3>
+<ol type="1">
+<li>Return to the top menu and click <strong>Colors &gt; Components &gt;
+Recompose</strong>.</li>
+<li>Switch back to your original project tab to view the updated,
+full-color image showing the displaced channels.</li>
+<li>If the image does not automatically update, go to <strong>Colors
+&gt; Components &gt; Compose</strong>, set the color model to
+<strong>RGB</strong>, assign the edited grayscale layers to their
+respective Red, Green, and Blue channels, and click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="step-6-export-the-artwork">Step 6: Export the Artwork</h3>
+<ol type="1">
+<li>Once satisfied with the displacement, flatten the image by selecting
+<strong>Image &gt; Flatten Image</strong>.</li>
+<li>Go to <strong>File &gt; Export As</strong>, select your desired file
+format (such as PNG or JPEG), and save your completed glitch
+artwork.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

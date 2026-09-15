@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Pango Handles Bidirectional Text in GIMP - gimp</title>
+    <meta name="description" content="This article examines how the open-source text layout engine Pango enables the GNU Image Manipulation Program (GIMP) to process complex typography. By integrating Pango, GIMP gains full support for bidirectional text layouts, accurate glyph shaping for d">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-pango-handles-bidirectional-text-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Pango Handles Bidirectional Text in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-pango-handles-bidirectional-text-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines how the open-source text layout engine Pango enables the GNU Image Manipulation Program (GIMP) to process complex typography. By integrating Pango, GIMP gains full support for bidirectional text layouts, accurate glyph shaping for d" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-pango-handles-bidirectional-text-in-gimp">How Pango Handles
+Bidirectional Text in GIMP</h1>
+<p>This article examines how the open-source text layout engine Pango
+enables the GNU Image Manipulation Program (GIMP) to process complex
+typography. By integrating Pango, GIMP gains full support for
+bidirectional text layouts, accurate glyph shaping for diverse world
+scripts, dynamic font fallback, and span-level text formatting within
+native text layers.</p>
+<h2 id="the-role-of-pango-in-gimp">The Role of Pango in GIMP</h2>
+<p>Pango is the core text-rendering framework used across GTK-based
+applications, including GIMP. While GIMP provides the graphical canvas,
+user interface, and layer management, it delegates the actual
+calculation of text metrics, line breaking, and character positioning
+directly to Pango. When a user inputs text into a GIMP text layer, Pango
+processes the raw Unicode strings into positioned visual glyphs before
+GIMP rasterizes them onto the canvas.</p>
+<h2 id="bidirectional-bidi-text-processing">Bidirectional (BiDi) Text
+Processing</h2>
+<p>The most critical role Pango serves in multilingual environments is
+its implementation of the Unicode Bidirectional Algorithm (UBA). Certain
+languages—such as Arabic, Hebrew, Persian, and Urdu—are read from right
+to left (RTL), while languages like English or Russian are read from
+left to right (LTR).</p>
+<p>When text contains a mixture of RTL and LTR scripts (such as an
+English product name inside an Arabic sentence, or numbers within Hebrew
+text), Pango automatically:</p>
+<ul>
+<li><strong>Determines Base Direction:</strong> Resolves the overall
+paragraph direction based on context or user-defined layer
+properties.</li>
+<li><strong>Segments Text Runs:</strong> Splices the input into uniform
+directional runs so each script segment is handled properly.</li>
+<li><strong>Reorders Glyphs Visually:</strong> Reorders the logical
+sequence of characters (the order typed or stored in memory) into the
+correct visual sequence required for display and printing.</li>
+<li><strong>Maintains Insertion Points:</strong> Correctly places the
+cursor and handles text selection highlights across directional
+boundaries in GIMP's active on-canvas text editor.</li>
+</ul>
+<h2 id="complex-script-shaping-via-harfbuzz">Complex Script Shaping via
+HarfBuzz</h2>
+<p>Bidirectional scripts often require contextual shaping, where the
+visual form of a letter changes depending on its position within a word
+(isolated, initial, medial, or final). Pango integrates with HarfBuzz, a
+specialized shaping engine, to translate sequences of Unicode codepoints
+into context-appropriate OpenType glyphs, handle mandatory ligatures,
+and correctly attach diacritics and vowel marks.</p>
+<h2 id="inline-formatting-and-pango-markup">Inline Formatting and Pango
+Markup</h2>
+<p>GIMP's modern text tool allows users to apply localized
+formatting—such as bolding a single word, altering color per character,
+or mixing font families within one layer. Pango makes this possible
+through an internal attribute list similar to Pango Markup.</p>
+<p>Instead of treating a text layer as uniform, Pango applies styling
+attributes across specific character offsets. When directional text
+shifts or reflows, these formatting attributes travel with their
+corresponding characters rather than staying anchored to static visual
+coordinates.</p>
+<h2 id="font-fallback-handling">Font Fallback Handling</h2>
+<p>If a chosen font lacks the necessary glyphs to display an RTL script,
+Pango automatically executes font fallback. It queries system fonts to
+locate a suitable typeface containing the missing characters, ensuring
+that mixed-script text layers render without displaying broken glyph
+boxes ("tofu"), all while preserving the original layout structure
+within GIMP.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

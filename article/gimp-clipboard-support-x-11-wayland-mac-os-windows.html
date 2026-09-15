@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Clipboard Support: X11, Wayland, macOS, Windows - gimp</title>
+    <meta name="description" content="The GNU Image Manipulation Program (GIMP) relies on the GIMP Toolkit (GTK) to mediate clipboard operations between its internal raster buffers and host operating systems. Because GIMP processes rich image data—often including multi-channel layers, alph">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-clipboard-support-x-11-wayland-mac-os-windows">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Clipboard Support: X11, Wayland, macOS, Windows - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-clipboard-support-x-11-wayland-mac-os-windows" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GNU Image Manipulation Program (GIMP) relies on the GIMP Toolkit (GTK) to mediate clipboard operations between its internal raster buffers and host operating systems. Because GIMP processes rich image data—often including multi-channel layers, alph" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-clipboard-support-x11-wayland-macos-windows">GIMP Clipboard
+Support: X11, Wayland, macOS, Windows</h1>
+<p>The GNU Image Manipulation Program (GIMP) relies on the GIMP Toolkit
+(GTK) to mediate clipboard operations between its internal raster
+buffers and host operating systems. Because GIMP processes rich image
+data—often including multi-channel layers, alpha masks, and precise
+color profiles—its ability to copy and paste reliably depends directly
+on how the underlying display server or operating system manages data
+exchange protocols. This article explains how GIMP handles clipboard
+operations across X11, Wayland, macOS, and Windows, detailing the
+mechanics of data negotiation, format conversion, and platform-specific
+constraints.</p>
+<h3 id="x11-linux-and-unix-like-systems">X11 (Linux and Unix-like
+Systems)</h3>
+<p>Under the X Window System (X11), clipboard operations rely on an
+asynchronous, peer-to-peer data transfer model known as selections. X11
+does not have a centralized system-wide buffer that stores clipboard
+data; instead, an application "claims ownership" of a selection atom,
+primarily <code>CLIPBOARD</code> (for explicit copy/paste) or
+<code>PRIMARY</code> (for mouse-selection/middle-click paste).</p>
+<p>When you copy an image in GIMP on X11:</p>
+<ul>
+<li>GIMP asserts ownership of the <code>CLIPBOARD</code> selection.</li>
+<li>It advertises supported target formats (such as
+<code>image/png</code>, <code>image/bmp</code>, and
+<code>image/tiff</code>) via GTK's selection handling routines.</li>
+<li>When a target application requests the clipboard, GIMP renders or
+serializes the active selection into the mutually agreed-upon format and
+streams it over the X11 connection.</li>
+<li>If GIMP is closed before the data is pasted elsewhere, the clipboard
+content is lost unless an active system clipboard manager (such as
+Klipper or Parcellite) requests and caches the image before the process
+terminates.</li>
+</ul>
+<h3 id="wayland-modern-linux">Wayland (Modern Linux)</h3>
+<p>Wayland removes the global visibility and security vulnerabilities of
+the X11 clipboard architecture by managing data transfers strictly
+through the compositor via the <code>wl_data_device</code> and
+<code>wl_data_offer</code> interfaces. Clients cannot read clipboard
+state unless they possess input focus.</p>
+<p>GIMP's interaction with Wayland depends heavily on the software
+version:</p>
+<ul>
+<li><strong>GIMP 2.10 (GTK2):</strong> GTK2 does not have native Wayland
+support. On Wayland sessions, GIMP 2.10 runs through XWayland, meaning
+clipboard transactions occur over an emulated X11 bridge. The compositor
+coordinates with the XWayland server to convert X selections into
+Wayland data source transfers, which can sometimes introduce latency or
+drop formats.</li>
+<li><strong>GIMP 3.0+ (GTK3):</strong> GIMP runs natively under Wayland.
+When an image is copied, GIMP registers a <code>wl_data_source</code>
+and offers explicit MIME types (typically <code>image/png</code>). When
+the destination client initiates a paste, the compositor creates a pipe
+(file descriptor), and GIMP writes the raw encoded image stream directly
+to it.</li>
+</ul>
+<h3 id="macos">macOS</h3>
+<p>On macOS, GIMP interfaces with the Apple pasteboard system
+(<code>NSPasteboard</code>) through GTK's native Quartz backend
+(<code>gdk/quartz</code>).</p>
+<p>When interacting with the macOS clipboard:</p>
+<ul>
+<li>GIMP maps its internal image structures to standard macOS pasteboard
+uniform type identifiers (UTIs), primarily <code>public.png</code> and
+<code>public.tiff</code>.</li>
+<li>macOS uses a centralized pasteboard server. When a copy action
+occurs, GIMP can either write the payload immediately or register a
+promise (lazy rendering) through the Quartz abstraction layer,
+generating the required binary format when requested by another
+application.</li>
+<li>Early macOS ports that ran under XQuartz relied on an intermediary
+sync daemon (<code>pbproxy</code>) to bridge X11 selections and
+<code>NSPasteboard</code>. Modern native builds bypass this completely,
+providing direct integration with system shortcuts (<code>Cmd+C</code>,
+<code>Cmd+V</code>) and native Mac applications like Preview, Keynote,
+and Safari.</li>
+</ul>
+<h3 id="windows">Windows</h3>
+<p>On Microsoft Windows, GIMP coordinates with the Win32 Clipboard API
+through the GDK Win32 backend. The Windows clipboard acts as a
+centralized shared resource managed by the operating system kernel.</p>
+<p>GIMP's interaction on Windows involves specific format
+considerations:</p>
+<ul>
+<li><strong>Format Negotiation:</strong> Upon a copy event, GIMP calls
+<code>OpenClipboard()</code> and announces the formats it can provide
+using <code>SetClipboardData()</code>.</li>
+<li><strong>Standard Formats:</strong> Windows natively prefers
+Device-Independent Bitmaps (<code>CF_DIB</code> and
+<code>CF_DIBV5</code>). <code>CF_DIBV5</code> supports 32-bit pixel
+formats with arbitrary alpha channels, which GIMP generates to preserve
+layer transparency.</li>
+<li><strong>MIME Support:</strong> GIMP also registers custom clipboard
+formats such as <code>PNG</code>. This ensures that modern software
+(such as web browsers or office suites) can extract high-quality,
+lossless images with alpha transparency, avoiding the clipping and color
+degradation often caused by legacy Win32 DIB implementations.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

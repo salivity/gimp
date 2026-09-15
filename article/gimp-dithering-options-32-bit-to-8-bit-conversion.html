@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Dithering Options: 32-Bit to 8-Bit Conversion - gimp</title>
+    <meta name="description" content="Converting an image from a 32-bit floating-point depth to an 8-bit integer depth significantly reduces the amount of color information, which can lead to visible color banding across smooth gradients. GIMP solves this issue by offering built-in dithering">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-dithering-options-32-bit-to-8-bit-conversion">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Dithering Options: 32-Bit to 8-Bit Conversion - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-dithering-options-32-bit-to-8-bit-conversion" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting an image from a 32-bit floating-point depth to an 8-bit integer depth significantly reduces the amount of color information, which can lead to visible color banding across smooth gradients. GIMP solves this issue by offering built-in dithering" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-dithering-options-32-bit-to-8-bit-conversion">GIMP
+Dithering Options: 32-Bit to 8-Bit Conversion</h1>
+<p>Converting an image from a 32-bit floating-point depth to an 8-bit
+integer depth significantly reduces the amount of color information,
+which can lead to visible color banding across smooth gradients. GIMP
+solves this issue by offering built-in dithering options during the
+precision downsampling process. This guide covers the specific dithering
+methods available in GIMP's precision settings, how each algorithm
+functions, and how to choose the right one for your image.</p>
+<h3 id="accessing-the-precision-conversion-dialog">Accessing the
+Precision Conversion Dialog</h3>
+<p>To change precision in GIMP, navigate to <strong>Image &gt;
+Precision</strong> and select <strong>8-bit integer</strong>. If your
+image contains color ranges or gradients that benefit from smoothing,
+GIMP presents a dialog with a <strong>Dithering</strong> dropdown menu
+alongside options for handling layers, channels, and masks.</p>
+<h3 id="available-dithering-methods">Available Dithering Methods</h3>
+<p>GIMP provides four primary dithering choices when lowering
+precision:</p>
+<ul>
+<li><p><strong>None</strong>: This option performs direct truncation or
+rounding of color values without introducing noise patterns. While it
+preserves pixel sharpness and creates completely flat color fills, it
+often introduces harsh, noticeable stepping (banding) across continuous
+tones, skies, and soft shadows.</p></li>
+<li><p><strong>Floyd-Steinberg (normal)</strong>: This is a classic
+error-diffusion algorithm. It calculates the quantization error at each
+pixel—the difference between the original 32-bit value and the closest
+8-bit value—and spreads that error to neighboring, unprocessed pixels.
+It effectively breaks up banding in complex photographs and smooth
+gradients, though it can produce a fine grain texture and minor color
+bleeding along sharp transitions.</p></li>
+<li><p><strong>Floyd-Steinberg (reduced color bleeding)</strong>: A
+variation of standard Floyd-Steinberg that restricts how aggressively
+color errors are diffused across distinct boundaries. This setting
+prevents unwanted color fringes and halos along high-contrast edges
+while still smoothing transitions in wide gradient areas.</p></li>
+<li><p><strong>Positioned</strong>: This is an ordered dithering method
+based on fixed pixel coordinates rather than dynamic error diffusion.
+Because it uses a stationary pattern, it avoids the spatial drift common
+to error diffusion algorithms. It is especially useful for sprite art,
+graphical illustrations, or frames intended for animation where error
+diffusion might cause shimmering between frames.</p></li>
+</ul>
+<h3 id="additional-precision-settings">Additional Precision
+Settings</h3>
+<p>Within the same conversion window, GIMP allows you to customize how
+dithering applies across your project structure:</p>
+<ul>
+<li><strong>Dither layers</strong>: Applies the selected dithering
+algorithm across standard image layers.</li>
+<li><strong>Dither channels and masks</strong>: Determines whether layer
+masks and custom channels receive dithering to maintain smooth
+transparency transitions.</li>
+<li><strong>Dither text layers</strong>: Dictates whether text layers
+are rasterized with dithering or left in their native state prior to
+downsampling.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

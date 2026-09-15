@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Bezier Curve Internal Data Structures - gimp</title>
+    <meta name="description" content="This article provides a technical overview of how GNU Image Manipulation Program (GIMP) internally models and stores Bezier curves. In GIMP's vector architecture, paths are maintained through an object-oriented hierarchy built on GLib and GObject. Unders">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-bezier-curve-internal-data-structures">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Bezier Curve Internal Data Structures - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-bezier-curve-internal-data-structures" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a technical overview of how GNU Image Manipulation Program (GIMP) internally models and stores Bezier curves. In GIMP's vector architecture, paths are maintained through an object-oriented hierarchy built on GLib and GObject. Unders" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-bezier-curve-internal-data-structures">GIMP Bezier Curve
+Internal Data Structures</h1>
+<p>This article provides a technical overview of how GNU Image
+Manipulation Program (GIMP) internally models and stores Bezier curves.
+In GIMP's vector architecture, paths are maintained through an
+object-oriented hierarchy built on GLib and GObject. Understanding this
+subsystem requires examining the relationship between the top-level path
+container (<code>GimpVectors</code>), the curve component implementation
+(<code>GimpBezierStroke</code>), and the fundamental point structure
+(<code>GimpAnchor</code>) that defines cubic Bezier curves in
+memory.</p>
+<h3 id="the-path-hierarchy-gimpvectors-and-gimpstroke">The Path
+Hierarchy: GimpVectors and GimpStroke</h3>
+<p>At the highest level of GIMP's vector system resides
+<code>GimpVectors</code>, a subclass of <code>GimpItem</code>. A
+<code>GimpVectors</code> object represents a complete path layer visible
+in the GIMP Paths dockable dialog. However, <code>GimpVectors</code>
+does not store raw coordinate data directly. Instead, it serves as a
+container for one or more stroke components, represented by the abstract
+base class <code>GimpStroke</code>.</p>
+<p>A path can contain multiple disconnected sub-paths (for example, the
+distinct inner and outer loops of a letter "O"). Each of these discrete
+sub-paths is an instance of a <code>GimpStroke</code> subclass.</p>
+<h3 id="the-gimpbezierstroke-structure">The GimpBezierStroke
+Structure</h3>
+<p>For vector paths containing Bezier curves, GIMP implements
+<code>GimpBezierStroke</code>, a derived class of
+<code>GimpStroke</code>. Defined within GIMP's internal core source
+(<code>app/vectors/gimpbezierstroke.h</code>), this structure manages
+the mathematical representation and manipulation of cubic Bezier
+splines.</p>
+<p>Internally, <code>GimpBezierStroke</code> maintains:</p>
+<ul>
+<li>A dynamic array (<code>GArray</code>) of coordinate knots and
+control handles represented by <code>GimpAnchor</code> structures.</li>
+<li>Flags indicating whether the sub-path is open or closed
+(<code>closed</code> boolean).</li>
+<li>Methods for subdivision, transformation, point insertion, and
+interpolation.</li>
+</ul>
+<h3 id="the-fundamental-unit-gimpanchor">The Fundamental Unit:
+GimpAnchor</h3>
+<p>The actual geometry of a Bezier curve is stored as a sequential list
+of <code>GimpAnchor</code> instances. The <code>GimpAnchor</code>
+structure defines both the on-curve endpoints (knots) and the off-curve
+directional control handles.</p>
+<p>A simplified C representation of <code>GimpAnchor</code>
+includes:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> _GimpAnchor</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  GimpVector2    position<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  GimpAnchorType type<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  gboolean       selected<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<ul>
+<li><strong><code>position</code></strong>: A <code>GimpVector2</code>
+holding double-precision floating-point <code>x</code> and
+<code>y</code> coordinates representing the point in canvas space.</li>
+<li><strong><code>type</code></strong>: An enumeration
+(<code>GimpAnchorType</code>) that identifies the functional role of the
+point:
+<ul>
+<li><code>GIMP_ANCHOR_ANCHOR</code>: An on-curve knot through which the
+path strictly passes.</li>
+<li><code>GIMP_ANCHOR_CONTROL</code>: An off-curve control handle that
+dictates the tangent and curvature entering or leaving an anchor.</li>
+</ul></li>
+<li><strong><code>selected</code></strong>: A boolean flag indicating
+whether the point is currently active or selected by the user in the
+Path Tool UI.</li>
+</ul>
+<h3 id="sequence-and-cubic-bezier-segment-representation">Sequence and
+Cubic Bezier Segment Representation</h3>
+<p>GIMP structures cubic Bezier curves through a rigid ordering
+convention within the <code>GArray</code> of <code>GimpAnchor</code>
+structures. Because every cubic Bezier segment requires four points—two
+endpoints and two control handles—the array organizes them in
+groups:</p>
+<ol type="1">
+<li><strong>Anchor point (<span
+class="math inline">\(P_0\)</span>):</strong> Starting on-curve knot
+(<code>GIMP_ANCHOR_ANCHOR</code>).</li>
+<li><strong>Outgoing control point (<span
+class="math inline">\(P_1\)</span>):</strong> Handle influencing
+departure from <span class="math inline">\(P_0\)</span>
+(<code>GIMP_ANCHOR_CONTROL</code>).</li>
+<li><strong>Incoming control point (<span
+class="math inline">\(P_2\)</span>):</strong> Handle influencing arrival
+at <span class="math inline">\(P_3\)</span>
+(<code>GIMP_ANCHOR_CONTROL</code>).</li>
+<li><strong>Anchor point (<span
+class="math inline">\(P_3\)</span>):</strong> Ending on-curve knot
+(<code>GIMP_ANCHOR_ANCHOR</code>).</li>
+</ol>
+<p>When multiple segments are connected, the ending anchor of the
+preceding segment serves as the starting anchor of the succeeding
+segment. Thus, a continuous open path of <span
+class="math inline">\(n\)</span> cubic segments consists of <span
+class="math inline">\(3n + 1\)</span> elements stored sequentially:</p>
+<p><span class="math display">\[\text{Anchor}_0,
+\text{Handle}_{\text{out}, 0}, \text{Handle}_{\text{in}, 1},
+\text{Anchor}_1, \text{Handle}_{\text{out}, 1},
+\text{Handle}_{\text{in}, 2}, \text{Anchor}_2, \dots\]</span></p>
+<p>If the path is closed, the final incoming handle loops back to
+influence the initial anchor, eliminating the trailing terminal anchor
+and bringing the total count to <span class="math inline">\(3n\)</span>
+anchors.</p>
+<h3 id="conversion-and-rendering-pipeline">Conversion and Rendering
+Pipeline</h3>
+<p>For rendering, rasterization, and selection conversion, GIMP does not
+draw cubic curves directly from these structures onto the pixel canvas.
+Instead, <code>GimpBezierStroke</code> evaluates the curve segments
+using De Casteljau's algorithm or adaptive forward differencing to
+flatten the parametric curves into dense polylines composed of
+<code>GimpCoords</code>. These coordinate arrays are then passed to
+Cairo or GEGL to generate antialiased scanlines, stroke masks, or vector
+selections.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

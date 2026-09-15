@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Printable Seamless Hex Map Tiles in GIMP - gimp</title>
+    <meta name="description" content="Designing custom printable tabletop game hex map tiles with seamless edges in GIMP requires precise canvas measurements, accurate geometric templates, standardized connection points, and high-resolution texture masking. This guide walks you through setti">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-printable-seamless-hex-map-tiles-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Printable Seamless Hex Map Tiles in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-printable-seamless-hex-map-tiles-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom printable tabletop game hex map tiles with seamless edges in GIMP requires precise canvas measurements, accurate geometric templates, standardized connection points, and high-resolution texture masking. This guide walks you through setti" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-printable-seamless-hex-map-tiles-in-gimp">Create
+Printable Seamless Hex Map Tiles in GIMP</h1>
+<p>Designing custom printable tabletop game hex map tiles with seamless
+edges in GIMP requires precise canvas measurements, accurate geometric
+templates, standardized connection points, and high-resolution texture
+masking. This guide walks you through setting up a print-ready document
+at 300 DPI, constructing an exact hexagon mask, standardizing terrain
+and path connectors along the hex borders, and exporting tiles that line
+up perfectly across your gaming table.</p>
+<h3 id="1-set-up-the-print-document-and-resolution">1. Set Up the Print
+Document and Resolution</h3>
+<p>Physical tabletop components require high resolution to print
+clearly:</p>
+<ul>
+<li>Go to <strong>File &gt; New</strong>.</li>
+<li>Set your dimensions in inches or millimeters based on your target
+physical tile size (e.g., 2.5 inches wide).</li>
+<li>Click <strong>Advanced Options</strong> and set both the <strong>X
+resolution</strong> and <strong>Y resolution</strong> to <strong>300
+pixels/inch</strong>.</li>
+<li>Set the color space to <strong>RGB color</strong> for editing.</li>
+</ul>
+<h3 id="2-generate-a-geometric-hexagon-template">2. Generate a Geometric
+Hexagon Template</h3>
+<p>To ensure every tile has identical dimensions and angles:</p>
+<ul>
+<li>Enable your center guides via <strong>Image &gt; Guides &gt; New
+Guide (by Percent)</strong> at 50% horizontal and 50% vertical.</li>
+<li>Select the <strong>Filters &gt; Render &gt; Pattern &gt;
+Grid</strong> or use the <strong>Path Tool</strong> to draw a regular
+hexagon. Alternatively, select the <strong>Polygon Select Tool</strong>,
+click the center, and drag outward to generate a 6-sided polygon.</li>
+<li>Save this selection by choosing <strong>Select &gt; Save to
+Channel</strong>. This allows you to reload the exact boundary at any
+time.</li>
+</ul>
+<h3 id="3-establish-standardized-edge-nodes">3. Establish Standardized
+Edge Nodes</h3>
+<p>Because hex tiles rotate and connect along six distinct faces, true
+seamlessness relies on matching connection points at the exact center of
+each edge:</p>
+<ul>
+<li>Place guide markers at the exact midpoint of each of the six hexagon
+sides.</li>
+<li>When designing continuous features (roads, rivers, coastlines, or
+borders), ensure they cross the hex border at the exact midpoint at a
+90-degree angle to that edge.</li>
+<li>Standardize line widths across all tile designs so pathways connect
+cleanly regardless of tile rotation.</li>
+</ul>
+<h3 id="4-create-seamless-terrain-and-textures">4. Create Seamless
+Terrain and Textures</h3>
+<p>To fill the tile with realistic textures without hard seams:</p>
+<ul>
+<li>Import your terrain texture on a layer underneath your hex guide
+channel.</li>
+<li>If using tiling textures, use <strong>Filters &gt; Map &gt; Tile
+Seamless</strong> on the texture layer before masking.</li>
+<li>Apply your saved hexagon selection as a <strong>Layer Mask</strong>
+(<strong>Layer &gt; Mask &gt; Add Layer Mask</strong>, then choose
+<strong>Channel</strong>).</li>
+<li>Use a soft-edged airbrush to blend inner details, keeping the
+outermost edge strictly uniform with neighboring tiles.</li>
+</ul>
+<h3 id="5-add-bleed-and-border-cuts">5. Add Bleed and Border Cuts</h3>
+<p>To prevent white borders when cutting printed tiles:</p>
+<ul>
+<li>Extend your background terrain texture 2 to 3 millimeters beyond the
+actual hexagon cut line (this is your bleed area).</li>
+<li>Create an overlay layer with a thin, low-opacity cutting outline
+along the exact hex boundary to guide your scissors or hobby knife.</li>
+</ul>
+<h3 id="6-export-and-prepare-for-printing">6. Export and Prepare for
+Printing</h3>
+<ul>
+<li>Save your master workspace as an <strong>XCF</strong> file to keep
+all layers and channels editable.</li>
+<li>Hide cutting guide layers if you intend to use a digital cutting
+plotter, or leave them visible for manual cutting.</li>
+<li>Go to <strong>File &gt; Export As</strong> and choose
+<strong>PNG</strong> or <strong>TIFF</strong> to retain maximum quality
+without compression artifacts.</li>
+<li>Arrange your exported tiles onto a letter- or A4-sized canvas in
+GIMP at 300 DPI, ensuring consistent spacing before sending the sheet to
+your printer.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

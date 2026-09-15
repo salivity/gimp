@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Custom Pixel Art Brushes in GIMP - gimp</title>
+    <meta name="description" content="This guide outlines the complete workflow for creating and configuring custom pixel-art brushes in GIMP to achieve sharp, non-anti-aliased lines. By designing an asset on a micro-canvas, exporting it in GIMP’s native brush format, and pairing it strict">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-custom-pixel-art-brushes-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Custom Pixel Art Brushes in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-custom-pixel-art-brushes-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the complete workflow for creating and configuring custom pixel-art brushes in GIMP to achieve sharp, non-anti-aliased lines. By designing an asset on a micro-canvas, exporting it in GIMP’s native brush format, and pairing it strict" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-custom-pixel-art-brushes-in-gimp">Create Custom Pixel Art
+Brushes in GIMP</h1>
+<p>This guide outlines the complete workflow for creating and
+configuring custom pixel-art brushes in GIMP to achieve sharp,
+non-anti-aliased lines. By designing an asset on a micro-canvas,
+exporting it in GIMP’s native brush format, and pairing it strictly with
+the Pencil tool, you eliminate unwanted semi-transparent edge pixels and
+guarantee crisp, single-pixel precision across your artwork.</p>
+<h3 id="step-1-create-the-brush-canvas">Step 1: Create the Brush
+Canvas</h3>
+<ol type="1">
+<li>Open GIMP and create a new document via <strong>File &gt;
+New</strong>.</li>
+<li>Set the canvas dimensions to match your desired brush size. For a
+standard single-pixel brush, set both <strong>Width</strong> and
+<strong>Height</strong> to <code>1</code> pixel. For custom dither or
+cluster shapes, use a small canvas such as <code>3x3</code> or
+<code>5x5</code> pixels.</li>
+<li>Expand <strong>Advanced Options</strong> in the dialogue and set
+<strong>Color Space</strong> to <strong>Grayscale</strong>.</li>
+<li>Set <strong>Fill with</strong> to <strong>Transparency</strong>,
+then click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-draw-the-brush-tip">Step 2: Draw the Brush Tip</h3>
+<ol type="1">
+<li>Zoom in fully using the <strong>Magnifier</strong> or by pressing
+the <code>+</code> key until the individual pixels fill your view.</li>
+<li>Select the <strong>Pencil Tool</strong> (<code>N</code>). Do not use
+the Paintbrush tool, as the Paintbrush applies anti-aliasing by
+default.</li>
+<li>Set your foreground color to pure black (<code>#000000</code>). In
+GIMP brush files, black represents full opacity, white represents full
+transparency, and shades of gray represent semi-transparency.</li>
+<li>Click on the canvas to place your pixel or shape. Ensure there are
+no gray or feathering values present.</li>
+</ol>
+<h3 id="step-3-export-the-brush-to-gimps-directory">Step 3: Export the
+Brush to GIMP's Directory</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Navigate to your GIMP user brush directory. You can confirm your
+exact path inside GIMP by checking <strong>Edit &gt; Preferences &gt;
+Folders &gt; Brushes</strong>.
+<ul>
+<li>On Windows, this is typically:
+<code>C:\Users\&lt;Username&gt;\AppData\Roaming\GIMP\2.10\brushes</code></li>
+<li>On Linux: <code>~/.config/GIMP/2.10/brushes</code></li>
+<li>On macOS:
+<code>~/Library/Application Support/GIMP/2.10/brushes</code></li>
+</ul></li>
+<li>Name the file with a <code>.gbr</code> extension (for example,
+<code>pixel_1px.gbr</code>) and click <strong>Export</strong>.</li>
+<li>An export dialog will appear. Enter a descriptive
+<strong>Description</strong> (this is the name that appears inside
+GIMP's interface) and set the <strong>Spacing</strong> to
+<code>100%</code> for distinct stamp behavior, or between
+<code>1%</code> and <code>10%</code> for continuous, unbroken lines.
+Click <strong>Export</strong>.</li>
+</ol>
+<h3 id="step-4-load-and-configure-the-brush-for-drawing">Step 4: Load
+and Configure the Brush for Drawing</h3>
+<ol type="1">
+<li>Open the <strong>Brushes</strong> dockable dialog (<strong>Windows
+&gt; Dockable Dialogs &gt; Brushes</strong>).</li>
+<li>Click the <strong>Refresh Brushes</strong> button (the circular
+arrow icon at the bottom of the panel) to load your new brush without
+restarting GIMP.</li>
+<li>Locate and select your newly created brush from the list.</li>
+<li>Switch to the <strong>Pencil Tool</strong> (<code>N</code>).</li>
+<li>Open the <strong>Tool Options</strong> panel and apply the following
+settings:
+<ul>
+<li><strong>Size:</strong> Set to the native size of your brush (e.g.,
+<code>1.00</code>).</li>
+<li><strong>Dynamics:</strong> Set to <strong>Dynamics Off</strong> to
+prevent pressure-sensitive opacity or scaling changes.</li>
+<li><strong>Smooth Stroke:</strong> Unchecked to eliminate lag and
+algorithmic line smoothing.</li>
+<li><strong>Jitter:</strong> Unchecked.</li>
+</ul></li>
+</ol>
+<p>With these steps complete, drawing on any layer with the Pencil tool
+produces pure, hard-edged strokes with zero anti-aliasing artifacts.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

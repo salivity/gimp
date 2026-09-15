@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import and Edit RAW Files in GIMP Using LibRaw - gimp</title>
+    <meta name="description" content="This guide provides a comprehensive walkthrough for importing and editing RAW digital negatives in the GNU Image Manipulation Program (GIMP) using the LibRaw library. Because GIMP cannot decode uncompressed sensor data natively, it relies on third-party">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/import-and-edit-raw-files-in-gimp-using-lib-raw">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import and Edit RAW Files in GIMP Using LibRaw - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/import-and-edit-raw-files-in-gimp-using-lib-raw" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a comprehensive walkthrough for importing and editing RAW digital negatives in the GNU Image Manipulation Program (GIMP) using the LibRaw library. Because GIMP cannot decode uncompressed sensor data natively, it relies on third-party" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="import-and-edit-raw-files-in-gimp-using-libraw">Import and Edit
+RAW Files in GIMP Using LibRaw</h1>
+<p>This guide provides a comprehensive walkthrough for importing and
+editing RAW digital negatives in the GNU Image Manipulation Program
+(GIMP) using the LibRaw library. Because GIMP cannot decode uncompressed
+sensor data natively, it relies on third-party integrations and plugins
+built on LibRaw to decode RAW formats (such as .CR2, .NEF, .ARW, and
+.DNG) into high-bit-depth raster images ready for detailed retouching
+and color grading.</p>
+<h3 id="1-prerequisites-and-setup">1. Prerequisites and Setup</h3>
+<p>Before opening RAW files, ensure GIMP and a LibRaw-based processor
+are installed on your system:</p>
+<ol type="1">
+<li><strong>Install GIMP:</strong> Ensure you are running GIMP 2.10 or
+later for full high-bit-depth (16-bit and 32-bit float) processing.</li>
+<li><strong>Install a LibRaw-Powered Plugin:</strong> GIMP uses external
+raw loaders. Install a LibRaw-backed processor or plugin (such as
+<code>nufraw</code>, <code>Darktable</code>, or
+<code>RawTherapee</code>, which implement LibRaw libraries for sensor
+demosaicing).</li>
+<li><strong>Configure File Associations:</strong> Open GIMP, navigate to
+<strong>Edit &gt; Preferences &gt; Image Import &amp; Export &gt; Raw
+Image Importer</strong>, and select your installed LibRaw-based loader
+as the default handler.</li>
+</ol>
+<h3 id="2-importing-the-raw-digital-negative">2. Importing the RAW
+Digital Negative</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Go to <strong>File &gt; Open</strong> (or press
+<code>Ctrl + O</code> / <code>Cmd + O</code>).</li>
+<li>Select your camera's RAW file from your storage directory and click
+<strong>Open</strong>.</li>
+<li>GIMP will automatically detect the RAW extension and route the file
+directly to your chosen LibRaw interface window.</li>
+</ol>
+<h3 id="3-pre-processing-via-the-libraw-interface">3. Pre-Processing via
+the LibRaw Interface</h3>
+<p>Before the image enters the standard GIMP canvas, adjust the basic
+raw sensor parameters in the plugin loader window:</p>
+<ul>
+<li><strong>Demosaicing:</strong> Choose a demosaicing algorithm (such
+as AMAZE or RCD) depending on the level of detail and noise pattern
+required.</li>
+<li><strong>White Balance:</strong> Set the color temperature and tint
+using the camera metadata presets, auto-calculation, or manual Kelvin
+adjustment.</li>
+<li><strong>Exposure and Highlights:</strong> Adjust exposure
+compensation and enable highlight recovery to reconstruct clipped data
+from the raw sensor channels.</li>
+<li><strong>Lens Corrections:</strong> Apply distortion, chromatic
+aberration, and vignetting corrections if your camera/lens profile is
+recognized.</li>
+<li><strong>Color Profile:</strong> Select a working color space with a
+wide gamut, such as ProPhoto RGB or Adobe RGB, at 16-bit or 32-bit
+precision.</li>
+</ul>
+<h3 id="4-transferring-and-editing-in-gimp">4. Transferring and Editing
+in GIMP</h3>
+<ol type="1">
+<li>Once the initial RAW adjustments are complete, click
+<strong>OK</strong>, <strong>Export</strong>, or close the processor
+window (depending on the specific LibRaw plugin used).</li>
+<li>The decoded digital negative will automatically render inside the
+GIMP workspace as a high-precision raster layer.</li>
+<li>Perform standard raster adjustments:
+<ul>
+<li><strong>Tonal Control:</strong> Navigate to <strong>Colors &gt;
+Curves</strong> or <strong>Colors &gt; Levels</strong> to map your
+dynamic range.</li>
+<li><strong>Color Grading:</strong> Use <strong>Colors &gt; Color
+Temperature</strong> or <strong>Colors &gt; Hue-Chroma</strong> to
+fine-tune tones.</li>
+<li><strong>Noise Reduction &amp; Sharpening:</strong> Use
+<strong>Filters &gt; Enhance &gt; Wavelet Denoise</strong> for residual
+noise and <strong>Filters &gt; Enhance &gt; High Pass</strong> or
+<strong>Unsharp Mask</strong> for final sharpening.</li>
+</ul></li>
+</ol>
+<h3 id="5-exporting-the-final-image">5. Exporting the Final Image</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>
+(<code>Shift + Ctrl + E</code>).</li>
+<li>Select your desired output format (e.g., JPEG, PNG, or TIFF).</li>
+<li>For archival or printing purposes, choose <strong>TIFF</strong> or
+<strong>16-bit PNG</strong> to retain the bit-depth preserved from the
+original RAW file.</li>
+<li>Set the quality level and click <strong>Export</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

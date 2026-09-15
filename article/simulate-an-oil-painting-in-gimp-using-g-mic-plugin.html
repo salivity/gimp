@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulate an Oil Painting in GIMP Using G'MIC Plugin - gimp</title>
+    <meta name="description" content="This guide provides a straightforward method for transforming digital photographs into realistic oil paintings using GIMP and the G'MIC (GREYC's Magic for Image Computing) plugin. You will learn how to set up your image layers, select the most effective">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/simulate-an-oil-painting-in-gimp-using-g-mic-plugin">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Simulate an Oil Painting in GIMP Using G'MIC Plugin - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/simulate-an-oil-painting-in-gimp-using-g-mic-plugin" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward method for transforming digital photographs into realistic oil paintings using GIMP and the G'MIC (GREYC's Magic for Image Computing) plugin. You will learn how to set up your image layers, select the most effective" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="simulate-an-oil-painting-in-gimp-using-gmic-plugin">Simulate an
+Oil Painting in GIMP Using G'MIC Plugin</h1>
+<p>This guide provides a straightforward method for transforming digital
+photographs into realistic oil paintings using GIMP and the G'MIC
+(GREYC's Magic for Image Computing) plugin. You will learn how to set up
+your image layers, select the most effective artistic filters within
+G'MIC, adjust brush stroke and texture settings, and apply finishing
+touches to achieve an authentic canvas aesthetic.</p>
+<h3 id="step-1-prepare-your-image-in-gimp">Step 1: Prepare Your Image in
+GIMP</h3>
+<ol type="1">
+<li>Open your target image in GIMP by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Duplicate the base image layer by right-clicking it in the
+<strong>Layers</strong> panel and selecting <strong>Duplicate
+Layer</strong> (or pressing <code>Shift + Ctrl + D</code>). Name this
+layer "Oil Base".</li>
+<li>Right-click the duplicated layer and select <strong>Duplicate
+Layer</strong> once more to create a backup for blending. Name the top
+layer "Oil Effect".</li>
+</ol>
+<h3 id="step-2-open-the-gmic-qt-plugin">Step 2: Open the G'MIC-Qt
+Plugin</h3>
+<ol type="1">
+<li>Select the "Oil Effect" layer in the Layers panel.</li>
+<li>Go to the top menu and select <strong>Filters &gt;
+G'MIC-Qt</strong>.</li>
+<li>In the search bar at the top of the G'MIC interface, you can search
+for specific painting filters or expand the <strong>Artistic</strong>
+category.</li>
+</ol>
+<h3 id="step-3-apply-the-primary-painting-filter">Step 3: Apply the
+Primary Painting Filter</h3>
+<p>G'MIC contains several filters capable of simulating oil paintings.
+The two most effective options are <strong>Painting</strong> and
+<strong>Kuwahara</strong>.</p>
+<h4 id="option-a-the-painting-filter-best-for-general-brushwork">Option
+A: The "Painting" Filter (Best for general brushwork)</h4>
+<ol type="1">
+<li>In the G'MIC search bar, type <code>Painting</code> and select the
+filter located under <strong>Artistic &gt; Painting</strong>.</li>
+<li>Adjust the <strong>Brush Size</strong> (or Radius) to define the
+thickness of the strokes. Smaller values preserve fine details, while
+larger values create broad, impressionistic strokes.</li>
+<li>Adjust the <strong>Smoothness</strong> slider to blend adjacent
+color tones together, mimicking wet paint blending.</li>
+<li>Set the <strong>Output Layers</strong> option at the bottom to
+<code>In place</code> or <code>New layer(s)</code>.</li>
+<li>Click <strong>Apply</strong> to preview the result.</li>
+</ol>
+<h4
+id="option-b-the-brushify-filter-best-for-distinct-bristle-strokes">Option
+B: The "Brushify" Filter (Best for distinct bristle strokes)</h4>
+<ol type="1">
+<li>Search for <code>Brushify</code> under <strong>Artistic &gt;
+Brushify</strong>.</li>
+<li>Set the <strong>Number of Strokes</strong> according to the level of
+detail required (higher values yield more detail).</li>
+<li>Choose a brush shape preset (such as flat or round bristle) from the
+drop-down menu.</li>
+<li>Adjust the <strong>Paint Thickness</strong> to simulate
+impasto-style raised paint.</li>
+</ol>
+<h3 id="step-4-add-canvas-and-impasto-texture">Step 4: Add Canvas and
+Impasto Texture</h3>
+<p>To make the oil effect convincing, add tactile surface relief.</p>
+<ol type="1">
+<li>While still inside G'MIC, search for <strong>Engrave</strong> or
+<strong>Texturize</strong>.</li>
+<li>Alternatively, apply the G'MIC filter <strong>Artistic &gt;
+Relief</strong> to simulate the lighting and shadows cast by thick oil
+paint strokes.</li>
+<li>Adjust the <strong>Angle</strong> and <strong>Depth</strong>
+parameters to match the light source of your original scene.</li>
+<li>Click <strong>OK</strong> to render the effect and return to the
+main GIMP workspace.</li>
+</ol>
+<h3 id="step-5-final-layer-blending-and-color-grading">Step 5: Final
+Layer Blending and Color Grading</h3>
+<ol type="1">
+<li>In the GIMP Layers panel, select the "Oil Effect" layer.</li>
+<li>If the effect appears too harsh, lower the <strong>Opacity</strong>
+slider to between 85% and 95% to allow some fine photographic detail
+from the layer below to show through.</li>
+<li>To enhance the richness typical of oil paints, go to <strong>Colors
+&gt; Curves</strong> or <strong>Colors &gt; Hue-Saturation</strong> and
+slightly increase the contrast and color saturation.</li>
+<li>Go to <strong>File &gt; Export As</strong> to save your final
+artwork in your preferred format.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

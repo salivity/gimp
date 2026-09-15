@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Flat Vector Portraits in GIMP - gimp</title>
+    <meta name="description" content="Transforming a raster photograph into a minimalist, vector-style flat illustration is a popular graphic design technique that you can easily achieve using GIMP. This tutorial provides a step-by-step walkthrough for converting portrait photos into stylize">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-flat-vector-portraits-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Flat Vector Portraits in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-flat-vector-portraits-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming a raster photograph into a minimalist, vector-style flat illustration is a popular graphic design technique that you can easily achieve using GIMP. This tutorial provides a step-by-step walkthrough for converting portrait photos into stylize" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-flat-vector-portraits-in-gimp">How to Make Flat
+Vector Portraits in GIMP</h1>
+<p>Transforming a raster photograph into a minimalist, vector-style flat
+illustration is a popular graphic design technique that you can easily
+achieve using GIMP. This tutorial provides a step-by-step walkthrough
+for converting portrait photos into stylized art by organizing layers,
+tracing shapes with the Paths Tool, establishing a flat color palette,
+and applying cel-shaded highlights and shadows.</p>
+<h3 id="1-prepare-your-reference-image">1. Prepare Your Reference
+Image</h3>
+<ol type="1">
+<li>Open GIMP and import your chosen portrait via <strong>File &gt;
+Open</strong>. Choose a high-contrast photograph with clear lighting and
+well-defined facial features.</li>
+<li>Duplicate the base image layer (<code>Ctrl + D</code> or right-click
+the layer and select <strong>Duplicate Layer</strong>) and rename it
+<code>Reference</code>.</li>
+<li>To make color values and shapes easier to identify, go to
+<strong>Colors &gt; Posterize</strong> on the reference layer and reduce
+the levels to between 5 and 8. This breaks complex gradients into
+distinct tonal blocks.</li>
+</ol>
+<h3 id="2-set-up-your-layer-hierarchy">2. Set Up Your Layer
+Hierarchy</h3>
+<p>Create a dedicated layer structure above your reference image so your
+elements stay organized:</p>
+<ul>
+<li><strong>Details</strong> (top)</li>
+<li><strong>Highlights &amp; Shadows</strong></li>
+<li><strong>Hair</strong></li>
+<li><strong>Facial Features</strong> (eyes, nose, mouth)</li>
+<li><strong>Base Skin</strong></li>
+<li><strong>Clothing</strong></li>
+<li><strong>Background</strong> (bottom)</li>
+</ul>
+<p>Set the opacity of your <code>Reference</code> layer to around 60–70%
+so you can clearly see the paths you draw over it.</p>
+<h3 id="3-build-a-limited-color-palette">3. Build a Limited Color
+Palette</h3>
+<p>Flat illustrations rely on a curated, non-gradient color scheme. Use
+the <strong>Color Picker Tool (O)</strong> to sample colors from your
+photo or create custom swatches:</p>
+<ul>
+<li>Pick a base tone, a shadow tone, and a highlight tone for the
+skin.</li>
+<li>Choose 2–3 tones for the hair.</li>
+<li>Pick solid accent colors for the clothing and background.</li>
+</ul>
+<h3 id="4-trace-outlines-with-the-paths-tool">4. Trace Outlines with the
+Paths Tool</h3>
+<ol type="1">
+<li>Select the <strong>Paths Tool (B)</strong> from the toolbox.</li>
+<li>Zoom into your image and begin placing nodes around major continuous
+shapes (such as the jawline, hair outline, or shirt collar).</li>
+<li>Click and drag nodes to bend the path segments smoothly along
+curves. Hold <code>Ctrl</code> to adjust individual control handles for
+sharp angles.</li>
+<li>Close the path by holding <code>Ctrl</code> and clicking the initial
+anchor point.</li>
+</ol>
+<h3 id="5-fill-paths-with-solid-colors">5. Fill Paths with Solid
+Colors</h3>
+<ol type="1">
+<li>Once a path loop is closed, click <strong>Selection from
+Path</strong> in the Paths Tool Options (or press
+<code>Shift + V</code>).</li>
+<li>Select the corresponding transparent layer from your Layers panel
+(e.g., <code>Base Skin</code>).</li>
+<li>Select your chosen base color, then use the <strong>Bucket Fill Tool
+(Shift + B)</strong> or navigate to <strong>Edit &gt; Fill with FG
+Color</strong> to fill the selection.</li>
+<li>Press <code>Ctrl + Shift + A</code> to deselect.</li>
+<li>Repeat this process for each major section: clothing, neck, face,
+and hair.</li>
+</ol>
+<h3 id="6-add-shadows-and-highlights">6. Add Shadows and Highlights</h3>
+<p>Flat illustrations get their depth from hard-edged shadow planes
+rather than smooth gradients:</p>
+<ol type="1">
+<li>Create a new layer directly above your base color layer (e.g.,
+<code>Skin Shadows</code>).</li>
+<li>Use the <strong>Paths Tool</strong> to trace the darker areas
+defined by the posterized reference photo, such as under the chin,
+beneath the nose, and along the eye sockets.</li>
+<li>Convert the path to a selection, fill it with your darker shadow
+tone, and deselect.</li>
+<li>For highlights, repeat the process on a <code>Skin Highlights</code>
+layer using a lighter tone on areas like the bridge of the nose and the
+cheekbones.</li>
+</ol>
+<h3 id="7-draw-facial-details">7. Draw Facial Details</h3>
+<ol type="1">
+<li><strong>Eyes:</strong> Keep them simplified. Trace the whites of the
+eyes, the iris, and a simple geometric shape for the pupil and
+catchlight. Avoid drawing every eyelash; instead, create a solid, clean
+shape for the upper eyelid.</li>
+<li><strong>Eyebrows:</strong> Trace eyebrows as single unified shapes
+rather than individual hairs.</li>
+<li><strong>Lips:</strong> Split the lips into two shapes—a darker upper
+lip and a lighter lower lip, with a small shadow underneath the bottom
+lip.</li>
+</ol>
+<h3 id="8-finalize-and-export">8. Finalize and Export</h3>
+<ol type="1">
+<li>Hide the original <code>Reference</code> layer to view your
+illustration against a solid background color.</li>
+<li>Inspect your edges. If shapes overlap incorrectly, adjust the
+stacking order of your layers in the Layers panel.</li>
+<li>Go to <strong>File &gt; Export As...</strong>, select
+<strong>PNG</strong> or <strong>JPEG</strong>, and save your finished
+flat portrait illustration.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

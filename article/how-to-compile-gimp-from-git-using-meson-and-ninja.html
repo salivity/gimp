@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Compile GIMP from Git Using Meson and Ninja - gimp</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough for compiling the latest development version of the GNU Image Manipulation Program (GIMP) directly from source using Git, Meson, and Ninja. You will learn how to prepare an isolated build environment, ins">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-compile-gimp-from-git-using-meson-and-ninja">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Compile GIMP from Git Using Meson and Ninja - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-compile-gimp-from-git-using-meson-and-ninja" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough for compiling the latest development version of the GNU Image Manipulation Program (GIMP) directly from source using Git, Meson, and Ninja. You will learn how to prepare an isolated build environment, ins" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-compile-gimp-from-git-using-meson-and-ninja">How to
+Compile GIMP from Git Using Meson and Ninja</h1>
+<p>This guide provides a straightforward walkthrough for compiling the
+latest development version of the GNU Image Manipulation Program (GIMP)
+directly from source using Git, Meson, and Ninja. You will learn how to
+prepare an isolated build environment, install necessary build tools,
+compile the core dependencies (babl and GEGL), and build and launch GIMP
+without interfering with any version provided by your operating system's
+package manager.</p>
+<h2 id="1-install-required-build-tools-and-dependencies">1. Install
+Required Build Tools and Dependencies</h2>
+<p>Before compiling, install Git, Meson, Ninja, a C/C++ compiler, and
+the base development libraries required by GIMP and its
+dependencies.</p>
+<p>On Debian, Ubuntu, or derivative distributions, install the base
+tools with:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git meson ninja-build build-essential pkg-config <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    libgtk-3-dev libglib2.0-dev liblcms2-dev libjson-glib-dev <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    libgexiv2-dev libmypaint-dev mypaint-brushes librsvg2-dev <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    libpoppler-glib-dev libraw-dev libtiff-dev libjpeg-dev <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    libpng-dev libwebp-dev libopenexr-dev python3 python3-pip</span></code></pre></div>
+<p>On Fedora:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install git meson ninja-build gcc gcc-c++ pkgconf-pkg-config <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    gtk3-devel glib2-devel lcms2-devel json-glib-devel libgexiv2-devel <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    libmypaint-devel mypaint-brushes librsvg2-devel poppler-glib-devel <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    LibRaw-devel libtiff-devel libjpeg-turbo-devel libpng-devel <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    libwebp-devel OpenEXR-devel python3</span></code></pre></div>
+<h2 id="2-configure-the-isolated-environment">2. Configure the Isolated
+Environment</h2>
+<p>To keep the development build separated from your stable system,
+build everything into a dedicated prefix directory (such as
+<code>$HOME/gimp-prefix</code>).</p>
+<p>Create an environment setup script named
+<code>setup-env.sh</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PREFIX</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$HOME</span><span class="st">/gimp-prefix&quot;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">/bin:</span><span class="va">$PATH</span><span class="st">&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_CONFIG_PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">/lib/pkgconfig:</span><span class="va">$PREFIX</span><span class="st">/lib64/pkgconfig:</span><span class="va">$PREFIX</span><span class="st">/share/pkgconfig:</span><span class="va">$PKG_CONFIG_PATH</span><span class="st">&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LD_LIBRARY_PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">/lib:</span><span class="va">$PREFIX</span><span class="st">/lib64:</span><span class="va">$LD_LIBRARY_PATH</span><span class="st">&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">XDG_DATA_DIRS</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">/share:</span><span class="va">$XDG_DATA_DIRS</span><span class="st">&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">GI_TYPELIB_PATH</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">/lib/girepository-1.0:</span><span class="va">$PREFIX</span><span class="st">/lib64/girepository-1.0:</span><span class="va">$GI_TYPELIB_PATH</span><span class="st">&quot;</span></span></code></pre></div>
+<p>Source the script in your terminal before building or running
+GIMP:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> setup-env.sh</span></code></pre></div>
+<p>Create a working directory for the source code:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">&quot;</span><span class="va">$HOME</span><span class="st">/gimp-source&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">&quot;</span><span class="va">$HOME</span><span class="st">/gimp-source&quot;</span></span></code></pre></div>
+<h2 id="3-clone-and-build-babl">3. Clone and Build babl</h2>
+<p>GIMP relies on the babl pixel encoding library. You must compile the
+latest git version.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://gitlab.gnome.org/GNOME/babl.git</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> babl</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">meson</span> setup _build <span class="at">--prefix</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">&quot;</span> <span class="at">-Dbuildtype</span><span class="op">=</span>debugoptimized</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> _build</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> _build install</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<h2 id="4-clone-and-build-gegl">4. Clone and Build GEGL</h2>
+<p>GEGL (Generic Graphics Library) is GIMP's primary image processing
+engine.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://gitlab.gnome.org/GNOME/gegl.git</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gegl</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">meson</span> setup _build <span class="at">--prefix</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">&quot;</span> <span class="at">-Dbuildtype</span><span class="op">=</span>debugoptimized</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> _build</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> _build install</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<h2 id="5-clone-and-build-gimp">5. Clone and Build GIMP</h2>
+<p>Now clone the main GIMP repository, configure the build using Meson,
+and compile it with Ninja.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://gitlab.gnome.org/GNOME/gimp.git</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gimp</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">meson</span> setup _build <span class="at">--prefix</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$PREFIX</span><span class="st">&quot;</span> <span class="at">-Dbuildtype</span><span class="op">=</span>debugoptimized</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> _build</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> _build install</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre></div>
+<p><em>Note: If <code>meson setup</code> reports missing optional or
+required libraries, install the corresponding <code>-dev</code> or
+<code>-devel</code> package via your system package manager and re-run
+the setup command.</em></p>
+<h2 id="6-launch-the-compiled-gimp">6. Launch the Compiled GIMP</h2>
+<p>To run your custom-built GIMP, ensure your custom environment
+variables are active and execute the binary from your prefix:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> setup-env.sh</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gimp-2.99</span></span></code></pre></div>
+<p><em>(Note: Depending on the Git branch, the executable name might be
+<code>gimp-2.99</code>, <code>gimp-3.0</code>, or simply
+<code>gimp</code> located within <code>$PREFIX/bin/</code>.)</em></p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

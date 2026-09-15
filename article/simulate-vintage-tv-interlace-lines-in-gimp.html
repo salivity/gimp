@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulate Vintage TV Interlace Lines in GIMP - gimp</title>
+    <meta name="description" content="Simulating vintage television interlace lines adds an authentic retro CRT aesthetic to digital images and video stills. This effect is achieved in GIMP by rendering a custom horizontal grid over your image, fine-tuning the spacing and line thickness, and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/simulate-vintage-tv-interlace-lines-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Simulate Vintage TV Interlace Lines in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/simulate-vintage-tv-interlace-lines-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating vintage television interlace lines adds an authentic retro CRT aesthetic to digital images and video stills. This effect is achieved in GIMP by rendering a custom horizontal grid over your image, fine-tuning the spacing and line thickness, and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="simulate-vintage-tv-interlace-lines-in-gimp">Simulate Vintage TV
+Interlace Lines in GIMP</h1>
+<p>Simulating vintage television interlace lines adds an authentic retro
+CRT aesthetic to digital images and video stills. This effect is
+achieved in GIMP by rendering a custom horizontal grid over your image,
+fine-tuning the spacing and line thickness, and adjusting the layer
+blend modes to mimic the physical scanlines of old cathode-ray tube
+displays.</p>
+<h3 id="step-1-prepare-your-workspace">Step 1: Prepare Your
+Workspace</h3>
+<ol type="1">
+<li>Open your target image in GIMP.</li>
+<li>Go to <strong>Layer</strong> &gt; <strong>New Layer...</strong> (or
+click the New Layer icon in the Layers panel).</li>
+<li>Name the layer "Interlace Lines", set the <strong>Fill with</strong>
+option to <strong>Transparency</strong>, and click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-render-the-custom-grid">Step 2: Render the Custom
+Grid</h3>
+<ol type="1">
+<li>Select the newly created "Interlace Lines" layer.</li>
+<li>Navigate to <strong>Filters</strong> &gt; <strong>Render</strong>
+&gt; <strong>Pattern</strong> &gt; <strong>Grid...</strong>.</li>
+<li>In the Grid dialogue, unlink the horizontal and vertical parameters
+(click the chain link icon next to Width, Spacing, and Offset so they
+are broken).</li>
+<li>Configure the <strong>Width</strong> (line thickness):
+<ul>
+<li>Set <strong>Horizontal</strong> to <code>1</code> or <code>2</code>
+pixels (depending on your image resolution).</li>
+<li>Set <strong>Vertical</strong> to <code>0</code> pixels to eliminate
+vertical lines.</li>
+</ul></li>
+<li>Configure the <strong>Spacing</strong> (distance between lines):
+<ul>
+<li>Set <strong>Horizontal</strong> to <code>0</code> pixels.</li>
+<li>Set <strong>Vertical</strong> to <code>2</code> to <code>4</code>
+pixels.</li>
+</ul></li>
+<li>Configure the <strong>Color</strong>:
+<ul>
+<li>Set the line color to solid black (<code>#000000</code>) or a dark
+charcoal grey.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to render the horizontal scanlines across
+the layer.</li>
+</ol>
+<h3 id="step-3-blend-and-refine-the-effect">Step 3: Blend and Refine the
+Effect</h3>
+<ol type="1">
+<li>With the "Interlace Lines" layer selected, change the
+<strong>Mode</strong> dropdown at the top of the Layers panel from
+<em>Normal</em> to <strong>Overlay</strong>, <strong>Multiply</strong>,
+or <strong>Soft Light</strong>.</li>
+<li>Reduce the <strong>Opacity</strong> slider to between <strong>30%
+and 60%</strong> to prevent the scanlines from overpowering the
+underlying image.</li>
+<li>For a softer, analog glow, go to <strong>Filters</strong> &gt;
+<strong>Blur</strong> &gt; <strong>Gaussian Blur...</strong> and apply a
+subtle blur (around <code>0.5</code> to <code>1.0</code> pixels) to the
+interlace layer.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

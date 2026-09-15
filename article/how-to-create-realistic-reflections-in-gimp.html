@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Realistic Reflections in GIMP - gimp</title>
+    <meta name="description" content="Creating a realistic surface reflection in GIMP involves duplicating your subject, flipping it, aligning it with the contact point, and applying a combination of layer masks, blur filters, and opacity adjustments. This technique simulates how light bounc">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-realistic-reflections-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Realistic Reflections in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-realistic-reflections-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a realistic surface reflection in GIMP involves duplicating your subject, flipping it, aligning it with the contact point, and applying a combination of layer masks, blur filters, and opacity adjustments. This technique simulates how light bounc" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-realistic-reflections-in-gimp">How to Create
+Realistic Reflections in GIMP</h1>
+<p>Creating a realistic surface reflection in GIMP involves duplicating
+your subject, flipping it, aligning it with the contact point, and
+applying a combination of layer masks, blur filters, and opacity
+adjustments. This technique simulates how light bounces off surfaces
+like polished floors, glass, or water, giving your digital compositions
+depth and natural perspective.</p>
+<h3 id="step-1-duplicate-and-flip-the-object">Step 1: Duplicate and Flip
+the Object</h3>
+<ol type="1">
+<li>Open your project in GIMP and ensure the object you want to reflect
+is isolated on its own transparent layer.</li>
+<li>Right-click the object's layer in the <strong>Layers</strong> dialog
+and select <strong>Duplicate Layer</strong>.</li>
+<li>Select the duplicated layer, then choose the <strong>Flip
+Tool</strong> (<code>Shift + F</code>) from the toolbox.</li>
+<li>In the Tool Options, set the flip direction to
+<strong>Vertical</strong>, and click on the canvas to invert the
+layer.</li>
+</ol>
+<h3 id="step-2-position-and-match-perspective">Step 2: Position and
+Match Perspective</h3>
+<ol type="1">
+<li>Select the <strong>Move Tool</strong> (<code>M</code>) and drag the
+flipped layer directly beneath the original object so the bases
+touch.</li>
+<li>If the ground surface is viewed at an angle, choose the
+<strong>Perspective Tool</strong> (<code>Shift + P</code>).</li>
+<li>Drag the bottom corners of the flipped layer to match the angle and
+vanishing point of the floor plane, then click
+<strong>Transform</strong>.</li>
+</ol>
+<h3 id="step-3-create-the-natural-fade-with-a-layer-mask">Step 3: Create
+the Natural Fade with a Layer Mask</h3>
+<p>Real reflections lose intensity as they move farther from the
+object.</p>
+<ol type="1">
+<li>Right-click the flipped layer and select <strong>Add Layer
+Mask</strong>. Choose <strong>White (full opacity)</strong> and click
+<strong>Add</strong>.</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>). Set the
+foreground color to black and the background color to white.</li>
+<li>In the Tool Options, set the gradient shape to
+<strong>Linear</strong>.</li>
+<li>Click and drag the gradient on the canvas from the bottom of the
+reflection toward the contact point. The reflection will smoothly fade
+out toward the bottom.</li>
+</ol>
+<h3 id="step-4-adjust-opacity-and-blending-modes">Step 4: Adjust Opacity
+and Blending Modes</h3>
+<ol type="1">
+<li>Lower the <strong>Opacity</strong> of the reflection layer
+(typically between 20% and 50%) to match the reflectivity of the surface
+material.</li>
+<li>Change the layer <strong>Mode</strong> from <em>Normal</em> to
+<em>Soft Light</em>, <em>Overlay</em>, or <em>Screen</em> depending on
+the brightness and texture of the underlying surface.</li>
+</ol>
+<h3 id="step-5-add-blur-and-surface-distortion">Step 5: Add Blur and
+Surface Distortion</h3>
+<ol type="1">
+<li>With the reflection layer selected (ensure you click the layer
+thumbnail, not the mask), go to <strong>Filters &gt; Blur &gt; Gaussian
+Blur</strong>.</li>
+<li>Apply a subtle blur (1–5 px) to simulate surface roughness.</li>
+<li>For irregular surfaces like water or textured tiles, go to
+<strong>Filters &gt; Distorts &gt; Ripple</strong> or use the
+<strong>Displace</strong> filter to warp the reflection to match the
+ground texture contours.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

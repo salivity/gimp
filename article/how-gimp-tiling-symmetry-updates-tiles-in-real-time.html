@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Tiling Symmetry Updates Tiles in Real Time - gimp</title>
+    <meta name="description" content="GIMP's Tiling symmetry feature allows artists to create seamless repeating patterns by mirroring paint strokes across a predefined grid simultaneously. Instead of painting one tile and manually copy-pasting it across the canvas, the software duplicates b">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-tiling-symmetry-updates-tiles-in-real-time">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Tiling Symmetry Updates Tiles in Real Time - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-tiling-symmetry-updates-tiles-in-real-time" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP's Tiling symmetry feature allows artists to create seamless repeating patterns by mirroring paint strokes across a predefined grid simultaneously. Instead of painting one tile and manually copy-pasting it across the canvas, the software duplicates b" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-tiling-symmetry-updates-tiles-in-real-time">How GIMP
+Tiling Symmetry Updates Tiles in Real Time</h1>
+<p>GIMP's Tiling symmetry feature allows artists to create seamless
+repeating patterns by mirroring paint strokes across a predefined grid
+simultaneously. Instead of painting one tile and manually copy-pasting
+it across the canvas, the software duplicates brush events across
+calculated coordinate offsets in real time. This article breaks down the
+mechanics behind GIMP's symmetry painting engine, explaining how
+coordinate transformations, GEGL image processing pipelines, and unified
+buffer rendering make instantaneous multi-tile updates possible.</p>
+<h3 id="the-symmetry-painting-system-architecture">The Symmetry Painting
+System Architecture</h3>
+<p>When you paint in GIMP with symmetry enabled, the software does not
+duplicate the image data after a stroke is complete. Instead, it
+duplicates the <em>brush stroke events</em> before the pixels are
+permanently written to the image canvas.</p>
+<p>GIMP achieves this via the Symmetry Painting dockable dialog. When
+the mode is set to "Tiling," you define horizontal and vertical
+intervals (shifts). GIMP's input handling system intercepts every cursor
+movement, pressure change, and stroke event, passing these raw input
+values into the symmetry transform engine before rendering.</p>
+<h3 id="mathematical-coordinate-transformation">Mathematical Coordinate
+Transformation</h3>
+<p>At the core of the simultaneous update is basic modular arithmetic.
+When your pointer registers a paint dab at coordinate <span
+class="math inline">\((x, y)\)</span>, the tiling algorithm calculates
+multiple target positions across the canvas:</p>
+<p><span class="math display">\[x&#39; = x + (n \times
+\text{Shift}_X)\]</span> <span class="math display">\[y&#39; = y + (m
+\times \text{Shift}_Y)\]</span></p>
+<p>Here, <span class="math inline">\(n\)</span> and <span
+class="math inline">\(m\)</span> are integers representing the grid
+offset (both positive and negative) relative to the primary tile. GIMP
+dynamically calculates how many copies fit within the current canvas
+boundary or active selection.</p>
+<p>Because GIMP tracks these coordinates as relative offsets, whenever
+the cursor moves by a single pixel, that motion vector is applied
+instantly to all active <span class="math inline">\(n\)</span> and <span
+class="math inline">\(m\)</span> coordinate sets.</p>
+<h3 id="simultaneous-buffer-updates-via-gegl">Simultaneous Buffer
+Updates via GEGL</h3>
+<p>Once the transformed coordinates are generated, GIMP's underlying
+graphic engine—GEGL (Generic Graphical Library)—processes the
+operation.</p>
+<ol type="1">
+<li><strong>Stamp Generation:</strong> GIMP calculates the brush
+footprint (including size, hardness, aspect ratio, and dynamics like
+pressure or velocity) for the primary cursor location.</li>
+<li><strong>Multi-Point Blitting:</strong> Instead of drawing once, the
+GEGL engine applies the computed brush footprint simultaneously to all
+offset coordinates within the layer buffer.</li>
+<li><strong>Single Transaction Processing:</strong> The entire set of
+simultaneous brush dabs is treated as a single graphical transaction.
+This prevents performance degradation that would otherwise occur if each
+tile were rendered sequentially.</li>
+</ol>
+<h3 id="canvas-refresh-and-real-time-feedback">Canvas Refresh and
+Real-Time Feedback</h3>
+<p>After the layer's pixel data updates in the active memory buffer,
+GIMP marks those bounding boxes as "dirty" (needing a redraw). The
+display engine refreshes the viewport in a single frame update. Because
+the coordinate calculation, pixel rasterization, and screen redrawing
+occur within GIMP’s standard input loop (typically at 60 Hz or higher),
+all adjacent pattern tiles appear to mirror your brush strokes
+instantaneously.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

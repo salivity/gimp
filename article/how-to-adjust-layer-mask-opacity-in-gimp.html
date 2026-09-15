@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Adjust Layer Mask Opacity in GIMP - gimp</title>
+    <meta name="description" content="GIMP does not include a native "mask density" slider in its interface, but you can control the opacity of an active layer mask using two reliable techniques. This guide covers how to adjust mask intensity directly using the Levels tool for quick edits, a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-adjust-layer-mask-opacity-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Adjust Layer Mask Opacity in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-adjust-layer-mask-opacity-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP does not include a native "mask density" slider in its interface, but you can control the opacity of an active layer mask using two reliable techniques. This guide covers how to adjust mask intensity directly using the Levels tool for quick edits, a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-adjust-layer-mask-opacity-in-gimp">How to Adjust Layer
+Mask Opacity in GIMP</h1>
+<p>GIMP does not include a native "mask density" slider in its
+interface, but you can control the opacity of an active layer mask using
+two reliable techniques. This guide covers how to adjust mask intensity
+directly using the Levels tool for quick edits, as well as how to set up
+a non-destructive layer workflow that gives you a live, real-time
+opacity slider in the Layers dock.</p>
+<h2 id="method-1-adjust-mask-intensity-directly-with-levels">Method 1:
+Adjust Mask Intensity Directly with Levels</h2>
+<p>This approach alters the mask's tonal range directly, effectively
+lowering the strength of its transparency without adding extra
+layers.</p>
+<ol type="1">
+<li><strong>Select the Mask:</strong> In the <strong>Layers</strong>
+panel, click directly on the layer mask thumbnail next to your image
+thumbnail. A white outline will appear around the mask thumbnail,
+confirming it is active.</li>
+<li><strong>Open Levels:</strong> Go to the top menu and select
+<strong>Colors &gt; Levels</strong>.</li>
+<li><strong>Modify Output Levels:</strong> Locate the <strong>Output
+Levels</strong> sliders at the bottom of the dialog box (represented by
+a black-to-white gradient bar).</li>
+<li><strong>Reduce Opacity:</strong> Drag the black Output slider to the
+right toward the white end. Raising the black point turns pure black
+areas into shades of gray, which reduces the transparency created by the
+mask and reveals the underlying pixels.</li>
+<li><strong>Apply:</strong> Click <strong>OK</strong> once the desired
+intensity is achieved.</li>
+</ol>
+<h2 id="method-2-create-a-live-mask-opacity-slider">Method 2: Create a
+Live Mask Opacity Slider</h2>
+<p>If you need a dedicated, real-time slider to continually adjust mask
+strength non-destructively, use a duplicate layer setup.</p>
+<ol type="1">
+<li><strong>Duplicate the Base Layer:</strong> Right-click your
+original, unmasked layer and select <strong>Duplicate
+Layer</strong>.</li>
+<li><strong>Apply the Mask to the Top Layer:</strong> Add your layer
+mask to the top layer only, leaving the bottom duplicate completely
+unmasked.</li>
+<li><strong>Group the Layers (Optional):</strong> Select both layers,
+right-click, and select <strong>New Layer Group</strong> to keep your
+project organized. Place both the masked and unmasked versions
+inside.</li>
+<li><strong>Adjust the Slider:</strong> Select the top (masked) layer in
+the Layers panel. Move its <strong>Opacity</strong> slider back and
+forth.
+<ul>
+<li>At <strong>100%</strong>, the mask is fully enforced.</li>
+<li>Lowering the opacity gradually blends the masked layer with the
+fully opaque base layer beneath it, functioning exactly like an
+independent mask density slider.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

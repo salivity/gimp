@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Milky Way Noise in GIMP - gimp</title>
+    <meta name="description" content="Capturing the Milky Way often requires high ISO settings that introduce digital sensor noise, but GIMP offers effective, free tools to clean up your night sky astrophotography without sacrificing faint stars. This guide walks you through a step-by-step w">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-milky-way-noise-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Milky Way Noise in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-milky-way-noise-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Capturing the Milky Way often requires high ISO settings that introduce digital sensor noise, but GIMP offers effective, free tools to clean up your night sky astrophotography without sacrificing faint stars. This guide walks you through a step-by-step w" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-remove-milky-way-noise-in-gimp">How to Remove Milky Way
+Noise in GIMP</h1>
+<p>Capturing the Milky Way often requires high ISO settings that
+introduce digital sensor noise, but GIMP offers effective, free tools to
+clean up your night sky astrophotography without sacrificing faint
+stars. This guide walks you through a step-by-step workflow in GIMP to
+eliminate both luminance and color noise, target specific sky regions
+using layer masks, and preserve crisp astronomical details.</p>
+<h2 id="1-import-and-duplicate-your-image">1. Import and Duplicate Your
+Image</h2>
+<ol type="1">
+<li>Open your Milky Way image in GIMP via <strong>File &gt;
+Open</strong>.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click your background image layer and select <strong>Duplicate
+Layer</strong> (or press <code>Ctrl + Shift + D</code>).</li>
+<li>Rename this duplicate layer to <code>Denoised Sky</code>. Working on
+a duplicate protects your original base image.</li>
+</ol>
+<h2 id="2-eliminate-color-chroma-noise">2. Eliminate Color (Chroma)
+Noise</h2>
+<p>Color noise appears as random, blotchy red, green, and blue pixels
+across dark sky areas. Removing color noise first prevents it from
+smearing into the background luminance.</p>
+<ol type="1">
+<li>Select the <code>Denoised Sky</code> layer.</li>
+<li>Go to <strong>Colors &gt; Components &gt; Decompose</strong>.</li>
+<li>Set the <strong>Color model</strong> to <strong>LAB</strong> or
+<strong>LCH</strong> and ensure "Decompose to layers" is checked, then
+click <strong>OK</strong>. A new multi-layer grayscale image will
+open.</li>
+<li>Select the color channels (in LAB: the <strong>A</strong> and
+<strong>B</strong> layers; in LCH: the <strong>C</strong> and
+<strong>H</strong> layers).</li>
+<li>For each color channel layer, go to <strong>Filters &gt; Blur &gt;
+Gaussian Blur</strong>, set a moderate radius (between 3 and 8 pixels),
+and click <strong>OK</strong>. Do not blur the Lightness
+(<strong>L</strong>) channel, as it contains sharp star details.</li>
+<li>Go to <strong>Colors &gt; Components &gt; Recompose</strong> to
+merge the changes back into your main working document.</li>
+</ol>
+<h2 id="3-reduce-luminance-noise">3. Reduce Luminance Noise</h2>
+<p>Luminance noise appears as rough, sand-like grain across the
+image.</p>
+<ol type="1">
+<li>Ensure your <code>Denoised Sky</code> layer is selected.</li>
+<li>Go to <strong>Filters &gt; Enhance &gt; Noise
+Reduction</strong>.</li>
+<li>Adjust the <strong>Strength</strong> slider gradually while zooming
+into a dark section of the sky at 100% or 200% view.</li>
+<li>Keep the strength low enough that the background looks smooth, but
+stars do not become smudged or blurry.</li>
+<li>Click <strong>OK</strong> to apply the filter.</li>
+</ol>
+<h2 id="4-protect-stars-and-details-using-a-layer-mask">4. Protect Stars
+and Details Using a Layer Mask</h2>
+<p>Aggressive noise reduction can soften stars and landscape elements.
+Use a layer mask to limit noise reduction to only the dark background
+voids.</p>
+<ol type="1">
+<li>Right-click the <code>Denoised Sky</code> layer and choose
+<strong>Add Layer Mask</strong>.</li>
+<li>Select <strong>White (full opacity)</strong> and click
+<strong>Add</strong>.</li>
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>) with a
+soft-edged brush.</li>
+<li>Set your foreground color to <strong>Black</strong>.</li>
+<li>Paint over bright stars, the dense core of the Milky Way, and any
+sharp landscape foreground elements to reveal the sharp, unblurred
+original image underneath.</li>
+</ol>
+<h2 id="5-blend-and-export">5. Blend and Export</h2>
+<ol type="1">
+<li>Select the <code>Denoised Sky</code> layer.</li>
+<li>Adjust the layer's <strong>Opacity</strong> slider (typically
+between 70% and 90%) to blend a tiny amount of natural grain back into
+the image, preventing an artificial or plastic look.</li>
+<li>When satisfied with the result, go to <strong>File &gt; Export
+As</strong> to save your final cleaned astrophotograph in your desired
+format (such as TIFF or PNG).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

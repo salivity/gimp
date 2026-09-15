@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Center a Layer to a Selection in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to quickly align an image layer to the exact horizontal and vertical center of an active selection using GIMP's Align tool. By switching the tool's reference mode from the default setting to the current selection, you can achieve">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-center-a-layer-to-a-selection-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Center a Layer to a Selection in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-center-a-layer-to-a-selection-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to quickly align an image layer to the exact horizontal and vertical center of an active selection using GIMP's Align tool. By switching the tool's reference mode from the default setting to the current selection, you can achieve" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-center-a-layer-to-a-selection-in-gimp">How to Center a
+Layer to a Selection in GIMP</h1>
+<p>This guide explains how to quickly align an image layer to the exact
+horizontal and vertical center of an active selection using GIMP's Align
+tool. By switching the tool's reference mode from the default setting to
+the current selection, you can achieve pixel-perfect centering of any
+layer within a defined area in just a few clicks.</p>
+<h3 id="step-1-create-your-selection">Step 1: Create Your Selection</h3>
+<p>Use any selection tool—such as the <strong>Rectangle Select Tool
+(R)</strong> or the <strong>Ellipse Select Tool (E)</strong>—to draw an
+active selection on your canvas where you want the layer to be centered.
+Ensure the "marching ants" outline is visible.</p>
+<h3 id="step-2-activate-the-align-tool">Step 2: Activate the Align
+Tool</h3>
+<p>Select the <strong>Align Tool</strong> from the Toolbox, or press the
+keyboard shortcut <strong>Q</strong>.</p>
+<h3 id="step-3-change-the-reference-to-selection">Step 3: Change the
+Reference to "Selection"</h3>
+<p>Look at the <strong>Tool Options</strong> panel (typically located
+beneath the toolbox on the left side). Find the dropdown menu labeled
+<strong>Relative to:</strong> and change it from <em>First item</em> (or
+<em>Image</em>) to <strong>Selection</strong>. This instructs GIMP to
+align your target relative to the active selection boundaries rather
+than the entire canvas.</p>
+<h3 id="step-4-select-the-target-layer">Step 4: Select the Target
+Layer</h3>
+<p>Click directly on the content of the layer you want to align in the
+main image window. Once clicked, small square handles will appear at the
+corners of the layer, indicating that it is active and ready for
+alignment. Alternatively, you can select the layer in the Layers dialog
+and click on it on the canvas.</p>
+<h3 id="step-5-center-horizontally-and-vertically">Step 5: Center
+Horizontally and Vertically</h3>
+<p>In the <strong>Tool Options</strong> panel under the
+<strong>Align</strong> section, click the following two buttons:</p>
+<ol type="1">
+<li><strong>Align center of target</strong> (the icon showing a
+rectangle centered horizontally between two vertical lines) to align the
+layer horizontally.</li>
+<li><strong>Align middle of target</strong> (the icon showing a
+rectangle centered vertically between two horizontal lines) to align the
+layer vertically.</li>
+</ol>
+<p>The selected layer will immediately snap to the exact horizontal and
+vertical center of your active selection. You can now press <strong>Ctrl
++ Shift + A</strong> (or <strong>Cmd + Shift + A</strong> on macOS) to
+deselect the area.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

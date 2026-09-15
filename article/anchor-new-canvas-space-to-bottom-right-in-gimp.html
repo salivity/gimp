@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchor New Canvas Space to Bottom-Right in GIMP - gimp</title>
+    <meta name="description" content="Expanding an image's dimensions while directing all extra space to specific sides is a common task in GIMP. When you want the newly added canvas space to appear exclusively at the bottom and right of your existing image, you must position the original im">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/anchor-new-canvas-space-to-bottom-right-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Anchor New Canvas Space to Bottom-Right in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/anchor-new-canvas-space-to-bottom-right-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Expanding an image's dimensions while directing all extra space to specific sides is a common task in GIMP. When you want the newly added canvas space to appear exclusively at the bottom and right of your existing image, you must position the original im" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="anchor-new-canvas-space-to-bottom-right-in-gimp">Anchor New
+Canvas Space to Bottom-Right in GIMP</h1>
+<p>Expanding an image's dimensions while directing all extra space to
+specific sides is a common task in GIMP. When you want the newly added
+canvas space to appear exclusively at the bottom and right of your
+existing image, you must position the original image at the top-left
+corner of the newly sized canvas. This guide explains how to configure
+the Canvas Size dialog settings and offsets to ensure your extra canvas
+extends toward the bottom-right.</p>
+<h3 id="step-by-step-instructions">Step-by-Step Instructions</h3>
+<ol type="1">
+<li><p><strong>Open the Canvas Size Dialog</strong><br />
+With your project open in GIMP, navigate to the top menu and select
+<strong>Image &gt; Canvas Size...</strong>.</p></li>
+<li><p><strong>Set the New Dimensions</strong><br />
+In the <strong>Canvas Size</strong> section at the top of the dialog,
+increase the <strong>Width</strong> and <strong>Height</strong> values
+to your desired final dimensions. If the chain link icon next to the
+dimensions is linked, the aspect ratio will remain locked; click the
+chain icon to unlink it if you need to adjust width and height
+independently.</p></li>
+<li><p><strong>Configure the Offset to Top-Left</strong><br />
+In GIMP, the position of newly added canvas space is determined by where
+the original image is placed within the new bounds:</p>
+<ul>
+<li>Locate the <strong>Offset</strong> section below the preview
+area.</li>
+<li>Set <strong>X</strong> to <code>0</code>.</li>
+<li>Set <strong>Y</strong> to <code>0</code>.</li>
+</ul>
+<p>Alternatively, you can click and drag the preview box of the original
+image inside the dialog's visual preview window and drag it completely
+into the upper-left corner. By pinning the existing content to
+coordinates <code>(0, 0)</code>, the expanded canvas is forced to extend
+outward toward the right and bottom edges.</p></li>
+<li><p><strong>Select Layer Behavior</strong><br />
+Under the <strong>Layers</strong> dropdown at the bottom of the dialog,
+choose how you want your existing layers to behave:</p>
+<ul>
+<li>Select <strong>None</strong> if you only want the project boundary
+expanded while keeping individual layer boundaries unchanged.</li>
+<li>Select <strong>All layers</strong> or <strong>Image-sized
+layers</strong> if you want the underlying layers to expand to match the
+new canvas size.</li>
+</ul></li>
+<li><p><strong>Apply the Changes</strong><br />
+Click the <strong>Resize</strong> button to apply your new dimensions.
+Your original content will remain anchored in its original position at
+the top-left, and the new canvas space will be positioned along the
+bottom and right edges of your workspace.</p></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

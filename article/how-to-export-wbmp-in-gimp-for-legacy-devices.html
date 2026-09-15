@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export WBMP in GIMP for Legacy Devices - gimp</title>
+    <meta name="description" content="Wireless Bitmap (WBMP) is a legacy, 1-bit monochrome image format originally developed for resource-constrained mobile phones running the Wireless Application Protocol (WAP). This article explains the export options and image preprocessing controls requi">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-export-wbmp-in-gimp-for-legacy-devices">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export WBMP in GIMP for Legacy Devices - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-export-wbmp-in-gimp-for-legacy-devices" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Wireless Bitmap (WBMP) is a legacy, 1-bit monochrome image format originally developed for resource-constrained mobile phones running the Wireless Application Protocol (WAP). This article explains the export options and image preprocessing controls requi" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-wbmp-in-gimp-for-legacy-devices">How to Export
+WBMP in GIMP for Legacy Devices</h1>
+<p>Wireless Bitmap (WBMP) is a legacy, 1-bit monochrome image format
+originally developed for resource-constrained mobile phones running the
+Wireless Application Protocol (WAP). This article explains the export
+options and image preprocessing controls required in GIMP to generate
+compliant WBMP files for vintage handsets, microcontrollers, or embedded
+monochrome screens.</p>
+<h3 id="the-wbmp-export-dialog-in-gimp">The WBMP Export Dialog in
+GIMP</h3>
+<p>When you export an image via <strong>File &gt; Export As...</strong>
+and assign the <code>.wbmp</code> extension, GIMP invokes the WBMP file
+plug-in. Unlike formats such as JPEG or PNG, the WBMP specification does
+not support compression levels, color profiles, layers, or embedded
+metadata. Consequently, GIMP's final WBMP export dialog contains
+virtually no customizable parameters.</p>
+<p>Because the format standard strictly mandates a 1-bit black-and-white
+pixel matrix with a minimal header, the options that control your final
+WBMP output are determined entirely through GIMP’s color indexing and
+thresholding tools prior to export.</p>
+<h3 id="converting-to-a-1-bit-palette">Converting to a 1-Bit
+Palette</h3>
+<p>To control how your source image renders as a WBMP, you must convert
+the image mode to a 1-bit indexed format before exporting:</p>
+<ol type="1">
+<li>Navigate to <strong>Image &gt; Mode &gt; Indexed...</strong> in the
+top menu.</li>
+<li>Under <strong>Colormap</strong>, select <strong>Use black and white
+(1-bit) palette</strong>.</li>
+<li>Under <strong>Dithering</strong>, configure the <strong>Color
+dithering</strong> options to determine how gradients and intermediate
+tones are rendered:
+<ul>
+<li><strong>None:</strong> Best for crisp line art, sharp UI icons, and
+readable text. Any color brighter than the threshold becomes white; all
+darker pixels become black.</li>
+<li><strong>Floyd-Steinberg (normal):</strong> Distributes quantization
+errors to neighboring pixels, creating a patterned dot matrix that
+approximates photographic tones and gradients.</li>
+<li><strong>Floyd-Steinberg (reduced color bleeding):</strong> Similar
+to standard Floyd-Steinberg, but reduces pixel spreading across
+high-contrast edges.</li>
+<li><strong>Positioned:</strong> Applies a structured, repetitive dither
+pattern, which can provide a cleaner dot grid on ultra-low-resolution
+LCD screens.</li>
+</ul></li>
+</ol>
+<h3 id="controlling-the-blackwhite-split-with-threshold">Controlling the
+Black/White Split with Threshold</h3>
+<p>If dithering creates unwanted noise in UI elements or logos, use the
+Threshold tool before indexing:</p>
+<ol type="1">
+<li>Navigate to <strong>Colors &gt; Threshold...</strong>.</li>
+<li>Drag the slider to set the exact luminance breakpoint where pixels
+turn either purely black or purely white.</li>
+<li>Once satisfied with the contrast and clarity, convert the image
+using the 1-bit indexed mode with dithering set to
+<strong>None</strong>.</li>
+</ol>
+<h3 id="completing-the-export">Completing the Export</h3>
+<p>After setting the pixel distribution and ensuring your canvas
+dimensions match the target device's display resolution:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Name your file with the extension <code>.wbmp</code> (for example,
+<code>graphic.wbmp</code>).</li>
+<li>Click <strong>Export</strong>. GIMP will write the raw header and
+1-bit bitmap data directly to the disk without altering the pixel values
+you configured.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

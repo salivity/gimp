@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Test GEGL Operations in GIMP - gimp</title>
+    <meta name="description" content="This article provides a practical guide for developers looking to write unit tests for GEGL (Generic Graphics Library) operations integrated into GIMP. It covers the setup of the testing environment using GLib's testing framework and Meson, constructing">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-test-gegl-operations-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Test GEGL Operations in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-test-gegl-operations-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a practical guide for developers looking to write unit tests for GEGL (Generic Graphics Library) operations integrated into GIMP. It covers the setup of the testing environment using GLib's testing framework and Meson, constructing" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-test-gegl-operations-in-gimp">How to Test GEGL Operations
+in GIMP</h1>
+<p>This article provides a practical guide for developers looking to
+write unit tests for GEGL (Generic Graphics Library) operations
+integrated into GIMP. It covers the setup of the testing environment
+using GLib's testing framework and Meson, constructing graph-based image
+processing pipelines, feeding test buffers into GEGL nodes, and
+asserting expected pixel and metadata outputs within both isolated and
+GIMP-dependent environments.</p>
+<hr />
+<h3 id="understanding-the-testing-scope">Understanding the Testing
+Scope</h3>
+<p>When testing GEGL operations within GIMP, tests fall into two
+categories:</p>
+<ol type="1">
+<li><strong>Pure GEGL Unit Tests:</strong> Isolated tests verifying
+mathematical and color transformation logic of custom GEGL nodes without
+launching GIMP core components.</li>
+<li><strong>GIMP-Integrated Tests:</strong> Tests that verify how GIMP
+handles the operation through its internal wrappers, tool interfaces, or
+the Procedural Database (PDB).</li>
+</ol>
+<p>For pure node logic, write tests using the GEGL API directly. For
+integration verification, write tests within GIMP's test directory
+(<code>app/tests/</code>).</p>
+<hr />
+<h3 id="setting-up-the-test-runner">Setting Up the Test Runner</h3>
+<p>GIMP and GEGL utilize the standard GLib Testing Framework
+(<code>gtest</code>). A minimal test file initializes the GLib test
+harness and the GEGL runtime environment.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;glib.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;gegl.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>test_gegl_operation_basic <span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Test logic goes here */</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>main <span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  g_test_init <span class="op">(&amp;</span>argc<span class="op">,</span> <span class="op">&amp;</span>argv<span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  gegl_init <span class="op">(&amp;</span>argc<span class="op">,</span> <span class="op">&amp;</span>argv<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  g_test_add_func <span class="op">(</span><span class="st">&quot;/gegl-ops/custom-filter/basic&quot;</span><span class="op">,</span> test_gegl_operation_basic<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> result <span class="op">=</span> g_test_run <span class="op">();</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  gegl_exit <span class="op">();</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="constructing-the-test-pipeline">Constructing the Test
+Pipeline</h3>
+<p>To test an operation, construct a Directed Acyclic Graph (DAG)
+consisting of a source node, the operation under test, and a sink
+node.</p>
+<ol type="1">
+<li><strong>Source Node:</strong> Provides synthetic input data (such as
+a solid color, pattern, or known pixel buffer).</li>
+<li><strong>Operation Node:</strong> The specific
+<code>gegl:operation</code> being tested.</li>
+<li><strong>Sink Node:</strong> Captures the processed output into a
+<code>GeglBuffer</code> for inspection.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test_brightness_contrast_operation <span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  GeglNode <span class="op">*</span>graph   <span class="op">=</span> gegl_node_new <span class="op">();</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  GeglColor <span class="op">*</span>color  <span class="op">=</span> gegl_color_new <span class="op">(</span><span class="st">&quot;rgb(0.5, 0.5, 0.5)&quot;</span><span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Create Nodes */</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  GeglNode <span class="op">*</span>source  <span class="op">=</span> gegl_node_new_child <span class="op">(</span>graph<span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;operation&quot;</span><span class="op">,</span> <span class="st">&quot;gegl:color&quot;</span><span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;value&quot;</span><span class="op">,</span> color<span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                                           NULL<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  GeglNode <span class="op">*</span>filter  <span class="op">=</span> gegl_node_new_child <span class="op">(</span>graph<span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;operation&quot;</span><span class="op">,</span> <span class="st">&quot;gegl:brightness-contrast&quot;</span><span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;brightness&quot;</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;contrast&quot;</span><span class="op">,</span> <span class="fl">0.0</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                                           NULL<span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  GeglNode <span class="op">*</span>sink    <span class="op">=</span> gegl_node_new_child <span class="op">(</span>graph<span class="op">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                                           <span class="st">&quot;operation&quot;</span><span class="op">,</span> <span class="st">&quot;gegl:buffer-sink&quot;</span><span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                                           NULL<span class="op">);</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Connect Nodes */</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  gegl_node_link_many <span class="op">(</span>source<span class="op">,</span> filter<span class="op">,</span> sink<span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Process Graph */</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  GeglBuffer <span class="op">*</span>output_buffer <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  gegl_node_process <span class="op">(</span>sink<span class="op">);</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  gegl_node_get <span class="op">(</span>sink<span class="op">,</span> <span class="st">&quot;buffer&quot;</span><span class="op">,</span> <span class="op">&amp;</span>output_buffer<span class="op">,</span> NULL<span class="op">);</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  g_assert_nonnull <span class="op">(</span>output_buffer<span class="op">);</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Validate output here */</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  g_object_unref <span class="op">(</span>output_buffer<span class="op">);</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  g_object_unref <span class="op">(</span>color<span class="op">);</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  g_object_unref <span class="op">(</span>graph<span class="op">);</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="validating-buffer-outputs">Validating Buffer Outputs</h3>
+<p>To ensure the GEGL operation functions correctly, inspect the pixel
+values stored in the resulting <code>GeglBuffer</code>. Read the buffer
+back using a defined format (e.g., <code>Babl</code> format
+<code>"RGBA float"</code>) to compare against expected values.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>assert_pixel_values <span class="op">(</span>GeglBuffer <span class="op">*</span>buffer<span class="op">,</span> gfloat expected_r<span class="op">,</span> gfloat expected_g<span class="op">,</span> gfloat expected_b<span class="op">)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  GeglRectangle rect <span class="op">=</span> <span class="op">{</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">1</span> <span class="op">};</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  gfloat pixel<span class="op">[</span><span class="dv">4</span><span class="op">];</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  gegl_buffer_get <span class="op">(</span>buffer<span class="op">,</span> <span class="op">&amp;</span>rect<span class="op">,</span> <span class="fl">1.0</span><span class="op">,</span> babl_format <span class="op">(</span><span class="st">&quot;RGBA float&quot;</span><span class="op">),</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                   pixel<span class="op">,</span> GEGL_AUTO_ROWSTRIDE<span class="op">,</span> GEGL_ABYSS_NONE<span class="op">);</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">/* Use a delta for floating-point comparisons */</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">const</span> gfloat epsilon <span class="op">=</span> <span class="fl">0.001</span><span class="bu">f</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  g_assert_cmpfloat_with_epsilon <span class="op">(</span>pixel<span class="op">[</span><span class="dv">0</span><span class="op">],</span> expected_r<span class="op">,</span> epsilon<span class="op">);</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  g_assert_cmpfloat_with_epsilon <span class="op">(</span>pixel<span class="op">[</span><span class="dv">1</span><span class="op">],</span> expected_g<span class="op">,</span> epsilon<span class="op">);</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  g_assert_cmpfloat_with_epsilon <span class="op">(</span>pixel<span class="op">[</span><span class="dv">2</span><span class="op">],</span> expected_b<span class="op">,</span> epsilon<span class="op">);</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="testing-gimp-specific-integrations">Testing GIMP-Specific
+Integrations</h3>
+<p>When an operation is wired directly into GIMP (e.g., using
+<code>GimpGeglProcedure</code> or GIMP tools), initialize GIMP's
+subsystem within the test:</p>
+<ol type="1">
+<li>Use <code>gimp_init_test ()</code> or link against
+<code>libgimpbase</code> and <code>libgimpcore</code>.</li>
+<li>Instantiate a <code>GimpImage</code> and
+<code>GimpLayer</code>.</li>
+<li>Apply the operation via GIMP's internal API
+(<code>gimp_drawable_apply_operation ()</code> or corresponding
+procedural functions).</li>
+<li>Assert that the underlying projection updates properly and undo/redo
+stacks maintain integrity.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: Verifying an operation applied to a GimpDrawable */</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GimpDrawable <span class="op">*</span>drawable <span class="op">=</span> GIMP_DRAWABLE <span class="op">(</span>layer<span class="op">);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gimp_gegl_apply_operation <span class="op">(</span>drawable<span class="op">,</span> NULL<span class="op">,</span> <span class="st">&quot;Processing&quot;</span><span class="op">,</span> filter_node<span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>gimp_drawable_update <span class="op">(</span>drawable<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> width<span class="op">,</span> height<span class="op">);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* Verify layer buffer changes match expected result */</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>GeglBuffer <span class="op">*</span>layer_buffer <span class="op">=</span> gimp_drawable_get_buffer <span class="op">(</span>drawable<span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>assert_pixel_values <span class="op">(</span>layer_buffer<span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">,</span> <span class="fl">0.7</span><span class="bu">f</span><span class="op">);</span></span></code></pre></div>
+<hr />
+<h3 id="configuring-the-build-system-meson">Configuring the Build System
+(Meson)</h3>
+<p>Register the test in the relevant <code>meson.build</code> file to
+integrate it with continuous integration and local testing
+workflows:</p>
+<pre class="meson"><code>test_gegl_operation = executable(
+  &#39;test-gegl-operation&#39;,
+  &#39;test-gegl-operation.c&#39;,
+  dependencies: [gegl_dep, glib_dep, babl_dep],
+  include_directories: [include_directories(&#39;.&#39;)],
+)
+
+test(&#39;gegl-operation-test&#39;, test_gegl_operation)</code></pre>
+<p>Run the compiled test suite from the build directory using Meson:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">meson</span> test <span class="at">-C</span> build <span class="at">--verbose</span> gegl-operation-test</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

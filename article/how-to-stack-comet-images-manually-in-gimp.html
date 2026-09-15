@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Stack Comet Images Manually in GIMP - gimp</title>
+    <meta name="description" content="Comets move at a different apparent speed than the background star field, causing standard stacking techniques to produce either trailed stars or a smeared comet. This guide covers the manual method for stacking comet exposures in GIMP to produce a final">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-stack-comet-images-manually-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Stack Comet Images Manually in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-stack-comet-images-manually-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Comets move at a different apparent speed than the background star field, causing standard stacking techniques to produce either trailed stars or a smeared comet. This guide covers the manual method for stacking comet exposures in GIMP to produce a final" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-stack-comet-images-manually-in-gimp">How to Stack Comet
+Images Manually in GIMP</h1>
+<p>Comets move at a different apparent speed than the background star
+field, causing standard stacking techniques to produce either trailed
+stars or a smeared comet. This guide covers the manual method for
+stacking comet exposures in GIMP to produce a final image featuring both
+sharp stars and a pinpoint comet nucleus. By separating the exposures
+into star-aligned and comet-aligned layers, blending them independently,
+and compositing the results with layer masks, you can achieve a clean,
+artifact-free astrophotograph without dedicated stacking software.</p>
+<h3 id="step-1-load-exposures-as-layers">Step 1: Load Exposures as
+Layers</h3>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>Go to <strong>File &gt; Open as Layers...</strong> and select all
+your calibrated comet exposures (TIFF or 16-bit PNG files yield the best
+results).</li>
+<li>Designate the middle frame of your series as the primary reference
+frame by dragging it to the bottom of the layer stack.</li>
+</ol>
+<h3 id="step-2-align-the-stars">Step 2: Align the Stars</h3>
+<ol type="1">
+<li>Hide all layers except the bottom reference frame and the layer
+directly above it.</li>
+<li>Set the upper layer's blend mode to <strong>Difference</strong>. The
+canvas will turn black where the two layers match.</li>
+<li>Select the <strong>Move Tool</strong> (<code>M</code>), ensure "Pick
+a layer or guide" or "Move the active layer" is selected, and nudge the
+active layer until the background stars align (they will appear black or
+produce minimal edge fringing).</li>
+<li>Change the blend mode back to <strong>Normal</strong>.</li>
+<li>Repeat this process for each subsequent layer, aligning each one to
+the reference star positions.</li>
+<li>Once aligned, merge or blend the layers to reduce noise. You can
+adjust the opacity of each layer progressively (e.g., Layer 1 at 100%,
+Layer 2 at 50%, Layer 3 at 33%, etc.) to create an average stack, or set
+them to <strong>Lighten Only</strong> to retain star brightness.</li>
+<li>Merge all star-aligned layers into a single layer named <strong>Star
+Stack</strong>.</li>
+</ol>
+<h3 id="step-3-align-the-comet-nucleus">Step 3: Align the Comet
+Nucleus</h3>
+<ol type="1">
+<li>Duplicate your original, unaligned frames or re-import them as new
+layers above the Star Stack.</li>
+<li>Choose the same reference frame as before and place it directly
+beneath the new set of layers.</li>
+<li>Hide the Star Stack for now.</li>
+<li>Set the active comet exposure to <strong>Difference</strong>
+mode.</li>
+<li>Use the <strong>Move Tool</strong> to shift the layer until the
+bright, pinpoint core (pseudonucleus) of the comet aligns precisely with
+the reference frame's nucleus.</li>
+<li>Reset the blend mode to <strong>Normal</strong>.</li>
+<li>Repeat this manual alignment for every frame in the set, ensuring
+the comet nucleus stays anchored in the exact same pixel coordinates
+across all layers.</li>
+<li>Stack these layers using progressive opacity or the <strong>Lighten
+Only</strong> mode to produce a clean image of the comet.</li>
+<li>Merge these layers into a single layer named <strong>Comet
+Stack</strong>.</li>
+</ol>
+<h3 id="step-4-remove-star-trails-from-the-comet-stack">Step 4: Remove
+Star Trails from the Comet Stack</h3>
+<p>Because the comet stack tracked the comet's motion, the background
+stars in this layer will appear as streaks.</p>
+<ol type="1">
+<li>Add a black (fully transparent) <strong>Layer Mask</strong> to the
+<strong>Comet Stack</strong> by right-clicking the layer and selecting
+<strong>Add Layer Mask &gt; Black (full transparency)</strong>.</li>
+<li>Select a soft white brush with low-to-medium hardness and
+opacity.</li>
+<li>Paint on the mask over the comet's nucleus, coma, and tail to reveal
+only the comet while leaving the trailed stars hidden.</li>
+<li>Alternatively, use the <strong>Clone Tool</strong> or
+<strong>Healing Tool</strong> directly on the comet layer around the
+periphery to eliminate prominent star streaks that overlap the diffuse
+tail.</li>
+</ol>
+<h3 id="step-5-remove-the-trailed-comet-from-the-star-stack">Step 5:
+Remove the Trailed Comet from the Star Stack</h3>
+<p>The Star Stack may contain a faint, smeared smudge where the comet
+moved during the exposure sequence.</p>
+<ol type="1">
+<li>Inspect the <strong>Star Stack</strong>.</li>
+<li>If a noticeable comet smear is visible, use the <strong>Clone
+Tool</strong> to sample nearby dark sky background and gently paint over
+the blurred comet trail.</li>
+<li>Ensure the stars immediately surrounding the area remain
+untouched.</li>
+</ol>
+<h3 id="step-6-composite-the-final-image">Step 6: Composite the Final
+Image</h3>
+<ol type="1">
+<li>In the Layers panel, arrange the layers so that the clean
+<strong>Star Stack</strong> is on the bottom and the masked
+<strong>Comet Stack</strong> is on top.</li>
+<li>Set the <strong>Comet Stack</strong> blend mode to <strong>Lighten
+Only</strong> or <strong>Screen</strong>, depending on the density of
+your background sky. <strong>Lighten Only</strong> ensures only the
+brighter values of the comet overwrite the dark sky behind it without
+washing out background stars.</li>
+<li>Fine-tune the layer mask on the Comet Stack using a low-opacity
+black or white brush to smooth the transition between the comet’s
+diffuse outer coma and the starry background.</li>
+<li>Create a final merged layer via <strong>Layer &gt; New from
+Visible</strong> to apply global color balancing, Curves, or Levels
+adjustments across the entire composite.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

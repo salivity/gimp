@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Printer Marks and Color Bars in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to add standard printer registration marks, trim lines, and color calibration bars to your documents in GIMP. Because GIMP is primarily a raster image editor rather than a dedicated desktop publishing application, it does not feat">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-add-printer-marks-and-color-bars-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add Printer Marks and Color Bars in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-add-printer-marks-and-color-bars-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to add standard printer registration marks, trim lines, and color calibration bars to your documents in GIMP. Because GIMP is primarily a raster image editor rather than a dedicated desktop publishing application, it does not feat" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-printer-marks-and-color-bars-in-gimp">How to Add
+Printer Marks and Color Bars in GIMP</h1>
+<p>This guide explains how to add standard printer registration marks,
+trim lines, and color calibration bars to your documents in GIMP.
+Because GIMP is primarily a raster image editor rather than a dedicated
+desktop publishing application, it does not feature a single-click
+prepress export button. The following steps show how to expand your
+canvas to create a bleed and slug area, establish alignment guides, and
+place standard registration targets and color control patches for
+commercial printing.</p>
+<h3 id="step-1-expand-the-canvas-to-create-a-slug-area">Step 1: Expand
+the Canvas to Create a Slug Area</h3>
+<p>Printer marks and calibration bars must sit outside the final trim
+size of your document in an area known as the slug.</p>
+<ol type="1">
+<li>Open your finished artwork in GIMP.</li>
+<li>Go to <strong>Image &gt; Canvas Size</strong>.</li>
+<li>Determine the required margin. A standard setup requires at least
+0.125 inches (3 mm) of bleed, plus an additional 0.5 to 1 inch (12 to 25
+mm) of slug space on each side for the marks.</li>
+<li>Increase the <strong>Width</strong> and <strong>Height</strong>
+values accordingly. For example, adding 1 inch to the total width and
+height adds a 0.5-inch border around the perimeter.</li>
+<li>Under the <strong>Offset</strong> section, click the
+<strong>Center</strong> button to ensure your original artwork remains
+centered.</li>
+<li>Set <strong>Resize layers</strong> to <strong>None</strong> to keep
+your artwork at its original dimensions, then click
+<strong>Resize</strong>.</li>
+</ol>
+<h3 id="step-2-set-up-guides-for-bleed-and-trim">Step 2: Set Up Guides
+for Bleed and Trim</h3>
+<p>Accurate guides ensure your marks align correctly with the finished
+cut line.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)...</strong>.</li>
+<li>Add vertical and horizontal guides to mark the center of the canvas
+(50% Horizontal, 50% Vertical).</li>
+<li>Go to <strong>Image &gt; Guides &gt; New Guide...</strong> to place
+guides along the exact trim edges of your original artwork.</li>
+<li>Ensure <strong>View &gt; Snap to Guides</strong> is checked to allow
+printer marks to snap to these boundaries precisely.</li>
+</ol>
+<h3 id="step-3-add-standard-registration-marks">Step 3: Add Standard
+Registration Marks</h3>
+<p>Registration marks (crosshairs surrounded by concentric circles) help
+the press operator align CMYK plates accurately.</p>
+<ol type="1">
+<li>Create a new transparent layer named <code>Registration Marks</code>
+by clicking <strong>Layer &gt; New Layer</strong>.</li>
+<li><strong>Using a Pre-made Asset (Recommended):</strong> Import a
+standard vector or high-resolution transparent PNG registration target
+via <strong>File &gt; Open as Layers...</strong>. Scale the mark down so
+it fits comfortably within the slug area without touching the bleed
+line.</li>
+<li><strong>Manual Creation:</strong>
+<ul>
+<li>Select the <strong>Ellipse Select Tool</strong> and draw a small
+circle (e.g., 20–30 pixels) while holding <code>Shift</code> to
+constrain proportions.</li>
+<li>Go to <strong>Edit &gt; Stroke Selection</strong>, set the line
+width to 1 pixel, and choose a solid color.</li>
+<li>Use the <strong>Pencil Tool</strong> with a 1-pixel brush to draw a
+horizontal line and a vertical line extending through the center of the
+circle.</li>
+</ul></li>
+<li>Position one registration mark at the center of each of the four
+margins (top, bottom, left, right), aligned with the 50% center guides
+outside the trim line.</li>
+<li>Duplicate the layer and place additional marks near the four corners
+just outside the trim boundary.</li>
+</ol>
+<h3 id="step-4-add-color-calibration-bars">Step 4: Add Color Calibration
+Bars</h3>
+<p>Color control patches allow the press operator to measure ink density
+and dot gain across the sheet.</p>
+<ol type="1">
+<li>Create a new layer named <code>Color Bars</code>.</li>
+<li>Select the <strong>Rectangle Select Tool</strong>.</li>
+<li>In the slug area (typically along the top or bottom edge), draw a
+sequence of small adjacent squares (e.g., 20x20 pixels each).</li>
+<li>Fill each square with 100% of the primary print colors:
+<ul>
+<li><strong>Cyan:</strong> HTML notation <code>#00FFFF</code></li>
+<li><strong>Magenta:</strong> HTML notation <code>#FF00FF</code></li>
+<li><strong>Yellow:</strong> HTML notation <code>#FFFF00</code></li>
+<li><strong>Key (Black):</strong> HTML notation
+<code>#000000</code></li>
+</ul></li>
+<li>For advanced print runs, add steps with 50% screen tints of each
+color, alongside two-color overprints (Red, Green, Blue).</li>
+<li>Ensure the calibration strip sits at least 3 mm (0.125 inches)
+outside the trim line to prevent it from appearing on the final cut
+product.</li>
+</ol>
+<h3 id="step-5-add-crop-trim-marks">Step 5: Add Crop (Trim) Marks</h3>
+<ol type="1">
+<li>Create a final layer named <code>Crop Marks</code>.</li>
+<li>Using the <strong>Pencil Tool</strong> set to a 1-pixel width, draw
+short lines (approx. 5 to 10 mm long) perpendicular to your trim guides
+at all four corners.</li>
+<li>Leave a small gap (approx. 2 to 3 mm) between the start of the crop
+line and the actual trim edge so that the mark does not bleed into the
+cut product if the trimmer is slightly misaligned.</li>
+</ol>
+<h3 id="step-6-export-for-print">Step 6: Export for Print</h3>
+<p>Once all elements are placed outside the trim boundaries:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Select <strong>TIFF image</strong> or <strong>PDF</strong> depending
+on your commercial printer’s specifications.</li>
+<li>If exporting to PDF, disable image compression or use lossless
+compression to maintain vector-like sharpness on your registration
+targets and calibration squares.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

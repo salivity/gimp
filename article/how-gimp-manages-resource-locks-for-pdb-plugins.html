@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Manages Resource Locks for PDB Plugins - gimp</title>
+    <meta name="description" content="This article examines how the GNU Image Manipulation Program (GIMP) maintains data integrity and thread safety when multiple plugins access its Procedural Database (PDB) simultaneously. It details the out-of-process plugin architecture, the role of Inter">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-manages-resource-locks-for-pdb-plugins">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Manages Resource Locks for PDB Plugins - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-manages-resource-locks-for-pdb-plugins" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines how the GNU Image Manipulation Program (GIMP) maintains data integrity and thread safety when multiple plugins access its Procedural Database (PDB) simultaneously. It details the out-of-process plugin architecture, the role of Inter" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-manages-resource-locks-for-pdb-plugins">How GIMP
+Manages Resource Locks for PDB Plugins</h1>
+<p>This article examines how the GNU Image Manipulation Program (GIMP)
+maintains data integrity and thread safety when multiple plugins access
+its Procedural Database (PDB) simultaneously. It details the
+out-of-process plugin architecture, the role of Inter-Process
+Communication (IPC) serialization, GLib-based locking primitives, and
+the GEGL-driven tile-locking mechanisms that prevent race conditions
+during concurrent read and write operations.</p>
+<h3
+id="out-of-process-architecture-and-ipc-serialization">Out-of-Process
+Architecture and IPC Serialization</h3>
+<p>GIMP executes external plugins as independent processes rather than
+running them inside the main application thread. Plugins communicate
+with the GIMP core through a dedicated Inter-Process Communication (IPC)
+protocol managed by <code>libgimp</code>. This architecture isolates
+plugins into separate memory spaces, eliminating direct, unsynchronized
+memory collisions between competing plugins.</p>
+<p>When multiple plugins query the PDB at the same time, their requests
+arrive at the core process over platform-specific IPC channels, such as
+anonymous pipes or UNIX domain sockets. The GIMP core processes these
+incoming requests via its main GLib event loop. Because the event loop
+processes incoming wire messages sequentially, low-level registry
+lookups and dispatch actions are naturally serialized. Even if dozens of
+plugins issue PDB queries concurrently, the core dispatches them in a
+structured queue, preventing corrupt reads of the internal procedure
+hash tables.</p>
+<h3 id="pdb-registry-access-and-read-write-locks">PDB Registry Access
+and Read-Write Locks</h3>
+<p>The PDB acts as an internal registry cataloging procedures,
+parameters, and metadata. To protect this registry from concurrent
+modification—such as one plugin querying procedure signatures while
+another registers a dynamic procedure—GIMP relies on synchronization
+primitives provided by GLib, primarily <code>GRWLock</code> (read-write
+locks) and <code>GMutex</code>.</p>
+<ul>
+<li><strong>Read Operations (Queries):</strong> When plugins issue
+read-only queries—such as <code>gimp-pdb-query</code> or checking
+procedure arguments—they acquire a shared read lock on the database.
+Multiple plugins can hold read locks simultaneously, enabling
+high-throughput querying without stalling independent processes.</li>
+<li><strong>Write Operations (Registrations/Deletions):</strong> When a
+plugin registers a temporary procedure or deregisters an existing one,
+an exclusive write lock is requested. The core halts all incoming read
+locks until the registry modification completes, preventing data races
+and inconsistent database states.</li>
+</ul>
+<h3 id="image-and-buffer-level-locks-with-gegl">Image and Buffer Level
+Locks with GEGL</h3>
+<p>While PDB queries often request metadata, many execute procedures
+that manipulate image data. The GIMP core relies on GEGL (Generic
+Graphics Library) to manage image memory. GEGL represents image buffers
+as a sparse grid of small, cacheable blocks called tiles.</p>
+<p>Resource locking at the image data level is handled through
+fine-grained buffer locks:</p>
+<ol type="1">
+<li><strong>Read Locks on Buffers:</strong> When a plugin queries or
+reads pixel data via the PDB, it requests an iterator or accessor with
+read-only permissions. Multiple readers can lock the same tile
+concurrently.</li>
+<li><strong>Exclusive Write Locks:</strong> When a procedure executes a
+write command, GEGL applies an exclusive lock to the target tiles. Any
+other plugin or background thread attempting to access those specific
+tiles is forced to wait until the write operation releases the
+lock.</li>
+<li><strong>Shadow Buffers and Copy-on-Write:</strong> To prevent long
+lock contention, GIMP frequently isolates write operations using shadow
+buffers. Plugins process transformations on independent buffers or
+cloned tiles. Once processing finishes, the modified data is committed
+atomically back to the main image stack.</li>
+</ol>
+<h3 id="transactional-integrity-via-the-undo-stack">Transactional
+Integrity via the Undo Stack</h3>
+<p>Beyond low-level memory locks, GIMP treats high-level PDB
+modifications as transactions bound to the application's Undo system.
+When a procedure starts modifying an image, it wraps its operations
+between calls that lock the image's structural state. If multiple
+plugins attempt to manipulate the same image concurrently, the
+procedural engine sequences these operations through the image's command
+queue. This ensures that one plugin's changes are completely registered
+and added to the undo history before a subsequent plugin can apply
+further modifications.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

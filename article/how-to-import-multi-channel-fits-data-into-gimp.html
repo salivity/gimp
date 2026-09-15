@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Multi-Channel FITS Data into GIMP - gimp</title>
+    <meta name="description" content="Opening multi-channel Flexible Image Transport System (FITS) files in GIMP requires extracting the individual monochromatic image extensions, stretching their dynamic range, and combining them into a full-color composite. This guide provides a straightfo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-import-multi-channel-fits-data-into-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Multi-Channel FITS Data into GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-import-multi-channel-fits-data-into-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Opening multi-channel Flexible Image Transport System (FITS) files in GIMP requires extracting the individual monochromatic image extensions, stretching their dynamic range, and combining them into a full-color composite. This guide provides a straightfo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-multi-channel-fits-data-into-gimp">How to Import
+Multi-Channel FITS Data into GIMP</h1>
+<p>Opening multi-channel Flexible Image Transport System (FITS) files in
+GIMP requires extracting the individual monochromatic image extensions,
+stretching their dynamic range, and combining them into a full-color
+composite. This guide provides a straightforward process for loading
+multi-channel or multi-file FITS astronomical datasets into GIMP,
+mapping the data to standard color channels, and preparing the composite
+image for post-processing.</p>
+<h3 id="step-1-open-the-fits-data-as-layers">Step 1: Open the FITS Data
+as Layers</h3>
+<p>Astronomical FITS datasets typically arrive either as a single
+multi-extension file containing multiple data arrays (Header Data Units)
+or as separate single-channel files (such as Red, Green, Blue, or
+narrowband filters like H-alpha, OIII, and SII).</p>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>If your data is in a single multi-extension FITS file:
+<ul>
+<li>Go to <strong>File &gt; Open</strong> and select the FITS file.</li>
+<li>In the FITS import dialog, ensure all desired image extensions are
+selected so that GIMP imports each data channel as an independent
+layer.</li>
+</ul></li>
+<li>If your data consists of separate FITS files for each channel:
+<ul>
+<li>Go to <strong>File &gt; Open as Layers...</strong></li>
+<li>Select all relevant FITS files simultaneously and click
+<strong>Open</strong>.</li>
+</ul></li>
+</ol>
+<h3 id="step-2-set-the-image-precision">Step 2: Set the Image
+Precision</h3>
+<p>FITS astronomical data often contains high-bit-depth information
+(16-bit integer or 32-bit floating point). To preserve maximum dynamic
+range during processing:</p>
+<ol type="1">
+<li>Navigate to <strong>Image &gt; Precision</strong>.</li>
+<li>Select <strong>32-bit floating point</strong> (or <strong>16-bit
+integer</strong> if working on lower-spec hardware).</li>
+<li>Choose <strong>Linear light</strong> to maintain scientific data
+linearity during initial adjustments.</li>
+</ol>
+<h3 id="step-3-perform-initial-histogram-stretching">Step 3: Perform
+Initial Histogram Stretching</h3>
+<p>Raw FITS images appear almost completely black because astronomical
+signal is concentrated in a tiny fraction of the dynamic range. Each
+channel layer must be stretched before compositing:</p>
+<ol type="1">
+<li>Select a layer in the <strong>Layers</strong> panel.</li>
+<li>Go to <strong>Colors &gt; Levels</strong> or <strong>Colors &gt;
+Curves</strong>.</li>
+<li>Move the white point slider toward the data histogram peak, or apply
+an exponential/logarithmic curve lift to reveal faint details without
+clipping the bright core features.</li>
+<li>Repeat this step individually for each channel layer until the
+signal in each filter is clearly visible.</li>
+</ol>
+<h3 id="step-4-combine-channels-into-a-color-composite">Step 4: Combine
+Channels into a Color Composite</h3>
+<p>To merge the monochromatic layers into a single color image, use
+GIMP’s channel composition tool:</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Components &gt; Compose...</strong></li>
+<li>In the <strong>Compose</strong> dialog, set the <strong>Color
+model</strong> to <strong>RGB</strong>.</li>
+<li>Map each FITS layer to its corresponding color channel:
+<ul>
+<li>For standard broadband data, assign the Red, Green, and Blue filter
+layers to their respective <strong>Red</strong>, <strong>Green</strong>,
+and <strong>Blue</strong> dropdowns.</li>
+<li>For narrowband data (such as the Hubble Palette/SHO), map
+<strong>SII</strong> to Red, <strong>H-alpha</strong> to Green, and
+<strong>OIII</strong> to Blue.</li>
+</ul></li>
+<li>Click <strong>OK</strong>. GIMP will generate a new RGB image
+document containing the combined color data.</li>
+</ol>
+<h3 id="step-5-balance-and-fine-tune-the-result">Step 5: Balance and
+Fine-Tune the Result</h3>
+<ol type="1">
+<li>In the newly generated color image, navigate to <strong>Colors &gt;
+Color Balance</strong> to adjust the background neutralization (removing
+unwanted color casts from the sky background).</li>
+<li>Use <strong>Colors &gt; Curves</strong> to refine color contrast and
+separate overlapping emissions.</li>
+<li>Once satisfied with the composition, save your working file as an
+<code>.xcf</code> file or export it via <strong>File &gt; Export
+As...</strong> to TIFF, PNG, or JPEG.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Paint Seamless Tiles in GIMP - gimp</title>
+    <meta name="description" content="Creating seamless repeating textures in GIMP is fast and efficient using the built-in Symmetry Painting tool. By configuring the Tiling symmetry mode to match your image dimensions, any brush stroke that crosses the canvas border automatically wraps arou">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-paint-seamless-tiles-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Paint Seamless Tiles in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-paint-seamless-tiles-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating seamless repeating textures in GIMP is fast and efficient using the built-in Symmetry Painting tool. By configuring the Tiling symmetry mode to match your image dimensions, any brush stroke that crosses the canvas border automatically wraps arou" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-paint-seamless-tiles-in-gimp">How to Paint Seamless Tiles
+in GIMP</h1>
+<p>Creating seamless repeating textures in GIMP is fast and efficient
+using the built-in Symmetry Painting tool. By configuring the Tiling
+symmetry mode to match your image dimensions, any brush stroke that
+crosses the canvas border automatically wraps around to the opposite
+side in real time. This guide covers setting up your canvas, configuring
+the Tiling symmetry parameters, painting across the seams, and verifying
+your finished seamless pattern.</p>
+<h3 id="step-1-create-your-canvas">Step 1: Create Your Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Set your image dimensions to a specific, easily measurable size
+(e.g., 512 × 512 pixels or 1024 × 1024 pixels). Using equal width and
+height makes managing repeating patterns straightforward.</li>
+<li>Click <strong>OK</strong> to create the canvas.</li>
+</ol>
+<h3 id="step-2-open-the-symmetry-painting-dialog">Step 2: Open the
+Symmetry Painting Dialog</h3>
+<ol type="1">
+<li>Go to the top menu and select <strong>Windows &gt; Dockable Dialogs
+&gt; Symmetry Painting</strong>.</li>
+<li>A new dockable panel labeled <strong>Symmetry Painting</strong> will
+appear in your workspace.</li>
+</ol>
+<h3 id="step-3-configure-the-tiling-symmetry-mode">Step 3: Configure the
+Tiling Symmetry Mode</h3>
+<ol type="1">
+<li>In the Symmetry Painting panel, locate the dropdown menu currently
+set to <strong>None</strong>.</li>
+<li>Click the dropdown and select <strong>Tiling</strong>.</li>
+<li>Set the <strong>Interval X</strong> to match the exact width of your
+canvas (e.g., <code>512</code>).</li>
+<li>Set the <strong>Interval Y</strong> to match the exact height of
+your canvas (e.g., <code>512</code>).</li>
+<li>Ensure the <strong>Shift</strong> values are set to
+<code>0.00</code> to keep the tiles aligned directly with the
+borders.</li>
+</ol>
+<h3 id="step-4-paint-across-the-canvas-seams">Step 4: Paint Across the
+Canvas Seams</h3>
+<ol type="1">
+<li>Select any drawing tool from the Toolbox, such as the
+<strong>Paintbrush</strong>, <strong>Pencil</strong>, or
+<strong>Airbrush</strong>.</li>
+<li>Begin painting anywhere on the canvas.</li>
+<li>Draw a stroke that exits through one side of the canvas (such as the
+right edge); GIMP will instantly project the continuation of that stroke
+onto the opposite side (the left edge).</li>
+<li>Fill in the center and edges of your canvas as needed. Because the
+symmetry updates live, every edge stroke aligns perfectly with its
+corresponding edge.</li>
+</ol>
+<h3 id="step-5-test-the-seamless-pattern">Step 5: Test the Seamless
+Pattern</h3>
+<ol type="1">
+<li>Once your design is complete, verify that the seams are invisible by
+going to <strong>Filters &gt; Map &gt; Tile...</strong></li>
+<li>Enter dimensions larger than your current canvas (e.g., double the
+width and height) and check <strong>Create new image</strong>.</li>
+<li>Click <strong>OK</strong> to inspect the repeated pattern for any
+visual errors or hard lines. If adjustments are needed, close the
+preview image and return to your original canvas to paint over the
+seams.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

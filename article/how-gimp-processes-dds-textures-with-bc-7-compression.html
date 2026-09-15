@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Processes DDS Textures with BC7 Compression - gimp</title>
+    <meta name="description" content="This article explains how the GNU Image Manipulation Program (GIMP) handles DirectDraw Surface (DDS) files utilizing BC7 block compression for game development pipelines. It covers the full lifecycle of a texture within the software, from decoding compre">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-processes-dds-textures-with-bc-7-compression">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Processes DDS Textures with BC7 Compression - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-processes-dds-textures-with-bc-7-compression" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the GNU Image Manipulation Program (GIMP) handles DirectDraw Surface (DDS) files utilizing BC7 block compression for game development pipelines. It covers the full lifecycle of a texture within the software, from decoding compre" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-processes-dds-textures-with-bc7-compression">How GIMP
+Processes DDS Textures with BC7 Compression</h1>
+<p>This article explains how the GNU Image Manipulation Program (GIMP)
+handles DirectDraw Surface (DDS) files utilizing BC7 block compression
+for game development pipelines. It covers the full lifecycle of a
+texture within the software, from decoding compressed 4x4 pixel blocks
+upon import to color-space handling, mipmap generation, and final
+encoding via the DX10 header format required by modern game engines.</p>
+<h3 id="understanding-dds-and-bc7-compression">Understanding DDS and BC7
+Compression</h3>
+<p>DirectDraw Surface (DDS) is a container format designed to store data
+directly consumable by graphic processing units (GPUs). Within game
+development, the BC7 (Block Compression 7) algorithm—standardized in
+DirectX 11 under <code>DXGI_FORMAT_BC7_UNORM</code> and
+<code>DXGI_FORMAT_BC7_UNORM_SRGB</code>—is the industry standard for
+high-quality RGB and RGBA textures. It uses 16-byte blocks to represent
+4x4 pixel grids, providing a fixed compression ratio of 1 byte per pixel
+(8 bits per pixel) while significantly reducing block artifacts compared
+to older algorithms like DXT1 (BC1) or DXT5 (BC5).</p>
+<h3 id="import-and-decompression-in-gimp">Import and Decompression in
+GIMP</h3>
+<p>Beginning with GIMP 2.10, DDS support is integrated natively into the
+core application without requiring third-party plugins. When a user
+opens a BC7-encoded DDS file, GIMP processes the file through the
+following steps:</p>
+<ol type="1">
+<li><strong>Header Parsing:</strong> GIMP reads the standard
+<code>DDS_HEADER</code> and detects the <code>DX10</code> extended
+header (<code>DDS_HEADER_DXT10</code>), which specifies the exact DXGI
+format used.</li>
+<li><strong>Block Decoding:</strong> GIMP's internal decoder unpacks the
+128-bit BC7 blocks into uncompressed, 8-bit or 32-bit floating-point
+RGBA pixel arrays in RAM.</li>
+<li><strong>Mipmap Stripping:</strong> By default, GIMP reads the base
+full-resolution texture surface into an editable layer. If configured to
+load mipmaps, each downscaled level is loaded as an individual layer
+within the image stack.</li>
+</ol>
+<h3 id="image-manipulation-and-color-space-management">Image
+Manipulation and Color Space Management</h3>
+<p>Once decoded, the texture loses its hardware-level compression and
+behaves like any standard raster image within GIMP’s GEGL (Generic
+Graphical Library) pipeline.</p>
+<p>Because BC7 can store both linear data (such as normal maps,
+roughness, and metalness maps) and sRGB data (such as albedo or diffuse
+textures), color space management is critical:</p>
+<ul>
+<li><strong>Albedo/Color Maps:</strong> Edited in standard sRGB space to
+ensure accurate color perception during the creative process.</li>
+<li><strong>Data/PBR Maps:</strong> Handled in non-color or linear gamma
+space to prevent GEGL from applying automatic gamma corrections that
+distort numerical data used by shader calculations.</li>
+</ul>
+<h3 id="exporting-and-bc7-encoding-for-game-engines">Exporting and BC7
+Encoding for Game Engines</h3>
+<p>When exporting to DDS, GIMP reverses the decompression process
+through an integrated encoding library. The workflow for saving a BC7
+DDS texture involves specific configuration options:</p>
+<ol type="1">
+<li><strong>Format Selection:</strong> In the DDS export dialog, the
+user sets the compression algorithm to <strong>BC7 / DX10</strong>. This
+ensures the resulting file contains the appropriate extended header for
+engine compatibility.</li>
+<li><strong>Color Profile Tagging:</strong> Users choose between
+standard linear (<code>UNORM</code>) or sRGB formats. Game engines such
+as Unreal Engine and Unity read this metadata to determine whether the
+GPU should automatically perform sRGB-to-linear conversion in hardware
+during texture sampling.</li>
+<li><strong>Mipmap Generation:</strong> GIMP provides options to
+automatically generate mipmaps during export. The software filters the
+primary image down to 1x1 pixel representations using algorithms like
+Box, Lanczos, or Kaiser filtering. These lower-resolution surfaces are
+packed directly into the final DDS file structure sequentially after the
+primary surface.</li>
+<li><strong>Block Fitting and Partitioning:</strong> The encoder
+evaluates each 4x4 block of the edited image, testing various BC7
+partition modes and endpoint pairs to approximate the original colors
+with minimal mathematical error.</li>
+</ol>
+<p>Once encoded, the output file can be imported directly into engines
+like Unreal Engine, Unity, or Godot without requiring secondary
+compression passes, preserving the exact visual fidelity and channel
+layouts defined inside GIMP.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Apple HEIC and HEIF Photos in GIMP - gimp</title>
+    <meta name="description" content="Modern versions of GIMP provide native support for importing High Efficiency Image Container (HEIC) and High Efficiency Image File (HEIF) formats used by Apple iPhones and other modern smartphones. Starting with version 2.10.22, GIMP integrates standard">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-import-apple-heic-and-heif-photos-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Apple HEIC and HEIF Photos in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-import-apple-heic-and-heif-photos-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern versions of GIMP provide native support for importing High Efficiency Image Container (HEIC) and High Efficiency Image File (HEIF) formats used by Apple iPhones and other modern smartphones. Starting with version 2.10.22, GIMP integrates standard" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-apple-heic-and-heif-photos-in-gimp">How to Import
+Apple HEIC and HEIF Photos in GIMP</h1>
+<p>Modern versions of GIMP provide native support for importing High
+Efficiency Image Container (HEIC) and High Efficiency Image File (HEIF)
+formats used by Apple iPhones and other modern smartphones. Starting
+with version 2.10.22, GIMP integrates standard decoding libraries that
+allow users to open, edit, and export these files without third-party
+plugins. This article covers how GIMP processes HEIC/HEIF files, how the
+import workflow behaves across different operating systems, and how to
+address potential compatibility or color profile issues.</p>
+<h3 id="native-support-via-libheif">Native Support via libheif</h3>
+<p>GIMP handles HEIC and HEIF files using the open-source
+<code>libheif</code> library. When you open a <code>.heic</code> or
+<code>.heif</code> file, GIMP detects the container format and
+automatically parses the compressed HEVC (H.265) image data into an
+editable raster image.</p>
+<p>The import process is identical to standard image formats:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Open</strong> or drag and drop the image
+directly into the GIMP canvas.</li>
+<li>GIMP unpacks the compressed data and loads the image into a standard
+RGB layer.</li>
+<li>If an embedded color profile (such as Apple's Display P3) is
+detected, GIMP displays a dialog asking whether to keep the embedded
+profile or convert it to your default working space (typically
+sRGB).</li>
+</ol>
+<h3 id="operating-system-differences">Operating System Differences</h3>
+<p>While GIMP natively includes HEIC support, availability depends on
+how the software is packaged on your operating system:</p>
+<ul>
+<li><strong>Windows:</strong> The official standard installer from the
+GIMP website includes the necessary <code>libheif</code> components. You
+do not need to purchase or install the HEVC video extensions from the
+Microsoft Store for GIMP to read the files.</li>
+<li><strong>macOS:</strong> Standard GIMP DMG packages bundle the HEIC
+decoder by default, enabling direct import on modern macOS
+versions.</li>
+<li><strong>Linux:</strong> Most modern distributions include HEIC
+support in GIMP by default. However, if using minimal package
+installations, you may need to install the <code>libheif</code> or
+<code>gimp-heif</code> package via your package manager. The Flatpak and
+Snap releases of GIMP come pre-configured with complete HEIC
+support.</li>
+</ul>
+<h3 id="color-depth-and-metadata-handling">Color Depth and Metadata
+Handling</h3>
+<p>Apple devices frequently capture HEIC photos with 10-bit or 12-bit
+color depth, especially when HDR or Deep Fusion is enabled. GIMP's
+GEGL-based processing engine imports this high-bit-depth data directly,
+preserving tonal range and preventing banding during the editing
+process.</p>
+<p>Additionally, GIMP reads and retains the EXIF, XMP, and IPTC metadata
+embedded in the HEIC container, preserving capture data such as GPS
+location, camera settings, and timestamps.</p>
+<h3 id="limitations-with-apple-specific-features">Limitations with
+Apple-Specific Features</h3>
+<p>While standard HEIC images import cleanly, certain proprietary Apple
+features require specific handling:</p>
+<ul>
+<li><strong>Live Photos:</strong> GIMP only extracts the primary,
+high-resolution still frame. The paired short video clip
+(<code>.mov</code>) is ignored.</li>
+<li><strong>Portrait Mode (Depth Maps):</strong> iOS often embeds a
+separate depth map inside the HEIC container. GIMP typically imports the
+rendered primary image with the depth blur applied, but it does not
+automatically separate the depth map into an editable layer mask.</li>
+<li><strong>Burst Photos:</strong> When multiple images are saved within
+a single HEIC container, GIMP generally opens the selected cover photo
+rather than expanding every shot as individual layers.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

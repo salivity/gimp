@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Delete an Anchor Point in GIMP - gimp</title>
+    <meta name="description" content="Deleting unnecessary anchor points in GIMP allows you to refine vector paths, smooth out curves, and correct drafting mistakes without redrawing an entire shape. This guide explains the exact keyboard modifier required to remove an unwanted anchor point">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-delete-an-anchor-point-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Delete an Anchor Point in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-delete-an-anchor-point-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Deleting unnecessary anchor points in GIMP allows you to refine vector paths, smooth out curves, and correct drafting mistakes without redrawing an entire shape. This guide explains the exact keyboard modifier required to remove an unwanted anchor point" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-delete-an-anchor-point-in-gimp">How to Delete an Anchor
+Point in GIMP</h1>
+<p>Deleting unnecessary anchor points in GIMP allows you to refine
+vector paths, smooth out curves, and correct drafting mistakes without
+redrawing an entire shape. This guide explains the exact keyboard
+modifier required to remove an unwanted anchor point from a path, how
+the tool responds visually, and step-by-step instructions for managing
+path nodes efficiently using the Paths tool.</p>
+<h2 id="the-keyboard-modifier-to-delete-anchor-points">The Keyboard
+Modifier to Delete Anchor Points</h2>
+<p>To delete an unwanted anchor point from a path in GIMP, the required
+keyboard modifier combination is <strong>Ctrl + Shift</strong> on
+Windows and Linux, or <strong>Cmd + Shift</strong> on macOS.</p>
+<p>When you hold down these keys while using the Paths tool and hover
+over an existing anchor point, the cursor changes to indicate deletion
+mode (typically showing a minus sign or an anchor next to a minus
+symbol). Clicking the point while holding this modifier immediately
+removes it from the path.</p>
+<h2 id="step-by-step-instructions">Step-by-Step Instructions</h2>
+<ol type="1">
+<li><strong>Activate the Paths Tool</strong>: Select the Paths tool from
+the Toolbox or press the shortcut key <strong>B</strong>.</li>
+<li><strong>Select Your Path</strong>: Open the <strong>Paths
+dialog</strong> (dockable dialog) and click on the path you want to
+modify to make it active and visible.</li>
+<li><strong>Set Mode to Design</strong>: In the Tool Options dock,
+ensure the mode is set to <strong>Design</strong> (this is the default
+mode).</li>
+<li><strong>Locate the Anchor Point</strong>: Move your mouse cursor
+directly over the anchor point (node) you wish to remove.</li>
+<li><strong>Apply the Modifier and Click</strong>: Hold down
+<strong>Ctrl + Shift</strong> (or <strong>Cmd + Shift</strong> on Mac).
+You will see the cursor transform into a deletion indicator. Left-click
+the anchor point.</li>
+</ol>
+<p>The selected anchor point will instantly disappear, and GIMP will
+automatically reconnect the adjacent anchor points with a direct
+segment, preserving the continuity of your path.</p>
+<h2 id="additional-path-editing-modifiers">Additional Path Editing
+Modifiers</h2>
+<ul>
+<li><strong>Delete a Segment</strong>: Hold <strong>Shift</strong> alone
+and click on the line segment connecting two anchor points to remove the
+connection without deleting the points themselves.</li>
+<li><strong>Add a Point to an Existing Segment</strong>: Hold
+<strong>Ctrl</strong> and click anywhere on an existing line segment to
+insert a new anchor point.</li>
+<li><strong>Close an Open Path</strong>: Hold <strong>Ctrl</strong> and
+click the starting anchor point to connect the end of the path back to
+the beginning.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

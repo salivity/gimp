@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Realistic Water Drops in GIMP - gimp</title>
+    <meta name="description" content="Simulating realistic water drops in GIMP involves recreating how transparent liquids interact with light through refraction, shadows, and specular highlights. This tutorial explains how to construct believable water droplets on any surface using GIMP's s">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-realistic-water-drops-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Realistic Water Drops in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-realistic-water-drops-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating realistic water drops in GIMP involves recreating how transparent liquids interact with light through refraction, shadows, and specular highlights. This tutorial explains how to construct believable water droplets on any surface using GIMP's s" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-realistic-water-drops-in-gimp">How to Make Realistic
+Water Drops in GIMP</h1>
+<p>Simulating realistic water drops in GIMP involves recreating how
+transparent liquids interact with light through refraction, shadows, and
+specular highlights. This tutorial explains how to construct believable
+water droplets on any surface using GIMP's selection tools, layer blend
+modes, gradients, and brush tools to achieve accurate light reflections
+and depth.</p>
+<h3 id="step-1-create-the-droplet-selection">Step 1: Create the Droplet
+Selection</h3>
+<ol type="1">
+<li>Open your background surface image in GIMP.</li>
+<li>Create a new transparent layer named
+<code>Water Droplet</code>.</li>
+<li>Select the <strong>Ellipse Select Tool</strong> (or the
+<strong>Paths Tool</strong> for irregular, natural shapes) and draw the
+outline of your droplet on the new layer.</li>
+</ol>
+<h3 id="step-2-add-the-cast-shadow">Step 2: Add the Cast Shadow</h3>
+<ol type="1">
+<li>Keep the selection active.</li>
+<li>Go to <strong>Filters &gt; Light and Shadow &gt; Drop
+Shadow</strong>.</li>
+<li>Set the shadow angle to match the natural light direction of your
+background image.</li>
+<li>Set the blur radius low (between 5 and 15 pixels depending on canvas
+resolution) and lower the opacity to around 50–60%. This creates the
+small, sharp shadow directly beneath the droplet.</li>
+</ol>
+<h3 id="step-3-simulate-refraction-and-base-shading">Step 3: Simulate
+Refraction and Base Shading</h3>
+<p>Water refracts light, causing the side closest to the light source to
+be darker inside, while the opposite base glows.</p>
+<ol type="1">
+<li>Return to the <code>Water Droplet</code> layer with the selection
+still active.</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>), set the
+gradient to <strong>Foreground to Transparent</strong> (black
+foreground), and choose the <strong>Linear</strong> shape.</li>
+<li>Drag the gradient from the light-facing side toward the center to
+create a subtle inner shadow along the top edge.</li>
+<li>Set the <code>Water Droplet</code> layer blend mode to
+<strong>Overlay</strong> or <strong>Soft Light</strong> so the
+underlying texture shows through realistically.</li>
+</ol>
+<h3 id="step-4-create-the-bottom-internal-glow">Step 4: Create the
+Bottom Internal Glow</h3>
+<ol type="1">
+<li>Create a new transparent layer above the droplet layer and name it
+<code>Bottom Glow</code>.</li>
+<li>With the droplet selection still active, select a soft round
+<strong>Paintbrush</strong> (<code>P</code>) with white color.</li>
+<li>Paint a soft, curved stroke along the inside edge opposite the light
+source (usually the bottom edge).</li>
+<li>Lower the layer opacity to roughly 40–70% to mimic the focused light
+exiting the droplet.</li>
+</ol>
+<h3 id="step-5-paint-the-specular-highlights">Step 5: Paint the Specular
+Highlights</h3>
+<ol type="1">
+<li>Create a new transparent layer named <code>Highlights</code>.</li>
+<li>Switch to a small, hard-edged <strong>Paintbrush</strong> with pure
+white color.</li>
+<li>Click once or paint a small crescent shape near the top edge
+directly facing the light source. This represents the primary reflection
+of the light source.</li>
+<li>Slightly reduce the brush size and add a much smaller, faint white
+dot on the opposite side to simulate secondary reflection/bounce
+light.</li>
+</ol>
+<h3 id="step-6-refine-and-duplicate">Step 6: Refine and Duplicate</h3>
+<ol type="1">
+<li>Deselect the active area (<strong>Select &gt; None</strong> or
+<code>Shift + Ctrl + A</code>).</li>
+<li>Group all droplet-related layers into a single <strong>Layer
+Group</strong>.</li>
+<li>Duplicate the group and use the <strong>Unified Transform
+Tool</strong> (<code>Shift + T</code>) to scale, rotate, and scatter
+multiple water droplets across the surface for a natural
+appearance.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

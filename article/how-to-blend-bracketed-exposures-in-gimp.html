@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Blend Bracketed Exposures in GIMP - gimp</title>
+    <meta name="description" content="Exposure blending in GIMP is a manual technique used to merge multiple bracketed landscape shots into a single high-dynamic-range image without the artificial, halo-heavy appearance often produced by automated HDR software. By loading bracketed images on">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-blend-bracketed-exposures-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Blend Bracketed Exposures in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-blend-bracketed-exposures-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exposure blending in GIMP is a manual technique used to merge multiple bracketed landscape shots into a single high-dynamic-range image without the artificial, halo-heavy appearance often produced by automated HDR software. By loading bracketed images on" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-blend-bracketed-exposures-in-gimp">How to Blend Bracketed
+Exposures in GIMP</h1>
+<p>Exposure blending in GIMP is a manual technique used to merge
+multiple bracketed landscape shots into a single high-dynamic-range
+image without the artificial, halo-heavy appearance often produced by
+automated HDR software. By loading bracketed images onto separate layers
+and using layer masks with soft brushes, gradients, or selections, you
+retain complete control over highlight and shadow transitions. This
+guide outlines the precise steps required to align your shots, create
+effective layer masks, and seamlessly blend the frames for a clean,
+natural landscape photograph.</p>
+<h3 id="step-1-import-bracketed-frames-as-layers">Step 1: Import
+Bracketed Frames as Layers</h3>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>Go to <strong>File &gt; Open as Layers...</strong></li>
+<li>Select your bracketed RAW or converted TIFF/JPEG files (typically an
+underexposed frame for skies/highlights, a base exposure for midtones,
+and an overexposed frame for deep shadows).</li>
+<li>Click <strong>Open</strong> to load the images into a single
+project.</li>
+</ol>
+<h3 id="step-2-align-the-layers">Step 2: Align the Layers</h3>
+<p>Even when using a sturdy tripod, minor shifts can occur between
+exposures:</p>
+<ol type="1">
+<li>Select the top layer and change its <strong>Mode</strong> to
+<strong>Difference</strong> in the Layers panel.</li>
+<li>If the alignment is slightly off, you will see bright edges. Use the
+<strong>Move Tool</strong> (<code>M</code>) to nudge the layer until the
+canvas turns as close to solid black as possible.</li>
+<li>Switch the layer mode back to <strong>Normal</strong>.</li>
+<li>Repeat this check for each layer relative to the base exposure.</li>
+</ol>
+<h3 id="step-3-organize-the-layer-stack">Step 3: Organize the Layer
+Stack</h3>
+<p>Arrange your layers logically from brightest to darkest:</p>
+<ol type="1">
+<li>Place the normal (mid-tone base) exposure at the bottom of the
+stack.</li>
+<li>Place the shadow exposure (brightest frame) in the middle if
+needed.</li>
+<li>Place the highlight exposure (darkest frame, used for sky and bright
+spots) at the top.</li>
+</ol>
+<h3 id="step-4-apply-a-layer-mask-to-the-highlight-exposure">Step 4:
+Apply a Layer Mask to the Highlight Exposure</h3>
+<ol type="1">
+<li>Right-click the top (darkest) layer in the Layers panel and select
+<strong>Add Layer Mask...</strong></li>
+<li>Choose <strong>Black (full transparency)</strong> and click
+<strong>Add</strong>. The dark layer is now completely hidden, revealing
+the properly exposed midtones beneath.</li>
+</ol>
+<h3 id="step-5-paint-the-highlights-in">Step 5: Paint the Highlights
+In</h3>
+<ol type="1">
+<li>Select the black layer mask thumbnail in the Layers panel.</li>
+<li>Choose the <strong>Paintbrush Tool</strong> (<code>P</code>) and set
+your foreground color to <strong>White</strong>.</li>
+<li>In the Tool Options, select a large, soft brush (such as
+<code>Hardness 050</code> or lower), reduce the <strong>Opacity</strong>
+to 20–30%, and increase the brush size.</li>
+<li>Gently paint over the blown-out regions (like skies, sun
+reflections, or bright clouds). Because the brush opacity is low, each
+stroke gradually brings back detail from the underexposed frame,
+ensuring smooth, halo-free transitions.</li>
+<li>If you paint over an area by mistake, switch your foreground color
+to <strong>Black</strong> and paint over the region to conceal the dark
+layer again.</li>
+</ol>
+<h3 id="step-6-blend-the-shadows-optional">Step 6: Blend the Shadows
+(Optional)</h3>
+<p>If your base exposure has harsh, noisy shadows:</p>
+<ol type="1">
+<li>Move the overexposed (bright) layer directly above the base
+layer.</li>
+<li>Add a <strong>Black (full transparency)</strong> layer mask to
+it.</li>
+<li>With a soft white brush at low opacity, paint over the underexposed
+shadows (such as dark foreground rocks or dense foliage) to naturally
+lift details.</li>
+</ol>
+<h3 id="step-7-final-global-adjustments-and-export">Step 7: Final Global
+Adjustments and Export</h3>
+<ol type="1">
+<li>Right-click anywhere in the Layers panel and select <strong>New from
+Visible</strong> to create a merged layer at the top of your stack.</li>
+<li>Use <strong>Colors &gt; Curves...</strong> or <strong>Colors &gt;
+Levels...</strong> on this new layer to set your final black and white
+points and restore global contrast.</li>
+<li>Go to <strong>File &gt; Export As...</strong> to save your final
+blended image in your preferred format.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

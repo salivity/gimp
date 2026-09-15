@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automate Sprite Slicing and Packing in GIMP Python - gimp</title>
+    <meta name="description" content="This article demonstrates how to automate the slicing and packing of 2D character animation frames using GIMP's built-in Python-Fu environment. By scripting this workflow, you can programmatically divide animation sheets into uniform cells, trim excess t">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/automate-sprite-slicing-and-packing-in-gimp-python">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Automate Sprite Slicing and Packing in GIMP Python - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/automate-sprite-slicing-and-packing-in-gimp-python" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article demonstrates how to automate the slicing and packing of 2D character animation frames using GIMP's built-in Python-Fu environment. By scripting this workflow, you can programmatically divide animation sheets into uniform cells, trim excess t" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="automate-sprite-slicing-and-packing-in-gimp-python">Automate
+Sprite Slicing and Packing in GIMP Python</h1>
+<p>This article demonstrates how to automate the slicing and packing of
+2D character animation frames using GIMP's built-in Python-Fu
+environment. By scripting this workflow, you can programmatically divide
+animation sheets into uniform cells, trim excess transparent pixels, and
+repack the frames into optimized texture layouts. This pipeline
+eliminates tedious manual alignment and ensures consistent frame
+dimensions for game development.</p>
+<h3 id="understanding-gimp-python-fu">Understanding GIMP Python-Fu</h3>
+<p>GIMP provides a built-in Python 2.7 scripting interface known as
+Python-Fu, which interacts directly with the Procedural Database (PDB).
+This allows scripts to execute almost any native action available in the
+UI, such as selecting regions, cropping, copying layers, and
+transforming canvases.</p>
+<p>Scripts must be placed inside your local GIMP plug-ins directory:</p>
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\&lt;Username&gt;\AppData\Roaming\GIMP\2.10\plug-ins</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/GIMP/2.10/plug-ins</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/GIMP/2.10/plug-ins</code></li>
+</ul>
+<p>Ensure script files have executable permissions
+(<code>chmod +x script_name.py</code> on Linux and macOS).</p>
+<h3 id="the-slicing-and-packing-logic">The Slicing and Packing
+Logic</h3>
+<p>Automating the process requires three steps:</p>
+<ol type="1">
+<li><strong>Slicing:</strong> Iterating through a grid-based source
+image using known frame widths and heights, then extracting each cell
+into its own layer.</li>
+<li><strong>Trimming (Optional):</strong> Removing transparent margins
+around the character while storing offsets to keep registration
+intact.</li>
+<li><strong>Packing:</strong> Calculating the dimensions required for a
+new destination canvas (such as a horizontal strip or a square
+power-of-two texture) and rendering each frame onto it
+sequentially.</li>
+</ol>
+<h3 id="the-automation-script">The Automation Script</h3>
+<p>The following script defines a Python plugin that slices a character
+sheet based on specified rows and columns, then repacks all extracted
+frames horizontally into a new sprite sheet.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gimpfu <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slice_and_pack_frames(image, drawable, frame_width, frame_height, cols, rows):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    gimp.context_push()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    image.undo_group_start()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    total_frames <span class="op">=</span> cols <span class="op">*</span> rows</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    frames <span class="op">=</span> []</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Slice frames from the source image</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(rows):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> c <span class="kw">in</span> <span class="bu">range</span>(cols):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> c <span class="op">*</span> frame_width</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> r <span class="op">*</span> frame_height</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Select frame region</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            pdb.gimp_image_select_rectangle(image, CHANNEL_OP_REPLACE, x, y, frame_width, frame_height)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Copy the selection</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> pdb.gimp_edit_copy(drawable):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Paste into a temporary floating layer</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                floating_sel <span class="op">=</span> pdb.gimp_edit_paste(drawable, <span class="va">True</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Create a new layer from selection</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                new_layer <span class="op">=</span> pdb.gimp_layer_new_from_visible(image, image, <span class="st">&quot;Frame_</span><span class="sc">{}</span><span class="st">_</span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(r, c))</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                image.add_layer(new_layer, <span class="dv">0</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                pdb.gimp_floating_sel_remove(floating_sel)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                frames.append(new_layer)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    pdb.gimp_selection_none(image)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Create the target canvas for repacking (horizontal strip)</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    packed_width <span class="op">=</span> frame_width <span class="op">*</span> total_frames</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    packed_height <span class="op">=</span> frame_height</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    packed_image <span class="op">=</span> pdb.gimp_image_new(packed_width, packed_height, RGB)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Pack frames into the new image</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> index, frame <span class="kw">in</span> <span class="bu">enumerate</span>(frames):</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copy layer to packed image</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        packed_layer <span class="op">=</span> pdb.gimp_layer_new(packed_image, frame_width, frame_height, </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>                                            RGBA_IMAGE, <span class="st">&quot;Frame_</span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(index), <span class="dv">100</span>, NORMAL_MODE)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_image_insert_layer(packed_image, packed_layer, <span class="va">None</span>, <span class="dv">0</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Position layer</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        offset_x <span class="op">=</span> index <span class="op">*</span> frame_width</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_layer_set_offsets(packed_layer, offset_x, <span class="dv">0</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Copy pixel data from original frame</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_edit_copy(frame)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        floating <span class="op">=</span> pdb.gimp_edit_paste(packed_layer, <span class="va">True</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_floating_sel_anchor(floating)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Remove temporary layer from original image</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        image.remove_layer(frame)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Display the packed sprite sheet</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    pdb.gimp_display_new(packed_image)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    image.undo_group_end()</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    gimp.context_pop()</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>register(</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;python_fu_slice_and_pack&quot;</span>,</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Slice and Pack Character Animation Frames&quot;</span>,</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Splits a grid-based sheet into frames and repacks them into a horizontal atlas.&quot;</span>,</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Author&quot;</span>,</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Open Source&quot;</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;2024&quot;</span>,</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;&lt;Image&gt;/Filters/Animation/Slice and Pack...&quot;</span>,</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;RGB*, GRAY*&quot;</span>,</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        (PF_INT, <span class="st">&quot;frame_width&quot;</span>, <span class="st">&quot;Frame Width (px)&quot;</span>, <span class="dv">64</span>),</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        (PF_INT, <span class="st">&quot;frame_height&quot;</span>, <span class="st">&quot;Frame Height (px)&quot;</span>, <span class="dv">64</span>),</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>        (PF_INT, <span class="st">&quot;cols&quot;</span>, <span class="st">&quot;Columns&quot;</span>, <span class="dv">4</span>),</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        (PF_INT, <span class="st">&quot;rows&quot;</span>, <span class="st">&quot;Rows&quot;</span>, <span class="dv">4</span>),</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    [],</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    slice_and_pack_frames</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div>
+<h3 id="running-the-script">Running the Script</h3>
+<ol type="1">
+<li>Save the code as <code>slice_and_pack.py</code> and place it in the
+GIMP plug-ins folder.</li>
+<li>Restart GIMP so the new plugin is indexed.</li>
+<li>Open your character animation image.</li>
+<li>Navigate to <strong>Filters &gt; Animation &gt; Slice and
+Pack...</strong> from the top menu.</li>
+<li>Enter the target frame width, height, and grid dimensions, then
+click <strong>OK</strong>.</li>
+</ol>
+<p>A new window will open containing the repacked animation sequence
+aligned as a continuous horizontal strip, ready to be exported to PNG or
+loaded directly into an animation engine.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

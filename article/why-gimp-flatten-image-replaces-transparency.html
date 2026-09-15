@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why GIMP Flatten Image Replaces Transparency - gimp</title>
+    <meta name="description" content="When you use the "Flatten Image" command in GIMP, the software merges all visible layers into a single background layer and strips away the alpha channel entirely. Because a layer without an alpha channel cannot render transparent pixels, GIMP must assig">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/why-gimp-flatten-image-replaces-transparency">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why GIMP Flatten Image Replaces Transparency - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/why-gimp-flatten-image-replaces-transparency" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When you use the "Flatten Image" command in GIMP, the software merges all visible layers into a single background layer and strips away the alpha channel entirely. Because a layer without an alpha channel cannot render transparent pixels, GIMP must assig" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="why-gimp-flatten-image-replaces-transparency">Why GIMP Flatten
+Image Replaces Transparency</h1>
+<p>When you use the "Flatten Image" command in GIMP, the software merges
+all visible layers into a single background layer and strips away the
+alpha channel entirely. Because a layer without an alpha channel cannot
+render transparent pixels, GIMP must assign a solid color to those
+areas, and it is programmed by default to fill that empty space with
+your currently selected background color.</p>
+<h2 id="the-removal-of-the-alpha-channel">The Removal of the Alpha
+Channel</h2>
+<p>The primary function of the Flatten Image operation is to prepare an
+image to exist as a single, opaque canvas, similar to traditional image
+formats like JPEG that do not support transparency. In digital graphics,
+transparency is dictated by an alpha channel. When an image is
+flattened, GIMP intentionally deletes this channel from the final
+layer.</p>
+<p>RGB color models require every pixel to hold specific color data.
+When the alpha channel is removed, the transparent coordinates on the
+canvas cannot simply remain "empty." GIMP requires a deterministic
+fallback value to replace the absent pixels, and it utilizes the active
+toolbox background color as that baseline fill.</p>
+<h2 id="flatten-image-vs-merge-visible-layers">Flatten Image vs. Merge
+Visible Layers</h2>
+<p>Many users confuse "Flatten Image" with "Merge Visible Layers," but
+they serve different technical purposes:</p>
+<ul>
+<li><strong>Flatten Image:</strong> Merges all visible layers, discards
+invisible layers, removes the alpha channel, and replaces any
+transparent areas with the active background color.</li>
+<li><strong>Merge Visible Layers:</strong> Combines the visible layers
+into one layer while retaining the alpha channel (provided the target
+layer has one). It leaves transparent areas intact and does not delete
+hidden layers unless explicitly instructed.</li>
+</ul>
+<h2 id="how-to-keep-transparency-when-combining-layers">How to Keep
+Transparency When Combining Layers</h2>
+<p>If you want to combine your project into a single layer without
+replacing transparent areas with the background color, you should avoid
+the Flatten Image command.</p>
+<p>Instead, navigate to the menu and select <strong>Image &gt; Merge
+Visible Layers</strong> (or press <code>Ctrl + M</code>). In the dialog
+box that appears, ensure the merged layer retains its alpha
+capabilities. Alternatively, you can right-click any layer in the Layers
+dialog and select <strong>New from Visible</strong>, which creates a
+consolidated copy of all visible artwork while preserving full
+transparency.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

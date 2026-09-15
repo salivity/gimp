@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use GEGL Bayer Matrix in GIMP for Retro Art - gimp</title>
+    <meta name="description" content="The GEGL Bayer Matrix filter in GIMP is a powerful tool for emulating early computer graphics, 1-bit monochrome displays, and vintage video game aesthetics. This guide covers how to prepare your artwork, apply the ordered dithering algorithm using GIMP's">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-gegl-bayer-matrix-in-gimp-for-retro-art">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use GEGL Bayer Matrix in GIMP for Retro Art - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-gegl-bayer-matrix-in-gimp-for-retro-art" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Bayer Matrix filter in GIMP is a powerful tool for emulating early computer graphics, 1-bit monochrome displays, and vintage video game aesthetics. This guide covers how to prepare your artwork, apply the ordered dithering algorithm using GIMP's" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-gegl-bayer-matrix-in-gimp-for-retro-art">How to Use
+GEGL Bayer Matrix in GIMP for Retro Art</h1>
+<p>The GEGL Bayer Matrix filter in GIMP is a powerful tool for emulating
+early computer graphics, 1-bit monochrome displays, and vintage video
+game aesthetics. This guide covers how to prepare your artwork, apply
+the ordered dithering algorithm using GIMP's GEGL engine, and fine-tune
+your parameters to achieve an authentic retro computing look.</p>
+<h3 id="understanding-the-bayer-matrix-effect">Understanding the Bayer
+Matrix Effect</h3>
+<p>The Bayer Matrix applies an ordered dithering algorithm, a
+mathematical technique historically used by low-memory hardware to
+simulate color gradients and shades with a strictly limited color
+palette. By alternating pixels in cross-hatch or grid patterns, your
+modern, high-resolution image is converted into a stylized, low-color
+bitmap reminiscent of classic operating systems like Apple Macintosh
+System 1, the Game Boy, or early CGA/EGA PC displays.</p>
+<h3 id="step-1-prepare-and-downscale-your-image">Step 1: Prepare and
+Downscale Your Image</h3>
+<p>Ordered dithering works best on low-resolution canvases.
+High-resolution images will make the dither pattern appear too fine and
+lose the chunky retro pixel effect.</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Reduce the resolution to a typical retro display size, such as
+320×240, 256×224, or 160×144 pixels. Set the
+<strong>Interpolation</strong> to <strong>None (Neighbor)</strong> or
+<strong>Cubic</strong> depending on how sharp you want the base image to
+remain.</li>
+<li>If aiming for a monochrome aesthetic, convert the image to grayscale
+via <strong>Image &gt; Mode &gt; Grayscale</strong> or boost the
+contrast using <strong>Colors &gt; Curves</strong> to ensure strong
+separation between light and shadow.</li>
+</ol>
+<h3 id="step-2-apply-the-gegl-bayer-matrix-filter">Step 2: Apply the
+GEGL Bayer Matrix Filter</h3>
+<p>Once your image is properly scaled and adjusted, access the GEGL
+processing engine.</p>
+<ol type="1">
+<li>Navigate to <strong>Tools &gt; GEGL Operation...</strong> in the top
+menu.</li>
+<li>In the GEGL Operation dialog, click the <strong>Operation</strong>
+dropdown menu and select <strong>bayer-matrix</strong>.</li>
+<li>Adjust the available parameters:
+<ul>
+<li><strong>Subdivisions / Pattern Dimension:</strong> Controls the size
+of the dither grid (e.g., <span class="math inline">\(2 \times
+2\)</span>, <span class="math inline">\(4 \times 4\)</span>, or <span
+class="math inline">\(8 \times 8\)</span>). Larger matrices create
+smoother transitions with more visual texture, while smaller matrices
+produce harsh, high-contrast patterns.</li>
+<li><strong>Scale / Pattern Size:</strong> Defines how large the
+individual dither matrix blocks appear over your pixels.</li>
+<li><strong>Shift / Value Offset:</strong> Adjusts the brightness
+midpoint where the dither pattern transitions from dark to light.</li>
+</ul></li>
+<li>Check the <strong>Preview</strong> box to monitor the result in real
+time.</li>
+<li>Click <strong>OK</strong> to apply the filter.</li>
+</ol>
+<h3 id="step-3-quantize-and-limit-the-color-palette">Step 3: Quantize
+and Limit the Color Palette</h3>
+<p>To fully lock in the retro aesthetic, reduce the final color count to
+eliminate any stray anti-aliased tones.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Mode &gt; Indexed...</strong></li>
+<li>Choose <strong>Use black and white (1-bit) palette</strong> for a
+classic Macintosh or Game Boy look, or select <strong>Use custom
+palette</strong> to apply specific retro palettes such as Commodore 64,
+CGA, or NES.</li>
+<li>Set <strong>Color dithering</strong> to <strong>None</strong>, as
+the Bayer Matrix filter has already generated the necessary dithered
+structure.</li>
+<li>Click <strong>Convert</strong>.</li>
+</ol>
+<h3 id="step-4-scale-up-for-display">Step 4: Scale Up for Display</h3>
+<p>To export your final artwork for modern high-resolution screens
+without blurring:</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Multiply the dimensions by an integer factor (e.g., 400%,
+800%).</li>
+<li>Set <strong>Interpolation</strong> strictly to <strong>None</strong>
+to preserve crisp, sharp pixel edges.</li>
+<li>Export the file as a PNG via <strong>File &gt; Export As...</strong>
+to prevent JPEG compression artifacts from ruining the dithering
+pattern.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

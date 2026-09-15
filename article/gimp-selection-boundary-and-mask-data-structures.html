@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Selection Boundary and Mask Data Structures - gimp</title>
+    <meta name="description" content="The GNU Image Manipulation Program (GIMP) internally handles user selections through a dual approach: a raster-based channel mask representing pixel coverage and a derived vector segment array representing the visible boundary. Rather than relying on a s">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-selection-boundary-and-mask-data-structures">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Selection Boundary and Mask Data Structures - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-selection-boundary-and-mask-data-structures" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GNU Image Manipulation Program (GIMP) internally handles user selections through a dual approach: a raster-based channel mask representing pixel coverage and a derived vector segment array representing the visible boundary. Rather than relying on a s" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-selection-boundary-and-mask-data-structures">GIMP Selection
+Boundary and Mask Data Structures</h1>
+<p>The GNU Image Manipulation Program (GIMP) internally handles user
+selections through a dual approach: a raster-based channel mask
+representing pixel coverage and a derived vector segment array
+representing the visible boundary. Rather than relying on a simple 1-bit
+monochrome array, GIMP stores the selection mask as a full 8-bit
+grayscale channel managed by a sparse, tile-based buffer
+(<code>GeglBuffer</code>), while representing the active selection
+boundaries (the "marching ants") as an array of line segment structures
+(<code>GimpBoundSeg</code>). When strict binary clipping regions are
+required, GIMP translates these bounds into rectangular sets using
+<code>cairo_region_t</code>.</p>
+<h3 id="the-core-selection-mask-gimpchannel-and-geglbuffer">The Core
+Selection Mask: <code>GimpChannel</code> and
+<code>GeglBuffer</code></h3>
+<p>At the core of GIMP's architecture, an active selection is not
+strictly a binary mask, but an 8-bit alpha mask stored within a
+specialized channel object (<code>GimpSelection</code>, which inherits
+from <code>GimpChannel</code>). This design allows GIMP to support
+anti-aliasing, sub-pixel accuracy, and feathered selections:</p>
+<ul>
+<li><strong>Pixel Format</strong>: Each pixel in the selection mask is
+an 8-bit unsigned integer (<code>guint8</code>) ranging from 0
+(completely unselected) to 255 (completely selected). When a user
+creates a hard-edged selection, the values are restricted to 0 and 255,
+effectively operating as a binary mask.</li>
+<li><strong>Storage Engine (<code>GeglBuffer</code>)</strong>: Modern
+GIMP (version 2.10 and later) stores channel data using the GEGL
+(Generic Graphical Library) engine. A <code>GeglBuffer</code> organizes
+pixel data into a sparse, tiled grid—typically 128×128 pixel tiles. This
+tile-based data structure avoids allocating contiguous memory for empty
+(unselected) canvas regions and supports copy-on-write functionality for
+undo/redo stacks.</li>
+</ul>
+<h3 id="boundary-representation-gimpboundseg">Boundary Representation:
+<code>GimpBoundSeg</code></h3>
+<p>While the raster mask governs pixel manipulation, GIMP needs a
+separate data structure to compute and render the selection boundary
+(the animated dashed line known as "marching ants").</p>
+<p>To generate boundaries:</p>
+<ol type="1">
+<li>GIMP scans the underlying selection mask using an edge-tracing
+algorithm.</li>
+<li>The threshold is evaluated at the midpoint (value 127/128) to locate
+the boundary of the mask.</li>
+<li>The boundary is converted into an allocated array of
+<code>GimpBoundSeg</code> (Boundary Segment) structures.</li>
+</ol>
+<p>Each <code>GimpBoundSeg</code> structure records discrete segment
+coordinates:</p>
+<ul>
+<li>Starting coordinate (<code>x1</code>, <code>y1</code>)</li>
+<li>Ending coordinate (<code>x2</code>, <code>y2</code>)</li>
+<li>Directional flags indicating whether the segment is horizontal or
+vertical, and which side contains the selected pixels.</li>
+</ul>
+<p>This array of boundary segments enables rapid rendering of the
+marching ants on the canvas without repeatedly scanning the full raster
+mask on every frame redraw.</p>
+<h3 id="geometric-binary-clipping-cairo_region_t">Geometric Binary
+Clipping: <code>cairo_region_t</code></h3>
+<p>When GIMP requires a discrete binary representation for bounding-box
+queries, canvas invalidation, or fast clipping, it converts the
+selection boundaries into a <code>cairo_region_t</code>.</p>
+<p>This structure represents a 2D binary shape as a sorted array of
+non-overlapping, axis-aligned rectangles (based on the Pixman/X11 region
+implementation). It allows GIMP to perform boolean operations (union,
+intersection, subtraction) with minimal computational overhead during
+screen redraws and tool operations.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

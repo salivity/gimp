@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Shrink Selection from Image Border in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to use GIMP's Shrink Selection tool specifically with the "Shrink from image border" option enabled. In GIMP, shrinking a selection normally keeps the edges anchored if the selection touches the canvas boundary. By using the "Shri">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-shrink-selection-from-image-border-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Shrink Selection from Image Border in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-shrink-selection-from-image-border-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use GIMP's Shrink Selection tool specifically with the "Shrink from image border" option enabled. In GIMP, shrinking a selection normally keeps the edges anchored if the selection touches the canvas boundary. By using the "Shri" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-shrink-selection-from-image-border-in-gimp">How to Shrink
+Selection from Image Border in GIMP</h1>
+<p>This guide explains how to use GIMP's Shrink Selection tool
+specifically with the "Shrink from image border" option enabled. In
+GIMP, shrinking a selection normally keeps the edges anchored if the
+selection touches the canvas boundary. By using the "Shrink from image
+border" setting, you force the selection to contract away from the
+canvas edges, making it ideal for creating uniform borders, frames, and
+inner margins.</p>
+<h3 id="what-the-shrink-from-image-border-option-does">What the "Shrink
+from image border" Option Does</h3>
+<p>By default, when you have an active selection that touches the edge
+of your canvas (such as after pressing <strong>Ctrl + A</strong> to
+select the entire image) and apply the standard Shrink command, GIMP
+keeps the selection glued to the image boundaries and only contracts
+edges that are inside the canvas. Checking the <strong>Shrink from image
+border</strong> option overrides this behavior, treating the canvas
+boundary as an edge to shrink away from.</p>
+<h3 id="step-by-step-instructions">Step-by-Step Instructions</h3>
+<ol type="1">
+<li><p><strong>Create an Active Selection:</strong> Open your project in
+GIMP. Create a selection using any selection tool (such as the Rectangle
+Select Tool), or press <strong>Ctrl + A</strong> (Windows/Linux) or
+<strong>Cmd + A</strong> (macOS) to select the entire canvas.</p></li>
+<li><p><strong>Open the Shrink Selection Dialog:</strong> In the top
+menu, navigate to <strong>Select</strong> &gt;
+<strong>Shrink...</strong>.</p></li>
+<li><p><strong>Set the Shrink Distance:</strong> In the dialog box that
+appears, enter the number of pixels (or change the unit dropdown to
+inches, millimeters, or percent) by which you want to reduce the
+selection.</p></li>
+<li><p><strong>Enable "Shrink from image border":</strong> Check the box
+next to <strong>Shrink from image border</strong>. If this box remains
+unchecked, any part of the selection touching the outer boundary of the
+canvas will not move inward.</p></li>
+<li><p><strong>Apply the Changes:</strong> Click <strong>OK</strong>.
+The selection will immediately contract inward from all outer edges of
+the canvas by the specified distance.</p></li>
+</ol>
+<h3 id="common-use-cases">Common Use Cases</h3>
+<ul>
+<li><strong>Creating Inset Borders:</strong> Select all (<strong>Ctrl +
+A</strong>), shrink from the image border by your desired border width,
+invert the selection (<strong>Select</strong> &gt;
+<strong>Invert</strong>), and fill it with a color or pattern.</li>
+<li><strong>Cropping Margins:</strong> Contract a full-image selection
+away from the borders and navigate to <strong>Image</strong> &gt;
+<strong>Crop to Selection</strong> to trim an equal amount from all
+sides of the image.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

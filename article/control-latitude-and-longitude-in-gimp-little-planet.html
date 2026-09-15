@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Latitude and Longitude in GIMP Little Planet - gimp</title>
+    <meta name="description" content="The GEGL Little Planet filter in GIMP transforms 360-degree equirectangular panoramas into spherical stereographic projections, allowing you to create miniature planet or tunnel effects. Controlling the latitude and longitude parameters determines the pr">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/control-latitude-and-longitude-in-gimp-little-planet">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Control Latitude and Longitude in GIMP Little Planet - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/control-latitude-and-longitude-in-gimp-little-planet" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Little Planet filter in GIMP transforms 360-degree equirectangular panoramas into spherical stereographic projections, allowing you to create miniature planet or tunnel effects. Controlling the latitude and longitude parameters determines the pr" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="control-latitude-and-longitude-in-gimp-little-planet">Control
+Latitude and Longitude in GIMP Little Planet</h1>
+<p>The GEGL Little Planet filter in GIMP transforms 360-degree
+equirectangular panoramas into spherical stereographic projections,
+allowing you to create miniature planet or tunnel effects. Controlling
+the latitude and longitude parameters determines the precise center of
+focus, orientation, and viewing angle of your projected scene. This
+guide explains how to locate these controls within GIMP's interface and
+adjust them effectively to compose your final image.</p>
+<h3 id="accessing-the-filter">Accessing the Filter</h3>
+<p>To use the filter, open an equirectangular panorama (typically an
+image with a 2:1 aspect ratio) in GIMP. Navigate to the top menu and
+select <strong>Filters &gt; Map &gt; Little Planet</strong>. Ensure the
+<strong>Preview</strong> box is checked so you can observe your changes
+in real time.</p>
+<h3 id="controlling-longitude-pan">Controlling Longitude (Pan)</h3>
+<p>In the Little Planet dialog, longitude is controlled by the
+<strong>Pan</strong> slider.</p>
+<ul>
+<li><strong>Function:</strong> The Pan parameter rotates the source
+panorama horizontally along the equator, measured from -180° to
+180°.</li>
+<li><strong>Adjustment:</strong> Dragging the slider left or right
+rotates the planet clockwise or counterclockwise. This determines which
+landmark, building, or section of your horizon faces the top or center
+of your composition.</li>
+<li><strong>Precision:</strong> Click directly on the numeric input box
+to enter an exact degree value, or use your keyboard's arrow keys for
+single-degree increments.</li>
+</ul>
+<h3 id="controlling-latitude-elevation">Controlling Latitude
+(Elevation)</h3>
+<p>Latitude is controlled by the <strong>Elevation</strong> slider
+(often labeled as <strong>Tilt</strong> in generic stereographic
+projections).</p>
+<ul>
+<li><strong>Function:</strong> The Elevation parameter adjusts the
+vertical camera angle relative to the horizon, ranging from -90° to
+90°.</li>
+<li><strong>Creating a Little Planet:</strong> Lowering the slider
+toward negative values tilts the projection downward, pulling the ground
+(nadir) into the core to wrap the horizon around the center into a
+sphere.</li>
+<li><strong>Creating an Inverted Tunnel:</strong> Raising the slider
+toward positive values tilts the projection upward toward the sky
+(zenith), creating a hollow circular frame or "rabbit hole" where the
+sky sits in the center and the ground borders the outer edges.</li>
+</ul>
+<h3 id="balancing-with-zoom-and-roll">Balancing with Zoom and Roll</h3>
+<p>Latitude and longitude adjustments directly influence distortion at
+the edges of the frame. After setting your Pan (longitude) and Elevation
+(latitude):</p>
+<ul>
+<li>Use the <strong>Zoom</strong> slider to crop in or out, ensuring the
+entire circular planet fits within the canvas without clipping important
+details.</li>
+<li>Use the <strong>Roll</strong> slider to rotate the final 2D plane
+without changing the underlying latitude or longitude coordinates.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

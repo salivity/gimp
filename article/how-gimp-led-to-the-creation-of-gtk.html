@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Led to the Creation of GTK - gimp</title>
+    <meta name="description" content="The development of the GTK widget toolkit was directly sparked by the technical and licensing frustrations encountered during the early creation of the GNU Image Manipulation Program (GIMP). In 1995, developers Spencer Kimball and Peter Mattis initially">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-led-to-the-creation-of-gtk">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Led to the Creation of GTK - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-led-to-the-creation-of-gtk" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The development of the GTK widget toolkit was directly sparked by the technical and licensing frustrations encountered during the early creation of the GNU Image Manipulation Program (GIMP). In 1995, developers Spencer Kimball and Peter Mattis initially" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-led-to-the-creation-of-gtk">How GIMP Led to the
+Creation of GTK</h1>
+<p>The development of the GTK widget toolkit was directly sparked by the
+technical and licensing frustrations encountered during the early
+creation of the GNU Image Manipulation Program (GIMP). In 1995,
+developers Spencer Kimball and Peter Mattis initially built GIMP using
+the Motif toolkit, but Motif's proprietary nature, licensing costs, and
+technical shortcomings severely hindered the image editor's
+accessibility and growth. To solve these issues, the creators engineered
+their own graphical user interface components, which eventually matured
+into the independent, open-source GTK toolkit that today underpins major
+desktop environments like GNOME.</p>
+<p>When Kimball and Mattis began developing GIMP as a student project at
+the University of California, Berkeley, the dominant widget toolkit for
+UNIX-based graphical applications was Motif. Motif provided standard
+graphical user interface (GUI) elements like windows, menus, buttons,
+and sliders. However, Motif was commercial, proprietary software that
+required expensive developer and runtime licenses on many systems. This
+paywall directly contradicted GIMP’s mission to be a fully free and
+open-source alternative to commercial image manipulation software, as
+users without a Motif license could not easily compile or run the
+program.</p>
+<p>Beyond licensing barriers, Motif suffered from significant technical
+limitations. Mattis found the toolkit poorly documented, rigid, and
+prone to memory leaks, making it poorly suited for the complex UI
+requirements of an advanced graphics application. These constraints led
+Mattis to replace Motif entirely with a custom-built solution tailored
+directly to GIMP's interface requirements.</p>
+<p>Mattis designed a replacement system, originally calling it the
+General Toolkit before rebranding it as the GIMP Toolkit (GTK). The
+original design separated UI management into two distinct layers:</p>
+<ul>
+<li><strong>GDK (GIMP Drawing Kit):</strong> A thin abstraction layer
+sitting directly above the X Window System (Xlib) to handle low-level
+operations such as window rendering, event handling, and drawing
+primitives.</li>
+<li><strong>GTK (GIMP Toolkit):</strong> A higher-level library layered
+on top of GDK to provide actual widgets, such as toolbars, color
+pickers, and dialog boxes.</li>
+</ul>
+<p>As development progressed, Mattis recognized that non-GUI utility
+functions—such as memory management, linked lists, and string
+manipulation—were cluttering the widget codebase. These core utilities
+were extracted into a foundational library called
+<strong>GLib</strong>.</p>
+<p>Shortly after its initial release, Mattis undertook a complete
+rewrite of GTK to introduce an object-oriented architecture implemented
+entirely in clean, portable C. This redesigned version featured a
+flexible signal-and-slot callback system and an extensible widget
+hierarchy. To distinguish this rewritten, object-oriented version from
+the initial release, it was renamed <strong>GTK+</strong> (a name it
+retained for many years before officially reverting to GTK with the
+release of GTK 4).</p>
+<p>Because the newly structured toolkit was completely independent of
+GIMP’s core image-processing code and licensed under the GNU Lesser
+General Public License (LGPL), external developers quickly recognized
+its utility for general application development. When the GNOME desktop
+environment was founded in 1997 to provide a completely free UNIX
+desktop, its founders selected GTK as the foundational GUI toolkit. What
+began as a pragmatic hack to free GIMP from proprietary software
+constraints thus evolved into one of the most widely used graphical
+toolkits in the open-source ecosystem.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

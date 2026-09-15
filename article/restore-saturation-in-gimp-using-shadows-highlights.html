@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restore Saturation in GIMP Using Shadows-Highlights - gimp</title>
+    <meta name="description" content="When brightening dark, underexposed areas in an image, the recovered regions often appear washed out, desaturated, or muddy. This guide explains how to use the built-in Shadows-Highlights filter in GIMP, specifically leveraging its color adjustment contr">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/restore-saturation-in-gimp-using-shadows-highlights">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Restore Saturation in GIMP Using Shadows-Highlights - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/restore-saturation-in-gimp-using-shadows-highlights" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When brightening dark, underexposed areas in an image, the recovered regions often appear washed out, desaturated, or muddy. This guide explains how to use the built-in Shadows-Highlights filter in GIMP, specifically leveraging its color adjustment contr" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="restore-saturation-in-gimp-using-shadows-highlights">Restore
+Saturation in GIMP Using Shadows-Highlights</h1>
+<p>When brightening dark, underexposed areas in an image, the recovered
+regions often appear washed out, desaturated, or muddy. This guide
+explains how to use the built-in Shadows-Highlights filter in GIMP,
+specifically leveraging its color adjustment control to lift shadow
+details while simultaneously restoring vibrant, natural color saturation
+directly to those newly recovered zones.</p>
+<h3 id="why-underexposed-shadows-lose-saturation">Why Underexposed
+Shadows Lose Saturation</h3>
+<p>Digital camera sensors record less color fidelity in deep shadows.
+When you aggressively brighten these dark zones, you typically amplify
+luminance without restoring proportional chrominance (color
+information). This leaves the brightened details looking flat and
+grayish compared to the naturally lit parts of the frame. GIMP’s
+GEGL-based Shadows-Highlights filter solves this by pairing tonal
+expansion with an integrated saturation boost targeted specifically at
+the recovered tones.</p>
+<h3 id="step-by-step-guide-to-restoring-color-in-shadows">Step-by-Step
+Guide to Restoring Color in Shadows</h3>
+<ol type="1">
+<li><p><strong>Open the Filter</strong> Open your image in GIMP and
+duplicate the base layer (<code>Layer</code> &gt;
+<code>Duplicate Layer</code>) to work non-destructively. With the
+duplicate layer selected, navigate to the top menu and select
+<strong>Colors</strong> &gt;
+<strong>Shadows-Highlights...</strong>.</p></li>
+<li><p><strong>Raise the Shadows</strong> Locate the
+<strong>Shadows</strong> slider at the top of the dialog. Drag this
+slider to the right to lift the dark areas of your photo. As the shadows
+brighten, you will see hidden texture and detail emerge, but you may
+notice that these areas lack color richness.</p></li>
+<li><p><strong>Adjust the Color Slider</strong> Locate the <strong>Color
+adjustment</strong> (or <strong>Shadows color adjustment</strong>)
+slider within the filter settings. By default, this value is set low or
+neutral.</p>
+<ul>
+<li>Move the slider to the right (positive values) to inject saturation
+directly into the lifted shadow regions.</li>
+<li>Unlike a global saturation boost, this slider concentrates purely on
+the tonal range affected by the shadow lift, preventing properly exposed
+midtones and highlights from becoming garish or over-saturated.</li>
+</ul></li>
+<li><p><strong>Refine the Shadow Tone and Radius</strong></p>
+<ul>
+<li><strong>Shadows tone:</strong> Adjust this slider to define the
+threshold of what GIMP considers a "shadow." Lower values limit the
+brightness and color restoration to only the darkest pixels, while
+higher values extend the effect into lower midtones.</li>
+<li><strong>Radius:</strong> Increase or decrease the blur radius to
+ensure smooth transitions between the recovered shadows and the rest of
+the image, eliminating unnatural halos along high-contrast edges.</li>
+</ul></li>
+<li><p><strong>Commit the Changes</strong> Check and uncheck the
+<strong>Preview</strong> box to compare your adjustments against the
+original image. Ensure that the recovered shadows look balanced with the
+rest of the scene rather than unnaturally vibrant. Once satisfied, click
+<strong>OK</strong> to apply the filter.</p></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

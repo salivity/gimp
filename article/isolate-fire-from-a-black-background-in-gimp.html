@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isolate Fire from a Black Background in GIMP - gimp</title>
+    <meta name="description" content="Isolating fire from a dark background in GIMP is an essential technique for compositing realistic flames into new scenes. By utilizing GIMP’s Color Curves alongside layer masks, you can remove solid black backgrounds while retaining the semi-transparen">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/isolate-fire-from-a-black-background-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Isolate Fire from a Black Background in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/isolate-fire-from-a-black-background-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating fire from a dark background in GIMP is an essential technique for compositing realistic flames into new scenes. By utilizing GIMP’s Color Curves alongside layer masks, you can remove solid black backgrounds while retaining the semi-transparen" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="isolate-fire-from-a-black-background-in-gimp">Isolate Fire from
+a Black Background in GIMP</h1>
+<p>Isolating fire from a dark background in GIMP is an essential
+technique for compositing realistic flames into new scenes. By utilizing
+GIMP’s Color Curves alongside layer masks, you can remove solid black
+backgrounds while retaining the semi-transparent glow, subtle smoke
+details, and vibrant hues of the fire.</p>
+<h3 id="step-1-prepare-the-layer">Step 1: Prepare the Layer</h3>
+<ol type="1">
+<li>Open your fire image in GIMP by navigating to <strong>File &gt;
+Open</strong>.</li>
+<li>Right-click the image layer in the <strong>Layers</strong> panel and
+select <strong>Add Alpha Channel</strong>. This ensures the layer
+supports transparency once the black pixels are removed.</li>
+<li>Duplicate this layer by clicking the <strong>Duplicate
+Layer</strong> icon at the bottom of the Layers panel. Rename this
+duplicate layer to "Mask Reference."</li>
+</ol>
+<h3 id="step-2-adjust-the-tonal-range-using-color-curves">Step 2: Adjust
+the Tonal Range Using Color Curves</h3>
+<ol type="1">
+<li>Select the "Mask Reference" layer.</li>
+<li>Go to <strong>Colors &gt; Curves</strong> in the top menu bar.</li>
+<li>In the Curves dialog, ensure the <strong>Channel</strong> is set to
+<strong>Value</strong>.</li>
+<li>Click and drag the lower-left point of the curve slightly to the
+right along the horizontal axis to clip out residual dark-gray
+background noise and make the background purely black.</li>
+<li>Add a point near the upper-middle section of the curve line and pull
+it upward to increase the brightness of the flames. This creates a
+high-contrast black-and-white tonal map that determines full opacity for
+bright flame areas and full transparency for the dark background.</li>
+<li>Click <strong>OK</strong> to apply the curve.</li>
+</ol>
+<h3 id="step-3-apply-the-curve-as-a-layer-mask">Step 3: Apply the Curve
+as a Layer Mask</h3>
+<ol type="1">
+<li>With the "Mask Reference" layer still selected, go to <strong>Edit
+&gt; Copy</strong> (or press <code>Ctrl + C</code> /
+<code>Cmd + C</code>).</li>
+<li>Hide the "Mask Reference" layer by clicking the eye icon next to it
+in the Layers panel.</li>
+<li>Select the original fire layer.</li>
+<li>Right-click the original layer and select <strong>Add Layer
+Mask</strong>.</li>
+<li>Choose <strong>White (full opacity)</strong> and click
+<strong>Add</strong>.</li>
+<li>Go to <strong>Edit &gt; Paste</strong> (or press
+<code>Ctrl + V</code> / <code>Cmd + V</code>) to paste the copied tonal
+curve onto the mask as a Floating Selection.</li>
+<li>Click the <strong>Anchor</strong> icon at the bottom of the Layers
+panel to anchor the floating layer directly into the layer mask.</li>
+</ol>
+<h3 id="step-4-refine-flame-color-and-vibrancy">Step 4: Refine Flame
+Color and Vibrancy</h3>
+<ol type="1">
+<li>Click on the image thumbnail (not the mask thumbnail) on the
+original fire layer.</li>
+<li>Open <strong>Colors &gt; Curves</strong> again.</li>
+<li>Switch the <strong>Channel</strong> dropdown from
+<strong>Value</strong> to <strong>Red</strong>, <strong>Green</strong>,
+or <strong>Blue</strong> to fine-tune the color balance:
+<ul>
+<li>Select <strong>Red</strong> and drag the curve slightly upward to
+restore warmth.</li>
+<li>Select <strong>Blue</strong> and pull the curve downward to remove
+any unwanted cool tones near the semi-transparent edges.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to finalize the color adjustment.</li>
+</ol>
+<h3 id="step-5-export-the-isolated-flame">Step 5: Export the Isolated
+Flame</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Choose a file format that supports transparency, such as
+<strong>PNG</strong>.</li>
+<li>Name your file and click <strong>Export</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

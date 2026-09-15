@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Offset and Duplicate Paths in GIMP - gimp</title>
+    <meta name="description" content="Creating uniform parallel vector lines in GIMP requires duplicating and offsetting an existing path. While GIMP does not feature a dedicated vector "offset" tool like some vector-focused illustration software, you can achieve precise, uniform parallel pa">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-offset-and-duplicate-paths-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Offset and Duplicate Paths in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-offset-and-duplicate-paths-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating uniform parallel vector lines in GIMP requires duplicating and offsetting an existing path. While GIMP does not feature a dedicated vector "offset" tool like some vector-focused illustration software, you can achieve precise, uniform parallel pa" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-offset-and-duplicate-paths-in-gimp">How to Offset and
+Duplicate Paths in GIMP</h1>
+<p>Creating uniform parallel vector lines in GIMP requires duplicating
+and offsetting an existing path. While GIMP does not feature a dedicated
+vector "offset" tool like some vector-focused illustration software, you
+can achieve precise, uniform parallel paths natively by converting your
+path to a selection, modifying the selection's boundaries, and
+converting it back into a vector path.</p>
+<h3 id="step-1-select-your-base-path">Step 1: Select Your Base Path</h3>
+<ol type="1">
+<li>Open the <strong>Paths</strong> dialog dock (accessible via
+<strong>Windows &gt; Dockable Dialogs &gt; Paths</strong> if not already
+visible).</li>
+<li>Click on the path you want to duplicate to make it the active
+path.</li>
+</ol>
+<h3 id="step-2-convert-the-path-to-a-selection">Step 2: Convert the Path
+to a Selection</h3>
+<ol type="1">
+<li>Go to the top menu and select <strong>Select &gt; From Path</strong>
+(or press <strong>Shift + V</strong>).</li>
+<li>You will see the "marching ants" marquee outlining your path.</li>
+</ol>
+<h3 id="step-3-offset-the-selection">Step 3: Offset the Selection</h3>
+<ol type="1">
+<li>To create an outward parallel line, go to <strong>Select &gt;
+Grow...</strong></li>
+<li>To create an inward parallel line, go to <strong>Select &gt;
+Shrink...</strong></li>
+<li>In the dialog box that appears, enter the exact distance (in pixels
+or your preferred measurement unit) you want between the original path
+and the new parallel line.</li>
+<li>Click <strong>OK</strong>. The selection outline will shift
+uniformly away from or toward the original path.</li>
+</ol>
+<h3 id="step-4-convert-the-selection-back-to-a-path">Step 4: Convert the
+Selection Back to a Path</h3>
+<ol type="1">
+<li>Go to <strong>Select &gt; To Path</strong>.</li>
+<li>Open the <strong>Paths</strong> dialog. A new path named "Selection"
+will appear in the list.</li>
+<li>Make the new path visible by clicking the eye icon next to it.</li>
+<li>Deselect your current selection by choosing <strong>Select &gt;
+None</strong> (or pressing <strong>Shift + Ctrl + A</strong>).</li>
+</ol>
+<h3 id="step-5-adjust-and-clean-up-open-paths">Step 5: Adjust and Clean
+Up Open Paths</h3>
+<p>If the original path was an open stroke rather than a closed shape,
+growing the selection will create a closed loop around the original
+line:</p>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> from the Toolbox (shortcut
+<strong>B</strong>).</li>
+<li>Click on the newly generated path to display its nodes.</li>
+<li>Hold <strong>Ctrl + Shift</strong> and click on any unwanted nodes
+or line segments (such as the rounded caps or opposite side) to delete
+them, leaving only your desired parallel line.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Contour Cut Vinyl Stickers in GIMP - gimp</title>
+    <meta name="description" content="Designing custom printable vinyl bumper stickers with contour cut paths in GIMP involves setting up a high-resolution workspace, creating your sticker artwork, generating an offset outline around the design, and converting that outline into a vector path">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-contour-cut-vinyl-stickers-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Contour Cut Vinyl Stickers in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-contour-cut-vinyl-stickers-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom printable vinyl bumper stickers with contour cut paths in GIMP involves setting up a high-resolution workspace, creating your sticker artwork, generating an offset outline around the design, and converting that outline into a vector path" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-contour-cut-vinyl-stickers-in-gimp">Design Contour Cut
+Vinyl Stickers in GIMP</h1>
+<p>Designing custom printable vinyl bumper stickers with contour cut
+paths in GIMP involves setting up a high-resolution workspace, creating
+your sticker artwork, generating an offset outline around the design,
+and converting that outline into a vector path for cutting machines.
+This guide walks you through every step of the process, from canvas
+configuration and border creation to exporting print-ready raster files
+and vector cut lines compatible with vinyl plotters and print shops.</p>
+<h3 id="1-set-up-a-print-ready-canvas">1. Set Up a Print-Ready
+Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Set the unit of measurement to <strong>inches</strong> or
+<strong>millimeters</strong> and input the desired physical dimensions
+for your bumper sticker (e.g., 3 x 8 inches).</li>
+<li>Expand <strong>Advanced Options</strong> and set the <strong>X and Y
+resolution to 300 pixels/in</strong> to ensure crisp, professional print
+quality.</li>
+<li>Set <strong>Color space</strong> to <strong>RGB color</strong> and
+<strong>Fill with</strong> to <strong>Transparency</strong>. Click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="2-design-or-import-your-artwork">2. Design or Import Your
+Artwork</h3>
+<ol type="1">
+<li>Import your graphics or create your design on a transparent layer.
+If importing an existing image, go to <strong>File &gt; Open as
+Layers</strong>.</li>
+<li>Ensure your subject, logo, or text is isolated on its own layer with
+no background pixels around it.</li>
+<li>If using multiple layers, group them or merge them into a single
+artwork layer by right-clicking the top layer in the Layers panel and
+selecting <strong>Merge Down</strong>.</li>
+</ol>
+<h3 id="3-create-the-contour-cut-outline">3. Create the Contour Cut
+Outline</h3>
+<ol type="1">
+<li>Right-click your artwork layer in the Layers dialog and select
+<strong>Alpha to Selection</strong>. This creates a selection boundary
+around all visible pixels.</li>
+<li>Go to <strong>Select &gt; Grow</strong> from the top menu.</li>
+<li>Enter a value for the white or colored border width (typically
+between <strong>15 to 30 pixels</strong> depending on your design's size
+and resolution). Click <strong>OK</strong>.</li>
+<li>Smooth out sharp corners by navigating to <strong>Select &gt;
+Feather</strong> (feather by 1–2 pixels) or <strong>Select &gt;
+Smooth</strong> if available.</li>
+</ol>
+<h3 id="4-fill-the-border-optional-visual-layer">4. Fill the Border
+(Optional Visual Layer)</h3>
+<ol type="1">
+<li>Create a new layer beneath your artwork layer and name it
+<code>Sticker Base</code>.</li>
+<li>Select your foreground color (usually white) and go to <strong>Edit
+&gt; Fill with FG Color</strong>.</li>
+<li>Keep the selection active for the next step.</li>
+</ol>
+<h3 id="5-convert-the-selection-into-a-vector-cut-path">5. Convert the
+Selection into a Vector Cut Path</h3>
+<ol type="1">
+<li>With the grown outline selection still active, go to <strong>Select
+&gt; To Path</strong>.</li>
+<li>Open the <strong>Paths</strong> tab (accessible via <strong>Windows
+&gt; Dockable Dialogs &gt; Paths</strong> if not already visible).</li>
+<li>Double-click the newly generated path and rename it
+<code>CutContour</code>. Vinyl cutter RIP software specifically looks
+for designated contour path names.</li>
+<li>(Optional) To visualize the cut line on screen, create a new
+transparent layer on top, set your foreground color to 100% Magenta, go
+to <strong>Edit &gt; Stroke Path</strong>, choose a solid line width of
+<strong>1 px</strong>, and click <strong>Stroke</strong>.</li>
+</ol>
+<h3 id="6-export-the-files-for-printing-and-cutting">6. Export the Files
+for Printing and Cutting</h3>
+<p>Different print shops and cutting software (such as Roland
+VersaWorks, Silhouette Studio, or Cricut Design Space) require specific
+formats:</p>
+<ul>
+<li><strong>For the Vector Cut Path (SVG):</strong> Right-click the
+<code>CutContour</code> path in the Paths dialog and select
+<strong>Export Path...</strong>. Name the file and save it with the
+<code>.svg</code> extension.</li>
+<li><strong>For High-Resolution Artwork (PNG/TIFF):</strong> Hide any
+visible cut line stroke layers so only the artwork and base background
+remain visible. Go to <strong>File &gt; Export As...</strong>, choose
+<code>.png</code> or <code>.tif</code>, and export with maximum quality
+settings.</li>
+<li><strong>For Print-and-Cut PDF:</strong> If your print provider
+requires a single layered vector/raster PDF, go to <strong>File &gt;
+Export As...</strong>, select <code>.pdf</code>, and check the option to
+include vector layers and paths if supported by your installed GIMP
+export plugins.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

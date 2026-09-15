@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Simulate Infrared Photography in GIMP - gimp</title>
+    <meta name="description" content="Simulating infrared photography in GIMP allows you to recreate the surreal "Wood effect"—where green foliage turns a glowing snowy white and clear blue skies turn dark and dramatic. This step-by-step guide explains how to use GIMP's Channel Mixer, Curv">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-simulate-infrared-photography-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Simulate Infrared Photography in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-simulate-infrared-photography-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating infrared photography in GIMP allows you to recreate the surreal "Wood effect"—where green foliage turns a glowing snowy white and clear blue skies turn dark and dramatic. This step-by-step guide explains how to use GIMP's Channel Mixer, Curv" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-simulate-infrared-photography-in-gimp">How to Simulate
+Infrared Photography in GIMP</h1>
+<p>Simulating infrared photography in GIMP allows you to recreate the
+surreal "Wood effect"—where green foliage turns a glowing snowy white
+and clear blue skies turn dark and dramatic. This step-by-step guide
+explains how to use GIMP's Channel Mixer, Curves, and blur filters to
+transform a standard digital color landscape into a realistic
+black-and-white infrared simulation.</p>
+<h3 id="1-select-the-right-image">1. Select the Right Image</h3>
+<p>Choose a high-contrast landscape photograph that features abundant
+green foliage, vegetation, and a clear blue sky. The infrared effect
+relies on manipulating green and blue color channels, making greenery
+and open skies the most effective subjects.</p>
+<h3 id="2-duplicate-the-base-layer">2. Duplicate the Base Layer</h3>
+<p>Open your image in GIMP. In the <strong>Layers</strong> dialog on the
+right, right-click your background layer and select <strong>Duplicate
+Layer</strong> (or press <code>Ctrl + Shift + D</code>). Rename this
+layer to "IR Base" to keep your original photograph untouched.</p>
+<h3 id="3-use-the-channel-mixer">3. Use the Channel Mixer</h3>
+<p>With the "IR Base" layer selected, go to the top menu and select
+<strong>Colors &gt; Components &gt; Channel Mixer</strong>.</p>
+<ol type="1">
+<li>Check the <strong>Monochrome</strong> box at the bottom of the
+dialog.</li>
+<li>Set the <strong>Red</strong> channel to <strong>+100%</strong>.</li>
+<li>Set the <strong>Green</strong> channel to <strong>+100%</strong> to
+<strong>+150%</strong> (this drastically brightens the foliage).</li>
+<li>Set the <strong>Blue</strong> channel to <strong>-50%</strong> to
+<strong>-100%</strong> (this darkens the blue sky and water).</li>
+<li>Click <strong>OK</strong> to apply the channel values.</li>
+</ol>
+<h3 id="4-enhance-the-infrared-glow-wood-effect">4. Enhance the Infrared
+Glow (Wood Effect)</h3>
+<p>Infrared film naturally creates a soft, ethereal glow around
+highlights known as the Wood effect.</p>
+<ol type="1">
+<li>Duplicate the "IR Base" layer and name the new layer "IR Glow".</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur...</strong></li>
+<li>Set both the <strong>Size X</strong> and <strong>Size Y</strong> to
+around <strong>15 to 30 pixels</strong> (depending on your image
+resolution) and click <strong>OK</strong>.</li>
+<li>Change the <strong>Mode</strong> of the "IR Glow" layer from
+<em>Normal</em> to <strong>Screen</strong> or <strong>Soft
+Light</strong>.</li>
+<li>Lower the layer <strong>Opacity</strong> to between <strong>30% and
+50%</strong> until the highlight bloom looks natural.</li>
+</ol>
+<h3 id="5-adjust-tone-and-contrast">5. Adjust Tone and Contrast</h3>
+<p>To give the image the deep contrast typical of infrared film:</p>
+<ol type="1">
+<li>Right-click the top layer and select <strong>New from
+Visible</strong>.</li>
+<li>Go to <strong>Colors &gt; Curves...</strong></li>
+<li>Create a subtle S-curve by dragging the lower-left section down
+slightly to deepen the dark skies, and dragging the upper-right section
+up to make the foliage glow brightly.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="6-export-the-final-image">6. Export the Final Image</h3>
+<p>Go to <strong>File &gt; Export As...</strong>, choose your preferred
+format (such as JPEG or PNG), and save your completed infrared
+simulation.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

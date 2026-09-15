@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does the Lock Path Button Do in GIMP? - gimp</title>
+    <meta name="description" content="The Lock Path feature in GIMP is a critical safeguard designed to protect intricate vector paths from accidental edits, transformations, and deletions. By toggling the lock options in the Paths dialog, users can preserve the precise placement of anchor p">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/what-does-the-lock-path-button-do-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does the Lock Path Button Do in GIMP? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/what-does-the-lock-path-button-do-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Lock Path feature in GIMP is a critical safeguard designed to protect intricate vector paths from accidental edits, transformations, and deletions. By toggling the lock options in the Paths dialog, users can preserve the precise placement of anchor p" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-does-the-lock-path-button-do-in-gimp">What Does the Lock
+Path Button Do in GIMP?</h1>
+<p>The Lock Path feature in GIMP is a critical safeguard designed to
+protect intricate vector paths from accidental edits, transformations,
+and deletions. By toggling the lock options in the Paths dialog, users
+can preserve the precise placement of anchor points and control handles
+while continuing to work freely on other layers and elements within a
+project. This article explains how the Lock Path function works, the
+specific protections it provides, and why it is indispensable when
+handling complex vector graphics.</p>
+<h3 id="core-functions-of-the-lock-path-button">Core Functions of the
+Lock Path Button</h3>
+<p>In GIMP, the Paths dialog provides dedicated lock icons located at
+the top of the panel. Activating these toggles on a selected path
+establishes specific restrictions:</p>
+<ul>
+<li><strong>Lock Path Strokes:</strong> Prevents any manual adjustments
+to the path's components. When active, you cannot add, delete, or move
+anchor points or directional handles using the Paths Tool.</li>
+<li><strong>Lock Position and Size:</strong> Prevents transformations.
+This stops tools like the Move, Rotate, Scale, and Shear tools from
+shifting or resizing the vector shape, even if the path is active or
+linked.</li>
+</ul>
+<h3 id="protection-for-complex-vector-shapes">Protection for Complex
+Vector Shapes</h3>
+<p>Complex vector paths often involve dozens or hundreds of precisely
+placed nodes to create smooth curves, detailed silhouettes, or intricate
+masks. Without protection, simple workflow mistakes can compromise this
+work.</p>
+<p>The lock functionality accomplishes the following:</p>
+<ul>
+<li><strong>Eliminates Accidental Clicks:</strong> When switching
+between tools, clicking on an active, unlocked path with the Path Tool
+can inadvertently create a new node, split a segment, or shift a control
+handle. Locking ensures the geometry remains static.</li>
+<li><strong>Safe Canvas Navigation:</strong> Using the Move Tool on the
+canvas can accidentally grab an active path instead of the intended
+layer. Locking the position prevents unintended displacement.</li>
+<li><strong>Preserves Base Shapes During Operations:</strong> Locked
+paths can still be referenced—such as generating a selection from the
+path, stroking the path onto a raster layer, or duplicating it—without
+risking alterations to the original vector source.</li>
+</ul>
+<h3 id="how-to-lock-a-path">How to Lock a Path</h3>
+<ol type="1">
+<li>Open the <strong>Paths</strong> dialog
+(<code>Windows &gt; Dockable Dialogs &gt; Paths</code>).</li>
+<li>Click on the path you want to protect to highlight it.</li>
+<li>At the top of the Paths tab, click the <strong>Lock
+pixels/strokes</strong> icon (paintbrush with a cross) or the
+<strong>Lock position and size</strong> icon (four-way arrow with a
+cross) depending on the level of protection needed.</li>
+</ol>
+<p>Once engaged, the path remains fully visible and usable as a guide or
+selection source, but its geometry and placement are completely shielded
+from unintended modifications.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

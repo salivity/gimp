@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GeglBuffer Handles Non-Contiguous Memory in GIMP - gimp</title>
+    <meta name="description" content="This article provides an overview of how the Generic Graphics Library (GEGL) powers GIMP's memory infrastructure through the GeglBuffer tile management system. Rather than forcing the operating system to allocate single, massive blocks of linear memory f">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gegl-buffer-handles-non-contiguous-memory-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GeglBuffer Handles Non-Contiguous Memory in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gegl-buffer-handles-non-contiguous-memory-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of how the Generic Graphics Library (GEGL) powers GIMP's memory infrastructure through the GeglBuffer tile management system. Rather than forcing the operating system to allocate single, massive blocks of linear memory f" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-geglbuffer-handles-non-contiguous-memory-in-gimp">How
+GeglBuffer Handles Non-Contiguous Memory in GIMP</h1>
+<p>This article provides an overview of how the Generic Graphics Library
+(GEGL) powers GIMP's memory infrastructure through the
+<code>GeglBuffer</code> tile management system. Rather than forcing the
+operating system to allocate single, massive blocks of linear memory for
+high-resolution images, <code>GeglBuffer</code> partitions pixel data
+into independent, uniform tiles managed via an indexed hierarchy. This
+approach allows GIMP to efficiently handle non-contiguous memory
+allocations, dynamic paging, and smooth canvas manipulation without
+relying on contiguous address space.</p>
+<h3 id="the-tile-based-architecture">The Tile-Based Architecture</h3>
+<p>Traditional image processing relies on large, flat raster buffers
+where pixels are laid out sequentially in memory. For massive or
+multi-layered canvases, this demands enormous contiguous blocks of RAM
+that frequently lead to memory fragmentation and allocation failures.
+<code>GeglBuffer</code> circumvents this by subdividing the 2D image
+plane into uniform, rectangular units called tiles (typically 128×128 or
+64×64 pixels).</p>
+<p>Each tile represents an isolated payload of raw pixel data that is
+allocated individually on the heap. Because each tile is an independent
+entity, the total memory required for an image can be scattered across
+physically non-contiguous locations in system memory.</p>
+<h3 id="indexing-and-sparse-allocation">Indexing and Sparse
+Allocation</h3>
+<p>To manage non-contiguous tiles without performance degradation,
+<code>GeglBuffer</code> uses a spatial coordinate system mapped through
+internal index structures. When an operation addresses a coordinate
+<code>(x, y)</code> on the canvas, the system divides the coordinates by
+the tile dimensions to determine the tile index.</p>
+<p>This index maps to an array or hash-based lookup structure managed by
+<code>GeglTileSource</code> and <code>GeglTileBackend</code>. This
+decoupled architecture enables sparse storage:</p>
+<ul>
+<li><strong>Unallocated Regions:</strong> Empty or transparent canvas
+areas do not require allocated memory until drawn upon.</li>
+<li><strong>Lazy Allocation:</strong> Tiles are only brought into
+physical memory when explicitly read or written to.</li>
+<li><strong>Shared Storage:</strong> Redundant or duplicate tiles (such
+as fully transparent blocks across multiple layers) can point to a
+single shared, copy-on-write memory reference.</li>
+</ul>
+<h3 id="linearization-for-filters-and-operations">Linearization for
+Filters and Operations</h3>
+<p>While non-contiguous storage is optimal for system memory, graphics
+processing operations often require linear memory arrays to perform
+convolution, color correction, and blending efficiently.
+<code>GeglBuffer</code> bridges this gap using memory access
+abstractions rather than exposing raw tile pointers directly to
+operations.</p>
+<p>Developers interact with non-contiguous data through APIs such as
+<code>gegl_buffer_get()</code> and <code>gegl_buffer_set()</code>, as
+well as <code>GeglBufferIterator</code>. When a process requests a
+region of interest (ROI) that spans across multiple non-contiguous
+tiles, the iterator fetches the relevant tiles, linearizes their
+contents into a small, temporary contiguous buffer, and feeds it to the
+processing pipeline. Once the operation finishes, the iterator
+distributes the modified data back into their respective non-contiguous
+tile destinations.</p>
+<h3 id="caching-and-disk-swapping-via-gegltilecache">Caching and Disk
+Swapping via GeglTileCache</h3>
+<p>Because tiles exist as distinct memory entities,
+<code>GeglBuffer</code> incorporates a sophisticated caching subsystem
+called <code>GeglTileCache</code>. The cache tracks tile activity using
+a Least Recently Used (LRU) algorithm.</p>
+<p>When GIMP approaches configured RAM thresholds,
+<code>GeglTileCache</code> does not need to defragment or relocate the
+entire image. Instead, it serializes inactive, non-contiguous tiles
+individually to disk-backed swap files. When those tiles are required
+again, they are loaded back into any available, arbitrary memory
+addresses, completely freeing GIMP from the constraints of host memory
+contiguity.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

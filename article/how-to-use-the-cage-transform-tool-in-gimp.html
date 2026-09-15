@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Cage Transform Tool in GIMP - gimp</title>
+    <meta name="description" content="The Cage Transform tool in GIMP allows you to warp, stretch, and reshape specific areas of an image by building a custom polygonal cage around your subject. By creating anchor points along the contours of a subject, you generate a multi-point deformation">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-the-cage-transform-tool-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Cage Transform Tool in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-the-cage-transform-tool-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Cage Transform tool in GIMP allows you to warp, stretch, and reshape specific areas of an image by building a custom polygonal cage around your subject. By creating anchor points along the contours of a subject, you generate a multi-point deformation" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-cage-transform-tool-in-gimp">How to Use the Cage
+Transform Tool in GIMP</h1>
+<p>The Cage Transform tool in GIMP allows you to warp, stretch, and
+reshape specific areas of an image by building a custom polygonal cage
+around your subject. By creating anchor points along the contours of a
+subject, you generate a multi-point deformation mesh that recalculates
+and bends the underlying pixels when points are repositioned. This guide
+explains how to set up your image, construct a multi-point deformation
+mesh, manipulate vertices, and apply your final transformation
+efficiently.</p>
+<h3 id="1-select-the-cage-transform-tool">1. Select the Cage Transform
+Tool</h3>
+<p>Open your image in GIMP and ensure the target layer is selected in
+the <strong>Layers</strong> panel. Activate the Cage Transform tool
+using one of the following methods:</p>
+<ul>
+<li>Go to the top menu and select <strong>Tools &gt; Transform Tools
+&gt; Cage Transform</strong>.</li>
+<li>Click the Cage Transform icon in the Toolbox (it resembles an
+outlined polygon with handles).</li>
+<li>Press the keyboard shortcut <strong>Shift + G</strong>.</li>
+</ul>
+<h3 id="2-configure-the-tool-options">2. Configure the Tool Options</h3>
+<p>Look at the <strong>Tool Options</strong> dockable dialog (typically
+on the left side under the Toolbox). Under the Cage Transform settings,
+you will see two main modes:</p>
+<ul>
+<li><strong>Create or adjust the cage:</strong> Used for plotting and
+repositioning your anchor points to define the mesh.</li>
+<li><strong>Deform the cage to produce the image:</strong> Used for
+moving the points to warp the graphic.</li>
+</ul>
+<p>Ensure <strong>Create or adjust the cage</strong> is selected before
+you begin plotting points. You can also toggle the <strong>Fill the
+original position of the cage with a plain color</strong> option
+depending on whether you want transparency or a solid fill left behind
+when pixels are stretched.</p>
+<h3 id="3-build-the-deformation-mesh">3. Build the Deformation Mesh</h3>
+<p>To construct the cage around your target area:</p>
+<ol type="1">
+<li><strong>Place the initial point:</strong> Left-click on the canvas
+near the boundary of the object you want to distort.</li>
+<li><strong>Add surrounding points:</strong> Continue clicking along the
+perimeter of the object to place additional nodes. For smooth, organic
+deformations (such as limbs, fabric, or faces), place points closer
+together around joints and curves. For broad adjustments, fewer points
+are sufficient.</li>
+<li><strong>Close the mesh:</strong> Hover over the very first point you
+created until it highlights, then left-click it. This connects the final
+segment and closes the cage, which establishes the deformation
+mesh.</li>
+</ol>
+<h3 id="4-adjust-the-mesh-before-deforming">4. Adjust the Mesh Before
+Deforming</h3>
+<p>If any points are misplaced after closing the cage:</p>
+<ul>
+<li>While still in <strong>Create or adjust the cage</strong> mode,
+click and drag any existing point to fine-tune its position along your
+subject's outline.</li>
+<li>To add an extra point along an existing edge, click directly on the
+segment between two existing nodes.</li>
+</ul>
+<h3 id="5-deform-the-image-using-the-mesh">5. Deform the Image Using the
+Mesh</h3>
+<p>Once your mesh accurately encompasses the target area, you are ready
+to deform the pixels:</p>
+<ol type="1">
+<li>In the Tool Options dialog, switch the mode to <strong>Deform the
+cage to produce the image</strong> (GIMP usually switches to this
+automatically once the cage is closed).</li>
+<li>Click and drag any point on the mesh. GIMP will recalculate the
+pixels inside the cage and stretch or compress them based on the new
+point coordinates.</li>
+<li>To move multiple points at the same time, hold
+<strong>Shift</strong> and click each point you wish to select, then
+drag one of the selected points to move the entire group together.</li>
+</ol>
+<h3 id="6-commit-the-transformation">6. Commit the Transformation</h3>
+<p>When you are satisfied with the deformation, press
+<strong>Enter</strong> on your keyboard to render and commit the changes
+to the active layer. To cancel the operation at any time prior to
+pressing Enter, select another tool from the Toolbox or press
+<strong>Esc</strong>.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Brush Aspect Ratio, Angle, and Spikes in GIMP - gimp</title>
+    <meta name="description" content="GIMP’s Brush Editor provides granular control over parametric brush tips, allowing you to reshape, rotate, and transform standard brushes for specialized digital painting and drawing effects. By adjusting parameters such as aspect ratio, angle, and spi">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/adjust-brush-aspect-ratio-angle-and-spikes-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Brush Aspect Ratio, Angle, and Spikes in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/adjust-brush-aspect-ratio-angle-and-spikes-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s Brush Editor provides granular control over parametric brush tips, allowing you to reshape, rotate, and transform standard brushes for specialized digital painting and drawing effects. By adjusting parameters such as aspect ratio, angle, and spi" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-brush-aspect-ratio-angle-and-spikes-in-gimp">Adjust Brush
+Aspect Ratio, Angle, and Spikes in GIMP</h1>
+<p>GIMP’s Brush Editor provides granular control over parametric brush
+tips, allowing you to reshape, rotate, and transform standard brushes
+for specialized digital painting and drawing effects. By adjusting
+parameters such as aspect ratio, angle, and spikes, you can convert
+basic circular or square tips into calligraphic pens, flat shading
+tools, and multi-pointed star stamps. This guide details where these
+specific settings are located and how each option alters the brush's
+appearance.</p>
+<h3 id="accessing-the-brush-editor">Accessing the Brush Editor</h3>
+<p>The Brush Editor only works with generated (parametric) brushes, not
+static raster images (such as <code>.gbr</code> files). To open the
+editor:</p>
+<ol type="1">
+<li>Open the <strong>Brushes</strong> dialog dock (go to <strong>Windows
+&gt; Dockable Dialogs &gt; Brushes</strong>).</li>
+<li>Select any parametric brush (indicated by a small blue gear icon in
+the lower-right corner of the thumbnail).</li>
+<li>Click the <strong>Edit this brush</strong> button at the bottom of
+the dialog, or double-click the selected brush thumbnail.</li>
+</ol>
+<h3 id="aspect-ratio">Aspect Ratio</h3>
+<p>The <strong>Aspect Ratio</strong> slider controls the relationship
+between the width and the height of the brush tip.</p>
+<ul>
+<li><strong>How it works:</strong> Increasing the slider value squashes
+the brush shape, transforming a circle into an ellipse or a square into
+a rectangle.</li>
+<li><strong>Usage:</strong> A higher aspect ratio is useful for creating
+calligraphic nibs, chisel-tip pens, or thin directional lines.</li>
+</ul>
+<h3 id="angle">Angle</h3>
+<p>The <strong>Angle</strong> slider rotates the brush tip around its
+center axis.</p>
+<ul>
+<li><strong>How it works:</strong> Adjustable from 0.0 to 180.0 degrees,
+this setting rotates the orientation of the brush.</li>
+<li><strong>Usage:</strong> While rotation has no visible effect on a
+standard symmetrical circle, it directly alters brushes that have a
+modified aspect ratio, an asymmetrical shape, or multiple spikes.
+Setting an angle on an oval brush establishes the angle of attack for
+calligraphy strokes.</li>
+</ul>
+<h3 id="spikes">Spikes</h3>
+<p>The <strong>Spikes</strong> slider determines the number of points or
+vertices on the brush tip.</p>
+<ul>
+<li><strong>How it works:</strong> This setting requires the brush
+<strong>Shape</strong> to be set to a diamond or star polygon. The
+slider accepts integer values ranging from 2 to 20. A setting of 2
+creates a flattened line/oval tip, 3 creates a triangle, 4 produces a
+diamond/four-point star, and higher values produce starburst patterns or
+complex polygons.</li>
+<li><strong>Usage:</strong> Modifying spikes allows you to generate
+custom geometric stamps, sparkle effects, and complex textured tips
+without needing to import custom image files.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

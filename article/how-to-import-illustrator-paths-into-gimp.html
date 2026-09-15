@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Illustrator Paths into GIMP - gimp</title>
+    <meta name="description" content="Transferring vector paths from Adobe Illustrator to GIMP allows you to manipulate outlines, create precise selections, and stroke paths inside an open-source raster workflow. You can bring vector paths into GIMP using two primary techniques: saving and l">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-import-illustrator-paths-into-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Illustrator Paths into GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-import-illustrator-paths-into-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transferring vector paths from Adobe Illustrator to GIMP allows you to manipulate outlines, create precise selections, and stroke paths inside an open-source raster workflow. You can bring vector paths into GIMP using two primary techniques: saving and l" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-illustrator-paths-into-gimp">How to Import
+Illustrator Paths into GIMP</h1>
+<p>Transferring vector paths from Adobe Illustrator to GIMP allows you
+to manipulate outlines, create precise selections, and stroke paths
+inside an open-source raster workflow. You can bring vector paths into
+GIMP using two primary techniques: saving and loading an SVG file
+through GIMP's Paths panel, or copying vector data directly to the
+clipboard and pasting it as a native GIMP path. Both methods retain the
+mathematical bezier curve data of your original Illustrator artwork
+rather than rasterizing it into pixels.</p>
+<h2 id="method-1-import-paths-using-the-file-loader-svg">Method 1:
+Import Paths Using the File Loader (SVG)</h2>
+<p>Exporting your Illustrator vector work as an SVG file is the most
+reliable method for complex or multi-layered shapes.</p>
+<h3 id="step-1-export-from-adobe-illustrator">Step 1: Export from Adobe
+Illustrator</h3>
+<ol type="1">
+<li>Open your project in Adobe Illustrator and select the vector paths
+you wish to export.</li>
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export &gt; Export for Screens</strong>.</li>
+<li>Set the file format dropdown to <strong>SVG (*.SVG)</strong>.</li>
+<li>Choose your destination folder and click <strong>Save</strong>. In
+the SVG Options dialog, the default settings are typically sufficient;
+click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-load-the-path-into-gimp">Step 2: Load the Path into
+GIMP</h3>
+<ol type="1">
+<li>Open GIMP and open your target image or create a new canvas
+(<strong>File &gt; New</strong>).</li>
+<li>Open the Paths dialog by going to <strong>Windows &gt; Dockable
+Dialogs &gt; Paths</strong>.</li>
+<li>Right-click anywhere in the empty space inside the
+<strong>Paths</strong> dockable dialog.</li>
+<li>Select <strong>Import Path...</strong> from the context menu.</li>
+<li>In the file browser, locate the SVG file you exported from
+Illustrator.</li>
+<li>Check the box labeled <strong>Merge imported paths</strong> if you
+want multi-segment shapes combined into a single path entry, or leave it
+unchecked to keep distinct paths separate.</li>
+<li>Click <strong>Open</strong>. Your Illustrator vector paths will now
+appear in GIMP's Paths list.</li>
+</ol>
+<hr />
+<h2 id="method-2-import-paths-via-the-clipboard">Method 2: Import Paths
+via the Clipboard</h2>
+<p>If you are working quickly and only need a few simple paths, you can
+use your operating system's clipboard without generating a temporary
+file.</p>
+<h3 id="step-1-copy-from-adobe-illustrator">Step 1: Copy from Adobe
+Illustrator</h3>
+<ol type="1">
+<li>In Adobe Illustrator, select the vector objects or paths using the
+<strong>Selection Tool (V)</strong> or <strong>Direct Selection Tool
+(A)</strong>.</li>
+<li>Ensure Illustrator is configured to copy SVG data to the clipboard:
+<ul>
+<li>Go to <strong>Edit &gt; Preferences &gt; Clipboard Handling</strong>
+(Windows) or <strong>Illustrator &gt; Preferences &gt; Clipboard
+Handling</strong> (macOS).</li>
+<li>Check the box labeled <strong>Include SVG Code</strong>.</li>
+</ul></li>
+<li>Press <strong>Ctrl + C</strong> (Windows) or <strong>Cmd +
+C</strong> (macOS) to copy the selected paths.</li>
+</ol>
+<h3 id="step-2-paste-as-a-path-in-gimp">Step 2: Paste as a Path in
+GIMP</h3>
+<ol type="1">
+<li>Switch to GIMP with your project canvas active.</li>
+<li>Go to the <strong>Paths</strong> dialog (<strong>Windows &gt;
+Dockable Dialogs &gt; Paths</strong>).</li>
+<li>Right-click inside the list area of the Paths panel.</li>
+<li>Select <strong>Paste Path</strong> from the menu.</li>
+<li>The vector path will immediately generate inside the Paths list,
+retaining its original anchor points and curves.</li>
+</ol>
+<hr />
+<h2 id="working-with-the-imported-path-in-gimp">Working with the
+Imported Path in GIMP</h2>
+<p>Once your paths appear in GIMP's Paths dialog:</p>
+<ul>
+<li><strong>Make Path Visible:</strong> Click the eye icon toggle next
+to the path name to display the outline on your canvas.</li>
+<li><strong>Edit Path:</strong> Select the <strong>Paths Tool
+(B)</strong> from the toolbox and click on the canvas path to adjust
+anchor points and handles.</li>
+<li><strong>Convert to Selection:</strong> Click the <strong>Path to
+Selection</strong> button at the bottom of the Paths dialog, or press
+<strong>Shift + V</strong>, to turn the vector outline into a raster
+selection.</li>
+<li><strong>Stroke Path:</strong> Click <strong>Stroke Path...</strong>
+at the bottom of the Paths dialog to automatically paint along the
+imported vector lines using a solid color, pattern, or paint tool.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

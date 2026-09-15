@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Fisheye Lens Simulation With Spherize Filter - gimp</title>
+    <meta name="description" content="The GEGL Spherize filter in GIMP is a distortion tool that maps an image onto a virtual sphere, accurately reproducing the optical curvature of an ultra-wide fisheye lens. This guide covers how to prepare your image layer, access the built-in GEGL Spheri">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-fisheye-lens-simulation-with-spherize-filter">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Fisheye Lens Simulation With Spherize Filter - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-fisheye-lens-simulation-with-spherize-filter" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Spherize filter in GIMP is a distortion tool that maps an image onto a virtual sphere, accurately reproducing the optical curvature of an ultra-wide fisheye lens. This guide covers how to prepare your image layer, access the built-in GEGL Spheri" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-fisheye-lens-simulation-with-spherize-filter">GIMP Fisheye
+Lens Simulation With Spherize Filter</h1>
+<p>The GEGL Spherize filter in GIMP is a distortion tool that maps an
+image onto a virtual sphere, accurately reproducing the optical
+curvature of an ultra-wide fisheye lens. This guide covers how to
+prepare your image layer, access the built-in GEGL Spherize filter, tune
+the distortion parameters for a realistic barrel effect, and optionally
+create a circular lens border.</p>
+<h3 id="1-prepare-your-layer">1. Prepare Your Layer</h3>
+<ol type="1">
+<li>Open your image in GIMP by selecting <strong>File</strong> &gt;
+<strong>Open</strong>.</li>
+<li>Right-click the active layer in the <strong>Layers</strong> panel
+and select <strong>Add Alpha Channel</strong> to ensure transparency
+support.</li>
+<li>If you want a non-destructive workflow, right-click the layer and
+choose <strong>Duplicate Layer</strong> to preserve your original
+image.</li>
+</ol>
+<h3 id="2-open-the-spherize-filter">2. Open the Spherize Filter</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Filters</strong> &gt;
+<strong>Distorts</strong> &gt; <strong>Spherize...</strong>.</li>
+<li>A settings dialog will appear with an active real-time preview on
+your canvas. Ensure the <strong>Preview</strong> and <strong>Split
+view</strong> toggles are configured to your preference.</li>
+</ol>
+<h3 id="3-adjust-the-core-settings-for-a-fisheye-effect">3. Adjust the
+Core Settings for a Fisheye Effect</h3>
+<p>To replicate the optical distortion of a physical fisheye lens,
+configure the following parameters:</p>
+<ul>
+<li><strong>Mode</strong>: Set this to <strong>Radial</strong>. Radial
+mode applies the distortion symmetrically in all directions from the
+center, which is necessary for a true camera lens simulation.</li>
+<li><strong>Curvature</strong>: Adjust the slider to a positive value. A
+positive curvature pushes the center outward toward the viewer, creating
+the characteristic "barrel" distortion of a fisheye lens. For subtle
+wide-angle effects, use a lower value (around 0.2 to 0.5). For extreme
+fisheye effects, push the value closer to 1.0.</li>
+<li><strong>Amount</strong>: Keep this set to 1.0 for the full effect of
+your curvature setting, or lower it slightly to blend the distortion
+with the flat original image.</li>
+<li><strong>Radius / Scaling</strong>: By default, the filter scales the
+effect to the edges of the active layer. Ensure the center coordinates
+(X and Y) are aligned with the optical center of your composition
+(typically 0.500 and 0.500).</li>
+</ul>
+<p>Once the distortion looks natural, click <strong>OK</strong> to apply
+the filter.</p>
+<h3 id="4-create-an-optional-circular-fisheye-mask">4. Create an
+Optional Circular Fisheye Mask</h3>
+<p>True circular fisheye lenses produce a round image surrounded by a
+solid black circle. To simulate this:</p>
+<ol type="1">
+<li>Select the <strong>Ellipse Select Tool</strong> (<code>E</code>)
+from the toolbox.</li>
+<li>In the Tool Options, check <strong>Fixed: Aspect Ratio</strong> and
+set it to <code>1:1</code>.</li>
+<li>Draw a circle starting from the center outward across the main
+subject area.</li>
+<li>Invert the selection by going to <strong>Select</strong> &gt;
+<strong>Invert</strong> (<code>Ctrl + I</code> or
+<code>Cmd + I</code>).</li>
+<li>Set your background color to black, create a new blank layer beneath
+your distorted image, and fill the outer inverted area with black using
+the <strong>Bucket Fill Tool</strong> or simply delete the excess area
+to transparent edges.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

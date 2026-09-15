@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Shadow Color Casts with GIMP Levels Tool - gimp</title>
+    <meta name="description" content="Unwanted color tints in the dark tones of an image can ruin contrast and throw off the overall color balance. In GIMP, the Levels tool features a dedicated black point eyedropper that provides a fast, precise method to neutralize stubborn color casts in">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/remove-shadow-color-casts-with-gimp-levels-tool">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Remove Shadow Color Casts with GIMP Levels Tool - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/remove-shadow-color-casts-with-gimp-levels-tool" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Unwanted color tints in the dark tones of an image can ruin contrast and throw off the overall color balance. In GIMP, the Levels tool features a dedicated black point eyedropper that provides a fast, precise method to neutralize stubborn color casts in" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="remove-shadow-color-casts-with-gimp-levels-tool">Remove Shadow
+Color Casts with GIMP Levels Tool</h1>
+<p>Unwanted color tints in the dark tones of an image can ruin contrast
+and throw off the overall color balance. In GIMP, the Levels tool
+features a dedicated black point eyedropper that provides a fast,
+precise method to neutralize stubborn color casts in shadow regions. By
+sampling an area that should be a neutral, deep tone, GIMP automatically
+shifts the individual red, green, and blue color channels to eliminate
+the cast and restore natural tonal depth.</p>
+<h3 id="step-1-open-the-levels-dialog">Step 1: Open the Levels
+Dialog</h3>
+<p>Open your image in GIMP and navigate to the top menu. Select
+<strong>Colors</strong> and click on <strong>Levels...</strong> to
+launch the Levels tool interface.</p>
+<h3 id="step-2-locate-the-target-shadow">Step 2: Locate the Target
+Shadow</h3>
+<p>Zoom in closely on your image to find a dark area that is intended to
+be pure black or a deep neutral gray. Avoid areas that have natural
+color reflections (such as foliage reflections on dark water); instead,
+look for deep crevices, dark fabrics, or core shadows that are visibly
+tinted by ambient light or camera sensor white-balance errors.</p>
+<h3 id="step-3-activate-the-black-point-eyedropper">Step 3: Activate the
+Black Point Eyedropper</h3>
+<p>In the Levels dialog box, locate the three eyedropper icons
+positioned beneath the Input Levels histogram. The leftmost dropper icon
+is the <strong>Pick black point</strong> eyedropper. Click it to
+activate the tool.</p>
+<h3 id="step-4-sample-the-cast-to-neutralize">Step 4: Sample the Cast to
+Neutralize</h3>
+<p>Click directly on the tinted shadow pixel you identified. Once
+clicked, GIMP analyzes the RGB values of that specific pixel. It maps
+those values to absolute black (<span class="math inline">\(0, 0,
+0\)</span>), automatically compensating across the Red, Green, and Blue
+channels independently. This instantly neutralizes the color cast across
+the entire tonal shadow range.</p>
+<h3 id="step-5-fine-tune-stubborn-casts-and-clipping">Step 5: Fine-Tune
+Stubborn Casts and Clipping</h3>
+<p>Because individual pixels in digital images can contain sensor noise,
+clicking a single pixel can sometimes cause harsh shadow clipping or
+introduce an opposite tint. If this occurs:</p>
+<ul>
+<li>Press <strong>Ctrl + Z</strong> inside the dialog or use the
+<strong>Reset</strong> button to revert.</li>
+<li>Try clicking an adjacent shadow pixel to find an average tone that
+produces a balanced result.</li>
+<li>If the shadows become too dark or crushed, switch the
+<strong>Channel</strong> dropdown at the top of the Levels dialog back
+to <strong>Value</strong>, then slightly drag the middle (gray) slider
+to the left or nudge the bottom <strong>Output Levels</strong> black
+slider slightly to the right to lift the blacks while retaining the
+corrected color tint.</li>
+</ul>
+<p>Click <strong>OK</strong> to apply the color correction to your
+layer.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

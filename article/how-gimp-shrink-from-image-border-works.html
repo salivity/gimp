@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Shrink from Image Border Works - gimp</title>
+    <meta name="description" content="When adjusting active selections in GIMP, shrinking a selection that touches the edge of your canvas can lead to unintentional gaps, halos, or missed pixels along the perimeter. This article explains how GIMP's "Shrink from image border" setting controls">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-shrink-from-image-border-works">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Shrink from Image Border Works - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-shrink-from-image-border-works" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When adjusting active selections in GIMP, shrinking a selection that touches the edge of your canvas can lead to unintentional gaps, halos, or missed pixels along the perimeter. This article explains how GIMP's "Shrink from image border" setting controls" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-shrink-from-image-border-works">How GIMP Shrink from
+Image Border Works</h1>
+<p>When adjusting active selections in GIMP, shrinking a selection that
+touches the edge of your canvas can lead to unintentional gaps, halos,
+or missed pixels along the perimeter. This article explains how GIMP's
+"Shrink from image border" setting controls edge-reduction behavior, why
+unwanted borders occur when shrinking, and how unchecking this option
+anchors your selections to the canvas boundaries to ensure clean
+edits.</p>
+<h3 id="the-problem-unwanted-perimeter-gaps">The Problem: Unwanted
+Perimeter Gaps</h3>
+<p>When you use the <strong>Select &gt; Shrink</strong> command in GIMP,
+the software reduces the size of your active selection uniformly by a
+specified number of pixels. By default, the algorithm calculates this
+contraction from all outer limits of the selected area.</p>
+<p>If your selection extends to the absolute edge of the canvas,
+standard shrinking pulls the boundary inward from the image borders.
+This creates a thin, unselected margin—typically 1 to several pixels
+wide—between the canvas edge and the newly shrunk selection. If you
+intend to delete, mask, or apply filters to the interior without
+affecting the outer margins, this gap creates visible seams, color
+bleed, or unwanted frame lines around the perimeter of the final
+image.</p>
+<h3 id="how-the-shrink-from-image-border-option-works">How the "Shrink
+from image border" Option Works</h3>
+<p>The <strong>Shrink from image border</strong> checkbox is located
+inside the <strong>Shrink Selection</strong> dialog box
+(<code>Select &gt; Shrink...</code>). It dictates how the algorithm
+treats selections that contact the outer canvas frame:</p>
+<ul>
+<li><strong>When Enabled (Checked):</strong> GIMP treats the image
+border as a standard selection edge. The selection shrinks inward from
+all sides, pulling away from the canvas edges and creating an unselected
+perimeter strip.</li>
+<li><strong>When Disabled (Unchecked):</strong> GIMP ignores the canvas
+boundaries during the shrink calculation. Any part of the selection
+touching the outer limits of the image remains firmly anchored to the
+canvas edge, shrinking only from interior contours or elements that do
+not touch the frame.</li>
+</ul>
+<h3 id="preventing-edge-artifacts">Preventing Edge Artifacts</h3>
+<p>Disabling "Shrink from image border" is critical when working with
+backgrounds, full-bleed layers, or edge-to-edge subjects:</p>
+<ol type="1">
+<li><strong>Eliminating Single-Pixel Halos:</strong> When isolating
+objects or cutting backgrounds that reach the sides of the frame,
+leaving the option checked often leaves behind a thin, untreated
+single-pixel line against the image border. Disabling it ensures edits
+stay flush with the canvas edge.</li>
+<li><strong>Maintaining Clean Composites:</strong> When resizing inner
+selections to apply gradients, feathering, or blurs across a full image,
+unchecking the option ensures the effect smoothly extends out of frame
+rather than stopping abruptly just short of the image boundary.</li>
+<li><strong>Consistent Alpha Channels:</strong> When clearing
+backgrounds to transparent, an inadvertent shrink from the edge leaves
+an opaque fringe. Anchoring the selection prevents this edge fringing
+completely.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

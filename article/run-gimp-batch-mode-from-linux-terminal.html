@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run GIMP Batch Mode from Linux Terminal - gimp</title>
+    <meta name="description" content="This article explains how to execute the GNU Image Manipulation Program (GIMP) in a non-interactive batch mode directly from a Linux bash shell. By running GIMP without its graphical user interface, you can automate repetitive image editing tasks, such a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/run-gimp-batch-mode-from-linux-terminal">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Run GIMP Batch Mode from Linux Terminal - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/run-gimp-batch-mode-from-linux-terminal" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to execute the GNU Image Manipulation Program (GIMP) in a non-interactive batch mode directly from a Linux bash shell. By running GIMP without its graphical user interface, you can automate repetitive image editing tasks, such a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="run-gimp-batch-mode-from-linux-terminal">Run GIMP Batch Mode
+from Linux Terminal</h1>
+<p>This article explains how to execute the GNU Image Manipulation
+Program (GIMP) in a non-interactive batch mode directly from a Linux
+bash shell. By running GIMP without its graphical user interface, you
+can automate repetitive image editing tasks, such as resizing,
+converting formats, or applying filters. The following sections break
+down the essential command-line arguments, provide syntax for Script-Fu
+commands, and demonstrate how to process images automatically without
+manual user intervention.</p>
+<h3 id="essential-command-line-flags">Essential Command-Line Flags</h3>
+<p>To run GIMP without launching the user interface, you must use
+specific command-line switches in your terminal:</p>
+<ul>
+<li><code>-i</code> or <code>--no-interface</code>: Runs GIMP without
+the graphical user interface (GUI).</li>
+<li><code>-b</code> or <code>--batch</code>: Specifies the command to
+execute. Multiple <code>-b</code> commands can be chained together and
+are processed in order.</li>
+<li><code>--batch-interpreter</code>: Specifies which interpreter should
+handle the batch commands (defaults to Script-Fu/TinyScheme).</li>
+<li><code>-q</code> or <code>--no-splash</code>: Disables the startup
+splash screen and extra console messages.</li>
+</ul>
+<h3 id="the-basic-batch-command-structure">The Basic Batch Command
+Structure</h3>
+<p>GIMP processes batch commands using TinyScheme (Script-Fu) by
+default. A critical requirement when running in batch mode is including
+the <code>(gimp-quit 0)</code> command as the final batch instruction;
+otherwise, the GIMP process will remain hanging in the terminal
+indefinitely.</p>
+<p>The standard execution structure looks like this:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;(batch-command-here)&#39;</span> <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<h3 id="inline-script-fu-example-inverting-an-image">Inline Script-Fu
+Example: Inverting an Image</h3>
+<p>You can execute Procedural Database (PDB) calls directly from bash by
+enclosing the Scheme code inside single quotes:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">(let* (</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">    (image (car (gimp-file-load RUN-NONINTERACTIVE &quot;input.png&quot; &quot;input.png&quot;)))</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">    (drawable (car (gimp-image-get-active-layer image)))</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">  )</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">  (gimp-drawable-invert drawable FALSE)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">  (gimp-file-save RUN-NONINTERACTIVE image drawable &quot;output.png&quot; &quot;output.png&quot;)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  (gimp-image-delete image)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">)&#39;</span> <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<h3 id="running-an-external-script-fu-file">Running an External
+Script-Fu File</h3>
+<p>Writing long scripts directly into the terminal can become difficult
+to maintain. Instead, you can define a Script-Fu function inside a
+<code>.scm</code> file and save it in your GIMP scripts directory
+(typically <code>~/.config/GIMP/2.10/scripts/</code>).</p>
+<ol type="1">
+<li>Define a function in
+<code>~/.config/GIMP/2.10/scripts/batch-resize.scm</code>:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="ex">define</span><span class="fu"> </span>(<span class="fu">batch-resize </span>pattern width height)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">let*</span> ((filelist (<span class="kw">cadr</span> (file-glob pattern <span class="dv">1</span>))))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">while</span> (<span class="kw">not</span> (<span class="kw">null?</span> filelist))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">let*</span> ((filename (<span class="kw">car</span> filelist))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             (image (<span class="kw">car</span> (gimp-file-load RUN-NONINTERACTIVE filename filename)))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             (drawable (<span class="kw">car</span> (gimp-image-get-active-layer image))))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        (gimp-image-scale-full image width height INTERPOLATION-CUBIC)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        (gimp-file-save RUN-NONINTERACTIVE image drawable filename filename)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        (gimp-image-delete image))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      (<span class="kw">set!</span> filelist (<span class="kw">cdr</span> filelist)))))</span></code></pre></div>
+<ol start="2" type="1">
+<li>Call your function from the bash terminal:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">-b</span> <span class="st">&#39;(batch-resize &quot;*.jpg&quot; 800 600)&#39;</span> <span class="at">-b</span> <span class="st">&#39;(gimp-quit 0)&#39;</span></span></code></pre></div>
+<h3 id="using-python-fu-for-batch-execution">Using Python-Fu for Batch
+Execution</h3>
+<p>If your GIMP installation supports Python-Fu, you can use the Python
+interpreter instead of Script-Fu by specifying
+<code>--batch-interpreter python-fu-eval</code>:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">-i</span> <span class="at">--batch-interpreter</span> python-fu-eval <span class="at">-b</span> <span class="st">&#39;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">import gimpfu</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">image = pdb.gimp_file_load(&quot;input.jpg&quot;, &quot;input.jpg&quot;)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">drawable = pdb.gimp_image_get_active_layer(image)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">pdb.gimp_drawable_invert(drawable, False)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">pdb.gimp_file_save(image, drawable, &quot;output.jpg&quot;, &quot;output.jpg&quot;)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">pdb.gimp_image_delete(image)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;</span> <span class="at">-b</span> <span class="st">&#39;pdb.gimp_quit(0)&#39;</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

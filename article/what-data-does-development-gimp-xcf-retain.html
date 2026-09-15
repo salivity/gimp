@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Data Does Development GIMP XCF Retain? - gimp</title>
+    <meta name="description" content="GIMP's development-stage XCF file format is designed to store modern image attributes, non-destructive editing parameters, and high-precision graphical data that legacy versions cannot process. When working in development branches, such as GIMP 2.99.x le">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/what-data-does-development-gimp-xcf-retain">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Data Does Development GIMP XCF Retain? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/what-data-does-development-gimp-xcf-retain" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP's development-stage XCF file format is designed to store modern image attributes, non-destructive editing parameters, and high-precision graphical data that legacy versions cannot process. When working in development branches, such as GIMP 2.99.x le" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-data-does-development-gimp-xcf-retain">What Data Does
+Development GIMP XCF Retain?</h1>
+<p>GIMP's development-stage XCF file format is designed to store modern
+image attributes, non-destructive editing parameters, and high-precision
+graphical data that legacy versions cannot process. When working in
+development branches, such as GIMP 2.99.x leading toward GIMP 3.0, the
+XCF specification expands to maintain complex layer trees, advanced
+color management properties, non-destructive filter graphs, and
+off-canvas pixel data without rasterizing or discarding original working
+elements.</p>
+<h3 id="high-bit-depth-and-color-space-information">High Bit-Depth and
+Color Space Information</h3>
+<p>Development versions of XCF break away from legacy 8-bit channel
+limitations. When saving, the file retains:</p>
+<ul>
+<li><strong>Precision and Encoding:</strong> Image data stored in 16-bit
+integer, 32-bit integer, 16-bit floating point, or 32-bit floating point
+precision.</li>
+<li><strong>Color Profiles:</strong> Embedded ICC profiles and precise
+color space assignments (including native linear light processing and
+non-linear sRGB).</li>
+<li><strong>Color Models:</strong> Precision settings extending to
+grayscale, RGB, and CIE Lab working spaces, ensuring channel fidelity is
+not degraded across working sessions.</li>
+</ul>
+<h3 id="non-destructive-editing-and-gegl-filters">Non-Destructive
+Editing and GEGL Filters</h3>
+<p>A core enhancement in modern development XCF versions is the
+integration of GEGL (Generic Graphical Library) operations directly into
+the file schema:</p>
+<ul>
+<li><strong>Live Filters:</strong> Applied GEGL filters remain fully
+editable. The file saves the specific filter type, parameter values,
+masks, and stacking order rather than baking the effect directly into
+the pixel layer.</li>
+<li><strong>Non-Destructive Layer Masks and Clips:</strong> Masks,
+clipping sets, and link states are saved with their original
+mathematical definitions and references intact.</li>
+</ul>
+<h3 id="layer-and-canvas-architecture">Layer and Canvas
+Architecture</h3>
+<p>The development-stage format preserves complex canvas dynamics that
+earlier stable versions either merge or discard:</p>
+<ul>
+<li><strong>Off-Canvas Pixels:</strong> Pixel data extending beyond the
+active canvas boundary is fully preserved, allowing elements to be moved
+back into the visible frame later without data loss.</li>
+<li><strong>Layer Sets and Grouping:</strong> Unlimited hierarchical
+layer nesting is supported, including pass-through blend modes and
+individual group mask channels.</li>
+<li><strong>Extended Blend Modes:</strong> Modern compositing formulas
+(such as linear burn, hard/soft light variations, and modern divide
+modes) are preserved via explicit algorithm identifiers.</li>
+</ul>
+<h3 id="vector-text-and-metadata-assets">Vector, Text, and Metadata
+Assets</h3>
+<p>To support non-destructive design updates, development XCF builds
+retain structural vector and layout assets:</p>
+<ul>
+<li><strong>Rich Text Metadata:</strong> Text layers keep their font
+family, point size, letter spacing, line height, baseline shifts,
+kerning, and raw markup strings.</li>
+<li><strong>Vectors and Paths:</strong> Bezier curves, anchor points,
+control handles, and multiple discrete path items within the project
+remain fully editable vector objects.</li>
+<li><strong>Standard Metadata:</strong> Embedded Exif, IPTC, and XMP
+metadata dictionaries are preserved alongside custom project-specific
+tags.</li>
+</ul>
+<h3 id="project-environment-and-utility-states">Project Environment and
+Utility States</h3>
+<p>The development format also serializes user workspace configurations
+specific to the canvas:</p>
+<ul>
+<li>Precise guide coordinates, grid spacing, and snap-to settings.</li>
+<li>Color sample points used for real-time pixel evaluation.</li>
+<li>Channel visibility flags, selection boundaries, and active floating
+selections.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

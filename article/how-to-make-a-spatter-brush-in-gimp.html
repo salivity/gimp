@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make a Spatter Brush in GIMP - gimp</title>
+    <meta name="description" content="Creating a custom spatter brush in GIMP from a scanned toothbrush ink splatter allows you to add authentic, organic textures to your digital artwork. This process involves scanning your physical splatter at a high resolution, importing it into GIMP, remo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-a-spatter-brush-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make a Spatter Brush in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-a-spatter-brush-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a custom spatter brush in GIMP from a scanned toothbrush ink splatter allows you to add authentic, organic textures to your digital artwork. This process involves scanning your physical splatter at a high resolution, importing it into GIMP, remo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-a-spatter-brush-in-gimp">How to Make a Spatter Brush
+in GIMP</h1>
+<p>Creating a custom spatter brush in GIMP from a scanned toothbrush ink
+splatter allows you to add authentic, organic textures to your digital
+artwork. This process involves scanning your physical splatter at a high
+resolution, importing it into GIMP, removing the paper background to
+isolate the ink droplets, and saving the result as a GIMP brush file
+(<code>.gbr</code>). Once saved to your brushes folder, the custom
+texture can be used dynamically with any color or brush dynamic in your
+digital toolkit.</p>
+<h3 id="step-1-scan-and-prepare-the-splatter">Step 1: Scan and Prepare
+the Splatter</h3>
+<ol type="1">
+<li>Create your ink splatter on clean white paper using an old
+toothbrush dipped in black ink.</li>
+<li>Scan the artwork at a high resolution—preferably 300 to 600 DPI—to
+capture the micro-droplets clearly. Save the file as a lossless format
+such as PNG or TIFF.</li>
+</ol>
+<h3 id="step-2-import-and-isolate-the-image-in-gimp">Step 2: Import and
+Isolate the Image in GIMP</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; Open</strong> to load your
+scanned image.</li>
+<li>Use the <strong>Rectangle Select Tool</strong> to draw a box around
+the best section of the splatter pattern.</li>
+<li>Go to <strong>Image &gt; Crop to Selection</strong>.</li>
+</ol>
+<h3 id="step-3-clean-the-contrast">Step 3: Clean the Contrast</h3>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Desaturate &gt; Desaturate</strong> and
+click <strong>OK</strong> to ensure the image is strictly
+grayscale.</li>
+<li>Open <strong>Colors &gt; Levels</strong> or <strong>Colors &gt;
+Curves</strong>.</li>
+<li>Adjust the white point slider toward the center to force the paper
+background into pure, solid white.</li>
+<li>Adjust the black point slider to make the ink droplets solid black,
+ensuring all stray paper texture disappears while retaining fine droplet
+details.</li>
+</ol>
+<h3 id="step-4-remove-the-white-background">Step 4: Remove the White
+Background</h3>
+<ol type="1">
+<li>In the Layers panel, right-click the splatter layer and select
+<strong>Add Alpha Channel</strong> (if it is not already
+bold/enabled).</li>
+<li>Go to <strong>Colors &gt; Color to Alpha</strong>.</li>
+<li>Ensure the selected color is pure white (<code>#ffffff</code>) and
+click <strong>OK</strong>. The white paper background will turn into
+transparent checkerboard, leaving only the black ink marks.</li>
+</ol>
+<h3 id="step-5-crop-and-resize-the-brush">Step 5: Crop and Resize the
+Brush</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Crop to Content</strong> (or
+<strong>Autocrop Image</strong>) to eliminate excess transparent space
+around the spatter.</li>
+<li>If the splatter exceeds 2000 pixels, go to <strong>Image &gt; Scale
+Image</strong> to reduce the dimensions to a manageable size, such as
+1000 to 1500 pixels on its longest edge, to prevent brush lag.</li>
+</ol>
+<h3 id="step-6-export-as-a-gimp-brush">Step 6: Export as a GIMP
+Brush</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong></li>
+<li>Name your file with the <code>.gbr</code> extension (for example,
+<code>toothbrush_spatter.gbr</code>).</li>
+<li>Set the save destination to your GIMP brushes directory:
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\[Username]\AppData\Roaming\GIMP\2.10\brushes</code></li>
+<li><strong>macOS:</strong>
+<code>/Users/[Username]/Library/Application Support/GIMP/2.10/brushes</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/GIMP/2.10/brushes</code></li>
+</ul></li>
+<li>Click <strong>Export</strong>.</li>
+<li>In the export dialog that pops up, enter a descriptive brush name in
+the <strong>Description</strong> field and set the default
+<strong>Spacing</strong> (a value between 20 and 50 usually works well
+for spatters). Click <strong>Export</strong>.</li>
+</ol>
+<h3 id="step-7-load-and-test-your-brush">Step 7: Load and Test Your
+Brush</h3>
+<ol type="1">
+<li>Open the <strong>Brushes</strong> dialog dock in GIMP
+(<strong>Windows &gt; Dockable Dialogs &gt; Brushes</strong>).</li>
+<li>Click the <strong>Refresh</strong> button (the circular arrow icon)
+at the bottom of the panel to load the new brush without restarting the
+program.</li>
+<li>Select the <strong>Paintbrush Tool</strong>, choose your new spatter
+brush, and adjust the size and dynamics to begin painting.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

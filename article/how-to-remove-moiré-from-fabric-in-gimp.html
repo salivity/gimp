@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Moiré from Fabric in GIMP - gimp</title>
+    <meta name="description" content="Moiré artifacts occur in digital photography when a fine fabric pattern conflicts with a camera sensor's pixel grid, creating unwanted geometric bands or rainbow-colored distortions. This step-by-step guide explains how to effectively eliminate both col">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-moiré-from-fabric-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Moiré from Fabric in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-moiré-from-fabric-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Moiré artifacts occur in digital photography when a fine fabric pattern conflicts with a camera sensor's pixel grid, creating unwanted geometric bands or rainbow-colored distortions. This step-by-step guide explains how to effectively eliminate both col" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-remove-moiré-from-fabric-in-gimp">How to Remove Moiré
+from Fabric in GIMP</h1>
+<p>Moiré artifacts occur in digital photography when a fine fabric
+pattern conflicts with a camera sensor's pixel grid, creating unwanted
+geometric bands or rainbow-colored distortions. This step-by-step guide
+explains how to effectively eliminate both color (chromatic) and pattern
+(luminance) moiré from fabric textures in GIMP using targeted blurring,
+layer blend modes, and the Wavelet Decompose filter while preserving as
+much original detail as possible.</p>
+<h2 id="method-1-fixing-color-moiré-with-the-color-blend-mode">Method 1:
+Fixing Color Moiré with the Color Blend Mode</h2>
+<p>If the moiré appears primarily as rainbow bands or unnatural color
+shifts across the fabric, this is the quickest method to fix it without
+softening the underlying weave.</p>
+<ol type="1">
+<li><strong>Open your image</strong> in GIMP.</li>
+<li><strong>Duplicate the base layer</strong> by right-clicking it in
+the Layers panel and selecting <strong>Duplicate Layer</strong> (or
+press <code>Ctrl+Shift+D</code> / <code>Cmd+Shift+D</code>).</li>
+<li><strong>Change the Layer Mode</strong> of the top duplicate layer to
+<strong>Color</strong> (or <strong>LCH Color</strong>) in the Mode
+dropdown at the top of the Layers panel.</li>
+<li><strong>Apply a Gaussian Blur</strong>:
+<ul>
+<li>Go to <strong>Filters</strong> &gt; <strong>Blur</strong> &gt;
+<strong>Gaussian Blur...</strong></li>
+<li>Increase the <strong>Size X</strong> and <strong>Size Y</strong>
+sliders just until the rainbow color banding blends into the surrounding
+fabric color. Click <strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Apply a Layer Mask</strong> so the blur only affects the
+fabric:
+<ul>
+<li>Right-click the blurred layer and select <strong>Add Layer
+Mask...</strong></li>
+<li>Choose <strong>Black (full transparency)</strong>.</li>
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>), set
+your foreground color to white, and paint over the areas of the fabric
+affected by the color moiré.</li>
+</ul></li>
+</ol>
+<hr />
+<h2
+id="method-2-fixing-pattern-and-detail-moiré-with-wavelet-decompose">Method
+2: Fixing Pattern and Detail Moiré with Wavelet Decompose</h2>
+<p>When moiré alters the physical texture lines (luminance moiré), you
+need to separate the image's frequency scales to target the pattern
+directly.</p>
+<ol type="1">
+<li><strong>Duplicate your base layer</strong> to keep a non-destructive
+copy.</li>
+<li><strong>Run Wavelet Decompose</strong>:
+<ul>
+<li>Navigate to <strong>Filters</strong> &gt; <strong>Enhance</strong>
+&gt; <strong>Wavelet-decompose...</strong></li>
+<li>Keep the default number of scales (usually 5 to 7) and click
+<strong>OK</strong>.</li>
+<li>GIMP will generate a series of scale layers (from fine details on
+Scale 1 to coarse details on higher scales) plus a residual layer.</li>
+</ul></li>
+<li><strong>Identify the Problematic Scale</strong>:
+<ul>
+<li>Toggle the visibility (eye icon) of individual
+<code>Wavelet scale</code> layers to find which scale contains the
+repetitive moiré lines. Moiré is typically concentrated on <strong>Scale
+2</strong>, <strong>Scale 3</strong>, or <strong>Scale 4</strong>.</li>
+</ul></li>
+<li><strong>Smooth the Artifacts</strong>:
+<ul>
+<li>Select the identified scale layer.</li>
+<li>Go to <strong>Filters</strong> &gt; <strong>Blur</strong> &gt;
+<strong>Gaussian Blur...</strong> and apply a subtle blur (1 to 4
+pixels) to smooth out the unnatural interference pattern.</li>
+<li>Alternatively, use the <strong>Smudge Tool</strong> or the
+<strong>Clone Tool</strong> set to a low opacity directly on that scale
+layer to even out irregular patches.</li>
+</ul></li>
+<li><strong>Mask the Group</strong>:
+<ul>
+<li>Add a black layer mask to the created Wavelet group (or merge the
+group back down) and paint white over only the fabric areas to ensure
+the rest of your subject remains sharp.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="method-3-using-the-median-blur-filter">Method 3: Using the
+Median Blur Filter</h2>
+<p>For heavy, localized texture conflicts where standard blurring loses
+too much edge contrast, Median Blur helps eliminate high-frequency
+repeating lines.</p>
+<ol type="1">
+<li><strong>Duplicate the layer</strong> and zoom in on the fabric.</li>
+<li>Use the <strong>Free Select Tool</strong> (Lasso) to draw a
+selection around the affected fabric region.</li>
+<li>Feather the selection slightly via <strong>Select</strong> &gt;
+<strong>Feather...</strong> (set to 3–5 pixels) to avoid harsh
+transition edges.</li>
+<li>Go to <strong>Filters</strong> &gt; <strong>Blur</strong> &gt;
+<strong>Median Blur...</strong></li>
+<li>Adjust the <strong>Radius</strong> slider incrementally. The median
+filter discards outliers and repetitive pixel spikes, effectively
+flattening the moiré while retaining the structural contours of the
+garment.</li>
+<li>Click <strong>OK</strong> and deselect (<code>Ctrl+Shift+A</code> /
+<code>Cmd+Shift+A</code>).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

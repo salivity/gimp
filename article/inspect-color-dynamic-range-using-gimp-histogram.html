@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect Color Dynamic Range Using GIMP Histogram - gimp</title>
+    <meta name="description" content="This guide explains how to analyze the dynamic range distribution across individual color channels using GIMP's Histogram dialog. Evaluating these channels allows you to identify channel-specific clipping in shadows and highlights, detect color casts, an">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/inspect-color-dynamic-range-using-gimp-histogram">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect Color Dynamic Range Using GIMP Histogram - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/inspect-color-dynamic-range-using-gimp-histogram" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to analyze the dynamic range distribution across individual color channels using GIMP's Histogram dialog. Evaluating these channels allows you to identify channel-specific clipping in shadows and highlights, detect color casts, an" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-color-dynamic-range-using-gimp-histogram">Inspect Color
+Dynamic Range Using GIMP Histogram</h1>
+<p>This guide explains how to analyze the dynamic range distribution
+across individual color channels using GIMP's Histogram dialog.
+Evaluating these channels allows you to identify channel-specific
+clipping in shadows and highlights, detect color casts, and make precise
+tonal adjustments. By configuring the channel selectors, switching
+between display modes, and reading dynamic range metrics, you can
+accurately diagnose exposure and contrast issues across your image.</p>
+<h3 id="opening-the-histogram-dialog">Opening the Histogram Dialog</h3>
+<p>To access the histogram tools in GIMP:</p>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Colors</strong> &gt;
+<strong>Info</strong> &gt; <strong>Histogram</strong>.</li>
+<li>Alternatively, dock the panel for continuous use by going to
+<strong>Windows</strong> &gt; <strong>Dockable Dialogs</strong> &gt;
+<strong>Histogram</strong>.</li>
+</ol>
+<h3 id="selecting-individual-color-channels">Selecting Individual Color
+Channels</h3>
+<p>By default, GIMP often displays the combined luminance (Value) or an
+RGB composite. To inspect individual channels:</p>
+<ol type="1">
+<li>Locate the <strong>Channel</strong> dropdown menu at the top of the
+Histogram dialog.</li>
+<li>Switch from <strong>Value</strong> to your target channel:
+<ul>
+<li><strong>Red:</strong> Displays the distribution of red values from
+pure dark (0) to pure red (255).</li>
+<li><strong>Green:</strong> Shows green intensity across the tonal
+scale.</li>
+<li><strong>Blue:</strong> Shows blue intensity across the tonal
+scale.</li>
+<li><strong>Alpha:</strong> Displays opacity distribution (if an alpha
+channel exists).</li>
+<li><strong>RGB:</strong> Overlays all three primary color channels
+simultaneously to compare their distributions against one another.</li>
+</ul></li>
+</ol>
+<h3 id="toggling-linear-and-logarithmic-views">Toggling Linear and
+Logarithmic Views</h3>
+<p>Directly beneath the channel selector are two display mode buttons
+that alter the vertical scale:</p>
+<ul>
+<li><strong>Linear Histogram:</strong> Represents pixel counts directly
+proportional to their frequency. This is useful for evaluating overall
+exposure and dominant tones.</li>
+<li><strong>Logarithmic Histogram:</strong> Compresses high-frequency
+peaks to elevate low-frequency pixel counts. This mode is essential for
+inspecting dynamic range limits, as it reveals tiny amounts of clipped
+pixels in the deep shadows or extreme highlights that are invisible in
+linear view.</li>
+</ul>
+<h3 id="interpreting-the-dynamic-range-distribution">Interpreting the
+Dynamic Range Distribution</h3>
+<p>The horizontal axis represents tonal brightness from left (0,
+shadows) to right (255, highlights). The vertical axis shows the number
+of pixels at each tonal level.</p>
+<ul>
+<li><strong>Shadow Clipping:</strong> A sharp vertical spike flush
+against the left boundary (value 0) indicates clipped shadow detail in
+that specific color channel.</li>
+<li><strong>Highlight Clipping:</strong> A spike flush against the right
+boundary (value 255) indicates blown-out highlight data in that channel,
+often leading to color shifts in bright areas.</li>
+<li><strong>Tonal Spread:</strong> A histogram stretching smoothly from
+the far left to the far right indicates that the channel utilizes the
+full dynamic range. A narrow cluster in the center signifies low
+contrast and compressed dynamic range for that color.</li>
+</ul>
+<h3 id="analyzing-channel-statistics">Analyzing Channel Statistics</h3>
+<p>Selecting an individual channel updates the numerical readouts below
+the graph:</p>
+<ul>
+<li><strong>Mean:</strong> The average intensity level of the selected
+channel. Comparing the Mean across Red, Green, and Blue highlights
+global color casts (e.g., a significantly higher Red Mean indicates a
+warm cast).</li>
+<li><strong>Std Dev (Standard Deviation):</strong> Measures the contrast
+or spread of values within that channel. A higher value indicates wider
+dynamic distribution.</li>
+<li><strong>Median:</strong> The middle value of the distribution,
+useful for locating midtone balance independent of extreme highlights or
+shadows.</li>
+<li><strong>Range Selection:</strong> Click and drag across any section
+of the histogram graph to isolate a specific tonal segment. The
+<strong>Count</strong> and <strong>Percentile</strong> statistics will
+update to show exactly how much of the channel's data falls within that
+selected dynamic window.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

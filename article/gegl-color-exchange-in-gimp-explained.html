@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEGL Color Exchange in GIMP Explained - gimp</title>
+    <meta name="description" content="The GEGL Color Exchange operation in GIMP is a dedicated color manipulation tool designed to detect a specific source color in an image and replace it with a designated target color. By utilizing GIMP’s GEGL (Generic Graphical Library) engine, this fil">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gegl-color-exchange-in-gimp-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GEGL Color Exchange in GIMP Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gegl-color-exchange-in-gimp-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Color Exchange operation in GIMP is a dedicated color manipulation tool designed to detect a specific source color in an image and replace it with a designated target color. By utilizing GIMP’s GEGL (Generic Graphical Library) engine, this fil" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gegl-color-exchange-in-gimp-explained">GEGL Color Exchange in
+GIMP Explained</h1>
+<p>The GEGL Color Exchange operation in GIMP is a dedicated color
+manipulation tool designed to detect a specific source color in an image
+and replace it with a designated target color. By utilizing GIMP’s GEGL
+(Generic Graphical Library) engine, this filter processes color
+substitutions with high bit-depth precision, real-time on-canvas
+previews, and fine-grained control over color tolerances, making it a
+reliable solution for recoloring graphics, correcting color casts, and
+modifying specific elements without complex manual masking.</p>
+<h3 id="core-function-of-color-exchange">Core Function of Color
+Exchange</h3>
+<p>The primary purpose of Color Exchange is pixel-level color remapping.
+Rather than adjusting the overall hue or saturation of an entire layer,
+the operation selectively scans the image for pixels matching a defined
+"From Color" and swaps their RGB values to match a defined "To
+Color."</p>
+<h3 id="key-parameters-and-settings">Key Parameters and Settings</h3>
+<p>To achieve accurate results without affecting unintended areas of an
+image, the Color Exchange tool provides several adjustable
+parameters:</p>
+<ul>
+<li><strong>From Color:</strong> Defines the original color you want to
+replace. Users can select this using the color picker directly from the
+canvas or via standard RGB/HSV palettes.</li>
+<li><strong>To Color:</strong> Defines the replacement color that will
+overwrite the source color.</li>
+<li><strong>Red, Green, and Blue Thresholds:</strong> These sliders
+dictate the tolerance range for the color match. Increasing a threshold
+allows the tool to replace colors that are similar to, but not an exact
+match for, the source color. This is critical for smoothly replacing
+anti-aliased edges, shadows, and subtle gradients.</li>
+<li><strong>Lock Thresholds:</strong> Linking the threshold sliders
+ensures that color tolerance expands uniformly across all three RGB
+channels, preserving the natural color balance of the transition zone.
+Unlinking them allows for specialized channel-specific filtering.</li>
+</ul>
+<h3 id="common-use-cases">Common Use Cases</h3>
+<ul>
+<li><strong>Graphic and Logo Recoloring:</strong> Quickly updating brand
+colors, flat illustrations, or UI assets without having to redraw or
+manually select vector paths.</li>
+<li><strong>Product Photography Retouching:</strong> Swapping the color
+of clothing, products, or studio backdrops where lighting creates slight
+tonal variations.</li>
+<li><strong>Correcting Uniform Color Errors:</strong> Eliminating
+localized chromatic aberrations or background spills by shifting them to
+a neutral or matching tone.</li>
+</ul>
+<h3 id="how-to-access-the-operation">How to Access the Operation</h3>
+<p>The Color Exchange tool can be accessed directly from the main menu
+by navigating to <strong>Colors &gt; Map &gt; Color Exchange</strong>,
+or by adding it via the <strong>Tools &gt; GEGL Operation</strong>
+selector dialog. Because it runs on the GEGL framework, users benefit
+from non-destructive preview rendering before committing the changes to
+the active layer.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

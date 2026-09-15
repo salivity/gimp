@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Beveled Glass Text in GIMP - gimp</title>
+    <meta name="description" content="This tutorial provides a complete walkthrough for simulating realistic beveled glass typography in GIMP using offset highlights, inner shadows, and layer blend modes. By creating directional light reflections and soft depth cues over a textured backgroun">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-beveled-glass-text-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Beveled Glass Text in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-beveled-glass-text-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This tutorial provides a complete walkthrough for simulating realistic beveled glass typography in GIMP using offset highlights, inner shadows, and layer blend modes. By creating directional light reflections and soft depth cues over a textured backgroun" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-beveled-glass-text-in-gimp">Create Beveled Glass Text in
+GIMP</h1>
+<p>This tutorial provides a complete walkthrough for simulating
+realistic beveled glass typography in GIMP using offset highlights,
+inner shadows, and layer blend modes. By creating directional light
+reflections and soft depth cues over a textured background, you can
+achieve a transparent, refractive glass effect without relying on
+third-party plugins.</p>
+<h3 id="step-1-canvas-and-background-setup">Step 1: Canvas and
+Background Setup</h3>
+<ol type="1">
+<li>Create a new image in GIMP (<strong>File &gt; New</strong>) with
+your desired dimensions.</li>
+<li>Paste a colorful or textured background onto the canvas (such as a
+photograph or gradient). Glass is transparent, so the effect relies
+entirely on distorting and highlighting the background beneath it.</li>
+</ol>
+<h3 id="step-2-generate-the-typography-mask">Step 2: Generate the
+Typography Mask</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> (<code>T</code>) and choose a
+heavy, bold font (e.g., Montserrat Black, Arial Black) with white color.
+Thick letterforms provide enough surface area for bevels and
+refractions.</li>
+<li>Type your text, position it in the center, and right-click the text
+layer in the Layers panel.</li>
+<li>Choose <strong>Alpha to Selection</strong> to load the outline of
+the text.</li>
+<li>Create a new transparent layer directly above the background and
+name it <code>Glass Base</code>.</li>
+<li>With the selection active, fill it with white using the
+<strong>Bucket Fill Tool</strong> (<code>Shift + B</code>), then set the
+layer's <strong>Opacity</strong> to approximately <code>10%</code> to
+<code>15%</code>. Deselect everything via <strong>Select &gt;
+None</strong> (<code>Ctrl + Shift + A</code>).</li>
+</ol>
+<h3 id="step-3-create-the-offset-highlight">Step 3: Create the Offset
+Highlight</h3>
+<p>The highlight simulates the top-left edge of the glass catching a
+light source.</p>
+<ol type="1">
+<li>Right-click the original text layer and select <strong>Alpha to
+Selection</strong>.</li>
+<li>Create a new transparent layer named <code>Highlight</code>.</li>
+<li>Fill the active selection with pure white
+(<code>#FFFFFF</code>).</li>
+<li>Keep the selection active. Use the <strong>Move Tool</strong>
+(<code>M</code>) to shift the selection area down and to the right by 2
+to 4 pixels (hold <code>Alt</code> while using the arrow keys to nudge
+only the selection boundary).</li>
+<li>Press <strong>Delete</strong> on your keyboard. This leaves a thin
+white rim along the top and left edges of the characters.</li>
+<li>Clear the selection (<strong>Select &gt; None</strong>).</li>
+<li>Apply a subtle blur: Go to <strong>Filters &gt; Blur &gt; Gaussian
+Blur</strong>, set both the Size X and Y to <code>1.5</code> or
+<code>2.0</code> pixels, and click <strong>OK</strong>.</li>
+<li>Set the <code>Highlight</code> layer mode to
+<strong>Addition</strong> or <strong>Screen</strong>, and lower the
+opacity to around <code>70%</code> to soften the shine.</li>
+</ol>
+<h3 id="step-4-create-the-inner-shadow">Step 4: Create the Inner
+Shadow</h3>
+<p>The shadow creates physical thickness by simulating the underside and
+opposite edges of the glass.</p>
+<ol type="1">
+<li>Right-click the original text layer and select <strong>Alpha to
+Selection</strong>.</li>
+<li>Create a new transparent layer named <code>Inner Shadow</code>.</li>
+<li>Fill the selection with pure black (<code>#000000</code>).</li>
+<li>Move the selection area up and to the left by 2 to 4 pixels using
+the arrow keys.</li>
+<li>Press <strong>Delete</strong>, leaving a black crescent along the
+bottom and right edges of the characters.</li>
+<li>Clear the selection (<strong>Select &gt; None</strong>).</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur</strong>, set the
+blur radius to <code>3.0</code> pixels, and apply it.</li>
+<li>Right-click the original text layer, choose <strong>Alpha to
+Selection</strong>, invert the selection (<strong>Select &gt;
+Invert</strong> or <code>Ctrl + I</code>), click on the
+<code>Inner Shadow</code> layer, and press <strong>Delete</strong>. This
+cleans up any shadow blur spilling outside the text boundary.</li>
+<li>Deselect all (<strong>Select &gt; None</strong>) and change the
+<code>Inner Shadow</code> layer mode to <strong>Multiply</strong>,
+setting its opacity between <code>40%</code> and <code>60%</code>.</li>
+</ol>
+<h3 id="step-5-add-the-inner-edge-refraction">Step 5: Add the Inner Edge
+Refraction</h3>
+<ol type="1">
+<li>Right-click the original text layer and choose <strong>Alpha to
+Selection</strong>.</li>
+<li>Create a new transparent layer named <code>Inner Rim</code>.</li>
+<li>Go to <strong>Select &gt; Shrink</strong> and shrink the selection
+by <code>2</code> or <code>3</code> pixels.</li>
+<li>Go to <strong>Select &gt; Invert</strong>, then fill the resulting
+thin perimeter with white.</li>
+<li>Invert the selection again, press <strong>Delete</strong>, and
+deselect all.</li>
+<li>Apply a <code>1.0</code> pixel <strong>Gaussian Blur</strong> to the
+<code>Inner Rim</code> layer and set its layer mode to
+<strong>Overlay</strong> at <code>50%</code> opacity to give the glass a
+defined, polished border.</li>
+</ol>
+<h3 id="step-6-final-adjustments">Step 6: Final Adjustments</h3>
+<p>Hide the visibility of the original solid text layer by clicking its
+eye icon. The composition should now consist solely of your background,
+the faint <code>Glass Base</code>, the soft <code>Inner Shadow</code>,
+the sharp <code>Highlight</code>, and the <code>Inner Rim</code>. Tweak
+the opacity of the highlight and shadow layers to match the intensity of
+the lighting in your specific background image.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

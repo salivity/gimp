@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Brush Dynamic Angle Tracing in GIMP - gimp</title>
+    <meta name="description" content="Creating ribbon effects in GIMP requires linking the rotation angle of a flat or directional brush to the movement vector of your cursor or path. This tutorial provides a direct, step-by-step guide to creating a custom Paint Dynamic, mapping brush angle">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/custom-brush-dynamic-angle-tracing-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Custom Brush Dynamic Angle Tracing in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/custom-brush-dynamic-angle-tracing-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating ribbon effects in GIMP requires linking the rotation angle of a flat or directional brush to the movement vector of your cursor or path. This tutorial provides a direct, step-by-step guide to creating a custom Paint Dynamic, mapping brush angle" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="custom-brush-dynamic-angle-tracing-in-gimp">Custom Brush Dynamic
+Angle Tracing in GIMP</h1>
+<p>Creating ribbon effects in GIMP requires linking the rotation angle
+of a flat or directional brush to the movement vector of your cursor or
+path. This tutorial provides a direct, step-by-step guide to creating a
+custom Paint Dynamic, mapping brush angle to stroke direction, smoothing
+the trajectory, and producing clean ribbon and calligraphic effects.</p>
+<h3 id="step-1-select-a-directional-brush">Step 1: Select a Directional
+Brush</h3>
+<p>A standard circular brush cannot create a ribbon effect because
+rotating a circle produces no visible difference.</p>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>).</li>
+<li>Open the <strong>Brushes Dialog</strong>
+(<code>Ctrl + Shift + B</code>).</li>
+<li>Choose or generate an asymmetrical or flattened brush (such as a
+thin rectangle, a flat oval, or a custom slice shape).</li>
+<li>Set the brush aspect ratio high enough in the <strong>Tool
+Options</strong> (e.g., Aspect Ratio: 10.0 to 20.0) if using a standard
+parametric brush.</li>
+</ol>
+<h3 id="step-2-create-a-new-paint-dynamic">Step 2: Create a New Paint
+Dynamic</h3>
+<ol type="1">
+<li>Open the <strong>Paint Dynamics Dialog</strong> via <strong>Windows
+&gt; Dockable Dialogs &gt; Paint Dynamics</strong>.</li>
+<li>Click the <strong>Create New Dynamics</strong> button at the bottom
+of the dialog panel.</li>
+<li>Give your dynamic a name, such as <em>Ribbon Dynamic</em>.</li>
+</ol>
+<h3 id="step-3-configure-the-dynamics-matrix">Step 3: Configure the
+Dynamics Matrix</h3>
+<p>The <strong>Paint Dynamics Editor</strong> will open automatically
+showing a matrix of inputs (columns) and outputs (rows).</p>
+<ol type="1">
+<li>Locate the <strong>Angle</strong> row.</li>
+<li>Check the box in the <strong>Direction</strong> column. This
+instructs GIMP to rotate the brush stamp based on the direction the
+cursor is moving.</li>
+<li><em>(Optional)</em> If you are using a drawing tablet, you can check
+<strong>Size</strong> under <strong>Pressure</strong> to taper the
+ribbon stroke based on pen force.</li>
+</ol>
+<h3 id="step-4-adjust-tool-options-for-smoothness">Step 4: Adjust Tool
+Options for Smoothness</h3>
+<p>Direction-based rotation can jitter on small hand movements. To
+ensure clean lines:</p>
+<ol type="1">
+<li>In the <strong>Tool Options</strong> dock, select your newly created
+<em>Ribbon Dynamic</em> from the Dynamics dropdown.</li>
+<li>Check the <strong>Smooth Stroke</strong> option.</li>
+<li>Increase the <strong>Weight</strong> (e.g., between 20 and 50) and
+<strong>Quality</strong> to stabilize mouse or stylus input, preventing
+sudden 180-degree flips in the brush angle.</li>
+<li>Adjust the base <strong>Angle</strong> slider in the Tool Options if
+the brush stroke runs perpendicular to the movement instead of parallel
+to it.</li>
+</ol>
+<h3 id="step-5-paint-the-ribbon-effect">Step 5: Paint the Ribbon
+Effect</h3>
+<ol type="1">
+<li>Draw freehand curves onto your canvas; the brush will automatically
+align its rotation with the path of travel, generating a ribbon-like
+strip.</li>
+<li>To create mathematically perfect ribbons, draw a curve with the
+<strong>Paths Tool</strong> (<code>B</code>), navigate to <strong>Edit
+&gt; Stroke Path</strong>, select <strong>Stroke with a paint
+tool</strong>, choose the <strong>Paintbrush</strong>, and check
+<strong>Emulate brush dynamics</strong> before applying.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

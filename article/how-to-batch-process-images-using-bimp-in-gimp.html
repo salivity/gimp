@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Batch Process Images Using BIMP in GIMP - gimp</title>
+    <meta name="description" content="Batch processing allows you to apply the same edits—such as resizing, watermarking, format conversion, and color adjustments—to hundreds of photos simultaneously. While GIMP does not include an advanced batch processor by default, the Batch Image Man">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-batch-process-images-using-bimp-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Batch Process Images Using BIMP in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-batch-process-images-using-bimp-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Batch processing allows you to apply the same edits—such as resizing, watermarking, format conversion, and color adjustments—to hundreds of photos simultaneously. While GIMP does not include an advanced batch processor by default, the Batch Image Man" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-batch-process-images-using-bimp-in-gimp">How to Batch
+Process Images Using BIMP in GIMP</h1>
+<p>Batch processing allows you to apply the same edits—such as resizing,
+watermarking, format conversion, and color adjustments—to hundreds of
+photos simultaneously. While GIMP does not include an advanced batch
+processor by default, the Batch Image Manipulation Plugin (BIMP)
+integrates directly into the software to automate repetitive tasks
+efficiently. This guide outlines how to set up BIMP, configure image
+manipulation rules, and execute batch edits on multiple files in
+GIMP.</p>
+<h2 id="1-install-the-bimp-plugin">1. Install the BIMP Plugin</h2>
+<p>Before starting, ensure BIMP is installed on your system:</p>
+<ul>
+<li><strong>Windows:</strong> Download the Windows installer from the
+official BIMP repository or plugin registry and run the setup wizard
+while GIMP is closed.</li>
+<li><strong>Linux:</strong> Install BIMP via your distribution package
+manager (e.g., <code>sudo apt install gimp-plugin-bimp</code> on
+Debian/Ubuntu) or compile it from source.</li>
+<li><strong>macOS:</strong> Download the pre-compiled binary package or
+install it via Homebrew/MacPorts depending on your GIMP installation
+method.</li>
+</ul>
+<p>Restart GIMP once the installation is complete.</p>
+<h2 id="2-open-the-bimp-interface">2. Open the BIMP Interface</h2>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Navigate to the top menu and select <strong>File</strong> &gt;
+<strong>Batch Image Manipulation...</strong>.</li>
+<li>The BIMP interface will open in a separate window.</li>
+</ol>
+<h2 id="3-add-input-images">3. Add Input Images</h2>
+<p>In the <strong>Input images</strong> section at the top of the BIMP
+window:</p>
+<ul>
+<li>Click <strong>Add images</strong> to select specific files
+individually.</li>
+<li>Click <strong>Add folders</strong> to import an entire directory of
+photos.</li>
+<li>Check <strong>Include subfolders</strong> if your source folder
+contains nested subdirectories of images.</li>
+</ul>
+<h2 id="4-set-manipulation-rules">4. Set Manipulation Rules</h2>
+<p>In the <strong>Manipulation set</strong> section, click
+<strong>Add</strong> to choose the modifications you want to apply. You
+can stack multiple operations:</p>
+<ul>
+<li><strong>Resize:</strong> Set new dimensions by pixels or percentage,
+and choose whether to maintain the aspect ratio.</li>
+<li><strong>Crop:</strong> Define specific pixel areas or aspect ratios
+to trim from the images.</li>
+<li><strong>Flip or Rotate:</strong> Apply orientation adjustments to
+all images uniformly.</li>
+<li><strong>Color Correction:</strong> Adjust brightness, contrast,
+levels, or convert images to grayscale.</li>
+<li><strong>Watermark:</strong> Overlay a logo or text onto a designated
+position on every image.</li>
+<li><strong>Change Format and Compression:</strong> Choose an output
+format (such as JPEG, PNG, or WebP) and adjust quality/compression
+levels.</li>
+<li><strong>Rename with a Pattern:</strong> Define naming conventions
+using prefixes, suffixes, original filenames, or auto-incrementing
+numbers.</li>
+<li><strong>Other GIMP Procedure:</strong> Run custom GIMP scripts or
+native functions on the batch.</li>
+</ul>
+<h2 id="5-choose-the-output-location">5. Choose the Output Location</h2>
+<p>At the bottom of the window, locate the <strong>Output
+folder</strong> section:</p>
+<ol type="1">
+<li>Click the folder icon to select the destination directory where
+processed files should be saved.</li>
+<li>Ensure you choose a different folder from your original files to
+avoid accidentally overwriting source images.</li>
+</ol>
+<h2 id="6-execute-the-batch-process">6. Execute the Batch Process</h2>
+<ol type="1">
+<li>Review the list of operations in your manipulation set to verify the
+order of execution.</li>
+<li>Click the <strong>Apply</strong> button in the bottom right
+corner.</li>
+<li>A progress bar will show the processing status. Once completed,
+navigate to your designated output folder to review the finished
+images.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

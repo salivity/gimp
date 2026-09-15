@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Manages Undo Memory for Huge Canvases - gimp</title>
+    <meta name="description" content="Working with ultra-large canvas dimensions in GIMP requires a balance between system resource consumption and historical state tracking. Rather than duplicating entire canvas layers for every edit, GIMP manages undo stack memory through GEGL's tile-based">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-manages-undo-memory-for-huge-canvases">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Manages Undo Memory for Huge Canvases - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-manages-undo-memory-for-huge-canvases" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Working with ultra-large canvas dimensions in GIMP requires a balance between system resource consumption and historical state tracking. Rather than duplicating entire canvas layers for every edit, GIMP manages undo stack memory through GEGL's tile-based" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gimp-manages-undo-memory-for-huge-canvases">How GIMP Manages
+Undo Memory for Huge Canvases</h1>
+<p>Working with ultra-large canvas dimensions in GIMP requires a balance
+between system resource consumption and historical state tracking.
+Rather than duplicating entire canvas layers for every edit, GIMP
+manages undo stack memory through GEGL's tile-based buffer architecture,
+delta tracking, configurable memory thresholds, and disk swap paging.
+This article breaks down the exact mechanisms GIMP uses to prevent
+out-of-memory crashes while maintaining a functional undo history on
+massive resolutions.</p>
+<h3 id="tile-based-image-buffers-gegl">Tile-Based Image Buffers
+(GEGL)</h3>
+<p>GIMP relies on the Generic Graphics Library (GEGL) as its core image
+processing engine. GEGL breaks large images down into small, manageable
+rectangular blocks of pixel data called tiles (typically 64×64 or
+128×128 pixels).</p>
+<p>Instead of treating an ultra-large image as a single contiguous array
+in RAM, GIMP handles it as a collection of independent tiles. This tile
+abstraction forms the foundation of GIMP's undo stack efficiency,
+ensuring memory is allocated modularly rather than globally.</p>
+<h3 id="delta-tracking-and-copy-on-write">Delta Tracking and
+Copy-on-Write</h3>
+<p>When an action is performed on an ultra-large canvas, GIMP does not
+duplicate the entire layer or document. Instead, it employs a delta
+(difference) tracking strategy:</p>
+<ul>
+<li><strong>Localized Edits:</strong> If you paint with a brush on a
+30,000 × 30,000-pixel canvas, GIMP only identifies and clones the
+specific tiles intersected by the brush stroke (the "dirty" tiles).</li>
+<li><strong>State Retention:</strong> The original versions of modified
+tiles are copied into an undo step container, while unchanged tiles are
+referenced by pointers without consuming additional pixel memory.</li>
+<li><strong>Global Operations:</strong> If an operation modifies every
+pixel across the canvas—such as applying a full-canvas blur or color
+adjustment—every tile must be duplicated, resulting in an immediate
+surge in undo allocation.</li>
+</ul>
+<h3 id="configurable-memory-ceilings-and-priority-rules">Configurable
+Memory Ceilings and Priority Rules</h3>
+<p>GIMP prevents run-away memory usage through explicit user limits
+defined in its preferences (<strong>Preferences &gt; Environment &gt;
+Resource Consumption</strong>):</p>
+<ul>
+<li><strong>Maximum Undo Memory:</strong> Defines the upper memory
+ceiling that the undo system is permitted to consume in RAM before it
+begins purging older history states.</li>
+<li><strong>Minimal Number of Undo Levels:</strong> Acts as an
+operational override. Even if the undo stack exceeds the defined Maximum
+Undo Memory, GIMP guarantees that a baseline number of steps (default is
+typically 1 to 5) will be preserved. On an ultra-large canvas, a single
+global operation may violate the undo limit immediately, but this rule
+prevents GIMP from stripping the user of the ability to revert the very
+last edit.</li>
+</ul>
+<p>When the undo history exceeds the memory limit and the minimal step
+requirement is satisfied, the oldest undo steps at the bottom of the
+stack are discarded, and their associated tile allocations are
+freed.</p>
+<h3 id="disk-paging-via-the-gegl-swap-directory">Disk Paging via the
+GEGL Swap Directory</h3>
+<p>When working with canvases that exceed available system RAM, GIMP
+offloads both canvas tiles and undo history tiles to physical storage
+using the GEGL Swap Directory:</p>
+<ol type="1">
+<li><strong>Active vs. Inactive Data:</strong> Tiles actively in view or
+currently being processed stay in system RAM. Tiles containing older
+undo states are shifted to the swap space on disk.</li>
+<li><strong>Asynchronous Flushing:</strong> GIMP writes compressed tile
+caches to temporary files, freeing RAM for current rendering
+operations.</li>
+<li><strong>Paging on Undo/Redo:</strong> When an undo command is
+executed, GIMP reads the swapped tiles back from the disk into RAM,
+replacing the current state of those coordinates.</li>
+</ol>
+<h3 id="impact-of-global-vs-local-actions-on-large-documents">Impact of
+Global vs. Local Actions on Large Documents</h3>
+<p>Because of GIMP’s tile architecture, performance and memory scaling
+on ultra-large documents depend on the nature of the action:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Action Type</th>
+<th style="text-align: left;">Examples</th>
+<th style="text-align: left;">Tile Impact</th>
+<th style="text-align: left;">Undo Memory Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Local Edits</strong></td>
+<td style="text-align: left;">Brush strokes, small clones, localized
+eraser</td>
+<td style="text-align: left;">Minimal (&lt; 1% of canvas)</td>
+<td style="text-align: left;">Low memory usage; fast execution.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Transformations</strong></td>
+<td style="text-align: left;">Rotate, perspective, scale</td>
+<td style="text-align: left;">Canvas-wide</td>
+<td style="text-align: left;">Requires storing a full copy of the
+affected layer tiles.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Global Filters</strong></td>
+<td style="text-align: left;">Gaussian blur, levels, unsharp mask</td>
+<td style="text-align: left;">100% of layer</td>
+<td style="text-align: left;">Triggers massive memory consumption;
+instantly pushes older steps out of the stack or forces heavy disk swap
+activity.</td>
+</tr>
+</tbody>
+</table></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Fade Dynamic: Simulate Running Out of Ink - gimp</title>
+    <meta name="description" content="In digital calligraphy, achieving the organic imperfection of traditional media requires replicating physical constraints, such as ink depletion. In GIMP, the Fade Dynamic accomplishes this by tying brush characteristics like opacity and size to the leng">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-fade-dynamic-simulate-running-out-of-ink">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Fade Dynamic: Simulate Running Out of Ink - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-fade-dynamic-simulate-running-out-of-ink" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In digital calligraphy, achieving the organic imperfection of traditional media requires replicating physical constraints, such as ink depletion. In GIMP, the Fade Dynamic accomplishes this by tying brush characteristics like opacity and size to the leng" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-fade-dynamic-simulate-running-out-of-ink">GIMP Fade
+Dynamic: Simulate Running Out of Ink</h1>
+<p>In digital calligraphy, achieving the organic imperfection of
+traditional media requires replicating physical constraints, such as ink
+depletion. In GIMP, the Fade Dynamic accomplishes this by tying brush
+characteristics like opacity and size to the length of a stroke. This
+guide explains the mechanics behind GIMP's Fade Dynamic and how it
+accurately simulates a traditional dip pen running out of ink.</p>
+<h3 id="the-physics-of-traditional-ink-depletion">The Physics of
+Traditional Ink Depletion</h3>
+<p>When writing with a traditional dip pen or fountain pen, a finite
+reservoir of ink clings to the metal nib. As the pen touches the paper
+and moves:</p>
+<ol type="1">
+<li><strong>Initial Flow:</strong> The stroke begins saturated, dark,
+and wide due to maximum liquid volume.</li>
+<li><strong>Capillary Draw:</strong> As the ink is drawn onto the paper
+fibers, the reservoir empties.</li>
+<li><strong>Dry Stroke:</strong> As ink volume drops, surface tension
+reduces, making the line narrower and faint, eventually terminating in a
+dry, scratchy stroke.</li>
+</ol>
+<h3 id="how-gimps-fade-dynamic-works">How GIMP's Fade Dynamic Works</h3>
+<p>The Fade dynamic in GIMP measures the physical distance traveled by a
+stroke from the moment the cursor or stylus touches the canvas. Instead
+of responding to user input variations like pen pressure or velocity,
+Fade functions strictly as a distance counter.</p>
+<p>When mapped to specific brush properties via the Paint Dynamics
+Matrix, the Fade dynamic progressively reduces brush values from 100%
+down to 0% over a specified stroke length.</p>
+<h3 id="simulating-ink-depletion-in-gimp">Simulating Ink Depletion in
+GIMP</h3>
+<p>To replicate ink depletion, Fade is mapped to two primary brush
+attributes:</p>
+<h4 id="1-opacity-ink-transparency">1. Opacity (Ink Transparency)</h4>
+<p>Mapping Fade to <strong>Opacity</strong> is the core component of the
+drying effect. As the stroke extends, GIMP reduces the brush opacity
+along a linear gradient. The mark transitions from an opaque, wet black
+or sepia to a translucent grey, mirroring the paper showing through an
+increasingly thin film of ink.</p>
+<h4 id="2-size-nib-contact-and-liquid-volume">2. Size (Nib Contact and
+Liquid Volume)</h4>
+<p>Mapping Fade to <strong>Size</strong> mimics the loss of fluid
+spread. Wet ink slightly bleeds and maintains full contact across the
+tines of the nib. As ink dries, only the fine tip leaves a mark.
+Enabling Fade on Size causes the stroke to naturally taper down in width
+as it runs out of ink.</p>
+<h3 id="key-configuration-settings">Key Configuration Settings</h3>
+<p>To fine-tune the simulation, adjust the following parameters in the
+<strong>Tool Options</strong> and <strong>Paint Dynamics
+Editor</strong>:</p>
+<ul>
+<li><strong>Fade Length:</strong> Located in the Tool Options under
+<em>Dynamic Options</em>. This slider sets the precise stroke length (in
+pixels, millimeters, or inches) required to completely exhaust the ink.
+A shorter length simulates a dry, scratchy nib, while a longer length
+simulates a fully loaded reservoir.</li>
+<li><strong>Repeat Option (None):</strong> Set the repeat dropdown to
+<strong>None</strong>. This ensures that once the stroke reaches the end
+of the fade distance, no more ink is laid down until the stylus is
+lifted and placed down again, effectively "re-dipping" the virtual
+pen.</li>
+<li><strong>Fade Curve Adjustment:</strong> In the Dynamics Editor, you
+can customize the falloff curve. A non-linear curve—where the ink
+remains solid for the first 60% of the stroke and drops off sharply in
+the final 40%—creates a more natural dip-pen behavior than a strictly
+linear decline.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

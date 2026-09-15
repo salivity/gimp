@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Frosted Glass UI Cards in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to design a modern glassmorphism UI card featuring a realistic frosted glass aesthetic in GIMP. You will learn how to produce the characteristic translucent blur, apply soft color tinting, create reflective border highlights, and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-frosted-glass-ui-cards-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Frosted Glass UI Cards in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-frosted-glass-ui-cards-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design a modern glassmorphism UI card featuring a realistic frosted glass aesthetic in GIMP. You will learn how to produce the characteristic translucent blur, apply soft color tinting, create reflective border highlights, and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-frosted-glass-ui-cards-in-gimp">Create Frosted Glass UI
+Cards in GIMP</h1>
+<p>This guide explains how to design a modern glassmorphism UI card
+featuring a realistic frosted glass aesthetic in GIMP. You will learn
+how to produce the characteristic translucent blur, apply soft color
+tinting, create reflective border highlights, and cast subtle drop
+shadows to make your interface components stand out over any
+background.</p>
+<h3 id="step-1-prepare-the-background">Step 1: Prepare the
+Background</h3>
+<p>Glassmorphism relies entirely on the background behind it to create
+the illusion of transparency and refraction.</p>
+<ol type="1">
+<li>Open GIMP and create a new project with your desired canvas
+size.</li>
+<li>Fill the background with a vibrant, colorful gradient or an abstract
+image with contrasting light and dark areas. Pure solid colors will make
+the frosted blur effect difficult to notice.</li>
+</ol>
+<h3 id="step-2-define-the-card-shape">Step 2: Define the Card Shape</h3>
+<ol type="1">
+<li>Create a new transparent layer above your background and name it
+<code>Card Shape</code>.</li>
+<li>Select the <strong>Rectangle Select Tool</strong>
+(<code>R</code>).</li>
+<li>In the Tool Options panel, check the <strong>Rounded
+Corners</strong> option and set the radius (e.g., 20px to 30px depending
+on canvas resolution).</li>
+<li>Draw your card's shape on the canvas. Keep the selection active for
+the subsequent steps.</li>
+</ol>
+<h3 id="step-3-create-the-frosted-blur-effect">Step 3: Create the
+Frosted Blur Effect</h3>
+<ol type="1">
+<li>Click on the background layer in the Layers panel.</li>
+<li>Press <code>Ctrl + C</code> then <code>Ctrl + V</code> to paste the
+selection, and click the green anchor icon or go to <strong>Layer &gt;
+To New Layer</strong> to convert it into its own layer. Name this layer
+<code>Blurred Background</code>.</li>
+<li>Move <code>Blurred Background</code> above the original background
+layer.</li>
+<li>With <code>Blurred Background</code> selected, navigate to
+<strong>Filters &gt; Blur &gt; Gaussian Blur</strong>.</li>
+<li>Adjust the <strong>Size X</strong> and <strong>Size Y</strong>
+sliders to between 25 and 50 pixels depending on how heavy you want the
+frosted diffusion to appear, then click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-4-add-the-translucent-tint">Step 4: Add the Translucent
+Tint</h3>
+<ol type="1">
+<li>Select the <code>Card Shape</code> layer you created earlier.</li>
+<li>Reactivate the card selection if it was deselected (right-click the
+<code>Card Shape</code> or <code>Blurred Background</code> layer and
+choose <strong>Alpha to Selection</strong>).</li>
+<li>Select the <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>) and set the foreground color to pure white
+(<code>#FFFFFF</code>).</li>
+<li>Fill the active selection on the <code>Card Shape</code> layer.</li>
+<li>In the Layers panel, lower the <strong>Opacity</strong> of the
+<code>Card Shape</code> layer to between 10% and 25%. This adds the
+milky, semi-opaque surface characteristic of frosted glass.</li>
+</ol>
+<h3 id="step-5-add-the-subtle-border-stroke">Step 5: Add the Subtle
+Border Stroke</h3>
+<p>Light catches the physical edges of glass, so a thin highlight stroke
+is essential.</p>
+<ol type="1">
+<li>Create a new transparent layer at the top of the layer stack and
+name it <code>Border</code>.</li>
+<li>Ensure your card outline selection is still active.</li>
+<li>Go to <strong>Select &gt; Border</strong>. Set the border width to
+1px or 2px, set the style to <strong>Smooth</strong>, and click
+<strong>OK</strong>.</li>
+<li>Fill this border selection with pure white
+(<code>#FFFFFF</code>).</li>
+<li>Deselect the area using <strong>Select &gt; None</strong>
+(<code>Ctrl + Shift + A</code>).</li>
+<li>Set the <code>Border</code> layer's opacity to roughly 30% to 50% to
+prevent the line from looking too harsh. For enhanced realism, you can
+add a layer mask with a linear gradient to make the border fade from
+bright white at the top-left to transparent at the bottom-right.</li>
+</ol>
+<h3 id="step-6-add-depth-with-a-drop-shadow">Step 6: Add Depth with a
+Drop Shadow</h3>
+<ol type="1">
+<li>Right-click the <code>Blurred Background</code> layer and choose
+<strong>Alpha to Selection</strong>.</li>
+<li>Create a new layer immediately above the original background (below
+<code>Blurred Background</code>) and name it <code>Shadow</code>.</li>
+<li>Go to <strong>Filters &gt; Light and Shadow &gt; Drop
+Shadow</strong>.</li>
+<li>Set <strong>X</strong> to 0, <strong>Y</strong> to 10–15px, and
+<strong>Blur Radius</strong> to 30–40px.</li>
+<li>Set the shadow color to black and decrease the
+<strong>Opacity</strong> to approximately 0.2 to 0.3 for a soft, modern
+ambient occlusion effect. Click <strong>OK</strong> to apply.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

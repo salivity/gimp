@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Alpha Lock Prevents Spilling in GIMP - gimp</title>
+    <meta name="description" content="Locking the alpha channel in GIMP is a fundamental technique that restricts all painting and editing tools strictly to existing, colored pixels on a layer. By making the transparency data read-only, this feature prevents brush strokes from bleeding into">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-alpha-lock-prevents-spilling-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Alpha Lock Prevents Spilling in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-alpha-lock-prevents-spilling-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Locking the alpha channel in GIMP is a fundamental technique that restricts all painting and editing tools strictly to existing, colored pixels on a layer. By making the transparency data read-only, this feature prevents brush strokes from bleeding into" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-alpha-lock-prevents-spilling-in-gimp">How Alpha Lock
+Prevents Spilling in GIMP</h1>
+<p>Locking the alpha channel in GIMP is a fundamental technique that
+restricts all painting and editing tools strictly to existing, colored
+pixels on a layer. By making the transparency data read-only, this
+feature prevents brush strokes from bleeding into empty space. This
+article explains the underlying mechanism of the alpha channel, how the
+locking feature functions mathematically to preserve transparency, and
+why it ensures crisp, contained brushwork.</p>
+<h3 id="the-mechanism-of-the-alpha-channel">The Mechanism of the Alpha
+Channel</h3>
+<p>Digital images with transparency contain four distinct channels of
+information: Red, Green, Blue, and Alpha (RGBA). The RGB channels
+determine the color values of each pixel, while the Alpha channel
+determines its opacity on a scale typically ranging from 0 (completely
+transparent) to 255 (completely opaque).</p>
+<p>When you paint on a standard layer with an active alpha channel, your
+brush modifies both the color channels and the alpha channel
+simultaneously. Applying paint to a transparent area raises its alpha
+value from zero to an opaque or semi-opaque state, causing color to
+appear where there was previously empty canvas.</p>
+<h3 id="how-alpha-locking-works">How Alpha Locking Works</h3>
+<p>When you enable "Lock alpha channel" (represented by the checkerboard
+icon in the Layers dialog), GIMP temporarily freezes the alpha value of
+every single pixel on that active layer. The alpha channel becomes
+strictly read-only, while the RGB color channels remain editable.</p>
+<p>Because the alpha values cannot be modified:</p>
+<ul>
+<li><strong>Fully transparent pixels remain untouched:</strong> Pixels
+with an alpha value of 0 cannot receive color because displaying that
+color would require increasing the alpha value above zero. Since the
+software forbids altering the transparency value, the brush stroke
+simply has no effect on those areas.</li>
+<li><strong>Fully opaque pixels change color:</strong> Pixels with an
+alpha value of 255 accept the new RGB color data from the brush
+completely. Since their opacity was already at maximum, updating the
+color does not require changing the alpha value.</li>
+<li><strong>Semi-transparent pixels preserve their exact
+opacity:</strong> For anti-aliased edges, soft shadows, or feathered
+shapes, the pixels retain their exact fractional opacity. A pixel that
+is 40% opaque will take on the new brush color, but it will remain
+precisely 40% opaque.</li>
+</ul>
+<h3 id="practical-impact-on-digital-painting">Practical Impact on
+Digital Painting</h3>
+<p>By locking the alpha channel, the existing content of the layer acts
+as its own permanent, dynamic stencil. You can use large, textured, or
+soft brushes across the entire canvas without worrying about stray marks
+escaping the boundaries of your subject. This allows for rapid
+recoloring, rim lighting, and smooth shading while retaining the
+original silhouette and smooth anti-aliased edges without the need for
+complex selection masks.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

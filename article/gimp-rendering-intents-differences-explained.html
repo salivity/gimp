@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Rendering Intents: Differences Explained - gimp</title>
+    <meta name="description" content="Rendering intents determine how GIMP handles colors that cannot be reproduced when converting an image from one color profile to another, such as shifting from a wide-gamut working space to a printer's CMYK profile. When colors in the source profile fall">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-rendering-intents-differences-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Rendering Intents: Differences Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-rendering-intents-differences-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Rendering intents determine how GIMP handles colors that cannot be reproduced when converting an image from one color profile to another, such as shifting from a wide-gamut working space to a printer's CMYK profile. When colors in the source profile fall" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-rendering-intents-differences-explained">GIMP Rendering
+Intents: Differences Explained</h1>
+<p>Rendering intents determine how GIMP handles colors that cannot be
+reproduced when converting an image from one color profile to another,
+such as shifting from a wide-gamut working space to a printer's CMYK
+profile. When colors in the source profile fall outside the boundaries
+of the destination profile—known as being "out of gamut"—GIMP relies on
+four distinct mathematical methods to map those colors: Perceptual,
+Relative Colorimetric, Saturation, and Absolute Colorimetric. Choosing
+the correct intent ensures that your final digital or printed output
+maintains its intended visual impact or color accuracy.</p>
+<h3 id="perceptual">Perceptual</h3>
+<p>Perceptual rendering compresses the entire color space of the
+original image to fit into the destination gamut. Instead of only
+altering out-of-gamut colors, it shifts both in-gamut and out-of-gamut
+shades proportionally.</p>
+<ul>
+<li><strong>How it works:</strong> It preserves the visual relationships
+between colors, ensuring gradients remain smooth and details in
+highlights and shadows are not clipped. While the absolute measured
+values of the colors change, the overall image appears natural to the
+human eye.</li>
+<li><strong>Best used for:</strong> General photography, portraits, and
+images with smooth transitions or high dynamic range where visual
+harmony is more important than measurable color fidelity.</li>
+</ul>
+<h3 id="relative-colorimetric">Relative Colorimetric</h3>
+<p>Relative Colorimetric adjusts the white point of the source profile
+to match the white point of the destination profile, and then shifts
+only the colors that fall outside the printable gamut to the nearest
+reproducible shade.</p>
+<ul>
+<li><strong>How it works:</strong> All colors that already exist inside
+the destination gamut remain completely unchanged. Only out-of-gamut
+colors are clipped or mapped to the gamut edge. Because it adapts to the
+destination's white point, the paper white looks natural.</li>
+<li><strong>Best used for:</strong> Most standard photographic printing
+and graphic design. It is often the default choice because it maintains
+exact color values for the majority of the image.</li>
+</ul>
+<h3 id="saturation">Saturation</h3>
+<p>Saturation rendering aims to maximize color vibrancy rather than
+maintain color accuracy or hue precision.</p>
+<ul>
+<li><strong>How it works:</strong> It scales the colors of the image to
+the most saturated borders of the destination color space. In doing so,
+subtle hue shifts can occur, and gradients may lose detail, but colors
+will appear vivid and punchy.</li>
+<li><strong>Best used for:</strong> Non-photographic imagery, such as
+business presentations, pie charts, vector logos, and informational
+graphics where vibrant colors are preferred over real-life
+accuracy.</li>
+</ul>
+<h3 id="absolute-colorimetric">Absolute Colorimetric</h3>
+<p>Absolute Colorimetric is similar to Relative Colorimetric, but it
+does not adjust for the white point of the destination media.</p>
+<ul>
+<li><strong>How it works:</strong> It maintains exact colorimetric
+coordinates across both profiles. If the target paper has a yellowish
+tint compared to pure digital white, GIMP will actually simulate that
+paper color by laying down ink to reproduce the original white point.
+Any out-of-gamut colors are clipped directly to the closest reproducible
+shade.</li>
+<li><strong>Best used for:</strong> Proofing and prepress verification.
+It allows you to simulate on one printer exactly how an image will look
+when printed on a completely different press or paper stock. It is
+rarely used for final artwork delivery.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

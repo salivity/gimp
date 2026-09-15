@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Repeat Mode: Sawtooth Wave vs Triangle Wave - gimp</title>
+    <meta name="description" content="In GIMP, the Gradient Tool includes a "Repeat" setting that allows you to tile a color transition across an image or selection to create repeating stripes. When you drag a gradient line shorter than the canvas, this setting dictates how the pattern conti">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-repeat-mode-sawtooth-wave-vs-triangle-wave">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Repeat Mode: Sawtooth Wave vs Triangle Wave - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-repeat-mode-sawtooth-wave-vs-triangle-wave" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the Gradient Tool includes a "Repeat" setting that allows you to tile a color transition across an image or selection to create repeating stripes. When you drag a gradient line shorter than the canvas, this setting dictates how the pattern conti" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-repeat-mode-sawtooth-wave-vs-triangle-wave">GIMP Repeat
+Mode: Sawtooth Wave vs Triangle Wave</h1>
+<p>In GIMP, the Gradient Tool includes a "Repeat" setting that allows
+you to tile a color transition across an image or selection to create
+repeating stripes. When you drag a gradient line shorter than the
+canvas, this setting dictates how the pattern continues beyond the
+endpoints. Understanding the difference between the <strong>Sawtooth
+wave</strong> and <strong>Triangle wave</strong> modes is essential for
+controlling whether your stripes have hard, directional seams or smooth,
+alternating transitions.</p>
+<h3 id="how-the-repeat-setting-works">How the Repeat Setting Works</h3>
+<p>By default, GIMP's Gradient Tool is set to "None," meaning the start
+and end colors simply extend infinitely past the endpoints of your
+gradient vector. When you enable a Repeat mode, GIMP treats the distance
+between your click point and release point as a single cycle, looping
+that cycle infinitely across the canvas. The choice between Sawtooth
+wave and Triangle wave alters the mathematical progression of that
+loop.</p>
+<h3 id="sawtooth-wave-sharp-directional-stripes">Sawtooth Wave: Sharp,
+Directional Stripes</h3>
+<p>The <strong>Sawtooth wave</strong> repeats the gradient linearly from
+the starting color to the ending color, then immediately jumps back to
+the starting color to begin the next cycle.</p>
+<ul>
+<li><strong>Pattern Flow:</strong> Start Color <span
+class="math inline">\(\rightarrow\)</span> End Color | Start Color <span
+class="math inline">\(\rightarrow\)</span> End Color | Start Color <span
+class="math inline">\(\rightarrow\)</span> End Color.</li>
+<li><strong>Visual Result:</strong> Every cycle terminates with a hard,
+sharp edge where the end color abruptly abuts the start color of the
+next repetition.</li>
+<li><strong>Best Used For:</strong> Creating distinct, directional
+stripes (such as candy canes or hazard tape), blinds, or any pattern
+requiring a clearly defined cutoff between repeating segments.</li>
+</ul>
+<h3 id="triangle-wave-smooth-mirrored-stripes">Triangle Wave: Smooth,
+Mirrored Stripes</h3>
+<p>The <strong>Triangle wave</strong> alternates the direction of the
+gradient on every cycle, moving forward from the start color to the end
+color, and then reversing from the end color back to the start
+color.</p>
+<ul>
+<li><strong>Pattern Flow:</strong> Start Color <span
+class="math inline">\(\rightarrow\)</span> End Color <span
+class="math inline">\(\rightarrow\)</span> Start Color <span
+class="math inline">\(\rightarrow\)</span> End Color.</li>
+<li><strong>Visual Result:</strong> The repetitions blend seamlessly
+without any sharp seams or abrupt breaks. The pattern creates a
+mirrored, symmetrical oscillation between the colors.</li>
+<li><strong>Best Used For:</strong> Creating smooth, corrugated effects,
+soft ripples, continuous light-and-shadow waves, or seamless fabric-like
+textures where visible seam lines would be undesirable.</li>
+</ul>
+<h3 id="summary-of-differences">Summary of Differences</h3>
+<ul>
+<li><strong>Transitions:</strong> Sawtooth produces an abrupt edge at
+the end of each stripe cycle, whereas Triangle produces seamless,
+mirrored reversals.</li>
+<li><strong>Symmetry:</strong> Sawtooth is asymmetrical and flows in one
+visual direction; Triangle is symmetrical and mirrors back and
+forth.</li>
+<li><strong>Frequency:</strong> Because Triangle wave must travel to the
+end color and back to complete a full symmetry loop, a single dragged
+distance produces two color slopes per full visual period compared to
+Sawtooth's single slope.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

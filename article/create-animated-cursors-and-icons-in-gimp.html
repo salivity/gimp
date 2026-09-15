@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Animated Cursors and Icons in GIMP - gimp</title>
+    <meta name="description" content="Creating custom animated cursors and multi-resolution application icons requires leveraging GIMP’s layer hierarchy to store multiple states and sizes within a single file. By structuring individual layers as distinct animation frames or discrete icon r">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-animated-cursors-and-icons-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Animated Cursors and Icons in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-animated-cursors-and-icons-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating custom animated cursors and multi-resolution application icons requires leveraging GIMP’s layer hierarchy to store multiple states and sizes within a single file. By structuring individual layers as distinct animation frames or discrete icon r" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-animated-cursors-and-icons-in-gimp">Create Animated
+Cursors and Icons in GIMP</h1>
+<p>Creating custom animated cursors and multi-resolution application
+icons requires leveraging GIMP’s layer hierarchy to store multiple
+states and sizes within a single file. By structuring individual layers
+as distinct animation frames or discrete icon resolutions, you can
+export fully compliant Windows Icon (.ico) files and animated cursor
+formats without relying on specialized external editors.</p>
+<h2 id="building-multi-size-application-icons-ico">Building Multi-Size
+Application Icons (.ico)</h2>
+<p>A functional Windows icon file (.ico) is a container that packages
+multiple square dimensions of the same graphic, allowing the operating
+system to display the optimal resolution depending on the view
+scale.</p>
+<h3 id="1-canvas-and-layer-setup">1. Canvas and Layer Setup</h3>
+<ol type="1">
+<li>Create a new document (<code>File &gt; New</code>) with dimensions
+of <strong>256 × 256 pixels</strong>, a transparent background, and an
+RGB color profile.</li>
+<li>Design your master icon graphic on this 256 × 256 canvas. This acts
+as the highest-resolution tier.</li>
+<li>Duplicate your primary layer or layer group for each standard icon
+size:
+<ul>
+<li>128 × 128</li>
+<li>64 × 64</li>
+<li>48 × 48</li>
+<li>32 × 32</li>
+<li>16 × 16</li>
+</ul></li>
+</ol>
+<h3 id="2-scaling-layers-individually">2. Scaling Layers
+Individually</h3>
+<p>GIMP determines icon frame dimensions directly from layer boundaries
+rather than canvas boundaries:</p>
+<ol type="1">
+<li>Select a layer assigned to a smaller dimension.</li>
+<li>Go to <code>Layer &gt; Scale Layer...</code>.</li>
+<li>Set the desired target width and height (e.g.,
+<code>48 × 48 px</code>).</li>
+<li>Set the <strong>Interpolation</strong> method:
+<ul>
+<li>Choose <strong>NoHalo</strong> or <strong>LoHalo</strong> for smooth
+vector-like artwork.</li>
+<li>Choose <strong>None</strong> to preserve crisp edges for pixel
+art.</li>
+</ul></li>
+<li>Repeat this scaling process for each layer corresponding to the
+target resolutions.</li>
+</ol>
+<h3 id="3-layer-stack-hierarchy">3. Layer Stack Hierarchy</h3>
+<p>Organize the layer panel sequentially from largest to smallest (or
+smallest to largest). Ensure every layer has an active alpha channel by
+right-clicking each layer and selecting <strong>Add Alpha
+Channel</strong> if it is not already bolded.</p>
+<h3 id="4-exporting-the-icon">4. Exporting the Icon</h3>
+<ol type="1">
+<li>Go to <code>File &gt; Export As...</code> and set the file extension
+to <code>.ico</code> (e.g., <code>app-icon.ico</code>).</li>
+<li>Click <strong>Export</strong>.</li>
+<li>In the Windows Icon export dialog, verify each layer entry. Check
+the 32-bit (24-bit color + 8-bit alpha) bpp setting for larger layers,
+and enable PNG compression for 256 × 256 layers to reduce total file
+size.</li>
+</ol>
+<hr />
+<h2 id="designing-animated-cursors">Designing Animated Cursors</h2>
+<p>Animated cursors rely on sequential layers representing time-based
+frames, configured with specific frame durations and click coordinates
+(hotspots).</p>
+<h3 id="1-document-configuration">1. Document Configuration</h3>
+<ol type="1">
+<li>Open a new document sized to standard cursor specifications:
+<strong>32 × 32 pixels</strong> (standard DPI) or <strong>48 × 48 / 64 ×
+64 pixels</strong> (high DPI).</li>
+<li>Ensure the background is transparent.</li>
+</ol>
+<h3 id="2-layer-sequence-and-timing">2. Layer Sequence and Timing</h3>
+<p>GIMP renders animations from the <strong>bottom layer
+up</strong>:</p>
+<ul>
+<li><strong>Bottom layer:</strong> Frame 1 (Start of animation)</li>
+<li><strong>Middle layers:</strong> Sequential intermediate frames</li>
+<li><strong>Top layer:</strong> Final frame</li>
+</ul>
+<p>To define individual frame timing directly in the layer hierarchy,
+rename the layers using GIMP's animation syntax:</p>
+<ol type="1">
+<li>Double-click the layer name in the Layers dialog.</li>
+<li>Append the duration in milliseconds within parentheses, along with
+the frame disposal method:
+<ul>
+<li><code>Pointer Frame 1 (100ms) (replace)</code></li>
+<li><code>Pointer Frame 2 (100ms) (replace)</code></li>
+<li><code>Pointer Frame 3 (100ms) (replace)</code></li>
+</ul></li>
+<li>The <code>(replace)</code> tag ensures previous frames are cleared
+before rendering the next one, preventing visual artifacts.</li>
+</ol>
+<h3 id="3-previewing-the-cursor-animation">3. Previewing the Cursor
+Animation</h3>
+<p>Test the animation smoothness before exporting:</p>
+<ol type="1">
+<li>Navigate to
+<code>Filters &gt; Animation &gt; Playback...</code>.</li>
+<li>Click <strong>Play</strong> to review the loop, speed, and frame
+transitions.</li>
+</ol>
+<h3 id="4-exporting-cursor-assets">4. Exporting Cursor Assets</h3>
+<h4 id="for-linux-x11-mouse-cursor---xmc">For Linux (X11 Mouse Cursor -
+.xmc):</h4>
+<ol type="1">
+<li>Navigate to <code>File &gt; Export As...</code> and name the file
+with the <code>.xmc</code> extension.</li>
+<li>In the export dialog:
+<ul>
+<li>Set the <strong>Hotspot X</strong> and <strong>Hotspot Y</strong>
+coordinates (the exact pixel location that registers clicks, typically
+<code>0, 0</code> for standard pointers).</li>
+<li>Confirm the frame delay defaults to your layer metadata.</li>
+</ul></li>
+<li>Click <strong>Export</strong>.</li>
+</ol>
+<h4 id="for-windows-animated-cursors-ani">For Windows Animated Cursors
+(.ani):</h4>
+<p>GIMP does not natively export the proprietary Windows
+<code>.ani</code> container directly:</p>
+<ol type="1">
+<li>Export the layer sequence as an animated GIF
+(<code>File &gt; Export As &gt; .gif</code>) with <strong>As
+Animation</strong> checked, or export as a horizontal PNG sprite sheet
+using <code>Image &gt; Canvas Size</code>.</li>
+<li>Import the resulting GIF or sprite sheet into an open-source cursor
+compiler (such as <code>anicursorgen</code>) to assign the click hotspot
+and output the final <code>.ani</code> binary.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

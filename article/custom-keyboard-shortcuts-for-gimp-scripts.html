@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Keyboard Shortcuts for GIMP Scripts - gimp</title>
+    <meta name="description" content="Assigning custom keyboard shortcuts to third-party scripts in GIMP streamlines your graphic design workflow by giving you one-touch access to your most frequently used automated tasks and plugins. This guide details the step-by-step process of installing">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/custom-keyboard-shortcuts-for-gimp-scripts">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Custom Keyboard Shortcuts for GIMP Scripts - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/custom-keyboard-shortcuts-for-gimp-scripts" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Assigning custom keyboard shortcuts to third-party scripts in GIMP streamlines your graphic design workflow by giving you one-touch access to your most frequently used automated tasks and plugins. This guide details the step-by-step process of installing" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="custom-keyboard-shortcuts-for-gimp-scripts">Custom Keyboard
+Shortcuts for GIMP Scripts</h1>
+<p>Assigning custom keyboard shortcuts to third-party scripts in GIMP
+streamlines your graphic design workflow by giving you one-touch access
+to your most frequently used automated tasks and plugins. This guide
+details the step-by-step process of installing a third-party script,
+locating it within GIMP's shortcut management interface, assigning a
+unique key combination, and saving your preferences for future editing
+sessions.</p>
+<h3 id="step-1-install-and-verify-the-third-party-script">Step 1:
+Install and Verify the Third-Party Script</h3>
+<p>Before setting a shortcut, make sure GIMP recognizes your script or
+plugin:</p>
+<ol type="1">
+<li>Place your script file (<code>.scm</code> for Script-Fu or
+<code>.py</code> for Python-Fu) in GIMP’s designated directory:
+<ul>
+<li><strong>Scripts:</strong> <code>Preferences</code> &gt;
+<code>Folders</code> &gt; <code>Scripts</code></li>
+<li><strong>Plug-ins:</strong> <code>Preferences</code> &gt;
+<code>Folders</code> &gt; <code>Plug-ins</code></li>
+</ul></li>
+<li>Restart GIMP or reload scripts by navigating to <strong>Filters &gt;
+Script-Fu &gt; Refresh Scripts</strong>.</li>
+<li>Verify that the script appears in its designated menu location (such
+as <em>Filters</em>, <em>Image</em>, <em>Layer</em>, or
+<em>Tools</em>).</li>
+</ol>
+<h3 id="step-2-open-the-keyboard-shortcuts-editor">Step 2: Open the
+Keyboard Shortcuts Editor</h3>
+<ol type="1">
+<li>Click on <strong>Edit</strong> in the top menu bar.</li>
+<li>Select <strong>Keyboard Shortcuts</strong> from the drop-down menu
+to open the <em>Configure Keyboard Shortcuts</em> dialog window.</li>
+</ol>
+<h3 id="step-3-locate-your-custom-script">Step 3: Locate Your Custom
+Script</h3>
+<ol type="1">
+<li>In the search bar at the bottom of the dialog, type the exact name
+of the third-party script.</li>
+<li>Alternatively, expand the menu tree categories (e.g.,
+<em>Filters</em>, <em>Layer</em>) in the central list to locate the
+script manually based on where it appears in your GIMP interface.</li>
+</ol>
+<h3 id="step-4-assign-the-key-combination">Step 4: Assign the Key
+Combination</h3>
+<ol type="1">
+<li>Click directly on the row containing your script name, specifically
+targeting the <strong>Shortcut</strong> column (which usually displays
+<em>Disabled</em> by default).</li>
+<li>The text will change to <strong>New accelerator...</strong>.</li>
+<li>Press the key combination you wish to use on your keyboard (for
+example, <code>Ctrl + Shift + Q</code> or <code>Alt + K</code>).</li>
+<li>If the key combination is already used by another action, GIMP will
+prompt you to reassign it or choose a different combination.</li>
+</ol>
+<h3 id="step-5-save-and-test">Step 5: Save and Test</h3>
+<ol type="1">
+<li>Click the <strong>Save</strong> button (or ensure <strong>Save
+keyboard shortcuts on exit</strong> is checked in your main
+preferences).</li>
+<li>Click <strong>Close</strong> to exit the shortcut editor.</li>
+<li>Open an active canvas and press your new key combination to verify
+that the script executes properly.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

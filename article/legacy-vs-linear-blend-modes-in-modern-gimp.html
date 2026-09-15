@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy vs Linear Blend Modes in Modern GIMP - gimp</title>
+    <meta name="description" content="In modern versions of GIMP, users can choose between Legacy blend modes and modern Linear composite modes to control how layer pixels interact. While Legacy modes retain the historical, gamma-corrected mathematics of GIMP 2.8 and traditional digital art">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/legacy-vs-linear-blend-modes-in-modern-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Legacy vs Linear Blend Modes in Modern GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/legacy-vs-linear-blend-modes-in-modern-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In modern versions of GIMP, users can choose between Legacy blend modes and modern Linear composite modes to control how layer pixels interact. While Legacy modes retain the historical, gamma-corrected mathematics of GIMP 2.8 and traditional digital art" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="legacy-vs-linear-blend-modes-in-modern-gimp">Legacy vs Linear
+Blend Modes in Modern GIMP</h1>
+<p>In modern versions of GIMP, users can choose between Legacy blend
+modes and modern Linear composite modes to control how layer pixels
+interact. While Legacy modes retain the historical, gamma-corrected
+mathematics of GIMP 2.8 and traditional digital art workflows, modern
+Linear modes process color and light using physically accurate,
+linear-light mathematics. This fundamental difference in color space
+computation drastically changes edge softness, gradient transitions, and
+light behavior across mixed layers.</p>
+<h3 id="gamma-corrected-vs-linear-light-math">Gamma-Corrected vs.
+Linear-Light Math</h3>
+<p>The primary technical difference lies in the color space where the
+math takes place. Legacy blend modes perform calculations directly on
+gamma-encoded values (typically non-linear sRGB). Because human vision
+perceives brightness logarithmically, digital images apply a gamma curve
+to store more shadow detail. When you add, multiply, or divide these
+gamma-encoded numbers directly—as Legacy modes do—the mathematical
+operations do not match how light behaves in the physical world.</p>
+<p>Modern Linear composite modes decode the gamma curve before blending,
+performing all arithmetic in a linear space where a numerical value of
+1.0 represents exactly twice as much light as 0.5. Once the blending
+calculations are complete, GIMP transforms the image back into the
+appropriate color space for display.</p>
+<h3 id="visual-differences-and-artifacts">Visual Differences and
+Artifacts</h3>
+<p>The shift to linear blending resolves several common visual artifacts
+inherent to legacy software:</p>
+<ul>
+<li><strong>Dark Borders on Transitions:</strong> When blending
+saturated complementary colors (such as red and cyan, or blue and
+yellow) using Legacy modes, a muddy, dark gray fringe often appears
+along the transition. Linear modes mix the colors smoothly without
+darkening the intermediate boundary.</li>
+<li><strong>Light and Glow Behavior:</strong> Additive modes like
+Addition, Screen, and Lighten behave much more intensely and naturally
+in Linear mode, replicating the way physical light sources overlap and
+illuminate scenes. Legacy modes often look clipped, unnatural, or
+unexpectedly dull.</li>
+<li><strong>Blur and Soft Edges:</strong> Anti-aliased edges and
+soft-brush strokes maintain their intended luminosity in Linear mode. In
+Legacy mode, semi-transparent edges often look prematurely dark or dirty
+against bright backgrounds.</li>
+</ul>
+<h3 id="why-legacy-modes-still-exist">Why Legacy Modes Still Exist</h3>
+<p>Despite the optical correctness of Linear blending, Legacy modes
+remain a permanent feature in GIMP for two key reasons:</p>
+<ol type="1">
+<li><strong>Backward Compatibility:</strong> Opening an older
+<code>.xcf</code> project created in GIMP 2.8 or earlier requires Legacy
+modes to ensure the artwork renders identically to how it was originally
+designed.</li>
+<li><strong>Artistic Familiarity:</strong> Many digital artists grew up
+using gamma-space blending in programs like older versions of Photoshop
+or legacy GIMP. Certain blend modes—particularly Multiply and
+Overlay—have an aggressive contrast curve in gamma space that artists
+frequently rely on for stylization, shading, and texture mapping.</li>
+</ol>
+<h3 id="how-to-toggle-between-modes">How to Toggle Between Modes</h3>
+<p>Modern GIMP allows you to switch between these engines at the layer
+level. At the top of the Layers dialog, next to the Blend Mode dropdown,
+is a small menu (often represented by an icon indicating composite
+space) where you can set the Composite Mode or choose the Legacy mode
+group directly from the main Mode dropdown list.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

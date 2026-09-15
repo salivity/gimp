@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Carved Wood Engraving Effect in GIMP - gimp</title>
+    <meta name="description" content="Creating a realistic carved-wood engraving effect in GIMP involves combining a high-resolution wood texture with vector graphics or text, then using layer blending, blur filters, and bump mapping to simulate depth, natural bevels, and light interaction.">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/realistic-carved-wood-engraving-effect-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Realistic Carved Wood Engraving Effect in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/realistic-carved-wood-engraving-effect-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a realistic carved-wood engraving effect in GIMP involves combining a high-resolution wood texture with vector graphics or text, then using layer blending, blur filters, and bump mapping to simulate depth, natural bevels, and light interaction." />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="realistic-carved-wood-engraving-effect-in-gimp">Realistic Carved
+Wood Engraving Effect in GIMP</h1>
+<p>Creating a realistic carved-wood engraving effect in GIMP involves
+combining a high-resolution wood texture with vector graphics or text,
+then using layer blending, blur filters, and bump mapping to simulate
+depth, natural bevels, and light interaction. This guide provides a
+straightforward step-by-step procedure to transform flat 2D designs into
+convincing, recessed wood-carved artwork.</p>
+<h3 id="1-set-up-the-project-and-base-texture">1. Set Up the Project and
+Base Texture</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong> to create a
+canvas of your preferred dimensions (e.g., 1920x1080 pixels).</li>
+<li>Go to <strong>File &gt; Open as Layers</strong> and import a
+high-resolution wood grain texture.</li>
+<li>Rename this layer to "Wood Base".</li>
+</ol>
+<h3 id="2-add-and-format-your-graphic-or-text">2. Add and Format Your
+Graphic or Text</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> to add your text, or go to
+<strong>File &gt; Open as Layers</strong> to import a black-and-white
+silhouette or logo.</li>
+<li>Use a bold, thick font or graphic for the best engraving
+visibility.</li>
+<li>Position and scale your design using the <strong>Move</strong> and
+<strong>Scale</strong> tools.</li>
+<li>If using text, right-click the text layer in the Layers panel and
+select <strong>Discard Text Information</strong> to convert it into a
+standard raster layer.</li>
+<li>Rename this layer to "Engraving".</li>
+</ol>
+<h3 id="3-create-the-carved-cavity">3. Create the Carved Cavity</h3>
+<ol type="1">
+<li>Right-click the "Engraving" layer and choose <strong>Alpha to
+Selection</strong>.</li>
+<li>Select the "Wood Base" layer and press <strong>Ctrl + C</strong>
+then <strong>Ctrl + V</strong> to copy the underlying wood texture.</li>
+<li>Click the <strong>New Layer</strong> button in the Layers panel to
+anchor the selection into its own layer.</li>
+<li>Rename this new layer to "Carved Fill" and place it directly above
+the "Wood Base" layer.</li>
+<li>Go to <strong>Colors &gt; Curves</strong> or <strong>Colors &gt;
+Levels</strong> on the "Carved Fill" layer, and pull the midpoint down
+to significantly darken this layer, simulating the deeper, shadowed
+interior of a wood cut.</li>
+</ol>
+<h3 id="4-add-depth-using-bump-mapping">4. Add Depth Using Bump
+Mapping</h3>
+<ol type="1">
+<li>Hide all layers except the original "Engraving" layer (the black
+text/graphic).</li>
+<li>Create a new white layer beneath the "Engraving" layer, right-click
+the "Engraving" layer, and select <strong>Merge Down</strong>. This
+creates a black-and-white mask.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur</strong> and
+apply a subtle blur (around 3 to 6 pixels, depending on canvas size) to
+soften the edges.</li>
+<li>Rename this layer to "Height Map" and hide its visibility.</li>
+<li>Select the "Carved Fill" layer and make it visible.</li>
+<li>Go to <strong>Filters &gt; Map &gt; Bump Map</strong>.</li>
+<li>Set the <strong>Aux Input</strong> to your "Height Map" layer.</li>
+<li>Adjust the <strong>Depth</strong> and <strong>Elevation</strong>
+sliders until the edges show a distinct, chiseled indentation. Set the
+light direction to match the natural light of your wood texture. Click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="5-create-highlights-and-inner-shadows">5. Create Highlights and
+Inner Shadows</h3>
+<ol type="1">
+<li>Select the "Engraving" selection again by right-clicking the "Carved
+Fill" layer and selecting <strong>Alpha to Selection</strong>.</li>
+<li>Create a new transparent layer on top and name it "Inner
+Shadow".</li>
+<li>With the selection active, go to <strong>Select &gt;
+Invert</strong>.</li>
+<li>Go to <strong>Filters &gt; Light and Shadow &gt; Drop
+Shadow</strong>.</li>
+<li>Set the shadow color to black, reduce the opacity to roughly 60–75%,
+and set the offset slightly downward to simulate overhead lighting
+casting a shadow inside the top of the cut.</li>
+<li>Click <strong>OK</strong>, then go to <strong>Select &gt;
+None</strong>.</li>
+</ol>
+<h3 id="6-blend-natural-grain-and-final-details">6. Blend Natural Grain
+and Final Details</h3>
+<ol type="1">
+<li>Duplicate the "Wood Base" layer and move it to the very top of the
+layer stack.</li>
+<li>Change the layer mode of this top layer to <strong>Overlay</strong>
+or <strong>Soft Light</strong> and lower the opacity to roughly 30–50%.
+This forces the original wood grain texture to show through the shadows
+and highlights of the carved areas.</li>
+<li>To add a polished rim highlight, create a new transparent layer
+below "Inner Shadow", stroke the selection with a 1-pixel white line,
+apply a light Gaussian blur (1–2 pixels), set the layer mode to
+<strong>Overlay</strong>, and reduce opacity to 40% to mimic the
+unpolished bare wood edge catching the light.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEGL Edge-Preserving Blur in GIMP Noise Reduction - gimp</title>
+    <meta name="description" content="The GEGL Edge-Preserving Blur filter in GIMP is a specialized noise-reduction and smoothing tool designed to eliminate digital noise and unwanted grain while maintaining the sharpness of distinct boundaries in an image. Unlike standard blur algorithms th">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gegl-edge-preserving-blur-in-gimp-noise-reduction">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GEGL Edge-Preserving Blur in GIMP Noise Reduction - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gegl-edge-preserving-blur-in-gimp-noise-reduction" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Edge-Preserving Blur filter in GIMP is a specialized noise-reduction and smoothing tool designed to eliminate digital noise and unwanted grain while maintaining the sharpness of distinct boundaries in an image. Unlike standard blur algorithms th" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gegl-edge-preserving-blur-in-gimp-noise-reduction">GEGL
+Edge-Preserving Blur in GIMP Noise Reduction</h1>
+<p>The GEGL Edge-Preserving Blur filter in GIMP is a specialized
+noise-reduction and smoothing tool designed to eliminate digital noise
+and unwanted grain while maintaining the sharpness of distinct
+boundaries in an image. Unlike standard blur algorithms that soften the
+entire image uniformly, this filter selectively smooths flat or
+low-contrast areas while keeping high-contrast contours, textures, and
+details intact.</p>
+<h3 id="the-problem-with-standard-blurring">The Problem with Standard
+Blurring</h3>
+<p>Traditional blurring methods, such as Gaussian Blur, calculate pixel
+averages based strictly on spatial distance. When applied to reduce
+noise, these filters blur everything equally, resulting in lost details,
+muddy textures, and soft edges. This makes conventional blurring poorly
+suited for high-quality noise reduction in photography and digital
+art.</p>
+<h3 id="the-purpose-of-edge-preserving-blur">The Purpose of
+Edge-Preserving Blur</h3>
+<p>The primary purpose of the GEGL Edge-Preserving Blur filter is to
+perform intelligent, conditional smoothing. It operates using algorithms
+(such as bilateral or domain transform filtering) that take two factors
+into account:</p>
+<ol type="1">
+<li><strong>Spatial Distance:</strong> How close neighboring pixels are
+to each other.</li>
+<li><strong>Color/Intensity Difference:</strong> How similar the color
+and brightness values of neighboring pixels are.</li>
+</ol>
+<p>If neighboring pixels have minor differences in value (typical of
+digital noise in flat surfaces, skies, or skin), the filter blends them
+together to eliminate the noise. However, if adjacent pixels have a
+substantial difference in brightness or color (which indicates an
+object's boundary or fine detail), the algorithm stops blending across
+that threshold. This ensures that object borders remain crisp and
+defined.</p>
+<h3 id="key-settings-in-gimp">Key Settings in GIMP</h3>
+<p>When using the filter in GIMP under <strong>Filters &gt; Blur &gt;
+Edge-Preserving Blur</strong>, the effectiveness of noise reduction
+depends on two primary controls:</p>
+<ul>
+<li><strong>Radius:</strong> Determines the physical area around each
+pixel that the filter analyzes. A larger radius smooths broader noise
+patterns, while a smaller radius targets fine grain.</li>
+<li><strong>Amount (or Edge Threshold):</strong> Defines the sensitivity
+to edge boundaries. A lower value strictly protects subtle details but
+reduces the amount of noise removed. A higher value smooths more
+aggressively, treating smaller edge variations as noise.</li>
+</ul>
+<h3 id="common-use-cases">Common Use Cases</h3>
+<ul>
+<li><strong>High-ISO Photography:</strong> Removing luminance and
+chrominance noise from low-light photos without blurring the subject's
+key features.</li>
+<li><strong>Portrait Retouching:</strong> Smoothing skin textures while
+retaining the sharpness of eyelashes, lips, hair, and clothing.</li>
+<li><strong>Digital Art and Scans:</strong> Cleaning up compression
+artifacts, paper grain, and scan noise from traditional artwork without
+compromising clean line work.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

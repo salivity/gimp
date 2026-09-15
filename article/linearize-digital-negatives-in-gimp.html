@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linearize Digital Negatives in GIMP - gimp</title>
+    <meta name="description" content="Creating custom linearization curves in GIMP ensures that digital negatives produce smooth, tonally accurate results when exposed through alternative photographic processes like cyanotype, platinum/palladium, or Van Dyke brown. Because different emulsion">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/linearize-digital-negatives-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Linearize Digital Negatives in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/linearize-digital-negatives-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating custom linearization curves in GIMP ensures that digital negatives produce smooth, tonally accurate results when exposed through alternative photographic processes like cyanotype, platinum/palladium, or Van Dyke brown. Because different emulsion" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="linearize-digital-negatives-in-gimp">Linearize Digital Negatives
+in GIMP</h1>
+<p>Creating custom linearization curves in GIMP ensures that digital
+negatives produce smooth, tonally accurate results when exposed through
+alternative photographic processes like cyanotype, platinum/palladium,
+or Van Dyke brown. Because different emulsion chemistries, papers, and
+ultraviolet light sources compress or expand tonal values non-linearly,
+calibration is essential. This guide explains the process of printing a
+standardized step wedge, measuring the resulting print's tonal values,
+calculating the corrective data, and building an inverse curve in GIMP
+to apply to all future digital negatives.</p>
+<h3 id="step-1-print-a-target-step-wedge">Step 1: Print a Target Step
+Wedge</h3>
+<ol type="1">
+<li>Create or download a standardized grayscale step tablet containing
+21 to 101 discrete gray patches stepping evenly from 0% (pure white) to
+100% (solid black).</li>
+<li>Invert the step tablet in GIMP (<strong>Colors &gt; Invert</strong>)
+to create a negative.</li>
+<li>Print the inverted step wedge onto your transparency film (such as
+Pictorico) using your standard printer settings, resolution, and ink
+limits. Do not apply any color management profiles or corrections at
+this stage.</li>
+</ol>
+<h3 id="step-2-make-the-test-print">Step 2: Make the Test Print</h3>
+<ol type="1">
+<li>Contact print the transparency wedge onto your sensitized paper
+under your UV light source.</li>
+<li>Use your standard minimum exposure time to achieve maximum black
+(Dmax) through the clear film base.</li>
+<li>Process, wash, dry, and allow the print to cure completely, as
+dry-down effects significantly shift optical densities.</li>
+</ol>
+<h3 id="step-3-measure-the-printed-tonal-values">Step 3: Measure the
+Printed Tonal Values</h3>
+<ol type="1">
+<li>Place the dry print alongside an unexposed, processed sheet of the
+same paper on a flatbed scanner.</li>
+<li>Turn off all automatic exposure, contrast, and color-correction
+features in your scanning software, and scan the print as a 16-bit
+grayscale image.</li>
+<li>Open the scan in GIMP.</li>
+<li>Set the <strong>Sample Average</strong> tool or the <strong>Color
+Picker Tool</strong> to a radius large enough to sample the core of each
+patch (e.g., 15x15 pixels) without capturing edge artifacts or paper
+texture.</li>
+<li>In the <strong>Color Picker</strong> or <strong>Sample
+Points</strong> dialog, set the readout mode to <strong>Pixel</strong>
+or <strong>Percentage</strong>.</li>
+<li>Record the measured grayscale value for each patch, starting from
+the unprinted paper white (0% target) up to the darkest printed step
+(100% target).</li>
+</ol>
+<h3 id="step-4-calculate-the-correction-points">Step 4: Calculate the
+Correction Points</h3>
+<p>To compensate for the chemical response, you must map the target
+values to the values needed to produce them.</p>
+<ol type="1">
+<li>List your intended values (Input) alongside the measured values
+(Output). For example, if the 50% target step measured at 70% gray in
+your physical print, your print is printing too dark in the
+midtones.</li>
+<li>Reverse the relationship: to get an actual print value of 50%, you
+need an input value from the step that printed as 50%. If the 35%
+negative patch produced a 50% print value, the correction must map 50%
+to 35%.</li>
+<li>Compile these coordinates into an Input/Output list for each major
+step along the tonal scale (typically 0%, 10%, 20%... 100%).</li>
+</ol>
+<h3 id="step-5-construct-the-curve-in-gimp">Step 5: Construct the Curve
+in GIMP</h3>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Colors &gt; Curves</strong>.</li>
+<li>Set the <strong>Channel</strong> to <strong>Value</strong>.</li>
+<li>Set the <strong>Curve type</strong> to <strong>Smooth</strong> for
+continuous gradients, or <strong>Freehand</strong> if you require
+precise segment adjustments.</li>
+<li>Click along the diagonal line to create control points matching your
+calibration steps.</li>
+<li>Select each point and enter the corresponding values into the
+<strong>Input</strong> and <strong>Output</strong> fields located at the
+bottom of the Curves dialog.</li>
+<li>Check that the endpoints remain anchored: Input 0 should map to pure
+white (or the threshold of paper base), and Input 255 (or 100%) should
+map to your maximum printing density.</li>
+</ol>
+<h3 id="step-6-save-and-apply-the-curve">Step 6: Save and Apply the
+Curve</h3>
+<ol type="1">
+<li>In the Curves dialog, click the <strong>Manage Presets</strong>
+button (the small icon next to the Presets dropdown) and choose
+<strong>Save Current Settings to Preset</strong>.</li>
+<li>Name the preset according to your specific process (e.g.,
+<em>Cyanotype_Fabriano_PtWare</em>).</li>
+<li>To prepare any positive digital image for printing:
+<ul>
+<li>Convert the image to grayscale (<strong>Image &gt; Mode &gt;
+Grayscale</strong>).</li>
+<li>Invert the image to create a negative (<strong>Colors &gt;
+Invert</strong>).</li>
+<li>Open <strong>Colors &gt; Curves</strong>, select your saved preset
+from the dropdown, and click <strong>OK</strong>.</li>
+<li>Flip the image horizontally (<strong>Image &gt; Transform &gt; Flip
+Horizontally</strong>) so the emulsion side of the film directly
+contacts the paper emulsion during exposure.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

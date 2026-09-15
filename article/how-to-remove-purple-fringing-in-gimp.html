@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Purple Fringing in GIMP - gimp</title>
+    <meta name="description" content="Purple fringing, a type of chromatic aberration, frequently appears as magenta or violet halos along high-contrast edges like dark tree branches set against a bright sky. In GIMP, this optical artifact can be removed effectively without compromising the">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-purple-fringing-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Purple Fringing in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-purple-fringing-in-gimp" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Purple fringing, a type of chromatic aberration, frequently appears as magenta or violet halos along high-contrast edges like dark tree branches set against a bright sky. In GIMP, this optical artifact can be removed effectively without compromising the" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-remove-purple-fringing-in-gimp">How to Remove Purple
+Fringing in GIMP</h1>
+<p>Purple fringing, a type of chromatic aberration, frequently appears
+as magenta or violet halos along high-contrast edges like dark tree
+branches set against a bright sky. In GIMP, this optical artifact can be
+removed effectively without compromising the overall quality of your
+image. This guide covers the most reliable methods to eliminate purple
+fringing using automated filters, targeted color desaturation, and layer
+blending techniques.</p>
+<hr />
+<h3
+id="method-1-using-the-hue-chroma-tool-with-a-layer-mask-recommended">Method
+1: Using the Hue-Chroma Tool with a Layer Mask (Recommended)</h3>
+<p>This method provides the most control, removing the magenta color
+cast while ensuring natural-looking branch edges.</p>
+<ol type="1">
+<li><strong>Duplicate the Layer:</strong> Right-click your main image
+layer in the Layers dialog and select <strong>Duplicate
+Layer</strong>.</li>
+<li><strong>Open Hue-Chroma:</strong> With the duplicated layer
+selected, go to <strong>Colors &gt; Hue-Chroma</strong>.</li>
+<li><strong>Target Magenta Tones:</strong>
+<ul>
+<li>Select the <strong>Magenta (M)</strong> or <strong>Blue (B)</strong>
+color radio button depending on the exact tint of the fringe.</li>
+<li>Reduce the <strong>Chroma</strong> slider toward the left to
+desaturate the fringe.</li>
+<li>Slightly adjust the <strong>Lightness</strong> slider down to match
+the dark value of the tree branches.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+<li><strong>Apply a Layer Mask:</strong>
+<ul>
+<li>Right-click the duplicate layer and choose <strong>Add Layer
+Mask</strong>.</li>
+<li>Select <strong>Black (full transparency)</strong> and click
+<strong>Add</strong>.</li>
+</ul></li>
+<li><strong>Paint Away the Fringing:</strong>
+<ul>
+<li>Select the <strong>Paintbrush Tool (P)</strong>.</li>
+<li>Set your foreground color to <strong>White</strong>.</li>
+<li>Paint directly over the fringed tree branches. The desaturated layer
+will only show through where you paint, leaving the rest of the image
+unaffected.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-paint-with-color-blend-mode">Method 2: Paint with Color
+Blend Mode</h3>
+<p>If you only have a few isolated branches showing purple halos,
+painting over them with a blend mode is fast and non-destructive.</p>
+<ol type="1">
+<li><strong>Create a New Layer:</strong> Click the <strong>New
+Layer</strong> icon at the bottom of the Layers dialog, set it to
+<strong>Transparency</strong>, and click <strong>OK</strong>.</li>
+<li><strong>Change Layer Mode:</strong> In the Layers panel dropdown,
+change the mode of this new layer from <strong>Normal</strong> to
+<strong>Color</strong> (or <strong>Darken</strong>).</li>
+<li><strong>Sample Surrounding Color:</strong> Select the <strong>Color
+Picker Tool (O)</strong> and sample the natural color of the branch or
+the sky adjacent to the fringed edge.</li>
+<li><strong>Paint Over the Fringe:</strong> Use a soft-edged
+<strong>Paintbrush (P)</strong> to paint over the purple halos. The
+color mode will replace the purple tint with your sampled color while
+preserving the texture and brightness underneath.</li>
+</ol>
+<hr />
+<h3 id="method-3-using-the-lens-distortion-filter">Method 3: Using the
+Lens Distortion Filter</h3>
+<p>For wide-angle shots with fringing that increases toward the outer
+corners of the frame, the automated lens tool can correct alignment
+issues.</p>
+<ol type="1">
+<li>Go to <strong>Filters &gt; Distorts &gt; Lens
+Distortion</strong>.</li>
+<li>Locate the <strong>Shift X</strong> and <strong>Shift Y</strong>
+controls under the chromatic aberration settings (or adjust the
+individual color channel offsets).</li>
+<li>Zoom in closely on the affected branches and adjust the sliders
+until the purple and cyan channel splits align back onto the branch
+edges.</li>
+<li>Click <strong>OK</strong> to apply the fix across the entire
+image.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

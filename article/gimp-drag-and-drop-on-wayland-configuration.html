@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Drag and Drop on Wayland Configuration - gimp</title>
+    <meta name="description" content="Drag-and-drop operations between native Wayland file managers and GIMP often fail because stable versions of GIMP (such as GIMP 2.10) rely on the legacy GTK 2 toolkit, which runs via the XWayland compatibility layer. When a native Wayland application att">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-drag-and-drop-on-wayland-configuration">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Drag and Drop on Wayland Configuration - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-drag-and-drop-on-wayland-configuration" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Drag-and-drop operations between native Wayland file managers and GIMP often fail because stable versions of GIMP (such as GIMP 2.10) rely on the legacy GTK 2 toolkit, which runs via the XWayland compatibility layer. When a native Wayland application att" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-drag-and-drop-on-wayland-configuration">GIMP Drag and Drop
+on Wayland Configuration</h1>
+<p>Drag-and-drop operations between native Wayland file managers and
+GIMP often fail because stable versions of GIMP (such as GIMP 2.10) rely
+on the legacy GTK 2 toolkit, which runs via the XWayland compatibility
+layer. When a native Wayland application attempts to send file URIs to
+an XWayland client, the Wayland compositor may fail to translate the
+drop event or the mime type payload correctly. This guide outlines the
+exact steps to configure your environment, launcher, and package
+settings to restore drag-and-drop functionality for opening images in
+GIMP on Wayland.</p>
+<h2 id="force-the-x11-backend-on-desktop-launchers">Force the X11
+Backend on Desktop Launchers</h2>
+<p>If your desktop session runs on Wayland, the most reliable way to
+ensure the compositor bridges drag-and-drop data to GTK 2 applications
+is to explicitly set the GDK backend to X11.</p>
+<ol type="1">
+<li><p>Copy the system GIMP desktop entry to your local user
+directory:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /usr/share/applications/gimp.desktop ~/.local/share/applications/</span></code></pre></div></li>
+<li><p>Open the file in a text editor:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nano</span> ~/.local/share/applications/gimp.desktop</span></code></pre></div></li>
+<li><p>Locate the <code>Exec=</code> line and prepend the environment
+variable <code>env GDK_BACKEND=x11</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode ini"><code class="sourceCode ini"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Exec</span><span class="ot">=</span><span class="st">env GDK_BACKEND=x11 gimp-2.10 %U</span></span></code></pre></div></li>
+<li><p>Save the file and update the desktop database:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">update-desktop-database</span> ~/.local/share/applications</span></code></pre></div></li>
+</ol>
+<h2 id="configure-flatpak-permissions-for-wayland-sessions">Configure
+Flatpak Permissions for Wayland Sessions</h2>
+<p>If you are running GIMP as a Flatpak, sandbox permissions can block
+file drag-and-drop payloads passing through the Wayland-to-X11
+bridge.</p>
+<ol type="1">
+<li><p>Grant the Flatpak package fallback X11 and filesystem permissions
+via the terminal:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--user</span> <span class="at">--socket</span><span class="op">=</span>fallback-x11 org.gimp.GIMP</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--user</span> <span class="at">--socket</span><span class="op">=</span>x11 org.gimp.GIMP</span></code></pre></div></li>
+<li><p>Alternatively, force the Flatpak instance to run under the X11
+backend:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--user</span> <span class="at">--env</span><span class="op">=</span>GDK_BACKEND=x11 org.gimp.GIMP</span></code></pre></div></li>
+</ol>
+<h2 id="enable-native-wayland-protocols-via-gimp-30">Enable Native
+Wayland Protocols via GIMP 3.0</h2>
+<p>The underlying architectural issue is resolved in GIMP 3.0, which
+transitions the application to the GTK 3 toolkit and supports native
+Wayland drag-and-drop protocols without requiring XWayland
+translation.</p>
+<p>If your distribution offers GIMP 3.0 release candidates or
+development packages:</p>
+<ol type="1">
+<li><p>Install the GIMP 3.x package or flatpak branch:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> install flathub-beta org.gimp.GIMP</span></code></pre></div></li>
+<li><p>Ensure the package is allowed native Wayland socket access:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--user</span> <span class="at">--socket</span><span class="op">=</span>wayland org.gimp.GIMP</span></code></pre></div></li>
+<li><p>Run GIMP directly without forcing X11 variables, allowing the
+native Wayland clipboard and drag-and-drop interfaces
+(<code>wl_data_device</code>) to negotiate file transfers directly with
+Wayland file managers like GNOME Files (Nautilus) or KDE
+Dolphin.</p></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

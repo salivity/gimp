@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP: Assign vs Convert to Color Profile - gimp</title>
+    <meta name="description" content="Understanding the difference between "Assign Color Profile" and "Convert to Color Profile" in GIMP is essential for maintaining accurate colors in your images. In short, Assign Color Profile changes how GIMP interprets the image's existing color data wit">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-assign-vs-convert-to-color-profile">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP: Assign vs Convert to Color Profile - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-assign-vs-convert-to-color-profile" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Understanding the difference between "Assign Color Profile" and "Convert to Color Profile" in GIMP is essential for maintaining accurate colors in your images. In short, Assign Color Profile changes how GIMP interprets the image's existing color data wit" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="gimp-assign-vs-convert-to-color-profile">GIMP: Assign vs Convert
+to Color Profile</h1>
+<p>Understanding the difference between "Assign Color Profile" and
+"Convert to Color Profile" in GIMP is essential for maintaining accurate
+colors in your images. In short, <strong>Assign Color Profile</strong>
+changes how GIMP interprets the image's existing color data without
+altering the underlying pixel values, which usually changes the image's
+visual appearance. In contrast, <strong>Convert to Color
+Profile</strong> recalculates and changes the underlying pixel values to
+preserve the visual appearance of the image as closely as possible
+within a new color space.</p>
+<h2 id="what-does-assign-color-profile-do">What Does "Assign Color
+Profile" Do?</h2>
+<p>Every digital image is made of pixel values (such as specific RGB
+numbers). A color profile acts like a dictionary that tells GIMP how
+those numbers should look in the real world.</p>
+<p>When you use <strong>Image &gt; Color Management &gt; Assign Color
+Profile</strong>:</p>
+<ul>
+<li><strong>Pixel data remains unchanged:</strong> The raw RGB numbers
+of each pixel stay exactly the same.</li>
+<li><strong>Interpretation changes:</strong> GIMP replaces the current
+profile "tag" with a new one.</li>
+<li><strong>Visual appearance changes:</strong> Because the same numbers
+are now being read through a different color profile, the colors on your
+screen will shift, often becoming significantly more saturated,
+desaturated, or shifting in hue.</li>
+</ul>
+<h3 id="when-to-use-assign-color-profile">When to Use Assign Color
+Profile</h3>
+<p>Use this option when an image has the wrong color profile attached or
+has no profile embedded at all. For example, if you open a photograph
+taken in the Adobe RGB color space, but GIMP opened it as untagged sRGB
+(making it look flat and washed out), assigning Adobe RGB restores the
+intended colors.</p>
+<h2 id="what-does-convert-to-color-profile-do">What Does "Convert to
+Color Profile" Do?</h2>
+<p>When you use <strong>Image &gt; Color Management &gt; Convert to
+Color Profile</strong>:</p>
+<ul>
+<li><strong>Visual appearance is preserved:</strong> GIMP's primary goal
+during conversion is to keep the image looking identical (or as close as
+possible) to how it currently looks.</li>
+<li><strong>Pixel data changes:</strong> GIMP recalculates the actual
+RGB numbers of the pixels so they represent the same visual colors
+within the target color space.</li>
+<li><strong>Gamut mapping occurs:</strong> If the new color space is
+smaller than the original (for example, moving from Adobe RGB to sRGB),
+GIMP maps out-of-gamut colors to the closest available equivalents using
+the chosen rendering intent (such as Perceptual or Relative
+Colorimetric).</li>
+</ul>
+<h3 id="when-to-use-convert-to-color-profile">When to Use Convert to
+Color Profile</h3>
+<p>Use this option whenever an image already looks correct, but you need
+it in a different color space for a specific workflow. The most common
+scenario is converting an image from a wide-gamut profile (like ProPhoto
+RGB or Adobe RGB) to sRGB so it displays properly on web browsers and
+standard monitors.</p>
+<h2 id="summary-of-differences">Summary of Differences</h2>
+<ul>
+<li><strong>Assign Color Profile:</strong> Keeps the numbers, changes
+the look. Use it to <strong>fix</strong> an image that has been assigned
+the incorrect profile.</li>
+<li><strong>Convert to Color Profile:</strong> Keeps the look, changes
+the numbers. Use it to <strong>prepare</strong> an image for a specific
+destination (such as the web or print).</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

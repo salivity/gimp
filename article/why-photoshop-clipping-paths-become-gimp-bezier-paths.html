@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Photoshop Clipping Paths Become GIMP Bezier Paths - gimp</title>
+    <meta name="description" content="When you import an Adobe Photoshop file containing a vector clipping path into GIMP, the application automatically translates that data into an editable Bezier path in its Paths dialog. This article explains the technical reasons for this conversion, hig">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/why-photoshop-clipping-paths-become-gimp-bezier-paths">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Photoshop Clipping Paths Become GIMP Bezier Paths - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/why-photoshop-clipping-paths-become-gimp-bezier-paths" />
+    <meta property="og:image:url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When you import an Adobe Photoshop file containing a vector clipping path into GIMP, the application automatically translates that data into an editable Bezier path in its Paths dialog. This article explains the technical reasons for this conversion, hig" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="why-photoshop-clipping-paths-become-gimp-bezier-paths">Why
+Photoshop Clipping Paths Become GIMP Bezier Paths</h1>
+<p>When you import an Adobe Photoshop file containing a vector clipping
+path into GIMP, the application automatically translates that data into
+an editable Bezier path in its Paths dialog. This article explains the
+technical reasons for this conversion, highlighting the shared
+mathematical foundations of 2D vector data, structural differences in
+how both programs handle image masks, and GIMP's internal architecture
+for processing Photoshop file metadata.</p>
+<h3 id="shared-mathematical-foundations">Shared Mathematical
+Foundations</h3>
+<p>Both Adobe Photoshop and GIMP rely on cubic Bezier curves to define
+vector shapes. A vector clipping path created using Photoshop's Pen Tool
+consists of anchor points paired with directional control handles that
+determine curve curvature.</p>
+<p>Because GIMP’s native path engine also uses cubic Bezier splines, the
+underlying geometric data is directly compatible. When GIMP reads the
+coordinates of the nodes, control points, and segments stored in the PSD
+file, it does not need to rasterize or approximate the shape; it simply
+maps those exact mathematical coordinates directly into its native
+vector format.</p>
+<h3
+id="architectural-differences-in-clipping-implementation">Architectural
+Differences in Clipping Implementation</h3>
+<p>Photoshop treats a "Clipping Path" as a specialized attribute
+primarily intended for desktop publishing and print workflows (such as
+Adobe InDesign or QuarkXPress). In Photoshop, a clipping path instructs
+an external page layout program or a PostScript RIP (Raster Image
+Processor) to mask out everything outside the path, maintaining hard
+vector edges during printing even if the image remains flat.</p>
+<p>GIMP does not use this legacy PostScript print-masking architecture.
+Instead, GIMP separates vector management from image masking:</p>
+<ul>
+<li><strong>Vectors</strong> exist universally as independent,
+non-destructive entities in the <strong>Paths</strong> dockable
+dialog.</li>
+<li><strong>Masks</strong> exist as pixel-based <strong>Layer
+Masks</strong> directly tied to specific image layers.</li>
+</ul>
+<p>Rather than discarding the clipping path or forcing it into a
+destructive raster mask upon import, GIMP imports the vector geometry
+into the Paths panel. This preserves the precision of the original shape
+while adhering to GIMP's core structural paradigm.</p>
+<h3 id="how-gimp-parses-photoshop-psd-path-resources">How GIMP Parses
+Photoshop PSD Path Resources</h3>
+<p>Photoshop stores vector paths inside the PSD file’s Image Resource
+Blocks (specifically IDs <code>0x07D0</code> through
+<code>0x0BB7</code>). These blocks contain raw binary data representing
+closed and open sub-paths, Bezier knot records, and path-type flags
+indicating which path was marked as the active clipping path.</p>
+<p>During the import process, GIMP’s PSD plug-in reads these resource
+blocks. The parser iterates through the path records, reconstructs the
+control points, and instantiates a standard <code>GimpVectors</code>
+object. Because the vector representation is preserved as an editable
+Bezier path, you retain complete flexibility to:</p>
+<ul>
+<li>Adjust, add, or delete anchor points using GIMP's <strong>Paths
+Tool</strong> (<code>B</code>).</li>
+<li>Convert the path into a raster selection via <strong>Path to
+Selection</strong>.</li>
+<li>Add the selection as a non-destructive layer mask to replicate
+Photoshop's clipping behavior.</li>
+<li>Export the path as a standard SVG file for use in other vector
+software.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
