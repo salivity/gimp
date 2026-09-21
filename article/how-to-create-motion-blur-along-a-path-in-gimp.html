@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Motion Blur Along a Path in GIMP - gimp</title>
+    <meta name="description" content="Creating dynamic motion blur along a custom trajectory in GIMP allows you to simulate realistic, curved movement that standard linear blur filters cannot replicate. This guide explains how to isolate your subject, draw a custom trajectory using the Paths">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-motion-blur-along-a-path-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Motion Blur Along a Path in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-motion-blur-along-a-path-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating dynamic motion blur along a custom trajectory in GIMP allows you to simulate realistic, curved movement that standard linear blur filters cannot replicate. This guide explains how to isolate your subject, draw a custom trajectory using the Paths" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-motion-blur-along-a-path-in-gimp">How to Create
+Motion Blur Along a Path in GIMP</h1>
+<p>Creating dynamic motion blur along a custom trajectory in GIMP allows
+you to simulate realistic, curved movement that standard linear blur
+filters cannot replicate. This guide explains how to isolate your
+subject, draw a custom trajectory using the Paths Tool, and stroke that
+path using configured brush dynamics to produce a smooth, directional
+motion trail.</p>
+<h3 id="step-1-isolate-the-subject-on-a-new-layer">Step 1: Isolate the
+Subject on a New Layer</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Use the <strong>Free Select Tool (Lasso)</strong> or <strong>Paths
+Tool (B)</strong> to trace around the object you want to blur.</li>
+<li>Press <code>Ctrl + C</code> to copy the selection and
+<code>Ctrl + V</code> to paste it.</li>
+<li>In the Layers panel, click the green <strong>New Layer</strong> icon
+to place the copied subject onto its own transparent layer. Name this
+layer <code>Subject Blur</code>.</li>
+</ol>
+<h3 id="step-2-draw-your-custom-motion-path">Step 2: Draw Your Custom
+Motion Path</h3>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> from the toolbox or press
+<code>B</code>.</li>
+<li>Click on the canvas to place anchor points mapping out the dynamic
+trajectory of the motion.</li>
+<li>Click and drag the handles to bend the path into the desired curve
+or direction of travel.</li>
+</ol>
+<h3 id="step-3-configure-the-paint-tool-and-dynamics">Step 3: Configure
+the Paint Tool and Dynamics</h3>
+<ol type="1">
+<li>Select the <strong>Smudge Tool</strong> or the <strong>Paintbrush
+Tool</strong> from the toolbox.</li>
+<li>Choose a soft-edged brush (such as
+<code>2. Hardness 050</code>).</li>
+<li>In the <strong>Tool Options</strong> panel:
+<ul>
+<li>Set the brush size relative to the thickness of the blur you
+want.</li>
+<li>Open the <strong>Dynamics</strong> dropdown and select <strong>Track
+Direction</strong> or <strong>Dynamics Random</strong> depending on the
+desired texture.</li>
+<li>Under <strong>Dynamics Options</strong>, ensure the fade length and
+direction correspond to the speed and length of the movement.</li>
+</ul></li>
+<li>Set the <strong>Rate</strong> or <strong>Opacity</strong> to roughly
+40–60% to maintain a translucent trail.</li>
+</ol>
+<h3 id="step-4-stroke-the-path">Step 4: Stroke the Path</h3>
+<ol type="1">
+<li>Ensure the <code>Subject Blur</code> layer is active in the Layers
+panel.</li>
+<li>Open the <strong>Paths</strong> panel
+(<code>Windows &gt; Dockable Dialogs &gt; Paths</code>).</li>
+<li>Right-click your custom path and select <strong>Stroke
+Path</strong>.</li>
+<li>In the dialog box, select <strong>Stroke with a paint
+tool</strong>.</li>
+<li>Set the tool dropdown to the tool you configured
+(<strong>Smudge</strong> or <strong>Paintbrush</strong>).</li>
+<li>Check the box for <strong>Emulate brush dynamics</strong> and click
+<strong>Stroke</strong>.</li>
+</ol>
+<h3 id="step-5-refine-and-blend-the-effect">Step 5: Refine and Blend the
+Effect</h3>
+<ol type="1">
+<li>If the blur trail is too subtle, right-click the path and repeat the
+<strong>Stroke Path</strong> operation, or duplicate the blurred layer
+(<code>Ctrl + Shift + D</code>) and merge down.</li>
+<li>To enhance the sense of speed, apply a subtle standard blur by going
+to <strong>Filters &gt; Blur &gt; Linear Motion Blur</strong> and
+matching the angle to the start of the path.</li>
+<li>Add a Layer Mask to the <code>Subject Blur</code> layer by
+right-clicking the layer and selecting <strong>Add Layer Mask &gt; White
+(full opacity)</strong>.</li>
+<li>Use a soft black brush on the mask to reveal crisp details on the
+leading edge of the moving object while keeping the trailing path
+blurred.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

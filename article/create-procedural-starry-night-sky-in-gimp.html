@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Procedural Starry Night Sky in GIMP - gimp</title>
+    <meta name="description" content="Creating a realistic starry night sky procedurally in GIMP is an efficient way to generate high-resolution space backgrounds without relying on external stock photos. By combining built-in noise generation filters, threshold adjustments, layer blend mode">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-procedural-starry-night-sky-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Procedural Starry Night Sky in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-procedural-starry-night-sky-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a realistic starry night sky procedurally in GIMP is an efficient way to generate high-resolution space backgrounds without relying on external stock photos. By combining built-in noise generation filters, threshold adjustments, layer blend mode" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-procedural-starry-night-sky-in-gimp">Create Procedural
+Starry Night Sky in GIMP</h1>
+<p>Creating a realistic starry night sky procedurally in GIMP is an
+efficient way to generate high-resolution space backgrounds without
+relying on external stock photos. By combining built-in noise generation
+filters, threshold adjustments, layer blend modes, and gradient maps,
+you can create fully customizable star fields and glowing nebulae
+completely from scratch.</p>
+<h3 id="step-1-set-up-the-canvas-and-base-layer">Step 1: Set Up the
+Canvas and Base Layer</h3>
+<ol type="1">
+<li>Open GIMP and create a new image (<strong>File &gt; New</strong>).
+Set your desired resolution (e.g., 1920x1080 or 3840x2160 for high
+definition).</li>
+<li>Set the foreground color to pure black (<code>#000000</code>) and
+fill the background layer using the <strong>Bucket Fill
+Tool</strong>.</li>
+<li>Name this layer <code>Deep Space</code>.</li>
+</ol>
+<h3 id="step-2-generate-the-base-starfield">Step 2: Generate the Base
+Starfield</h3>
+<ol type="1">
+<li>Create a new transparent layer above the background and name it
+<code>Small Stars</code>.</li>
+<li>Go to <strong>Filters &gt; Noise &gt; CIE lch Noise</strong> (or
+<strong>RGB Noise</strong>).</li>
+<li>Maximize the noise amount (adjusting lightness and chroma) so the
+entire canvas is covered in dense static.</li>
+<li>Go to <strong>Colors &gt; Threshold</strong>.</li>
+<li>Drag the left slider far to the right until most of the white noise
+disappears, leaving only scattered tiny white dots across the black
+background. Click <strong>OK</strong>.</li>
+<li>Set the layer mode of <code>Small Stars</code> to
+<strong>Screen</strong> or <strong>Addition</strong>.</li>
+</ol>
+<h3 id="step-3-add-larger-stars-and-glowing-points">Step 3: Add Larger
+Stars and Glowing Points</h3>
+<ol type="1">
+<li>Create another new transparent layer and name it
+<code>Bright Stars</code>.</li>
+<li>Fill the layer with black, then apply <strong>Filters &gt; Noise
+&gt; Solid Noise</strong>. Set the X and Y size parameters low (around
+2.0 to 4.0) with high detail.</li>
+<li>Open <strong>Colors &gt; Threshold</strong> again, pushing the
+slider right until only a few dozen sparse dots remain.</li>
+<li>Soften these stars by going to <strong>Filters &gt; Blur &gt;
+Gaussian Blur</strong> and applying a radius of 1.0 to 2.0 pixels.</li>
+<li>(Optional) Apply <strong>Filters &gt; Light and Shadow &gt;
+Sparkle</strong> with a low intensity to give selected bright stars an
+authentic lens flare effect.</li>
+<li>Set the layer mode to <strong>Screen</strong>.</li>
+</ol>
+<h3 id="step-4-generate-procedural-nebula-dust">Step 4: Generate
+Procedural Nebula Dust</h3>
+<ol type="1">
+<li>Create a new transparent layer named <code>Nebula</code>.</li>
+<li>Go to <strong>Filters &gt; Noise &gt; Solid Noise</strong>. Enable
+<strong>Turbulent</strong>, maximize the detail level, and adjust the
+X/Y scaling to create cloudy, organic patterns.</li>
+<li>Go to <strong>Colors &gt; Curves</strong> or <strong>Colors &gt;
+Levels</strong> to increase the contrast, creating clear gaps of dark
+space between the dense dust clouds.</li>
+<li>Add color to the nebula by going to <strong>Colors &gt; Map &gt;
+Gradient Map</strong> and selecting a cosmic gradient (e.g., Deep Sea,
+Purples, or Fire), or by using the <strong>Colorize</strong> tool to
+apply blues, purples, and magentas.</li>
+<li>Change the <code>Nebula</code> layer mode to
+<strong>Screen</strong>, <strong>Color Dodge</strong>, or <strong>Soft
+Light</strong>, and lower the layer opacity to 40%–70% to blend it
+smoothly into the stars.</li>
+</ol>
+<h3 id="step-5-final-adjustments">Step 5: Final Adjustments</h3>
+<ol type="1">
+<li>To add depth, ensure the layer stack is ordered from bottom to top:
+<code>Deep Space</code>, <code>Nebula</code>, <code>Small Stars</code>,
+and <code>Bright Stars</code>.</li>
+<li>Add a new transparent layer on top, set its mode to
+<strong>Overlay</strong>, and paint subtle radial highlights using a
+large, soft brush with cyan or violet to adjust ambient space
+lighting.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

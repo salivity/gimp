@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Flush GIMP Memory Cache Using Scripts - gimp</title>
+    <meta name="description" content="This guide explains how to release GIMP's internal memory and undo caches during automated or long-running tasks without restarting the application. You will learn the specific Procedure Database (PDB) commands available for both Script-Fu and Python-Fu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-flush-gimp-memory-cache-using-scripts">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Flush GIMP Memory Cache Using Scripts - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-flush-gimp-memory-cache-using-scripts" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to release GIMP's internal memory and undo caches during automated or long-running tasks without restarting the application. You will learn the specific Procedure Database (PDB) commands available for both Script-Fu and Python-Fu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-flush-gimp-memory-cache-using-scripts">How to Flush GIMP
+Memory Cache Using Scripts</h1>
+<p>This guide explains how to release GIMP's internal memory and undo
+caches during automated or long-running tasks without restarting the
+application. You will learn the specific Procedure Database (PDB)
+commands available for both Script-Fu and Python-Fu that purge
+accumulated image data and reclaim system RAM.</p>
+<hr />
+<p>The primary command to force GIMP to flush its internal memory caches
+for an active image is
+<strong><code>gimp-image-undo-free</code></strong> in Script-Fu, or
+<strong><code>pdb.gimp_image_undo_free(image)</code></strong> in
+Python-Fu.</p>
+<h3 id="why-memory-accumulates-in-gimp">Why Memory Accumulates in
+GIMP</h3>
+<p>GIMP retains image operations, tile swap data, and intermediate layer
+modifications inside an internal undo buffer to allow users to revert
+actions. In batch operations and heavy scripting workflows, this cache
+is not automatically purged while the image remains open, causing memory
+usage to climb until the host system exhausts available RAM.</p>
+<h3 id="using-the-command">Using the Command</h3>
+<h4 id="script-fu-scheme">Script-Fu (Scheme)</h4>
+<p>In Script-Fu, call the procedure by passing the target image
+identifier:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode scheme"><code class="sourceCode scheme"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(gimp-image-undo-free image)</span></code></pre></div>
+<h4 id="python-fu">Python-Fu</h4>
+<p>In Python-Fu, access the command through the Procedure Database
+interface:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pdb.gimp_image_undo_free(image)</span></code></pre></div>
+<p>Executing this command instantly purges the undo history buffer
+assigned to that image, freeing the underlying GEGL tile caches and RAM
+allocations while keeping the image open for continued processing.</p>
+<h3 id="additional-memory-management-commands">Additional Memory
+Management Commands</h3>
+<p>To manage memory proactively during intense batch scripts, consider
+combining <code>gimp-image-undo-free</code> with these complementary PDB
+commands:</p>
+<ul>
+<li><strong>Preventing Cache Growth
+(<code>gimp-image-undo-disable</code> /
+<code>gimp-image-undo-enable</code>):</strong> If you are running
+multiple sequential operations and do not need undo points, disable undo
+recording completely at the start of your script using
+<code>pdb.gimp_image_undo_disable(image)</code> and re-enable it at the
+end with <code>pdb.gimp_image_undo_enable(image)</code>.</li>
+<li><strong>Complete Memory Release
+(<code>gimp-image-delete</code>):</strong> When an image is no longer
+needed, close and purge it entirely from RAM using
+<code>pdb.gimp_image_delete(image)</code>. Simply closing a display view
+does not always unload the image data from GIMP's core memory.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

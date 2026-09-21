@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Lens Flare in GIMP with Clone and Heal - gimp</title>
+    <meta name="description" content="Unwanted lens flare artifacts can distract from your main subject and degrade image quality. This guide provides a straightforward method to eliminate lens flare in GIMP using the Clone Tool to replace obscured pixels and the Healing Tool to seamlessly b">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-lens-flare-in-gimp-with-clone-and-heal">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Lens Flare in GIMP with Clone and Heal - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-lens-flare-in-gimp-with-clone-and-heal" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Unwanted lens flare artifacts can distract from your main subject and degrade image quality. This guide provides a straightforward method to eliminate lens flare in GIMP using the Clone Tool to replace obscured pixels and the Healing Tool to seamlessly b" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-remove-lens-flare-in-gimp-with-clone-and-heal">How to
+Remove Lens Flare in GIMP with Clone and Heal</h1>
+<p>Unwanted lens flare artifacts can distract from your main subject and
+degrade image quality. This guide provides a straightforward method to
+eliminate lens flare in GIMP using the Clone Tool to replace obscured
+pixels and the Healing Tool to seamlessly blend colors, lighting, and
+textures with the surrounding image.</p>
+<h2 id="step-1-prepare-your-workspace">Step 1: Prepare Your
+Workspace</h2>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click the base image layer and select <strong>Duplicate
+Layer</strong> (or press <code>Ctrl + Shift + D</code> /
+<code>Cmd + Shift + D</code>).</li>
+<li>Perform all edits on this duplicate layer to ensure non-destructive
+editing.</li>
+</ol>
+<h2 id="step-2-cover-sharp-flare-artifacts-with-the-clone-tool">Step 2:
+Cover Sharp Flare Artifacts with the Clone Tool</h2>
+<p>The Clone Tool duplicates exact pixels from a source area to a target
+area, making it ideal for covering solid or high-contrast lens flare
+spots.</p>
+<ol type="1">
+<li>Select the <strong>Clone Tool</strong> from the Toolbox (keyboard
+shortcut: <code>C</code>).</li>
+<li>In the <strong>Tool Options</strong> panel:
+<ul>
+<li>Choose a soft-edged brush, such as <strong>2. Hardness 050</strong>,
+to avoid harsh borders.</li>
+<li>Adjust the brush <strong>Size</strong> to be slightly larger than
+the artifact you want to remove.</li>
+<li>Set <strong>Opacity</strong> to 100% for solid flare spots, or lower
+it to 50–70% for translucent flare.</li>
+</ul></li>
+<li>Hold down <code>Ctrl</code> (or <code>Cmd</code> on macOS) and click
+on a clean area near the lens flare that matches the texture, color, and
+lighting of the background behind the flare.</li>
+<li>Release <code>Ctrl</code>/<code>Cmd</code> and click or paint
+directly over the flare artifact to replace it with the sampled
+pixels.</li>
+<li>Resample frequently from different nearby areas to avoid creating
+repetitive visual patterns.</li>
+</ol>
+<h2 id="step-3-blend-transitions-using-the-healing-tool">Step 3: Blend
+Transitions Using the Healing Tool</h2>
+<p>The Healing Tool samples texture from a source area while dynamically
+calculating and matching the color and brightness of the destination
+area. Use it to soften cloned edges and remove faint color rings.</p>
+<ol type="1">
+<li>Select the <strong>Healing Tool</strong> from the Toolbox (keyboard
+shortcut: <code>H</code>).</li>
+<li>In the <strong>Tool Options</strong> panel:
+<ul>
+<li>Select a soft brush with low hardness.</li>
+<li>Keep the <strong>Opacity</strong> between 70% and 100%.</li>
+</ul></li>
+<li>Hold <code>Ctrl</code> (or <code>Cmd</code>) and click on a clean
+reference area that has the desired texture.</li>
+<li>Paint over the edges of the areas you just cloned to smooth out
+color inconsistencies and tone mismatches.</li>
+<li>Lightly brush over any remaining subtle flare rings or haze to match
+them to the ambient background.</li>
+</ol>
+<h2 id="step-4-fine-tune-the-result">Step 4: Fine-Tune the Result</h2>
+<ol type="1">
+<li>Lower the opacity of the edited layer slightly in the
+<strong>Layers</strong> panel if the correction looks overly flat,
+allowing a tiny amount of original detail to show through.</li>
+<li>Zoom out to 100% view to verify that the edited region appears
+natural and free of visible repeating patterns or smudges.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlarge and Sharpen Images in GIMP Resynthesizer - gimp</title>
+    <meta name="description" content="This guide explains how to upscale low-resolution photographs using the "Enlarge & Sharpen" feature powered by the third-party Resynthesizer plugin in GIMP. Unlike standard scaling methods like bicubic or Lanczos interpolation that often blur details, Re">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/enlarge-and-sharpen-images-in-gimp-resynthesizer">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Enlarge and Sharpen Images in GIMP Resynthesizer - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/enlarge-and-sharpen-images-in-gimp-resynthesizer" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to upscale low-resolution photographs using the "Enlarge & Sharpen" feature powered by the third-party Resynthesizer plugin in GIMP. Unlike standard scaling methods like bicubic or Lanczos interpolation that often blur details, Re" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="enlarge-and-sharpen-images-in-gimp-resynthesizer">Enlarge and
+Sharpen Images in GIMP Resynthesizer</h1>
+<p>This guide explains how to upscale low-resolution photographs using
+the "Enlarge &amp; Sharpen" feature powered by the third-party
+Resynthesizer plugin in GIMP. Unlike standard scaling methods like
+bicubic or Lanczos interpolation that often blur details, Resynthesizer
+uses texture-synthesis algorithms to intelligently invent plausible
+pixels, resulting in crisper edges and realistic textures when
+increasing image resolution.</p>
+<h3 id="step-1-install-the-resynthesizer-plugin">Step 1: Install the
+Resynthesizer Plugin</h3>
+<p>Before using the feature, the Resynthesizer plugin and its associated
+Python scripts must be installed in GIMP.</p>
+<ol type="1">
+<li>Download the Resynthesizer plugin package compatible with your
+operating system (Linux users can often install it via package managers
+under <code>gimp-resynthesizer</code>).</li>
+<li>Extract the files and copy the binary (<code>resynthesizer</code>)
+and Python scripts (<code>smart-enlarge.py</code>, etc.) into your GIMP
+user profile folder:
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\&lt;Username&gt;\AppData\Roaming\GIMP\2.10\plug-ins</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/GIMP/2.10/plug-ins</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/GIMP/2.10/plug-ins</code></li>
+</ul></li>
+<li>Restart GIMP to register the new scripts.</li>
+</ol>
+<h3 id="step-2-open-and-prepare-your-photograph">Step 2: Open and
+Prepare Your Photograph</h3>
+<ol type="1">
+<li>Launch GIMP and go to <strong>File &gt; Open</strong> to select your
+low-resolution photograph.</li>
+<li>If the photo has heavy JPEG compression artifacts or noise, apply a
+light noise reduction first via <strong>Filters &gt; Enhance &gt; Noise
+Reduction</strong>, as Resynthesizer will attempt to synthesize and
+amplify existing artifacts.</li>
+</ol>
+<h3 id="step-3-run-enlarge--sharpen">Step 3: Run Enlarge &amp;
+Sharpen</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Filters &gt; Enhance
+&gt; Enlarge &amp; sharpen...</strong> (Note: Depending on your plugin
+version, it may appear as <strong>Smart enlarge...</strong>).</li>
+<li>Configure the parameters in the dialog box:
+<ul>
+<li><strong>Ratio:</strong> Enter the scaling factor (e.g.,
+<code>2.0</code> to double the dimensions). It is generally best to work
+in moderate steps (between 1.5 and 2.5) to avoid unnatural-looking
+textures.</li>
+<li><strong>Sharpness:</strong> Adjust the sharpness slider. A setting
+around <code>0.5</code> to <code>1.0</code> works well for general
+photography; higher values increase contrast along edges but can
+introduce halos.</li>
+<li><strong>Texture generation controls:</strong> Leave standard
+sampling options at their defaults unless specific patterns require
+wider neighborhood sampling.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to execute the process. Resynthesizer is
+computationally intensive, so processing may take from several seconds
+to a few minutes depending on the target resolution and CPU speed.</li>
+</ol>
+<h3 id="step-4-review-and-finalize">Step 4: Review and Finalize</h3>
+<ol type="1">
+<li>Zoom to 100% (<strong>View &gt; Zoom &gt; 1:1</strong>) to inspect
+the newly synthesized details around edges, skin, and backgrounds.</li>
+<li>If the result appears overly textured or harsh, lower the opacity of
+the newly enlarged layer against a traditionally scaled layer (using
+<strong>Image &gt; Scale Image</strong> with NoHalo interpolation) to
+blend the sharpness naturally.</li>
+<li>Export the finished image via <strong>File &gt; Export As</strong>
+in your desired high-resolution format (such as PNG or high-quality
+JPEG).</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

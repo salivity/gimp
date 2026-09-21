@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Median Blur in GIMP: Effective Noise Suppression - gimp</title>
+    <meta name="description" content="The Median Blur filter in GIMP is a specialized image processing tool designed to reduce image noise, remove artifacts, and smooth textures while keeping distinct edges sharp. Unlike standard smoothing filters that calculate an average of surrounding pix">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/median-blur-in-gimp-effective-noise-suppression">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Median Blur in GIMP: Effective Noise Suppression - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/median-blur-in-gimp-effective-noise-suppression" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Median Blur filter in GIMP is a specialized image processing tool designed to reduce image noise, remove artifacts, and smooth textures while keeping distinct edges sharp. Unlike standard smoothing filters that calculate an average of surrounding pix" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="median-blur-in-gimp-effective-noise-suppression">Median Blur in
+GIMP: Effective Noise Suppression</h1>
+<p>The Median Blur filter in GIMP is a specialized image processing tool
+designed to reduce image noise, remove artifacts, and smooth textures
+while keeping distinct edges sharp. Unlike standard smoothing filters
+that calculate an average of surrounding pixel values, Median Blur
+evaluates surrounding pixels and replaces each target pixel with the
+statistical median value. This article covers how the filter operates
+mathematically, the specific types of noise it eliminates, how it
+compares to standard blurring techniques, and how to apply it within
+GIMP.</p>
+<h2 id="how-the-median-blur-filter-functions">How the Median Blur Filter
+Functions</h2>
+<p>To understand Median Blur, it helps to look at how it processes image
+data:</p>
+<ol type="1">
+<li><strong>Pixel Neighborhood Sampling:</strong> The filter examines a
+cluster of neighboring pixels defined by a user-selected radius around
+the target pixel.</li>
+<li><strong>Sorting Values:</strong> It arranges all pixel values
+(brightness and color channels) within that radius in ascending
+order.</li>
+<li><strong>Selecting the Median:</strong> The filter selects the exact
+middle value from the sorted list and assigns it to the target
+pixel.</li>
+</ol>
+<p>Because extreme values (such as an abnormally bright or dark pixel
+caused by sensor noise) sit at the absolute ends of the sorted list,
+they are discarded. The middle value represents the dominant surrounding
+tone, effectively eliminating rogue pixels without blending them into
+the surrounding area.</p>
+<h2 id="noise-types-best-suited-for-median-blur">Noise Types Best Suited
+for Median Blur</h2>
+<p>The Median Blur filter is most effective at treating specific image
+defects:</p>
+<ul>
+<li><strong>Salt-and-Pepper Noise:</strong> Highly contrasting, isolated
+white and black pixels caused by high ISO camera settings, faulty
+sensors, or transmission errors.</li>
+<li><strong>Dust and Scratches:</strong> Specks, lint, and hair common
+on digitized photographic prints and film negatives.</li>
+<li><strong>Moire and Halftone Patterns:</strong> Dot matrices and
+repeating artifacts found in scanned physical media like newspapers or
+magazines.</li>
+</ul>
+<h2 id="median-blur-vs-gaussian-blur">Median Blur vs. Gaussian Blur</h2>
+<p>Standard blurs, such as Gaussian Blur, use a weighted average (mean)
+of neighboring pixels. If a pixel is pure white in a field of dark
+pixels, an averaging filter distributes that white value across the
+neighboring area, causing a faint, blurry halo and softening sharp
+borders.</p>
+<p>Median Blur ignores extreme outliers entirely because they do not
+fall in the middle of the sorted set. As a result, sharp transitions
+between distinct objects (such as dark text on a light background or
+silhouette edges) remain intact while flat or textured regions are
+cleaned.</p>
+<h2 id="how-to-use-median-blur-in-gimp">How to Use Median Blur in
+GIMP</h2>
+<p>To apply the Median Blur filter to an image or layer:</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Navigate to the top menu and select <strong>Filters &gt; Blur &gt;
+Median Blur...</strong></li>
+<li>Configure the filter settings in the dialog box:
+<ul>
+<li><strong>Radius:</strong> Determines the size of the pixel
+neighborhood to analyze. A smaller radius (e.g., 1 to 3) cleans fine
+noise while preserving high-frequency details. A larger radius flattens
+broader textures and creates an artistic, painterly effect.</li>
+<li><strong>Percentile:</strong> Sets the selection point in the sorted
+list. The default value is 50, representing the true median. Lowering
+this value biases the output toward darker tones (similar to a minimum
+filter), while raising it biases the output toward lighter tones
+(similar to a maximum filter).</li>
+<li><strong>Alpha Percentile:</strong> Controls how transparent and
+semi-transparent pixels are handled along alpha channel boundaries.</li>
+</ul></li>
+<li>Check the <strong>Preview</strong> box to evaluate the balance
+between noise reduction and detail retention.</li>
+<li>Click <strong>OK</strong> to apply the filter to your active layer
+or selection.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

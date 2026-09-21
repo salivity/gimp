@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Outline Transparent Text in GIMP - gimp</title>
+    <meta name="description" content="Creating text with a visible outline and a completely transparent interior is a popular technique for designing modern typography over photos, patterns, or colored backgrounds. This guide walks you through the exact steps to generate a crisp stroke aroun">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-outline-transparent-text-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Outline Transparent Text in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-outline-transparent-text-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating text with a visible outline and a completely transparent interior is a popular technique for designing modern typography over photos, patterns, or colored backgrounds. This guide walks you through the exact steps to generate a crisp stroke aroun" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-outline-transparent-text-in-gimp">How to Outline
+Transparent Text in GIMP</h1>
+<p>Creating text with a visible outline and a completely transparent
+interior is a popular technique for designing modern typography over
+photos, patterns, or colored backgrounds. This guide walks you through
+the exact steps to generate a crisp stroke around your text characters
+in GIMP while eliminating the solid color fill inside.</p>
+<h3 id="step-1-create-your-text-layer">Step 1: Create Your Text
+Layer</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> (<code>T</code>) from the
+Toolbox.</li>
+<li>Click anywhere on your canvas, choose your desired font, size, and
+style, then type your text.</li>
+<li>Adjust the kerning and line spacing now, as altering the text after
+creating the outline will require repeating the stroke process.</li>
+</ol>
+<h3 id="step-2-convert-text-to-a-path">Step 2: Convert Text to a
+Path</h3>
+<ol type="1">
+<li>Navigate to the <strong>Layers</strong> panel on the right side of
+the workspace.</li>
+<li>Right-click on your text layer and select <strong>Path from
+Text</strong>.</li>
+<li>GIMP will trace the contours of your letters and store them as a
+vector path in the <strong>Paths</strong> dockable dialog.</li>
+</ol>
+<h3 id="step-3-set-up-the-outline-layer">Step 3: Set Up the Outline
+Layer</h3>
+<ol type="1">
+<li>Create a new transparent layer by clicking the <strong>Create a new
+layer</strong> button at the bottom of the Layers panel (or press
+<code>Shift + Ctrl + N</code>).</li>
+<li>Name this layer "Text Outline" and ensure <strong>Fill with</strong>
+is set to <strong>Transparency</strong>, then click
+<strong>OK</strong>.</li>
+<li>Select your desired outline color as the <strong>Foreground
+Color</strong> in the Toolbox.</li>
+</ol>
+<h3 id="step-4-stroke-the-path">Step 4: Stroke the Path</h3>
+<ol type="1">
+<li>Go to the top menu and select <strong>Edit</strong> &gt;
+<strong>Stroke Path...</strong> (alternatively, switch to the
+<strong>Paths</strong> tab, right-click your path, and choose
+<strong>Stroke Path...</strong>).</li>
+<li>In the Stroke Path dialog, select <strong>Stroke line</strong>.</li>
+<li>Set your preferred line width in the <strong>Line width</strong>
+field (e.g., 2 to 6 pixels depending on your font size).</li>
+<li>Under <strong>Cap style</strong> and <strong>Join style</strong>,
+choose <strong>Round</strong> or <strong>Miter</strong> depending on
+whether you want soft or sharp corners.</li>
+<li>Click <strong>Stroke</strong>. GIMP will draw the border onto your
+new transparent layer.</li>
+</ol>
+<h3 id="step-5-make-the-interior-transparent">Step 5: Make the Interior
+Transparent</h3>
+<ol type="1">
+<li>Return to the <strong>Layers</strong> panel.</li>
+<li>Locate the original text layer containing the solid fill.</li>
+<li>Click the <strong>Eye icon</strong> next to the original text layer
+to hide it.</li>
+</ol>
+<p>You are left with a hollow, fully transparent text outline on its own
+layer. Because the original text layer remains intact (though hidden),
+you can make edits later by repeating the path-generation steps if you
+need to change your wording.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is the GEGL Noise Spread Filter in GIMP? - gimp</title>
+    <meta name="description" content="The GEGL Noise Spread filter in GIMP is a distortion tool designed to scatter existing pixels randomly across a defined area to produce textured, diffused, or painterly visual effects. This article explains the primary purpose of the Noise Spread filter,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/what-is-the-gegl-noise-spread-filter-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is the GEGL Noise Spread Filter in GIMP? - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/what-is-the-gegl-noise-spread-filter-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Noise Spread filter in GIMP is a distortion tool designed to scatter existing pixels randomly across a defined area to produce textured, diffused, or painterly visual effects. This article explains the primary purpose of the Noise Spread filter," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-the-gegl-noise-spread-filter-in-gimp">What Is the GEGL
+Noise Spread Filter in GIMP?</h1>
+<p>The GEGL Noise Spread filter in GIMP is a distortion tool designed to
+scatter existing pixels randomly across a defined area to produce
+textured, diffused, or painterly visual effects. This article explains
+the primary purpose of the Noise Spread filter, how its parameters
+manipulate pixel data, and the most practical applications for its use
+in photo editing and graphic design.</p>
+<h2 id="how-the-noise-spread-filter-works">How the Noise Spread Filter
+Works</h2>
+<p>Unlike standard noise filters that generate new random colored or
+monochrome pixels (such as RGB Noise), the GEGL Noise Spread filter
+displaces the pixels that are already present in the layer or selection.
+It shifts each pixel within a user-defined horizontal and vertical
+radius according to a random algorithm. The original colors, tones, and
+image details are preserved, but their spatial arrangement becomes
+randomized.</p>
+<h2 id="key-filter-parameters">Key Filter Parameters</h2>
+<ul>
+<li><strong>Amount X:</strong> Controls the maximum horizontal distance
+(in pixels) that pixels can be displaced to the left or right.</li>
+<li><strong>Amount Y:</strong> Controls the maximum vertical distance
+(in pixels) that pixels can be displaced up or down.</li>
+<li><strong>Seed:</strong> Sets the base value for the pseudo-random
+number generator, allowing users to cycle through different randomized
+distribution patterns while keeping the same spread values.</li>
+</ul>
+<h2 id="common-creative-and-practical-applications">Common Creative and
+Practical Applications</h2>
+<h3 id="1-simulating-frosted-glass-and-diffusion">1. Simulating Frosted
+Glass and Diffusion</h3>
+<p>By applying a low-to-medium spread evenly across the X and Y axes,
+the filter creates the optical effect of looking through textured,
+frosted, or patterned glass.</p>
+<h3 id="2-creating-painterly-and-media-textures">2. Creating Painterly
+and Media Textures</h3>
+<p>When applied to illustrations, digital paintings, or photographic
+subjects, the filter breaks up smooth gradients and sharp lines. This
+mimics the natural bleeding and rough texture of traditional media such
+as pastels, watercolors, or chalk on rough paper.</p>
+<h3 id="3-directional-motion-and-smear-artifacts">3. Directional Motion
+and Smear Artifacts</h3>
+<p>Setting one axis higher than the other (for example, a high Amount X
+with an Amount Y of zero) produces a directional streaking effect. This
+can be used for motion simulation, chromatic-style distortion, or
+digital glitch art.</p>
+<h3 id="4-edge-softening-and-seamless-blending">4. Edge Softening and
+Seamless Blending</h3>
+<p>Noise Spread can break up rigid, vector-sharp edges on cutouts or
+masks, making it easier to blend composited elements naturally into a
+background with film grain or atmospheric noise.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

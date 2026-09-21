@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Chromatic Fringing in GIMP Astrophotography - gimp</title>
+    <meta name="description" content="Extreme optical chromatic fringing—often visible as prominent purple, magenta, or blue halos around stars—can significantly degrade the quality of astrophotography images. This guide provides step-by-step methods to completely eliminate severe chroma">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/remove-chromatic-fringing-in-gimp-astrophotography">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Remove Chromatic Fringing in GIMP Astrophotography - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/remove-chromatic-fringing-in-gimp-astrophotography" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Extreme optical chromatic fringing—often visible as prominent purple, magenta, or blue halos around stars—can significantly degrade the quality of astrophotography images. This guide provides step-by-step methods to completely eliminate severe chroma" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="remove-chromatic-fringing-in-gimp-astrophotography">Remove
+Chromatic Fringing in GIMP Astrophotography</h1>
+<p>Extreme optical chromatic fringing—often visible as prominent purple,
+magenta, or blue halos around stars—can significantly degrade the
+quality of astrophotography images. This guide provides step-by-step
+methods to completely eliminate severe chromatic aberration in GIMP
+without stripping away the natural, authentic colors of your stars and
+deep-sky objects.</p>
+<hr />
+<h3
+id="method-1-the-color-blend-blur-technique-best-for-extreme-halos">Method
+1: The Color-Blend Blur Technique (Best for Extreme Halos)</h3>
+<p>This technique separates luminance detail from color data,
+effectively blurring away harsh fringing while keeping stars sharp and
+pinpoint.</p>
+<ol type="1">
+<li><p><strong>Duplicate the Base Layer:</strong></p>
+<ul>
+<li>Open your image in GIMP.</li>
+<li>In the <strong>Layers</strong> panel, right-click your background
+layer and select <strong>Duplicate Layer</strong> (or press
+<code>Ctrl+Shift+D</code>).</li>
+<li>Rename this duplicate layer to <code>Color Blur</code>.</li>
+</ul></li>
+<li><p><strong>Change the Layer Mode:</strong></p>
+<ul>
+<li>With the <code>Color Blur</code> layer selected, click the
+<strong>Mode</strong> dropdown menu at the top of the Layers panel.</li>
+<li>Change the blend mode from <strong>Normal</strong> to
+<strong>Color</strong> (or <strong>LCH Color</strong>).</li>
+</ul></li>
+<li><p><strong>Apply Gaussian Blur to the Color Layer:</strong></p>
+<ul>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur</strong>.</li>
+<li>Increase the <strong>Size X</strong> and <strong>Size Y</strong>
+radius values until the purple or blue fringing blends seamlessly into
+the dark background sky. For extreme fringing, values between
+<strong>5.0 and 20.0 pixels</strong> are typically effective.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+<li><p><strong>Mask to Preserve Nebula/Galaxy Details
+(Optional):</strong></p>
+<ul>
+<li>If the blur affects desirable color in nebulae or galaxies,
+right-click the <code>Color Blur</code> layer and choose <strong>Add
+Layer Mask &gt; Black (Full Transparency)</strong>.</li>
+<li>Select a soft white brush and paint over only the stars with severe
+fringing to apply the correction selectively.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-targeted-hue-saturation-desaturation">Method 2:
+Targeted Hue-Saturation Desaturation</h3>
+<p>If the chromatic aberration is confined to a specific color band
+(most commonly magenta or cyan), you can desaturate that specific color
+range across the stars.</p>
+<ol type="1">
+<li><p><strong>Duplicate the Layer:</strong></p>
+<ul>
+<li>Create a duplicate of your main layer to work
+non-destructively.</li>
+</ul></li>
+<li><p><strong>Open Hue-Saturation:</strong></p>
+<ul>
+<li>Go to <strong>Colors &gt; Hue-Saturation</strong>.</li>
+</ul></li>
+<li><p><strong>Isolate and Desaturate the Fringing Color:</strong></p>
+<ul>
+<li>Under <strong>Select Primary Color to Adjust</strong>, click the
+radio button for <strong>M (Magenta)</strong>, <strong>B
+(Blue)</strong>, or <strong>C (Cyan)</strong> depending on the halo
+color.</li>
+<li>Reduce the <strong>Saturation</strong> slider toward
+<code>-100</code>.</li>
+<li>Slightly adjust the <strong>Overlap</strong> and
+<strong>Hue</strong> sliders to widen the range if faint edges of the
+fringe remain.</li>
+<li>Adjust the <strong>Lightness</strong> slider down slightly if the
+fringing leaves bright white rings around the stars.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-3-star-halo-selection-and-defringing">Method 3: Star Halo
+Selection and Defringing</h3>
+<p>For cases where extreme fringing creates oversized, bloated rings
+around large stars:</p>
+<ol type="1">
+<li><p><strong>Select the Fringe Color:</strong></p>
+<ul>
+<li>Go to <strong>Tools &gt; Selection Tools &gt; By Color
+Select</strong>.</li>
+<li>Click directly on the colored halo around one of the affected
+stars.</li>
+<li>In the <strong>Tool Options</strong> panel, adjust the
+<strong>Threshold</strong> slider (usually between <code>15</code> and
+<code>30</code>) until only the halos are selected.</li>
+</ul></li>
+<li><p><strong>Refine the Selection:</strong></p>
+<ul>
+<li>Go to <strong>Select &gt; Feather</strong> and set a radius of
+<code>2</code> to <code>4</code> pixels to ensure smooth
+transitions.</li>
+</ul></li>
+<li><p><strong>Neutralize the Color:</strong></p>
+<ul>
+<li>Go to <strong>Colors &gt; Desaturate &gt; Desaturate</strong>.</li>
+<li>Choose the <strong>Luminance</strong> mode and click
+<strong>OK</strong>.</li>
+<li>Go to <strong>Colors &gt; Curves</strong> and pull the middle of the
+curve downward slightly to dim the desaturated halo so it matches the
+background sky tone.</li>
+<li>Clear your selection with <strong>Select &gt; None</strong>
+(<code>Ctrl+Shift+A</code>).</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

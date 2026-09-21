@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP AppImage Manages Linux Shared Libraries - gimp</title>
+    <meta name="description" content="This article explores how the GIMP AppImage achieves cross-distribution portability on Linux by bundling its own shared libraries. It explains the mechanics behind packaging complex dependencies like GEGL, babl, and GTK, how the runtime environment direc">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-app-image-manages-linux-shared-libraries">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP AppImage Manages Linux Shared Libraries - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-app-image-manages-linux-shared-libraries" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how the GIMP AppImage achieves cross-distribution portability on Linux by bundling its own shared libraries. It explains the mechanics behind packaging complex dependencies like GEGL, babl, and GTK, how the runtime environment direc" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-appimage-manages-linux-shared-libraries">How GIMP
+AppImage Manages Linux Shared Libraries</h1>
+<p>This article explores how the GIMP AppImage achieves
+cross-distribution portability on Linux by bundling its own shared
+libraries. It explains the mechanics behind packaging complex
+dependencies like GEGL, babl, and GTK, how the runtime environment
+directs the application to prioritize these bundled components, and the
+strategies used to avoid conflicts with host system drivers and core
+libraries.</p>
+<h3 id="the-appdir-file-hierarchy">The AppDir File Hierarchy</h3>
+<p>An AppImage is fundamentally a compressed filesystem image (SquashFS)
+containing an <code>AppDir</code> directory structure. When GIMP is
+packaged as an AppImage, it includes not only the primary executable but
+also a tailored file tree mirroring a standard Unix root directory
+(<code>/usr/bin</code>, <code>/usr/lib</code>,
+<code>/usr/share</code>).</p>
+<p>Within this structure, application-specific shared
+libraries—including GEGL (Generic Graphics Library), babl (color
+management), and target versions of GTK and Cairo—are placed directly
+inside <code>usr/lib</code> or appropriate subdirectories. This
+self-contained layout ensures that GIMP has immediate access to the
+exact versions of dependencies it requires, regardless of what is
+installed on the host operating system.</p>
+<h3 id="dynamic-library-loading-with-apprun">Dynamic Library Loading
+with AppRun</h3>
+<p>When a user executes the GIMP AppImage, the runtime mounts the
+SquashFS image to a temporary directory using FUSE (Filesystem in
+Userspace), typically at a location like
+<code>/tmp/.mount_GIMPxxxx</code>. The entry point of the package is a
+custom binary or script named <code>AppRun</code>.</p>
+<p><code>AppRun</code> configures the execution environment before
+invoking the actual GIMP binary. Its primary task is setting the
+<code>LD_LIBRARY_PATH</code> environment variable. By prepending the
+mount point's internal library paths (e.g.,
+<code>$APPDIR/usr/lib</code>) to <code>LD_LIBRARY_PATH</code>, the
+dynamic linker (<code>ld.so</code>) is instructed to look inside the
+AppImage for dependencies first. Only when a requested library is not
+found within the bundle does the linker fall back to the host system's
+library directories (<code>/lib</code>, <code>/usr/lib</code>).</p>
+<h3 id="the-base-system-excludelist">The Base System Excludelist</h3>
+<p>Bundling every dependency can cause severe conflicts, particularly
+with lower-level system interfaces. To prevent issues, the GIMP AppImage
+build process relies on a curated excludelist.</p>
+<p>Libraries that interface directly with the Linux kernel or
+host-specific hardware configurations are omitted from the bundle:</p>
+<ul>
+<li><strong>Glibc (<code>libc.so</code>)</strong>: The GNU C Library is
+tied closely to the kernel. Bundling glibc often causes segmentation
+faults when host utilities or drivers try to communicate across
+mismatched ABI versions. Instead, GIMP AppImages are compiled on older
+Linux distributions (such as an older Ubuntu or CentOS release) to
+ensure forward compatibility with newer glibc versions on target
+systems.</li>
+<li><strong>Display and Hardware Graphics Drivers (<code>libGL</code>,
+<code>libdrm</code>, <code>libX11</code>,
+<code>libwayland</code>)</strong>: Graphic acceleration requires the
+application to communicate directly with host GPU drivers (such as
+proprietary NVIDIA or Mesa drivers). Bundling these would break hardware
+acceleration, so GIMP relies on the host system to provide them.</li>
+</ul>
+<h3 id="plugin-and-font-isolation">Plugin and Font Isolation</h3>
+<p>GIMP relies on additional dynamic modules, such as file-format
+loaders, color profiles, and image-processing plugins. The AppImage
+manages these by configuring supplementary environment variables at
+launch:</p>
+<ul>
+<li><code>GEGL_PATH</code> and <code>BABL_PATH</code> are redirected to
+the internal mount directories to prevent GIMP from loading incompatible
+plugins from the host.</li>
+<li>Fontconfig and Pango are configured to scan both bundled basic
+typography assets and the host system’s font directories
+(<code>/usr/share/fonts</code>, <code>~/.local/share/fonts</code>),
+allowing GIMP to maintain internal stability while rendering the user's
+local fonts seamlessly.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

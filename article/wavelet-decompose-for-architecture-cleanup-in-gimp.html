@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavelet Decompose for Architecture Cleanup in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to use the GEGL Wavelet Decompose filter in GIMP to perform non-destructive, high-precision architectural photo cleanup. By separating an image into distinct frequency layers (scales) and a base color layer (residual), you can iso">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/wavelet-decompose-for-architecture-cleanup-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Wavelet Decompose for Architecture Cleanup in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/wavelet-decompose-for-architecture-cleanup-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the GEGL Wavelet Decompose filter in GIMP to perform non-destructive, high-precision architectural photo cleanup. By separating an image into distinct frequency layers (scales) and a base color layer (residual), you can iso" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="wavelet-decompose-for-architecture-cleanup-in-gimp">Wavelet
+Decompose for Architecture Cleanup in GIMP</h1>
+<p>This guide explains how to use the GEGL Wavelet Decompose filter in
+GIMP to perform non-destructive, high-precision architectural photo
+cleanup. By separating an image into distinct frequency layers (scales)
+and a base color layer (residual), you can isolate and remove
+distracting elements—such as power lines, sensor dust, graffiti, stains,
+and glare—without degrading fine masonry textures or natural surface
+gradients.</p>
+<h3
+id="understanding-wavelet-decompose-in-architectural-editing">Understanding
+Wavelet Decompose in Architectural Editing</h3>
+<p>Wavelet Decompose splits an image into frequency bands. Fine details,
+such as concrete texture, sharp edges, and small scratches, are isolated
+onto the lower-numbered scale layers (e.g., Scale 1 and Scale 2).
+Broader transitions, like lighting gradients and large tonal shifts,
+reside on higher-numbered scale layers. The base color and overall
+illumination sit at the bottom on the "Wavelet Residual" layer.</p>
+<p>This separation allows you to clone out a structural flaw or wire on
+a fine-detail layer without smudging the underlying sky gradient or
+paint tone. Conversely, you can smooth out uneven wall stains on the
+residual layer without blurring the crisp texture of the brick or
+stone.</p>
+<h3 id="step-1-prepare-the-image-and-run-the-filter">Step 1: Prepare the
+Image and Run the Filter</h3>
+<ol type="1">
+<li>Open your architectural photo in GIMP.</li>
+<li>Duplicate the background layer to preserve your original image.</li>
+<li>Navigate to <strong>Filters &gt; Enhance &gt; Wavelet
+Decompose...</strong></li>
+<li>In the dialog box, choose the number of <strong>Scales</strong>. A
+value between <strong>5 and 7</strong> is recommended for
+high-resolution architectural images.</li>
+<li>Check <strong>Create a layer group</strong> to keep the workspace
+organized.</li>
+<li>Click <strong>OK</strong>. GIMP will generate the grouped frequency
+layers, each set to the <strong>Grain Merge</strong> blending mode,
+along with the <strong>Wavelet Residual</strong> layer at the
+bottom.</li>
+</ol>
+<h3 id="step-2-removing-fine-distractions-wires-dust-and-scratches">Step
+2: Removing Fine Distractions (Wires, Dust, and Scratches)</h3>
+<p>Power lines crossing clean facades, sensor spots in the sky, and fine
+scratches on metal or glass exist primarily on the lowest scale
+layers.</p>
+<ol type="1">
+<li>Zoom in on the distraction.</li>
+<li>Toggle the visibility of <strong>Scale 1</strong>, <strong>Scale
+2</strong>, and <strong>Scale 3</strong> individually to identify which
+layer contains the unwanted object.</li>
+<li>Select the target scale layer in the Layers panel.</li>
+<li>Select the <strong>Clone Tool</strong> (C) or the <strong>Healing
+Tool</strong> (H). Ensure the tool's mode is set to
+<strong>Normal</strong> and the source sample is set to <strong>Current
+layer</strong>.</li>
+<li>Sample an adjacent, clean area on that same scale layer and paint
+over the distraction. Because you are only altering high-frequency data,
+the lighting and color underneath remain completely uniform.</li>
+</ol>
+<h3
+id="step-3-correcting-tonal-and-color-blemishes-stains-glare-and-patches">Step
+3: Correcting Tonal and Color Blemishes (Stains, Glare, and
+Patches)</h3>
+<p>Water stains, mismatched paint patches, or harsh reflections on flat
+surfaces often disrupt the clean lines of architectural spaces without
+altering surface texture.</p>
+<ol type="1">
+<li>Select the <strong>Wavelet Residual</strong> layer or a
+higher-numbered scale layer (e.g., <strong>Scale 5</strong> or
+<strong>Scale 6</strong>).</li>
+<li>Choose a soft-edged <strong>Paintbrush</strong> (P), the
+<strong>Smudge Tool</strong> (S), or the <strong>Clone Tool</strong>
+(C).</li>
+<li>Sample the correct color or smooth tone from an unaffected section
+of the wall.</li>
+<li>Gently paint or blend over the discoloration. The fine surface
+textures stored on Scales 1 through 3 will remain intact, preventing the
+surface from looking artificially smooth or blurry.</li>
+</ol>
+<h3 id="step-4-finalizing-and-exporting">Step 4: Finalizing and
+Exporting</h3>
+<ol type="1">
+<li>Collapse the Wavelet Decompose layer group to verify your edits
+against the original image by toggling the group visibility on and
+off.</li>
+<li>If further global adjustments are needed, right-click the layer
+stack and select <strong>New from Visible</strong>.</li>
+<li>Export the final edited image via <strong>File &gt; Export
+As...</strong> in your desired format.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

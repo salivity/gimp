@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Drag a Channel as a Layer Mask in GIMP - gimp</title>
+    <meta name="description" content="In GIMP, you can streamline your masking workflow by converting any saved channel into a layer mask using a simple drag-and-drop action. This guide explains how to prepare your workspace, select the appropriate channel thumbnail, and drag it directly ont">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-drag-a-channel-as-a-layer-mask-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Drag a Channel as a Layer Mask in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-drag-a-channel-as-a-layer-mask-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, you can streamline your masking workflow by converting any saved channel into a layer mask using a simple drag-and-drop action. This guide explains how to prepare your workspace, select the appropriate channel thumbnail, and drag it directly ont" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-drag-a-channel-as-a-layer-mask-in-gimp">How to Drag a
+Channel as a Layer Mask in GIMP</h1>
+<p>In GIMP, you can streamline your masking workflow by converting any
+saved channel into a layer mask using a simple drag-and-drop action.
+This guide explains how to prepare your workspace, select the
+appropriate channel thumbnail, and drag it directly onto an image layer
+in the Layers dock to assign it instantly as a grayscale layer mask.</p>
+<hr />
+<h3 id="step-1-arrange-the-channels-and-layers-docks">Step 1: Arrange
+the Channels and Layers Docks</h3>
+<p>To drag directly between the Channels and Layers dialogs, both panels
+should be accessible at the same time.</p>
+<ol type="1">
+<li>Locate the <strong>Channels</strong> dock and the
+<strong>Layers</strong> dock in your interface.</li>
+<li>If they are stacked in the same tab group, click and drag the
+<strong>Channels</strong> tab slightly to the side or below the
+<strong>Layers</strong> tab to split them into two visible panes side by
+side.</li>
+<li>Alternatively, keep them as tabs within the same dock. GIMP allows
+you to drag a thumbnail over an inactive tab header to bring that tab to
+the front before dropping.</li>
+</ol>
+<hr />
+<h3 id="step-2-prepare-your-channel">Step 2: Prepare Your Channel</h3>
+<p>A layer mask requires a grayscale map to determine opacity. Ensure
+the channel you intend to use exists in the Channels dialog:</p>
+<ol type="1">
+<li><strong>Custom Selection:</strong> If you have an active selection
+on your canvas, go to <strong>Select &gt; Save to Channel</strong> to
+create a custom channel.</li>
+<li><strong>Component Channels:</strong> If you want to use the Red,
+Green, Blue, or Alpha channel, right-click the desired channel in the
+list and select <strong>Duplicate Channel</strong> to turn it into an
+editable, independent channel.</li>
+</ol>
+<hr />
+<h3 id="step-3-drag-the-channel-thumbnail-onto-the-layer">Step 3: Drag
+the Channel Thumbnail onto the Layer</h3>
+<ol type="1">
+<li>Switch focus to the <strong>Channels</strong> dialog.</li>
+<li>Click and hold the mouse button directly on the <strong>preview
+thumbnail</strong> of the channel you want to use (not the text
+label).</li>
+<li>Drag the thumbnail toward the <strong>Layers</strong> dialog.</li>
+<li>Hover the cursor over the specific target layer where the mask
+should be applied. A visual indicator (such as a highlighted border
+around the layer row) will confirm the target.</li>
+<li>Release the mouse button.</li>
+</ol>
+<hr />
+<h3 id="result">Result</h3>
+<p>Upon releasing the mouse button, GIMP automatically converts the
+channel data into a grayscale mask and attaches it to the chosen layer.
+You will see a black-and-white mask thumbnail appear beside the layer’s
+main image thumbnail in the Layers dialog, immediately updating the
+visibility of your canvas based on the channel's values.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

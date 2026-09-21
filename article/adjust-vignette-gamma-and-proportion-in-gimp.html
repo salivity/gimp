@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Vignette Gamma and Proportion in GIMP - gimp</title>
+    <meta name="description" content="The GEGL Vignette filter in GIMP allows you to frame images with customized shading, and mastering the Gamma and Proportion sliders is essential for controlling the shape and intensity of the effect. This guide explains how to open the Vignette tool and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/adjust-vignette-gamma-and-proportion-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Vignette Gamma and Proportion in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/adjust-vignette-gamma-and-proportion-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Vignette filter in GIMP allows you to frame images with customized shading, and mastering the Gamma and Proportion sliders is essential for controlling the shape and intensity of the effect. This guide explains how to open the Vignette tool and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="adjust-vignette-gamma-and-proportion-in-gimp">Adjust Vignette
+Gamma and Proportion in GIMP</h1>
+<p>The GEGL Vignette filter in GIMP allows you to frame images with
+customized shading, and mastering the Gamma and Proportion sliders is
+essential for controlling the shape and intensity of the effect. This
+guide explains how to open the Vignette tool and precisely configure
+both sliders to achieve the exact falloff, shape, and contrast required
+for your image.</p>
+<h3 id="accessing-the-vignette-tool">Accessing the Vignette Tool</h3>
+<p>To open the tool, open your image in GIMP and go to <strong>Filters
+&gt; Light and Shadow &gt; Vignette</strong>. Ensure the
+<strong>Preview</strong> checkbox is enabled so you can monitor your
+adjustments in real time on the canvas.</p>
+<h3 id="adjusting-the-proportion-slider">Adjusting the Proportion
+Slider</h3>
+<p>The <strong>Proportion</strong> slider dictates the aspect ratio and
+dimensional shape of the vignette mask:</p>
+<ul>
+<li><strong>Default Value (0.0):</strong> Keeps the vignette shape
+proportional to the dimensions of your canvas or layer. On a square
+canvas, it forms a circle; on a rectangular canvas, it maintains an
+elliptical form that mirrors the canvas ratio.</li>
+<li><strong>Positive Values (Moving Right):</strong> Stretches the
+vignette horizontally, widening the shape. This is useful for panoramic
+shots, wide landscapes, or subjects spanning across the frame
+horizontally.</li>
+<li><strong>Negative Values (Moving Left):</strong> Compresses the width
+and elongates the vignette vertically, creating a tall oval. This works
+well for vertical portraits, full-body shots, or tall architectural
+subjects.</li>
+</ul>
+<p>Drag the slider or type a precise numerical value until the shape
+matches the boundaries of the subject you wish to isolate.</p>
+<h3 id="adjusting-the-gamma-slider">Adjusting the Gamma Slider</h3>
+<p>The <strong>Gamma</strong> slider controls the curve of the gradient
+falloff between the clear center and the shaded outer edge:</p>
+<ul>
+<li><strong>Increasing Gamma (Higher Values):</strong> Pushes the dark
+falloff toward the extreme edges of the frame. This creates a broader,
+brighter center with a steeper, more abrupt drop-off at the perimeter,
+keeping midtones relatively untouched.</li>
+<li><strong>Decreasing Gamma (Lower Values):</strong> Pulls the shadow
+deeper toward the center of the image. This produces a much flatter,
+more gradual transition, giving the vignette a soft, smoky spread across
+the entire frame.</li>
+</ul>
+<p>Use the Gamma slider to balance how quickly the vignette darkens
+without obscuring key details near the center of your composition.</p>
+<h3 id="recommended-workflow">Recommended Workflow</h3>
+<ol type="1">
+<li>Set your basic outer boundary using the <strong>Radius</strong> and
+<strong>Softness</strong> sliders.</li>
+<li>Adjust the <strong>Proportion</strong> slider to align the shape of
+the vignette with the orientation and layout of your subject.</li>
+<li>Fine-tune the <strong>Gamma</strong> slider to dial in the
+transition curve, ensuring the gradient falls off naturally without
+harsh lines.</li>
+<li>Click <strong>OK</strong> to render the effect onto your active
+layer.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace Sharp Mechanical Parts with GIMP Paths Tool - gimp</title>
+    <meta name="description" content="Tracing sharp, geometric mechanical parts in GIMP requires absolute precision to preserve rigid edges, accurate angles, and distinct corner points. This guide provides a straightforward method for using the Paths tool to create exact vector outlines arou">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/trace-sharp-mechanical-parts-with-gimp-paths-tool">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Trace Sharp Mechanical Parts with GIMP Paths Tool - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/trace-sharp-mechanical-parts-with-gimp-paths-tool" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Tracing sharp, geometric mechanical parts in GIMP requires absolute precision to preserve rigid edges, accurate angles, and distinct corner points. This guide provides a straightforward method for using the Paths tool to create exact vector outlines arou" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="trace-sharp-mechanical-parts-with-gimp-paths-tool">Trace Sharp
+Mechanical Parts with GIMP Paths Tool</h1>
+<p>Tracing sharp, geometric mechanical parts in GIMP requires absolute
+precision to preserve rigid edges, accurate angles, and distinct corner
+points. This guide provides a straightforward method for using the Paths
+tool to create exact vector outlines around mechanical components. By
+utilizing deliberate node placement, turning off unintended curve
+handles, and leveraging alignment aids, you can produce clean,
+hard-surface selections and strokes for technical drawings or clean
+cutouts.</p>
+<h3 id="1-set-up-alignment-aids">1. Set Up Alignment Aids</h3>
+<p>Mechanical parts rely on exact angles and parallel lines. Prepare
+your canvas to assist the Paths tool:</p>
+<ul>
+<li><strong>Zoom in close:</strong> Zoom into your image at 200% to 800%
+(<code>+</code> key) to locate the exact apex of every angle.</li>
+<li><strong>Enable Guides:</strong> Drag guides from the horizontal and
+vertical rulers to mark the primary reference edges of the mechanical
+component.</li>
+<li><strong>Toggle Snapping:</strong> Go to <strong>View &gt; Snap to
+Guides</strong> to make anchor points lock directly onto your alignment
+lines.</li>
+</ul>
+<h3 id="2-configure-the-paths-tool">2. Configure the Paths Tool</h3>
+<p>Select the <strong>Paths</strong> tool from the toolbox or press the
+shortcut key <strong>B</strong>. In the Tool Options dialog, ensure the
+following:</p>
+<ul>
+<li>Set the mode to <strong>Design</strong>.</li>
+<li>Check <strong>Polygonal</strong> if the component consists
+exclusively of straight lines and sharp corners. This locks each segment
+to a straight vector and prevents accidental Bézier curve generation. If
+the part contains both sharp corners and machined arcs, leave Polygonal
+unchecked.</li>
+</ul>
+<h3 id="3-plot-straight-edges-and-sharp-corners">3. Plot Straight Edges
+and Sharp Corners</h3>
+<p>To maintain razor-sharp vertices:</p>
+<ul>
+<li><strong>Single Click Only:</strong> Click once to place an anchor
+point at a corner, release the mouse button, move to the next vertex,
+and click again. Never click and drag when placing points on a sharp
+corner, as dragging pulls out Bézier handles that introduce
+curvature.</li>
+<li><strong>Close the Loop:</strong> To finish the perimeter, hold
+<strong>Ctrl</strong> and click on your initial anchor point. This
+closes the path without breaking the final corner's angle.</li>
+</ul>
+<h3 id="4-trace-machined-curves-and-fillets">4. Trace Machined Curves
+and Fillets</h3>
+<p>Mechanical objects often feature precise rounded corners (fillets) or
+cylindrical bores:</p>
+<ul>
+<li>Place an anchor point precisely where the straight edge transitions
+into the curve (the tangent point).</li>
+<li>Place the next point where the curve returns to a straight
+edge.</li>
+<li>Hold <strong>Ctrl</strong>, click the straight segment between the
+two points, and drag outward. This bends the line to match the contour
+while leaving the adjoining straight segments rigid.</li>
+<li>Adjust the direction handles to match the radius of the curve.</li>
+</ul>
+<h3 id="5-remove-unwanted-curvature">5. Remove Unwanted Curvature</h3>
+<p>If you accidentally pull out a handle and curve a mechanical edge
+that should be flat:</p>
+<ul>
+<li>Switch the tool mode to <strong>Edit</strong> (or hold
+<strong>Ctrl</strong> while in Design mode).</li>
+<li>Hold <strong>Shift + Ctrl</strong> and click directly on the
+unwanted direction handle. This collapses the handle back into the node,
+restoring a pure, sharp corner.</li>
+</ul>
+<h3 id="6-convert-the-path-for-output">6. Convert the Path for
+Output</h3>
+<p>Once the path accurately conforms to the mechanical part:</p>
+<ul>
+<li><strong>For a Selection:</strong> Click <strong>Selection from
+Path</strong> in the Tool Options dialog, or press <strong>Shift +
+V</strong>. This creates a crisp, non-feathered boundary around your
+part.</li>
+<li><strong>For Line Art:</strong> Go to <strong>Edit &gt; Stroke
+Path</strong>, select <strong>Solid color</strong>, choose your pixel
+width, and set the cap style to <strong>Square</strong> or
+<strong>Miter</strong> to keep corners crisp and industrial.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

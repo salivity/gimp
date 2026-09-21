@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Restore Faded Cyanotype Prints in GIMP - gimp</title>
+    <meta name="description" content="Architectural cyanotypes naturally degrade over time, losing their characteristic Prussian blue intensity and suffering from yellowed, oxidized paper fibers. Restoring these historic blueprints digitally requires balancing tonal ranges, eliminating paper">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-restore-faded-cyanotype-prints-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Restore Faded Cyanotype Prints in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-restore-faded-cyanotype-prints-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Architectural cyanotypes naturally degrade over time, losing their characteristic Prussian blue intensity and suffering from yellowed, oxidized paper fibers. Restoring these historic blueprints digitally requires balancing tonal ranges, eliminating paper" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-restore-faded-cyanotype-prints-in-gimp">How to Restore
+Faded Cyanotype Prints in GIMP</h1>
+<p>Architectural cyanotypes naturally degrade over time, losing their
+characteristic Prussian blue intensity and suffering from yellowed,
+oxidized paper fibers. Restoring these historic blueprints digitally
+requires balancing tonal ranges, eliminating paper discoloration, and
+targeted color-grading to recover deep indigo hues without destroying
+delicate line work. This guide outlines the precise steps in the
+open-source editor GIMP to revive faded cyanotypes, moving from raw
+digitization to finished indigo restoration using non-destructive
+adjustments, Levels, Curves, and Channel manipulation.</p>
+<h3 id="1-digitize-and-prepare-the-workspace">1. Digitize and Prepare
+the Workspace</h3>
+<ol type="1">
+<li>Scan the cyanotype at a minimum of 300 to 600 DPI in 16-bit RGB
+mode. Even though cyanotypes are essentially monochromatic, the full RGB
+spectrum is required to separate paper decay from blue pigment.</li>
+<li>Open GIMP and load your image via <strong>File &gt;
+Open</strong>.</li>
+<li>In the Layers dialog (<strong>Ctrl + L</strong>), right-click the
+background layer and select <strong>Duplicate Layer</strong> to preserve
+the original file. Rename this working layer "Restoration Base."</li>
+</ol>
+<h3 id="2-set-white-points-to-clear-paper-yellowing">2. Set White Points
+to Clear Paper Yellowing</h3>
+<p>Aged prints typically exhibit yellow or brown highlights where the
+original paper base was white.</p>
+<ol type="1">
+<li>Navigate to <strong>Colors &gt; Levels</strong>.</li>
+<li>Select the <strong>Pick white point</strong> eyedropper tool located
+near the bottom of the dialog.</li>
+<li>Click on the lightest area of the print that should ideally
+represent clean paper or negative space (such as the drafting background
+or unexposed perimeter).</li>
+<li>Drag the middle (gamma) slider slightly to the left or right to
+re-establish balanced midtones. Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="3-rebuild-the-indigo-tonal-curve">3. Rebuild the Indigo Tonal
+Curve</h3>
+<p>Original cyanotypes feature a deep, ferric ferrocyanide (Prussian
+blue) tone rather than standard primary blue. Reconstructing this
+requires selective RGB curve grading.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Curves</strong>.</li>
+<li>Select the <strong>Value</strong> channel from the dropdown. Create
+a subtle S-curve by gently lifting the highlights and pulling down the
+shadows to increase overall contrast.</li>
+<li>Switch the channel dropdown to <strong>Red</strong>. Cyanotype blue
+is the inverse of red. Drag the middle and lower sections of the red
+curve downward; this removes red light from the shadows, immediately
+pushing midtones and darks into a rich cyan-blue.</li>
+<li>Switch to the <strong>Blue</strong> channel. Lift the lower-middle
+curve upward to enrich the shadow depth, ensuring the dark lines shift
+from washed-out gray to deep indigo.</li>
+<li>Switch to the <strong>Green</strong> channel. Pull down slightly in
+the shadows if the tone appears too teal, or raise it slightly if it
+appears overly purple. Click <strong>OK</strong>.</li>
+</ol>
+<h3
+id="4-enhance-pigment-density-via-color-temperature-and-hue-chroma">4.
+Enhance Pigment Density via Color Temperature and Hue-Chroma</h3>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Color Temperature</strong>.</li>
+<li>Decrease the <strong>Intended Temperature</strong> to cool the
+image, targeting an authentic Prussian blue spectrum (roughly 5000K to
+5500K depending on the initial scan). Click <strong>OK</strong>.</li>
+<li>Go to <strong>Colors &gt; Hue-Chroma</strong>.</li>
+<li>Increase the <strong>Chroma</strong> slider slightly (+5 to +15) to
+saturate the recovered blues without clipping fine drafting
+details.</li>
+</ol>
+<h3 id="5-recover-fine-line-work-and-crisp-edges">5. Recover Fine Line
+Work and Crisp Edges</h3>
+<p>Architectural drawings rely on high line legibility that may become
+soft during contrast adjustment.</p>
+<ol type="1">
+<li>Duplicate your color-corrected layer and label it "Line
+Enhancement."</li>
+<li>Go to <strong>Filters &gt; Enhance &gt; High Pass</strong>.</li>
+<li>Set the <strong>Std. Dev.</strong> between 1.5 and 3.0 pixels,
+enough to outline the architectural lines without creating heavy halos.
+Click <strong>OK</strong>.</li>
+<li>Change the layer blend mode in the Layers panel to
+<strong>Overlay</strong> or <strong>Soft Light</strong>.</li>
+<li>Lower the opacity of the "Line Enhancement" layer to roughly 40–60%
+to blend the sharp structural drafting naturally into the restored
+background.</li>
+</ol>
+<h3 id="6-export-the-restored-blueprint">6. Export the Restored
+Blueprint</h3>
+<ol type="1">
+<li>Review the full image at 100% zoom to verify line integrity and
+uniform shadow depth.</li>
+<li>Go to <strong>File &gt; Export As</strong>.</li>
+<li>Choose an uncompressed format such as <strong>TIFF</strong> or
+<strong>PNG</strong> to preserve dynamic range and color profiles for
+archival storage or reproduction printing.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

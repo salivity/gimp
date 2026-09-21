@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Starfields in GIMP with Brush Dynamics - gimp</title>
+    <meta name="description" content="This guide explains how to configure custom brush dynamics in GIMP to generate stylized, scattered starfields efficiently. By linking the random input parameter to size, angle, and opacity, you can paint vast fields of unique, naturally dispersed stars w">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-starfields-in-gimp-with-brush-dynamics">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Starfields in GIMP with Brush Dynamics - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-starfields-in-gimp-with-brush-dynamics" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure custom brush dynamics in GIMP to generate stylized, scattered starfields efficiently. By linking the random input parameter to size, angle, and opacity, you can paint vast fields of unique, naturally dispersed stars w" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-starfields-in-gimp-with-brush-dynamics">Create Starfields
+in GIMP with Brush Dynamics</h1>
+<p>This guide explains how to configure custom brush dynamics in GIMP to
+generate stylized, scattered starfields efficiently. By linking the
+random input parameter to size, angle, and opacity, you can paint vast
+fields of unique, naturally dispersed stars with single brush strokes
+instead of placing each star manually.</p>
+<h2 id="step-1-create-a-new-brush-dynamic">Step 1: Create a New Brush
+Dynamic</h2>
+<ol type="1">
+<li>Open GIMP and select the <strong>Paintbrush Tool</strong>
+(<code>P</code>).</li>
+<li>Open the Paint Dynamics panel by navigating to <strong>Windows &gt;
+Dockable Dialogs &gt; Paint Dynamics</strong>.</li>
+<li>In the lower right corner of the Paint Dynamics dialog, click the
+<strong>Create a new dynamics</strong> button (the paper icon).</li>
+<li>A new window titled <strong>Paint Dynamics Editor</strong> will
+open. Rename the dynamic at the top to something recognizable, such as
+<code>Starfield Generator</code>.</li>
+</ol>
+<h2 id="step-2-configure-the-dynamics-matrix">Step 2: Configure the
+Dynamics Matrix</h2>
+<p>The Dynamics Editor contains a grid where rows represent brush
+properties (outputs) and columns represent triggers (inputs). To
+randomize the appearance of each star as you paint:</p>
+<ol type="1">
+<li>Locate the <strong>Random</strong> column in the matrix.</li>
+<li>Check the box at the intersection of <strong>Opacity</strong> and
+<strong>Random</strong>. This causes individual stars to vary between
+faint flickers and bright bursts.</li>
+<li>Check the box at the intersection of <strong>Size</strong> and
+<strong>Random</strong>. This introduces depth by mixing microscopic
+distant stars with larger foreground stars.</li>
+<li>Check the box at the intersection of <strong>Angle</strong> and
+<strong>Random</strong>. This rotates star flares or non-circular shapes
+so they do not all align in the same direction.</li>
+</ol>
+<p>Close the Dynamics Editor. Your new preset is automatically saved in
+your dynamics library.</p>
+<h2 id="step-3-configure-brush-and-tool-options">Step 3: Configure Brush
+and Tool Options</h2>
+<p>To ensure individual stars do not clump together into a continuous
+line, adjust the brush spacing and scatter in the <strong>Tool
+Options</strong> panel:</p>
+<ol type="1">
+<li><strong>Select a Brush:</strong> Choose an appropriate brush tip.
+For sharp, stylized stars, select a 4-point star brush or a cross-spark
+brush. For soft, distant stars, a basic round brush with hardness set
+around 75% works best.</li>
+<li><strong>Increase Spacing:</strong> Under the brush selector in Tool
+Options, expand the brush properties and increase
+<strong>Spacing</strong> to at least <strong>150% to 300%</strong>. This
+forces GIMP to leave gaps between stamps, preventing stars from
+overlapping heavily.</li>
+<li><strong>Enable Dynamics:</strong> Ensure your newly created
+<code>Starfield Generator</code> preset is selected in the
+<strong>Dynamics</strong> dropdown.</li>
+<li><strong>Enable Jitter:</strong> Check the <strong>Apply
+Jitter</strong> option in Tool Options and set the slider between
+<strong>1.5 and 3.0</strong>. Jitter scatters the stars outward from the
+center of your stroke, giving the cluster a natural cosmic spread.</li>
+</ol>
+<h2 id="step-4-paint-the-starfield">Step 4: Paint the Starfield</h2>
+<ol type="1">
+<li>Create a new layer with a black or deep-space gradient
+background.</li>
+<li>Set your foreground color to white, pale cyan, or soft gold.</li>
+<li>Lightly drag your cursor across the canvas. GIMP will scatter stars
+along the path, automatically applying independent rotations,
+dimensions, and transparency levels to every star stamped.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

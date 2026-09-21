@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Hollow Stencil Typography in GIMP - gimp</title>
+    <meta name="description" content="Creating hollow, stencil-style typography in GIMP involves converting standard text into editable vector paths, cutting out bridge gaps to mimic physical stencils, and subtracting an inner offset to produce an outline effect. By leveraging GIMP’s path">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-hollow-stencil-typography-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Hollow Stencil Typography in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-hollow-stencil-typography-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating hollow, stencil-style typography in GIMP involves converting standard text into editable vector paths, cutting out bridge gaps to mimic physical stencils, and subtracting an inner offset to produce an outline effect. By leveraging GIMP’s path" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-hollow-stencil-typography-in-gimp">Create Hollow Stencil
+Typography in GIMP</h1>
+<p>Creating hollow, stencil-style typography in GIMP involves converting
+standard text into editable vector paths, cutting out bridge gaps to
+mimic physical stencils, and subtracting an inner offset to produce an
+outline effect. By leveraging GIMP’s path and selection conversion
+tools, you can perform precise Boolean subtractions that transform solid
+digital glyphs into industrial, hollow vector designs ready for graphic
+layouts or vinyl cutting.</p>
+<h3 id="step-1-generate-the-base-text-and-convert-to-path">Step 1:
+Generate the Base Text and Convert to Path</h3>
+<ol type="1">
+<li>Open GIMP and create a new project with your desired
+dimensions.</li>
+<li>Select the <strong>Text Tool</strong> (<code>T</code>) and choose a
+thick, heavy typeface such as Impact, Montserrat Black, or Arial Black.
+Heavy fonts provide sufficient surface area for bridge cuts and hollow
+outlines.</li>
+<li>Type your text onto the canvas and adjust the tracking and size as
+needed.</li>
+<li>Right-click the text layer in the <strong>Layers Dialog</strong> and
+select <strong>Text to Path</strong>. This generates a vector
+representation of your typography in the <strong>Paths Dialog</strong>.
+You can hide the original text layer.</li>
+</ol>
+<h3 id="step-2-create-the-hollow-outline-via-vector-subtraction">Step 2:
+Create the Hollow Outline via Vector Subtraction</h3>
+<ol type="1">
+<li>Go to the <strong>Paths Dialog</strong>, right-click your text path,
+and select <strong>Path to Selection</strong>
+(<code>Shift + V</code>).</li>
+<li>Go to <strong>Select &gt; Shrink</strong> from the top menu. Enter a
+pixel value corresponding to the desired thickness of your hollow
+borders (for example, 4 to 8 pixels) and click <strong>OK</strong>.</li>
+<li>Invert the logic to isolate the outline: Go to <strong>Select &gt;
+To Path</strong>. This creates a new path representing the inner
+boundary.</li>
+<li>To extract the hollow shell, return to the original path in the
+<strong>Paths Dialog</strong>, right-click it, and choose <strong>Path
+to Selection</strong>.</li>
+<li>Right-click the shrunk inner path, and choose <strong>Subtract from
+Selection</strong>. You will now have a selection representing only the
+hollow outer borders of the letters.</li>
+<li>Convert this hollow selection back into a clean vector: Go to
+<strong>Select &gt; To Path</strong>. Rename this path to "Hollow
+Text."</li>
+</ol>
+<h3 id="step-3-cut-stencil-bridges">Step 3: Cut Stencil Bridges</h3>
+<p>Traditional stencils require "bridges"—breaks in enclosed letterforms
+(such as O, P, B, A, and D)—to hold inner counter-spaces in place.</p>
+<ol type="1">
+<li>Ensure the "Hollow Text" path is active and visible. Right-click it
+and choose <strong>Path to Selection</strong>.</li>
+<li>Select the <strong>Rectangle Select Tool</strong>
+(<code>R</code>).</li>
+<li>In the <strong>Tool Options</strong> dock on the left, change the
+<strong>Mode</strong> to <strong>Subtract from the current
+selection</strong> (or hold down the <code>Ctrl</code> key).</li>
+<li>Draw narrow rectangles vertically or horizontally across the loops
+of enclosed letters (e.g., cutting through the top and bottom of the "O"
+or the stem of the "P"). Each drawn rectangle will immediately cut away
+that portion of the active selection.</li>
+<li>Once all necessary bridge gaps are subtracted, go to <strong>Select
+&gt; To Path</strong>. Rename this path to "Final Stencil Path."</li>
+</ol>
+<h3 id="step-4-render-the-stencil-typography">Step 4: Render the Stencil
+Typography</h3>
+<ol type="1">
+<li>Create a new transparent layer in the <strong>Layers Dialog</strong>
+and name it "Rendered Stencil."</li>
+<li>Go to the <strong>Paths Dialog</strong>, right-click "Final Stencil
+Path," and select <strong>Fill Path</strong> to fill the hollow stencil
+design with your active foreground color.</li>
+<li>Alternatively, select <strong>Path to Selection</strong>, then use
+the <strong>Bucket Fill Tool</strong> or apply gradients and textures
+within the active selection bounds.</li>
+<li>Deselect all areas by pressing <code>Shift + Ctrl + A</code> to
+inspect the clean, vector-defined hollow stencil result.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEGL High-Pass Filter for GIMP Sharpening - gimp</title>
+    <meta name="description" content="The GEGL High-Pass filter in GIMP is a specialized image processing tool used in multi-layer workflows to dramatically enhance edge details and micro-contrast without degrading overall image tones. By isolating high-frequency data (fine edges, lines, and">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gegl-high-pass-filter-for-gimp-sharpening">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GEGL High-Pass Filter for GIMP Sharpening - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gegl-high-pass-filter-for-gimp-sharpening" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL High-Pass filter in GIMP is a specialized image processing tool used in multi-layer workflows to dramatically enhance edge details and micro-contrast without degrading overall image tones. By isolating high-frequency data (fine edges, lines, and" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gegl-high-pass-filter-for-gimp-sharpening">GEGL High-Pass Filter
+for GIMP Sharpening</h1>
+<p>The GEGL High-Pass filter in GIMP is a specialized image processing
+tool used in multi-layer workflows to dramatically enhance edge details
+and micro-contrast without degrading overall image tones. By isolating
+high-frequency data (fine edges, lines, and textures) and suppressing
+low-frequency data (broad color shifts and gradients), the filter
+creates a neutral gray layer that, when blended over the original image,
+yields precise, artifact-free sharpness.</p>
+<h3 id="how-the-high-pass-filter-works">How the High-Pass Filter
+Works</h3>
+<p>A high-pass filter functions by allowing high-frequency elements of
+an image to pass through while filtering out lower frequencies. In GIMP,
+applying the GEGL High-Pass filter converts the selected layer into a
+predominantly 50% neutral gray canvas, highlighting only the sharp
+boundaries and transitions where color or brightness shifts
+abruptly.</p>
+<p>The primary control in the filter is the <strong>Std. Dev.</strong>
+(Standard Deviation / Radius) setting. A smaller radius isolates only
+the finest micro-textures, such as pores, hair, or fabric weave. A
+larger radius captures broader structural edges.</p>
+<h3 id="the-purpose-in-multi-layer-sharpening">The Purpose in
+Multi-Layer Sharpening</h3>
+<p>Using the GEGL High-Pass filter within a multi-layer setup offers
+several distinct advantages over standard destructive sharpening methods
+like Unsharp Mask:</p>
+<ul>
+<li><strong>Non-Destructive Editing:</strong> Applying the filter to a
+duplicated layer leaves the original background layer untouched. You can
+modify, mask, or delete the sharpened layer at any stage in the editing
+process.</li>
+<li><strong>Minimizing Halos and Clipping:</strong> Traditional
+sharpening often pushes edge pixels to pure white or pure black,
+creating unnatural ringing or halo artifacts. High-pass sharpening
+provides smoother edge contrast transitions.</li>
+<li><strong>Granular Opacity Control:</strong> Once the high-pass layer
+is created, adjusting the layer's opacity slider gives you continuous
+control over the intensity of the sharpening effect across the entire
+image.</li>
+<li><strong>Targeted Sharpening via Masks:</strong> By adding a layer
+mask to the high-pass layer, you can paint the sharpening effect only
+where it is needed—such as an eye or a focal object—while keeping
+out-of-focus background areas smooth and free of amplified noise.</li>
+</ul>
+<h3 id="blending-into-the-layer-stack">Blending into the Layer
+Stack</h3>
+<p>The high-pass layer does not function as a final visual image on its
+own. To achieve sharpening, its blend mode must be set to a
+contrast-enhancing mode that ignores 50% neutral gray:</p>
+<ul>
+<li><strong>Overlay:</strong> Provides strong, distinct sharpening with
+high contrast along the edges.</li>
+<li><strong>Soft Light:</strong> Offers a gentler, more natural
+sharpening effect suitable for portraits.</li>
+<li><strong>Grain Merge:</strong> Produces pronounced texture recovery,
+ideal for landscape and architectural photography.</li>
+</ul>
+<p>By leveraging the GEGL High-Pass filter on separate layers, GIMP
+users achieve professional, non-destructive control over image
+definition, clarity, and texture rendition.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

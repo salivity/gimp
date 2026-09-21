@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Benchmark OpenCL GPU Acceleration in GIMP - gimp</title>
+    <meta name="description" content="This article outlines how to configure, test, and benchmark OpenCL hardware acceleration across multiple compatible GPU devices inside GIMP. You will learn how to enable OpenCL within the interface, target specific graphics adapters on multi-GPU systems,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-benchmark-open-cl-gpu-acceleration-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Benchmark OpenCL GPU Acceleration in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-benchmark-open-cl-gpu-acceleration-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article outlines how to configure, test, and benchmark OpenCL hardware acceleration across multiple compatible GPU devices inside GIMP. You will learn how to enable OpenCL within the interface, target specific graphics adapters on multi-GPU systems," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-benchmark-opencl-gpu-acceleration-in-gimp">How to
+Benchmark OpenCL GPU Acceleration in GIMP</h1>
+<p>This article outlines how to configure, test, and benchmark OpenCL
+hardware acceleration across multiple compatible GPU devices inside
+GIMP. You will learn how to enable OpenCL within the interface, target
+specific graphics adapters on multi-GPU systems, utilize repeatable
+GEGL-based rendering workloads, and monitor real-time processing metrics
+using GIMP’s internal diagnostic tools.</p>
+<h3 id="1-enable-opencl-in-gimp">1. Enable OpenCL in GIMP</h3>
+<p>Before running performance tests, ensure OpenCL support is active
+inside the application:</p>
+<ol type="1">
+<li>Launch GIMP and open <strong>Edit &gt; Preferences</strong> (or
+<strong>GIMP &gt; Preferences</strong> on macOS).</li>
+<li>In the left sidebar, select <strong>System Resources</strong>.</li>
+<li>Under the <strong>Hardware Acceleration</strong> section, check the
+box labeled <strong>Use accelerator (OpenCL)</strong>.</li>
+<li>Click <strong>OK</strong> and restart GIMP to apply the
+changes.</li>
+</ol>
+<p>If the option is grayed out, ensure that proper OpenCL runtime
+drivers (such as ROCm for AMD, CUDA Toolkit for NVIDIA, or the Intel
+OpenCL compute runtime) are installed on your operating system.</p>
+<h3 id="2-configure-the-real-time-dashboard">2. Configure the Real-Time
+Dashboard</h3>
+<p>GIMP includes a built-in telemetry panel to observe processing
+throughput during computationally intensive tasks:</p>
+<ol type="1">
+<li>Navigate to <strong>Windows &gt; Dockable Dialogs &gt;
+Dashboard</strong>.</li>
+<li>Click the menu icon (a small arrow pointing right) in the top-right
+corner of the Dashboard dock.</li>
+<li>Select <strong>Add Metric</strong> and enable <strong>CPU</strong>,
+<strong>Memory</strong>, and <strong>Swap</strong>.</li>
+<li>Note the activity line during filter execution to verify when
+processing begins, sustains, and concludes.</li>
+</ol>
+<h3 id="3-switch-between-multiple-gpu-devices">3. Switch Between
+Multiple GPU Devices</h3>
+<p>GIMP relies on the GEGL (Generic Graphics Library) engine for OpenCL
+computation, which automatically initializes the default OpenCL platform
+and device detected by your system. To benchmark separate GPUs
+individually (for example, an integrated GPU versus a dedicated card, or
+two distinct dedicated cards), use system environment variables prior to
+starting GIMP.</p>
+<h4 id="linux">Linux</h4>
+<p>Identify available OpenCL platforms and devices using the
+terminal:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">clinfo</span> <span class="at">-l</span></span></code></pre></div>
+<p>Launch GIMP targeted to a specific platform or device index:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Select platform 0 or dedicated GPU instance</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">CUDA_VISIBLE_DEVICES</span><span class="op">=</span>0 <span class="fu">gimp</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Or for AMD:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">DRI_PRIME</span><span class="op">=</span>1 <span class="fu">gimp</span></span></code></pre></div>
+<h4 id="windows">Windows</h4>
+<p>You can force Windows to assign a specific GPU to GIMP via the OS
+settings:</p>
+<ol type="1">
+<li>Open <strong>Windows Settings &gt; System &gt; Display &gt;
+Graphics</strong>.</li>
+<li>Add the <code>gimp-2.10.exe</code> (or current version)
+executable.</li>
+<li>Click <strong>Options</strong> and set the GPU preference to either
+<strong>Power saving</strong> (integrated GPU) or <strong>High
+performance</strong> (discrete GPU).</li>
+</ol>
+<h3 id="4-run-a-standardized-benchmark-workload">4. Run a Standardized
+Benchmark Workload</h3>
+<p>Because GIMP does not possess an automated synthetic benchmark
+button, use a controlled, repeatable GEGL filter pipeline to measure
+execution duration across hardware setups.</p>
+<ol type="1">
+<li><strong>Prepare the Test File:</strong> Create an uncompressed
+canvas at a high resolution (e.g., 3840×2160 or 7680×4320) filled with
+continuous noise via <strong>Filters &gt; Noise &gt; Plasma</strong>. A
+high-pixel-count image ensures compute kernels remain saturated long
+enough to produce measurable data.</li>
+<li><strong>Select an OpenCL-Accelerated Filter:</strong> GEGL
+operations benefit most from OpenCL. Go to <strong>Tools &gt; GEGL
+Operation...</strong> and select an intensive algorithm such as
+<strong>gegl:gaussian-blur</strong> or
+<strong>gegl:motion-blur</strong>. Alternatively, use <strong>Filters
+&gt; Blur &gt; Gaussian Blur...</strong> directly.</li>
+<li><strong>Set Static Parameters:</strong> Configure standard values
+(e.g., a radius of <code>100.00</code> px).</li>
+<li><strong>Execute and Measure:</strong>
+<ul>
+<li>Apply the filter while recording the duration from execution start
+to completion.</li>
+<li>For precise timings, launch GIMP from the terminal or command line
+with the verbose performance flag:
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">--verbose</span></span></code></pre></div></li>
+<li>Terminal logs will print detailed GEGL execution and node processing
+times in milliseconds.</li>
+</ul></li>
+</ol>
+<h3 id="5-compare-performance-results">5. Compare Performance
+Results</h3>
+<p>Repeat the standardized test three times per device to calculate an
+average execution time:</p>
+<ul>
+<li><strong>Baseline (CPU):</strong> Turn off <strong>Use accelerator
+(OpenCL)</strong> under Preferences and run the test.</li>
+<li><strong>GPU Device 1 (e.g., Integrated Graphics):</strong> Re-enable
+OpenCL, set the system target to the primary GPU, and execute the
+test.</li>
+<li><strong>GPU Device 2 (e.g., Dedicated Discrete Card):</strong>
+Change the targeted GPU and repeat the test under the exact same
+resolution and filter settings.</li>
+</ul>
+<p>Shorter processing durations and lower sustained CPU utilization on
+the GIMP Dashboard confirm the computational throughput and efficiency
+of the active OpenCL device.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

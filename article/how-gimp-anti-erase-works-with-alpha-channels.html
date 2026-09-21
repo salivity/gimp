@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Anti-Erase Works with Alpha Channels - gimp</title>
+    <meta name="description" content="The Anti-Erase feature in GIMP restores erased pixels by modifying the transparency values stored within a layer rather than reconstructing deleted imagery. This article explains how GIMP separates color and transparency data, how the Anti-Erase function">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-anti-erase-works-with-alpha-channels">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Anti-Erase Works with Alpha Channels - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-anti-erase-works-with-alpha-channels" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Anti-Erase feature in GIMP restores erased pixels by modifying the transparency values stored within a layer rather than reconstructing deleted imagery. This article explains how GIMP separates color and transparency data, how the Anti-Erase function" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-anti-erase-works-with-alpha-channels">How GIMP
+Anti-Erase Works with Alpha Channels</h1>
+<p>The Anti-Erase feature in GIMP restores erased pixels by modifying
+the transparency values stored within a layer rather than reconstructing
+deleted imagery. This article explains how GIMP separates color and
+transparency data, how the Anti-Erase function restores previously
+erased content, and what happens when an alpha channel is absent,
+locked, or altered.</p>
+<h3 id="how-gimp-stores-pixel-data">How GIMP Stores Pixel Data</h3>
+<p>Every pixel on a standard layer with transparency contains four
+channels of information: Red, Green, Blue, and Alpha (RGBA). The RGB
+channels define the color of the pixel, while the Alpha channel defines
+its opacity on a scale from 0 (completely transparent) to 255
+(completely opaque).</p>
+<p>When you use the Eraser tool on a layer that possesses an alpha
+channel, GIMP does not delete or overwrite the underlying RGB color
+values. Instead, it only reduces the Alpha value of the targeted pixels
+toward 0. The original color information remains stored in the image
+buffer, hidden only by the pixel's transparency.</p>
+<h3 id="the-mechanics-of-anti-erase">The Mechanics of Anti-Erase</h3>
+<p>The Anti-Erase mode (accessed in the tool options or by holding the
+<code>Alt</code> key) reverses the erasure process. Instead of reducing
+the Alpha channel, the tool paints opacity back into it.</p>
+<p>When the brush passes over transparent areas:</p>
+<ol type="1">
+<li>GIMP reads the latent RGB color values still preserved in the pixel
+buffer.</li>
+<li>The tool increases the Alpha channel values back toward 255.</li>
+<li>As the Alpha value rises, the existing RGB color data becomes
+visible again.</li>
+</ol>
+<p>Anti-Erase does not regenerate lost data; it merely reveals the color
+values that were never actually removed from the layer.</p>
+<h3 id="what-happens-when-an-alpha-channel-is-disabled-or-missing">What
+Happens When an Alpha Channel Is Disabled or Missing?</h3>
+<p>Anti-Erase relies entirely on the presence of an active Alpha channel
+to function. The behavior changes depending on how the alpha channel is
+handled:</p>
+<ul>
+<li><strong>No Alpha Channel Present:</strong> If a layer lacks an alpha
+channel (for instance, the default state of a newly opened JPEG or a
+layer where the alpha channel was explicitly removed), the Eraser tool
+cannot create transparency. Instead, erasing permanently overwrites the
+RGB channels with the active background color. Because the original
+color data is destroyed during this process, Anti-Erase cannot recover
+the original pixels.</li>
+<li><strong>Alpha Channel Locked:</strong> If the layer has an alpha
+channel but the "Lock alpha channel" toggle is enabled, GIMP prevents
+any modifications to the transparency values. In this state, neither
+standard erasing nor anti-erasing will alter pixel transparency.</li>
+<li><strong>Re-enabling Transparency:</strong> If an alpha channel is
+added to a layer
+(<code>Layer &gt; Transparency &gt; Add Alpha Channel</code>), GIMP
+enables the layer to store transparency data going forward. However,
+Anti-Erase will still only reveal the underlying RGB values of pixels
+that were erased <em>after</em> that alpha channel was established, as
+prior destructive edits cannot be recovered via the Alpha buffer.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

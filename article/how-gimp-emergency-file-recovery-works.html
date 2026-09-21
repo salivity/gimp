@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Emergency File Recovery Works - gimp</title>
+    <meta name="description" content="When GIMP encounters a fatal crash, its built-in emergency recovery system activates to safeguard your work before the application completely shuts down. This article explains how GIMP detects fatal errors, caches unsaved image buffers, and presents an e">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-emergency-file-recovery-works">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Emergency File Recovery Works - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-emergency-file-recovery-works" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When GIMP encounters a fatal crash, its built-in emergency recovery system activates to safeguard your work before the application completely shuts down. This article explains how GIMP detects fatal errors, caches unsaved image buffers, and presents an e" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-emergency-file-recovery-works">How GIMP Emergency File
+Recovery Works</h1>
+<p>When GIMP encounters a fatal crash, its built-in emergency recovery
+system activates to safeguard your work before the application
+completely shuts down. This article explains how GIMP detects fatal
+errors, caches unsaved image buffers, and presents an emergency dialog
+prompting you to restore or export your lost documents upon restart.</p>
+<p>When an unhandled exception or crash signal (such as a segmentation
+fault) occurs, GIMP’s crash-handler mechanism intercepts the termination
+signal. Instead of instantly disappearing, GIMP freezes the current
+state and runs an internal recovery procedure. During this brief window,
+the program attempts to serialize the open document buffers and write
+temporary backup copies to the user’s local cache directory.</p>
+<p>Upon relaunching GIMP, the application checks this designated
+recovery cache. If emergency snapshot files are detected, GIMP
+immediately halts its standard startup routine to display the document
+recovery dialog.</p>
+<p>The recovery dialog displays the following key components:</p>
+<ul>
+<li><strong>File Manifest:</strong> A list showing all unsaved documents
+present during the crash, identified either by their existing file names
+or as generic unsaved buffers (e.g., "Untitled").</li>
+<li><strong>Selection Toggles:</strong> Checkboxes adjacent to each
+listed document, allowing you to select which specific files you wish to
+revive or discard.</li>
+<li><strong>Action Buttons:</strong> Clear options to either open the
+selected documents directly in the workspace, export them to a
+designated directory on your drive, or discard the recovered data
+entirely.</li>
+</ul>
+<p>Choosing to restore the files automatically loads them back into the
+standard GIMP editing interface. At this stage, the documents retain
+their layers, masks, and channel data up to the last successful
+emergency dump. Because these files are loaded as temporary recoveries,
+you must manually use the "Save" or "Export" commands to commit them
+back to your permanent storage drives.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

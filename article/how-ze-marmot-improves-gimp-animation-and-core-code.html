@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How ZeMarmot Improves GIMP Animation and Core Code - gimp</title>
+    <meta name="description" content="The ZeMarmot project is an open-source 2D animation film initiative that directly funds and drives the development of the GNU Image Manipulation Program (GIMP). Produced by director Aryeom Han and core GIMP developer Jehan Pagès, the project utilizes GI">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-ze-marmot-improves-gimp-animation-and-core-code">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How ZeMarmot Improves GIMP Animation and Core Code - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-ze-marmot-improves-gimp-animation-and-core-code" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The ZeMarmot project is an open-source 2D animation film initiative that directly funds and drives the development of the GNU Image Manipulation Program (GIMP). Produced by director Aryeom Han and core GIMP developer Jehan Pagès, the project utilizes GI" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-zemarmot-improves-gimp-animation-and-core-code">How ZeMarmot
+Improves GIMP Animation and Core Code</h1>
+<p>The ZeMarmot project is an open-source 2D animation film initiative
+that directly funds and drives the development of the GNU Image
+Manipulation Program (GIMP). Produced by director Aryeom Han and core
+GIMP developer Jehan Pagès, the project utilizes GIMP as its primary
+production tool. Instead of creating private patches or a separate
+software fork, all software enhancements, animation features, and
+architectural improvements created for the film are contributed directly
+to GIMP's upstream codebase for the entire community to use.</p>
+<h3 id="the-upstream-first-development-model">The Upstream-First
+Development Model</h3>
+<p>ZeMarmot operates on an upstream-first philosophy. Jehan Pagès serves
+not only as the technical lead for the film but also as one of GIMP’s
+primary maintainers. Because of this dual role, any tool or fix
+developed to solve production hurdles on the film is committed directly
+into GIMP's main Git repository. This approach guarantees that new
+features are fully integrated, maintained, and subjected to the same
+code review and testing standards as the rest of the software.</p>
+<h3 id="dedicated-animation-tooling">Dedicated Animation Tooling</h3>
+<p>Traditionally, GIMP treated layers merely as static image elements.
+ZeMarmot has been a primary catalyst for transforming GIMP into a viable
+traditional 2D animation suite:</p>
+<ul>
+<li><strong>Animation Playback:</strong> The project overhauled the
+built-in animation playback plug-in, adding features such as frame-rate
+control, looping options, and real-time preview improvements.</li>
+<li><strong>Layer Groups and Tagging for Cel Animation:</strong>
+Enhancements were made to allow layer groups and naming conventions to
+act as frames, layers, and cels, laying the groundwork for more advanced
+storyboard and frame-management features.</li>
+<li><strong>Onion Skinning and Future Timeline Work:</strong> The
+project drives the design and implementation of native onion-skinning
+interfaces and multi-layer timeline workflows, specifically tailored to
+the needs of hand-drawn digital animators.</li>
+</ul>
+<h3 id="core-architecture-and-stability-improvements">Core Architecture
+and Stability Improvements</h3>
+<p>Developing a full-length film exposed several edge cases, performance
+bottlenecks, and stability issues within GIMP, resulting in widespread
+improvements across the application:</p>
+<ul>
+<li><strong>Graphics Tablet and Input Handling:</strong> Working with
+professional drawing tablets revealed subtle bugs in pressure
+sensitivity, pen-button mapping, and stroke smoothing. Upstream commits
+from ZeMarmot resolved many of these issues across Linux and other
+platforms.</li>
+<li><strong>GTK3 and Wayland Migration:</strong> Jehan Pagès has been
+instrumental in the modernization of GIMP's codebase, contributing
+heavily to the long-term port from GTK2 to GTK3, as well as addressing
+fractional scaling and Wayland display server compatibility.</li>
+<li><strong>Resource Management and Bug Fixing:</strong> High-resolution
+production files containing dozens or hundreds of layers pushed GIMP's
+memory handling to its limits, prompting bug fixes related to memory
+leaks, rendering glitches, and file format import/export
+reliability.</li>
+</ul>
+<h3 id="the-artist-developer-feedback-loop">The Artist-Developer
+Feedback Loop</h3>
+<p>A major strength of the ZeMarmot contribution pipeline is the
+immediate feedback loop between artist Aryeom Han and developer Jehan
+Pagès. Issues encountered during actual production are identified,
+analyzed, and patched rapidly. This practical, production-tested
+approach ensures that new tools integrated into upstream GIMP are not
+merely theoretically sound, but robust and ergonomic enough for
+professional digital art and animation workflows.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

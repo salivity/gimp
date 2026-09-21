@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Screen Angles in GIMP Newsprint - gimp</title>
+    <meta name="description" content="This guide explains how to configure the screen angle for individual color channels using the Newsprint filter in GIMP. Adjusting distinct screen angles for separate channels is essential for replicating authentic commercial halftone printing and avoidin">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-set-screen-angles-in-gimp-newsprint">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Screen Angles in GIMP Newsprint - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-set-screen-angles-in-gimp-newsprint" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure the screen angle for individual color channels using the Newsprint filter in GIMP. Adjusting distinct screen angles for separate channels is essential for replicating authentic commercial halftone printing and avoidin" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-set-screen-angles-in-gimp-newsprint">How to Set Screen
+Angles in GIMP Newsprint</h1>
+<p>This guide explains how to configure the screen angle for individual
+color channels using the Newsprint filter in GIMP. Adjusting distinct
+screen angles for separate channels is essential for replicating
+authentic commercial halftone printing and avoiding visual interference
+known as the moiré effect. Following the steps below, you will learn how
+to access the filter, switch color models, and assign precise angles to
+each channel.</p>
+<h3 id="1-open-the-newsprint-filter">1. Open the Newsprint Filter</h3>
+<p>Open your image in GIMP, then navigate to the top menu and select
+<strong>Filters &gt; Distorts &gt; Newsprint</strong>. This opens the
+GEGL-based Newsprint dialog window with real-time preview
+capabilities.</p>
+<h3 id="2-choose-your-color-model">2. Choose Your Color Model</h3>
+<p>In the Newsprint dialog settings, locate the <strong>Color
+model</strong> dropdown menu. Choose the model that matches your desired
+output:</p>
+<ul>
+<li><strong>RGB</strong>: Best for digital art or standard screen
+displays (Red, Green, Blue).</li>
+<li><strong>CMYK</strong>: Best for simulating physical four-color
+process printing (Cyan, Magenta, Yellow, Key/Black).</li>
+</ul>
+<p>Selecting a multi-channel model activates independent control tabs or
+selectors for each respective channel within the dialog.</p>
+<h3 id="3-select-and-configure-channel-angles">3. Select and Configure
+Channel Angles</h3>
+<p>Once your color model is chosen, the filter organizes channel
+properties under separate tabs or a channel selection menu (such as
+<strong>Channel 1</strong>, <strong>Channel 2</strong>, <strong>Channel
+3</strong>, and <strong>Channel 4</strong>):</p>
+<ol type="1">
+<li>Click on the first channel (e.g., <strong>Cyan</strong> or
+<strong>Channel 1</strong>).</li>
+<li>Locate the <strong>Angle</strong> slider control.</li>
+<li>Input or drag the slider to your desired degrees.</li>
+<li>Switch to the next channel tab and enter a different degree value.
+Repeat this process for all available channels.</li>
+</ol>
+<h3 id="4-standard-halftone-angles-for-cmyk">4. Standard Halftone Angles
+for CMYK</h3>
+<p>To minimize moiré patterns when using the CMYK model,
+industry-standard offset printing angles are typically configured as
+follows:</p>
+<ul>
+<li><strong>Cyan (Channel 1)</strong>: 15°</li>
+<li><strong>Magenta (Channel 2)</strong>: 75°</li>
+<li><strong>Yellow (Channel 3)</strong>: 0° (or 90°)</li>
+<li><strong>Black / Key (Channel 4)</strong>: 45°</li>
+</ul>
+<p>If working in RGB mode, space the three angles roughly 30° apart
+(such as 15° for Red, 45° for Green, and 75° for Blue) to maintain a
+balanced visual distribution.</p>
+<h3 id="5-finalize-the-output">5. Finalize the Output</h3>
+<p>Fine-tune other channel-specific parameters if needed, such as
+<strong>Period</strong> (dot size) or <strong>Pattern</strong> (line,
+circle, diamond), to complement your angle configurations. Click
+<strong>OK</strong> to apply the halftone screen effect across the
+separate color channels.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

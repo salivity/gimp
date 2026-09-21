@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Auto-Crop Detects Uniform Borders - gimp</title>
+    <meta name="description" content="The Auto-Crop Image feature in GIMP (now labeled "Crop to Content" in modern releases) automatically trims empty or solid-colored borders from an image by scanning inward from each of the four edges. To decide whether outer pixels can be safely discarded">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-auto-crop-detects-uniform-borders">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Auto-Crop Detects Uniform Borders - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-auto-crop-detects-uniform-borders" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Auto-Crop Image feature in GIMP (now labeled "Crop to Content" in modern releases) automatically trims empty or solid-colored borders from an image by scanning inward from each of the four edges. To decide whether outer pixels can be safely discarded" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-auto-crop-detects-uniform-borders">How GIMP Auto-Crop
+Detects Uniform Borders</h1>
+<p>The Auto-Crop Image feature in GIMP (now labeled "Crop to Content" in
+modern releases) automatically trims empty or solid-colored borders from
+an image by scanning inward from each of the four edges. To decide
+whether outer pixels can be safely discarded, GIMP establishes a
+reference color from the image’s boundary pixels and tests entire rows
+and columns for exact channel-by-channel uniformity. The crop boundary
+is established the moment an evaluated pixel deviates from this
+reference criteria.</p>
+<h3 id="establishing-the-reference-color">Establishing the Reference
+Color</h3>
+<p>The algorithm begins by sampling the outermost pixels of the active
+canvas or layer, traditionally targeting the top-left corner pixel at
+coordinate <code>(0, 0)</code>. The exact values of this reference
+pixel—including red, green, blue, and alpha (transparency)
+channels—serve as the baseline definition of what constitutes
+"background." If the image contains an alpha channel and the corner
+pixel is completely transparent, transparency becomes the reference
+condition rather than a visible color.</p>
+<h3 id="row-and-column-scanning">Row and Column Scanning</h3>
+<p>Once the reference value is defined, GIMP evaluates the image inward
+from all four outer boundaries independently:</p>
+<ul>
+<li><strong>Top:</strong> Scans downward, row by row.</li>
+<li><strong>Bottom:</strong> Scans upward, row by row.</li>
+<li><strong>Left:</strong> Scans rightward, column by column.</li>
+<li><strong>Right:</strong> Scans leftward, column by column.</li>
+</ul>
+<p>For a row or column to be marked for removal, every single pixel
+along that entire line must match the reference criteria. If even one
+pixel in a 2,000-pixel-wide row deviates from the baseline, that row is
+considered non-uniform, the scan along that edge halts immediately, and
+that line becomes the edge of the final crop box.</p>
+<h3 id="strict-value-matching">Strict Value Matching</h3>
+<p>Unlike tools that utilize a configurable threshold or tolerance (such
+as the Fuzzy Select tool), standard Auto-Crop relies on strict
+equivalence. It evaluates whether:</p>
+<ol type="1">
+<li>The color values (<span class="math inline">\(R, G, B\)</span>)
+match the reference color precisely across all active color
+channels.</li>
+<li>The alpha channel matches the reference transparency. A pixel with
+99% opacity will not match a reference pixel with 100% opacity,
+preventing anti-aliased edges or subtle compression artifacts from being
+mistakenly cropped.</li>
+</ol>
+<h3 id="defining-the-final-bounding-box">Defining the Final Bounding
+Box</h3>
+<p>Each edge scan proceeds toward the center until it encounters the
+first non-matching pixel. Once all four directions have stopped, the
+coordinates of the stopping points define the rectangular bounding box.
+GIMP then crops the canvas or layer directly to these dimensions,
+effectively trimming away all contiguous, completely uniform
+borders.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

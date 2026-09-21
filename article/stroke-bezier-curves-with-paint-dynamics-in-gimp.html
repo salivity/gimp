@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Bezier Curves with Paint Dynamics in GIMP - gimp</title>
+    <meta name="description" content="Stroking a complex Bezier curve with dynamic paint tools allows you to achieve natural, expressive line art with tapered ends and variable line weight, even without a graphics tablet. This guide demonstrates how to create a vector path, configure GIMP's">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/stroke-bezier-curves-with-paint-dynamics-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stroke Bezier Curves with Paint Dynamics in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/stroke-bezier-curves-with-paint-dynamics-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Stroking a complex Bezier curve with dynamic paint tools allows you to achieve natural, expressive line art with tapered ends and variable line weight, even without a graphics tablet. This guide demonstrates how to create a vector path, configure GIMP's" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="stroke-bezier-curves-with-paint-dynamics-in-gimp">Stroke Bezier
+Curves with Paint Dynamics in GIMP</h1>
+<p>Stroking a complex Bezier curve with dynamic paint tools allows you
+to achieve natural, expressive line art with tapered ends and variable
+line weight, even without a graphics tablet. This guide demonstrates how
+to create a vector path, configure GIMP's paint dynamics to simulate pen
+pressure variations, and render the stroke cleanly along your curve.</p>
+<h3 id="step-1-draw-the-bezier-curve">Step 1: Draw the Bezier Curve</h3>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> from the toolbox or press the
+shortcut key <strong>B</strong>.</li>
+<li>Click on your canvas to place anchor points, clicking and dragging
+to extend the Bezier handles to form smooth, complex curves.</li>
+<li>Hold <strong>Ctrl</strong> and click the initial node if you need a
+closed loop, or leave it open for an open stroke.</li>
+</ol>
+<h3 id="step-2-configure-the-brush-and-tool-options">Step 2: Configure
+the Brush and Tool Options</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong>
+(<strong>P</strong>).</li>
+<li>Choose your desired brush tip from the Brushes dialog (a standard
+round brush like "2. Hardness 050" works well for clean line work).</li>
+<li>Set the base <strong>Size</strong> of your brush in the Tool Options
+panel; this will act as the maximum width of your stroke.</li>
+</ol>
+<h3 id="step-3-set-up-variable-pressure-simulation">Step 3: Set Up
+Variable Pressure Simulation</h3>
+<p>Because Bezier paths lack physical stylus pressure data, you must map
+pressure simulation through GIMP’s Paint Dynamics engine:</p>
+<ol type="1">
+<li>In the Paintbrush <strong>Tool Options</strong>, expand the
+<strong>Dynamics</strong> section.</li>
+<li>If you want a tapered stroke that thins at the ends, select a preset
+like <strong>Pressure Opacity</strong> or <strong>Fade
+Tapering</strong>.</li>
+<li>To customize the behavior, open the <strong>Paint Dynamics
+Editor</strong> via <strong>Windows &gt; Dockable Dialogs &gt; Paint
+Dynamics</strong>. Create a new dynamic and map <strong>Fade</strong> or
+<strong>Velocity</strong> to <strong>Size</strong>.</li>
+<li>Under the Paintbrush Tool Options, expand <strong>Dynamics
+Options</strong> and adjust the <strong>Fade length</strong>. This
+distance determines how long the brush takes to transition between
+minimum and maximum width along the path.</li>
+</ol>
+<h3 id="step-4-stroke-the-path">Step 4: Stroke the Path</h3>
+<ol type="1">
+<li>Open the <strong>Paths Dialog</strong> (<strong>Windows &gt;
+Dockable Dialogs &gt; Paths</strong>).</li>
+<li>Right-click your active path and select <strong>Stroke
+Path</strong>, or navigate to <strong>Edit &gt; Stroke Path</strong>
+from the top menu.</li>
+<li>In the Stroke Path dialog, select <strong>Stroke with a paint
+tool</strong>.</li>
+<li>Choose <strong>Paintbrush</strong> from the dropdown menu.</li>
+<li>Check the box labeled <strong>Emulate brush dynamics</strong>. This
+setting forces the stroke engine to read the dynamics and fade settings
+you defined, simulating pressure changes along the Bezier curve.</li>
+<li>Click <strong>Stroke</strong>.</li>
+</ol>
+<h3 id="step-5-fine-tuning-results">Step 5: Fine-Tuning Results</h3>
+<p>If the line does not taper as desired, press <strong>Ctrl +
+Z</strong> to undo the stroke. Increase or decrease the <strong>Fade
+length</strong> in the Paintbrush Tool Options to match the scale of
+your curve, adjust the base brush size, and run the <strong>Stroke
+Path</strong> command again.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

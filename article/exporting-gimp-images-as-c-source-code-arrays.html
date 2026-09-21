@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exporting GIMP Images as C Source Code Arrays - gimp</title>
+    <meta name="description" content="GIMP provides native support for converting graphics directly into C language source code arrays, making it an essential tool for embedded systems programming, microcontrollers, and low-level graphical interfaces. Through standard export dialogues, users">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/exporting-gimp-images-as-c-source-code-arrays">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Exporting GIMP Images as C Source Code Arrays - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/exporting-gimp-images-as-c-source-code-arrays" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP provides native support for converting graphics directly into C language source code arrays, making it an essential tool for embedded systems programming, microcontrollers, and low-level graphical interfaces. Through standard export dialogues, users" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="exporting-gimp-images-as-c-source-code-arrays">Exporting GIMP
+Images as C Source Code Arrays</h1>
+<p>GIMP provides native support for converting graphics directly into C
+language source code arrays, making it an essential tool for embedded
+systems programming, microcontrollers, and low-level graphical
+interfaces. Through standard export dialogues, users can output pixel
+data directly into <code>.c</code>, <code>.h</code>, <code>.xbm</code>,
+and <code>.xpm</code> formats. This guide outlines the available export
+options in GIMP, detailing how each format structures array data,
+handles color profiles and transparency, and allows customization of
+variable identifiers and memory storage.</p>
+<h3 id="1-the-native-c-source-code-c--h-exporter">1. The Native C Source
+Code (.c / .h) Exporter</h3>
+<p>When exporting an image with a <code>.c</code> extension, GIMP opens
+the "Export Image as C-Source" dialog (<code>file-c-source</code>
+plug-in). This tool translates raw pixel values directly into byte
+arrays.</p>
+<ul>
+<li><strong>Prefixed Name:</strong> Specifies the identifier prefix used
+for the generated variables, types, and constants. For example, setting
+the prefix to <code>icon</code> produces declarations such as
+<code>icon_width</code>, <code>icon_height</code>,
+<code>icon_bytes_per_pixel</code>, and
+<code>icon_pixel_data</code>.</li>
+<li><strong>Save as RGB565 (16-bit):</strong> Allows reducing the color
+depth down to 16 bits per pixel (5 bits red, 6 bits green, 5 bits blue),
+which is standard for small TFT displays and memory-constrained
+microcontrollers.</li>
+<li><strong>Save Alpha Channel (RGBA/RGB):</strong> If the image
+contains an alpha channel, GIMP can either preserve it (outputting 4
+bytes per pixel) or discard it (outputting 3 bytes per pixel in standard
+24-bit RGB).</li>
+<li><strong>Use Run-Length Encoding (RLE):</strong> Compresses the byte
+array using RLE. While this reduces the final flash/binary footprint,
+your C application must decompress the stream before rendering it.</li>
+<li><strong>Use Macros Instead of Struct:</strong> Controls whether
+image data is encapsulated within a structured definition or laid out as
+independent preprocessor definitions and byte arrays.</li>
+<li><strong>Use GLib Types (<code>gint</code>,
+<code>guint8</code>):</strong> Toggles between standard GLib data types
+and traditional C standard types (such as <code>unsigned int</code> and
+<code>unsigned char</code>).</li>
+<li><strong>Save as Header File:</strong> By naming the file with a
+<code>.h</code> extension during export, GIMP formats the output as an
+include file suitable for direct inclusion in C/C++ projects.</li>
+<li><strong>Comment Field:</strong> Inserts custom string documentation
+or licensing details directly into the comment block at the top of the
+generated C file.</li>
+</ul>
+<h3 id="2-x-bitmap-xbm-export">2. X BitMap (.xbm) Export</h3>
+<p>For monochrome displays (such as 1-bit OLED or LCD panels), GIMP
+offers the X BitMap format.</p>
+<ul>
+<li><strong>Output Structure:</strong> Produces plain C code containing
+<code>#define</code> macros for image width and height, along with a
+<code>static unsigned char &lt;name&gt;_bits[]</code> array.</li>
+<li><strong>Data Organization:</strong> Each byte represents 8
+individual black-and-white pixels.</li>
+<li><strong>Export Options:</strong> GIMP provides options to set the
+identifier prefix and optionally write a separate XBM header file.
+Images must be converted to Indexed mode (1-bit) before export to ensure
+correct bit packing.</li>
+</ul>
+<h3 id="3-x-pixmap-xpm-export">3. X PixMap (.xpm) Export</h3>
+<p>The X PixMap format stores color graphics as human-readable C source
+code.</p>
+<ul>
+<li><strong>Output Structure:</strong> Generates a static array of
+strings (<code>static char *&lt;name&gt;_xpm[]</code>) where each
+character maps to an entry in a color palette table defined at the top
+of the array.</li>
+<li><strong>Export Options:</strong> The exporter allows setting
+transparency thresholds and color quantization parameters. This format
+is widely used in legacy X11 applications, toolkits like GTK or Qt for
+embedded icons, and applications where visual debugging of source arrays
+is necessary.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

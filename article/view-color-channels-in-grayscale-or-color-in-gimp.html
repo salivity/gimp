@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Color Channels in Grayscale or Color in GIMP - gimp</title>
+    <meta name="description" content="GIMP allows editors to inspect individual color channels—Red, Green, and Blue—either as grayscale luminosity values or rendered in their native color hues. This guide explains how to view channels on the main canvas in their representative colors, ho">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/view-color-channels-in-grayscale-or-color-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="View Color Channels in Grayscale or Color in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/view-color-channels-in-grayscale-or-color-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP allows editors to inspect individual color channels—Red, Green, and Blue—either as grayscale luminosity values or rendered in their native color hues. This guide explains how to view channels on the main canvas in their representative colors, ho" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="view-color-channels-in-grayscale-or-color-in-gimp">View Color
+Channels in Grayscale or Color in GIMP</h1>
+<p>GIMP allows editors to inspect individual color channels—Red, Green,
+and Blue—either as grayscale luminosity values or rendered in their
+native color hues. This guide explains how to view channels on the main
+canvas in their representative colors, how to isolate channels in pure
+grayscale using decomposition and channel selection, and how to
+configure GIMP’s interface preferences to show channel thumbnails in
+either grayscale or color.</p>
+<h3
+id="viewing-channels-in-native-representative-hues-on-the-canvas">Viewing
+Channels in Native Representative Hues on the Canvas</h3>
+<p>By default, an RGB image displays all three color channels blended
+together. To view a single channel rendered in its native hue (such as
+shades of red, green, or blue against black):</p>
+<ol type="1">
+<li>Open the <strong>Channels</strong> dialog by going to
+<strong>Windows &gt; Dockable Dialogs &gt; Channels</strong> (or click
+the Channels tab in your main dock).</li>
+<li>Locate the <strong>Red</strong>, <strong>Green</strong>, and
+<strong>Blue</strong> channel entries.</li>
+<li>Click the <strong>Eye icon</strong> next to the two channels you
+want to hide, leaving only the target channel visible.</li>
+<li>The canvas will immediately update to show only that channel
+rendered in its representative hue (e.g., hiding Green and Blue displays
+the Red channel in pure red tones).</li>
+</ol>
+<h3 id="viewing-individual-channels-in-grayscale-on-the-canvas">Viewing
+Individual Channels in Grayscale on the Canvas</h3>
+<p>In digital image processing, a single channel is fundamentally an
+8-bit grayscale map representing brightness values from 0 (black) to 255
+(white). To view these true grayscale values on your workspace:</p>
+<h4 id="method-1-using-the-decompose-tool">Method 1: Using the Decompose
+Tool</h4>
+<ol type="1">
+<li>Go to the top menu and select <strong>Colors &gt; Components &gt;
+Decompose</strong>.</li>
+<li>In the dialog that appears, ensure the <strong>Color model</strong>
+is set to <strong>RGB</strong>.</li>
+<li>Check the box labeled <strong>Decompose to layers</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>GIMP creates a new grayscale image containing three separate layers
+named <em>red</em>, <em>green</em>, and <em>blue</em>. Select or isolate
+any layer to inspect the precise grayscale tonal distribution of that
+channel.</li>
+</ol>
+<h4 id="method-2-creating-a-grayscale-channel-mask">Method 2: Creating a
+Grayscale Channel Mask</h4>
+<ol type="1">
+<li>Open the <strong>Channels</strong> dialog.</li>
+<li>Right-click the channel you wish to inspect (Red, Green, or Blue)
+and choose <strong>Channel to Selection</strong>.</li>
+<li>Create a new transparent layer in the <strong>Layers</strong> dialog
+(<strong>Layer &gt; New Layer</strong>).</li>
+<li>Fill the active selection on this new layer with white (<strong>Edit
+&gt; Fill with FG Color</strong>, assuming white is selected), and
+deselect (<strong>Select &gt; None</strong>).</li>
+<li>Alternatively, drag the channel directly from the Channels dialog
+onto the Layers stack to create an isolated grayscale mask layer.</li>
+</ol>
+<h3
+id="changing-channel-thumbnails-between-grayscale-and-color">Changing
+Channel Thumbnails Between Grayscale and Color</h3>
+<p>You can control whether the preview thumbnails inside the Channels
+dialog display in representative colors or standard grayscale:</p>
+<ol type="1">
+<li>Navigate to <strong>Edit &gt; Preferences</strong> (or <strong>GIMP
+&gt; Preferences</strong> on macOS).</li>
+<li>In the left-hand menu, select <strong>Interface</strong>.</li>
+<li>Locate the checkbox labeled <strong>Channel color in Layers &amp;
+Channels dialog</strong>.
+<ul>
+<li><strong>Checked:</strong> Channel thumbnails display in their native
+red, green, and blue hues.</li>
+<li><strong>Unchecked:</strong> Channel thumbnails display as
+black-and-white grayscale representations.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save your preferences.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

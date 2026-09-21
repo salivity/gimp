@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Preserves IPTC Metadata During Conversion - gimp</title>
+    <meta name="description" content="This article explains how the GNU Image Manipulation Program (GIMP) retains IPTC copyright, creator, and licensing metadata when converting images between different file formats. You will learn how GIMP processes embedded metadata through its underlying">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-preserves-iptc-metadata-during-conversion">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Preserves IPTC Metadata During Conversion - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-preserves-iptc-metadata-during-conversion" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the GNU Image Manipulation Program (GIMP) retains IPTC copyright, creator, and licensing metadata when converting images between different file formats. You will learn how GIMP processes embedded metadata through its underlying" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-preserves-iptc-metadata-during-conversion">How GIMP
+Preserves IPTC Metadata During Conversion</h1>
+<p>This article explains how the GNU Image Manipulation Program (GIMP)
+retains IPTC copyright, creator, and licensing metadata when converting
+images between different file formats. You will learn how GIMP processes
+embedded metadata through its underlying libraries, how to manage and
+verify your rights information, and the exact export settings required
+to prevent licensing data from being stripped during conversion.</p>
+<h2 id="metadata-handling-architecture-in-gimp">Metadata Handling
+Architecture in GIMP</h2>
+<p>GIMP manages metadata using the <code>gexiv2</code> library, a
+GObject-based wrapper around the industry-standard <code>Exiv2</code>
+metadata library. When an image containing IPTC (International Press
+Telecommunications Council) data is opened, GIMP reads and maps the
+legacy IPTC-IIM blocks alongside Exif and modern XMP (Extensible
+Metadata Platform) schemas.</p>
+<p>Because modern IPTC standards (such as the IPTC Core and IPTC
+Extension) are natively structured as XMP packets, GIMP synchronizes
+these fields internally. This ensures that essential rights
+expressions—such as <strong>Creator/Artist</strong>, <strong>Copyright
+Notice</strong>, <strong>Copyright Status</strong>, and <strong>Web
+Statement of Rights (Licensing URL)</strong>—remain intact in memory
+during editing and processing.</p>
+<h2 id="viewing-and-editing-iptc-metadata">Viewing and Editing IPTC
+Metadata</h2>
+<p>Before exporting or converting a file, you can verify and adjust
+metadata fields directly within the editor:</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Metadata &gt; Edit Metadata</strong>.</li>
+<li>Navigate to the <strong>IPTC</strong> tab to view traditional fields
+such as <em>By-line</em> (Creator), <em>Copyright Notice</em>, and
+<em>Credit</em>.</li>
+<li>Navigate to the <strong>XMP</strong> or <strong>Rights</strong>
+sections to view modernized licensing terms, including specific
+copyright URLs or creative commons licensing declarations.</li>
+<li>Make any necessary additions or corrections, then click
+<strong>Write Metadata</strong> to apply the changes to the active
+project session.</li>
+</ol>
+<h2 id="preserving-metadata-during-file-export">Preserving Metadata
+During File Export</h2>
+<p>GIMP does not use a traditional "Save As" function for changing image
+extensions; instead, it uses the <strong>Export</strong> workflow. File
+conversion occurs when you save an image into a new format via
+<strong>File &gt; Export As...</strong>.</p>
+<p>To ensure IPTC, creator, and licensing metadata are written to the
+converted file:</p>
+<ol type="1">
+<li>Select your target format (e.g., JPEG, TIFF, or WebP) and click
+<strong>Export</strong>.</li>
+<li>In the format-specific export dialog that appears, click to expand
+the <strong>Advanced Options</strong> section (if it is collapsed).</li>
+<li>Ensure the following checkboxes are enabled:
+<ul>
+<li><strong>Save Exif data</strong></li>
+<li><strong>Save XMP data</strong></li>
+<li><strong>Save IPTC data</strong> (available for formats supporting
+legacy IPTC-IIM)</li>
+<li><strong>Save thumbnail</strong> (optional, does not impact legal
+metadata)</li>
+</ul></li>
+<li>Complete the process by clicking <strong>Export</strong>.</li>
+</ol>
+<p>If these options are unchecked, GIMP will strip the metadata to
+reduce file size, completely removing all licensing and copyright
+assertions.</p>
+<h2 id="format-specific-considerations">Format-Specific
+Considerations</h2>
+<p>The ability to preserve IPTC and licensing metadata depends
+significantly on the destination file container:</p>
+<ul>
+<li><strong>JPEG and TIFF:</strong> Provide the highest level of
+compatibility. GIMP embeds both legacy IPTC-IIM blocks and modern XMP
+packets containing the IPTC Core schema into these formats.</li>
+<li><strong>WebP:</strong> Fully supports XMP data. GIMP encapsulates
+IPTC metadata within WebP's native XMP chunk during export.</li>
+<li><strong>PNG:</strong> GIMP can write XMP metadata into standard text
+chunks (<code>eXmp</code> / <code>iTXt</code>). However, legacy IPTC-IIM
+is not natively supported in PNG, so rights data is maintained
+exclusively via the embedded XMP wrapper.</li>
+<li><strong>GIF and BMP:</strong> These formats have minimal to no
+standard support for IPTC or XMP data. Converting to these legacy
+formats will result in the loss of embedded copyright information.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

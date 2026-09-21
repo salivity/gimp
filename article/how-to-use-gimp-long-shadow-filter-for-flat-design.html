@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use GIMP Long Shadow Filter for Flat Design - gimp</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough on using GIMP's built-in GEGL Long Shadow filter to create clean, modern flat design graphics. You will learn how to prepare your visual assets, access the filter, configure crucial shadow parameters like">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-gimp-long-shadow-filter-for-flat-design">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use GIMP Long Shadow Filter for Flat Design - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-gimp-long-shadow-filter-for-flat-design" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough on using GIMP's built-in GEGL Long Shadow filter to create clean, modern flat design graphics. You will learn how to prepare your visual assets, access the filter, configure crucial shadow parameters like" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-use-gimp-long-shadow-filter-for-flat-design">How to Use
+GIMP Long Shadow Filter for Flat Design</h1>
+<p>This guide provides a straightforward walkthrough on using GIMP's
+built-in GEGL Long Shadow filter to create clean, modern flat design
+graphics. You will learn how to prepare your visual assets, access the
+filter, configure crucial shadow parameters like angle, length, and
+style, and integrate the final result into typical flat design
+containers like badges and app icons.</p>
+<h3 id="preparing-your-subject-layer">Preparing Your Subject Layer</h3>
+<ol type="1">
+<li>Open GIMP and create a new project with your desired canvas
+dimensions and background color.</li>
+<li>Place the subject icon, text, or vector graphic on its own
+transparent layer above the background.</li>
+<li>Ensure the layer boundaries fit the subject snugly by selecting the
+layer and navigating to <strong>Layer &gt; Crop to
+Content</strong>.</li>
+</ol>
+<h3 id="accessing-the-long-shadow-filter">Accessing the Long Shadow
+Filter</h3>
+<ol type="1">
+<li>Select your graphic or text layer in the <strong>Layers</strong>
+panel.</li>
+<li>Go to the top menu and select <strong>Filters &gt; Light and Shadow
+&gt; Long Shadow</strong>.</li>
+<li>Ensure the <strong>Preview</strong> checkbox is enabled in the
+dialog window to see adjustments in real time.</li>
+</ol>
+<h3 id="configuring-long-shadow-settings-for-flat-design">Configuring
+Long Shadow Settings for Flat Design</h3>
+<p>Flat design relies on clean angles, uniform lighting, and specific
+color tones. Adjust the following settings within the Long Shadow
+dialog:</p>
+<ul>
+<li><strong>Style</strong>: Choose <strong>Finite</strong> for a
+classic, contained flat shadow, or <strong>Fading</strong> for a softer
+gradient falloff. <strong>Infinite</strong> extends the shadow to the
+canvas edge.</li>
+<li><strong>Angle</strong>: Set the angle to <strong>45.00°</strong> or
+<strong>-45.00°</strong> (135.00°). The 45-degree downward angle is the
+universal standard for flat design aesthetics.</li>
+<li><strong>Length</strong>: Adjust the shadow length based on your
+asset size. For contained icons, a length of 50 to 200 pixels usually
+maintains clean proportions.</li>
+<li><strong>Color</strong>: Click the color box to set the shadow color.
+Instead of pure black, use a darker, saturated shade of your background
+color, or use black (<code>#000000</code>) and lower the opacity in the
+color picker for a natural blend.</li>
+<li><strong>Composition</strong>: Set this to <strong>Shadow
+only</strong> if you want the shadow generated on a separate layer, or
+keep it on <strong>Shadow plus image</strong> to cast directly behind
+your existing graphic.</li>
+</ul>
+<p>Click <strong>OK</strong> once you are satisfied with the
+preview.</p>
+<h3 id="confining-shadows-to-badges-or-containers">Confining Shadows to
+Badges or Containers</h3>
+<p>Flat design assets often feature icons enclosed in circular or
+rounded-rectangle badges where the shadow does not spill outside the
+container:</p>
+<ol type="1">
+<li>Create your container shape (e.g., a circle) on a layer beneath your
+icon.</li>
+<li>Right-click the container layer in the Layers panel and choose
+<strong>Alpha to Selection</strong>.</li>
+<li>Select the layer containing your icon and generated long
+shadow.</li>
+<li>Go to <strong>Select &gt; Invert</strong> and press
+<strong>Delete</strong> on your keyboard to clip away any excess shadow
+extending past the container edges.</li>
+<li>Clear the selection by pressing <strong>Shift + Ctrl +
+A</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

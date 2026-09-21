@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Hard Light Combines Multiply and Screen in GIMP - gimp</title>
+    <meta name="description" content="GIMP's Hard Light blend mode is a contrast-enhancing tool that combines the mechanics of the Multiply and Screen modes into a single operation. Instead of applying one uniform effect across the entire canvas, Hard Light evaluates the luminance of the ble">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-hard-light-combines-multiply-and-screen-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Hard Light Combines Multiply and Screen in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-hard-light-combines-multiply-and-screen-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP's Hard Light blend mode is a contrast-enhancing tool that combines the mechanics of the Multiply and Screen modes into a single operation. Instead of applying one uniform effect across the entire canvas, Hard Light evaluates the luminance of the ble" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hard-light-combines-multiply-and-screen-in-gimp">How Hard
+Light Combines Multiply and Screen in GIMP</h1>
+<p>GIMP's Hard Light blend mode is a contrast-enhancing tool that
+combines the mechanics of the Multiply and Screen modes into a single
+operation. Instead of applying one uniform effect across the entire
+canvas, Hard Light evaluates the luminance of the blend (top) layer to
+conditionally darken or lighten the base (bottom) layer. Pixels on the
+top layer darker than 50% neutral gray trigger a Multiply calculation to
+deepen shadows, while pixels brighter than 50% neutral gray trigger a
+Screen calculation to boost highlights. This dual behavior allows users
+to simultaneously add intense shadows and highlights to an image using a
+single active layer.</p>
+<h3 id="the-role-of-50-neutral-gray">The Role of 50% Neutral Gray</h3>
+<p>In digital image processing, color values are normalized on a scale
+from 0.0 (pure black) to 1.0 (pure white), where 0.5 represents 50%
+neutral gray. The Hard Light mode treats 0.5 as its dividing threshold
+and neutral point:</p>
+<ul>
+<li><strong>Neutral Value (0.5 / 128 RGB):</strong> Areas on the top
+layer that contain 50% gray have zero effect on the bottom layer. The
+underlying pixels remain entirely unchanged.</li>
+<li><strong>Darker than 0.5 (&lt; 128 RGB):</strong> Signals the mode to
+darken the composition using Multiply math.</li>
+<li><strong>Lighter than 0.5 (&gt; 128 RGB):</strong> Signals the mode
+to brighten the composition using Screen math.</li>
+</ul>
+<h3 id="how-the-multiply-behavior-works">How the Multiply Behavior
+Works</h3>
+<p>When a pixel on the top layer has a brightness value below 0.5, GIMP
+treats that pixel as a shadow cast upon the underlying layer. It
+calculates the final pixel value using a scaled Multiply formula:</p>
+<p><span class="math display">\[\text{Result} = 2 \times \text{Top}
+\times \text{Bottom}\]</span></p>
+<p>Standard Multiply simply multiplies the two values together, which
+always yields a darker result. In Hard Light, multiplying the product by
+two compensates for the fact that the top pixel is already restricted to
+the lower half of the brightness spectrum (0.0 to 0.5).</p>
+<ul>
+<li>If the top layer pixel is <strong>pure black (0.0)</strong>, the
+result is always pure black, regardless of the bottom layer's
+color.</li>
+<li>Values between 0.0 and 0.5 progressively darken the bottom layer,
+creating rich, deep shadows and increasing overall tonal contrast.</li>
+</ul>
+<h3 id="how-the-screen-behavior-works">How the Screen Behavior
+Works</h3>
+<p>When a pixel on the top layer has a brightness value above 0.5, GIMP
+treats that pixel as a light source cast onto the underlying layer. It
+executes a scaled Screen formula:</p>
+<p><span class="math display">\[\text{Result} = 1 - 2 \times (1 -
+\text{Top}) \times (1 - \text{Bottom})\]</span></p>
+<p>Standard Screen inverts the values, multiplies them, and inverts the
+result, effectively brightening the composition without clipping
+midtones prematurely. The Hard Light formula scales this calculation so
+that the range between 0.5 and 1.0 expands to cover full
+illumination.</p>
+<ul>
+<li>If the top layer pixel is <strong>pure white (1.0)</strong>, the
+result is always pure white.</li>
+<li>Values between 0.5 and 1.0 progressively lighten the bottom layer,
+creating vivid highlights.</li>
+</ul>
+<h3 id="hard-light-vs-overlay">Hard Light vs. Overlay</h3>
+<p>To fully understand Hard Light, it is helpful to contrast it with the
+Overlay blend mode. Both modes use the exact same mathematical
+combination of Multiply and Screen, but they assign priority to
+different layers:</p>
+<ul>
+<li><strong>Overlay</strong> checks the brightness of the <strong>base
+(bottom) layer</strong>. If the bottom layer is dark, it multiplies; if
+the bottom layer is light, it screens. This preserves the highlights and
+shadows of the original image.</li>
+<li><strong>Hard Light</strong> checks the brightness of the
+<strong>blend (top) layer</strong>. If the top layer is dark, it
+multiplies; if the top layer is light, it screens.</li>
+</ul>
+<p>Because Hard Light looks at the active top layer to determine the
+math, it acts like a harsh spotlight shining directly on the base layer.
+This makes Hard Light significantly more aggressive and dominant than
+Overlay, functioning as a direct projection of shadows and highlights
+onto the image below.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How the GIMP Healing Tool Preserves Texture and Light - gimp</title>
+    <meta name="description" content="GIMP’s Healing tool achieves seamless retouching through an advanced mathematical blending technique known as Poisson image editing. Unlike standard copy-and-paste tools, it analyzes the boundary values of the destination area and merges them with the">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-the-gimp-healing-tool-preserves-texture-and-light">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How the GIMP Healing Tool Preserves Texture and Light - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-the-gimp-healing-tool-preserves-texture-and-light" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s Healing tool achieves seamless retouching through an advanced mathematical blending technique known as Poisson image editing. Unlike standard copy-and-paste tools, it analyzes the boundary values of the destination area and merges them with the" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-the-gimp-healing-tool-preserves-texture-and-light">How the
+GIMP Healing Tool Preserves Texture and Light</h1>
+<p>GIMP’s Healing tool achieves seamless retouching through an advanced
+mathematical blending technique known as Poisson image editing. Unlike
+standard copy-and-paste tools, it analyzes the boundary values of the
+destination area and merges them with the fine details of the source
+sample. This allows GIMP to transfer source patterns and textures while
+automatically conforming to the local lighting, color tone, and
+curvature of the target surface.</p>
+<h3 id="the-limitation-of-direct-pixel-copying">The Limitation of Direct
+Pixel Copying</h3>
+<p>To understand the Healing tool, it helps to contrast it with the
+standard Clone tool. The Clone tool performs an absolute pixel-for-pixel
+transfer. If you sample an area with flat, bright lighting and stamp it
+into a shaded area, the Clone tool copies the flat brightness directly
+over the shadow, resulting in harsh, visible edges and an unnatural
+finish.</p>
+<p>The Healing tool avoids this by treating color and lighting not as
+fixed values, but as smooth gradients that can be recalculated.</p>
+<h3 id="the-underlying-math-poisson-image-editing">The Underlying Math:
+Poisson Image Editing</h3>
+<p>At the core of the GIMP Healing algorithm is the Poisson equation, a
+partial differential equation used extensively in computer graphics for
+seamless image cloning. Instead of copying raw RGB values, the tool
+calculates the Laplacian (the rate of change between adjacent pixels) of
+the source sample and applies it across the target area using Dirichlet
+boundary conditions.</p>
+<p>In practice, this process splits the image data into two distinct
+components:</p>
+<ul>
+<li><strong>High-Frequency Details (Texture and Gradients):</strong> The
+sharp variations in tone—such as skin pores, fabric weaves, or surface
+scratches—represent the local gradient field. The Healing tool samples
+this structural information from the source.</li>
+<li><strong>Low-Frequency Values (Color and Illumination):</strong> The
+broad washes of color, ambient light, and shadow represent the baseline
+brightness. The tool reads these values from the boundary surrounding
+your brush stroke in the destination area.</li>
+</ul>
+<h3 id="how-the-blending-occurs">How the Blending Occurs</h3>
+<p>When you apply a brush stroke with the Healing tool, the software
+executes a multi-step calculation:</p>
+<ol type="1">
+<li><strong>Boundary Sampling:</strong> The algorithm inspects the
+pixels immediately surrounding the painted destination area to determine
+the local brightness, tint, and shadow profile.</li>
+<li><strong>Gradient Mapping:</strong> It extracts the directional
+contrast and pattern details from your chosen source point.</li>
+<li><strong>Linear Equation Solving:</strong> The algorithm solves a
+Poisson system of linear equations. It forces the interior pixels to
+retain the texture variations of the source while mathematically
+stretching and shifting their absolute colors so that the borders match
+the destination perfectly.</li>
+</ol>
+<p>Because the boundary conditions are derived strictly from the
+destination image, the overall luminance and underlying lighting
+transitions are preserved. Meanwhile, because the internal variations
+follow the source data, the desired pattern or texture is cleanly
+rendered across the surface without hard seams or mismatched
+exposure.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

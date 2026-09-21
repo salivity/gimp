@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Responsive Website Mockups Using GIMP Guides - gimp</title>
+    <meta name="description" content="Designing responsive website mockups in GIMP requires setting up flexible multi-breakpoint layouts using guides to simulate standard grid systems. By establishing structured canvas dimensions, creating custom vertical and horizontal guide templates for d">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-responsive-website-mockups-using-gimp-guides">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Responsive Website Mockups Using GIMP Guides - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-responsive-website-mockups-using-gimp-guides" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing responsive website mockups in GIMP requires setting up flexible multi-breakpoint layouts using guides to simulate standard grid systems. By establishing structured canvas dimensions, creating custom vertical and horizontal guide templates for d" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-responsive-website-mockups-using-gimp-guides">Create
+Responsive Website Mockups Using GIMP Guides</h1>
+<p>Designing responsive website mockups in GIMP requires setting up
+flexible multi-breakpoint layouts using guides to simulate standard grid
+systems. By establishing structured canvas dimensions, creating custom
+vertical and horizontal guide templates for desktop, tablet, and mobile
+screen sizes, and utilizing layer groups, you can efficiently plan and
+visualize responsive web interfaces. This guide details how to build and
+save custom guide systems to streamline your responsive web design
+workflow in GIMP.</p>
+<h2 id="1-set-up-the-master-canvas-dimensions">1. Set Up the Master
+Canvas Dimensions</h2>
+<p>To design a comprehensive responsive mockup, define a base canvas
+that accommodates either your largest viewport target or multiple
+viewports side-by-side.</p>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>For a single desktop view, set the width to <strong>1920 px</strong>
+and height to <strong>1080 px</strong> (or taller, depending on page
+scroll depth).</li>
+<li>For an all-in-one multi-device canvas (Desktop, Tablet, Mobile),
+create a wide artboard such as <strong>3840 px by 2160 px</strong> to
+place all three layouts horizontally.</li>
+<li>Set the <strong>Resolution</strong> to <strong>72 PPI</strong> or
+<strong>96 PPI</strong> for standard web screens.</li>
+</ol>
+<h2 id="2-define-responsive-grid-breakpoints">2. Define Responsive Grid
+Breakpoints</h2>
+<p>A standard responsive layout relies on column-based grids (such as
+the 12-column system) bounded by specific container widths:</p>
+<ul>
+<li><strong>Desktop:</strong> 1200 px container (12 columns)</li>
+<li><strong>Tablet:</strong> 768 px container (8 columns)</li>
+<li><strong>Mobile:</strong> 375 px to 480 px container (4 columns or
+single column)</li>
+</ul>
+<p>Calculate your margins and gutters before generating guides. For a
+1200 px centered container on a 1920 px desktop canvas, the left margin
+begins at <code>(1920 - 1200) / 2 = 360 px</code>, and the right margin
+sits at <code>1560 px</code>.</p>
+<h2 id="3-generate-custom-guides-in-gimp">3. Generate Custom Guides in
+GIMP</h2>
+<p>GIMP provides multiple native methods to generate precise guide
+templates.</p>
+<h3 id="method-a-pixel-precise-guides">Method A: Pixel-Precise
+Guides</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide...</strong>.</li>
+<li>Select <strong>Vertical</strong> or <strong>Horizontal</strong>
+direction.</li>
+<li>Enter the exact pixel value for your outer boundaries and major
+breakpoint divisions (e.g., <code>360 px</code> and
+<code>1560 px</code>).</li>
+</ol>
+<h3 id="method-b-percentage-based-guides">Method B: Percentage-Based
+Guides</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)...</strong>.</li>
+<li>Enter percentages such as <code>50%</code> to mark centerlines or
+<code>25%</code> and <code>75%</code> for structural splits.</li>
+</ol>
+<h3 id="method-c-automated-grid-guides">Method C: Automated Grid
+Guides</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide
+Grid...</strong>.</li>
+<li>Define the <strong>Spacing</strong> between columns,
+<strong>Offsets</strong> for margins, and the <strong>Number of
+columns</strong>.</li>
+<li>Apply the settings to instantly create a multi-column responsive
+grid structure across your canvas.</li>
+</ol>
+<h2 id="4-structure-viewports-with-layer-groups">4. Structure Viewports
+with Layer Groups</h2>
+<p>Organize your document hierarchy to correspond with the guide zones
+you have established:</p>
+<ol type="1">
+<li>In the <strong>Layers</strong> dialog, create three distinct Layer
+Groups: <code>Desktop (1200px+)</code>, <code>Tablet (768px)</code>, and
+<code>Mobile (375px)</code>.</li>
+<li>Inside each group, create sub-folders for standard UI regions:
+<code>Navigation</code>, <code>Hero</code>, <code>Content/Cards</code>,
+and <code>Footer</code>.</li>
+<li>Use the <strong>Rectangle Select Tool</strong> within your guide
+bounds to paint layout backgrounds and delineate individual responsive
+containers.</li>
+</ol>
+<h2 id="5-enable-snapping-and-build-ui-elements">5. Enable Snapping and
+Build UI Elements</h2>
+<p>Ensure all UI components align correctly to your responsive guide
+layout:</p>
+<ol type="1">
+<li>Navigate to <strong>View</strong> in the top menu and ensure
+<strong>Snap to Guides</strong> is checked.</li>
+<li>Draw UI elements using the <strong>Rectangle Select Tool</strong>,
+<strong>Paths Tool</strong>, and <strong>Text Tool</strong>. Your
+selections will automatically latch onto the guide coordinates.</li>
+<li>For responsive modules like 3-column card sections, ensure your
+components snap evenly within the column guides, then duplicate and
+stack them vertically in the <code>Mobile</code> layer group to
+demonstrate how the layout collapses.</li>
+</ol>
+<h2 id="6-save-as-a-reusable-template">6. Save as a Reusable
+Template</h2>
+<p>Save your layout structure so you do not need to recalculate and
+redraw guides for future projects:</p>
+<ol type="1">
+<li>Once your guides and base layer folders are arranged, go to
+<strong>File &gt; Save As...</strong> and save a master file named
+<code>Responsive_Grid_Template.xcf</code>.</li>
+<li>To make it a permanent GIMP preset, go to <strong>File &gt; Create
+&gt; Template...</strong> (or <strong>Edit &gt; Preferences &gt; Default
+Image / Templates</strong> depending on your GIMP version), name the
+template, and save it.</li>
+<li>When starting a new web project, simply open your base
+<code>.xcf</code> template to begin designing immediately with active
+responsive guides intact.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

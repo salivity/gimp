@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Thumbnail Maximum File Size Setting - gimp</title>
+    <meta name="description" content="This guide explains how to locate and configure the setting that controls the maximum file size GIMP processes when creating thumbnails for recent documents and file dialogs. Adjusting this limit allows you to optimize system performance, prevent interfa">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-thumbnail-maximum-file-size-setting">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Thumbnail Maximum File Size Setting - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-thumbnail-maximum-file-size-setting" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to locate and configure the setting that controls the maximum file size GIMP processes when creating thumbnails for recent documents and file dialogs. Adjusting this limit allows you to optimize system performance, prevent interfa" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-thumbnail-maximum-file-size-setting">GIMP Thumbnail Maximum
+File Size Setting</h1>
+<p>This guide explains how to locate and configure the setting that
+controls the maximum file size GIMP processes when creating thumbnails
+for recent documents and file dialogs. Adjusting this limit allows you
+to optimize system performance, prevent interface lag when browsing
+folders with massive files, or ensure previews display properly for
+large image projects.</p>
+<p>The setting in GIMP that determines the maximum file size for
+generating thumbnails is called <strong>"Maximum image size for
+thumbnailing"</strong>.</p>
+<h3 id="how-to-access-and-change-the-setting">How to Access and Change
+the Setting</h3>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>In the top menu, navigate to <strong>Edit</strong> (or
+<strong>GIMP</strong> on macOS) and select
+<strong>Preferences</strong>.</li>
+<li>In the left-hand sidebar of the Preferences window, select
+<strong>System Resources</strong>.</li>
+<li>Locate the <strong>Resource Consumption</strong> section in the main
+panel.</li>
+<li>Find the entry labeled <strong>Maximum image size for
+thumbnailing</strong>.</li>
+<li>Enter your preferred size limit in the input field and select the
+desired unit of measurement (such as Megabytes or Gigabytes).</li>
+<li>Click <strong>OK</strong> to save and apply the changes.</li>
+</ol>
+<h3 id="why-this-setting-matters">Why This Setting Matters</h3>
+<p>When opening file browsers or viewing recent files, GIMP reads image
+files to generate graphical previews. Processing exceptionally large
+files can consume significant CPU and RAM, leading to freezing or slow
+navigation.</p>
+<p>By default, GIMP caps thumbnail generation at a moderate file size to
+maintain responsive performance. Any image exceeding the configured
+threshold will simply display a generic file icon rather than a rendered
+preview. If your computer has sufficient system resources and you
+frequently work with large files, increasing this value ensures
+thumbnails appear consistently across your recent document history and
+file dialogues.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

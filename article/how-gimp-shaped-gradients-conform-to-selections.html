@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Shaped Gradients Conform to Selections - gimp</title>
+    <meta name="description" content="This article explains the underlying mechanism behind GIMP's Shaped gradient mode, detailing how the software reads the boundary geometry of an active selection and projects color transitions inward along its exact perimeter. You will learn about the rol">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-shaped-gradients-conform-to-selections">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Shaped Gradients Conform to Selections - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-shaped-gradients-conform-to-selections" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the underlying mechanism behind GIMP's Shaped gradient mode, detailing how the software reads the boundary geometry of an active selection and projects color transitions inward along its exact perimeter. You will learn about the rol" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-shaped-gradients-conform-to-selections">How GIMP Shaped
+Gradients Conform to Selections</h1>
+<p>This article explains the underlying mechanism behind GIMP's Shaped
+gradient mode, detailing how the software reads the boundary geometry of
+an active selection and projects color transitions inward along its
+exact perimeter. You will learn about the role of distance transform
+algorithms, pixel depth calculations, and how mathematical normalization
+allows color ramps to shrink or expand while matching irregular
+silhouettes.</p>
+<h3 id="the-distance-transform-algorithm">The Distance Transform
+Algorithm</h3>
+<p>GIMP achieves contour-conforming gradients by applying a distance
+transform algorithm to the active selection mask. Unlike standard linear
+or radial gradients, which calculate color distribution using simple
+vector coordinates (such as an axis between two clicked points), the
+Shaped gradient treats the entire perimeter of the selection as its
+baseline.</p>
+<p>When you render a shaped gradient, GIMP performs the following
+operations:</p>
+<ol type="1">
+<li><strong>Boundary Identification:</strong> GIMP scans the selection
+channel to identify the precise boundary pixels where the selection
+meets the unselected canvas.</li>
+<li><strong>Euclidean Distance Mapping:</strong> The algorithm
+calculates the shortest geometric distance from every pixel inside the
+selection to the nearest edge pixel on the selection boundary.</li>
+<li><strong>Topological Inset Creation:</strong> By grouping pixels that
+share the same distance from the edge, GIMP generates concentric,
+contour-matched internal shells. The innermost point—farthest from any
+edge—becomes the morphological center (or peak) of the shape.</li>
+</ol>
+<h3 id="mapping-colors-to-distance-values">Mapping Colors to Distance
+Values</h3>
+<p>Once the distance field is calculated, GIMP normalizes these values
+on a scale from 0.0 to 1.0:</p>
+<ul>
+<li><strong>Value 0.0 (The Edge):</strong> Represents a distance of
+zero, mapped directly to the starting color stop of the active
+gradient.</li>
+<li><strong>Value 1.0 (The Center):</strong> Represents the maximum
+calculated distance from any edge, mapped to the terminating color
+stop.</li>
+</ul>
+<p>Pixels in between receive an interpolated color based on their
+proportional distance between the perimeter and the deepest internal
+point. Because this calculation happens on a per-pixel basis relative to
+the nearest edge segment, the gradient bends, twists, and branches to
+match complex, asymmetrical, or multi-lobed selections.</p>
+<h3 id="variations-of-the-shaped-mode">Variations of the Shaped
+Mode</h3>
+<p>GIMP provides distinct sub-variants of the Shaped gradient to modify
+how distance translates into color transitions:</p>
+<ul>
+<li><strong>Shaped (Angular):</strong> Maps colors using a direct,
+linear interpolation from the edge to the center, creating a sharp,
+faceted appearance reminiscent of a beveled pyramid.</li>
+<li><strong>Shaped (Spherical):</strong> Applies a non-linear, spherical
+curve to the distance metric, resulting in a rounded, bulbous falloff
+that resembles an inflated cushion.</li>
+<li><strong>Shaped (Dimpled):</strong> Inverts the curvature profile,
+causing the color to drop off rapidly near the boundary and flatten out
+toward the center.</li>
+</ul>
+<h3 id="interaction-with-soft-and-feathered-edges">Interaction with Soft
+and Feathered Edges</h3>
+<p>When a selection contains anti-aliasing or feathered edges, GIMP
+factors the 8-bit alpha values of the selection mask into the distance
+calculation. Partially selected edge pixels produce an initial
+fractional distance value, smoothing the color transition at the
+boundary and preventing harsh stepping artifacts along organic
+contours.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

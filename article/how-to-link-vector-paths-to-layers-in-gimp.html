@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Link Vector Paths to Layers in GIMP - gimp</title>
+    <meta name="description" content="In GIMP, transforming a vector path and a raster layer simultaneously is achieved by using the application's built-in transform lock feature. By linking elements together across the Layers and Paths dialogs, any transformation—such as moving, scaling,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-link-vector-paths-to-layers-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Link Vector Paths to Layers in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-link-vector-paths-to-layers-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, transforming a vector path and a raster layer simultaneously is achieved by using the application's built-in transform lock feature. By linking elements together across the Layers and Paths dialogs, any transformation—such as moving, scaling," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-link-vector-paths-to-layers-in-gimp">How to Link Vector
+Paths to Layers in GIMP</h1>
+<p>In GIMP, transforming a vector path and a raster layer simultaneously
+is achieved by using the application's built-in transform lock feature.
+By linking elements together across the Layers and Paths dialogs, any
+transformation—such as moving, scaling, rotating, or perspective
+shifting—applied to one element is immediately mirrored on the other.
+This guide covers the exact steps required to link and manipulate both
+elements in unison.</p>
+<h3 id="step-1-open-the-layers-and-paths-dialogs">Step 1: Open the
+Layers and Paths Dialogs</h3>
+<p>To link the items, you need access to both the Layers tab and the
+Paths tab.</p>
+<ol type="1">
+<li>Open your project in GIMP.</li>
+<li>Ensure the <strong>Layers</strong> dock is visible. If not, open it
+via <strong>Windows &gt; Dockable Dialogs &gt; Layers</strong> (or press
+<code>Ctrl + L</code>).</li>
+<li>Ensure the <strong>Paths</strong> dock is visible. If not, open it
+via <strong>Windows &gt; Dockable Dialogs &gt; Paths</strong>.</li>
+</ol>
+<h3 id="step-2-enable-the-transform-lock-on-the-raster-layer">Step 2:
+Enable the Transform Lock on the Raster Layer</h3>
+<ol type="1">
+<li>Go to the <strong>Layers</strong> dialog.</li>
+<li>Find the raster layer you want to transform.</li>
+<li>In the space between the eye icon (visibility) and the layer
+thumbnail, click to reveal the <strong>chain-link icon</strong>. This
+icon toggles the "Lock transform" state for that layer.</li>
+</ol>
+<h3 id="step-3-enable-the-transform-lock-on-the-vector-path">Step 3:
+Enable the Transform Lock on the Vector Path</h3>
+<ol type="1">
+<li>Switch to the <strong>Paths</strong> dialog.</li>
+<li>Locate the vector path you want to pair with the raster layer.</li>
+<li>Click the empty space between the eye icon and the path preview to
+reveal the <strong>chain-link icon</strong> for the path.</li>
+</ol>
+<h3 id="step-4-perform-the-transformation">Step 4: Perform the
+Transformation</h3>
+<p>Once both items display the chain-link icon, any transformation tool
+will affect them together automatically.</p>
+<ol type="1">
+<li>Select any transformation tool from the Tools panel (e.g.,
+<strong>Move Tool</strong>, <strong>Scale Tool</strong>, <strong>Rotate
+Tool</strong>, or <strong>Unified Transform Tool</strong>).</li>
+<li>In the <strong>Tool Options</strong> panel, ensure the
+<strong>Transform</strong> mode is set to <strong>Layer</strong> (the
+default setting).</li>
+<li>Click on your canvas and execute the transformation.</li>
+</ol>
+<p>Both the raster layer and the linked vector path will transform
+simultaneously, maintaining their exact spatial relationship and
+proportions.</p>
+<h3 id="step-5-unlink-the-elements">Step 5: Unlink the Elements</h3>
+<p>Once you have finished the operation, click the chain-link icons in
+both the Layers and Paths dialogs to disable them. Disabling the lock
+ensures you do not accidentally move or alter one element when editing
+the other later.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

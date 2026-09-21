@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Glare from Glasses Using GIMP - gimp</title>
+    <meta name="description" content="Removing glare and reflections from eyeglasses is an essential skill for retouching portrait photography. This guide provides a straightforward method to eliminate glass reflections in GIMP using non-destructive editing techniques, primarily leveraging t">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-glare-from-glasses-using-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Glare from Glasses Using GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-glare-from-glasses-using-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Removing glare and reflections from eyeglasses is an essential skill for retouching portrait photography. This guide provides a straightforward method to eliminate glass reflections in GIMP using non-destructive editing techniques, primarily leveraging t" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-remove-glare-from-glasses-using-gimp">How to Remove Glare
+from Glasses Using GIMP</h1>
+<p>Removing glare and reflections from eyeglasses is an essential skill
+for retouching portrait photography. This guide provides a
+straightforward method to eliminate glass reflections in GIMP using
+non-destructive editing techniques, primarily leveraging the Heal Tool,
+the Clone Tool, and targeted color correction layers to restore hidden
+eye details and natural skin tones.</p>
+<h3 id="step-1-prepare-your-workspace">Step 1: Prepare Your
+Workspace</h3>
+<ol type="1">
+<li>Open your portrait in GIMP.</li>
+<li>In the <strong>Layers</strong> panel on the right, right-click your
+background image layer and select <strong>Duplicate Layer</strong> (or
+press <code>Shift + Ctrl + D</code>).</li>
+<li>Rename this new layer to "Glare Removal." Working on a duplicate
+ensures your original image remains untouched.</li>
+</ol>
+<h3 id="step-2-sample-and-heal-minor-glare">Step 2: Sample and Heal
+Minor Glare</h3>
+<p>For faint glare, soft highlights, or reflections over smooth skin
+areas:</p>
+<ol type="1">
+<li>Select the <strong>Heal Tool</strong> from the Toolbox (keyboard
+shortcut: <code>H</code>).</li>
+<li>In the Tool Options, choose a soft-edged brush (such as
+<code>2. Hardness 050</code>) and adjust the size so it is slightly
+larger than the reflection spot.</li>
+<li>Hold <code>Ctrl</code> (or <code>Cmd</code> on macOS) and click on
+an adjacent, glare-free area of skin or the eye to set the source
+reference point.</li>
+<li>Release <code>Ctrl</code> and gently paint over the glare. The Heal
+Tool blends the texture of the source area with the color and brightness
+of the target area.</li>
+</ol>
+<h3 id="step-3-reconstruct-eyes-with-the-clone-tool">Step 3: Reconstruct
+Eyes with the Clone Tool</h3>
+<p>If the glare covers critical details like the iris, pupil, or
+eyelashes:</p>
+<ol type="1">
+<li>Select the <strong>Clone Tool</strong> (keyboard shortcut:
+<code>C</code>).</li>
+<li>If only one lens has severe glare, set your source point by holding
+<code>Ctrl</code> and clicking on the unobstructed eye. If cloning from
+the opposite eye, you may need to mirror the brush or work in small,
+precise increments.</li>
+<li>Lower the <strong>Opacity</strong> of the Clone Tool to roughly 30%
+to 50% in the Tool Options.</li>
+<li>Paint slowly over the affected area to gradually rebuild the
+structure of the iris, eyelid, and pupil without creating harsh,
+unnatural edges.</li>
+</ol>
+<h3 id="step-4-fix-discoloration-and-haze">Step 4: Fix Discoloration and
+Haze</h3>
+<p>Strong glare often leaves behind washed-out, white, or green
+tinting:</p>
+<ol type="1">
+<li>Select the <strong>Free Select Tool</strong> (Lasso) and draw a
+loose selection around the remaining washed-out area inside the glasses
+frame.</li>
+<li>Go to <strong>Select &gt; Feather...</strong> and set the radius to
+5–10 pixels to soften the selection edges.</li>
+<li>Go to <strong>Colors &gt; Curves...</strong> or <strong>Colors &gt;
+Levels...</strong>.</li>
+<li>Lower the midtones and highlights slightly to bring back contrast
+and match the luminance of the surrounding eye area.</li>
+<li>If a color cast remains, go to <strong>Colors &gt; Color
+Temperature...</strong> or <strong>Colors &gt; Hue-Chroma...</strong> to
+neutralize unwanted green or blue reflection tones.</li>
+</ol>
+<h3 id="step-5-final-blending">Step 5: Final Blending</h3>
+<ol type="1">
+<li>Zoom out to 100% view to evaluate the portrait as a whole.</li>
+<li>If the corrections look too intense or painted-on, lower the
+<strong>Opacity</strong> slider of the "Glare Removal" layer slightly in
+the Layers panel until the result blends naturally with the original
+image.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

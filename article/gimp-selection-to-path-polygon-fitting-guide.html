@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Selection to Path Polygon Fitting Guide - gimp</title>
+    <meta name="description" content="Converting a raster selection into a vector path in GIMP relies on an algorithmic trace that translates pixel edges into scalable Bézier splines. The advanced polygon fitting parameters control this conversion by defining how tightly, smoothly, and accu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-selection-to-path-polygon-fitting-guide">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Selection to Path Polygon Fitting Guide - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-selection-to-path-polygon-fitting-guide" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a raster selection into a vector path in GIMP relies on an algorithmic trace that translates pixel edges into scalable Bézier splines. The advanced polygon fitting parameters control this conversion by defining how tightly, smoothly, and accu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-selection-to-path-polygon-fitting-guide">GIMP Selection to
+Path Polygon Fitting Guide</h1>
+<p>Converting a raster selection into a vector path in GIMP relies on an
+algorithmic trace that translates pixel edges into scalable Bézier
+splines. The advanced polygon fitting parameters control this conversion
+by defining how tightly, smoothly, and accurately the generated path
+conforms to the original selection boundary. Understanding these
+settings allows you to balance path fidelity against node complexity,
+preventing overly dense paths while maintaining sharp details.</p>
+<h3 id="how-polygon-fitting-works-in-gimp">How Polygon Fitting Works in
+GIMP</h3>
+<p>When GIMP converts a selection to a path, it does not immediately
+generate smooth curves. Instead, it executes an intermediate step:
+tracing the pixel boundary to create a rough multi-sided polygon. Once
+this polygon is established, GIMP simplifies it and fits Bézier curves
+over the straight edges.</p>
+<p>The advanced polygon fitting settings govern this intermediate phase.
+If the polygon fits the selection poorly, the final vector path will
+either smooth over critical details or introduce jagged artifacts from
+pixel noise.</p>
+<h3 id="key-advanced-parameters-and-their-functions">Key Advanced
+Parameters and Their Functions</h3>
+<ul>
+<li><strong>Corner Threshold:</strong> Defines the angle (in degrees)
+that qualifies as a sharp corner. If an angle in the intermediate
+polygon is smaller than this threshold, GIMP preserves it as an acute,
+non-smoothed corner node. Higher values smooth out more corners, while
+lower values preserve sharp, angular transitions.</li>
+<li><strong>Error Threshold:</strong> Specifies the maximum distance (in
+pixels) the intermediate polygon is allowed to deviate from the original
+selection boundary. A lower error threshold forces the path to follow
+the selection outline rigorously, resulting in higher fidelity but
+significantly more anchor points. A higher threshold allows looser
+approximations, creating cleaner, lower-node paths.</li>
+<li><strong>Subdivide Search and Subdivide Threshold:</strong> These
+parameters determine how aggressively the algorithm splits polygon edges
+to better match complex selection boundaries. When the deviation exceeds
+the threshold, the algorithm subdivides the line into smaller segments.
+Adjusting these values helps capture intricate concavities and small
+cutouts without uniformly increasing the node count across the entire
+path.</li>
+<li><strong>Line Threshold:</strong> Dictates the maximum acceptable
+deviation for a sequence of points to be treated as a single straight
+line rather than a curve. Increasing the line threshold forces
+near-straight curves to snap into flat polygon segments, which is ideal
+for mechanical, geometric, or architectural shapes.</li>
+<li><strong>Filter Alternative Surround:</strong> Determines the
+adjacent pixel radius examined to eliminate isolated pixels and
+staircase noise inherent to raster masks. A higher value prevents the
+polygon from tracing individual pixel steps, generating a smoother
+baseline shape prior to final spline calculation.</li>
+<li><strong>Tangent Surround:</strong> Controls how many adjacent points
+along the polygon are considered when computing the direction and handle
+lengths of the final Bézier curve tangents. Increasing this value
+produces sweeping, broad curves, while decreasing it allows curves to
+turn tightly along sharp contours.</li>
+</ul>
+<h3 id="practical-application">Practical Application</h3>
+<p>To vectorize clean, organic shapes with minimal anchor points, set a
+higher <strong>Error Threshold</strong> and enable a moderate
+<strong>Filter Alternative Surround</strong>. For hard-edged, geometric,
+or typographic selections, reduce the <strong>Error Threshold</strong>,
+lower the <strong>Corner Threshold</strong>, and increase the
+<strong>Line Threshold</strong> to ensure straight edges remain planar
+and sharp corners do not become rounded.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

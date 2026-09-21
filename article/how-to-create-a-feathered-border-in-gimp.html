@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Feathered Border in GIMP - gimp</title>
+    <meta name="description" content="Creating a soft, feathered frame around an image in GIMP is a quick way to draw focus to your subject and give your photos a polished, professional look. This guide walks you through setting up a dedicated frame layer, using the Border selection tool to">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-feathered-border-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Feathered Border in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-feathered-border-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a soft, feathered frame around an image in GIMP is a quick way to draw focus to your subject and give your photos a polished, professional look. This guide walks you through setting up a dedicated frame layer, using the Border selection tool to" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-a-feathered-border-in-gimp">How to Create a
+Feathered Border in GIMP</h1>
+<p>Creating a soft, feathered frame around an image in GIMP is a quick
+way to draw focus to your subject and give your photos a polished,
+professional look. This guide walks you through setting up a dedicated
+frame layer, using the Border selection tool to establish the frame's
+width, applying feathering to soften the edges, and filling the boundary
+with your desired color.</p>
+<h3 id="step-1-prepare-a-dedicated-frame-layer">Step 1: Prepare a
+Dedicated Frame Layer</h3>
+<p>Open your image in GIMP. Before making any selections, create a new
+layer to hold your border so your original image remains untouched:</p>
+<ol type="1">
+<li>Go to the menu and click <strong>Layer &gt; New Layer...</strong>
+(or click the <strong>New Layer</strong> icon at the bottom of the
+Layers dock).</li>
+<li>Set the <strong>Fill with</strong> option to
+<strong>Transparency</strong>.</li>
+<li>Name the layer "Frame" and click <strong>OK</strong>. Ensure this
+new layer is selected.</li>
+</ol>
+<h3 id="step-2-select-the-canvas-area">Step 2: Select the Canvas
+Area</h3>
+<p>Define the base boundary that the border will follow:</p>
+<ol type="1">
+<li>Navigate to <strong>Select &gt; All</strong> (or press <strong>Ctrl
++ A</strong> on Windows/Linux, <strong>Cmd + A</strong> on Mac) to
+select the entire image canvas.</li>
+<li>Alternatively, use the <strong>Rectangle Select Tool (R)</strong> to
+draw a smaller box inside the canvas if you want the frame positioned
+further inward.</li>
+</ol>
+<h3 id="step-3-use-the-border-selection-tool">Step 3: Use the Border
+Selection Tool</h3>
+<p>Transform your solid rectangular selection into a hollow perimeter
+frame:</p>
+<ol type="1">
+<li>Go to <strong>Select &gt; Border...</strong> to open the Border
+Selection dialog.</li>
+<li>In the <strong>Border selection by</strong> field, enter the desired
+thickness of your frame in pixels (e.g., 20 to 50 px depending on image
+resolution).</li>
+<li>Set the <strong>Border style</strong> to <strong>Smooth</strong> or
+<strong>Hard</strong>.</li>
+<li>Check the box labeled <strong>Feather border</strong> directly
+inside this dialog if available, or leave it unchecked to control
+feathering precisely in the next step.</li>
+<li>Click <strong>OK</strong>. Your selection will change from a solid
+box into a ribbon-like boundary along the edges.</li>
+</ol>
+<h3 id="step-4-feather-the-boundary">Step 4: Feather the Boundary</h3>
+<p>If you did not check the feather option in the previous step, or if
+you need a softer transition:</p>
+<ol type="1">
+<li>Go to <strong>Select &gt; Feather...</strong>.</li>
+<li>Enter the radius in pixels for how gradual you want the fade to be
+(typically half the border width creates a balanced blur).</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-5-fill-the-border">Step 5: Fill the Border</h3>
+<p>With the feathered selection active and your "Frame" layer
+highlighted:</p>
+<ol type="1">
+<li>Choose your desired border color by setting the <strong>Foreground
+Color</strong> in the toolbox (such as white or black).</li>
+<li>Go to <strong>Edit &gt; Fill with FG Color</strong> (or press
+<strong>Ctrl + ,</strong>).</li>
+<li>Clear the active selection marquee by going to <strong>Select &gt;
+None</strong> (or press <strong>Shift + Ctrl + A</strong>).</li>
+</ol>
+<p>You now have a smoothly blended, feathered boundary frame that you
+can further customize by adjusting the "Frame" layer's opacity or
+blending mode in the Layers panel.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

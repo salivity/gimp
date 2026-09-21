@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Skyscraper Keystoning with GIMP Perspective Tool - gimp</title>
+    <meta name="description" content="When photographing tall skyscrapers from ground level, tilting the camera upward creates extreme optical keystoning, causing the building to appear as if it is falling backward as its parallel vertical lines converge toward the top. This guide provides a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/fix-skyscraper-keystoning-with-gimp-perspective-tool">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Skyscraper Keystoning with GIMP Perspective Tool - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/fix-skyscraper-keystoning-with-gimp-perspective-tool" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When photographing tall skyscrapers from ground level, tilting the camera upward creates extreme optical keystoning, causing the building to appear as if it is falling backward as its parallel vertical lines converge toward the top. This guide provides a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="fix-skyscraper-keystoning-with-gimp-perspective-tool">Fix
+Skyscraper Keystoning with GIMP Perspective Tool</h1>
+<p>When photographing tall skyscrapers from ground level, tilting the
+camera upward creates extreme optical keystoning, causing the building
+to appear as if it is falling backward as its parallel vertical lines
+converge toward the top. This guide provides a straightforward method
+for correcting severe perspective distortion using the Perspective
+Transform tool in GIMP. By establishing reference guides, adjusting
+transformation corners, and restoring proper vertical aspect ratio, you
+can transform distorted architectural shots into properly aligned,
+professional-looking images.</p>
+<h3 id="1-set-up-vertical-guides">1. Set Up Vertical Guides</h3>
+<p>Before applying transformations, establish visual references to gauge
+when the building's walls are truly vertical.</p>
+<ol type="1">
+<li>If rulers are not visible, enable them via <strong>View &gt; Show
+Rulers</strong> (or press <code>Ctrl + Shift + R</code>).</li>
+<li>Click and hold on the left vertical ruler, then drag your cursor
+across the canvas to place a guide near one outer edge of the
+skyscraper.</li>
+<li>Drag a second guide from the left ruler to the opposite side of the
+building.</li>
+</ol>
+<h3 id="2-enlarge-the-canvas-size">2. Enlarge the Canvas Size</h3>
+<p>Correcting extreme keystoning requires pulling the narrow top corners
+of the building outward, which can push pixels outside the existing
+image boundary.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Canvas Size</strong>.</li>
+<li>Increase the <strong>Width</strong> by roughly 30% to 50% to give
+yourself working room.</li>
+<li>Click the <strong>Center</strong> button to center the current image
+within the expanded space, then click <strong>Resize</strong>.</li>
+</ol>
+<h3 id="3-configure-the-perspective-tool">3. Configure the Perspective
+Tool</h3>
+<ol type="1">
+<li>Select the <strong>Perspective Tool</strong> from the Toolbox, use
+the shortcut <code>Shift + P</code>, or navigate to <strong>Tools &gt;
+Transform Tools &gt; Perspective</strong>.</li>
+<li>In the <strong>Tool Options</strong> dock, ensure
+<strong>Direction</strong> is set to <strong>Normal
+(Forward)</strong>.</li>
+<li>Set <strong>Interpolation</strong> to <strong>Cubic</strong> or
+<strong>NoHalo</strong> for the highest quality edge rendering.</li>
+<li>Under <strong>Guides</strong>, select <strong>Grid</strong> to
+display visual alignment lines across the image during
+manipulation.</li>
+</ol>
+<h3 id="4-apply-the-perspective-transformation">4. Apply the Perspective
+Transformation</h3>
+<ol type="1">
+<li>Click anywhere on the image layer to activate the transformation
+grid and corner handles.</li>
+<li>Click and drag the <strong>top-left handle</strong> outward to the
+left until the building's left structural lines run parallel to your
+left guide.</li>
+<li>Click and drag the <strong>top-right handle</strong> outward to the
+right until the building's right structural lines run parallel to your
+right guide.</li>
+<li>If the base of the building appears unnaturally wide, pull the
+<strong>bottom handles</strong> slightly inward.</li>
+<li>Review the grid lines against internal window columns and structural
+pillars across the facade to ensure symmetrical correction.</li>
+<li>Once the vertical lines align with your guides, click
+<strong>Transform</strong> in the floating dialog box (or press
+<code>Enter</code>).</li>
+</ol>
+<h3 id="5-correct-vertical-aspect-compression">5. Correct Vertical
+Aspect Compression</h3>
+<p>Correcting wide keystone angles horizontally tends to visually
+compress the building vertically, making the skyscraper appear shorter
+and wider than it is in reality.</p>
+<ol type="1">
+<li>Select the <strong>Scale Tool</strong> (<code>Shift + S</code>) from
+<strong>Tools &gt; Transform Tools &gt; Scale</strong>.</li>
+<li>Click on the image layer.</li>
+<li>In the Scale dialog, click the <strong>Chain Link</strong> icon to
+unlock the aspect ratio constraint.</li>
+<li>Drag the top center handle upward (or increase the
+<strong>Height</strong> value by roughly 10% to 20%) until the
+skyscraper regains its realistic proportions.</li>
+<li>Click <strong>Scale</strong> to apply the adjustment.</li>
+</ol>
+<h3 id="6-crop-and-finalize">6. Crop and Finalize</h3>
+<ol type="1">
+<li>Select the <strong>Crop Tool</strong> (<code>Shift + C</code>).</li>
+<li>Drag a selection box over the corrected image to exclude the empty
+transparent areas created by the canvas enlargement and perspective
+stretch.</li>
+<li>Press <code>Enter</code> to finalize the crop.</li>
+<li>Clear the reference guides by going to <strong>Image &gt; Guides
+&gt; Remove all Guides</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

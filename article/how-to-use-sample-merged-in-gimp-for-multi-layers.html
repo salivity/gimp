@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Sample Merged in GIMP for Multi-Layers - gimp</title>
+    <meta name="description" content="In GIMP, the "Sample Merged" option within the Bucket Fill tool allows users to detect boundaries across all visible layers simultaneously rather than being restricted to the active layer. This feature is essential for digital painting and illustration w">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-sample-merged-in-gimp-for-multi-layers">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Sample Merged in GIMP for Multi-Layers - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-sample-merged-in-gimp-for-multi-layers" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the "Sample Merged" option within the Bucket Fill tool allows users to detect boundaries across all visible layers simultaneously rather than being restricted to the active layer. This feature is essential for digital painting and illustration w" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-use-sample-merged-in-gimp-for-multi-layers">How to Use
+Sample Merged in GIMP for Multi-Layers</h1>
+<p>In GIMP, the "Sample Merged" option within the Bucket Fill tool
+allows users to detect boundaries across all visible layers
+simultaneously rather than being restricted to the active layer. This
+feature is essential for digital painting and illustration workflows,
+enabling artists to keep their line art on one layer while applying
+color fills onto a completely separate layer underneath without damaging
+the original lines.</p>
+<h3 id="what-sample-merged-does">What Sample Merged Does</h3>
+<p>By default, the Bucket Fill tool operates exclusively within the
+bounds of the active layer. If you create a new, transparent layer
+beneath your line art and try to fill an enclosed area, GIMP will fill
+the entire canvas because no boundaries exist on that active layer.</p>
+<p>Enabling <strong>Sample Merged</strong> alters this behavior by
+calculating the fill area based on the composite visual information of
+all currently visible layers. While the boundary detection samples the
+entire merged image, the actual paint is applied strictly to the active
+layer.</p>
+<h3 id="how-it-works-in-a-multi-layer-workflow">How It Works in a
+Multi-Layer Workflow</h3>
+<ol type="1">
+<li><strong>Layer Separation:</strong> You maintain your clean line art
+on an upper layer and create an empty layer beneath it dedicated to flat
+colors.</li>
+<li><strong>Boundary Detection:</strong> When you click inside a section
+of your drawing with the Bucket Fill tool, GIMP looks upward to the line
+art layer to determine where the borders and edges are.</li>
+<li><strong>Non-Destructive Coloring:</strong> The software places the
+color onto the active lower layer, constrained perfectly by the lines
+above. This ensures your line work remains untouched, sharp, and easy to
+edit later.</li>
+</ol>
+<h3 id="essential-settings-for-multi-layer-filling">Essential Settings
+for Multi-Layer Filling</h3>
+<p>To achieve clean fills when using Sample Merged, adjust these related
+settings in the Tool Options dialog:</p>
+<ul>
+<li><strong>Threshold:</strong> Controls how aggressively the tool
+detects color changes. If your line art has anti-aliasing or
+semi-transparent edges, adjust the threshold to prevent color bleeding
+through faint gaps or leaving uncolored halos around the edges.</li>
+<li><strong>Fill by / Target Area:</strong> Choosing "Composite" or
+"Line Art" dictates which visual data GIMP analyzes when determining the
+borders.</li>
+<li><strong>Layer Visibility:</strong> Sample Merged only evaluates
+visible layers. If a layer is hidden (the eye icon is turned off), GIMP
+ignores its contents entirely during the fill calculation.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

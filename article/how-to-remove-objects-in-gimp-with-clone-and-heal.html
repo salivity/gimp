@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Remove Objects in GIMP with Clone and Heal - gimp</title>
+    <meta name="description" content="Removing unwanted background distractions from photos is a fundamental photo editing skill that can instantly improve your composition. In GIMP, you can seamlessly erase photobombers, power lines, or litter using the Clone Tool and the Heal Tool. While t">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-remove-objects-in-gimp-with-clone-and-heal">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Remove Objects in GIMP with Clone and Heal - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-remove-objects-in-gimp-with-clone-and-heal" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Removing unwanted background distractions from photos is a fundamental photo editing skill that can instantly improve your composition. In GIMP, you can seamlessly erase photobombers, power lines, or litter using the Clone Tool and the Heal Tool. While t" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-remove-objects-in-gimp-with-clone-and-heal">How to Remove
+Objects in GIMP with Clone and Heal</h1>
+<p>Removing unwanted background distractions from photos is a
+fundamental photo editing skill that can instantly improve your
+composition. In GIMP, you can seamlessly erase photobombers, power
+lines, or litter using the Clone Tool and the Heal Tool. While the Clone
+Tool copies exact pixels from one area to another, the Heal Tool
+intelligently blends the sampled texture with the surrounding color and
+lighting, making them a powerful combination for clean object
+removal.</p>
+<h3 id="step-1-duplicate-your-image-layer">Step 1: Duplicate Your Image
+Layer</h3>
+<p>Always work non-destructively so you can undo mistakes or compare
+before-and-after results.</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click your image layer and select <strong>Duplicate
+Layer</strong> (or press <code>Shift + Ctrl + D</code>).</li>
+<li>Work on this duplicated layer.</li>
+</ol>
+<h3 id="step-2-use-the-clone-tool-to-cover-the-object">Step 2: Use the
+Clone Tool to Cover the Object</h3>
+<p>The Clone Tool is best for replacing well-defined patterns, edges,
+and large blocks of background.</p>
+<ol type="1">
+<li>Select the <strong>Clone Tool</strong> from the Toolbox (keyboard
+shortcut: <code>C</code>).</li>
+<li>In the <strong>Tool Options</strong> panel:
+<ul>
+<li>Choose a soft-edged brush (such as <em>Hardness 050</em>) to ensure
+edges blend naturally.</li>
+<li>Adjust the <strong>Size</strong> to slightly larger than the detail
+you are replacing.</li>
+<li>Set <strong>Opacity</strong> to 100%.</li>
+</ul></li>
+<li>Hold <code>Ctrl</code> (or <code>Cmd</code> on macOS) and click an
+area of the image you want to copy as the replacement background (the
+source point).</li>
+<li>Release <code>Ctrl</code> and click or drag over the distracting
+object you want to remove.</li>
+<li>Frequently re-sample new source points by holding <code>Ctrl</code>
+and clicking different background areas to avoid obvious repeating
+patterns.</li>
+</ol>
+<h3 id="step-3-use-the-heal-tool-to-blend-and-match-textures">Step 3:
+Use the Heal Tool to Blend and Match Textures</h3>
+<p>The Heal Tool works similarly to the Clone Tool but automatically
+matches the luminance and color of the target area, making it ideal for
+skin, skies, walls, and subtle textures.</p>
+<ol type="1">
+<li>Select the <strong>Heal Tool</strong> from the Toolbox (keyboard
+shortcut: <code>H</code>).</li>
+<li>Choose a soft brush with a moderate size.</li>
+<li>Hold <code>Ctrl</code> and click a clean area with a texture similar
+to the surrounding area of the removed object.</li>
+<li>Paint over the seams, hard edges, or color mismatches left behind by
+the Clone Tool.</li>
+<li>Work in short strokes rather than large sweeps to give the blending
+algorithm more accurate localized data.</li>
+</ol>
+<h3 id="best-practices-for-seamless-results">Best Practices for Seamless
+Results</h3>
+<ul>
+<li><strong>Zoom In</strong>: Zoom to at least 100% or 200%
+(<code>+</code> key) to ensure you catch faint outline artifacts.</li>
+<li><strong>Match Perspective</strong>: Sample from areas on the same
+plane and distance from the camera to maintain correct texture scale and
+lighting direction.</li>
+<li><strong>Vary Brush Sizes</strong>: Use larger brushes for broad
+backgrounds like grass or sky, and switch to smaller brushes when
+working near high-contrast edges.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

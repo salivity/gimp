@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Brush Size to Stylus Tilt in GIMP - gimp</title>
+    <meta name="description" content="Configuring GIMP to adjust brush size based on stylus tilt allows digital painters to create natural, calligraphic, and shading effects similar to traditional media. This guide explains how to use GIMP's Paint Dynamics Matrix to link your graphics tablet">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/map-brush-size-to-stylus-tilt-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Map Brush Size to Stylus Tilt in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/map-brush-size-to-stylus-tilt-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring GIMP to adjust brush size based on stylus tilt allows digital painters to create natural, calligraphic, and shading effects similar to traditional media. This guide explains how to use GIMP's Paint Dynamics Matrix to link your graphics tablet" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="map-brush-size-to-stylus-tilt-in-gimp">Map Brush Size to Stylus
+Tilt in GIMP</h1>
+<p>Configuring GIMP to adjust brush size based on stylus tilt allows
+digital painters to create natural, calligraphic, and shading effects
+similar to traditional media. This guide explains how to use GIMP's
+Paint Dynamics Matrix to link your graphics tablet's tilt sensor
+directly to the brush size property, covering dynamic preset creation,
+matrix mapping, and tool application.</p>
+<h3 id="1-ensure-hardware-and-driver-support">1. Ensure Hardware and
+Driver Support</h3>
+<p>Before configuring GIMP, confirm that your graphics tablet and stylus
+support tilt sensitivity (often listed as ±60° tilt). Ensure your tablet
+drivers are installed and functioning, and verify under <strong>Edit
+&gt; Input Devices</strong> in GIMP that your stylus is recognized and
+set to <strong>Screen</strong> mode rather than disabled.</p>
+<h3 id="2-create-a-custom-paint-dynamic">2. Create a Custom Paint
+Dynamic</h3>
+<p>Default paint dynamics in GIMP are locked and cannot be edited
+directly, so you must create a new preset:</p>
+<ol type="1">
+<li>Open the Dynamics dock by navigating to <strong>Windows &gt;
+Dockable Dialogs &gt; Paint Dynamics</strong>.</li>
+<li>Click the <strong>Create a new dynamics</strong> icon (the blank
+sheet icon) at the bottom of the dialog, or right-click an existing
+dynamic and choose <strong>Duplicate Dynamics</strong>.</li>
+<li>Name your dynamic something descriptive, such as "Tilt Size
+Control".</li>
+</ol>
+<h3 id="3-configure-the-dynamics-matrix">3. Configure the Dynamics
+Matrix</h3>
+<p>Once the new dynamic is created, the <strong>Paint Dynamics
+Editor</strong> will open automatically (or can be opened by
+double-clicking your new preset):</p>
+<ol type="1">
+<li>Locate the <strong>Paint Dynamics Matrix</strong>, which displays
+tablet inputs (Pressure, Velocity, Direction, Tilt, Wheels, Random)
+along the horizontal axis and brush outputs (Opacity, Size, Angle,
+Color, Hardness, Force, Aspect Ratio, Spacing, Rate, Flow, Jitter) along
+the vertical axis.</li>
+<li>Find the row labeled <strong>Size</strong>.</li>
+<li>Trace across to the column labeled <strong>Tilt</strong>.</li>
+<li>Check the box at the intersection of <strong>Tilt</strong> and
+<strong>Size</strong>.</li>
+</ol>
+<h3 id="4-adjust-the-response-curve">4. Adjust the Response Curve</h3>
+<p>By default, the mapping uses a linear curve. To customize how
+aggressively the brush scales relative to the stylus angle:</p>
+<ol type="1">
+<li>In the Paint Dynamics Editor, expand the <strong>Size</strong>
+section at the bottom to view the mapping curve.</li>
+<li>Ensure the dropdown menu is set to <strong>Tilt</strong>.</li>
+<li>Click and drag the curve line to adjust the sensitivity:
+<ul>
+<li>A straight diagonal line provides a direct 1:1 proportional
+scaling.</li>
+<li>Raising the curve increases size faster at shallow angles.</li>
+<li>Inverting the line makes the brush larger when the pen is upright
+and smaller when tilted.</li>
+</ul></li>
+</ol>
+<h3 id="5-apply-the-dynamic-to-your-brush-tool">5. Apply the Dynamic to
+Your Brush Tool</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush</strong>, <strong>Airbrush</strong>,
+or <strong>MyPaint Brush</strong> tool from the Toolbox.</li>
+<li>Go to the <strong>Tool Options</strong> dock.</li>
+<li>Locate the <strong>Dynamics</strong> section.</li>
+<li>Click the dynamic icon and select your newly created "Tilt Size
+Control" dynamic from the list.</li>
+<li>Set your base brush size in the Tool Options. When you draw, tilting
+the stylus will dynamically adjust the active stroke size relative to
+this base value.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

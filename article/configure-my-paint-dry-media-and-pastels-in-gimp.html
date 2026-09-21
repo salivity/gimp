@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure MyPaint Dry Media and Pastels in GIMP - gimp</title>
+    <meta name="description" content="GIMP features native integration with the MyPaint brush engine, allowing digital artists to access natural-feeling dry media like pastels, chalk, and charcoal directly inside their workflow. This guide explains how to activate the MyPaint Brush tool, nav">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-my-paint-dry-media-and-pastels-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure MyPaint Dry Media and Pastels in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-my-paint-dry-media-and-pastels-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP features native integration with the MyPaint brush engine, allowing digital artists to access natural-feeling dry media like pastels, chalk, and charcoal directly inside their workflow. This guide explains how to activate the MyPaint Brush tool, nav" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="configure-mypaint-dry-media-and-pastels-in-gimp">Configure
+MyPaint Dry Media and Pastels in GIMP</h1>
+<p>GIMP features native integration with the MyPaint brush engine,
+allowing digital artists to access natural-feeling dry media like
+pastels, chalk, and charcoal directly inside their workflow. This guide
+explains how to activate the MyPaint Brush tool, navigate the brush
+library to find dry media presets, configure dynamics for realistic
+pastel blending, and import external MyPaint brush packs to expand your
+creative toolkit.</p>
+<h3 id="1-select-the-mypaint-brush-tool">1. Select the MyPaint Brush
+Tool</h3>
+<p>To begin using the MyPaint engine in GIMP:</p>
+<ol type="1">
+<li>Open your project or create a new canvas in GIMP.</li>
+<li>Select the <strong>MyPaint Brush Tool</strong> from the main
+Toolbox, or press the default keyboard shortcut <strong>Y</strong>.</li>
+<li>Ensure the <strong>Tool Options</strong> dockable dialog is visible
+(<strong>Windows &gt; Dockable Dialogs &gt; Tool Options</strong>) to
+access basic parameters like size, opacity, and hardness.</li>
+</ol>
+<h3 id="2-open-the-mypaint-brushes-dialog">2. Open the MyPaint Brushes
+Dialog</h3>
+<p>Unlike standard GIMP raster brushes, MyPaint presets reside in a
+dedicated library window:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Windows &gt; Dockable Dialogs
+&gt; MyPaint Brushes</strong>.</li>
+<li>Dock this panel next to your standard Brush or Layer panel for easy
+access.</li>
+<li>In the search bar at the top or bottom of the MyPaint Brushes panel,
+type keywords such as <code>pastel</code>, <code>chalk</code>,
+<code>charcoal</code>, or <code>dry</code>.</li>
+</ol>
+<h3 id="3-select-and-test-dry-media-presets">3. Select and Test Dry
+Media Presets</h3>
+<p>GIMP bundles standard MyPaint brush collections, including David
+Revoy’s <em>Deevad</em> set:</p>
+<ul>
+<li><strong>Pastel Presets:</strong> Look for brushes named
+<code>pastel</code>, <code>soft pastel</code>, or
+<code>oil pastel</code>. These offer soft edge transitions and realistic
+texture build-up.</li>
+<li><strong>Chalk and Charcoal:</strong> Look for <code>charcoal</code>,
+<code>chalk</code>, or <code>coarse</code>. These presets mimic the
+rough grain of dry pigments interacting with textured paper.</li>
+</ul>
+<p>Select a preset and make test strokes on a transparent or textured
+background layer to evaluate the behavior of the grain.</p>
+<h3 id="4-configure-tool-options-for-realistic-pastel-effects">4.
+Configure Tool Options for Realistic Pastel Effects</h3>
+<p>Dry media heavily rely on pen pressure and stroke speed to simulate
+friction and pigment release. Adjust the following settings in the
+<strong>Tool Options</strong> panel:</p>
+<ul>
+<li><strong>Radius:</strong> Controls the core thickness of the stroke.
+Keep this moderately wide for blocking in pastel strokes.</li>
+<li><strong>Opaque:</strong> Controls the maximum paint density.
+Lowering this value slightly allows you to glaze and build layers
+gradually, mimicking physical chalk or pastel.</li>
+<li><strong>Hardness:</strong> Adjusts edge softness. Lower hardness
+values blend smoothly into underlying colors, while higher values create
+sharp, crumbly edges.</li>
+<li><strong>Pressure Sensitivity:</strong> If you are using a graphics
+tablet, ensure pen pressure is enabled in GIMP's <strong>Input
+Devices</strong> settings so that stroke opacity and radius dynamically
+respond to your touch.</li>
+</ul>
+<h3 id="5-install-additional-mypaint-dry-media-brushes-optional">5.
+Install Additional MyPaint Dry Media Brushes (Optional)</h3>
+<p>If the default presets do not have the specific dry media textures
+you need, you can add custom MyPaint brush packs (<code>.myb</code>
+files along with their corresponding <code>.png</code> previews):</p>
+<ol type="1">
+<li>Download a MyPaint brush pack specifically designed for pastels or
+dry media.</li>
+<li>In GIMP, go to <strong>Edit &gt; Preferences</strong>.</li>
+<li>Expand the <strong>Folders</strong> list on the left and select
+<strong>MyPaint Brushes</strong>.</li>
+<li>Note the user directory path listed (for example,
+<code>~/.config/GIMP/2.10/mypaint-brushes/</code> on Linux or
+<code>%APPDATA%\GIMP\2.10\mypaint-brushes\</code> on Windows).</li>
+<li>Extract the downloaded <code>.myb</code> and <code>.png</code> files
+into this designated folder.</li>
+<li>Return to GIMP and click the <strong>Refresh</strong> button at the
+bottom of the MyPaint Brushes dockable dialog to load the new dry media
+presets.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

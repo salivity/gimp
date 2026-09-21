@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Custom Trading Cards in GIMP - gimp</title>
+    <meta name="description" content="Designing custom printable trading cards using GIMP is a straightforward process that combines digital image editing with print-ready template alignment. This guide covers setting up a standard-sized trading card canvas with proper resolution and bleed z">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-custom-trading-cards-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Custom Trading Cards in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-custom-trading-cards-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom printable trading cards using GIMP is a straightforward process that combines digital image editing with print-ready template alignment. This guide covers setting up a standard-sized trading card canvas with proper resolution and bleed z" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-make-custom-trading-cards-in-gimp">How to Make Custom
+Trading Cards in GIMP</h1>
+<p>Designing custom printable trading cards using GIMP is a
+straightforward process that combines digital image editing with
+print-ready template alignment. This guide covers setting up a
+standard-sized trading card canvas with proper resolution and bleed
+zones, importing and organizing frame templates, inserting character
+art, customizing typography, and exporting the final layout for
+high-quality physical printing.</p>
+<h3 id="step-1-set-up-canvas-dimensions-and-resolution">Step 1: Set Up
+Canvas Dimensions and Resolution</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Change the measurement units to <strong>Inches</strong>.</li>
+<li>Standard trading cards measure 2.5 inches wide by 3.5 inches high.
+To account for cutting margins (bleed), set the <strong>Width</strong>
+to <code>2.75</code> inches and the <strong>Height</strong> to
+<code>3.75</code> inches (adding 0.125 inches on each edge).</li>
+<li>Expand <strong>Advanced Options</strong> and set both the <strong>X
+resolution</strong> and <strong>Y resolution</strong> to
+<code>300</code> pixels/in for sharp printing quality.</li>
+<li>Set the <strong>Color space</strong> to <strong>RGB color</strong>
+and click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-establish-print-and-safe-margin-guides">Step 2: Establish
+Print and Safe Margin Guides</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)</strong>.</li>
+<li>Add horizontal and vertical guides around the borders to represent
+your cutting lines (the 2.5 x 3.5-inch active area) and safe zones (an
+additional 0.125 inches inside the cut line where important text/icons
+should remain).</li>
+<li>Alternatively, use <strong>Image &gt; Guides &gt; New
+Guide...</strong> to position guides at exact pixel or inch offsets:
+<code>0.125 in</code> and <code>2.625 in</code> vertically, and
+<code>0.125 in</code> and <code>3.625 in</code> horizontally.</li>
+</ol>
+<h3 id="step-3-import-and-position-the-frame-template">Step 3: Import
+and Position the Frame Template</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Open as Layers...</strong> and select your
+transparent PNG or PSD card frame template.</li>
+<li>If the frame template does not match your canvas size, select the
+<strong>Scale Tool (Shift + S)</strong>, scale the frame to fit within
+the outer bleed boundaries, and press <strong>Enter</strong>.</li>
+<li>Name this layer <code>Card Frame</code> in the
+<strong>Layers</strong> panel and lock its position by clicking the lock
+icons above the layer stack.</li>
+</ol>
+<h3 id="step-4-add-and-mask-the-card-artwork">Step 4: Add and Mask the
+Card Artwork</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Open as Layers...</strong> and choose your
+primary illustration or photo.</li>
+<li>In the <strong>Layers</strong> panel, drag the artwork layer beneath
+the <code>Card Frame</code> layer so the frame overlays the art
+seamlessly.</li>
+<li>Use the <strong>Scale Tool (Shift + S)</strong> and <strong>Move
+Tool (M)</strong> to position the image inside the frame’s art
+window.</li>
+<li>To clean up edges that extend beyond the intended window, select the
+artwork layer, right-click it, choose <strong>Add Layer Mask</strong>,
+and paint with a black brush over any unwanted areas.</li>
+</ol>
+<h3 id="step-5-add-custom-text-stats-and-icons">Step 5: Add Custom Text,
+Stats, and Icons</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool (T)</strong> from the toolbox.</li>
+<li>Click on the canvas over the text areas defined by your template
+(such as title, card type, description, and stats).</li>
+<li>Choose a readable font, set the text color, and adjust size and
+letter spacing in the <strong>Tool Options</strong> panel.</li>
+<li>Keep all critical text elements at least 0.125 inches away from the
+outer edge to prevent accidental clipping during the trimming
+process.</li>
+<li>Create a dedicated layer group named <code>Card Text</code> to keep
+text layers organized.</li>
+</ol>
+<h3 id="step-6-export-for-printing">Step 6: Export for Printing</h3>
+<ol type="1">
+<li>Save your editable project file by selecting <strong>File &gt; Save
+As...</strong> and saving it as an <code>.xcf</code> file.</li>
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Choose a high-quality format such as <strong>PNG</strong> or
+<strong>TIFF</strong> to preserve transparency and avoid compression
+artifacts.</li>
+<li>If printing via a commercial print shop requiring PDF format, export
+as a <strong>PDF</strong> and ensure the resolution remains set to 300
+DPI.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

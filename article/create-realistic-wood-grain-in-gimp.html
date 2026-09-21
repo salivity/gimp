@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Realistic Wood Grain in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to generate a customizable, seamless, and realistic wood grain texture from scratch using GIMP's built-in procedural filters, distortion tools, and color maps. By leveraging noise generation, directional blurring, and gradient map">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-realistic-wood-grain-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Realistic Wood Grain in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-realistic-wood-grain-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate a customizable, seamless, and realistic wood grain texture from scratch using GIMP's built-in procedural filters, distortion tools, and color maps. By leveraging noise generation, directional blurring, and gradient map" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-realistic-wood-grain-in-gimp">Create Realistic Wood Grain
+in GIMP</h1>
+<p>This guide explains how to generate a customizable, seamless, and
+realistic wood grain texture from scratch using GIMP's built-in
+procedural filters, distortion tools, and color maps. By leveraging
+noise generation, directional blurring, and gradient mapping, you can
+produce authentic wooden surfaces for digital art, 3D texturing, or
+graphic design projects without relying on external stock photos.</p>
+<h3 id="step-1-set-up-the-canvas-and-base-noise">Step 1: Set Up the
+Canvas and Base Noise</h3>
+<ol type="1">
+<li>Open GIMP and create a new project by going to <strong>File &gt;
+New</strong>. A square resolution such as 2048x2048 pixels works best
+for textures.</li>
+<li>Go to <strong>Filters &gt; Render &gt; Noise &gt; Solid
+Noise</strong>.</li>
+<li>In the dialog, check the <strong>Turbulent</strong> box. Set the
+<strong>Detail</strong> slider to maximum (around 15).</li>
+<li>Set the <strong>X Size</strong> to approximately 2.0 and the
+<strong>Y Size</strong> to 16.0. This stretching creates the initial
+linear fiber structure of wood. Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-emphasize-the-grain-lines">Step 2: Emphasize the Grain
+Lines</h3>
+<ol type="1">
+<li>Navigate to <strong>Filters &gt; Blur &gt; Linear Motion
+Blur</strong>.</li>
+<li>Set the <strong>Angle</strong> to 90 degrees (for vertical grain) or
+0 degrees (for horizontal grain).</li>
+<li>Increase the <strong>Length</strong> to between 30 and 60 to smooth
+the fibers into distinct longitudinal strands. Click
+<strong>OK</strong>.</li>
+<li>Go to <strong>Colors &gt; Curves</strong> or <strong>Colors &gt;
+Levels</strong> to increase the contrast, making the dark fibers
+distinct from the lighter background.</li>
+</ol>
+<h3 id="step-3-add-knots-and-natural-imperfections">Step 3: Add Knots
+and Natural Imperfections</h3>
+<ol type="1">
+<li>Select the <strong>Warp Transform Tool</strong> from the Toolbox
+(shortcut <strong>W</strong>).</li>
+<li>Choose <strong>Grow area</strong> or <strong>Swirl
+clockwise</strong> in the tool options.</li>
+<li>Lightly click and drag over a few areas on your canvas to create
+natural swirls and wood knots. Keep these subtle to avoid unnatural
+distortion.</li>
+<li>Alternatively, go to <strong>Filters &gt; Distorts &gt; Whirl and
+Pinch</strong> to introduce controlled localized knotting.</li>
+</ol>
+<h3 id="step-4-apply-realistic-wood-colors">Step 4: Apply Realistic Wood
+Colors</h3>
+<ol type="1">
+<li>Select a wood-toned gradient by opening the
+<strong>Gradients</strong> dockable dialog. Built-in presets like
+<em>Wood 1</em>, <em>Wood 2</em>, or <em>Brown</em> work well, or you
+can create a custom gradient containing dark umber, warm brown, and soft
+tan.</li>
+<li>Go to <strong>Colors &gt; Map &gt; Gradient Map</strong>.</li>
+<li>GIMP will replace the grayscale values with the tones from your
+active gradient, instantly converting the noise pattern into rich wooden
+hues.</li>
+</ol>
+<h3 id="step-5-add-surface-texture-and-finish">Step 5: Add Surface
+Texture and Finish</h3>
+<ol type="1">
+<li>Duplicate your colored wood layer (<strong>Layer &gt; Duplicate
+Layer</strong>).</li>
+<li>On the top layer, go to <strong>Colors &gt; Desaturate &gt; Color to
+Gray</strong>.</li>
+<li>Apply <strong>Filters &gt; Generic &gt; High Pass</strong> with a
+low radius (around 2 to 5) to isolate the fine surface details.</li>
+<li>Change the top layer's blend mode to <strong>Overlay</strong> or
+<strong>Soft Light</strong> and lower the opacity to around 40–50%.</li>
+<li>For a final polish, select the base wood layer, go to <strong>Colors
+&gt; Color Temperature</strong>, and adjust the warmth to match your
+desired wood species (e.g., pine, oak, or mahogany).</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

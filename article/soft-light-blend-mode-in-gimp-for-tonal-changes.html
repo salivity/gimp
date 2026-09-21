@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Light Blend Mode in GIMP for Tonal Changes - gimp</title>
+    <meta name="description" content="The Soft Light blend mode in GIMP is a versatile compositing tool designed to produce gentle, natural-looking adjustments to contrast, exposure, and color balance. This article explains how the Soft Light algorithm processes pixel values, why it is ideal">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/soft-light-blend-mode-in-gimp-for-tonal-changes">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Soft Light Blend Mode in GIMP for Tonal Changes - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/soft-light-blend-mode-in-gimp-for-tonal-changes" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Soft Light blend mode in GIMP is a versatile compositing tool designed to produce gentle, natural-looking adjustments to contrast, exposure, and color balance. This article explains how the Soft Light algorithm processes pixel values, why it is ideal" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="soft-light-blend-mode-in-gimp-for-tonal-changes">Soft Light
+Blend Mode in GIMP for Tonal Changes</h1>
+<p>The Soft Light blend mode in GIMP is a versatile compositing tool
+designed to produce gentle, natural-looking adjustments to contrast,
+exposure, and color balance. This article explains how the Soft Light
+algorithm processes pixel values, why it is ideal for subtle tonal
+enhancements, and how to apply it effectively in your image editing
+workflow for tasks such as non-destructive dodging and burning, contrast
+correction, and color grading.</p>
+<h2 id="how-the-soft-light-blend-mode-works">How the Soft Light Blend
+Mode Works</h2>
+<p>The Soft Light mode functions similarly to shining a diffused
+spotlight onto the active layer. It evaluates the luminosity of the
+upper (blend) layer to determine how it alters the lower (base)
+layer:</p>
+<ul>
+<li><strong>Pixels brighter than 50% neutral gray:</strong> Gently
+brighten and lighten the underlying pixels.</li>
+<li><strong>Pixels darker than 50% neutral gray:</strong> Gently darken
+the underlying pixels.</li>
+<li><strong>Pure 50% neutral gray (RGB 128, 128, 128):</strong>
+Completely neutral, producing no change to the underlying image.</li>
+</ul>
+<p>Unlike high-impact blend modes like Multiply, Screen, or Overlay,
+Soft Light applies these shifts smoothly using a softer mathematical
+curve, preventing harsh clipping in highlights and shadows.</p>
+<h2 id="practical-applications-in-gimp">Practical Applications in
+GIMP</h2>
+<h3 id="1-gentle-contrast-enhancement">1. Gentle Contrast
+Enhancement</h3>
+<p>To add a subtle punch of contrast without blowing out delicate
+highlight details or crushing dark shadows:</p>
+<ol type="1">
+<li>Duplicate the base image layer (<code>Ctrl + Shift + D</code>).</li>
+<li>Set the top layer's blend mode to <strong>Soft Light</strong>.</li>
+<li>Lower the layer <strong>Opacity</strong> slider to fine-tune the
+strength of the contrast boost.</li>
+</ol>
+<h3 id="2-non-destructive-dodging-and-burning">2. Non-Destructive
+Dodging and Burning</h3>
+<p>Soft Light is standard for manual exposure sculpting:</p>
+<ol type="1">
+<li>Create a new transparent layer above your base image.</li>
+<li>Fill the new layer with 50% gray (<code>#808080</code>) using the
+Bucket Fill tool.</li>
+<li>Change the layer mode to <strong>Soft Light</strong> (the gray will
+become completely invisible).</li>
+<li>Use a soft <strong>Paintbrush</strong> set to low opacity:
+<ul>
+<li>Paint with <strong>White</strong> to brighten specific areas
+(dodge).</li>
+<li>Paint with <strong>Black</strong> to darken specific areas
+(burn).</li>
+</ul></li>
+</ol>
+<h3 id="3-subtle-color-grading-and-tinting">3. Subtle Color Grading and
+Tinting</h3>
+<p>Soft Light allows you to apply cinematic or vintage tints without
+washing out the underlying image texture:</p>
+<ol type="1">
+<li>Add a new layer filled with a solid color or a gradient.</li>
+<li>Set the mode to <strong>Soft Light</strong>.</li>
+<li>The underlying tones will absorb the hue gently, shifting the color
+atmosphere while preserving natural shadows and specular
+highlights.</li>
+</ol>
+<h2 id="key-differences-between-soft-light-and-overlay">Key Differences
+Between Soft Light and Overlay</h2>
+<p>While both modes rely on 50% gray as a neutral pivot,
+<strong>Overlay</strong> uses a combination of Multiply and Screen
+calculations that results in sharper, more dramatic contrast.
+<strong>Soft Light</strong> applies a lighter formula equivalent to a
+diffused light source, making it the preferred choice whenever you
+require restraint, smooth gradations, and subtle tonal adjustments in
+GIMP.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

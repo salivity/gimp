@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Brush Dynamic Fade Lengths in GIMP - gimp</title>
+    <meta name="description" content="Configuring custom brush dynamic fade lengths in GIMP allows digital artists to create smooth, tapered strokes that naturally mimic traditional inking pens and pencils. This guide provides a direct, step-by-step walkthrough on how to create a custom pain">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-set-brush-dynamic-fade-lengths-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Brush Dynamic Fade Lengths in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-set-brush-dynamic-fade-lengths-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring custom brush dynamic fade lengths in GIMP allows digital artists to create smooth, tapered strokes that naturally mimic traditional inking pens and pencils. This guide provides a direct, step-by-step walkthrough on how to create a custom pain" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-set-brush-dynamic-fade-lengths-in-gimp">How to Set Brush
+Dynamic Fade Lengths in GIMP</h1>
+<p>Configuring custom brush dynamic fade lengths in GIMP allows digital
+artists to create smooth, tapered strokes that naturally mimic
+traditional inking pens and pencils. This guide provides a direct,
+step-by-step walkthrough on how to create a custom paint dynamic, map
+the fade input to brush size, and adjust the specific fade length within
+the Tool Options dock to achieve precise tapered line ends.</p>
+<h3 id="step-1-open-the-paint-dynamics-dialog">Step 1: Open the Paint
+Dynamics Dialog</h3>
+<p>Default dynamics in GIMP are write-protected, so you must create a
+new dynamic preset to customize the fade behavior.</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Windows &gt; Dockable Dialogs
+&gt; Paint Dynamics</strong>.</li>
+<li>In the Paint Dynamics panel, click the <strong>Create a new
+dynamic</strong> icon (the blank document icon at the bottom) or
+right-click an existing preset and choose <strong>Duplicate
+Dynamic</strong>.</li>
+<li>Name your new dynamic preset (e.g., "Tapered Inking").</li>
+</ol>
+<h3 id="step-2-configure-the-dynamics-matrix-for-tapering">Step 2:
+Configure the Dynamics Matrix for Tapering</h3>
+<p>Once the dynamic is created, the <strong>Paint Dynamics
+Editor</strong> will open automatically.</p>
+<ol type="1">
+<li>Locate the <strong>Dynamics</strong> matrix grid.</li>
+<li>Find the row labeled <strong>Fade</strong> and check the box in the
+<strong>Size</strong> column. This forces the brush size to shrink as
+the stroke progresses based on the fade calculation.</li>
+<li><em>(Optional)</em> If you also want the stroke to become
+transparent at the end, check the box in the <strong>Opacity</strong>
+column under the <strong>Fade</strong> row.</li>
+</ol>
+<h3 id="step-3-set-the-fade-length-in-tool-options">Step 3: Set the Fade
+Length in Tool Options</h3>
+<p>The actual distance over which the brush tapers is controlled
+directly inside the Paint Tool Options, not the Dynamics Editor.</p>
+<ol type="1">
+<li>Select your preferred painting tool (such as the <strong>Paintbrush
+Tool</strong> or <strong>Ink Tool</strong>) from the Toolbox.</li>
+<li>Open the <strong>Tool Options</strong> panel (usually docked on the
+left or accessible via <strong>Windows &gt; Dockable Dialogs &gt; Tool
+Options</strong>).</li>
+<li>Under the <strong>Dynamics</strong> dropdown, select the custom
+dynamic preset you created in Step 1.</li>
+<li>Expand the <strong>Dynamics Options</strong> section (click the
+small arrow next to it if it is collapsed).</li>
+<li>Locate the <strong>Fade Length</strong> slider.</li>
+<li>Enter your desired fade distance in pixels (or change the unit
+dropdown to centimeters, inches, or millimeters). A smaller value
+produces a quick, sharp taper, while a larger value extends the taper
+across longer strokes.</li>
+</ol>
+<h3 id="step-4-adjust-the-fade-repeat-and-curve">Step 4: Adjust the Fade
+Repeat and Curve</h3>
+<p>To further refine how the taper behaves during continuous
+drawing:</p>
+<ul>
+<li><strong>Repeat Options:</strong> In the Tool Options under Dynamics
+Options, adjust the <strong>Repeat</strong> setting:
+<ul>
+<li><strong>None:</strong> The brush tapers down once and remains at
+zero until the mouse/stylus is lifted.</li>
+<li><strong>Sawtooth wave:</strong> The stroke continuously resets and
+repeats the fade cycle.</li>
+<li><strong>Triangle wave:</strong> The stroke tapers down, then widens
+back up in an oscillating pattern.</li>
+</ul></li>
+<li><strong>Custom Curves:</strong> In the <strong>Paint Dynamics
+Editor</strong>, click the <strong>Fade</strong> tab at the bottom to
+adjust the response curve. Moving the curve control points alters
+whether the stroke tapers gradually (linear), drops off instantly
+(concave), or maintains thickness before a sharp final point
+(convex).</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using GIMP GEGL Noise Slur for Painterly Transitions - gimp</title>
+    <meta name="description" content="The GEGL Noise Slur filter in GIMP is a specialized distortion tool used by digital artists to break up sharp, artificial lines and simulate the organic behavior of wet medium blending. By shifting pixels downward in a randomized, gravity-like motion, th">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/using-gimp-gegl-noise-slur-for-painterly-transitions">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using GIMP GEGL Noise Slur for Painterly Transitions - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/using-gimp-gegl-noise-slur-for-painterly-transitions" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Noise Slur filter in GIMP is a specialized distortion tool used by digital artists to break up sharp, artificial lines and simulate the organic behavior of wet medium blending. By shifting pixels downward in a randomized, gravity-like motion, th" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="using-gimp-gegl-noise-slur-for-painterly-transitions">Using GIMP
+GEGL Noise Slur for Painterly Transitions</h1>
+<p>The GEGL Noise Slur filter in GIMP is a specialized distortion tool
+used by digital artists to break up sharp, artificial lines and simulate
+the organic behavior of wet medium blending. By shifting pixels downward
+in a randomized, gravity-like motion, this filter transforms harsh
+digital boundaries into fluid, textured brush-like strokes. This guide
+explains the core purpose of the Noise Slur filter, how it alters
+digital edges, and how to effectively incorporate it into a painterly
+post-processing workflow.</p>
+<h3 id="understanding-the-noise-slur-mechanism">Understanding the Noise
+Slur Mechanism</h3>
+<p>Unlike standard blur filters that average color values across
+adjacent pixels, GEGL Noise Slur physically displaces pixels. For every
+pixel selected by the algorithm, the filter replaces its value with the
+value of a pixel directly above it. This produces a vertical "melting"
+or "dragging" artifact that closely mimics the physical dragging of a
+wet bristle brush across a canvas.</p>
+<h3 id="breaking-the-digital-hard-edge">Breaking the Digital Hard
+Edge</h3>
+<p>Digital artwork and photo-manipulations often suffer from edges that
+appear unnaturally sharp or vector-like. In traditional painting, edges
+are rarely uniform; they are soft, lost, or broken by the texture of the
+canvas and bristle marks.</p>
+<p>Applying the Noise Slur filter achieves several painterly goals:</p>
+<ul>
+<li><strong>Edge Disruption:</strong> It introduces micro-variations
+along color borders, removing clean computer-generated outlines.</li>
+<li><strong>Color Bleed Simulation:</strong> By pulling neighboring
+colors into one another, it creates the illusion of wet pigment bleeding
+across adjacent surfaces.</li>
+<li><strong>Canvas Resistance:</strong> The randomized nature of the
+displacement mimics how heavy paint catches on the tooth of a canvas or
+watercolor paper.</li>
+</ul>
+<h3 id="strategic-application-for-painterly-transitions">Strategic
+Application for Painterly Transitions</h3>
+<p>To achieve natural results rather than total distortion, Noise Slur
+should be used with deliberate parameters:</p>
+<ol type="1">
+<li><strong>Low Randomization Percentages:</strong> Keeping the slur
+percentage low (typically between 5% and 15%) ensures the subject
+retains structural form while softening hard transitions.</li>
+<li><strong>Layer Masking:</strong> Apply the filter on a duplicated
+layer, then use a soft brush on a layer mask to limit the slurring
+effect to outer contours, foliage, fabric, and backgrounds while
+preserving sharp details on focal points like facial features.</li>
+<li><strong>Combination with Other Filters:</strong> Noise Slur is most
+effective when paired with subsequent smoothing filters, such as GEGL
+Median Blur or Surface Blur, which blend the dragged pixels into
+cohesive, painterly strokes.</li>
+<li><strong>Directional Rotation:</strong> Because Noise Slur naturally
+drags pixels straight down, rotating the image or selection prior to
+applying the filter allows you to create diagonal or dynamic brushstroke
+angles across different sections of your composition.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Desaturate Modes: Luminance and Lightness - gimp</title>
+    <meta name="description" content="GIMP’s Desaturate tool transforms color images into grayscale by stripping color saturation while retaining tonal values. The tool offers multiple conversion modes—including Luminance, Lightness, Luma, Average, and Value—each utilizing a different">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-desaturate-modes-luminance-and-lightness">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Desaturate Modes: Luminance and Lightness - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-desaturate-modes-luminance-and-lightness" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s Desaturate tool transforms color images into grayscale by stripping color saturation while retaining tonal values. The tool offers multiple conversion modes—including Luminance, Lightness, Luma, Average, and Value—each utilizing a different" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-desaturate-modes-luminance-and-lightness">GIMP Desaturate
+Modes: Luminance and Lightness</h1>
+<p>GIMP’s Desaturate tool transforms color images into grayscale by
+stripping color saturation while retaining tonal values. The tool offers
+multiple conversion modes—including Luminance, Lightness, Luma, Average,
+and Value—each utilizing a different mathematical formula to calculate
+the final gray intensity of each pixel. Selecting the correct mode gives
+you precise control over contrast, channel weighting, and perceived
+brightness when creating black-and-white imagery.</p>
+<h3 id="luminance">Luminance</h3>
+<p>The <strong>Luminance</strong> mode calculates gray values based on
+human eye perception, which is naturally more sensitive to green
+wavelengths than red or blue. It applies modern colorimetric standards
+(ITU-R BT.709) to weigh the color channels unevenly:</p>
+<p><span class="math display">\[\text{Luminance} = 0.2126 \times
+\text{Red} + 0.7152 \times \text{Green} + 0.0722 \times
+\text{Blue}\]</span></p>
+<p>Because green tones contribute the most to the final brightness, this
+option produces the most natural-looking, realistic black-and-white
+conversions for landscapes, portraits, and general photography.</p>
+<h3 id="lightness">Lightness</h3>
+<p>The <strong>Lightness</strong> mode is derived from the HSL (Hue,
+Saturation, Lightness) color space. Instead of weighing channels based
+on perception, it calculates the midpoint between the strongest and
+weakest color channels for each pixel:</p>
+<p><span class="math display">\[\text{Lightness} =
+\frac{\max(\text{Red}, \text{Green}, \text{Blue}) + \min(\text{Red},
+\text{Green}, \text{Blue})}{2}\]</span></p>
+<p>This method tends to produce a more balanced midtone range, but it
+can make vibrant colors (like saturated yellows or greens) appear darker
+or flatter compared to the Luminance option.</p>
+<h3 id="luma">Luma</h3>
+<p>The <strong>Luma</strong> mode operates similarly to Luminance but
+applies older broadcast video standards (ITU-R BT.601) to
+gamma-corrected color channels:</p>
+<p><span class="math display">\[\text{Luma} = 0.299 \times \text{Red} +
+0.587 \times \text{Green} + 0.114 \times \text{Blue}\]</span></p>
+<p>This formula gives slightly more weight to the red channel and less
+to the green channel compared to standard Luminance, resulting in a
+subtly different tonal balance that works well for classic or legacy
+video-style conversions.</p>
+<h3 id="average-intensity">Average (Intensity)</h3>
+<p>The <strong>Average</strong> mode calculates the simple arithmetic
+mean of the three primary color channels:</p>
+<p><span class="math display">\[\text{Average} = \frac{\text{Red} +
+\text{Green} + \text{Blue}}{3}\]</span></p>
+<p>Every color channel contributes equally to the brightness value. This
+mode is useful when you need a mathematically neutral desaturation
+without visual bias toward any specific color range.</p>
+<h3 id="value">Value</h3>
+<p>The <strong>Value</strong> mode is derived from the HSV (Hue,
+Saturation, Value) color model. It sets the gray level of a pixel to the
+maximum value among its three color channels:</p>
+<p><span class="math display">\[\text{Value} = \max(\text{Red},
+\text{Green}, \text{Blue})\]</span></p>
+<p>Because it only considers the brightest channel, this mode produces
+the brightest, highest-key grayscale output with punchy whites and
+lighter midtones.</p>
+<hr />
+<h3 id="choosing-the-right-mode">Choosing the Right Mode</h3>
+<ul>
+<li>Use <strong>Luminance</strong> for the most photorealistic,
+perceptually accurate black-and-white results.</li>
+<li>Use <strong>Lightness</strong> to preserve uniform tonal transitions
+in artificial or graphic designs.</li>
+<li>Use <strong>Luma</strong> for a vintage television contrast
+look.</li>
+<li>Use <strong>Average</strong> for neutral, technical image
+processing.</li>
+<li>Use <strong>Value</strong> when you need to maintain maximum
+highlight brightness across the image.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

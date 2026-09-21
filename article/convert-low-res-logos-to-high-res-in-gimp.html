@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Low-Res Logos to High-Res in GIMP - gimp</title>
+    <meta name="description" content="Converting a low-resolution raster logo into a crisp, high-resolution asset in GIMP involves cleaning up pixelation, isolating the original shapes, and converting raster pixels into scalable vector paths. This step-by-step guide covers the process of imp">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/convert-low-res-logos-to-high-res-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Low-Res Logos to High-Res in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/convert-low-res-logos-to-high-res-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a low-resolution raster logo into a crisp, high-resolution asset in GIMP involves cleaning up pixelation, isolating the original shapes, and converting raster pixels into scalable vector paths. This step-by-step guide covers the process of imp" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="convert-low-res-logos-to-high-res-in-gimp">Convert Low-Res Logos
+to High-Res in GIMP</h1>
+<p>Converting a low-resolution raster logo into a crisp, high-resolution
+asset in GIMP involves cleaning up pixelation, isolating the original
+shapes, and converting raster pixels into scalable vector paths. This
+step-by-step guide covers the process of importing pixelated graphics,
+refining boundaries using selection and threshold tools, tracing shapes
+into paths, and exporting the final artwork as a high-DPI raster image
+or a scalable SVG.</p>
+<h3 id="step-1-import-and-increase-image-resolution">Step 1: Import and
+Increase Image Resolution</h3>
+<ol type="1">
+<li>Open GIMP and load your low-resolution logo via <strong>File &gt;
+Open</strong>.</li>
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Set the <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <code>300</code> pixels per inch (PPI).</li>
+<li>Increase the <strong>Width</strong> and <strong>Height</strong>
+dimensions to at least 3000–4000 pixels on the longest side.</li>
+<li>Set <strong>Interpolation</strong> to <strong>Cubic</strong> or
+<strong>NoHalo</strong>, then click <strong>Scale</strong>. <em>Note:
+This will not automatically fix pixelation, but it provides the pixel
+density needed for smoother edge generation.</em></li>
+</ol>
+<h3 id="step-2-clean-and-isolate-shapes-with-threshold">Step 2: Clean
+and Isolate Shapes with Threshold</h3>
+<p>For monochrome or simple flat-color logos:</p>
+<ol type="1">
+<li>Navigate to <strong>Colors &gt; Threshold</strong>.</li>
+<li>Adjust the slider until the logo's silhouette is solid black and the
+background is pure white, minimizing edge artifacts and compression
+noise.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p>For multi-colored logos:</p>
+<ol type="1">
+<li>Use <strong>Colors &gt; Levels</strong> or <strong>Colors &gt;
+Curves</strong> to boost contrast and separate overlapping tones.</li>
+<li>Isolate individual colors by using the <strong>Select by Color
+Tool</strong> (<code>Shift + O</code>) with a low
+<strong>Threshold</strong> setting (between 5 and 15).</li>
+</ol>
+<h3 id="step-3-convert-raster-selections-to-vector-paths">Step 3:
+Convert Raster Selections to Vector Paths</h3>
+<ol type="1">
+<li>Select the area you want to convert using the <strong>Fuzzy Select
+Tool</strong> (<code>U</code>) or <strong>Select by Color Tool</strong>
+(<code>Shift + O</code>).</li>
+<li>Go to the top menu and select <strong>Select &gt; To
+Path</strong>.</li>
+<li>Open the <strong>Paths Dialog</strong> (<strong>Windows &gt;
+Dockable Dialogs &gt; Paths</strong>) to view the newly generated vector
+path.</li>
+<li>Make the path visible by clicking the eye icon next to the path
+layer.</li>
+</ol>
+<h3 id="step-4-smooth-and-refine-path-nodes">Step 4: Smooth and Refine
+Path Nodes</h3>
+<ol type="1">
+<li>Choose the <strong>Paths Tool</strong> (<code>B</code>) from the
+toolbox.</li>
+<li>Click on the path in the workspace to display its anchor points and
+control handles.</li>
+<li>Click and drag misplaced nodes to align with the intended logo
+design.</li>
+<li>Hold <code>Ctrl</code> and click to remove unnecessary nodes that
+cause bumpy or irregular contours. Smooth out curved lines by pulling
+the control handles.</li>
+</ol>
+<h3 id="step-5-render-crisp-colors-on-new-layers">Step 5: Render Crisp
+Colors on New Layers</h3>
+<ol type="1">
+<li>Create a new transparent layer by clicking <strong>Layer &gt; New
+Layer</strong>.</li>
+<li>In the <strong>Paths Dialog</strong>, right-click your refined path
+and select <strong>Path to Selection</strong>.</li>
+<li>Select the <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>), choose the original color using the
+<strong>Color Picker</strong>, and fill the active selection on your new
+layer.</li>
+<li>Repeat Steps 3 through 5 for each distinct color or element in the
+logo.</li>
+<li>Hide or delete the original pixelated background layer.</li>
+</ol>
+<h3 id="step-6-export-the-high-resolution-asset">Step 6: Export the
+High-Resolution Asset</h3>
+<ul>
+<li><strong>For Vector Format (Infinite Scalability):</strong> In the
+<strong>Paths Dialog</strong>, right-click the final path, select
+<strong>Export Path...</strong>, name the file with an <code>.svg</code>
+extension, and save it.</li>
+<li><strong>For High-Resolution Raster (PNG):</strong> Go to
+<strong>File &gt; Export As...</strong>, select <strong>PNG Image
+(*.png)</strong>, ensure full resolution is retained, and click
+<strong>Export</strong>. Ensure background transparency is enabled if
+required.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

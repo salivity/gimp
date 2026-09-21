@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Caches Interactive Filter Previews - gimp</title>
+    <meta name="description" content="When applying filter effects interactively, the GNU Image Manipulation Program (GIMP) relies on an intelligent caching pipeline powered by its underlying image processing engine, GEGL (Generic Graphical Library). Instead of recalculating an entire image">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-caches-interactive-filter-previews">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Caches Interactive Filter Previews - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-caches-interactive-filter-previews" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When applying filter effects interactively, the GNU Image Manipulation Program (GIMP) relies on an intelligent caching pipeline powered by its underlying image processing engine, GEGL (Generic Graphical Library). Instead of recalculating an entire image" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-caches-interactive-filter-previews">How GIMP Caches
+Interactive Filter Previews</h1>
+<p>When applying filter effects interactively, the GNU Image
+Manipulation Program (GIMP) relies on an intelligent caching pipeline
+powered by its underlying image processing engine, GEGL (Generic
+Graphical Library). Instead of recalculating an entire image on every
+parameter adjustment, GIMP minimizes latency by combining node-based
+directed acyclic graph (DAG) caching, a tiled memory architecture,
+region-of-interest computation, and progressive multi-resolution
+rendering. This article examines the core caching strategies GIMP
+utilizes to deliver smooth, real-time on-canvas previews.</p>
+<h3 id="tile-based-buffer-caching">Tile-Based Buffer Caching</h3>
+<p>GIMP breaks images down into smaller rectangular blocks—typically
+128×128 pixel tiles—managed by <code>GeglBuffer</code>. When a filter is
+previewed:</p>
+<ul>
+<li><strong>Granular Allocation:</strong> Rather than storing the entire
+canvas state in a contiguous memory block, GIMP updates and caches only
+the specific tiles affected by the filter operation.</li>
+<li><strong>LRU Tile Discarding:</strong> Tiles are stored in RAM using
+a Least Recently Used (LRU) cache policy. When allocated memory limits
+are reached, untouched or off-screen tiles are swapped out to disk or
+discarded, ensuring that active preview tiles remain instantly
+accessible in memory.</li>
+</ul>
+<h3 id="directed-acyclic-graph-dag-node-caching">Directed Acyclic Graph
+(DAG) Node Caching</h3>
+<p>Filters in modern GIMP versions are represented as operations inside
+a GEGL graph. Each step in the processing chain corresponds to a graph
+node:</p>
+<ul>
+<li><strong>Intermediate State Retention:</strong> Each node in the
+graph can store a cached copy of its output buffer.</li>
+<li><strong>Upstream Protection:</strong> When a user adjusts a
+parameter on a downstream filter, all upstream nodes remain unchanged.
+GIMP reads directly from the upstream node's cache rather than
+recomputing the source image, layer transformations, or preceding
+filters.</li>
+<li><strong>Dirty Region Tracking:</strong> GEGL uses "damage tracking."
+When a setting changes, only the nodes directly affected are marked as
+"dirty," triggering recalculation solely for the invalid segments.</li>
+</ul>
+<h3 id="region-of-interest-roi-and-viewport-limiting">Region of Interest
+(ROI) and Viewport Limiting</h3>
+<p>GIMP avoids processing areas of the image that the user cannot
+currently see:</p>
+<ul>
+<li><strong>Canvas Clipping:</strong> The rendering pipeline calculates
+a bounding box that intersects the active layer, the filter's reach, and
+the user's current canvas viewport.</li>
+<li><strong>Demand-Driven Evaluation:</strong> GEGL operates as a
+pull-based system. The display requests only the pixels required to
+render the active screen view. GIMP generates and caches preview results
+strictly for this visible Region of Interest, discarding the need to
+render off-screen pixels until the canvas is panned.</li>
+</ul>
+<h3 id="mipmap-and-subsampling-caching">Mipmap and Subsampling
+Caching</h3>
+<p>To optimize performance at various zoom levels, GIMP leverages
+pyramidal level-of-detail (LoD) scaling:</p>
+<ul>
+<li><strong>Downsampled Caching:</strong> When a user zooms out to view
+a large image, GIMP utilizes pre-computed, lower-resolution mipmap
+representations from its buffer cache.</li>
+<li><strong>Reduced Computation Load:</strong> The filter preview
+calculates adjustments on the downsampled pixel grid rather than at full
+1:1 resolution. The resulting lower-density data requires significantly
+fewer processor cycles to generate and substantially less RAM to
+cache.</li>
+</ul>
+<h3 id="asynchronous-and-progressive-rendering">Asynchronous and
+Progressive Rendering</h3>
+<p>To maintain a responsive user interface during complex filter
+previews, GIMP processes cached tiles incrementally:</p>
+<ul>
+<li><strong>Multi-Threaded Chunking:</strong> Calculations are
+distributed across background worker threads. As individual tiles finish
+processing, they are committed to the display cache and painted to the
+screen immediately.</li>
+<li><strong>Coarse-to-Fine Display:</strong> For heavy computational
+filters, GIMP may first push a coarse or lower-resolution preview to the
+cache to give immediate visual feedback, updating to a high-fidelity
+cached result once the full rendering pass completes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

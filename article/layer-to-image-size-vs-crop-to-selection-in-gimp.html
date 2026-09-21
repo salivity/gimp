@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layer to Image Size vs Crop to Selection in GIMP - gimp</title>
+    <meta name="description" content="When working in GIMP, managing layer boundaries is essential for applying effects, painting, and organizing elements. Both "Layer to Image Size" and "Layer Crop to Selection" modify the boundary of the active layer, but they serve opposite purposes. Whil">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/layer-to-image-size-vs-crop-to-selection-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Layer to Image Size vs Crop to Selection in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/layer-to-image-size-vs-crop-to-selection-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When working in GIMP, managing layer boundaries is essential for applying effects, painting, and organizing elements. Both "Layer to Image Size" and "Layer Crop to Selection" modify the boundary of the active layer, but they serve opposite purposes. Whil" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="layer-to-image-size-vs-crop-to-selection-in-gimp">Layer to Image
+Size vs Crop to Selection in GIMP</h1>
+<p>When working in GIMP, managing layer boundaries is essential for
+applying effects, painting, and organizing elements. Both "Layer to
+Image Size" and "Layer Crop to Selection" modify the boundary of the
+active layer, but they serve opposite purposes. While "Layer to Image
+Size" adjusts the layer's boundary to match the full dimensions of the
+overall image canvas, "Layer Crop to Selection" trims the layer down so
+its boundary fits strictly within the area of an active selection.</p>
+<h3 id="understanding-layer-boundaries">Understanding Layer
+Boundaries</h3>
+<p>In GIMP, each layer has its own boundary, indicated by a dashed
+yellow and black line. A layer's boundary can be smaller than, equal to,
+or larger than the overall image canvas. You cannot paint or apply most
+filters outside of this boundary on that specific layer, making the
+manipulation of layer sizes a common task.</p>
+<h3 id="layer-to-image-size">Layer to Image Size</h3>
+<p>The <strong>Layer to Image Size</strong> command (found under
+<code>Layer &gt; Layer to Image Size</code>) resizes the active layer's
+boundary so it matches the exact width and height of the main image
+canvas.</p>
+<ul>
+<li><strong>How it works:</strong> If the layer is smaller than the
+canvas, its borders expand to the edges of the canvas, filling the new
+empty space with transparency. If the layer is larger than the canvas
+(parts are hanging outside), the boundary is shrunk to match the canvas
+edges, and any content outside the canvas area is clipped.</li>
+<li><strong>When to use it:</strong>
+<ul>
+<li>When you need to use a brush or tool across the entire canvas, but
+the layer is currently too small.</li>
+<li>When applying full-canvas filters, gradients, or patterns that
+require the layer to match the image dimensions.</li>
+<li>When aligning layers or merging elements cleanly across the entire
+workspace.</li>
+</ul></li>
+</ul>
+<h3 id="layer-crop-to-selection">Layer Crop to Selection</h3>
+<p>The <strong>Layer Crop to Selection</strong> command (found under
+<code>Layer &gt; Crop to Selection</code>) shrinks the active layer's
+boundary to the rectangular perimeter of your current selection.</p>
+<ul>
+<li><strong>How it works:</strong> You must make an active selection
+first (using tools like the Rectangle Select, Ellipse Select, or Free
+Select tool). When you run the command, GIMP trims the layer's boundary
+to fit tightly around the bounding box of that selection. Any layer
+content outside of the selection area is permanently deleted from that
+layer.</li>
+<li><strong>When to use it:</strong>
+<ul>
+<li>When you want to isolate a specific object or graphic on a layer and
+discard the unnecessary surrounding transparent or opaque pixels.</li>
+<li>To reduce project file size and memory usage by removing unneeded
+layer data.</li>
+<li>To make moving, rotating, or transforming an individual element
+easier, since transform handles align to the layer's boundary.</li>
+</ul></li>
+</ul>
+<h3 id="key-differences-summary">Key Differences Summary</h3>
+<ul>
+<li><strong>Target Dimensions:</strong> "Layer to Image Size" always
+conforms to the overall project canvas. "Layer Crop to Selection"
+conforms to the bounding box of an active user-drawn selection.</li>
+<li><strong>Prerequisites:</strong> "Layer to Image Size" works at any
+time without a selection. "Layer Crop to Selection" requires an active
+selection to function.</li>
+<li><strong>Expansion vs. Trimming:</strong> "Layer to Image Size" can
+expand or shrink a layer depending on its original size relative to the
+canvas. "Layer Crop to Selection" strictly trims and removes data
+outside the selected area.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Tile Swap System: Handling Full Memory - gimp</title>
+    <meta name="description" content="When editing high-resolution images or working with numerous layers in GIMP, physical system memory (RAM) can quickly become depleted. This article explains the role of GIMP’s tile swap system during memory saturation, detailing how the software breaks">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-tile-swap-system-handling-full-memory">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Tile Swap System: Handling Full Memory - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-tile-swap-system-handling-full-memory" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When editing high-resolution images or working with numerous layers in GIMP, physical system memory (RAM) can quickly become depleted. This article explains the role of GIMP’s tile swap system during memory saturation, detailing how the software breaks" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-tile-swap-system-handling-full-memory">GIMP Tile Swap
+System: Handling Full Memory</h1>
+<p>When editing high-resolution images or working with numerous layers
+in GIMP, physical system memory (RAM) can quickly become depleted. This
+article explains the role of GIMP’s tile swap system during memory
+saturation, detailing how the software breaks images into manageable
+data chunks, offloads inactive data to disk storage to prevent
+application crashes, and allows users to continue editing files that
+exceed their computer's physical hardware capacity.</p>
+<h2 id="how-gimp-manages-image-data-the-tile-architecture">How GIMP
+Manages Image Data: The Tile Architecture</h2>
+<p>GIMP does not load an entire image into memory as a single,
+continuous block of data. Instead, its underlying engine (GEGL, or
+Generic Graphics Library) divides every layer and image into uniform,
+square segments known as "tiles."</p>
+<p>This tiled architecture allows GIMP to process, render, and modify
+only the specific regions of an image currently being viewed or edited,
+rather than updating millions of pixels across the entire canvas
+simultaneously.</p>
+<h2 id="the-role-of-the-tile-swap-system-under-memory-saturation">The
+Role of the Tile Swap System Under Memory Saturation</h2>
+<p>The primary function of the tile swap system is to act as a virtual
+memory manager specifically tailored for image manipulation. When
+physical RAM is fully consumed, the swap system performs several
+critical tasks:</p>
+<h3 id="1-preventing-out-of-memory-oom-crashes">1. Preventing
+Out-of-Memory (OOM) Crashes</h3>
+<p>Without a swap mechanism, exceeding available RAM would trigger the
+operating system's Out-of-Memory killer or cause GIMP to crash
+instantly, resulting in lost work. The tile swap system intercepts this
+memory pressure by writing excess image tiles to a designated location
+on your hard drive or SSD (the swap file), keeping GIMP stable.</p>
+<h3 id="2-offloading-inactive-image-data">2. Offloading Inactive Image
+Data</h3>
+<p>The swap system tracks tile usage. When memory limits are reached,
+GIMP retains the most recently accessed tiles (such as the active brush
+area or current zoom viewport) in fast physical RAM and flushes dormant
+tiles (such as hidden layers, undo history steps, or off-screen regions)
+to the disk.</p>
+<h3 id="3-enabling-work-on-vast-canvases">3. Enabling Work on Vast
+Canvases</h3>
+<p>Because of the tile swap mechanism, the theoretical maximum size of a
+project in GIMP is bounded by available disk space rather than physical
+RAM. An artist with 16 GB of RAM can still manipulate a massive print
+file requiring 60 GB of working memory, provided there is enough free
+storage on the swap drive.</p>
+<h3 id="4-transparent-data-retrieval">4. Transparent Data Retrieval</h3>
+<p>When an action requires access to swapped-out data—such as zooming
+out to view the entire canvas, applying a global filter, or switching to
+an inactive layer—the tile engine dynamically reads the required tiles
+back into RAM and swaps out other currently unnecessary tiles in an
+automated cycle.</p>
+<h2 id="performance-considerations-and-configuration">Performance
+Considerations and Configuration</h2>
+<p>While the tile swap system preserves stability and enables
+large-scale editing, disk access is significantly slower than system
+memory. When swapping occurs, users may notice reduced responsiveness or
+slight delays during operations.</p>
+<p>To optimize performance when the swap system activates:</p>
+<ul>
+<li><strong>Specify Fast Storage:</strong> Set the swap folder to a
+high-speed NVMe or SSD drive rather than a mechanical hard drive via
+<strong>Edit &gt; Preferences &gt; Folders &gt; Swap
+folder</strong>.</li>
+<li><strong>Configure the Tile Cache:</strong> In <strong>Preferences
+&gt; System Resources</strong>, adjust the "Tile cache" size to utilize
+a safe, high percentage of your actual physical RAM. This ensures GIMP
+exhausts all available high-speed system memory before resorting to
+disk-based swapping.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Multiply Blend Mode for Atmospheric Shadows - gimp</title>
+    <meta name="description" content="The Multiply blend mode in GIMP is a fundamental compositing tool used to darken images while preserving underlying textures and contrast. This article explains how the Multiply mode functions mathematically, why it is the preferred method for rendering">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-multiply-blend-mode-for-atmospheric-shadows">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Multiply Blend Mode for Atmospheric Shadows - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-multiply-blend-mode-for-atmospheric-shadows" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Multiply blend mode in GIMP is a fundamental compositing tool used to darken images while preserving underlying textures and contrast. This article explains how the Multiply mode functions mathematically, why it is the preferred method for rendering" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-multiply-blend-mode-for-atmospheric-shadows">GIMP Multiply
+Blend Mode for Atmospheric Shadows</h1>
+<p>The Multiply blend mode in GIMP is a fundamental compositing tool
+used to darken images while preserving underlying textures and contrast.
+This article explains how the Multiply mode functions mathematically,
+why it is the preferred method for rendering realistic atmospheric
+shadows, and how to effectively apply it within your digital editing
+workflow.</p>
+<h2 id="how-the-multiply-blend-mode-functions">How the Multiply Blend
+Mode Functions</h2>
+<p>The Multiply mode evaluates the color values of the active blend
+layer and the underlying base layer, multiplying their luminance values
+together. In digital color models where pixel values range from 0 (pure
+black) to 1 (pure white):</p>
+<ul>
+<li><strong>Pure White (Value of 1):</strong> Has no effect on the
+underlying pixels (<span class="math inline">\(X \times 1 = X\)</span>),
+making white areas on the blend layer completely transparent.</li>
+<li><strong>Pure Black (Value of 0):</strong> Turns the underlying
+pixels completely black (<span class="math inline">\(X \times 0 =
+0\)</span>).</li>
+<li><strong>Intermediate Colors:</strong> Darken the base layer while
+transferring the hue and saturation of the blend layer onto the
+underlying image.</li>
+</ul>
+<p>Because this formula always results in a value equal to or darker
+than the original, it naturally simulates how light decreases across an
+environment.</p>
+<h2 id="why-multiply-excels-for-atmospheric-shadows">Why Multiply Excels
+for Atmospheric Shadows</h2>
+<p>In real-world environments, shadows are not flat black or gray; they
+are darker regions illuminated by ambient scattered light, such as a
+blue sky or warm bounce light from adjacent surfaces. Using normal
+painting tools at low opacity often makes shadows look muddy or washed
+out because they replace the underlying pixel data.</p>
+<p>The Multiply mode solves this issue in two distinct ways:</p>
+<ol type="1">
+<li><strong>Texture Preservation:</strong> Because it darkens via
+multiplication rather than replacement, the fine details, surface
+variations, and highlights of the base layer remain visible beneath the
+shadow.</li>
+<li><strong>Color Integration:</strong> When you use a colored brush or
+gradient (such as a soft indigo or ambient tone) on a Multiply layer,
+the mode naturally tints the existing textures without destroying their
+luminosity range. This generates the depth and color temperature shifts
+characteristic of true atmospheric shadows.</li>
+</ol>
+<h2 id="applying-atmospheric-shadows-in-gimp">Applying Atmospheric
+Shadows in GIMP</h2>
+<p>To create atmospheric shadows using Multiply:</p>
+<ol type="1">
+<li>Open your image in GIMP and open the <strong>Layers</strong> panel
+(<code>Ctrl + L</code>).</li>
+<li>Click <strong>Create a new layer</strong>, ensure the fill type is
+set to <strong>Transparency</strong>, and place it above your subject or
+background layer.</li>
+<li>Change the <strong>Mode</strong> dropdown at the top of the Layers
+panel from <em>Normal</em> to <em>Multiply</em>.</li>
+<li>Select the <strong>Paintbrush</strong> or <strong>Gradient</strong>
+tool. Choose an ambient shadow color—typically a cool, desaturated blue
+or purple for outdoor scenes, or a warm tone matching ambient interior
+bounce light.</li>
+<li>Paint or draw gradients where the shadows should fall.</li>
+<li>Lower the layer's <strong>Opacity</strong> slider to blend the
+shadows seamlessly into the environment.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

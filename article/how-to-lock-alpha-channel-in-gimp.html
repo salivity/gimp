@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Lock Alpha Channel in GIMP - gimp</title>
+    <meta name="description" content="Locking the alpha channel in GIMP is a fundamental technique for digital artists and photo editors that allows you to paint, shade, or apply textures strictly within existing pixel boundaries without spilling over into transparent areas. By protecting th">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-lock-alpha-channel-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Lock Alpha Channel in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-lock-alpha-channel-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Locking the alpha channel in GIMP is a fundamental technique for digital artists and photo editors that allows you to paint, shade, or apply textures strictly within existing pixel boundaries without spilling over into transparent areas. By protecting th" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-lock-alpha-channel-in-gimp">How to Lock Alpha Channel in
+GIMP</h1>
+<p>Locking the alpha channel in GIMP is a fundamental technique for
+digital artists and photo editors that allows you to paint, shade, or
+apply textures strictly within existing pixel boundaries without
+spilling over into transparent areas. By protecting the transparency of
+a layer, you eliminate the need to make complex selections or use
+clipping masks for basic recoloring and texturing tasks. This guide
+outlines the exact steps to enable the alpha lock and paint seamlessly
+inside your existing shapes.</p>
+<h3 id="step-1-ensure-the-layer-has-an-alpha-channel">Step 1: Ensure the
+Layer Has an Alpha Channel</h3>
+<p>Before locking transparency, the layer must support it:</p>
+<ol type="1">
+<li>Open your project in GIMP and locate the <strong>Layers</strong>
+panel on the right side (or press <code>Ctrl + L</code> to open
+it).</li>
+<li>Right-click on the layer you want to edit.</li>
+<li>If the option <strong>Add Alpha Channel</strong> is active (not
+grayed out), click it. If it is grayed out, your layer already supports
+transparency.</li>
+</ol>
+<h3 id="step-2-enable-the-lock-alpha-channel-setting">Step 2: Enable the
+Lock Alpha Channel Setting</h3>
+<ol type="1">
+<li>Select the desired layer in the <strong>Layers</strong> panel.</li>
+<li>Look directly above the layer list for the <strong>Lock</strong>
+options row.</li>
+<li>Click the icon displaying a small <strong>checkerboard
+pattern</strong> (labeled <em>Lock alpha channel</em> when hovered
+over).</li>
+<li>A highlight or sunken state on the checkerboard icon indicates that
+the alpha channel is now locked.</li>
+</ol>
+<h3 id="step-3-paint-or-texture-within-the-boundaries">Step 3: Paint or
+Texture Within the Boundaries</h3>
+<ol type="1">
+<li>Select your preferred painting tool from the Toolbox, such as the
+<strong>Paintbrush Tool</strong> (<code>P</code>),
+<strong>Airbrush</strong>, or <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>).</li>
+<li>Choose your color, brush shape, or texture pattern.</li>
+<li>Paint directly over the object on the canvas.</li>
+</ol>
+<p>Any strokes applied will modify only the visible, non-transparent
+pixels on that layer. All completely transparent pixels will remain
+entirely unaffected, preserving your object's precise silhouette and
+edges.</p>
+<h3 id="disabling-alpha-lock">Disabling Alpha Lock</h3>
+<p>To resume normal painting that expands beyond the current boundaries,
+simply click the checkerboard icon in the <strong>Layers</strong> panel
+again to toggle the lock off.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

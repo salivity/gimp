@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Underwater Sun Rays in GIMP - gimp</title>
+    <meta name="description" content="Simulating authentic underwater sun rays in GIMP involves generating directional light shafts from the surface, distorting them to mimic water movement, and blending them naturally into the aquatic environment. This guide outlines the exact step-by-step">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-underwater-sun-rays-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Underwater Sun Rays in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-underwater-sun-rays-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating authentic underwater sun rays in GIMP involves generating directional light shafts from the surface, distorting them to mimic water movement, and blending them naturally into the aquatic environment. This guide outlines the exact step-by-step" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-underwater-sun-rays-in-gimp">How to Create
+Underwater Sun Rays in GIMP</h1>
+<p>Simulating authentic underwater sun rays in GIMP involves generating
+directional light shafts from the surface, distorting them to mimic
+water movement, and blending them naturally into the aquatic
+environment. This guide outlines the exact step-by-step process to
+create realistic crepuscular beams using procedural noise, directional
+blurs, and atmospheric blending techniques.</p>
+<h3 id="step-1-prepare-the-base-scene">Step 1: Prepare the Base
+Scene</h3>
+<ol type="1">
+<li>Open your underwater image in GIMP.</li>
+<li>If your base image is too bright, create a subtle depth gradient.
+Add a transparent layer above your base image, set its mode to
+<strong>Multiply</strong>, and apply a deep blue-to-transparent linear
+gradient from bottom to top to simulate the loss of light at greater
+depths.</li>
+</ol>
+<h3 id="step-2-generate-the-light-noise-pattern">Step 2: Generate the
+Light Noise Pattern</h3>
+<ol type="1">
+<li>Create a new transparent layer and name it
+<code>Light Beams</code>.</li>
+<li>Fill this layer with black using the <strong>Bucket Fill
+Tool</strong>.</li>
+<li>Go to <strong>Filters &gt; Render &gt; Noise &gt; Solid
+Noise</strong>.</li>
+<li>Set the <strong>Detail</strong> to maximum (around 15) and adjust
+<strong>X Size</strong> and <strong>Y Size</strong> to create
+high-contrast, patchy cloud textures.</li>
+<li>Go to <strong>Colors &gt; Levels</strong> and drag the black and
+white input sliders toward the center to create sharp, high-contrast
+white patches against a pure black background.</li>
+</ol>
+<h3 id="step-3-transform-noise-into-light-shafts">Step 3: Transform
+Noise into Light Shafts</h3>
+<ol type="1">
+<li>Go to <strong>Filters &gt; Blur &gt; Linear Motion Blur</strong> (or
+<strong>Zoom Motion Blur</strong> depending on whether your light enters
+from an angle or directly overhead).</li>
+<li>Set the <strong>Angle</strong> to match the desired direction of
+sunlight (e.g., 60° to 75° for angled beams).</li>
+<li>Increase the <strong>Length</strong> significantly (usually 200–500
+pixels) to stretch the white patches into distinct, parallel
+streaks.</li>
+<li>If the rays are not long enough, repeat the blur filter or use the
+<strong>Unified Transform Tool</strong> (<code>Shift + T</code>) to
+stretch the layer diagonally across the canvas.</li>
+</ol>
+<h3 id="step-4-blend-and-position-the-rays">Step 4: Blend and Position
+the Rays</h3>
+<ol type="1">
+<li>Change the blending mode of the <code>Light Beams</code> layer to
+<strong>Screen</strong> or <strong>Addition</strong> to hide the black
+areas and reveal only the light.</li>
+<li>Lower the layer <strong>Opacity</strong> to between 30% and 60% so
+the effect remains atmospheric rather than overwhelming.</li>
+<li>Position the top of the beams at the water surface boundary.</li>
+</ol>
+<h3 id="step-5-colorize-the-light">Step 5: Colorize the Light</h3>
+<ol type="1">
+<li>Select the <code>Light Beams</code> layer.</li>
+<li>Go to <strong>Colors &gt; Color Temperature</strong> or
+<strong>Colors &gt; Colorize</strong>.</li>
+<li>Apply a subtle cyan, pale blue, or sea-green tint to match the
+ambient temperature of the water. Underwater light loses red and yellow
+wavelengths first, so cooler tones yield the most realistic
+appearance.</li>
+</ol>
+<h3 id="step-6-create-realistic-attenuation-with-a-layer-mask">Step 6:
+Create Realistic Attenuation with a Layer Mask</h3>
+<ol type="1">
+<li>Right-click the <code>Light Beams</code> layer and select
+<strong>Add Layer Mask</strong> (choose <em>White (full
+opacity)</em>).</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>), set the
+gradient to <em>FG to BG</em> (Black to White), and set the shape to
+<em>Linear</em>.</li>
+<li>Draw a gradient on the mask from the bottom of the canvas upward.
+This fades the light rays as they travel deeper, accurately simulating
+water density and light dissipation.</li>
+<li>Use a large, soft-edged black brush on the mask to manually break up
+any uniform streaks or soften edges.</li>
+</ol>
+<h3 id="step-7-add-dust-and-particle-reflection">Step 7: Add Dust and
+Particle Reflection</h3>
+<ol type="1">
+<li>Create a new layer named <code>Particles</code> and set its blend
+mode to <strong>Screen</strong>.</li>
+<li>Go to <strong>Filters &gt; Noise &gt; CIE lch Noise</strong> or
+paint sparse white specks using a textured brush within the path of the
+light rays.</li>
+<li>Apply a slight <strong>Gaussian Blur</strong> (1–2 pixels) and
+reduce the opacity to 25%. These illuminated floating particles add
+physical depth and authenticity to the underwater atmosphere.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

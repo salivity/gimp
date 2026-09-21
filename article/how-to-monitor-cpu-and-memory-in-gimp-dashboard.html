@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Monitor CPU and Memory in GIMP Dashboard - gimp</title>
+    <meta name="description" content="GIMP includes a built-in Dashboard dockable dialog designed to track real-time resource consumption, including CPU utilization, memory cache, and swap space. This guide provides a straightforward walkthrough on how to open, configure, and customize the D">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-monitor-cpu-and-memory-in-gimp-dashboard">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Monitor CPU and Memory in GIMP Dashboard - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-monitor-cpu-and-memory-in-gimp-dashboard" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP includes a built-in Dashboard dockable dialog designed to track real-time resource consumption, including CPU utilization, memory cache, and swap space. This guide provides a straightforward walkthrough on how to open, configure, and customize the D" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-monitor-cpu-and-memory-in-gimp-dashboard">How to Monitor
+CPU and Memory in GIMP Dashboard</h1>
+<p>GIMP includes a built-in Dashboard dockable dialog designed to track
+real-time resource consumption, including CPU utilization, memory cache,
+and swap space. This guide provides a straightforward walkthrough on how
+to open, configure, and customize the Dashboard dialog to monitor your
+system's hardware performance while working on demanding image editing
+tasks.</p>
+<h3 id="step-1-open-the-dashboard-dialog">Step 1: Open the Dashboard
+Dialog</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Navigate to the top menu and select <strong>Windows</strong>.</li>
+<li>Hover over <strong>Dockable Dialogs</strong>.</li>
+<li>Click on <strong>Dashboard</strong> from the submenu.</li>
+</ol>
+<p>The Dashboard panel will appear on your workspace. You can drag its
+tab to dock it alongside your other panels (such as Layers or Tool
+Options) for continuous visibility.</p>
+<h3 id="step-2-select-cpu-and-memory-metrics">Step 2: Select CPU and
+Memory Metrics</h3>
+<p>By default, the Dashboard may display several hardware meters. You
+can configure it to show only the metrics you need:</p>
+<ol type="1">
+<li>Click the small <strong>Configure this tab</strong> icon (the small
+arrow in the top-right corner of the Dashboard dock).</li>
+<li>Navigate to the <strong>Dashboard Menu</strong>.</li>
+<li>Under the available groups, toggle the metrics you want to monitor:
+<ul>
+<li><strong>CPU:</strong> Displays overall CPU usage and the activity of
+worker threads handling GEGL operations.</li>
+<li><strong>Memory:</strong> Tracks physical RAM usage allocated by
+GIMP.</li>
+<li><strong>Cache:</strong> Shows the amount of cache currently holding
+tile and image data.</li>
+<li><strong>Swap:</strong> Displays how much data is currently being
+written to or read from the disk cache when RAM limits are
+exceeded.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-adjust-the-update-rate-and-history-duration">Step 3:
+Adjust the Update Rate and History Duration</h3>
+<p>To control how frequently the data refreshes and how much historical
+data is shown:</p>
+<ol type="1">
+<li>Open the Dashboard tab menu (the configure arrow).</li>
+<li>Go to <strong>Dashboard Menu</strong> &gt; <strong>Update
+Rate</strong> to select how frequently performance data is polled (e.g.,
+0.25s, 0.5s, or 1s). Lower values provide smoother graphs but use
+slightly more background processing.</li>
+<li>Go to <strong>Dashboard Menu</strong> &gt; <strong>History
+Duration</strong> to set the time window displayed across the horizontal
+axis of the graphs (e.g., 15 seconds, 1 minute, or 5 minutes).</li>
+</ol>
+<h3 id="step-4-configure-performance-limits-optional">Step 4: Configure
+Performance Limits (Optional)</h3>
+<p>If the Dashboard indicates that memory or CPU thresholds are being
+hit frequently, you can adjust GIMP's internal allocation settings:</p>
+<ol type="1">
+<li>Go to <strong>Edit</strong> &gt; <strong>Preferences</strong>.</li>
+<li>Select the <strong>System Resources</strong> (or <strong>Resource
+Consumption</strong>) tab from the left sidebar.</li>
+<li>Adjust the <strong>Tile cache limit</strong> to allocate more or
+less RAM to GIMP before it resorts to disk swapping.</li>
+<li>Modify the <strong>Number of threads to use</strong> to optimize
+multi-core CPU usage for image processing operations.</li>
+<li>Click <strong>OK</strong> to apply the changes.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Fuzzy Selection Calculates Pixel Similarity - gimp</title>
+    <meta name="description" content="This article explains how the GNU Image Manipulation Program (GIMP) evaluates pixel similarity using Euclidean distance metrics during the operation of the Fuzzy Select (Magic Wand) tool. It covers the initial sampling of the seed pixel, the mathematical">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-fuzzy-selection-calculates-pixel-similarity">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Fuzzy Selection Calculates Pixel Similarity - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-fuzzy-selection-calculates-pixel-similarity" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the GNU Image Manipulation Program (GIMP) evaluates pixel similarity using Euclidean distance metrics during the operation of the Fuzzy Select (Magic Wand) tool. It covers the initial sampling of the seed pixel, the mathematical" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-fuzzy-selection-calculates-pixel-similarity">How GIMP
+Fuzzy Selection Calculates Pixel Similarity</h1>
+<p>This article explains how the GNU Image Manipulation Program (GIMP)
+evaluates pixel similarity using Euclidean distance metrics during the
+operation of the Fuzzy Select (Magic Wand) tool. It covers the initial
+sampling of the seed pixel, the mathematical formula applied across
+color channels, how the user-defined threshold serves as a boundary
+condition, and how the algorithm traverses neighboring pixels to build a
+contiguous selection mask.</p>
+<h3 id="the-seed-pixel-and-reference-point">The Seed Pixel and Reference
+Point</h3>
+<p>When you click an image using GIMP's Fuzzy Select tool, the clicked
+pixel acts as the "seed" pixel. The tool reads the color channel values
+of this seed—typically Red, Green, Blue, and optionally Alpha (<span
+class="math inline">\(R_0, G_0, B_0, A_0\)</span>) in standard RGB
+space. These values establish the reference coordinates in a
+multi-dimensional color space against which all candidate neighboring
+pixels are evaluated.</p>
+<h3 id="the-euclidean-color-distance-formula">The Euclidean Color
+Distance Formula</h3>
+<p>To determine whether an adjacent pixel is visually "close" enough to
+the seed pixel to be selected, GIMP treats color values as coordinates
+in a spatial coordinate system. In a standard 8-bit RGB color model,
+each channel ranges from 0 to 255, placing colors inside a
+three-dimensional cube.</p>
+<p>The straight-line difference between the candidate pixel <span
+class="math inline">\((R_1, G_1, B_1)\)</span> and the reference pixel
+<span class="math inline">\((R_0, G_0, B_0)\)</span> is calculated using
+the standard Euclidean distance metric:</p>
+<p><span class="math display">\[d = \sqrt{(R_1 - R_0)^2 + (G_1 - G_0)^2
++ (B_1 - B_0)^2}\]</span></p>
+<p>If transparency is involved and the selection criteria account for
+alpha, the formula extends into a 4-dimensional Euclidean metric:</p>
+<p><span class="math display">\[d = \sqrt{(R_1 - R_0)^2 + (G_1 - G_0)^2
++ (B_1 - B_0)^2 + (A_1 - A_0)^2}\]</span></p>
+<p>In modern versions of GIMP powered by GEGL (Generic Graphical
+Library), pixel data is often handled in high-precision floating-point
+formats (from 0.0 to 1.0) and can be evaluated in linear or perceptual
+color spaces, but the fundamental geometric formula remains the
+same.</p>
+<h3 id="the-threshold-evaluation">The Threshold Evaluation</h3>
+<p>The calculated Euclidean distance <span
+class="math inline">\(d\)</span> represents the total color divergence.
+GIMP compares this value directly against the <strong>Threshold</strong>
+parameter specified in the tool options.</p>
+<ul>
+<li><strong>Within Threshold (<span class="math inline">\(d \le
+\text{Threshold}\)</span>):</strong> The candidate pixel is deemed
+similar enough and is added to the selection mask.</li>
+<li><strong>Exceeds Threshold (<span class="math inline">\(d &gt;
+\text{Threshold}\)</span>):</strong> The candidate pixel is rejected,
+forming a boundary that halts expansion in that direction.</li>
+</ul>
+<p>Because calculating a square root for millions of pixel comparisons
+is computationally expensive, the algorithm typically compares the
+squared Euclidean distance (<span class="math inline">\(d^2\)</span>)
+against the squared threshold (<span
+class="math inline">\(\text{Threshold}^2\)</span>) to optimize
+performance:</p>
+<p><span class="math display">\[(R_1 - R_0)^2 + (G_1 - G_0)^2 + (B_1 -
+B_0)^2 \le \text{Threshold}^2\]</span></p>
+<h3 id="contiguous-traversal-flood-fill">Contiguous Traversal (Flood
+Fill)</h3>
+<p>Fuzzy selection relies on a flood-fill algorithm (such as
+breadth-first search or scanline fill) to traverse the canvas. The
+Euclidean metric is not computed globally across the entire image at
+once; instead, the algorithm starts at the seed pixel and checks
+adjacent pixels (usually 4-connected neighbors: north, south, east, and
+west).</p>
+<p>If an adjacent pixel satisfies the threshold condition, it is added
+to the selection queue, and its own neighbors are subsequently tested
+against the original seed pixel values. The expansion continues outward
+until it hits pixels where the Euclidean distance exceeds the threshold
+or reaches the canvas boundaries.</p>
+<h3 id="channel-selection-modes">Channel Selection Modes</h3>
+<p>While Euclidean distance in composite RGB/RGBA is the default
+behavior, GIMP allows users to base similarity on specific criteria
+under the "Select by" options, such as:</p>
+<ul>
+<li><strong>Individual Channels (Red, Green, Blue, Alpha):</strong> The
+calculation reduces to a one-dimensional scalar absolute difference:
+<span class="math inline">\(|C_1 - C_0|\)</span>.</li>
+<li><strong>HSV/LCH Components (Hue, Saturation, Lightness,
+Value):</strong> The distance is calculated along alternate axes, where
+angular differences (such as Hue on a 0–360° circle) use modular
+distance formulas rather than standard Cartesian metrics.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

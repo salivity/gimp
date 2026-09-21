@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Brush Scatter Jitter for Foliage in GIMP - gimp</title>
+    <meta name="description" content="Painting believable organic foliage in GIMP requires breaking up repetitive stamp patterns to mimic the randomness of nature. This article covers how to use GIMP's built-in Apply Jitter feature and custom Paint Dynamics to scatter brush marks randomly ac">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/control-brush-scatter-jitter-for-foliage-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Control Brush Scatter Jitter for Foliage in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/control-brush-scatter-jitter-for-foliage-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Painting believable organic foliage in GIMP requires breaking up repetitive stamp patterns to mimic the randomness of nature. This article covers how to use GIMP's built-in Apply Jitter feature and custom Paint Dynamics to scatter brush marks randomly ac" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="control-brush-scatter-jitter-for-foliage-in-gimp">Control Brush
+Scatter Jitter for Foliage in GIMP</h1>
+<p>Painting believable organic foliage in GIMP requires breaking up
+repetitive stamp patterns to mimic the randomness of nature. This
+article covers how to use GIMP's built-in <strong>Apply Jitter</strong>
+feature and custom <strong>Paint Dynamics</strong> to scatter brush
+marks randomly across your canvas. By mastering these two controls, you
+can quickly generate natural-looking leaves, moss, grass, and tree
+canopies with fluid brush strokes.</p>
+<h2 id="the-quick-method-tool-options-apply-jitter">The Quick Method:
+Tool Options "Apply Jitter"</h2>
+<p>The fastest way to scatter brush stamps along a stroke path is
+through the Tool Options dockable dialog.</p>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>) from
+the Toolbox.</li>
+<li>In the <strong>Tool Options</strong> panel, scroll down to locate
+the <strong>Apply Jitter</strong> checkbox.</li>
+<li>Check the box to activate jitter.</li>
+<li>Adjust the <strong>Amount</strong> slider directly below the
+checkbox:
+<ul>
+<li><strong>Low values (0.5 – 1.5):</strong> Produce subtle edge
+roughness, ideal for dense shrubbery or moss.</li>
+<li><strong>Medium to high values (2.0 – 5.0+):</strong> Cast individual
+leaf and grass stamps further away from the central cursor path,
+creating dispersed foliage, floating petals, or distant tree
+crowns.</li>
+</ul></li>
+</ol>
+<h2 id="the-advanced-method-custom-paint-dynamics">The Advanced Method:
+Custom Paint Dynamics</h2>
+<p>For full control over organic foliage, the <strong>Paint Dynamics
+Editor</strong> allows you to link jitter to pen pressure, stroke speed,
+or pure randomness alongside angle and size variations.</p>
+<h3 id="creating-a-foliage-dynamic">Creating a Foliage Dynamic</h3>
+<ol type="1">
+<li>Open the <strong>Paint Dynamics</strong> dockable dialog via
+<strong>Windows &gt; Dockable Dialogs &gt; Paint Dynamics</strong>.</li>
+<li>Click the <strong>Create a new dynamics</strong> button at the
+bottom of the dialog.</li>
+<li>In the <strong>Paint Dynamics Editor</strong> matrix, locate the
+<strong>Jitter</strong> row.</li>
+<li>Check the box where the <strong>Jitter</strong> row intersects with
+the <strong>Random</strong> column.</li>
+<li>To enhance the natural look, combine Jitter with other parameters in
+the matrix:
+<ul>
+<li>Check <strong>Random + Angle</strong> to prevent leaves from all
+facing the same direction.</li>
+<li>Check <strong>Random + Size</strong> to generate varying leaf depths
+and sizes.</li>
+<li>Check <strong>Pressure + Jitter</strong> (if using a drawing tablet)
+to scatter stamps more widely the harder you press.</li>
+</ul></li>
+</ol>
+<h2 id="fine-tuning-brush-spacing-for-foliage">Fine-Tuning Brush Spacing
+for Foliage</h2>
+<p>Jitter works in tandem with brush spacing. If stamps overlap too
+heavily, the scatter effect becomes a solid mass rather than distinct
+leaves:</p>
+<ol type="1">
+<li>Select your foliage brush stamp in the <strong>Brushes</strong>
+panel.</li>
+<li>In the <strong>Tool Options</strong> panel, locate the
+<strong>Spacing</strong> slider.</li>
+<li>Increase the spacing value (typically between <strong>50% and
+150%</strong>) to ensure individual stamps separate clearly when the
+jitter scatters them across the canvas.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

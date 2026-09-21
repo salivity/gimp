@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Dust and Scratches from Film in GIMP - gimp</title>
+    <meta name="description" content="Digitizing film negatives often reveals unwanted dust specks, lint, and scratch artifacts across your images. This guide provides clear, practical methods for removing these imperfections using GIMP, covering precise manual correction tools for detailed">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/remove-dust-and-scratches-from-film-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Remove Dust and Scratches from Film in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/remove-dust-and-scratches-from-film-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Digitizing film negatives often reveals unwanted dust specks, lint, and scratch artifacts across your images. This guide provides clear, practical methods for removing these imperfections using GIMP, covering precise manual correction tools for detailed" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="remove-dust-and-scratches-from-film-in-gimp">Remove Dust and
+Scratches from Film in GIMP</h1>
+<p>Digitizing film negatives often reveals unwanted dust specks, lint,
+and scratch artifacts across your images. This guide provides clear,
+practical methods for removing these imperfections using GIMP, covering
+precise manual correction tools for detailed areas as well as
+semi-automated filters for larger, uniform surfaces.</p>
+<h2 id="1-prepare-your-image-layer">1. Prepare Your Image Layer</h2>
+<p>Always work non-destructively so you can compare changes or undo
+mistakes:</p>
+<ol type="1">
+<li>Open your scanned negative image in GIMP.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click the base image layer and select <strong>Duplicate
+Layer</strong> (or press <code>Shift + Ctrl + D</code>).</li>
+<li>Rename this new layer to <code>Retouch</code> and ensure it is
+selected.</li>
+</ol>
+<h2 id="2-remove-specific-blemishes-with-the-heal-tool">2. Remove
+Specific Blemishes with the Heal Tool</h2>
+<p>The <strong>Heal Tool</strong> is the most effective tool for
+removing dust and scratches because it blends the texture and lighting
+of a clean source area into the damaged area.</p>
+<ol type="1">
+<li>Select the <strong>Heal Tool</strong> from the Toolbox or press
+<code>H</code>.</li>
+<li>In the <strong>Tool Options</strong> panel:
+<ul>
+<li>Choose a soft-edged brush (such as
+<code>2. Hardness 050</code>).</li>
+<li>Set the brush size slightly larger than the dust speck or scratch
+width.</li>
+</ul></li>
+<li>Zoom in to 100% or 200% (<code>Ctrl + Mouse Wheel</code>) to clearly
+see individual artifacts.</li>
+<li>Hold <code>Ctrl</code> and click on a clean, undamaged area near the
+artifact to set the sample source.</li>
+<li>Release <code>Ctrl</code> and click directly over the dust speck, or
+click and drag along the length of a scratch.</li>
+<li>Re-sample frequently from nearby areas to maintain accurate color
+and grain consistency.</li>
+</ol>
+<h2 id="3-fix-high-contrast-edges-with-the-clone-tool">3. Fix
+High-Contrast Edges with the Clone Tool</h2>
+<p>When dust sits on sharp edges or complex patterns, the Heal Tool can
+create muddy smudges. Use the <strong>Clone Tool</strong> in these
+areas:</p>
+<ol type="1">
+<li>Select the <strong>Clone Tool</strong> from the Toolbox or press
+<code>C</code>.</li>
+<li>Set a soft brush and adjust the size to fit the blemish.</li>
+<li>Hold <code>Ctrl</code> and click an exact reference point along the
+edge you need to replicate.</li>
+<li>Click and paint over the artifact, aligning the edge precisely with
+your brush stroke.</li>
+</ol>
+<h2 id="4-batch-remove-fine-dust-using-the-despeckle-filter">4.
+Batch-Remove Fine Dust Using the Despeckle Filter</h2>
+<p>For sky, backgrounds, or broad out-of-focus areas covered in fine
+dust, the Despeckle filter saves time:</p>
+<ol type="1">
+<li>Use the <strong>Free Select Tool</strong> (Lasso) or <strong>Fuzzy
+Select Tool</strong> to select only the uniform area containing dust.
+Avoid selecting sharp subjects or important textures.</li>
+<li>Go to <strong>Select &gt; Feather</strong> and apply a 5 to 10-pixel
+radius to soften the edges of your selection.</li>
+<li>Go to <strong>Filters &gt; Enhance &gt; Despeckle</strong>.</li>
+<li>In the dialog box:
+<ul>
+<li>Adjust the <strong>Radius</strong> slider to the smallest number
+that still eliminates the dust (usually between 1 and 3).</li>
+<li>Adjust the <strong>Black level</strong> (to target white dust
+specks) and <strong>White level</strong> (to target dark specks).</li>
+</ul></li>
+<li>Click <strong>OK</strong>, then press <code>Ctrl + Shift + A</code>
+to deselect.</li>
+</ol>
+<h2 id="5-final-inspection">5. Final Inspection</h2>
+<ol type="1">
+<li>Zoom out to fit the whole image on the screen
+(<code>Ctrl + Shift + J</code>).</li>
+<li>Toggle the visibility of your retouched layer by clicking the
+<strong>Eye</strong> icon next to it in the Layers panel to review your
+corrections against the original scan.</li>
+<li>Export your finished image via <strong>File &gt; Export
+As</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Origami CD Sleeve Fold Templates in GIMP - gimp</title>
+    <meta name="description" content="Designing a printable origami CD sleeve template in GIMP allows you to create a seamless, glue-free paper pocket for discs using standard printer paper. By utilizing GIMP’s vector path tools and guides, you can establish millimeter-accurate fold and cu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-origami-cd-sleeve-fold-templates-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Origami CD Sleeve Fold Templates in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-origami-cd-sleeve-fold-templates-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing a printable origami CD sleeve template in GIMP allows you to create a seamless, glue-free paper pocket for discs using standard printer paper. By utilizing GIMP’s vector path tools and guides, you can establish millimeter-accurate fold and cu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="design-origami-cd-sleeve-fold-templates-in-gimp">Design Origami
+CD Sleeve Fold Templates in GIMP</h1>
+<p>Designing a printable origami CD sleeve template in GIMP allows you
+to create a seamless, glue-free paper pocket for discs using standard
+printer paper. By utilizing GIMP’s vector path tools and guides, you can
+establish millimeter-accurate fold and cut lines that remain sharp when
+printed. This guide covers configuring your print canvas, calculating
+origami dimensions, drawing precise vector paths, and exporting a
+ready-to-print template.</p>
+<h3 id="1-canvas-setup-and-print-resolution">1. Canvas Setup and Print
+Resolution</h3>
+<p>To ensure the template fits standard discs properly, you must work
+with standard document sizes at print-ready resolution:</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>File &gt; New</strong>.</li>
+<li>Select your target paper size (usually <strong>US Letter</strong> or
+<strong>A4</strong>) from the <em>Template</em> dropdown, or manually
+enter the dimensions in inches or millimeters.</li>
+<li>Expand <strong>Advanced Options</strong> and set both the <strong>X
+resolution</strong> and <strong>Y resolution</strong> to <strong>300
+pixels/in</strong>.</li>
+<li>Set the <strong>Color space</strong> to <strong>RGB color</strong>
+and click <strong>OK</strong>.</li>
+</ol>
+<h3 id="2-set-up-measurement-guides">2. Set Up Measurement Guides</h3>
+<p>A standard compact disc has an outer diameter of 120 mm (4.72
+inches). An origami sleeve requires a center pocket square measuring
+approximately 125 mm to 130 mm (around 5 inches) to allow easy
+insertion, bordered by folding flaps.</p>
+<ol type="1">
+<li>Change the ruler unit to inches or millimeters by clicking the unit
+selector in the lower-left corner of the canvas window.</li>
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by Percent)</strong>
+to place a vertical guide at <strong>50%</strong> to locate the center
+of the page.</li>
+<li>Use <strong>Image &gt; Guides &gt; New Guide...</strong> to position
+horizontal and vertical guides corresponding to your fold points:
+<ul>
+<li><strong>Center Pocket:</strong> Measure 62.5 mm on either side of
+the vertical center guide.</li>
+<li><strong>Top and Bottom Flaps:</strong> Place horizontal guides 125
+mm apart to define the bottom flap and the tuck-in flap.</li>
+<li><strong>Side Flaps:</strong> Place guides corresponding to the
+angled edge folds required to tuck the disc securely.</li>
+</ul></li>
+</ol>
+<h3 id="3-draw-vector-paths-for-folds-and-cuts">3. Draw Vector Paths for
+Folds and Cuts</h3>
+<p>Vector paths ensure that fold indicators and cut lines remain
+completely scalable and razor-sharp.</p>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> from the Toolbox (shortcut:
+<code>B</code>).</li>
+<li>In the <strong>Tool Options</strong> panel, ensure
+<strong>Design</strong> mode is active.</li>
+<li>Create the cutting outline:
+<ul>
+<li>Click on the guide intersections along the outer edges of your
+template to lay down vector anchors.</li>
+<li>Connect the points to create an enclosed perimeter showing where the
+sheet must be trimmed.</li>
+<li>In the <strong>Paths</strong> dialog dock (<strong>Windows &gt;
+Dockable Dialogs &gt; Paths</strong>), double-click the newly generated
+path and rename it to <code>Cut Lines</code>.</li>
+</ul></li>
+<li>Create the fold guides:
+<ul>
+<li>Click the <strong>New Path</strong> icon in the Paths dock and name
+it <code>Fold Lines</code>.</li>
+<li>With the Paths Tool selected, click along the interior guide
+intersections to map the crease lines (pocket base, side flaps, and
+closing flap). Hold <code>Shift</code> to start separate sub-paths for
+disconnected fold segments.</li>
+</ul></li>
+</ol>
+<h3 id="4-stroke-the-paths-into-printable-lines">4. Stroke the Paths
+into Printable Lines</h3>
+<p>Because vector paths are invisible guides by default, you must render
+them onto raster layers using distinct line styles for cutting and
+folding.</p>
+<ol type="1">
+<li>Go to the <strong>Layers</strong> panel and create a transparent
+layer named <code>Template Markings</code>.</li>
+<li>Select your <code>Cut Lines</code> path in the Paths dialog.</li>
+<li>Go to <strong>Edit &gt; Stroke Path...</strong> (or click the paint
+icon at the bottom of the Paths panel).</li>
+<li>Select <strong>Stroke line</strong>, set the line width to
+<strong>1.0 px</strong>, ensure the line style is set to
+<strong>Solid</strong>, and click <strong>Stroke</strong>.</li>
+<li>Select the <code>Fold Lines</code> path in the Paths dialog.</li>
+<li>Open <strong>Edit &gt; Stroke Path...</strong> again.</li>
+<li>Set the width to <strong>1.0 px</strong>, expand the <strong>Line
+Style</strong> options, and change the <strong>Dash preset</strong> to
+<strong>Dashed line</strong> or <strong>Dots</strong>. This clearly
+distinguishes creases from cuts. Click <strong>Stroke</strong>.</li>
+</ol>
+<h3 id="5-layout-alignment-and-export">5. Layout Alignment and
+Export</h3>
+<ol type="1">
+<li>Place your artwork, album titles, or liner notes on separate layers
+<em>below</em> the <code>Template Markings</code> layer. Ensure your
+graphic elements align with the designated pocket boundaries.</li>
+<li>Lower the opacity of the <code>Template Markings</code> layer to
+roughly <strong>40–50%</strong> if you want subtle, unobtrusive fold
+lines on the final print.</li>
+<li>Save your working project as an <strong>XCF</strong> file via
+<strong>File &gt; Save</strong> to retain raw vector and layer
+data.</li>
+<li>Export the printable file via <strong>File &gt; Export
+As...</strong>, choosing <strong>PDF</strong> or <strong>PNG</strong> at
+full resolution.</li>
+<li>In your system print dialog, verify that scaling is set to
+<strong>100%</strong> or <strong>Actual Size</strong> so the sleeve does
+not shrink to an unusable size.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

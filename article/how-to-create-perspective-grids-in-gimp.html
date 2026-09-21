@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Perspective Grids in GIMP - gimp</title>
+    <meta name="description" content="Constructing precise multi-point vector grids in GIMP allows architectural illustrators and concept artists to establish accurate spatial depth without relying on external plugins. This guide provides a direct, step-by-step workflow for setting up horizo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-perspective-grids-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Perspective Grids in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-perspective-grids-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Constructing precise multi-point vector grids in GIMP allows architectural illustrators and concept artists to establish accurate spatial depth without relying on external plugins. This guide provides a direct, step-by-step workflow for setting up horizo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-perspective-grids-in-gimp">How to Create
+Perspective Grids in GIMP</h1>
+<p>Constructing precise multi-point vector grids in GIMP allows
+architectural illustrators and concept artists to establish accurate
+spatial depth without relying on external plugins. This guide provides a
+direct, step-by-step workflow for setting up horizon lines, positioning
+multi-point vanishing targets, and generating clean, reusable
+vector-based perspective rays using GIMP’s native Paths and Guides
+systems.</p>
+<h3 id="1-set-up-the-canvas-and-horizon-line">1. Set Up the Canvas and
+Horizon Line</h3>
+<p>Begin by setting up a canvas large enough to accommodate distant
+vanishing points, which often sit outside the visible composition.</p>
+<ol type="1">
+<li>Create a new document via <strong>File &gt; New</strong> with your
+desired rendering dimensions.</li>
+<li>Go to <strong>Image &gt; Canvas Size</strong> and expand the canvas
+width significantly (e.g., 200% to 300% wider) while keeping the
+original image centered. This provides the external margin needed for
+natural, undistorted perspective.</li>
+<li>Pull a horizontal guide from the top ruler to establish the horizon
+line (eye-level). If rulers are hidden, toggle them using <strong>View
+&gt; Show Rulers</strong> (<code>Ctrl + Shift + R</code>).</li>
+</ol>
+<h3 id="2-locate-your-vanishing-points">2. Locate Your Vanishing
+Points</h3>
+<p>Precision depends on pinning fixed anchor points along the horizon
+line for one-point and two-point perspectives, or above/below the
+horizon for three-point setups.</p>
+<ol type="1">
+<li>Pull vertical guides from the left ruler to intersect the horizon
+guide at your desired vanishing point (VP) locations (e.g., VP1 on the
+far left, VP2 on the far right).</li>
+<li>Create a transparent layer named <code>Grid_VP1</code>.</li>
+<li>Select the <strong>Measure Tool</strong> (<code>Shift + M</code>) or
+activate <strong>Snap to Guides</strong> (<strong>View &gt; Snap to
+Guides</strong>) to ensure mathematical alignment at the intersection of
+your guides.</li>
+</ol>
+<h3 id="3-build-vector-perspective-rays-using-the-paths-tool">3. Build
+Vector Perspective Rays Using the Paths Tool</h3>
+<p>Vector paths offer infinite scalability, mathematical sharpness, and
+easy adjustment compared to standard raster brushes.</p>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> (<code>B</code>).</li>
+<li>Click directly on the intersection of VP1 to place the primary
+anchor point.</li>
+<li>Click near the edge or corner of the target drawing area to create a
+ray.</li>
+<li>Return to the primary anchor at VP1, click it to activate it, and
+click outward to another point along the edge to draw a second ray.</li>
+<li>Repeat this process radiating outward from VP1 across the drawing
+area at regular intervals to establish ground planes, walls, and ceiling
+angles.</li>
+<li>Once the rays are drawn, save the path in the <strong>Paths
+Dialog</strong> (<strong>Windows &gt; Dockable Dialogs &gt;
+Paths</strong>) and rename it <code>VP1_Path</code>.</li>
+</ol>
+<h3 id="4-duplicate-and-mirror-for-multi-point-perspective">4. Duplicate
+and Mirror for Multi-Point Perspective</h3>
+<p>For a balanced two-point perspective, you can replicate the generated
+ray structure to the opposite vanishing point.</p>
+<ol type="1">
+<li>In the <strong>Paths Dialog</strong>, right-click
+<code>VP1_Path</code> and select <strong>Duplicate Path</strong>.</li>
+<li>Select the <strong>Flip Tool</strong> (<code>Shift + F</code>),
+change its tool options to affect <strong>Path</strong> (represented by
+the vector path icon in the tool options panel), and flip the path
+horizontally.</li>
+<li>Select the <strong>Move Tool</strong> (<code>M</code>), set its tool
+options to affect <strong>Path</strong>, and drag the flipped vector
+path until its central convergence point snaps to VP2.</li>
+<li>Rename this new path <code>VP2_Path</code>.</li>
+</ol>
+<h3 id="5-add-a-third-vanishing-point-optional">5. Add a Third Vanishing
+Point (Optional)</h3>
+<p>For high-angle ("bird's-eye") or low-angle ("worm's-eye") views:</p>
+<ol type="1">
+<li>Place a vertical guide down the center of your canvas.</li>
+<li>Mark VP3 far above or below the horizon line along this vertical
+axis.</li>
+<li>Use the <strong>Paths Tool</strong> to draw vertical convergence
+rays stemming from VP3 downward or upward through the framing area.</li>
+<li>Label this path <code>VP3_Path</code>.</li>
+</ol>
+<h3 id="6-stroke-the-paths-to-finalize-the-grid">6. Stroke the Paths to
+Finalize the Grid</h3>
+<p>To turn your vector lines into a working visual template without
+losing the underlying vector data:</p>
+<ol type="1">
+<li>Create a new transparent layer named
+<code>Perspective_Overlay</code>.</li>
+<li>In the <strong>Paths Dialog</strong>, select all your active paths,
+or process them one by one.</li>
+<li>Click the <strong>Stroke Path</strong> button at the bottom of the
+Paths Dialog (or go to <strong>Edit &gt; Stroke Path</strong>).</li>
+<li>Select <strong>Stroke line</strong>, choose <strong>Solid
+color</strong>, set a thin line width (such as <code>1.0 px</code>), and
+hit <strong>Stroke</strong>. Use a distinct color for each vanishing
+point (e.g., cyan for VP1, magenta for VP2, yellow for VP3).</li>
+<li>Lower the opacity of the <code>Perspective_Overlay</code> layer to
+between 20% and 40%, lock the layer, and crop your canvas back to the
+final framing dimensions using <strong>Image &gt; Canvas
+Size</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

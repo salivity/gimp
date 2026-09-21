@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preserve Lightness in GIMP Color Temperature - gimp</title>
+    <meta name="description" content="This guide explains the specific role of the "Preserve Lightness" setting within GIMP's Color Temperature tool, detailing how it maintains perceived layer exposure when matching color tones across multiple image elements. By isolating chromatic adjustmen">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/preserve-lightness-in-gimp-color-temperature">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Preserve Lightness in GIMP Color Temperature - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/preserve-lightness-in-gimp-color-temperature" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains the specific role of the "Preserve Lightness" setting within GIMP's Color Temperature tool, detailing how it maintains perceived layer exposure when matching color tones across multiple image elements. By isolating chromatic adjustmen" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="preserve-lightness-in-gimp-color-temperature">Preserve Lightness
+in GIMP Color Temperature</h1>
+<p>This guide explains the specific role of the "Preserve Lightness"
+setting within GIMP's Color Temperature tool, detailing how it maintains
+perceived layer exposure when matching color tones across multiple image
+elements. By isolating chromatic adjustments from luminance, this
+feature allows users to seamlessly balance warm and cool elements across
+distinct image layers without unintentional exposure shifts.</p>
+<h3 id="how-preserve-lightness-works">How Preserve Lightness Works</h3>
+<p>The Color Temperature filter in GIMP modifies the chromatic balance
+of an image by adjusting its correlated color temperature along the
+Kelvin scale. Shifting an image toward cooler temperatures increases
+blue hues, while shifting toward warmer temperatures amplifies reds and
+yellows.</p>
+<p>In color theory and human visual perception, different hues carry
+different inherent luminance values; for instance, pure yellow appears
+significantly brighter than pure blue at the same intensity.
+Consequently, adjusting temperature can inadvertently brighten or darken
+an image layer. The "Preserve Lightness" checkbox counteracts this by
+calculating the luminance of the original pixels and compensating for
+the brightness change, ensuring that the overall visual weight and
+exposure level of the layer remain constant.</p>
+<h3 id="balancing-layers-in-composites">Balancing Layers in
+Composites</h3>
+<p>When working with multi-layer projects, such as compositing a
+foreground subject into a different background, matching the ambient
+lighting environment is critical. If a foreground subject shot under
+warm tungsten light is placed against a cool outdoor background, cooling
+the foreground layer without "Preserve Lightness" enabled will
+artificially darken the subject, breaking the lighting consistency.</p>
+<p>Enabling "Preserve Lightness" provides two main advantages across
+layers:</p>
+<ul>
+<li><strong>Eliminates Secondary Exposure Fixes:</strong> It isolates
+the temperature correction, preventing the need to apply compensatory
+Levels or Curves adjustments simply to restore the layer’s original
+exposure.</li>
+<li><strong>Maintains Blending Modes and Contrast:</strong> If layers
+use blending modes (such as Overlay, Soft Light, or Multiply) or precise
+opacity balances, unexpected luminance shifts will alter how those
+layers interact. Preserving lightness ensures that only the intended
+color cast is harmonized, keeping the structural contrast intact.</li>
+</ul>
+<h3 id="when-to-toggle-the-setting">When to Toggle the Setting</h3>
+<ul>
+<li><strong>Keep Enabled:</strong> When the exposure of the layer is
+already balanced with the rest of the composition and the sole objective
+is to correct or match color casts.</li>
+<li><strong>Disable:</strong> When the visual effect of the temperature
+shift requires a corresponding change in natural lighting intensity—for
+example, if cooling a layer is specifically intended to simulate the
+darker, lower-intensity conditions of twilight or night.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

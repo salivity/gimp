@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Render Fractals with GIMP Fractal Explorer - gimp</title>
+    <meta name="description" content="GIMP includes a built-in Fractal Explorer filter that enables you to generate intricate mathematical fractals, customize visual parameters, and apply custom color gradients directly onto your canvas. This guide provides a straightforward walkthrough on n">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-render-fractals-with-gimp-fractal-explorer">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Render Fractals with GIMP Fractal Explorer - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-render-fractals-with-gimp-fractal-explorer" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP includes a built-in Fractal Explorer filter that enables you to generate intricate mathematical fractals, customize visual parameters, and apply custom color gradients directly onto your canvas. This guide provides a straightforward walkthrough on n" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-render-fractals-with-gimp-fractal-explorer">How to Render
+Fractals with GIMP Fractal Explorer</h1>
+<p>GIMP includes a built-in Fractal Explorer filter that enables you to
+generate intricate mathematical fractals, customize visual parameters,
+and apply custom color gradients directly onto your canvas. This guide
+provides a straightforward walkthrough on navigating the Fractal
+Explorer interface, selecting fractal algorithms such as Mandelbrot or
+Julia sets, fine-tuning mathematical variables, configuring color
+palettes, and rendering the final fractal image.</p>
+<h3 id="step-1-prepare-your-canvas">Step 1: Prepare Your Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong> to create a blank
+project.</li>
+<li>Set your desired width and height (e.g., 1920x1080 for high
+definition).</li>
+<li>Click <strong>OK</strong> to open the canvas.</li>
+</ol>
+<h3 id="step-2-open-the-fractal-explorer-filter">Step 2: Open the
+Fractal Explorer Filter</h3>
+<ol type="1">
+<li>In the top menu, navigate to <strong>Filters &gt; Render &gt;
+Fractals &gt; Fractal Explorer...</strong> (in some GIMP versions, this
+is located directly under <strong>Filters &gt; Render &gt; Fractal
+Explorer...</strong>).</li>
+<li>A dialog window will appear containing a preview window on the left
+and configuration tabs on the right.</li>
+</ol>
+<h3 id="step-3-select-a-base-fractal-type">Step 3: Select a Base Fractal
+Type</h3>
+<ol type="1">
+<li>Click on the <strong>Fractals</strong> tab on the right side of the
+window.</li>
+<li>Browse through the available presets (such as Mandelbrot, Julia,
+Barnsley, or Spider).</li>
+<li>Double-click a preset or select it to load it into the preview
+window.</li>
+</ol>
+<h3 id="step-4-adjust-mathematical-parameters">Step 4: Adjust
+Mathematical Parameters</h3>
+<ol type="1">
+<li>Switch to the <strong>Parameters</strong> tab.</li>
+<li>Adjust the boundaries using <strong>Xmin</strong>,
+<strong>Xmax</strong>, <strong>Ymin</strong>, and <strong>Ymax</strong>
+sliders to zoom in or shift the view of the fractal structure.</li>
+<li>Modify the <strong>Iterations</strong> value. Higher values increase
+the detail and sharpness around fractal edges but require more
+processing time.</li>
+<li>If working with Julia sets, adjust the <strong>CX</strong> and
+<strong>CY</strong> values to alter the core morphology of the
+fractal.</li>
+</ol>
+<h3 id="step-5-configure-color-and-palette-settings">Step 5: Configure
+Color and Palette Settings</h3>
+<ol type="1">
+<li>Switch to the <strong>Colors</strong> tab.</li>
+<li>Choose a color mapping mode (such as Sine, Cosine, or None) for the
+Red, Green, and Blue channels to determine how colors cycle through the
+fractal depths.</li>
+<li>Under the <strong>Color Density</strong> section, adjust the
+frequency of color repetitions across the fractal surface.</li>
+<li>Select a gradient preset from your GIMP palette library to instantly
+style the fractal with cohesive color schemes.</li>
+</ol>
+<h3 id="step-6-render-the-fractal">Step 6: Render the Fractal</h3>
+<ol type="1">
+<li>Check the preview window to confirm the framing, detail level, and
+color balance.</li>
+<li>Click <strong>OK</strong> at the bottom of the dialog window.</li>
+<li>GIMP will calculate the mathematical formula and render the
+full-resolution fractal directly onto the active layer.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

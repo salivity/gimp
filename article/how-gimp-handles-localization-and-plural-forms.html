@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Handles Localization and Plural Forms - gimp</title>
+    <meta name="description" content="GIMP achieves global accessibility by relying on the standard GNU gettext framework to translate its user interface into dozens of languages. Handling variations in grammar, particularly the complex plural forms found across different language families,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-handles-localization-and-plural-forms">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Handles Localization and Plural Forms - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-handles-localization-and-plural-forms" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP achieves global accessibility by relying on the standard GNU gettext framework to translate its user interface into dozens of languages. Handling variations in grammar, particularly the complex plural forms found across different language families," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-handles-localization-and-plural-forms">How GIMP Handles
+Localization and Plural Forms</h1>
+<p>GIMP achieves global accessibility by relying on the standard GNU
+gettext framework to translate its user interface into dozens of
+languages. Handling variations in grammar, particularly the complex
+plural forms found across different language families, requires a
+combination of source code markup, standardized translation files, and
+dynamic evaluation at runtime. This guide explains how GIMP manages
+internationalization, resolves grammatical pluralities, and compiles
+localized assets.</p>
+<h3 id="the-gnu-gettext-foundation">The GNU gettext Foundation</h3>
+<p>GIMP uses GNU gettext for both internationalization (i18n) and
+localization (l10n). In the C and Python source code, developers wrap
+user-facing strings in standard gettext macros, most commonly
+<code>_("Text")</code>. Extraction tools like <code>xgettext</code> scan
+the source tree to generate <code>.pot</code> (Portable Object Template)
+files. These templates contain every translatable string within the
+software, serving as the baseline for volunteer translators working on
+language-specific <code>.po</code> files hosted on the GNOME translation
+infrastructure.</p>
+<h3 id="managing-plural-variations-with-ngettext">Managing Plural
+Variations with ngettext</h3>
+<p>A major challenge in software localization is that different
+languages use different rules for pluralization. While English only
+distinguishes between singular and plural (e.g., "1 layer" versus "2
+layers"), languages such as Polish, Russian, and Arabic have three or
+more plural forms depending on the exact number, while languages like
+Chinese or Japanese do not alter words for plurals at all.</p>
+<p>To handle these variations dynamically without hardcoding English
+assumptions, GIMP developers use the <code>ngettext()</code>
+function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ngettext<span class="op">(</span><span class="st">&quot;Export </span><span class="sc">%d</span><span class="st"> image&quot;</span><span class="op">,</span> <span class="st">&quot;Export </span><span class="sc">%d</span><span class="st"> images&quot;</span><span class="op">,</span> n<span class="op">);</span></span></code></pre></div>
+<p>The function takes three arguments: the default singular string, the
+default plural string, and the numeric variable determining the count.
+GIMP passes the integer count to the gettext runtime, which evaluates
+which grammatical form to display according to the target language's
+grammatical rules.</p>
+<h3 id="plural-forms-headers-in-po-files">Plural-Forms Headers in PO
+Files</h3>
+<p>Each language team defines its specific plural logic in the header of
+its <code>.po</code> file using a standardized C-style formula. This
+header consists of two parameters: <code>nplurals</code> (the total
+count of grammatical plural forms) and <code>plural</code> (the
+mathematical formula mapping the integer <code>n</code> to the correct
+form index).</p>
+<ul>
+<li><strong>English:</strong>
+<code>Plural-Forms: nplurals=2; plural=(n != 1);</code><br />
+Evaluates to index <code>0</code> for 1, and index <code>1</code> for
+all other numbers.</li>
+<li><strong>Polish:</strong>
+<code>Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10&gt;=2 &amp;&amp; n%10&lt;=4 &amp;&amp; (n%100&lt;10 || n%100&gt;=20) ? 1 : 2);</code><br />
+Differentiates between single units, numbers ending in 2–4 (excluding
+teens), and general plurals.</li>
+<li><strong>Japanese:</strong>
+<code>Plural-Forms: nplurals=1; plural=0;</code><br />
+All quantities use the same grammatical string.</li>
+</ul>
+<p>Translators then provide a corresponding translation for every
+evaluated index:</p>
+<pre class="po"><code>msgid &quot;Export %d image&quot;
+msgid_plural &quot;Export %d images&quot;
+msgstr[0] &quot;%d Bild exportieren&quot;
+msgstr[1] &quot;%d Bilder exportieren&quot;</code></pre>
+<h3 id="runtime-compilation-and-locale-fallbacks">Runtime Compilation
+and Locale Fallbacks</h3>
+<p>Before distribution, GIMP's build system compiles human-readable
+<code>.po</code> files into binary <code>.mo</code> (Machine Object)
+files using <code>msgfmt</code>. These binary files are installed in
+locale-specific directories.</p>
+<p>When GIMP launches, it detects the user's desktop environment
+language settings using the system locale variables (<code>LANG</code>,
+<code>LC_MESSAGES</code>). The software loads the corresponding
+<code>.mo</code> catalog into memory. If a specific string or plural
+variation has not been translated into the target dialect, gettext falls
+back first to the base language, and ultimately to the original
+untranslated English string, preventing interface crashes and missing
+labels.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

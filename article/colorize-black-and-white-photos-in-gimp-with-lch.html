@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorize Black and White Photos in GIMP with LCH - gimp</title>
+    <meta name="description" content="Colorizing historic black-and-white photographs requires precise control over tonality to avoid artificial-looking results. By leveraging GIMP’s LCH (Lightness, Chroma, Hue) color processing, you can alter hues and saturation without destroying the ori">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/colorize-black-and-white-photos-in-gimp-with-lch">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Colorize Black and White Photos in GIMP with LCH - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/colorize-black-and-white-photos-in-gimp-with-lch" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Colorizing historic black-and-white photographs requires precise control over tonality to avoid artificial-looking results. By leveraging GIMP’s LCH (Lightness, Chroma, Hue) color processing, you can alter hues and saturation without destroying the ori" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="colorize-black-and-white-photos-in-gimp-with-lch">Colorize Black
+and White Photos in GIMP with LCH</h1>
+<p>Colorizing historic black-and-white photographs requires precise
+control over tonality to avoid artificial-looking results. By leveraging
+GIMP’s LCH (Lightness, Chroma, Hue) color processing, you can alter hues
+and saturation without destroying the original exposure, contrast, or
+underlying luminosity of vintage prints. This workflow outlines the
+exact steps to isolate image zones, apply LCH-based color balance
+adjustments, and blend natural tones into monochrome imagery.</p>
+<h3 id="1-image-preparation-and-color-space-setup">1. Image Preparation
+and Color Space Setup</h3>
+<p>Historic scans often open in GIMP as single-channel grayscale files.
+You must convert the image mode to accept color data before making any
+adjustments:</p>
+<ol type="1">
+<li>Open your black-and-white photograph in GIMP.</li>
+<li>Navigate to <strong>Image &gt; Mode</strong> and select
+<strong>RGB</strong>.</li>
+<li>Go to <strong>Image &gt; Precision</strong> and set it to
+<strong>32-bit floating point</strong> and <strong>Linear light</strong>
+to ensure smooth gradients and prevent banding during tinting.</li>
+<li>Duplicate the original layer by pressing <strong>Shift + Ctrl +
+D</strong> to serve as your preserved base plate.</li>
+</ol>
+<h3 id="2-isolate-elements-with-masks">2. Isolate Elements with
+Masks</h3>
+<p>Natural colorization requires treating individual elements—such as
+skin, hair, fabric, foliage, and skies—on separate layers to prevent
+color bleeding.</p>
+<ol type="1">
+<li>Create a new transparent layer above the base photograph for each
+specific element (e.g., name one "Skin", one "Clothing", and one
+"Background").</li>
+<li>Set the <strong>Mode</strong> dropdown at the top of the Layers
+panel to <strong>Color (LCH)</strong>. Unlike standard RGB color modes,
+Color (LCH) applies hue and chroma while strictly retaining the base
+image's perceptual lightness.</li>
+<li>Select the base layer and use the <strong>Free Select Tool</strong>
+or <strong>Paths Tool</strong> to outline the target area.</li>
+<li>Select the corresponding transparent layer, go to <strong>Layer &gt;
+Mask &gt; Add Layer Mask</strong>, and choose
+<strong>Selection</strong>.</li>
+</ol>
+<h3 id="3-apply-selective-color-via-lch-adjustments">3. Apply Selective
+Color via LCH Adjustments</h3>
+<p>Once masked, introduce color into the target area using targeted
+brushwork or fill adjustments:</p>
+<ol type="1">
+<li>Select the layer thumbnail (not the mask thumbnail) of your target
+layer.</li>
+<li>Select the <strong>Bucket Fill Tool</strong> or a soft
+<strong>Paintbrush Tool</strong>.</li>
+<li>Choose a base reference color from your palette.</li>
+<li>Apply the color over the masked region. The underlying detail,
+grain, and lighting will immediately show through due to the
+<strong>Color (LCH)</strong> blend mode.</li>
+</ol>
+<h3 id="4-refine-tones-using-lch-color-balance">4. Refine Tones Using
+LCH Color Balance</h3>
+<p>To achieve realism, color values must shift across shadows, midtones,
+and highlights (for example, skin shadows typically carry cooler or
+redder hues than highlighted areas).</p>
+<ol type="1">
+<li>Select the colored layer and navigate to <strong>Colors &gt; Color
+Balance</strong>.</li>
+<li>Ensure the preview is active. The tool divides tone evaluation
+across <strong>Shadows</strong>, <strong>Midtones</strong>, and
+<strong>Highlights</strong>.</li>
+<li>Adjust the sliders for each tonal range:
+<ul>
+<li><strong>Shadows:</strong> Introduce cooler, deeper tones to reflect
+atmospheric occlusion.</li>
+<li><strong>Midtones:</strong> Anchor the primary local color.</li>
+<li><strong>Highlights:</strong> Shift slightly warmer to emulate
+natural sunlight or ambient illumination.</li>
+</ul></li>
+<li>For deeper chromatic control, navigate to <strong>Colors &gt;
+Hue-Chroma</strong> to directly adjust the <strong>Hue</strong> angle
+and fine-tune the <strong>Chroma</strong> intensity to keep historical
+tones muted and period-accurate.</li>
+</ol>
+<h3 id="5-final-balancing-and-blending">5. Final Balancing and
+Blending</h3>
+<ol type="1">
+<li>Lower the <strong>Opacity</strong> of individual colored layers
+(typically between 60% and 85%) to prevent unnatural
+oversaturation.</li>
+<li>Soften hard transitions by clicking on the layer mask, navigating to
+<strong>Filters &gt; Blur &gt; Gaussian Blur</strong>, and applying a
+subtle 1–3 pixel radius.</li>
+<li>Repeat the process for all remaining elements until the entire
+photograph is unified.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

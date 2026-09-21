@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconstruct Facial Details in GIMP With Clone Tool - gimp</title>
+    <meta name="description" content="Restoring damaged heirloom portraits requires patience, precision, and the right digital restoration techniques. This guide outlines the essential steps to reconstruct missing or deteriorated facial details—such as eyes, skin texture, and contours—us">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/reconstruct-facial-details-in-gimp-with-clone-tool">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Reconstruct Facial Details in GIMP With Clone Tool - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/reconstruct-facial-details-in-gimp-with-clone-tool" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Restoring damaged heirloom portraits requires patience, precision, and the right digital restoration techniques. This guide outlines the essential steps to reconstruct missing or deteriorated facial details—such as eyes, skin texture, and contours—us" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="reconstruct-facial-details-in-gimp-with-clone-tool">Reconstruct
+Facial Details in GIMP With Clone Tool</h1>
+<p>Restoring damaged heirloom portraits requires patience, precision,
+and the right digital restoration techniques. This guide outlines the
+essential steps to reconstruct missing or deteriorated facial
+details—such as eyes, skin texture, and contours—using the Clone tool in
+GIMP. By establishing a non-destructive workflow, configuring the
+appropriate brush settings, and sampling symmetrical areas of the face,
+you can seamlessly fill in cracks, tears, and missing patches while
+preserving the original character of the photograph.</p>
+<h3 id="1-set-up-a-non-destructive-workspace">1. Set Up a
+Non-Destructive Workspace</h3>
+<p>Open your scanned image in GIMP. Before making any edits, duplicate
+the original layer by right-clicking it in the Layers panel and
+selecting <strong>Duplicate Layer</strong>, or press
+<code>Shift + Ctrl + D</code>. Rename this layer to "Restoration."
+Working on a duplicated layer ensures the original scan remains
+untouched should you need to reference it or restart.</p>
+<h3 id="2-configure-the-clone-tool">2. Configure the Clone Tool</h3>
+<p>Select the <strong>Clone Tool</strong> from the Toolbox or press
+<code>C</code>. In the Tool Options panel, adjust the following
+settings:</p>
+<ul>
+<li><strong>Brush:</strong> Choose a soft-edged brush (such as
+<code>Hardness 050</code> or <code>Hardness 075</code>) to avoid harsh,
+noticeable seams.</li>
+<li><strong>Size:</strong> Scale the brush down to match the specific
+detail you are repairing. Smaller brushes provide better control around
+delicate features like eyelids, lips, and nostrils.</li>
+<li><strong>Opacity:</strong> Set the opacity between 50% and 80% for
+gradual, controllable blending.</li>
+<li><strong>Alignment:</strong> Set the alignment to
+<strong>Aligned</strong> if you want the sample source to move relative
+to your cursor, or <strong>Fixed</strong> if you need to repeatedly
+paint from a single intact anchor point.</li>
+</ul>
+<h3 id="3-identify-and-sample-reference-areas">3. Identify and Sample
+Reference Areas</h3>
+<p>Facial anatomy relies heavily on symmetry. If an eye, eyebrow, or
+cheek is missing or damaged, inspect the opposite side of the face to
+see if that feature is intact.</p>
+<ol type="1">
+<li>Hold <code>Ctrl</code> and click on an undamaged section of the face
+that shares the same lighting, angle, and skin tone as the damaged area
+to set your source point.</li>
+<li>If you need to rebuild a feature from the opposite side (such as a
+left eye to replace a missing right eye), duplicate a selection of the
+intact feature onto a new layer, flip it horizontally using the
+<strong>Flip Tool</strong> (<code>Shift + F</code>), align it over the
+missing area, and use the Clone tool to blend its edges into the
+surrounding skin.</li>
+</ol>
+<h3 id="4-paint-missing-features-in-short-strokes">4. Paint Missing
+Features in Short Strokes</h3>
+<p>Release the <code>Ctrl</code> key, position your cursor over the
+damaged area, and begin painting.</p>
+<ul>
+<li>Work in short clicks or light strokes rather than dragging
+continuous lines. This prevents repetitive patterns and digital
+smearing.</li>
+<li>Continuously resample new source areas by <code>Ctrl</code>-clicking
+nearby skin tones to account for shifting highlights, shadows, and
+natural facial contours.</li>
+<li>Follow the natural muscle and bone structure of the face (e.g.,
+along the jawline, bridge of the nose, or cheekbones) to ensure the
+reconstructed shape looks anatomically correct.</li>
+</ul>
+<h3 id="5-blend-and-restore-film-grain">5. Blend and Restore Film
+Grain</h3>
+<p>After establishing the primary shapes, switch to the <strong>Heal
+Tool</strong> (<code>H</code>) using the same sampling method
+(<code>Ctrl</code> + click) to blend tonal variations and remove small
+seams left behind by the Clone tool. Heirloom portraits often feature a
+distinct photographic grain; if cloned areas appear overly smooth, add a
+minute amount of noise via <strong>Filters &gt; Noise &gt; RGB
+Noise</strong> on a separate overlay layer to match the restored regions
+with the surrounding vintage texture.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

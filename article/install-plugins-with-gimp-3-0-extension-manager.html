@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Plugins with GIMP 3.0 Extension Manager - gimp</title>
+    <meta name="description" content="GIMP 3.0 introduces a dedicated Extension Manager that simplifies how users discover, install, and maintain third-party add-ons. Unlike older releases that required manual file extraction into obscure system directories, the new system handles packages f">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/install-plugins-with-gimp-3-0-extension-manager">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Install Plugins with GIMP 3.0 Extension Manager - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/install-plugins-with-gimp-3-0-extension-manager" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP 3.0 introduces a dedicated Extension Manager that simplifies how users discover, install, and maintain third-party add-ons. Unlike older releases that required manual file extraction into obscure system directories, the new system handles packages f" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="install-plugins-with-gimp-30-extension-manager">Install Plugins
+with GIMP 3.0 Extension Manager</h1>
+<p>GIMP 3.0 introduces a dedicated Extension Manager that simplifies how
+users discover, install, and maintain third-party add-ons. Unlike older
+releases that required manual file extraction into obscure system
+directories, the new system handles packages formatted as GIMP
+Extensions (<code>.gex</code>) with minimal friction. This guide
+explains how to access the Extension Manager, install new extensions,
+and update or remove existing plugins directly within the
+application.</p>
+<h3 id="accessing-the-extension-manager">Accessing the Extension
+Manager</h3>
+<p>To open the management interface in GIMP 3.0:</p>
+<ol type="1">
+<li>Launch GIMP 3.0.</li>
+<li>Navigate to the top menu bar and select <strong>Edit</strong> (or
+<strong>GIMP</strong> on macOS).</li>
+<li>Click on <strong>Manage Extensions</strong> to open the Extension
+Manager dialog window.</li>
+</ol>
+<h3 id="installing-third-party-plugins">Installing Third-Party
+Plugins</h3>
+<p>The Extension Manager supports packaged <code>.gex</code> files,
+which bundle scripts, binaries, data, and metadata into a single
+archive.</p>
+<ol type="1">
+<li><strong>Download the Extension:</strong> Obtain a verified
+<code>.gex</code> extension package from a trusted developer or
+repository.</li>
+<li><strong>Open the Extension Manager:</strong> Go to <strong>Edit &gt;
+Manage Extensions</strong>.</li>
+<li><strong>Import the Package:</strong> Click the <strong>Install from
+File...</strong> button (usually located in the lower or upper toolbar
+of the dialog).</li>
+<li><strong>Select the File:</strong> Browse to your downloaded
+<code>.gex</code> file, select it, and click <strong>Open</strong>.</li>
+<li><strong>Confirm Installation:</strong> GIMP will extract the
+required assets, verify dependencies, and register the new plugin. If
+prompted, restart GIMP to complete the initialization process.</li>
+</ol>
+<h3 id="managing-and-updating-extensions">Managing and Updating
+Extensions</h3>
+<p>Once installed, extensions appear in the main list inside the
+Extension Manager dialog. From this panel, you can control their
+operational state:</p>
+<ul>
+<li><strong>Enable or Disable:</strong> Use the toggle switch or
+checkbox next to any extension to temporarily deactivate it without
+deleting its files. This is useful for troubleshooting performance
+issues or plugin conflicts.</li>
+<li><strong>View Details:</strong> Select an extension to inspect its
+version, author, description, and the specific menu locations where its
+tools will appear.</li>
+<li><strong>Update Extensions:</strong> If an updated <code>.gex</code>
+package is available, install it using the same <strong>Install from
+File...</strong> method; the Extension Manager will overwrite the
+outdated files while preserving your settings.</li>
+<li><strong>Uninstall Extensions:</strong> Select the unwanted plugin
+from the list and click the <strong>Remove</strong> or
+<strong>Uninstall</strong> button. GIMP will cleanly remove all
+associated scripts and resources from your user profile.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

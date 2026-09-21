@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Custom Calendar Grids in GIMP - gimp</title>
+    <meta name="description" content="Designing a custom, print-ready calendar grid layout in GIMP requires precise document setup, accurate measurement using built-in guide tools, structured typography, and proper print export settings. This guide covers how to set up your canvas at 300 DPI">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-design-custom-calendar-grids-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Custom Calendar Grids in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-design-custom-calendar-grids-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing a custom, print-ready calendar grid layout in GIMP requires precise document setup, accurate measurement using built-in guide tools, structured typography, and proper print export settings. This guide covers how to set up your canvas at 300 DPI" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-design-custom-calendar-grids-in-gimp">How to Design
+Custom Calendar Grids in GIMP</h1>
+<p>Designing a custom, print-ready calendar grid layout in GIMP requires
+precise document setup, accurate measurement using built-in guide tools,
+structured typography, and proper print export settings. This guide
+covers how to set up your canvas at 300 DPI with print margins, build a
+perfectly proportioned 7x5 or 7x6 day grid, format the date numbers
+efficiently, and export high-resolution, print-ready files suitable for
+professional printing.</p>
+<h3 id="1-set-up-a-print-ready-canvas">1. Set Up a Print-Ready
+Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Change the measurement unit from pixels to <strong>Inches</strong>
+or <strong>Millimeters</strong> depending on your target print size
+(e.g., 8.5 x 11 inches or A4).</li>
+<li>Expand the <strong>Advanced Options</strong> menu.</li>
+<li>Set both the <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <strong>300 pixels/in</strong> (standard for
+high-quality printing).</li>
+<li>Set <strong>Color space</strong> to <strong>RGB color</strong>.</li>
+<li>Set <strong>Fill with</strong> to <strong>White</strong> and click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="2-configure-margins-and-safe-areas">2. Configure Margins and
+Safe Areas</h3>
+<p>Printers require margins to prevent content from being cut off during
+trimming.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)</strong>.</li>
+<li>Add horizontal and vertical guides at <strong>5%</strong> and
+<strong>95%</strong> to establish a safe boundary for your design.</li>
+<li>Reserve the top 40% to 50% of the canvas for artwork or photos,
+leaving the bottom half for the calendar grid.</li>
+</ol>
+<h3 id="3-generate-the-grid-framework">3. Generate the Grid
+Framework</h3>
+<p>You can create a precise grid using GIMP’s native guides:</p>
+<ol type="1">
+<li>Determine the active area for your grid (e.g., width from 10% to
+90%, height from 50% to 90%).</li>
+<li>Go to <strong>Image &gt; Guides &gt; New Guide...</strong> to place
+vertical guides for the 7 columns (representing Sunday through
+Saturday). Divide the total width evenly across the 7 columns.</li>
+<li>Place horizontal guides for the header row (days of the week) and 5
+to 6 date rows below it.</li>
+<li>Create a new transparent layer named <code>Grid Lines</code> by
+clicking <strong>Layer &gt; New Layer</strong>.</li>
+</ol>
+<h3 id="4-draw-the-grid-borders">4. Draw the Grid Borders</h3>
+<ol type="1">
+<li>Select the <strong>Path Tool</strong> (<code>B</code>).</li>
+<li>Click along your guides to create paths for horizontal and vertical
+lines.</li>
+<li>Once the paths are plotted, go to <strong>Edit &gt; Stroke
+Path</strong>.</li>
+<li>Choose <strong>Line</strong> and select a thin width (such as 2 or 3
+pixels at 300 DPI).</li>
+<li>Set the stroke color to your desired border color and click
+<strong>Stroke</strong>.</li>
+</ol>
+<p>Alternatively, you can use the <strong>Rectangle Select Tool</strong>
+(<code>R</code>) with "Snap to Guides" enabled (<strong>View &gt; Snap
+to Guides</strong>), make selections for each cell or row, and use
+<strong>Edit &gt; Stroke Selection</strong>.</p>
+<h3 id="5-add-day-headers-and-date-numbers">5. Add Day Headers and Date
+Numbers</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> (<code>T</code>).</li>
+<li>Set a clean, legible font (such as Helvetica, Roboto, or Open Sans)
+at an appropriate font size.</li>
+<li>Create a single text box spanning the width of each column to align
+the day names (Mon, Tue, Wed, etc.) with center alignment.</li>
+<li>Create a new text layer for each week row or individual cell. To
+ensure visual consistency, use the Text Tool's bounding boxes snapped to
+your guides, aligning numbers to the top-right or center of each
+cell.</li>
+<li>Highlight weekends or holidays by changing the font color on those
+specific numbers.</li>
+</ol>
+<h3 id="6-export-for-professional-printing">6. Export for Professional
+Printing</h3>
+<ol type="1">
+<li>Save your master editable project file by going to <strong>File &gt;
+Save As</strong> and saving as a <code>.XCF</code> file.</li>
+<li>Convert text and paths to a flattened print format by going to
+<strong>File &gt; Export As...</strong>.</li>
+<li>Choose either <strong>PDF</strong> or <strong>TIFF</strong> from the
+file format list:
+<ul>
+<li>For <strong>PDF</strong>: Check <strong>Apply layer masks</strong>
+and ensure vector data/raster quality is set to maximum.</li>
+<li>For <strong>TIFF</strong>: Select <strong>No Compression</strong> or
+<strong>LZW</strong> to preserve image quality without compression
+artifacts.</li>
+</ul></li>
+<li>Click <strong>Export</strong> to generate your print-ready calendar
+grid.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

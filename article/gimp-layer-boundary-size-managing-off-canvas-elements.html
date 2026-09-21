@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Layer Boundary Size: Managing Off-Canvas Elements - gimp</title>
+    <meta name="description" content="This article explains the purpose of the Layer Boundary Size dialog in GIMP when working with elements placed outside the visible canvas. You will learn why layers have separate boundaries from the main image canvas, how adjusting these boundaries preven">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-layer-boundary-size-managing-off-canvas-elements">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Layer Boundary Size: Managing Off-Canvas Elements - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-layer-boundary-size-managing-off-canvas-elements" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the purpose of the Layer Boundary Size dialog in GIMP when working with elements placed outside the visible canvas. You will learn why layers have separate boundaries from the main image canvas, how adjusting these boundaries preven" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-layer-boundary-size-managing-off-canvas-elements">GIMP
+Layer Boundary Size: Managing Off-Canvas Elements</h1>
+<p>This article explains the purpose of the Layer Boundary Size dialog
+in GIMP when working with elements placed outside the visible canvas.
+You will learn why layers have separate boundaries from the main image
+canvas, how adjusting these boundaries prevents unwanted clipping, and
+how to effectively manage content that extends past your working
+area.</p>
+<h3 id="understanding-canvas-size-vs-layer-boundary-size">Understanding
+Canvas Size vs. Layer Boundary Size</h3>
+<p>In GIMP, the image canvas and individual layers are distinct
+entities. The canvas represents the final visible viewport and export
+dimensions of the project, while a layer boundary defines the active,
+editable rectangular area of a specific layer.</p>
+<p>By default, an element cannot exist or receive paint strokes outside
+its defined layer boundary (indicated by the yellow or black-and-yellow
+dashed line). If you paste an image, draw, or apply filters beyond this
+boundary, any content exceeding the perimeter is clipped and
+discarded.</p>
+<h3 id="the-purpose-of-the-layer-boundary-size-dialog">The Purpose of
+the Layer Boundary Size Dialog</h3>
+<p>The <strong>Layer Boundary Size</strong> dialog (accessed via
+<strong>Layer &gt; Layer Boundary Size...</strong>) allows you to resize
+and reposition the boundary of an active layer independently of the
+overall image canvas. When you add or move elements outside the current
+canvas dimensions, this dialog serves several critical purposes:</p>
+<h4 id="1-preventing-content-clipping">1. Preventing Content
+Clipping</h4>
+<p>When moving an element partially or fully off-screen, or importing an
+asset larger than the current canvas, standard operations may truncate
+the layer. Expanding the boundary ensures that all pixel data remains
+intact, even if it sits outside the active canvas viewing window.</p>
+<h4 id="2-providing-space-for-off-canvas-work">2. Providing Space for
+Off-Canvas Work</h4>
+<p>Working with design elements that need to be introduced from
+off-screen—such as preparation for animations, banners, or panoramic
+stitching—requires working space beyond the canvas borders. Increasing
+the layer boundary gives you a canvas-independent area to organize,
+mask, or edit these assets prior to final positioning.</p>
+<h4 id="3-adjusting-layer-offsets">3. Adjusting Layer Offsets</h4>
+<p>The dialog includes an offset grid and coordinate controls
+(<strong>X</strong> and <strong>Y</strong>). This feature allows you to
+specify where the existing layer content sits relative to the newly
+expanded borders. You can center the content, anchor it to specific
+edges, or manually push it into the negative coordinate space to align
+with off-canvas planning.</p>
+<h4 id="4-facilitating-canvas-expansion-later">4. Facilitating Canvas
+Expansion Later</h4>
+<p>If you plan to eventually expand the total canvas size to fit all
+elements using <strong>Image &gt; Fit Canvas to Layers</strong>, the
+layers must first hold their data without having clipped it. Setting an
+appropriately large layer boundary ensures that when the canvas is
+enlarged, the hidden off-canvas assets remain fully preserved and
+instantly visible.</p>
+<h3 id="how-to-apply-the-dialog-effectively">How to Apply the Dialog
+Effectively</h3>
+<ol type="1">
+<li>Select the layer containing off-canvas content in the
+<strong>Layers</strong> dockable dialog.</li>
+<li>Navigate to <strong>Layer &gt; Layer Boundary Size...</strong>.</li>
+<li>Enter new dimensions for <strong>Width</strong> and
+<strong>Height</strong> large enough to encompass the off-canvas
+material.</li>
+<li>Use the preview box or the <strong>Offset</strong> inputs to
+reposition the boundary relative to the layer's content.</li>
+<li>Click <strong>Resize</strong>.</li>
+<li>To view content extending outside the main canvas frame while you
+work, activate <strong>View &gt; Show All</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

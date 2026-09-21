@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Script-Fu Image Buffer Thread Safety - gimp</title>
+    <meta name="description" content="When external Script-Fu plugins interact with GIMP image buffers, thread safety is guaranteed through a layered architecture involving process isolation, serialized Inter-Process Communication (IPC), procedural database synchronization, and GEGL buffer a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-script-fu-image-buffer-thread-safety">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Script-Fu Image Buffer Thread Safety - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-script-fu-image-buffer-thread-safety" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When external Script-Fu plugins interact with GIMP image buffers, thread safety is guaranteed through a layered architecture involving process isolation, serialized Inter-Process Communication (IPC), procedural database synchronization, and GEGL buffer a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-script-fu-image-buffer-thread-safety">GIMP Script-Fu Image
+Buffer Thread Safety</h1>
+<p>When external Script-Fu plugins interact with GIMP image buffers,
+thread safety is guaranteed through a layered architecture involving
+process isolation, serialized Inter-Process Communication (IPC),
+procedural database synchronization, and GEGL buffer abstractions.
+Rather than granting plugins direct pointer access to shared memory,
+GIMP mediates all image modifications through controlled access layers
+that prevent race conditions, memory corruption, and concurrent write
+collisions.</p>
+<h3 id="process-isolation-and-ipc-serialization">Process Isolation and
+IPC Serialization</h3>
+<p>The primary defense against concurrent memory conflicts is that
+Script-Fu runs as an independent executable rather than an internal
+thread within the primary GIMP address space. Communication between the
+Script-Fu interpreter and the GIMP core occurs through an IPC wire
+protocol using operating system pipes.</p>
+<p>Because calls to query or modify an image are transmitted as discrete
+messages across this boundary, image operations are naturally
+serialized:</p>
+<ul>
+<li><strong>Asynchronous Message Passing:</strong> The plugin requests
+actions via the Procedural Database (PDB).</li>
+<li><strong>Core-Side Dispatch:</strong> The core GIMP process receives
+these requests and dispatches them inside its own synchronization
+boundaries, eliminating direct memory contention between the plugin's
+Scheme runtime and GIMP's internal rendering threads.</li>
+</ul>
+<h3 id="gegl-buffer-tile-locking-and-concurrency-control">GEGL Buffer
+Tile Locking and Concurrency Control</h3>
+<p>In modern versions of GIMP (2.10 and GIMP 3.0), image data is managed
+by the Generic Graphics Library (GEGL). The underlying image storage
+(<code>GeglBuffer</code>) is divided into discrete tiles. GEGL provides
+built-in concurrency control across these tiles:</p>
+<ul>
+<li><strong>Tile Locks:</strong> When a plugin initiates reads or writes
+via GEGL-backed PDB procedures, GEGL acquires read or write locks on the
+affected tiles.</li>
+<li><strong>Thread-Safe Iteration:</strong> If parallel worker threads
+within GIMP are reading from an area, write requests wait or operate on
+distinct tile copies to prevent dirty reads.</li>
+<li><strong>Copy-On-Write (COW):</strong> GEGL utilizes copy-on-write
+semantics. If an operation duplicates a buffer or creates a reference,
+shared data is only duplicated in memory when a write occurs, protected
+by reference-counting atomics.</li>
+</ul>
+<h3 id="shadow-buffers-and-atomic-commits">Shadow Buffers and Atomic
+Commits</h3>
+<p>GIMP prevents scripts from directly mutating active display buffers
+in-place. Instead, modifications follow a shadow buffer pattern:</p>
+<ol type="1">
+<li><strong>Pixel Fetching:</strong> Plugins access pixel regions using
+procedural calls that return copies of the data or map temporary local
+buffers.</li>
+<li><strong>Shadow Writing:</strong> Modifications are applied to a
+dedicated "shadow" buffer associated with the target drawable.</li>
+<li><strong>Merging:</strong> Once the operation completes, the script
+calls procedures such as <code>gimp_drawable_merge_shadow</code>. The
+GIMP core locks the target drawable, commits the shadow pixel updates
+into the primary buffer, marks the undo step, and invalidates the
+affected display regions atomically.</li>
+</ol>
+<h3 id="pdb-and-main-context-synchronization">PDB and Main Context
+Synchronization</h3>
+<p>Within the GIMP core process, calls coming from the Script-Fu IPC
+channel are funneled through the GIMP Main Loop context using GLib
+primitives (<code>GSource</code>, <code>GMutex</code>). Even if GIMP
+employs a multi-threaded rendering engine for viewport updates and
+filter execution, the execution of plugin-initiated image mutations is
+coordinated with the undo stack and active processing graphs. This
+guarantees that image buffers remain in a valid, deterministic state
+throughout the plugin execution lifecycle.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

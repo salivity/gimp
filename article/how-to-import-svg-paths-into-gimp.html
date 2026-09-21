@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import SVG Paths into GIMP - gimp</title>
+    <meta name="description" content="Importing Scalable Vector Graphics (SVG) paths into GIMP allows you to bring crisp vector outlines created in vector software straight into your raster workflow. This guide explains the exact procedure for loading external SVG files directly into GIMP's">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-import-svg-paths-into-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import SVG Paths into GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-import-svg-paths-into-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Importing Scalable Vector Graphics (SVG) paths into GIMP allows you to bring crisp vector outlines created in vector software straight into your raster workflow. This guide explains the exact procedure for loading external SVG files directly into GIMP's" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-import-svg-paths-into-gimp">How to Import SVG Paths into
+GIMP</h1>
+<p>Importing Scalable Vector Graphics (SVG) paths into GIMP allows you
+to bring crisp vector outlines created in vector software straight into
+your raster workflow. This guide explains the exact procedure for
+loading external SVG files directly into GIMP's dedicated Paths dialog,
+preserving the vector nodes so you can edit, scale, stroke, or convert
+the shapes into selections without rasterizing them beforehand.</p>
+<h3 id="step-1-open-or-create-a-canvas">Step 1: Open or Create a
+Canvas</h3>
+<p>Launch GIMP and open an existing project or create a new canvas via
+<strong>File &gt; New</strong>. An active canvas is required for GIMP to
+position and scale the imported vector paths properly.</p>
+<h3 id="step-2-open-the-paths-dialog">Step 2: Open the Paths Dialog</h3>
+<p>If the Paths dialog is not already visible in your workspace docks,
+enable it:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Windows</strong>.</li>
+<li>Hover over <strong>Dockable Dialogs</strong>.</li>
+<li>Click on <strong>Paths</strong>.</li>
+</ol>
+<h3 id="step-3-access-the-import-function">Step 3: Access the Import
+Function</h3>
+<p>Within the <strong>Paths</strong> tab:</p>
+<ol type="1">
+<li>Right-click anywhere in the empty area of the Paths list.
+Alternatively, click the small configure menu icon (the small triangle
+pointing left with horizontal lines) located in the upper-right corner
+of the Paths dock.</li>
+<li>From the context menu, select <strong>Import Path...</strong>.</li>
+</ol>
+<h3 id="step-4-configure-and-select-the-svg-file">Step 4: Configure and
+Select the SVG File</h3>
+<p>An "Import Paths from SVG" dialog box will appear:</p>
+<ol type="1">
+<li>Locate and select the SVG file on your computer using the file
+browser.</li>
+<li>In the bottom section of the dialog, configure the import options:
+<ul>
+<li><strong>Import to active path</strong>: Overwrites or adds to
+currently active paths if needed.</li>
+<li><strong>Merge imported paths</strong>: Combines all separate vector
+objects in the SVG into a single GIMP path layer. Leave this unchecked
+if you want distinct paths for different shapes.</li>
+<li><strong>Scale to fit image</strong>: Automatically resizes the
+imported vector outlines to match the dimensions of your current canvas.
+Leave unchecked if you need the original document coordinates
+preserved.</li>
+</ul></li>
+<li>Click <strong>Open</strong>.</li>
+</ol>
+<h3 id="step-5-view-and-use-the-imported-path">Step 5: View and Use the
+Imported Path</h3>
+<p>The imported vectors will now appear as one or more entries in the
+<strong>Paths</strong> dock. Click the eye icon next to the path layer
+to make the vector outline visible on your canvas. From here, you can
+use the <strong>Paths Tool</strong> (shortcut: <strong>B</strong>) to
+manipulate individual nodes, click <strong>Path to Selection</strong> to
+create pixel selections, or use <strong>Stroke Path</strong> to render
+outlines onto an active pixel layer.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

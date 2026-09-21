@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug GIMP Plugin Crashes with Startup Flags - gimp</title>
+    <meta name="description" content="Troubleshooting third-party plugin crashes in GIMP requires capturing real-time console output and crash backtraces that the standard graphical interface hides. By launching GIMP from the command line using specific debugging startup flags, you can force">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/debug-gimp-plugin-crashes-with-startup-flags">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Debug GIMP Plugin Crashes with Startup Flags - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/debug-gimp-plugin-crashes-with-startup-flags" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Troubleshooting third-party plugin crashes in GIMP requires capturing real-time console output and crash backtraces that the standard graphical interface hides. By launching GIMP from the command line using specific debugging startup flags, you can force" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="debug-gimp-plugin-crashes-with-startup-flags">Debug GIMP Plugin
+Crashes with Startup Flags</h1>
+<p>Troubleshooting third-party plugin crashes in GIMP requires capturing
+real-time console output and crash backtraces that the standard
+graphical interface hides. By launching GIMP from the command line using
+specific debugging startup flags, you can force the application to log
+its entire initialization routine, track procedure database (PDB)
+registrations, and generate comprehensive stack traces the moment a
+plugin causes a segmentation fault or unexpected termination.</p>
+<h3 id="essential-startup-flags-for-debugging">Essential Startup Flags
+for Debugging</h3>
+<p>To capture verbose console output and isolate unstable plugins, use
+the following command-line flags:</p>
+<ul>
+<li><strong><code>--verbose</code></strong><br />
+Outputs detailed startup information directly to the terminal, including
+every resource, font, brush, and third-party plugin being queried and
+loaded into the Procedural Database.</li>
+<li><strong><code>--debug-handlers</code></strong><br />
+Enables GIMP’s internal debugging signal handlers. This ensures the
+application catches critical operating system signals (such as
+<code>SIGSEGV</code> or <code>SIGFPE</code>) often caused by unhandled
+exceptions in compiled C or C++ extensions.</li>
+<li><strong><code>--stack-trace-mode always</code></strong><br />
+Forces GIMP to automatically generate and print a full stack trace to
+the console whenever a crash occurs. The available arguments are
+<code>never</code>, <code>query</code> (which prompts the user via a
+dialog), and <code>always</code>. Setting this to <code>always</code> is
+critical for automated logging and headless testing.</li>
+<li><strong><code>--g-fatal-warnings</code></strong><br />
+Treats all GLib and GTK warnings as fatal errors. If a third-party
+plugin misuses the underlying library APIs, GIMP immediately halts and
+outputs a backtrace at the exact point of the violation rather than
+attempting to recover and crashing later.</li>
+</ul>
+<h3 id="executing-the-debug-command">Executing the Debug Command</h3>
+<p>To view output directly or pipe it into a persistent log file, run
+the command through your operating system's terminal.</p>
+<h4 id="linux-and-macos">Linux and macOS</h4>
+<p>Launch your terminal and execute GIMP with the combined debugging
+options:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gimp</span> <span class="at">--verbose</span> <span class="at">--debug-handlers</span> <span class="at">--stack-trace-mode</span> always <span class="op">&gt;</span> gimp_debug.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div>
+<p>For even deeper GLib-level logging alongside GIMP's flags, prepend
+the <code>G_MESSAGES_DEBUG</code> environment variable:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">G_MESSAGES_DEBUG</span><span class="op">=</span>all <span class="fu">gimp</span> <span class="at">--verbose</span> <span class="at">--debug-handlers</span> <span class="at">--stack-trace-mode</span> always</span></code></pre></div>
+<h4 id="windows">Windows</h4>
+<p>On Windows, standard <code>gimp-2.10.exe</code> (or your installed
+version) suppresses console output by default. Use
+<code>gimp-console-*.exe</code> located inside GIMP's <code>bin</code>
+directory to ensure output streams to the command line:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C:\Program Files\GIMP 2\bin\gimp-console-2.10.exe&quot;</span> --verbose -<span class="at">-debug-handlers</span> -<span class="at">-stack-trace-mode</span> always <span class="kw">&gt;</span> debug_log.txt <span class="kw">2&gt;&amp;1</span></span></code></pre></div>
+<h3 id="reading-the-log-output">Reading the Log Output</h3>
+<p>When a third-party plugin fails, check the generated log or console
+stream near the bottom:</p>
+<ol type="1">
+<li><strong>Loading Phase:</strong> Look for lines preceded by
+<code>Querying:</code> to identify which plugin binary or Python script
+was executing just before the output stopped.</li>
+<li><strong>Stack Trace:</strong> If the crash occurs after startup, the
+<code>--stack-trace-mode always</code> flag instructs the debugger (such
+as GDB or LLDB if installed) to print the call stack, pinpointing the
+exact shared library (<code>.so</code>, <code>.dll</code>) or system
+call responsible for the crash.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Cracked Glass in GIMP - gimp</title>
+    <meta name="description" content="Creating a realistic cracked glass window composite in GIMP involves combining a background scene with high-contrast crack textures, applying displacement mapping to simulate light refraction, and fine-tuning layer blending modes for natural depth. This">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-cracked-glass-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Cracked Glass in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-cracked-glass-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a realistic cracked glass window composite in GIMP involves combining a background scene with high-contrast crack textures, applying displacement mapping to simulate light refraction, and fine-tuning layer blending modes for natural depth. This" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-make-cracked-glass-in-gimp">How to Make Cracked Glass in
+GIMP</h1>
+<p>Creating a realistic cracked glass window composite in GIMP involves
+combining a background scene with high-contrast crack textures, applying
+displacement mapping to simulate light refraction, and fine-tuning layer
+blending modes for natural depth. This step-by-step guide walks you
+through setting up your layers, manipulating transparency, bending the
+background image along the fracture lines, and adding shadows and
+highlights to produce a convincing shattered glass effect.</p>
+<h3 id="step-1-set-up-your-project-files">Step 1: Set Up Your Project
+Files</h3>
+<ol type="1">
+<li>Open GIMP and import your main background photo by going to
+<strong>File &gt; Open</strong>. This will be the view seen through the
+window.</li>
+<li>Import a high-resolution cracked glass texture on a black or white
+background by selecting <strong>File &gt; Open as Layers</strong>.</li>
+<li>Use the <strong>Scale Tool (Shift + S)</strong> to resize and
+position the crack texture over the area where you want the fracture
+centered.</li>
+</ol>
+<h3 id="step-2-blend-the-crack-texture">Step 2: Blend the Crack
+Texture</h3>
+<ol type="1">
+<li>If your texture has a black background with white cracks, set the
+crack layer's <strong>Mode</strong> (found at the top of the Layers
+panel) to <strong>Screen</strong>. If the background is white with black
+cracks, set the mode to <strong>Multiply</strong>.</li>
+<li>Go to <strong>Colors &gt; Levels</strong> on the crack layer. Adjust
+the black and white point sliders to eliminate any leftover background
+haze, leaving only the sharp lines of the cracks visible.</li>
+</ol>
+<h3 id="step-3-create-glass-refraction-displacement-map">Step 3: Create
+Glass Refraction (Displacement Map)</h3>
+<p>Real cracked glass bends and distorts the view behind it. To simulate
+this:</p>
+<ol type="1">
+<li>Duplicate your crack texture layer and hide the original.</li>
+<li>Desaturate the duplicated layer via <strong>Colors &gt; Desaturate
+&gt; Desaturate</strong>.</li>
+<li>Boost the contrast heavily using <strong>Colors &gt; Curves</strong>
+so the fracture edges have strong light-to-dark transitions.</li>
+<li>Export or temporarily copy this high-contrast image to use as your
+map.</li>
+<li>Select your original background layer, duplicate it, and select the
+duplicate.</li>
+<li>Go to <strong>Filters &gt; Map &gt; Displace</strong>.</li>
+<li>Set the displacement map input to your high-contrast crack layer.
+Adjust the <strong>X displacement</strong> and <strong>Y
+displacement</strong> sliders to subtle values (typically between 2 and
+10 pixels). This will shift the background image slightly along the
+crack lines.</li>
+</ol>
+<h3 id="step-4-add-highlights-and-depth">Step 4: Add Highlights and
+Depth</h3>
+<ol type="1">
+<li>Create a new transparent layer above all other layers.</li>
+<li>Select a small, soft brush with white color and low opacity (around
+15–20%).</li>
+<li>Lightly trace over major impact points and select edges to simulate
+the way broken glass catches ambient light.</li>
+<li>Create another transparent layer set to the
+<strong>Multiply</strong> mode.</li>
+<li>Use a soft black brush with low opacity to add subtle drop shadows
+underneath the thicker fractured segments, giving the broken pieces
+physical depth.</li>
+</ol>
+<h3 id="step-5-final-color-and-polish">Step 5: Final Color and
+Polish</h3>
+<ol type="1">
+<li>Add a <strong>New Layer from Visible</strong> at the top of the
+layer stack by right-clicking inside the Layers panel.</li>
+<li>Apply a subtle tint or adjustment using <strong>Colors &gt; Color
+Temperature</strong> to cool down the highlights, mimicking the natural
+green or blue tint found in architectural glass.</li>
+<li>If desired, apply a slight Gaussian Blur (<strong>Filters &gt; Blur
+&gt; Gaussian Blur</strong>) with a radius of 0.5–1.0 pixels to soften
+the composite and blend the crack elements naturally into the
+scene.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Convolution Matrix: Building Custom 5x5 Kernels - gimp</title>
+    <meta name="description" content="GIMP’s Convolution Matrix filter provides a low-level image processing tool that allows users to alter pixel values using custom mathematical operations across a 5x5 spatial grid. By manually defining weights within this 25-cell array, users can calcul">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-convolution-matrix-building-custom-5-x-5-kernels">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Convolution Matrix: Building Custom 5x5 Kernels - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-convolution-matrix-building-custom-5-x-5-kernels" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s Convolution Matrix filter provides a low-level image processing tool that allows users to alter pixel values using custom mathematical operations across a 5x5 spatial grid. By manually defining weights within this 25-cell array, users can calcul" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-convolution-matrix-building-custom-5x5-kernels">GIMP
+Convolution Matrix: Building Custom 5x5 Kernels</h1>
+<p>GIMP’s Convolution Matrix filter provides a low-level image
+processing tool that allows users to alter pixel values using custom
+mathematical operations across a 5x5 spatial grid. By manually defining
+weights within this 25-cell array, users can calculate new color and
+intensity values for every pixel based on its surrounding neighbors.
+This article explains how the convolution mechanism operates within
+GIMP, the role of key mathematical parameters like the divisor and
+offset, and how to configure custom kernels for tasks such as
+sharpening, blurring, and edge detection.</p>
+<h3 id="the-mechanics-of-the-5x5-convolution-kernel">The Mechanics of
+the 5x5 Convolution Kernel</h3>
+<p>A convolution matrix (or kernel) is a grid of numbers mapped over an
+image's pixel array. When applied, GIMP moves the center of this 5x5
+grid over every pixel in the image, one at a time. The target pixel sits
+precisely at coordinates (3, 3) within the matrix, flanked by up to two
+layers of adjacent pixels in every direction.</p>
+<p>For each pixel, the filter performs the following mathematical
+steps:</p>
+<ol type="1">
+<li>Multiplies the color channel values (Red, Green, Blue, and
+optionally Alpha) of the central pixel and its 24 neighbors by their
+corresponding weights in the 5x5 matrix.</li>
+<li>Sums all 25 calculated products together into a single value.</li>
+<li>Divides this sum by a user-defined <strong>Divisor</strong>.</li>
+<li>Adds an optional <strong>Offset</strong> value to the result.</li>
+<li>Sets the central pixel’s final color to this new computed
+value.</li>
+</ol>
+<p>If the matrix contains only zeros except for a <code>1</code> in the
+very center, the image remains completely unchanged. This is known as
+the identity matrix.</p>
+<h3 id="the-role-of-the-divisor-and-offset">The Role of the Divisor and
+Offset</h3>
+<p>Constructing custom filters requires balancing the overall energy of
+the pixel math to prevent unwanted brightening, darkening, or color
+clipping.</p>
+<ul>
+<li><strong>Divisor:</strong> Typically set to the sum of all numbers
+entered into the matrix. For example, if a 5x5 blur filter uses
+twenty-five <code>1</code>s, the sum of the weights is 25. Setting the
+divisor to 25 ensures that the output pixel maintains the same average
+luminosity as the original input. If the divisor is smaller than the
+sum, the image will brighten; if larger, the image will darken.</li>
+<li><strong>Offset:</strong> A scalar value added directly to the final
+pixel calculation after division. It is primarily used in edge-detection
+or emboss filters where the kernel weights sum to zero. Because
+sum-to-zero kernels produce negative or zero values for flat areas, an
+offset of 128 shifts the baseline to neutral 50% gray, rendering edges
+as highlights and shadows around a visible midpoint.</li>
+</ul>
+<h3 id="advantages-of-a-5x5-matrix-over-3x3">Advantages of a 5x5 Matrix
+over 3x3</h3>
+<p>While standard image filters often rely on 3x3 matrices, GIMP’s 5x5
+implementation extends the radius of influence two pixels outward from
+the center. This larger footprint provides several key benefits:</p>
+<ul>
+<li><strong>Wider Radius Effects:</strong> Blurs can achieve a softer,
+more pronounced effect in a single pass because pixel data is sampled
+across a 25-pixel area rather than just 9.</li>
+<li><strong>Higher Mathematical Precision:</strong> Complex curves, such
+as a true 2D Gaussian distribution, can be approximated more accurately
+across a 5x5 grid than a constrained 3x3 grid.</li>
+<li><strong>Directional Asymmetry:</strong> Subtle directional motion
+blurs and specialized relief maps can be fine-tuned by varying weights
+along custom diagonal or off-center axes.</li>
+</ul>
+<h3 id="configuring-channels-and-border-behavior">Configuring Channels
+and Border Behavior</h3>
+<p>GIMP allows the kernel calculations to be toggled selectively across
+individual color channels (R, G, B) and transparency (Alpha).
+Restricting the matrix to specific channels enables custom chromatic
+aberrations, single-channel contrast enhancements, or edge-based alpha
+adjustments.</p>
+<p>Additionally, GIMP provides border-handling options—such as
+<strong>Extend</strong>, <strong>Wrap</strong>, or
+<strong>Clear</strong>—to define how the matrix samples pixels when the
+5x5 grid overlaps the physical edges of the canvas. Selecting "Extend"
+duplicates border pixels outward, preventing hard black seams around the
+perimeter of the processed image.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

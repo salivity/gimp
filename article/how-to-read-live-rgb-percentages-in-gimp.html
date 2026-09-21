@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Read Live RGB Percentages in GIMP - gimp</title>
+    <meta name="description" content="The Pointer Information dialog in GIMP serves as a dedicated, real-time diagnostic monitor that tracks color data directly beneath your cursor. Unlike standard sampling tools that capture static color values upon clicking, this dialog continuously update">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-read-live-rgb-percentages-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Read Live RGB Percentages in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-read-live-rgb-percentages-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Pointer Information dialog in GIMP serves as a dedicated, real-time diagnostic monitor that tracks color data directly beneath your cursor. Unlike standard sampling tools that capture static color values upon clicking, this dialog continuously update" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-read-live-rgb-percentages-in-gimp">How to Read Live RGB
+Percentages in GIMP</h1>
+<p>The Pointer Information dialog in GIMP serves as a dedicated,
+real-time diagnostic monitor that tracks color data directly beneath
+your cursor. Unlike standard sampling tools that capture static color
+values upon clicking, this dialog continuously updates as you move
+across the canvas, displaying precise Red, Green, and Blue (RGB) data.
+By configuring its display mode to show percentage values, digital
+artists and photo retouchers can evaluate tonal balance, highlight
+clipping, and shadow depth across an entire composition dynamically.</p>
+<h3 id="accessing-the-pointer-information-dialog">Accessing the Pointer
+Information Dialog</h3>
+<p>To open the tool, navigate to <strong>Windows &gt; Dockable Dialogs
+&gt; Pointer Information</strong> from the main menu. You can dock this
+panel alongside your layers, histogram, or tool options to keep your
+workspace organized while maintaining continuous visibility of your
+pixel metrics.</p>
+<h3 id="displaying-live-rgb-as-percentages">Displaying Live RGB as
+Percentages</h3>
+<p>By default, GIMP often represents RGB values on a standard 8-bit
+integer scale ranging from 0 to 255. The Pointer Information dialog
+allows you to change this read-out into percentage values:</p>
+<ol type="1">
+<li>Open the <strong>Pointer Information</strong> panel.</li>
+<li>Locate the channel values section labeled with the active color
+model.</li>
+<li>Switch the display format dropdown to <strong>RGB (%)</strong> or
+inspect the normalized decimal readouts representing values from 0.0% to
+100.0%.</li>
+</ol>
+<p>Once enabled, hover your mouse over any portion of the image. The
+dialog immediately registers the pointer's precise X and Y coordinates
+alongside the exact percentage contribution of the Red, Green, Blue, and
+Alpha channels for the pixel currently under the cursor.</p>
+<h3 id="key-advantages-of-the-pointer-information-dialog">Key Advantages
+of the Pointer Information Dialog</h3>
+<ul>
+<li><strong>Zero-Click Inspection:</strong> Standard tools like the
+Color Picker require you to click the canvas, which can interrupt your
+active brush stroke, path selection, or editing workflow. The Pointer
+Information panel operates completely passively.</li>
+<li><strong>Tonal Range and Clipping Monitoring:</strong> Evaluating
+values in percentages makes it easy to identify blown highlights
+(approaching 100% across all channels) or crushed shadows (approaching
+0%). This is especially useful for print prepress, where ink limits are
+often calculated in percentages.</li>
+<li><strong>Sample Merged Support:</strong> The dialog reads the
+composite output of all visible layers combined, reflecting the final
+visual result of your layer stack rather than only the active
+layer.</li>
+<li><strong>Multi-Format Versatility:</strong> Alongside RGB
+percentages, the dialog can simultaneously display HSV, HSL, and native
+pixel coordinates, offering a comprehensive overview of your canvas
+metrics without changing your active tool.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

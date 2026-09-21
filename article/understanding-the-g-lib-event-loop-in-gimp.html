@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the GLib Event Loop in GIMP - gimp</title>
+    <meta name="description" content="This article provides an overview of how the GLib event loop serves as the core architectural backbone for the GNU Image Manipulation Program (GIMP). It explores how the main loop coordinates low-level user interactions, prevents interface freezing durin">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/understanding-the-g-lib-event-loop-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Understanding the GLib Event Loop in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/understanding-the-g-lib-event-loop-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of how the GLib event loop serves as the core architectural backbone for the GNU Image Manipulation Program (GIMP). It explores how the main loop coordinates low-level user interactions, prevents interface freezing durin" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="understanding-the-glib-event-loop-in-gimp">Understanding the
+GLib Event Loop in GIMP</h1>
+<p>This article provides an overview of how the GLib event loop serves
+as the core architectural backbone for the GNU Image Manipulation
+Program (GIMP). It explores how the main loop coordinates low-level user
+interactions, prevents interface freezing during heavy computation, and
+manages asynchronous operations across background threads and external
+plug-ins.</p>
+<h3 id="the-foundation-gmainloop-in-gimp">The Foundation: GMainLoop in
+GIMP</h3>
+<p>At the core of GIMP’s runtime architecture is the GLib main event
+loop (<code>GMainLoop</code>), running on a single dedicated main
+thread. Because GIMP relies on GTK for its graphical user interface, it
+inherits GLib's event-driven paradigm. The primary responsibility of
+this loop is to continuously monitor various event sources, prioritize
+them, and dispatch callbacks to update application state and redraw the
+canvas.</p>
+<h3 id="processing-user-input">Processing User Input</h3>
+<p>User interactions—such as keystrokes, mouse clicks, and drawing
+tablet inputs (pressure, tilt, coordinates)—enter the application
+through the windowing system via GDK. The GLib event loop processes
+these inputs through concrete stages:</p>
+<ol type="1">
+<li><strong>Poll and Collection:</strong> The event loop relies on
+<code>g_poll()</code> to wait for file descriptors and windowing system
+events without consuming CPU cycles when idle.</li>
+<li><strong>Prioritization:</strong> GLib assigns priorities to
+different event sources. User inputs typically receive higher priority
+than background tasks, ensuring that cursor movements and brush strokes
+feel responsive and immediate.</li>
+<li><strong>Dispatch to Widgets:</strong> Once detected, the event loop
+dispatches events to the active <code>GtkWidget</code> hierarchy. In
+GIMP, this means translating raw hardware events into painting actions,
+tool selections, or zoom manipulations on the active image canvas.</li>
+</ol>
+<h3 id="handling-asynchronous-commands-and-heavy-processing">Handling
+Asynchronous Commands and Heavy Processing</h3>
+<p>Image manipulation operations, such as applying complex GEGL (Generic
+Graphical Library) filters or exporting large files, are computationally
+expensive. Running these operations synchronously on the main thread
+would block the GLib event loop, causing the interface to freeze and
+become unresponsive.</p>
+<p>To mitigate this, GIMP separates processing from interface management
+using several asynchronous mechanisms coordinated through the main
+loop:</p>
+<ul>
+<li><strong>Worker Threads and GEGL:</strong> Heavy rendering tasks are
+offloaded to background worker threads. Once a thread finishes
+processing a tile or an entire layer, it communicates the completion
+back to the main loop using thread-safe primitives like
+<code>g_idle_add()</code> or <code>GTask</code>.</li>
+<li><strong>Idle Callbacks:</strong> The <code>g_idle_add()</code>
+function schedules low-priority callbacks to execute only when no
+higher-priority events (such as user input) are pending. GIMP uses idle
+handlers to update progress bars, refresh canvas viewports, and clean up
+temporary resources incrementally.</li>
+<li><strong>Inter-Process Communication (IPC) for Plug-ins:</strong>
+GIMP executes plug-ins as separate processes to ensure stability.
+Communication between GIMP's core and external plug-ins occurs over
+pipes or shared memory (via <code>libgimp</code>). The GLib event loop
+integrates these file descriptors directly into its polling mechanism,
+processing incoming plug-in commands asynchronously alongside user
+inputs.</li>
+</ul>
+<p>By decoupling background computation from the main UI thread and
+routing all notifications back through the central event loop, GIMP
+ensures thread safety while maintaining a fluid, responsive user
+experience during demanding workflows.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

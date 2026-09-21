@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Computes Histograms Asynchronously - gimp</title>
+    <meta name="description" content="Computing histogram data for high-resolution images is computationally expensive, yet the GNU Image Manipulation Program (GIMP) does so without stuttering or freezing its interface. GIMP achieves this responsiveness by offloading pixel calculations from">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-computes-histograms-asynchronously">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Computes Histograms Asynchronously - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-computes-histograms-asynchronously" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Computing histogram data for high-resolution images is computationally expensive, yet the GNU Image Manipulation Program (GIMP) does so without stuttering or freezing its interface. GIMP achieves this responsiveness by offloading pixel calculations from" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-computes-histograms-asynchronously">How GIMP Computes
+Histograms Asynchronously</h1>
+<p>Computing histogram data for high-resolution images is
+computationally expensive, yet the GNU Image Manipulation Program (GIMP)
+does so without stuttering or freezing its interface. GIMP achieves this
+responsiveness by offloading pixel calculations from its main graphical
+interface thread onto background worker threads managed by its core
+image-processing framework, GEGL (Generic Graphics Library). Through
+tile-based data chunking, asynchronous event dispatching via GLib, and
+non-blocking preview pipelines, GIMP calculates color distribution data
+in parallel while keeping the user interface entirely fluid.</p>
+<h3 id="the-gegl-processing-pipeline-and-tiling">The GEGL Processing
+Pipeline and Tiling</h3>
+<p>At the center of modern GIMP image processing is GEGL. Instead of
+treating an image as a single monolithic block of memory, GEGL
+subdivides the image buffer into smaller rectangular segments called
+tiles.</p>
+<p>When a histogram needs to be computed—such as when opening the
+Levels, Curves, or Histogram dialogs—the operation is formulated as a
+directed acyclic graph (DAG). Because the image is divided into discrete
+tiles, the computational workload can be partitioned into smaller,
+self-contained sub-tasks that run across multiple CPU cores
+simultaneously rather than sequentially locking up the whole image
+buffer.</p>
+<h3 id="separation-of-the-main-thread-and-worker-threads">Separation of
+the Main Thread and Worker Threads</h3>
+<p>GIMP’s graphical user interface relies on the GTK toolkit, which
+operates on a single primary thread running an active event loop. This
+main loop processes user inputs, window rendering, tool interaction, and
+mouse events. If pixel-counting algorithms were executed on this main
+thread, the interface would stop responding until every pixel was
+analyzed.</p>
+<p>To prevent this, GIMP delegates the histogram extraction to
+background worker threads. The main UI thread issues a request to GEGL
+to analyze the active buffer. The worker threads then read the tile
+buffers, extract color and alpha values, and populate statistical bins
+(such as value, red, green, blue, and alpha distributions) entirely in
+the background.</p>
+<h3 id="inter-thread-communication-via-glib">Inter-Thread Communication
+via GLib</h3>
+<p>Worker threads cannot safely update GTK user interface elements
+directly because GTK is not thread-safe. GIMP bridges the worker threads
+and the main thread using GLib’s asynchronous communication
+mechanisms:</p>
+<ol type="1">
+<li><strong>Background Accumulation:</strong> Worker threads process
+image tiles and tally pixel values into an internal data structure
+representing the histogram bins.</li>
+<li><strong>Idle Callback Queuing:</strong> Once intermediate or final
+calculation batches are complete, the worker thread schedules a callback
+onto the main thread using routines such as <code>g_idle_add()</code> or
+GLib's asynchronous task structures.</li>
+<li><strong>Safe UI Redraw:</strong> The main event loop executes this
+callback during an idle cycle between user interactions. The callback
+updates the histogram view widget with the computed data and requests a
+redraw of the canvas or dialog.</li>
+</ol>
+<h3 id="cancellation-and-live-updates">Cancellation and Live
+Updates</h3>
+<p>When working with dynamic adjustments—such as dragging a slider or
+painting on the canvas—the underlying image data changes constantly,
+making previous histogram computations obsolete. GIMP handles this
+through cancellable asynchronous jobs.</p>
+<p>When a user alters an image parameter while a histogram is still
+computing, the previous background task is flagged for cancellation. The
+worker threads drop the incomplete job at the nearest tile boundary,
+allocate a new job for the updated state, and restart the calculation.
+This prevents obsolete operations from queuing up and consuming system
+resources, ensuring that the interface remains instantly responsive to
+user input.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Surface Warping with GIMP GEGL Displace - gimp</title>
+    <meta name="description" content="The GEGL Displace filter in GIMP is an advanced manipulation tool that repositions pixels on a target layer based on the tonal luminance of an auxiliary displacement map. By translating grayscale values—where black, neutral gray, and white represent di">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/realistic-surface-warping-with-gimp-gegl-displace">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Realistic Surface Warping with GIMP GEGL Displace - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/realistic-surface-warping-with-gimp-gegl-displace" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Displace filter in GIMP is an advanced manipulation tool that repositions pixels on a target layer based on the tonal luminance of an auxiliary displacement map. By translating grayscale values—where black, neutral gray, and white represent di" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="realistic-surface-warping-with-gimp-gegl-displace">Realistic
+Surface Warping with GIMP GEGL Displace</h1>
+<p>The GEGL Displace filter in GIMP is an advanced manipulation tool
+that repositions pixels on a target layer based on the tonal luminance
+of an auxiliary displacement map. By translating grayscale values—where
+black, neutral gray, and white represent directional movement and
+intensity—into precise pixel offsets, the filter allows users to wrap
+flat graphics, text, and patterns across uneven 3D surfaces with
+accurate physical contours.</p>
+<h3 id="how-the-grayscale-map-controls-displacement">How the Grayscale
+Map Controls Displacement</h3>
+<p>The auxiliary grayscale map acts as a coordinate modifier for the
+target layer. The GEGL Displace engine reads the brightness (luminance)
+of each pixel in the map to determine how far, and in which direction,
+the corresponding pixel on the target image should shift.</p>
+<ul>
+<li><strong>Neutral Gray (50% Gray / Hex #808080):</strong> Serves as
+the baseline anchor. Pixels aligned with 50% gray experience zero
+movement, remaining in their original spatial coordinates.</li>
+<li><strong>White to Light Gray (Values above 50%):</strong> Displaces
+pixels in a positive direction along the chosen axis. Pure white
+generates the maximum positive shift defined by the displacement
+coefficient.</li>
+<li><strong>Black to Dark Gray (Values below 50%):</strong> Displaces
+pixels in a negative direction along the chosen axis. Pure black
+generates the maximum negative shift.</li>
+</ul>
+<h3 id="dual-axis-warping">Dual-Axis Warping</h3>
+<p>The GEGL Displace filter allows independent mapping for both the X
+(horizontal) and Y (vertical) axes:</p>
+<ol type="1">
+<li><strong>X-Displacement:</strong> Uses the tonal map to pull pixels
+horizontally to the left (dark values) or right (bright values).</li>
+<li><strong>Y-Displacement:</strong> Uses the tonal map to pull pixels
+vertically upward (dark values) or downward (bright values).</li>
+</ol>
+<p>Users can assign the same auxiliary map to both axes or utilize
+separate maps customized for directional topography.</p>
+<h3 id="achieving-realistic-surface-interaction">Achieving Realistic
+Surface Interaction</h3>
+<p>To project a flat element—such as a logo, tattoo, or pattern—onto a
+wrinkled fabric, rough wall, or textured skin, the surface itself is
+turned into the displacement map.</p>
+<p>A duplicate of the underlying surface layer is desaturated to
+grayscale and enhanced using curves or contrast adjustments to clearly
+delineate highlights and shadows. When the GEGL Displace filter
+processes this map, the overlying graphic conforms to the actual
+physical ridges, creases, and dips of the background material. Rather
+than remaining unnaturally straight, the edges and interior pixels of
+the graphic bend along the natural geometry of the surface, creating a
+photorealistic composite.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

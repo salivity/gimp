@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why 50% Gray Creates Semi-Transparent Selections in GIMP - gimp</title>
+    <meta name="description" content="Painting with 50% gray in GIMP's Quick Mask mode creates a semi-transparent selection because Quick Mask operates as an 8-bit grayscale alpha channel where luminance values directly dictate selection opacity. Rather than functioning as a strictly binary">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/why-50-gray-creates-semi-transparent-selections-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why 50% Gray Creates Semi-Transparent Selections in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/why-50-gray-creates-semi-transparent-selections-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Painting with 50% gray in GIMP's Quick Mask mode creates a semi-transparent selection because Quick Mask operates as an 8-bit grayscale alpha channel where luminance values directly dictate selection opacity. Rather than functioning as a strictly binary" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-50-gray-creates-semi-transparent-selections-in-gimp">Why 50%
+Gray Creates Semi-Transparent Selections in GIMP</h1>
+<p>Painting with 50% gray in GIMP's Quick Mask mode creates a
+semi-transparent selection because Quick Mask operates as an 8-bit
+grayscale alpha channel where luminance values directly dictate
+selection opacity. Rather than functioning as a strictly binary system
+of selected versus unselected pixels, Quick Mask translates tonal
+brightness into varying degrees of selection strength, making mid-tone
+gray the exact midpoint of partial selection.</p>
+<h3 id="the-grayscale-mechanics-of-quick-mask">The Grayscale Mechanics
+of Quick Mask</h3>
+<p>When Quick Mask is activated, GIMP temporarily converts your current
+selection into an 8-bit grayscale channel overlaying the canvas. In this
+mode, every pixel corresponds to a value ranging from 0 to 255:</p>
+<ul>
+<li><strong>Pure White (Value 255):</strong> Represents a 100% full
+selection. Any edits made through this mask will apply at full
+intensity.</li>
+<li><strong>Pure Black (Value 0):</strong> Represents 0% selection
+(completely unselected). Edits are blocked entirely.</li>
+<li><strong>Intermediate Grays (Values 1–254):</strong> Represent
+proportional levels of partial selection.</li>
+</ul>
+<p>A 50% neutral gray carries an RGB value of 128, 128, 128. Because 128
+is precisely half of the 255 maximum, GIMP registers this painted area
+as a 50% selection.</p>
+<h3 id="how-semi-transparent-selections-behave">How Semi-Transparent
+Selections Behave</h3>
+<p>When you exit Quick Mask to return to normal editing mode, GIMP
+translates the grayscale values back into standard selection data. This
+manifests in two distinct ways:</p>
+<ol type="1">
+<li><strong>The Selection Boundary (Marching Ants):</strong> GIMP’s
+marching ants boundary only displays along the 50% threshold. Pixels
+selected at higher than 50% sit inside the boundary, while pixels lower
+than 50% sit outside. Because 50% gray is right on the dividing line,
+the boundary line will trace the exact perimeter of the painted stroke,
+but it will not indicate the partial opacity visually.</li>
+<li><strong>Action Opacity:</strong> Modifying a 50% selection applies
+changes at half strength. If you fill the selection with solid color,
+paint over it, or adjust its levels, GIMP applies only 50% of that
+effect, leaving the underlying layer 50% visible. Similarly, pressing
+the Delete key will reduce the opacity of existing pixels by half rather
+than erasing them completely.</li>
+</ol>
+<h3 id="purpose-of-partial-selections">Purpose of Partial
+Selections</h3>
+<p>This behavior is intentional and fundamental to digital image
+editing. By supporting shades of gray, Quick Mask allows users to create
+soft transitions, feather edges manually, smoothly blend multi-image
+composites, and apply graduated adjustments without harsh or jagged
+pixel borders.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Sci-Fi HUD in GIMP - gimp</title>
+    <meta name="description" content="Creating a custom sci-fi HUD (Heads-Up Display) in GIMP involves building layered vector-style shapes, adding geometric data elements, and applying glowing layer effects to produce a futuristic aesthetic. This guide covers canvas setup, drafting circular">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-sci-fi-hud-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Sci-Fi HUD in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-sci-fi-hud-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a custom sci-fi HUD (Heads-Up Display) in GIMP involves building layered vector-style shapes, adding geometric data elements, and applying glowing layer effects to produce a futuristic aesthetic. This guide covers canvas setup, drafting circular" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-a-sci-fi-hud-in-gimp">How to Create a Sci-Fi HUD
+in GIMP</h1>
+<p>Creating a custom sci-fi HUD (Heads-Up Display) in GIMP involves
+building layered vector-style shapes, adding geometric data elements,
+and applying glowing layer effects to produce a futuristic aesthetic.
+This guide covers canvas setup, drafting circular reticles and angular
+framing, generating technical meters, and applying bright neon glows
+over a dark backdrop.</p>
+<h3 id="1-canvas-and-grid-setup">1. Canvas and Grid Setup</h3>
+<ol type="1">
+<li>Open GIMP and create a new project (<strong>File &gt; New</strong>)
+with dimensions of <code>1920x1080</code> pixels.</li>
+<li>Fill the background layer with solid black or a very dark navy blue
+using the <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>).</li>
+<li>Enable alignment aids by checking <strong>View &gt; Show
+Grid</strong> and <strong>View &gt; Snap to Grid</strong>.</li>
+<li>Configure the grid spacing under <strong>Image &gt; Configure
+Grid</strong> to a width and height of <code>20px</code> or
+<code>50px</code> for precise alignment.</li>
+<li>Create a new transparent layer named <code>HUD Base</code>.</li>
+</ol>
+<h3 id="2-creating-the-central-reticle-and-circular-rings">2. Creating
+the Central Reticle and Circular Rings</h3>
+<ol type="1">
+<li>Select the <strong>Ellipse Select Tool</strong> (<code>E</code>).
+Hold <code>Shift + Ctrl</code> to drag out a perfect circle from the
+center of the canvas.</li>
+<li>Go to <strong>Edit &gt; Stroke Selection</strong>. Choose a stroke
+width of <code>2px</code> to <code>4px</code> with solid white or bright
+cyan, then click <strong>Stroke</strong>.</li>
+<li>Shrink the selection by going to <strong>Select &gt; Shrink</strong>
+(e.g., by 20 pixels) and stroke the selection again to create concentric
+rings.</li>
+<li>To add dashed or segmented rings:
+<ul>
+<li>Stroke a selection using the <strong>Stroke with a paint
+tool</strong> option with a dashed line style configured in the tool
+options, or:</li>
+<li>Use the <strong>Rectangle Select Tool</strong> (<code>R</code>) set
+to "Subtract from current selection" mode to cut notches out of the
+circular selection before stroking.</li>
+</ul></li>
+</ol>
+<h3 id="3-designing-angular-borders-and-panels">3. Designing Angular
+Borders and Panels</h3>
+<ol type="1">
+<li>Create a new layer named <code>Panels</code>.</li>
+<li>Select the <strong>Paths Tool</strong> (<code>B</code>).</li>
+<li>Click to create a sharp, angular polygon frame around the corners or
+edges of your screen (e.g., a rectangle with 45-degree chamfered
+corners).</li>
+<li>Go to <strong>Edit &gt; Stroke Path</strong>, set the line width to
+<code>2px</code>, and stroke the outline.</li>
+<li>To create filled panels, right-click the path, choose <strong>Path
+to Selection</strong>, create a new layer, and fill it with a
+low-opacity solid color (10% to 20% opacity).</li>
+</ol>
+<h3 id="4-adding-data-bars-gauges-and-meters">4. Adding Data Bars,
+Gauges, and Meters</h3>
+<ol type="1">
+<li><strong>Status Bars:</strong> Use the <strong>Rectangle Select
+Tool</strong> to draw thin horizontal or vertical progress bars. Fill
+alternating segments with solid color by duplicating blocks along the
+grid.</li>
+<li><strong>Hexagonal Grids:</strong> Go to <strong>Filters &gt; Render
+&gt; Pattern &gt; Grid</strong> or use a custom hexagon brush to stamp
+modular tech panels onto your borders.</li>
+<li><strong>Crosshairs and Ticks:</strong> Use the <strong>Pencil
+Tool</strong> (<code>N</code>) set to <code>1px</code> or
+<code>2px</code> brush size, hold <code>Shift</code> to draw straight
+horizontal and vertical measurement ticks along your frames and circular
+rings.</li>
+</ol>
+<h3 id="5-adding-tech-readouts-and-typography">5. Adding Tech Readouts
+and Typography</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> (<code>T</code>).</li>
+<li>Choose a clean, monospace, or angular sans-serif font (such as
+<em>Orbitron</em>, <em>Share Tech Mono</em>, or <em>Roboto
+Mono</em>).</li>
+<li>Type numerical telemetry, coordinate data, or status indicators
+(e.g., <code>SYS.LOC // 84.102</code>, <code>TARGET: LOCKED</code>,
+<code>PWR: 98%</code>) in all caps.</li>
+<li>Scale the font down to small sizes (10–14pt) to maintain a
+realistic, high-density interface appearance.</li>
+</ol>
+<h3 id="6-applying-the-sci-fi-glow-effect">6. Applying the Sci-Fi Glow
+Effect</h3>
+<ol type="1">
+<li>Hide the black background layer so only your HUD graphics are
+visible.</li>
+<li>Right-click any visible layer and select <strong>New from
+Visible</strong>. Name this merged layer <code>HUD Glow</code>.</li>
+<li>Unhide the background layer.</li>
+<li>Select the <code>HUD Glow</code> layer and navigate to
+<strong>Filters &gt; Blur &gt; Gaussian Blur</strong>. Set the blur
+radius between <code>5px</code> and <code>15px</code> depending on the
+desired intensity.</li>
+<li>Change the blend mode of the <code>HUD Glow</code> layer to
+<strong>Addition</strong> or <strong>Screen</strong>.</li>
+<li>Duplicate the <code>HUD Glow</code> layer once more and apply a
+wider blur (<code>30px</code> to <code>50px</code>) with reduced layer
+opacity to create an ambient outer bloom.</li>
+<li>To colorize everything uniformly, add a new transparent layer on
+top, fill it with your primary HUD color (such as <code>#00F0FF</code>
+for cyan or <code>#FF9900</code> for amber), and set its layer mode to
+<strong>Color</strong> or <strong>Multiply</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

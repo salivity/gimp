@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Monitor Color Management in GIMP - gimp</title>
+    <meta name="description" content="Managing accurate colors across multiple screens requires aligning GIMP's internal settings with your operating system's display profiles. This guide explains how to configure independent multi-monitor color management in GIMP by establishing per-display">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/multi-monitor-color-management-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Multi-Monitor Color Management in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/multi-monitor-color-management-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Managing accurate colors across multiple screens requires aligning GIMP's internal settings with your operating system's display profiles. This guide explains how to configure independent multi-monitor color management in GIMP by establishing per-display" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="multi-monitor-color-management-in-gimp">Multi-Monitor Color
+Management in GIMP</h1>
+<p>Managing accurate colors across multiple screens requires aligning
+GIMP's internal settings with your operating system's display profiles.
+This guide explains how to configure independent multi-monitor color
+management in GIMP by establishing per-display operating system profiles
+and enabling GIMP's automatic display detection.</p>
+<h3 id="how-gimp-handles-multiple-monitors">How GIMP Handles Multiple
+Monitors</h3>
+<p>GIMP does not provide separate manual profile dropdowns for
+individual monitors within its preferences interface. Instead, GIMP
+relies on your operating system's windowing system to detect which
+monitor a window is currently placed on. When configured properly, GIMP
+dynamically applies the appropriate ICC color profile as you move image
+windows from one display to another.</p>
+<h3 id="step-1-assign-icc-profiles-in-the-operating-system">Step 1:
+Assign ICC Profiles in the Operating System</h3>
+<p>Before GIMP can apply distinct profiles per screen, your operating
+system must associate specific ICC/ICM profiles with each physical
+monitor.</p>
+<ul>
+<li><p><strong>Windows 10 / 11:</strong></p>
+<ol type="1">
+<li>Open the Start menu, type <strong>Color Management</strong>, and
+press Enter.</li>
+<li>Select your first monitor from the <strong>Device</strong> drop-down
+menu.</li>
+<li>Check the box labeled <strong>Use my settings for this
+device</strong>.</li>
+<li>Click <strong>Add...</strong>, browse to select your calibrated ICC
+profile, and set it as the default.</li>
+<li>Repeat this process for your second and any additional
+monitors.</li>
+</ol></li>
+<li><p><strong>Linux (GNOME / KDE):</strong></p>
+<ol type="1">
+<li>Open your system settings and navigate to
+<strong>Color</strong>.</li>
+<li>Select your first display, click <strong>Add Profile</strong>, and
+assign your calibrated <code>.icc</code> file.</li>
+<li>Select your second display and assign its respective profile.</li>
+<li>On lightweight X11 window managers, install and run a daemon like
+<code>xiccd</code> to write the <code>_ICC_PROFILE</code> atom to each
+screen output automatically.</li>
+</ol></li>
+<li><p><strong>macOS:</strong></p>
+<ol type="1">
+<li>Open <strong>System Settings</strong> and go to
+<strong>Displays</strong>.</li>
+<li>Select each connected display individually and choose its designated
+calibrated profile from the <strong>Color Profile</strong> menu.</li>
+</ol></li>
+</ul>
+<h3 id="step-2-enable-system-profile-detection-in-gimp">Step 2: Enable
+System Profile Detection in GIMP</h3>
+<p>Once the operating system is mapping profiles to individual displays,
+instruct GIMP to read these profiles dynamically.</p>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Go to <strong>Edit &gt; Preferences</strong> (or <strong>GIMP &gt;
+Preferences</strong> on macOS).</li>
+<li>In the left panel, click on <strong>Color Management</strong>.</li>
+<li>Set the <strong>Color management mode</strong> dropdown to
+<strong>Color managed display</strong>.</li>
+<li>Locate the <strong>Monitor profile</strong> section and check the
+box labeled <strong>Try to use the system monitor profile</strong>.</li>
+<li>Leave the manual <strong>Monitor profile</strong> field blank or set
+to <em>None</em> to prevent GIMP from overriding OS-level assignments
+with a single static profile.</li>
+<li>Click <strong>OK</strong> to save your settings.</li>
+</ol>
+<h3 id="step-3-verify-multi-monitor-behavior">Step 3: Verify
+Multi-Monitor Behavior</h3>
+<p>To confirm that the profiles update across screens:</p>
+<ol type="1">
+<li>Restart GIMP to ensure all profile hooks are loaded.</li>
+<li>Open a test image with distinct, saturated colors.</li>
+<li>If using <strong>Single-Window Mode</strong>, move the entire GIMP
+window between monitors; the canvas colors will subtly shift to adjust
+for the target monitor's ICC profile.</li>
+<li>If using multi-window mode, each detached image window will
+automatically adopt the color profile of the monitor it rests upon.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

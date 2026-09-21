@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Vector-Aligned App Icons in GIMP - gimp</title>
+    <meta name="description" content="Designing vector-aligned app icon graphics in GIMP involves setting up a precise pixel grid, utilizing the Paths tool for vector creation, snapping nodes to ensure clean edges, and applying consistent styling before exporting at multiple resolutions. Thi">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-design-vector-aligned-app-icons-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Vector-Aligned App Icons in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-design-vector-aligned-app-icons-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing vector-aligned app icon graphics in GIMP involves setting up a precise pixel grid, utilizing the Paths tool for vector creation, snapping nodes to ensure clean edges, and applying consistent styling before exporting at multiple resolutions. Thi" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-design-vector-aligned-app-icons-in-gimp">How to Design
+Vector-Aligned App Icons in GIMP</h1>
+<p>Designing vector-aligned app icon graphics in GIMP involves setting
+up a precise pixel grid, utilizing the Paths tool for vector creation,
+snapping nodes to ensure clean edges, and applying consistent styling
+before exporting at multiple resolutions. This guide walks you through
+setting up your workspace, drawing scalable vector shapes, adding modern
+lighting effects, and exporting crisp assets for any platform.</p>
+<h3 id="step-1-set-up-the-canvas-and-pixel-grid">Step 1: Set Up the
+Canvas and Pixel Grid</h3>
+<p>App icons require exact pixel alignment to avoid blurry edges when
+scaled down.</p>
+<ol type="1">
+<li>Create a new image by going to <strong>File &gt; New</strong>.</li>
+<li>Set the canvas size to <strong>1024 × 1024 pixels</strong> (standard
+master size for both iOS and Android) with a resolution of <strong>300
+ppi</strong>.</li>
+<li>Under <strong>Advanced Options</strong>, set <strong>Color
+space</strong> to <strong>RGB</strong> and <strong>Fill with</strong> to
+<strong>Transparency</strong>.</li>
+<li>Configure the grid by navigating to <strong>Image &gt; Configure
+Grid</strong>.</li>
+<li>Set the grid spacing to <strong>8 × 8 pixels</strong> or <strong>16
+× 16 pixels</strong> to match standard UI layout guidelines.</li>
+<li>Enable snapping by checking both <strong>View &gt; Show
+Grid</strong> and <strong>View &gt; Snap to Grid</strong>.</li>
+</ol>
+<h3 id="step-2-create-the-icon-base-using-the-paths-tool">Step 2: Create
+the Icon Base Using the Paths Tool</h3>
+<p>GIMP’s Paths tool allows you to create vector curves that snap to
+your grid for clean geometry.</p>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> (<code>B</code> on your
+keyboard).</li>
+<li>For rounded rectangles (squircles), you can use the
+<strong>Rectangle Select Tool</strong>, check <strong>Rounded
+corners</strong> in the Tool Options, set the desired radius (e.g.,
+220px for a 1024px canvas), and click <strong>Select &gt; To
+Path</strong>.</li>
+<li>For custom shapes, click on grid intersections to place vector
+nodes. Click and drag nodes to create smooth Bézier curves.</li>
+<li>Open the <strong>Paths Dialog</strong> (<strong>Windows &gt;
+Dockable Dialogs &gt; Paths</strong>) to manage and rename your vector
+components.</li>
+</ol>
+<h3 id="step-3-fill-and-style-the-vector-elements">Step 3: Fill and
+Style the Vector Elements</h3>
+<p>Once your paths are created, convert them into clean visual
+layers.</p>
+<ol type="1">
+<li>In the <strong>Paths Dialog</strong>, right-click your active path
+and choose <strong>Path to Selection</strong>.</li>
+<li>Create a new transparent layer in the <strong>Layers Dialog</strong>
+and name it according to the element (e.g., "Base Background").</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>) and apply
+a subtle linear or radial gradient to create modern depth.</li>
+<li>Deselect the area using <strong>Select &gt; None</strong>
+(<code>Ctrl + Shift + A</code>).</li>
+</ol>
+<h3 id="step-4-add-inner-shadows-highlights-and-details">Step 4: Add
+Inner Shadows, Highlights, and Details</h3>
+<p>Adding lighting elements gives the icon dimension while maintaining
+vector crispness.</p>
+<ol type="1">
+<li><strong>Top Highlight:</strong> Duplicate the base path, scale it
+down slightly, fill it with white, and reduce the layer opacity to
+10–20%.</li>
+<li><strong>Inner Border:</strong> Right-click your path, select
+<strong>Stroke Path</strong>, choose <strong>Solid color</strong> with a
+width of 2 to 4 pixels, and set the layer mode to
+<strong>Overlay</strong> or <strong>Soft Light</strong>.</li>
+<li><strong>Drop Shadow:</strong> Right-click the base layer, select
+<strong>Alpha to Selection</strong>, create a new layer beneath it, fill
+with black, and apply <strong>Filters &gt; Blur &gt; Gaussian
+Blur</strong> to create depth.</li>
+</ol>
+<h3 id="step-5-check-vector-alignment-and-pixel-snapping">Step 5: Check
+Vector Alignment and Pixel Snapping</h3>
+<p>Before finalizing, ensure the edges do not blur across
+sub-pixels.</p>
+<ol type="1">
+<li>Zoom in to <strong>800%</strong> or higher on critical edges and
+corners.</li>
+<li>If an edge looks soft or feathered where it should be sharp,
+re-align the corresponding vector nodes using the <strong>Paths
+Tool</strong> so they lock precisely to whole pixel coordinates.</li>
+<li>Keep complex graphic elements centered within a safe zone (the inner
+80% of the canvas) to prevent clipping across different OS icon
+masks.</li>
+</ol>
+<h3 id="step-6-export-the-icon-assets">Step 6: Export the Icon
+Assets</h3>
+<p>Export a master copy, then generate the required platform sizes.</p>
+<ol type="1">
+<li>Save the editable master file as an <strong>.XCF</strong> project
+via <strong>File &gt; Save As</strong>.</li>
+<li>Go to <strong>File &gt; Export As</strong> and save a master
+<strong>PNG</strong> at 1024 × 1024 pixels.</li>
+<li>For smaller target resolutions (512×512, 192×192, 180×180, 48×48):
+<ul>
+<li>Go to <strong>Image &gt; Scale Image</strong>.</li>
+<li>Set the target dimensions.</li>
+<li>Set <strong>Interpolation</strong> to <strong>NoHalo</strong> or
+<strong>LoHalo</strong> for the sharpest downsampling.</li>
+<li>Export each version as an optimized PNG file.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Metallic Text with Gradient Maps in GIMP - gimp</title>
+    <meta name="description" content="Creating a realistic metallic text texture in GIMP is a straightforward process that relies on transforming grayscale lighting data into rich, reflective tones using Gradient Maps. By building a high-contrast bevel on your text and mapping a metallic gra">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-metallic-text-with-gradient-maps-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Metallic Text with Gradient Maps in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-metallic-text-with-gradient-maps-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a realistic metallic text texture in GIMP is a straightforward process that relies on transforming grayscale lighting data into rich, reflective tones using Gradient Maps. By building a high-contrast bevel on your text and mapping a metallic gra" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-metallic-text-with-gradient-maps-in-gimp">How to
+Create Metallic Text with Gradient Maps in GIMP</h1>
+<p>Creating a realistic metallic text texture in GIMP is a
+straightforward process that relies on transforming grayscale lighting
+data into rich, reflective tones using Gradient Maps. By building a
+high-contrast bevel on your text and mapping a metallic gradient across
+the resulting highlights and shadows, you can instantly produce gold,
+chrome, bronze, or silver effects. This guide walks you through setting
+up your text, building the 3D depth, applying the gradient map, and
+fine-tuning the contrast for a polished, professional finish.</p>
+<h3 id="step-1-create-your-base-text-layer">Step 1: Create Your Base
+Text Layer</h3>
+<ol type="1">
+<li>Open GIMP and create a new document with a dark background (such as
+a dark gray or black) to make the metallic reflections stand out.</li>
+<li>Select the <strong>Text Tool</strong> (<code>T</code>) and choose a
+thick, bold font (such as Impact, Montserrat Bold, or Arial Black), as
+metallic textures require broad surface area to showcase
+reflections.</li>
+<li>Type your text using white color and center it on your canvas.</li>
+<li>Right-click the text layer in the Layers panel and choose
+<strong>Discard Text Information</strong> to convert it into a standard
+raster layer.</li>
+</ol>
+<h3 id="step-2-generate-depth-with-beveling">Step 2: Generate Depth with
+Beveling</h3>
+<p>To make the gradient map look metallic, the text needs a range of
+grayscale values from deep shadow to bright highlight.</p>
+<ol type="1">
+<li>Right-click the text layer and select <strong>Alpha to
+Selection</strong>.</li>
+<li>Create a new transparent layer directly above the text layer and
+name it <code>Bevel</code>.</li>
+<li>With the selection still active, go to <strong>Select &gt;
+Shrink</strong> and reduce the selection by 2 to 5 pixels (depending on
+your font size).</li>
+<li>Go to <strong>Select &gt; Feather</strong> and soften the selection
+edge by 5 to 10 pixels.</li>
+<li>Fill this feathered selection with black using the <strong>Bucket
+Fill Tool</strong> (<code>Shift + B</code>), then clear the selection
+via <strong>Select &gt; None</strong>.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur</strong> and
+apply a slight blur (2–4 pixels) to smooth out the transition between
+the white base and black interior.</li>
+<li>Merge the <code>Bevel</code> layer down onto the original text layer
+so you have a single grayscale layer with white edges and dark
+centers.</li>
+</ol>
+<h3 id="step-3-apply-the-gradient-map">Step 3: Apply the Gradient
+Map</h3>
+<ol type="1">
+<li>Open the <strong>Gradients</strong> dockable dialog (<strong>Windows
+&gt; Dockable Dialogs &gt; Gradients</strong>).</li>
+<li>Choose a metallic gradient. GIMP comes with built-in presets such
+as:
+<ul>
+<li><strong>Gold</strong>: <code>Crown molding</code> or
+<code>Gold</code></li>
+<li><strong>Chrome/Silver</strong>: <code>Silver</code>,
+<code>Horizon 1</code>, or <code>Aluminum</code></li>
+<li>Alternatively, create a custom gradient with alternating bands of
+dark brown/gray, bright white, and mid-tone metal colors.</li>
+</ul></li>
+<li>Select your merged text layer.</li>
+<li>Go to the top menu and navigate to <strong>Colors &gt; Map &gt;
+Gradient Map</strong>.</li>
+<li>GIMP will immediately replace the black, gray, and white pixels of
+your layer with the corresponding color values from the active
+gradient.</li>
+</ol>
+<h3 id="step-4-adjust-contrast-and-curves">Step 4: Adjust Contrast and
+Curves</h3>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Curves</strong>.</li>
+<li>Create an "S-curve" by dragging the upper-right section upward to
+boost bright reflections and the lower-left section downward to deepen
+the dark metallic reflections.</li>
+<li>Add multiple control points along the curve to create sharp
+transitions, which gives chrome and polished metals their characteristic
+high-gloss finish.</li>
+<li>Click <strong>OK</strong> to apply the curve.</li>
+</ol>
+<h3 id="step-5-add-final-polish">Step 5: Add Final Polish</h3>
+<ol type="1">
+<li>Duplicate your finished metal text layer (<strong>Layer &gt;
+Duplicate Layer</strong>).</li>
+<li>Set the top layer's blend mode to <strong>Overlay</strong> or
+<strong>Screen</strong> and lower the opacity to around 30–50% to
+enhance the shine.</li>
+<li>Right-click the original text layer, select <strong>Alpha to
+Selection</strong>, create a new layer beneath it, fill the selection
+with black, and apply a <strong>Gaussian Blur</strong> to create a
+subtle drop shadow that grounds the text.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

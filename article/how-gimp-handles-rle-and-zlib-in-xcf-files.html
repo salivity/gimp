@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Handles RLE and zlib in XCF Files - gimp</title>
+    <meta name="description" content="This article provides an overview of how the GNU Image Manipulation Program (GIMP) applies Run-Length Encoding (RLE) and zlib compression algorithms when generating its native XCF file format. It examines the architectural role of tile-based data storage">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-handles-rle-and-zlib-in-xcf-files">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Handles RLE and zlib in XCF Files - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-handles-rle-and-zlib-in-xcf-files" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of how the GNU Image Manipulation Program (GIMP) applies Run-Length Encoding (RLE) and zlib compression algorithms when generating its native XCF file format. It examines the architectural role of tile-based data storage" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-handles-rle-and-zlib-in-xcf-files">How GIMP Handles RLE
+and zlib in XCF Files</h1>
+<p>This article provides an overview of how the GNU Image Manipulation
+Program (GIMP) applies Run-Length Encoding (RLE) and zlib compression
+algorithms when generating its native XCF file format. It examines the
+architectural role of tile-based data storage, compares the operational
+differences between RLE and zlib, and explains how GIMP determines
+compression methods to balance file size against performance and
+backward compatibility.</p>
+<h3 id="tile-based-storage-in-the-xcf-architecture">Tile-Based Storage
+in the XCF Architecture</h3>
+<p>To understand compression in an XCF file, it is essential to
+understand how GIMP organizes pixel data. GIMP does not compress an
+entire image or an entire layer as a single monolithic block. Instead,
+image layers, channels, and layer masks are subdivided into fixed-size
+square blocks known as tiles, typically measuring 64x64 pixels.</p>
+<p>When an XCF file is written to disk, compression is applied at this
+individual tile level. Storing data in discrete, compressed tiles allows
+GIMP to read and write non-contiguous regions of an image on demand,
+reducing memory overhead when handling large, multi-layered
+canvases.</p>
+<h3 id="the-xcf-compression-property-flag">The XCF Compression Property
+Flag</h3>
+<p>The XCF specification defines an image-level property known as
+<code>PROP_COMPRESSION</code>. This property dictates how tile payloads
+are encoded throughout the file. Historically and currently, the format
+recognizes several compression identifiers:</p>
+<ul>
+<li><strong>None (0):</strong> Raw, uncompressed pixel arrays.</li>
+<li><strong>RLE (1):</strong> Run-Length Encoded tiles.</li>
+<li><strong>zlib (2):</strong> Deflate-compressed tiles via the zlib
+library.</li>
+</ul>
+<p>When saving, the chosen compression scheme applies globally to all
+pixel-bearing tiles in that document, with individual tile pointers
+storing offsets to their respective compressed byte streams.</p>
+<h3 id="run-length-encoding-rle-in-xcf">Run-Length Encoding (RLE) in
+XCF</h3>
+<p>RLE is the classic compression method for the XCF format and was the
+default standard across older generations of GIMP.</p>
+<ul>
+<li><strong>Mechanism:</strong> GIMP's RLE implementation processes
+pixel components sequentially, replacing repeated, identical byte
+sequences with a count-and-value pair.</li>
+<li><strong>Performance:</strong> RLE requires minimal CPU overhead.
+Both encoding and decoding are computationally trivial, leading to fast
+read and write times.</li>
+<li><strong>Use Case:</strong> RLE performs well on synthetic artwork,
+solid colors, transparent spaces, and simple graphics. However, on
+photographic or noisy textures, RLE can fail to reduce file size
+significantly and may even produce a tile slightly larger than the raw
+data.</li>
+<li><strong>Compatibility:</strong> RLE provides universal backward
+compatibility across virtually all historical versions of GIMP and
+third-party XCF parsers.</li>
+</ul>
+<h3 id="zlib-deflate-compression-in-xcf">zlib (Deflate) Compression in
+XCF</h3>
+<p>Modern versions of GIMP (notably GIMP 2.8 and 2.10 onward) introduced
+and expanded native support for zlib compression to address the
+limitations of RLE on complex imagery.</p>
+<ul>
+<li><strong>Mechanism:</strong> zlib utilizes the Deflate algorithm,
+combining LZ77 (dictionary-based replacement of duplicated strings) and
+Huffman coding. Each 64x64 tile payload is compressed as an independent
+zlib stream.</li>
+<li><strong>Performance:</strong> Deflate is substantially more
+computationally intensive than RLE. Saving and loading XCF files using
+zlib requires more processor time, but it achieves significantly higher
+compression ratios.</li>
+<li><strong>Use Case:</strong> It excels with high-detail photographs,
+gradients, textured brush strokes, and complex digital paintings where
+repetitive byte runs are scarce but statistical patterns exist.</li>
+<li><strong>Compatibility:</strong> Files saved using zlib compression
+require modern versions of GIMP. Legacy versions (such as GIMP 2.6 and
+earlier) cannot parse zlib-compressed XCF tiles and will fail to open
+the file.</li>
+</ul>
+<h3 id="compression-selection-during-file-creation">Compression
+Selection During File Creation</h3>
+<p>When creating an XCF file, GIMP determines the compression method
+based on user settings, default application preferences, and
+compatibility requirements:</p>
+<ol type="1">
+<li><strong>Compatibility Checks:</strong> If an artist opts to export
+or save an XCF with backward-compatibility constraints enabled, GIMP
+restricts compression to RLE to ensure legacy software can parse the
+tile structures.</li>
+<li><strong>Default Modern Behavior:</strong> When maximum compatibility
+is not required, GIMP uses zlib by default to produce smaller, more
+manageable file sizes on disk.</li>
+<li><strong>Fallback Logic:</strong> In the event that compressing a
+specific tile yields a payload larger than its uncompressed raw form (a
+known edge case with high-entropy noise), the storage engine can store
+that specific tile without compression to avoid file bloat, while
+maintaining the file's overall compression property header.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

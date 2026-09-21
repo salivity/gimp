@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEGL Panorama Projection for 360 Images in GIMP - gimp</title>
+    <meta name="description" content="The GEGL Panorama Projection filter in GIMP is a dedicated tool designed to facilitate the viewing and editing of 360-degree equirectangular images. This article covers the primary purpose of the filter, how it converts distorted spherical projections in">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gegl-panorama-projection-for-360-images-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GEGL Panorama Projection for 360 Images in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gegl-panorama-projection-for-360-images-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Panorama Projection filter in GIMP is a dedicated tool designed to facilitate the viewing and editing of 360-degree equirectangular images. This article covers the primary purpose of the filter, how it converts distorted spherical projections in" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gegl-panorama-projection-for-360-images-in-gimp">GEGL Panorama
+Projection for 360 Images in GIMP</h1>
+<p>The GEGL Panorama Projection filter in GIMP is a dedicated tool
+designed to facilitate the viewing and editing of 360-degree
+equirectangular images. This article covers the primary purpose of the
+filter, how it converts distorted spherical projections into standard
+flat views, and the essential workflow for retouching panoramas without
+seam artifacts or optical warping.</p>
+<h3 id="the-problem-with-360-degree-equirectangular-images">The Problem
+with 360-Degree Equirectangular Images</h3>
+<p>Standard 360-degree photography produces images using an
+equirectangular projection, which maps a spherical surface onto a flat
+2:1 aspect ratio canvas. While this format preserves full horizontal and
+vertical visual data, it creates severe stretching and distortion at the
+top (zenith) and bottom (nadir) of the image. Standard editing tools,
+such as the Clone tool or Healing brush, cannot be used accurately in
+these distorted regions because regular brush strokes become warped when
+the image is viewed back in a 360-degree spherical viewer.</p>
+<h3 id="the-core-purpose-of-gegl-panorama-projection">The Core Purpose
+of GEGL Panorama Projection</h3>
+<p>The primary purpose of the GEGL Panorama Projection filter is to act
+as a bridge between the distorted equirectangular canvas and an
+undistorted, perspective-correct viewport. It allows you to:</p>
+<ul>
+<li><strong>Navigate the 360 Scene:</strong> Adjust parameters such as
+Pan (horizontal rotation), Tilt (vertical angle), and Field of View
+(zoom level) to look at any specific part of the sphere as a standard
+flat image.</li>
+<li><strong>Edit the Nadir and Zenith:</strong> Rotate the view straight
+down to remove tripods, shadows, or camera mounts, or straight up to fix
+sky defects and ceiling lights without distortion.</li>
+<li><strong>Maintain Visual Fidelity:</strong> Work with native GIMP
+painting and selection tools on a flat, rectilinear perspective.</li>
+</ul>
+<h3 id="how-the-filter-workflow-operates">How the Filter Workflow
+Operates</h3>
+<p>Using the filter involves a non-destructive round-trip process that
+lets you modify the image and return it to its original 360-degree
+format:</p>
+<ol type="1">
+<li><strong>Initial Projection:</strong> Apply the Panorama Projection
+filter to rotate and project the target area (such as the tripod at the
+nadir) into a standard flat perspective.</li>
+<li><strong>Editing:</strong> Use GIMP's standard retouching tools—such
+as Heal, Clone, or Inpaint—directly on the flattened view.</li>
+<li><strong>Inverse Projection:</strong> Re-apply the filter with the
+inverse settings to map the edited flat perspective back into the proper
+coordinates of the 2:1 equirectangular canvas.</li>
+</ol>
+<p>By handling the complex mathematics of spherical coordinate
+transformation, the GEGL Panorama Projection filter ensures that all
+visual corrections seamlessly integrate back into 360-degree virtual
+tours and VR viewers without creating visible seams or alignment
+errors.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

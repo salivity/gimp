@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding GIMP GEGL Distance Map Filter - gimp</title>
+    <meta name="description" content="The GEGL Distance Map filter in GIMP is an image processing tool that calculates and visualizes the spatial distance between pixels and the nearest edge or boundary of a shape. This article explains the primary function of the Distance Map filter, how it">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/understanding-gimp-gegl-distance-map-filter">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Understanding GIMP GEGL Distance Map Filter - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/understanding-gimp-gegl-distance-map-filter" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Distance Map filter in GIMP is an image processing tool that calculates and visualizes the spatial distance between pixels and the nearest edge or boundary of a shape. This article explains the primary function of the Distance Map filter, how it" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="understanding-gimp-gegl-distance-map-filter">Understanding GIMP
+GEGL Distance Map Filter</h1>
+<p>The GEGL Distance Map filter in GIMP is an image processing tool that
+calculates and visualizes the spatial distance between pixels and the
+nearest edge or boundary of a shape. This article explains the primary
+function of the Distance Map filter, how it operates behind the scenes,
+and how it can be applied in design workflows such as 3D bump mapping,
+procedural shading, and complex selection masking.</p>
+<h2 id="what-is-the-gegl-distance-map">What is the GEGL Distance
+Map?</h2>
+<p>The GEGL Distance Map filter computes a distance transform on an
+image layer or selection. It evaluates the content of an image—typically
+a high-contrast black-and-white shape or alpha mask—and replaces each
+pixel with a grayscale value representing how far that pixel is from the
+closest boundary.</p>
+<p>Pixels located directly on an edge are rendered as black (or minimum
+value), while pixels located deeper inside (or outside) the shape
+progressively transition to white (or maximum value) as the distance
+increases.</p>
+<h2 id="how-the-filter-works">How the Filter Works</h2>
+<p>The filter scans the input image and applies a mathematical distance
+metric to determine the proximity of pixels to the boundary of a
+subject:</p>
+<ul>
+<li><strong>Euclidean Distance:</strong> Calculates the true
+straight-line distance, producing smooth, circular gradients around
+corners.</li>
+<li><strong>Manhattan Distance (City Block):</strong> Measures distance
+strictly along horizontal and vertical grid paths, creating
+diamond-shaped gradient patterns.</li>
+<li><strong>Chebyshev Distance (Chessboard):</strong> Measures distance
+based on the greatest single axis difference, resulting in square
+gradient contours.</li>
+</ul>
+<p>Users can choose to map distances inside the shape, outside the
+shape, or both, as well as normalize the values to ensure the maximum
+distance spans the full 0–255 grayscale range.</p>
+<h2 id="practical-use-cases-in-gimp">Practical Use Cases in GIMP</h2>
+<h3 id="1-3d-bump-maps-and-height-maps">1. 3D Bump Maps and Height
+Maps</h3>
+<p>The smooth gradient generated by the Distance Map is ideal for bump
+mapping and displacement. Applying this map to lighting or emboss
+filters gives flat 2D shapes, text, or logos a realistic, curved 3D
+profile.</p>
+<h3 id="2-custom-bevels-glows-and-outlines">2. Custom Bevels, Glows, and
+Outlines</h3>
+<p>By mapping distance, the filter creates perfectly uniform inner and
+outer contours. Designers use this output to generate custom neon glows,
+complex stroke outlines, or rounded bevel effects that scale evenly
+regardless of shape complexity.</p>
+<h3 id="3-advanced-masking-and-edge-feathering">3. Advanced Masking and
+Edge Feathering</h3>
+<p>Standard feathering applies a simple blur, which can distort sharp
+geometry. A distance map allows for mathematically precise falloffs,
+making it useful for creating custom masks, depth-of-field effects, and
+edge-erosion techniques.</p>
+<h3 id="4-procedural-texture-and-pattern-generation">4. Procedural
+Texture and Pattern Generation</h3>
+<p>When applied to scattered points or binary noise, the distance map
+forms Voronoi-like cellular structures, which serve as foundational
+textures for organic surfaces like stone, reptile skin, or cracked
+earth.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

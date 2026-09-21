@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Touch Gestures for Zoom and Pan in GIMP - gimp</title>
+    <meta name="description" content="Configuring touch gestures in GIMP allows you to smoothly pan across and zoom into your canvas using touchscreens, drawing tablets, or precision touchpads. This guide provides a direct, step-by-step walkthrough to enable touch device recognition, configu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-touch-gestures-for-zoom-and-pan-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Touch Gestures for Zoom and Pan in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-touch-gestures-for-zoom-and-pan-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring touch gestures in GIMP allows you to smoothly pan across and zoom into your canvas using touchscreens, drawing tablets, or precision touchpads. This guide provides a direct, step-by-step walkthrough to enable touch device recognition, configu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="configure-touch-gestures-for-zoom-and-pan-in-gimp">Configure
+Touch Gestures for Zoom and Pan in GIMP</h1>
+<p>Configuring touch gestures in GIMP allows you to smoothly pan across
+and zoom into your canvas using touchscreens, drawing tablets, or
+precision touchpads. This guide provides a direct, step-by-step
+walkthrough to enable touch device recognition, configure input
+controllers, and map touch actions to canvas navigation in GIMP.</p>
+<h2 id="step-1-enable-your-touch-device">Step 1: Enable Your Touch
+Device</h2>
+<p>Before setting up gestures, ensure GIMP detects your touchscreen or
+touchpad as an active input device:</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Edit</strong> &gt;
+<strong>Preferences</strong> (on macOS, <strong>GIMP</strong> &gt;
+<strong>Preferences</strong>).</li>
+<li>In the left sidebar, expand <strong>Input Devices</strong> and click
+on <strong>Configure Extended Input Devices</strong>.</li>
+<li>Locate your touchscreen, touchpad, or tablet device in the device
+list.</li>
+<li>Change the <strong>Mode</strong> dropdown from
+<strong>Disabled</strong> to <strong>Screen</strong>.</li>
+<li>Click <strong>Save</strong> and then <strong>Close</strong>.</li>
+</ol>
+<h2 id="step-2-configure-input-controllers-for-gestures">Step 2:
+Configure Input Controllers for Gestures</h2>
+<p>To map specific gesture behaviors—such as two-finger scrolling or
+pinch gestures—to zoom and pan functions:</p>
+<ol type="1">
+<li>Go to <strong>Edit</strong> &gt; <strong>Preferences</strong> &gt;
+<strong>Input Devices</strong> &gt; <strong>Input
+Controllers</strong>.</li>
+<li>Under the <strong>Active Controllers</strong> column on the right,
+ensure that your primary controller (such as <strong>Main Mouse
+Wheel</strong> or <strong>DirectX DirectInput</strong> on Windows) is
+active. If not, select it from the <strong>Available
+Controllers</strong> column and click the right arrow button to activate
+it.</li>
+<li>Double-click the active controller to open the event configuration
+window.</li>
+<li>Scroll through the list of events to find gesture and scroll
+actions:
+<ul>
+<li><strong>Scroll Up / Scroll Down:</strong> Assign to
+<code>View</code> &gt; <code>Zoom In</code> /
+<code>Zoom Out</code>.</li>
+<li><strong>Scroll Left / Scroll Right:</strong> Assign to
+<code>View</code> &gt; <code>Scroll Left</code> /
+<code>Scroll Right</code>.</li>
+<li><strong>Ctrl + Scroll:</strong> Assign to <code>View</code> &gt;
+<code>Zoom In</code> / <code>Zoom Out</code> if you prefer standard
+modifier-key behavior.</li>
+</ul></li>
+<li>To assign an action, double-click the event, search for the
+corresponding navigation command (such as <code>view-zoom-in</code> or
+<code>view-scroll-up</code>), select it, and click
+<strong>OK</strong>.</li>
+<li>Click <strong>OK</strong> in the Preferences dialog to save your
+settings.</li>
+</ol>
+<h2 id="step-3-configure-canvas-modifiers-and-interaction">Step 3:
+Configure Canvas Modifiers and Interaction</h2>
+<p>You can adjust how touch inputs interact directly with the canvas
+space:</p>
+<ol type="1">
+<li>In the <strong>Preferences</strong> dialog, select <strong>Canvas
+Interaction</strong> (or <strong>Image Windows</strong> &gt;
+<strong>Mouse Pointers</strong> in some versions).</li>
+<li>Under the modifiers section, adjust the default behavior for panning
+and zooming. By default:
+<ul>
+<li><strong>Space + Touch Drag:</strong> Pans (moves) the canvas
+view.</li>
+<li><strong>Ctrl + Two-Finger Drag / Wheel:</strong> Zooms in and
+out.</li>
+<li><strong>Shift + Two-Finger Drag / Wheel:</strong> Scrolls
+horizontally.</li>
+</ul></li>
+<li>Enable or disable smooth scrolling options according to your
+hardware preference.</li>
+</ol>
+<h2 id="step-4-verify-operating-system-touch-settings">Step 4: Verify
+Operating System Touch Settings</h2>
+<p>GIMP relies on your operating system's native drivers to interpret
+multi-touch gestures:</p>
+<ul>
+<li><strong>Windows:</strong> Open <strong>Settings</strong> &gt;
+<strong>Bluetooth &amp; devices</strong> &gt; <strong>Touchpad</strong>
+(or <strong>Touch</strong>). Ensure multi-finger gestures and
+pinch-to-zoom are enabled.</li>
+<li><strong>macOS:</strong> Open <strong>System Settings</strong> &gt;
+<strong>Trackpad</strong> and ensure <strong>Smart zoom</strong>,
+<strong>Pinch to zoom</strong>, and <strong>Scroll &amp; Zoom</strong>
+directions are toggled on.</li>
+<li><strong>Linux:</strong> Ensure your Wayland or X11 session has
+<code>libinput</code> or <code>xf86-input-synaptics</code> configured
+for multi-touch gesture support.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

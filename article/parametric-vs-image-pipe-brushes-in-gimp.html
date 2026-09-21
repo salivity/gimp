@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parametric vs Image Pipe Brushes in GIMP - gimp</title>
+    <meta name="description" content="In GIMP, understanding your toolset is vital for efficient digital painting, and two of the most distinct brush formats available are parametric brushes (.vbr) and image pipe brushes (.gih). While parametric brushes are procedurally generated shapes that">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/parametric-vs-image-pipe-brushes-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Parametric vs Image Pipe Brushes in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/parametric-vs-image-pipe-brushes-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, understanding your toolset is vital for efficient digital painting, and two of the most distinct brush formats available are parametric brushes (.vbr) and image pipe brushes (.gih). While parametric brushes are procedurally generated shapes that" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="parametric-vs-image-pipe-brushes-in-gimp">Parametric vs Image
+Pipe Brushes in GIMP</h1>
+<p>In GIMP, understanding your toolset is vital for efficient digital
+painting, and two of the most distinct brush formats available are
+parametric brushes (.vbr) and image pipe brushes (.gih). While
+parametric brushes are procedurally generated shapes that offer instant
+mathematical adjustments to size, shape, and hardness, image pipe
+brushes are multi-layered raster sprites that spray textured, colored,
+or sequential patterns across the canvas. This guide breaks down their
+core technical differences, customization options, and primary use cases
+to help you choose the right tool for your workflow.</p>
+<h3 id="what-is-a-parametric-brush-vbr">What Is a Parametric Brush
+(.vbr)?</h3>
+<p>A parametric brush, saved with the <code>.vbr</code> (Vector Brush)
+extension, is a mathematically calculated shape rather than a
+pixel-based image. GIMP generates these brushes using pure geometry,
+allowing you to create standard shapes such as circles, squares, and
+diamonds.</p>
+<p>The primary advantage of parametric brushes is their on-the-fly
+customizability. Through the Brush Editor dialog, you can adjust
+parameters like radius, hardness, aspect ratio, angle, and the number of
+spikes without losing quality. Because they rely on formulas rather than
+raster images, <code>.vbr</code> files have a negligible file size and
+remain sharp at virtually any dimension. However, they are strictly
+monochrome; they act as masks that only paint with your chosen active
+foreground color.</p>
+<h3 id="what-is-an-image-pipe-brush-gih">What Is an Image Pipe Brush
+(.gih)?</h3>
+<p>An image pipe brush, saved with the <code>.gih</code> (GIMP Image
+Hose) extension, is a collection of raster images stored in a single
+brush file. Instead of rendering a static shape, the brush "pipes" or
+sprays different images onto the canvas as you draw.</p>
+<p>Image pipe brushes can be configured to react dynamically to input
+variables. GIMP can cycle through the brush's image layers based on
+stroke direction, drawing speed, tablet pressure, tilt, or random
+distribution. Additionally, <code>.gih</code> brushes support full-color
+(RGB) graphics with built-in transparency. This makes them ideal for
+complex, textured elements like foliage, footprints, chains, hair
+strands, or scattered debris. Because they rely on pre-rendered bitmaps,
+scaling them up beyond their native resolution will cause
+pixelation.</p>
+<h3 id="key-differences">Key Differences</h3>
+<ul>
+<li><strong>Underlying Architecture:</strong> Parametric brushes (.vbr)
+are vector-like mathematical shapes. Image pipe brushes (.gih) are
+multi-layered raster bitmaps.</li>
+<li><strong>Color Capabilities:</strong> Parametric brushes only stamp
+the active foreground color. Image pipes can preserve full RGB color
+palettes, gradients, and pre-baked shading.</li>
+<li><strong>Dynamic Variation:</strong> Parametric brushes render a
+consistent shape along a stroke. Image pipes can alternate shapes,
+angles, and colors dynamically with each dab based on stylus input or
+randomized settings.</li>
+<li><strong>Flexibility and Editing:</strong> Parametric brushes can be
+reshaped and fine-tuned instantly inside GIMP's interface. Image pipe
+brushes must be designed layer-by-layer in a separate image project
+before being exported as a <code>.gih</code> file.</li>
+<li><strong>Resource Impact:</strong> Parametric brushes require minimal
+memory and disk space. Image pipe brushes can become heavy on system
+resources if they contain dozens of high-resolution layers.</li>
+</ul>
+<h3 id="when-to-use-each">When to Use Each</h3>
+<p>Choose parametric brushes (<code>.vbr</code>) for foundational
+digital artwork tasks such as sketching, inking, basic shading, and
+clean-line illustration where you need precise control over edge
+softness and geometric dimensions.</p>
+<p>Choose image pipe brushes (<code>.gih</code>) when you need to paint
+complex natural elements, repeating visual textures, or animated
+sequences where variety and rich color detail cannot be achieved using a
+single static stamp.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

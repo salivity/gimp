@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Custom Procedural Gradients in GIMP - gimp</title>
+    <meta name="description" content="Procedural gradients in GIMP provide mathematically calculated, smooth transitions between multiple color stops, allowing for infinitely scalable and fully editable color blending. This guide walks you through the exact steps to build your own custom pro">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-custom-procedural-gradients-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Custom Procedural Gradients in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-custom-procedural-gradients-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Procedural gradients in GIMP provide mathematically calculated, smooth transitions between multiple color stops, allowing for infinitely scalable and fully editable color blending. This guide walks you through the exact steps to build your own custom pro" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-custom-procedural-gradients-in-gimp">Create Custom
+Procedural Gradients in GIMP</h1>
+<p>Procedural gradients in GIMP provide mathematically calculated,
+smooth transitions between multiple color stops, allowing for infinitely
+scalable and fully editable color blending. This guide walks you through
+the exact steps to build your own custom procedural gradients using
+GIMP's built-in Gradient Editor, from initializing a new gradient file
+to splitting segments, assigning precise color endpoints, and adjusting
+interpolation functions.</p>
+<h3 id="step-1-open-the-gradients-dialog">Step 1: Open the Gradients
+Dialog</h3>
+<ol type="1">
+<li>Launch GIMP.</li>
+<li>Go to the top menu and select <strong>Windows &gt; Dockable Dialogs
+&gt; Gradients</strong>.</li>
+<li>The Gradients dock will appear, displaying all currently installed
+system and user gradients.</li>
+</ol>
+<h3 id="step-2-create-a-new-gradient">Step 2: Create a New Gradient</h3>
+<ol type="1">
+<li>In the bottom bar of the <strong>Gradients</strong> dockable dialog,
+click the <strong>New Gradient</strong> icon (a blank sheet of paper
+with a plus sign).</li>
+<li>This action automatically opens the <strong>Gradient Editor</strong>
+window displaying a default black-to-white gradient segment.</li>
+</ol>
+<h3 id="step-3-configure-segment-colors">Step 3: Configure Segment
+Colors</h3>
+<p>The gradient is divided into one or more segments. Each segment
+contains a left endpoint, a center midpoint marker, and a right endpoint
+along the bottom bar of the editor.</p>
+<ol type="1">
+<li><strong>Set the Left Color</strong>: Right-click the segment area
+and select <strong>Left Endpoint's Color</strong>. Pick your desired
+color from the color selection dialog and click
+<strong>OK</strong>.</li>
+<li><strong>Set the Right Color</strong>: Right-click the segment area
+and choose <strong>Right Endpoint's Color</strong>. Select the
+destination color and click <strong>OK</strong>.</li>
+<li><strong>Adjust the Transition Point</strong>: Click and drag the
+small white triangular slider situated between the endpoints at the
+bottom of the editor to change where the color shift peaks.</li>
+</ol>
+<h3 id="step-4-add-more-color-stops-split-segments">Step 4: Add More
+Color Stops (Split Segments)</h3>
+<p>To create multi-color gradients, you must divide the gradient into
+multiple segments:</p>
+<ol type="1">
+<li>Right-click the segment you wish to divide.</li>
+<li>Select <strong>Split Segment at Midpoint</strong> (or <strong>Split
+Segment Uniformly</strong> to divide it into multiple equal parts).</li>
+<li>Click the newly created segment to select it.</li>
+<li>Right-click the new segment to assign unique colors to its left and
+right endpoints.</li>
+</ol>
+<h3 id="step-5-adjust-blending-and-color-models">Step 5: Adjust Blending
+and Color Models</h3>
+<p>GIMP allows you to change the mathematical interpolation method for
+each segment:</p>
+<ol type="1">
+<li>Right-click the target segment.</li>
+<li>Hover over <strong>Blending Function for Segment</strong> and choose
+an interpolation mode:
+<ul>
+<li><strong>Linear</strong>: Standard constant-rate color
+transition.</li>
+<li><strong>Curved</strong>: Accelerated transition based on the
+midpoint marker.</li>
+<li><strong>Sinusoidal</strong>: Smooth S-curve transition.</li>
+<li><strong>Spherical (increasing/decreasing)</strong>: Rounded
+transition profile.</li>
+</ul></li>
+<li>Hover over <strong>Coloring Type for Segment</strong> to choose how
+colors interact across the spectrum:
+<ul>
+<li><strong>RGB</strong>: Blends directly through standard red, green,
+and blue channels.</li>
+<li><strong>HSV (counter-clockwise / clockwise)</strong>: Transitions
+across the hue color wheel, creating vibrant intermediate hues.</li>
+</ul></li>
+</ol>
+<h3 id="step-6-save-and-use-the-gradient">Step 6: Save and Use the
+Gradient</h3>
+<ol type="1">
+<li>Double-click the text box at the top of the <strong>Gradient
+Editor</strong> window to give your gradient a unique name.</li>
+<li>The gradient saves automatically as a <code>.ggr</code> procedural
+gradient file in your local GIMP user profile.</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>) from your
+toolbox, choose your newly named gradient from the tool options, and
+click and drag across any active canvas or selection to apply it.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import RAW Images in GIMP with Darktable or RawTherapee - gimp</title>
+    <meta name="description" content="GIMP does not natively decode camera RAW files on its own, relying instead on integrated open-source RAW processors like Darktable or RawTherapee. This guide details how to install, configure, and use either processor to seamlessly import, develop, and e">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/import-raw-images-in-gimp-with-darktable-or-raw-therapee">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import RAW Images in GIMP with Darktable or RawTherapee - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/import-raw-images-in-gimp-with-darktable-or-raw-therapee" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP does not natively decode camera RAW files on its own, relying instead on integrated open-source RAW processors like Darktable or RawTherapee. This guide details how to install, configure, and use either processor to seamlessly import, develop, and e" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="import-raw-images-in-gimp-with-darktable-or-rawtherapee">Import
+RAW Images in GIMP with Darktable or RawTherapee</h1>
+<p>GIMP does not natively decode camera RAW files on its own, relying
+instead on integrated open-source RAW processors like Darktable or
+RawTherapee. This guide details how to install, configure, and use
+either processor to seamlessly import, develop, and edit RAW photographs
+inside GIMP.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before starting, ensure that:</p>
+<ul>
+<li>You have a modern version of GIMP installed (version 2.10 or
+later).</li>
+<li>You have either <strong>Darktable</strong> or
+<strong>RawTherapee</strong> installed on the same computer.</li>
+<li>Both GIMP and the chosen RAW developer share the same architecture
+(for example, both must be 64-bit).</li>
+</ul>
+<hr />
+<h2 id="method-1-importing-raw-files-using-darktable">Method 1:
+Importing RAW Files Using Darktable</h2>
+<p>Darktable is often the default RAW plug-in for GIMP on most operating
+systems.</p>
+<ol type="1">
+<li><strong>Install Darktable:</strong> Download and install Darktable
+using the standard installer for your operating system.</li>
+<li><strong>Open the RAW File in GIMP:</strong>
+<ul>
+<li>Launch GIMP.</li>
+<li>Go to <strong>File &gt; Open</strong>.</li>
+<li>Browse to your RAW image (<code>.CR2</code>, <code>.CR3</code>,
+<code>.NEF</code>, <code>.ARW</code>, <code>.DNG</code>, etc.) and click
+<strong>Open</strong>.</li>
+</ul></li>
+<li><strong>Develop in Darktable:</strong>
+<ul>
+<li>GIMP will automatically detect the RAW file and launch the Darktable
+interface in a separate window.</li>
+<li>Apply your desired adjustments such as exposure, white balance, lens
+correction, and noise reduction.</li>
+</ul></li>
+<li><strong>Export Back to GIMP:</strong>
+<ul>
+<li>When finished editing, close the Darktable application window (click
+the <strong>X</strong> in the top corner).</li>
+<li>Darktable will automatically process the image and send the
+resulting full-resolution image directly into GIMP as a new layer.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="method-2-importing-raw-files-using-rawtherapee">Method 2:
+Importing RAW Files Using RawTherapee</h2>
+<p>If you prefer RawTherapee over Darktable, GIMP supports it natively
+as well.</p>
+<ol type="1">
+<li><strong>Install RawTherapee:</strong> Download and install the
+latest stable version of RawTherapee.</li>
+<li><strong>Open the RAW File in GIMP:</strong>
+<ul>
+<li>Launch GIMP and go to <strong>File &gt; Open</strong>.</li>
+<li>Select your RAW file and click <strong>Open</strong>.</li>
+</ul></li>
+<li><strong>Develop in RawTherapee:</strong>
+<ul>
+<li>RawTherapee will launch automatically with the image loaded into the
+editor panel.</li>
+<li>Make your exposure, color, and sharpening corrections.</li>
+</ul></li>
+<li><strong>Send to GIMP:</strong>
+<ul>
+<li>Click the <strong>Send to external editor</strong> icon (located at
+the bottom-left corner of the image preview area, typically represented
+by a painter's palette or an external application icon) or press
+<strong>Ctrl + E</strong> (Windows/Linux) / <strong>Cmd + E</strong>
+(macOS).</li>
+<li>RawTherapee processes the changes and opens the photo inside GIMP.
+Close RawTherapee once the transfer is complete.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="how-to-switch-between-darktable-and-rawtherapee-in-gimp">How to
+Switch Between Darktable and RawTherapee in GIMP</h2>
+<p>If you have both applications installed, you can choose which one
+GIMP uses by default:</p>
+<ol type="1">
+<li>In GIMP, navigate to <strong>Edit &gt; Preferences</strong> (or
+<strong>GIMP &gt; Preferences</strong> on macOS).</li>
+<li>In the left sidebar, click on <strong>Image Import &amp;
+Export</strong>.</li>
+<li>Under the <strong>Raw Image Importer</strong> section, select either
+<strong>darktable</strong> or <strong>RawTherapee</strong> from the
+dropdown menu.</li>
+<li>Click <strong>OK</strong> to save your selection.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear vs Gamma Blur Precision in GIMP - gimp</title>
+    <meta name="description" content="When applying blur filters in GIMP, the choice between Linear Light and Gamma-corrected precision fundamentally changes how colors blend and how light is distributed. Gamma-corrected mode processes pixel math using non-linear values designed to match hum">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/linear-vs-gamma-blur-precision-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Linear vs Gamma Blur Precision in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/linear-vs-gamma-blur-precision-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When applying blur filters in GIMP, the choice between Linear Light and Gamma-corrected precision fundamentally changes how colors blend and how light is distributed. Gamma-corrected mode processes pixel math using non-linear values designed to match hum" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="linear-vs-gamma-blur-precision-in-gimp">Linear vs Gamma Blur
+Precision in GIMP</h1>
+<p>When applying blur filters in GIMP, the choice between Linear Light
+and Gamma-corrected precision fundamentally changes how colors blend and
+how light is distributed. Gamma-corrected mode processes pixel math
+using non-linear values designed to match human eye perception, while
+Linear Light mode processes pixel values according to the physical
+behavior of light. This technical distinction significantly impacts edge
+transitions, the brightness of blurred highlights, and overall color
+fidelity.</p>
+<h3 id="the-mathematical-difference">The Mathematical Difference</h3>
+<p>Digital images are typically stored with a gamma curve applied (such
+as sRGB) to compress luminance data efficiently for displays.</p>
+<ul>
+<li><strong>Gamma-Corrected Mode (Non-linear):</strong> The blur
+algorithm calculates the average of pixel values directly on the encoded
+numbers. Because gamma-encoded values do not scale linearly with
+physical photon emission, averaging two values produces an incorrect
+mathematical result in terms of actual light energy.</li>
+<li><strong>Linear Light Mode:</strong> GIMP first converts the
+gamma-encoded values back into raw physical light values, calculates the
+blur across neighboring pixels, and then converts the result back for
+display. The math reflects how real-world optics blend light
+photons.</li>
+</ul>
+<h3 id="impact-on-edge-transitions-and-dark-halos">Impact on Edge
+Transitions and Dark Halos</h3>
+<p>The most noticeable functional difference appears at high-contrast
+edges, such as white text on a black background or adjacent
+complementary colors (like red and cyan):</p>
+<ul>
+<li><strong>Gamma-Corrected Blur:</strong> When blending opposing bright
+and dark pixels, the non-linear math produces an average that is
+physically darker than it should be. This creates an unnatural, muddy,
+dark halo or gray fringing along the boundary between the colors.</li>
+<li><strong>Linear Light Blur:</strong> Colors transition smoothly
+without darkening. Because the physical light levels are preserved
+during the calculation, there are no dark fringe artifacts, resulting in
+clean, natural color mixing.</li>
+</ul>
+<h3 id="highlight-preservation-and-bokeh-appearance">Highlight
+Preservation and Bokeh Appearance</h3>
+<p>Linear Light and Gamma modes treat highlights and points of light
+differently during diffusion:</p>
+<ul>
+<li><strong>Gamma-Corrected Blur:</strong> Bright elements lose their
+intensity quickly. A bright point of light spreads evenly into the
+surrounding area, causing highlights to look flat, dim, and chalky.</li>
+<li><strong>Linear Light Blur:</strong> Mimics optical lens
+characteristics. Bright highlights expand aggressively into neighboring
+dark regions, creating a natural glowing bloom or realistic photographic
+bokeh. The overall perceived exposure of the blurred region remains
+physically accurate.</li>
+</ul>
+<h3 id="summary-of-best-uses">Summary of Best Uses</h3>
+<ul>
+<li>Use <strong>Linear Light</strong> for photographic adjustments, lens
+blur simulations, glowing effects, and realistic depth-of-field
+manipulation where optical realism and highlight preservation are
+critical.</li>
+<li>Use <strong>Gamma-corrected</strong> mode when working on graphic
+design assets where maintaining uniform geometric edge width is
+preferred over optical realism, or when working strictly within legacy
+workflows that rely on standard sRGB math.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Custom Patterns in GIMP - gimp</title>
+    <meta name="description" content="Creating custom pattern presets in GIMP allows you to design repeating backgrounds, textures, and fills tailored to your specific design needs. This guide provides a straightforward, step-by-step walkthrough for designing a pattern from scratch, saving i">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-custom-patterns-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Custom Patterns in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-custom-patterns-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating custom pattern presets in GIMP allows you to design repeating backgrounds, textures, and fills tailored to your specific design needs. This guide provides a straightforward, step-by-step walkthrough for designing a pattern from scratch, saving i" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-custom-patterns-in-gimp">How to Create Custom
+Patterns in GIMP</h1>
+<p>Creating custom pattern presets in GIMP allows you to design
+repeating backgrounds, textures, and fills tailored to your specific
+design needs. This guide provides a straightforward, step-by-step
+walkthrough for designing a pattern from scratch, saving it in the
+correct directory, and applying it seamlessly across your projects.</p>
+<h3 id="step-1-create-a-new-canvas">Step 1: Create a New Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Set the canvas dimensions to a small, square size (such as 64×64,
+128×128, or 256×256 pixels), depending on how fine or detailed you want
+the repeating pattern to be.</li>
+<li>Under <strong>Advanced Options</strong>, ensure <strong>Fill
+with</strong> is set to <strong>Transparency</strong> if you want a
+transparent background, or choose a solid color.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-design-the-pattern">Step 2: Design the Pattern</h3>
+<ol type="1">
+<li>Use your preferred tools (brush, shapes, text, or imported assets)
+to create your design on the canvas.</li>
+<li>To ensure the design tiles smoothly without visible seams, go to
+<strong>Filters &gt; Map &gt; Tile Seamless</strong>. GIMP will
+automatically adjust the edges to make the graphic repeat
+seamlessly.</li>
+</ol>
+<h3 id="step-3-locate-your-gimp-patterns-folder">Step 3: Locate Your
+GIMP Patterns Folder</h3>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or <strong>GIMP &gt;
+Preferences</strong> on macOS).</li>
+<li>Expand the <strong>Folders</strong> list in the left-hand menu and
+select <strong>Patterns</strong>.</li>
+<li>Note the default writable directory path for your user profile
+(e.g., <code>.../GIMP/2.10/patterns</code>).</li>
+</ol>
+<h3 id="step-4-export-the-pattern">Step 4: Export the Pattern</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Navigate to the <strong>patterns</strong> folder identified in Step
+3.</li>
+<li>Name your file and give it the <strong>.pat</strong> extension (for
+example, <code>my_custom_pattern.pat</code>). GIMP also accepts standard
+<strong>.png</strong> and <strong>.jpg</strong> formats placed in this
+folder.</li>
+<li>Click <strong>Export</strong>.</li>
+<li>In the pop-up dialog, enter a <strong>Pattern Description</strong>
+(this is the name that will appear inside the GIMP interface) and click
+<strong>Export</strong>.</li>
+</ol>
+<h3 id="step-5-refresh-and-apply-the-pattern">Step 5: Refresh and Apply
+the Pattern</h3>
+<ol type="1">
+<li>Open the <strong>Patterns</strong> dialog by going to
+<strong>Windows &gt; Dockable Dialogs &gt; Patterns</strong>.</li>
+<li>Click the <strong>Refresh</strong> icon (two curved arrows) at the
+bottom of the Patterns panel to load your new pattern immediately
+without restarting GIMP.</li>
+<li>Select the <strong>Bucket Fill Tool</strong> from the toolbox
+(<code>Shift + B</code>).</li>
+<li>In the <strong>Tool Options</strong>, set the fill type to
+<strong>Pattern Fill</strong>.</li>
+<li>Click on the pattern thumbnail to select your newly created custom
+pattern, then click anywhere on a canvas to fill it.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Defocus Backgrounds in GIMP with Box Blur - gimp</title>
+    <meta name="description" content="This guide explains how to use the GEGL-based Box Blur filter in GIMP to quickly create a shallow depth-of-field effect and defocus image backgrounds. You will learn how to isolate your subject, apply the high-performance Box Blur algorithm, and fine-tun">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-defocus-backgrounds-in-gimp-with-box-blur">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Defocus Backgrounds in GIMP with Box Blur - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-defocus-backgrounds-in-gimp-with-box-blur" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the GEGL-based Box Blur filter in GIMP to quickly create a shallow depth-of-field effect and defocus image backgrounds. You will learn how to isolate your subject, apply the high-performance Box Blur algorithm, and fine-tun" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-defocus-backgrounds-in-gimp-with-box-blur">How to Defocus
+Backgrounds in GIMP with Box Blur</h1>
+<p>This guide explains how to use the GEGL-based Box Blur filter in GIMP
+to quickly create a shallow depth-of-field effect and defocus image
+backgrounds. You will learn how to isolate your subject, apply the
+high-performance Box Blur algorithm, and fine-tune blur parameters to
+achieve a smooth, professional background blur with minimal processing
+time.</p>
+<h3 id="step-1-duplicate-your-image-layer">Step 1: Duplicate Your Image
+Layer</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to the <strong>Layers</strong> panel on the right.</li>
+<li>Right-click your main image layer and select <strong>Duplicate
+Layer</strong> (or press <code>Ctrl + Shift + D</code>).</li>
+<li>Rename the top layer to "Subject" and the bottom layer to "Blurred
+Background".</li>
+</ol>
+<h3 id="step-2-isolate-the-subject">Step 2: Isolate the Subject</h3>
+<ol type="1">
+<li>Select the "Subject" layer.</li>
+<li>Choose a selection tool from the toolbox, such as the
+<strong>Foreground Select Tool</strong>, <strong>Paths Tool</strong>, or
+<strong>Quick Mask</strong> (<code>Shift + Q</code>).</li>
+<li>Carefully create a selection around the main subject that you want
+to keep sharp.</li>
+<li>With the selection active, right-click the "Subject" layer in the
+Layers panel and choose <strong>Add Layer Mask</strong>.</li>
+<li>In the dialog, select <strong>Selection</strong> and click
+<strong>Add</strong>. Your subject is now isolated on the top
+layer.</li>
+</ol>
+<h3 id="step-3-apply-the-gegl-box-blur">Step 3: Apply the GEGL Box
+Blur</h3>
+<ol type="1">
+<li>Select the "Blurred Background" layer.</li>
+<li>Remove any active selections by going to <strong>Select &gt;
+None</strong> (<code>Ctrl + Shift + A</code>).</li>
+<li>Navigate to <strong>Filters &gt; Blur &gt; Box Blur...</strong> in
+the top menu.</li>
+<li>Ensure the <strong>Preview</strong> and <strong>Split view</strong>
+options are enabled to monitor changes in real time.</li>
+<li>Increase the <strong>Radius</strong> slider to control blur
+intensity. Since Box Blur calculates the average of neighboring pixels
+rapidly, it processes heavy blur radii much faster than standard
+Gaussian blur.</li>
+<li>Adjust horizontal and vertical radii independently if you wish to
+create a directional defocus effect.</li>
+</ol>
+<h3 id="step-4-refine-edge-halos-optional">Step 4: Refine Edge Halos
+(Optional)</h3>
+<p>If a glowing fringe of the subject appears around the edges of the
+blurred background:</p>
+<ol type="1">
+<li>Hide the top "Subject" layer.</li>
+<li>Select the "Blurred Background" layer.</li>
+<li>Use the <strong>Clone Tool</strong> or <strong>Heal Tool</strong> to
+roughly paint over the area behind the original subject before applying
+the blur.</li>
+<li>Make the "Subject" layer visible again to ensure seamless
+blending.</li>
+</ol>
+<h3 id="step-5-finalize-the-image">Step 5: Finalize the Image</h3>
+<p>Click <strong>OK</strong> in the Box Blur dialog to commit the
+changes. Export your finished composition by going to <strong>File &gt;
+Export As...</strong> and selecting your desired format.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

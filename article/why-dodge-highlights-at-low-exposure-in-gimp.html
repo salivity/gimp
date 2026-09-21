@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Dodge Highlights at Low Exposure in GIMP - gimp</title>
+    <meta name="description" content="When retouching images in GIMP, using the Dodge tool on highlights selectively increases the brightness of the lightest pixels to add dimension and contrast. Performing this technique at low exposure percentages—typically between 5% and 15%—is essent">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/why-dodge-highlights-at-low-exposure-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Dodge Highlights at Low Exposure in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/why-dodge-highlights-at-low-exposure-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When retouching images in GIMP, using the Dodge tool on highlights selectively increases the brightness of the lightest pixels to add dimension and contrast. Performing this technique at low exposure percentages—typically between 5% and 15%—is essent" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-dodge-highlights-at-low-exposure-in-gimp">Why Dodge
+Highlights at Low Exposure in GIMP</h1>
+<p>When retouching images in GIMP, using the Dodge tool on highlights
+selectively increases the brightness of the lightest pixels to add
+dimension and contrast. Performing this technique at low exposure
+percentages—typically between 5% and 15%—is essential to prevent "blown
+out" highlights, an issue where subtle textures turn into flat, pure
+white areas. By keeping the exposure low, editors maintain full control
+over tonal transitions, preserving image data and achieving a natural
+finish.</p>
+<p>The Dodge tool works by recalculating pixel luminosity based on the
+chosen range (Shadows, Midtones, or Highlights) and an Exposure slider
+that dictates the intensity of the effect. When set to "Highlights," the
+tool directly targets pixels that already have high luminance values. If
+the exposure percentage is set too high, even a single pass of the brush
+can push those pixel values past their maximum threshold (RGB 255, 255,
+255). This result is known as clipping, where image data is permanently
+lost and replaced by solid white patches devoid of detail.</p>
+<p>Setting the exposure to a low percentage allows for an incremental,
+non-destructive workflow. Digital retouching benefits heavily from
+building effects cumulatively rather than applying heavy adjustments all
+at once. With low exposure, each stroke of the brush adds a slight,
+transparent layer of brightness, giving the user precise control over
+where the light falls and how intense it becomes. If a specific area
+requires more prominence, it can be brushed multiple times gradually
+until the desired balance is reached.</p>
+<p>Low exposure settings also preserve natural color saturation and
+tonal roll-off. Blown-out highlights often introduce harsh edges and
+unnatural color shifts around the perimeter of the brightened area,
+creating an artificial, digitally altered appearance. Subtle dodging
+maintains the smooth gradient between midtones and specular highlights,
+ensuring that textures like skin pores, fabric weaves, or cloud layers
+remain visible and visually coherent.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

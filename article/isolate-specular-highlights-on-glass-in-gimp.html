@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isolate Specular Highlights on Glass in GIMP - gimp</title>
+    <meta name="description" content="Isolating specular highlights on glass objects allows you to control reflections, composite glassware onto new backgrounds, and fine-tune lighting without affecting underlying transparency. This guide walks through the exact process of generating a lumin">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/isolate-specular-highlights-on-glass-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Isolate Specular Highlights on Glass in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/isolate-specular-highlights-on-glass-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating specular highlights on glass objects allows you to control reflections, composite glassware onto new backgrounds, and fine-tune lighting without affecting underlying transparency. This guide walks through the exact process of generating a lumin" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="isolate-specular-highlights-on-glass-in-gimp">Isolate Specular
+Highlights on Glass in GIMP</h1>
+<p>Isolating specular highlights on glass objects allows you to control
+reflections, composite glassware onto new backgrounds, and fine-tune
+lighting without affecting underlying transparency. This guide walks
+through the exact process of generating a luminance-based channel
+selection in GIMP, extracting pure highlight data, and preserving the
+subtle, sharp reflections essential for realistic glass rendering.</p>
+<h3 id="step-1-duplicate-and-prepare-the-source-layer">Step 1: Duplicate
+and Prepare the Source Layer</h3>
+<ol type="1">
+<li>Open your image containing the glass object in GIMP.</li>
+<li>Open the <strong>Layers</strong> dialog
+(<code>Ctrl + L</code>).</li>
+<li>Select your base image layer and press <code>Shift + Ctrl + D</code>
+(or right-click the layer and choose <strong>Duplicate
+Layer</strong>).</li>
+<li>Rename this duplicate layer to
+<code>Luminance Reference</code>.</li>
+</ol>
+<h3 id="step-2-extract-luminance-data">Step 2: Extract Luminance
+Data</h3>
+<ol type="1">
+<li>With the <code>Luminance Reference</code> layer selected, navigate
+to <strong>Colors &gt; Desaturate &gt; Desaturate...</strong> in the top
+menu.</li>
+<li>Under the <strong>Mode</strong> dropdown, select
+<strong>Luminance</strong> (which weights the RGB values according to
+human visual perception: <span class="math inline">\(0.222 \times R +
+0.707 \times G + 0.071 \times B\)</span>).</li>
+<li>Click <strong>OK</strong>. Your duplicate layer is now an accurate
+grayscale luminance map.</li>
+</ol>
+<h3 id="step-3-crush-midtones-and-dark-values">Step 3: Crush Midtones
+and Dark Values</h3>
+<p>Glass highlights must be separated from ambient reflections and the
+background seen through the glass.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Levels...</strong>.</li>
+<li>Under <strong>Input Levels</strong>, drag the black point slider
+(left triangle) to the right. This pushes the dark tones and
+semi-transparent refractions to pure black.</li>
+<li>Drag the middle slider (gray triangle) slightly to the right to
+suppress soft midtone reflections.</li>
+<li>Adjust the white point slider (right triangle) slightly inward if
+needed to make the strongest reflections clip cleanly to pure
+white.</li>
+<li>Click <strong>OK</strong>. Only the sharpest specular reflections
+and white rim lighting should remain visible against a black
+background.</li>
+</ol>
+<h3 id="step-4-convert-the-luminance-map-to-a-channel-selection">Step 4:
+Convert the Luminance Map to a Channel Selection</h3>
+<ol type="1">
+<li>Open the <strong>Channels</strong> dialog via <strong>Windows &gt;
+Dockable Dialogs &gt; Channels</strong>.</li>
+<li>Click the <strong>Red</strong>, <strong>Green</strong>, or
+<strong>Blue</strong> channel (in a desaturated layer, all three hold
+identical values).</li>
+<li>Right-click any of these RGB channels and select <strong>Channel to
+Selection</strong> (or click the red square selection icon at the bottom
+of the dialog).</li>
+<li>GIMP will activate a "marching ants" selection containing pixel
+values mapped directly to brightness: 100% white equals full selection,
+while black is completely unselected.</li>
+</ol>
+<h3 id="step-5-isolate-highlights-to-a-dedicated-layer">Step 5: Isolate
+Highlights to a Dedicated Layer</h3>
+<ol type="1">
+<li>Hide or delete the temporary <code>Luminance Reference</code>
+layer.</li>
+<li>Go back to the <strong>Layers</strong> dialog.</li>
+<li>Click the <strong>Create a new layer</strong> button at the bottom
+of the Layers dialog, name it <code>Specular Highlights</code>, and set
+<strong>Fill with</strong> to <strong>Transparency</strong>.</li>
+<li>With your selection still active, select the <strong>Bucket Fill
+Tool</strong> (<code>Shift + B</code>).</li>
+<li>Set your foreground color to pure white (<code>#FFFFFF</code>) or to
+the exact tint of the light source.</li>
+<li>Check <strong>Fill whole selection</strong> in the tool options and
+click anywhere inside the canvas.</li>
+<li>Clear the selection by pressing <code>Shift + Ctrl + A</code> (or
+<strong>Select &gt; None</strong>).</li>
+</ol>
+<h3 id="step-6-refine-the-isolated-highlights">Step 6: Refine the
+Isolated Highlights</h3>
+<ol type="1">
+<li>Change the blend mode of the <code>Specular Highlights</code> layer
+to <strong>Screen</strong> or <strong>Addition</strong> to seamlessly
+blend it over new backgrounds.</li>
+<li>If the edges of the highlights appear harsh or pixelated, apply a
+subtle blur: navigate to <strong>Filters &gt; Blur &gt; Gaussian
+Blur...</strong>, set the radius between 0.5 and 1.5 pixels, and click
+<strong>OK</strong>.</li>
+<li>Adjust the layer <strong>Opacity</strong> slider to match the
+original highlight intensity or increase it to make the glass appear
+more polished.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

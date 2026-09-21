@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HarfBuzz Text Rendering and Ligatures in GIMP - gimp</title>
+    <meta name="description" content="In the GNU Image Manipulation Program (GIMP), the HarfBuzz library serves as the core text-shaping engine responsible for converting sequences of Unicode characters into properly positioned and shaped glyphs. Working primarily through the Pango text layo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/harf-buzz-text-rendering-and-ligatures-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HarfBuzz Text Rendering and Ligatures in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/harf-buzz-text-rendering-and-ligatures-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In the GNU Image Manipulation Program (GIMP), the HarfBuzz library serves as the core text-shaping engine responsible for converting sequences of Unicode characters into properly positioned and shaped glyphs. Working primarily through the Pango text layo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="harfbuzz-text-rendering-and-ligatures-in-gimp">HarfBuzz Text
+Rendering and Ligatures in GIMP</h1>
+<p>In the GNU Image Manipulation Program (GIMP), the HarfBuzz library
+serves as the core text-shaping engine responsible for converting
+sequences of Unicode characters into properly positioned and shaped
+glyphs. Working primarily through the Pango text layout system, HarfBuzz
+allows GIMP to accurately display complex scripts, manage bidirectional
+text, and activate advanced OpenType typographic features such as
+ligatures and contextual alternates.</p>
+<p>Digital typography relies on a multi-step pipeline to transform
+keystrokes into pixels on the canvas. While libraries like FreeType
+handle the rasterization—converting vector font outlines into visible
+pixels—they do not understand the linguistic or typographic rules
+required to arrange those outlines. This layout requirement is where
+HarfBuzz operates. It analyzes the input string, reads the OpenType
+tables inside the chosen font, and calculates precisely which glyphs to
+display and where to position them.</p>
+<p>The most prominent visual benefit of HarfBuzz in GIMP is its native
+support for standard and discretionary ligatures. When a user types
+combinations such as "fi," "fl," or "ffi" in a font with standard
+ligature tables, HarfBuzz queries the font's Glyph Substitution (GSUB)
+table. It instructs GIMP to replace the individual character shapes with
+a single unified glyph that prevents unsightly collisions between
+letters, improving readability and visual polish. It also facilitates
+Glyph Positioning (GPOS), ensuring that fine kerning adjustments,
+accents, and diacritical marks are placed accurately above or below
+their corresponding base characters.</p>
+<p>Beyond basic typographic enhancements in Latin alphabets, HarfBuzz is
+indispensable for complex non-Latin scripts. Writing systems such as
+Arabic, Devanagari, Thai, and Hebrew require contextual shaping, where
+the appearance of a character changes radically depending on its
+position at the beginning, middle, or end of a word. In Indic scripts,
+characters frequently reorder themselves visually relative to their
+phonetic input order. HarfBuzz handles these language-specific shaping
+rules automatically, allowing GIMP to correctly support bidirectional
+text and non-Latin typography without misplacing characters or breaking
+connected scripts.</p>
+<p>Through its integration within GIMP’s text toolchain, HarfBuzz
+ensures that what users type matches the native conventions of global
+writing systems and modern digital typography. It eliminates the need
+for manual character shifting or specialized workarounds, providing
+reliable, automated OpenType feature support across all supported
+operating systems.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

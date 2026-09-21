@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Linear Light Mode in Frequency Separation - gimp</title>
+    <meta name="description" content="This article provides an overview of the Linear Light blend mode in GIMP and explains its vital role in frequency separation and high-frequency detail overlaying. By mathematically processing tonal values relative to 50% neutral gray, Linear Light allows">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-linear-light-mode-in-frequency-separation">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Linear Light Mode in Frequency Separation - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-linear-light-mode-in-frequency-separation" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of the Linear Light blend mode in GIMP and explains its vital role in frequency separation and high-frequency detail overlaying. By mathematically processing tonal values relative to 50% neutral gray, Linear Light allows" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-linear-light-mode-in-frequency-separation">GIMP Linear
+Light Mode in Frequency Separation</h1>
+<p>This article provides an overview of the Linear Light blend mode in
+GIMP and explains its vital role in frequency separation and
+high-frequency detail overlaying. By mathematically processing tonal
+values relative to 50% neutral gray, Linear Light allows editors to
+isolate micro-textures—such as skin pores, fabric details, and fine
+edges—and recombine them seamlessly with smooth, low-frequency base
+layers without altering overall exposure or introducing color
+shifts.</p>
+<h3 id="the-mechanics-of-linear-light">The Mechanics of Linear
+Light</h3>
+<p>Linear Light is a blend mode that combines the functions of Linear
+Dodge (addition) and Linear Burn (subtraction). It evaluates the blend
+layer against a 50% neutral gray threshold (<span
+class="math inline">\(RGB\ 128, 128, 128\)</span> in 8-bit or <span
+class="math inline">\(0.5\)</span> in floating-point precision):</p>
+<ul>
+<li><strong>50% Neutral Gray:</strong> Becomes entirely transparent,
+exerting no change on the underlying layer.</li>
+<li><strong>Pixels Brighter Than 50% Gray:</strong> Lighten the
+underlying pixels linearly (Linear Dodge).</li>
+<li><strong>Pixels Darker Than 50% Gray:</strong> Darken the underlying
+pixels linearly (Linear Burn).</li>
+</ul>
+<p>The standard mathematical formula governing Linear Light is:</p>
+<p><span class="math display">\[\text{Result} = \text{Base} + 2 \times
+(\text{Blend} - 0.5)\]</span></p>
+<h3 id="function-in-high-frequency-detail-overlaying">Function in
+High-Frequency Detail Overlaying</h3>
+<p>In frequency separation, an image is split into two components: low
+frequencies (colors, broad tones, and smooth gradients) and high
+frequencies (fine lines, skin texture, blemishes, and sharp edges).</p>
+<p>When extracting the high-frequency layer in GIMP using the
+<strong>Subtract</strong> method (subtracting the blurred low-frequency
+layer from the original image and adding a <span
+class="math inline">\(0.5\)</span> gray offset), all texture details are
+captured as positive or negative deviations from neutral gray.</p>
+<p>When this high-frequency detail layer is placed above the smoothed
+low-frequency layer and set to <strong>Linear Light</strong>, the blend
+mode executes a precise mathematical reconstruction:</p>
+<ol type="1">
+<li><strong>Subtracts the Neutral Gray Offset:</strong> It removes the
+uniform gray background that holds the extracted details.</li>
+<li><strong>Applies Pure Texture Deltas:</strong> It projects the sharp
+deviations directly onto the smoothed low-frequency base layer.</li>
+<li><strong>Achieves 1:1 Reconstruction:</strong> Because the formula
+utilizes a multiplier of 2 against the centered offset, the combined
+result perfectly reconstructs the original image data without loss of
+dynamic range.</li>
+</ol>
+<h3 id="why-linear-light-is-preferred-over-other-modes">Why Linear Light
+is Preferred Over Other Modes</h3>
+<p>Unlike contrast-based blend modes such as <em>Overlay</em> or
+<em>Soft Light</em>, Linear Light does not apply a non-linear S-curve to
+tonal values. Modes like Soft Light compress highlights and shadows,
+leading to a loss of micro-contrast or unexpected saturation shifts in
+fine textures. Linear Light provides an exact, linear arithmetic
+addition and subtraction, ensuring that fine details maintain identical
+sharpness, contrast, and depth when overlaid back onto the
+composite.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

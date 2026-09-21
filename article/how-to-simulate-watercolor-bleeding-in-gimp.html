@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Simulate Watercolor Bleeding in GIMP - gimp</title>
+    <meta name="description" content="Simulating traditional watercolor bleeding digitally requires capturing the organic diffusion, soft gradients, and characteristic pigment pooling of water on paper. This article provides a direct, step-by-step guide to configuring GIMP’s Smudge Tool, c">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-simulate-watercolor-bleeding-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Simulate Watercolor Bleeding in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-simulate-watercolor-bleeding-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating traditional watercolor bleeding digitally requires capturing the organic diffusion, soft gradients, and characteristic pigment pooling of water on paper. This article provides a direct, step-by-step guide to configuring GIMP’s Smudge Tool, c" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-simulate-watercolor-bleeding-in-gimp">How to Simulate
+Watercolor Bleeding in GIMP</h1>
+<p>Simulating traditional watercolor bleeding digitally requires
+capturing the organic diffusion, soft gradients, and characteristic
+pigment pooling of water on paper. This article provides a direct,
+step-by-step guide to configuring GIMP’s Smudge Tool, custom Paint
+Dynamics, and brush parameters to replicate natural wet-in-wet
+watercolor behavior without third-party plugins.</p>
+<h2 id="1-setting-up-the-brush-and-canvas">1. Setting Up the Brush and
+Canvas</h2>
+<p>Natural watercolor bleeding relies on texture and variable opacity.
+Before configuring the smudge mechanics, prepare your workspace:</p>
+<ol type="1">
+<li><strong>Create a Textured Base:</strong> Start with an off-white
+canvas. To emulate cold-press paper, add a new transparent layer, apply
+<strong>Filters &gt; Noise &gt; CIE lch Noise</strong>, lower the
+opacity to around 5–8%, and set the blend mode to
+<strong>Multiply</strong>.</li>
+<li><strong>Select a Textured Brush:</strong> Choose a brush with
+uneven, feathered edges (such as <em>Sponge 01</em>, <em>Bristles</em>,
+or a custom textured chalk brush) rather than a hard round brush.</li>
+<li><strong>Paint the Base Color:</strong> On a separate layer above the
+paper texture, lay down your initial pigment using low opacity (30–60%)
+so layers can build naturally.</li>
+</ol>
+<h2 id="2-configuring-smudge-tool-settings">2. Configuring Smudge Tool
+Settings</h2>
+<p>The default Smudge Tool creates a smooth, plastic smear. Adjust the
+tool options in the left-hand panel to introduce watercolor
+fluidity:</p>
+<ul>
+<li><strong>Rate:</strong> Set between <strong>40% and 65%</strong>. A
+lower rate simulates semi-dry blending, while a higher rate mimics
+excess water pushing pigment.</li>
+<li><strong>Flow:</strong> Reduce to <strong>30%–50%</strong> to allow
+smooth color mixing rather than dragging solid chunks of paint.</li>
+<li><strong>Spacing:</strong> In the brush settings, reduce spacing to
+<strong>5.0–8.0%</strong> to ensure seamless blending strokes.</li>
+</ul>
+<h2 id="3-creating-custom-paint-dynamics-for-bleeding">3. Creating
+Custom Paint Dynamics for Bleeding</h2>
+<p>GIMP’s Paint Dynamics engine allows the smudge effect to react
+organically to stroke speed, pressure, and randomness.</p>
+<ol type="1">
+<li>Open the <strong>Paint Dynamics</strong> dockable dialog
+(<strong>Windows &gt; Dockable Dialogs &gt; Paint
+Dynamics</strong>).</li>
+<li>Click the <strong>Create New Dynamics</strong> icon and name it
+<em>Watercolor Bleed</em>.</li>
+<li>Open the <strong>Paint Dynamics Editor</strong> to map input
+behaviors to output values:
+<ul>
+<li><strong>Pressure / Size:</strong> Check this box so that pressing
+harder widens the bleed area.</li>
+<li><strong>Pressure / Flow:</strong> Check this box to simulate
+depositing more water when pressing down.</li>
+<li><strong>Random / Jitter:</strong> Check this box with a low value
+(around 0.2 to 0.5) to break up mechanical brush edges and create
+granular pigment dispersion.</li>
+<li><strong>Velocity / Rate:</strong> Check this box so faster strokes
+create extended, soft diffusion trails.</li>
+</ul></li>
+</ol>
+<h2 id="4-applying-the-wet-in-wet-bleed-technique">4. Applying the
+Wet-in-Wet Bleed Technique</h2>
+<p>With the tool configured, use specific stroke methods to simulate
+pigment flowing into wet paper:</p>
+<ul>
+<li><strong>Feathered Edge Pulling:</strong> Place the center of the
+brush just inside the painted area and stroke outward into the empty
+canvas. Use short, circular, or flicking motions to pull "fingers" of
+pigment into the unpainted areas.</li>
+<li><strong>Color Bleeding (Two Pigments):</strong> Place two different
+colors side-by-side on the same layer. Run the Smudge Tool along the
+seam using light pressure to pull the lighter pigment into the darker
+one, creating a natural capillary blend.</li>
+<li><strong>Hard Edge Pooling:</strong> Real watercolor pools at the
+outer edges of a puddle. To mimic this, duplicate your paint layer,
+apply a slight <strong>Gaussian Blur</strong> (2–4 px) to the lower
+layer, and smudge the top layer inward, leaving a slightly darker rim
+around the diffused pigment.</li>
+</ul>
+<h2 id="5-enhancing-pigment-grain-and-transparency">5. Enhancing Pigment
+Grain and Transparency</h2>
+<p>To finalize the traditional look:</p>
+<ul>
+<li>Set your watercolor paint layers to <strong>Multiply</strong> or
+<strong>Grain Merge</strong> mode so multiple washes interact
+dynamically.</li>
+<li>Use the <strong>Eraser Tool</strong> set to low opacity with the
+same <em>Watercolor Bleed</em> dynamics to lightly lift pigment from
+areas that should appear over-diluted with water.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

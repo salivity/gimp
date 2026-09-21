@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Value Invert vs Invert: Key Differences - gimp</title>
+    <meta name="description" content="In GIMP (GNU Image Manipulation Program), both the Invert and Value Invert filters alter the brightness values of an image, but they process color channels differently. While the standard Invert filter produces a traditional photographic negative by reve">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-value-invert-vs-invert-key-differences">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Value Invert vs Invert: Key Differences - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-value-invert-vs-invert-key-differences" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP (GNU Image Manipulation Program), both the Invert and Value Invert filters alter the brightness values of an image, but they process color channels differently. While the standard Invert filter produces a traditional photographic negative by reve" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-value-invert-vs-invert-key-differences">GIMP Value Invert
+vs Invert: Key Differences</h1>
+<p>In GIMP (GNU Image Manipulation Program), both the Invert and Value
+Invert filters alter the brightness values of an image, but they process
+color channels differently. While the standard Invert filter produces a
+traditional photographic negative by reversing both colors and
+brightness, the Value Invert filter only reverses the brightness levels
+while preserving the original hue and saturation. Choosing between them
+depends on whether you want to completely shift color complements or
+simply invert the light and shadow dynamics.</p>
+<h2 id="how-the-standard-invert-filter-works">How the Standard Invert
+Filter Works</h2>
+<p>The standard Invert tool (<code>Colors &gt; Invert</code>) operates
+in the RGB color space. It recalculates every pixel by subtracting each
+red, green, and blue channel value from the maximum value (255 in 8-bit
+color).</p>
+<p>Because every color channel is reversed:</p>
+<ul>
+<li>White becomes black, and black becomes white.</li>
+<li>Red transforms into its complementary color, cyan.</li>
+<li>Green transforms into magenta, and blue transforms into yellow.</li>
+</ul>
+<p>This filter is primarily used to process scanned photographic
+negatives, generate inverse layer masks, or create psychedelic,
+high-contrast inverted art.</p>
+<h2 id="how-the-value-invert-filter-works">How the Value Invert Filter
+Works</h2>
+<p>The Value Invert tool (<code>Colors &gt; Value Invert</code>)
+operates in the HSV (Hue, Saturation, Value) color space. Instead of
+modifying all color channels, it isolates and inverts only the
+<strong>Value</strong> (lightness) component, leaving the
+<strong>Hue</strong> (the color tint) and <strong>Saturation</strong>
+(the color intensity) untouched.</p>
+<p>Because hue is preserved:</p>
+<ul>
+<li>Highlights become shadows, and shadows become highlights.</li>
+<li>Dark red becomes bright, pale red (rather than cyan).</li>
+<li>Deep navy blue turns into light sky blue (rather than yellow).</li>
+</ul>
+<p>This allows you to invert the tonal contrast of an image without
+altering the underlying color scheme.</p>
+<h2 id="when-to-use-value-invert-vs-standard-invert">When to Use Value
+Invert vs. Standard Invert</h2>
+<ul>
+<li><strong>Use Standard Invert when:</strong> You need a true negative
+effect, are developing film scans, or want to create complementary color
+combinations for graphic design.</li>
+<li><strong>Use Value Invert when:</strong> You want to convert a light
+interface element into a dark-mode element, alter the lighting depth of
+a texture while maintaining color consistency, or create unique tonal
+variations without creating jarring, unnatural color shifts.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

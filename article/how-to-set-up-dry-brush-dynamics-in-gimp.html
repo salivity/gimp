@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Dry Brush Dynamics in GIMP - gimp</title>
+    <meta name="description" content="Configuring custom brush dynamic force variations in GIMP allows digital artists to replicate the scratchy, textured aesthetic of traditional dry brush painting. By mapping dynamic parameters like pressure, velocity, and force to the brush's opacity, siz">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-set-up-dry-brush-dynamics-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Up Dry Brush Dynamics in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-set-up-dry-brush-dynamics-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring custom brush dynamic force variations in GIMP allows digital artists to replicate the scratchy, textured aesthetic of traditional dry brush painting. By mapping dynamic parameters like pressure, velocity, and force to the brush's opacity, siz" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-set-up-dry-brush-dynamics-in-gimp">How to Set Up Dry
+Brush Dynamics in GIMP</h1>
+<p>Configuring custom brush dynamic force variations in GIMP allows
+digital artists to replicate the scratchy, textured aesthetic of
+traditional dry brush painting. By mapping dynamic parameters like
+pressure, velocity, and force to the brush's opacity, size, and
+hardness, you can simulate paint depleting from coarse bristles as you
+stroke across the canvas. This guide provides a direct, step-by-step
+workflow for creating and fine-tuning a custom Paint Dynamic preset
+optimized for dry brush effects.</p>
+<h2 id="1-create-a-new-paint-dynamic">1. Create a New Paint Dynamic</h2>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Windows &gt; Dockable Dialogs &gt;
+Paint Dynamics</strong>.</li>
+<li>At the bottom of the Paint Dynamics dialog, click the <strong>Create
+a new dynamics</strong> button (the blank page icon).</li>
+<li>The <strong>Paint Dynamics Editor</strong> will open automatically.
+Name your new preset (e.g., "Dry Brush Force").</li>
+</ol>
+<h2 id="2-configure-the-dynamics-matrix">2. Configure the Dynamics
+Matrix</h2>
+<p>The Dynamics Matrix connects physical input behaviors (such as stylus
+pressure or mouse speed) to brush rendering properties. For a dry brush
+effect, configure the following intersections in the grid:</p>
+<ul>
+<li><strong>Force / Pressure:</strong> Check the box at the intersection
+of <strong>Pressure</strong> and <strong>Force</strong>. This ensures
+that the simulated friction and bristle contact change dynamically based
+on how hard you press.</li>
+<li><strong>Opacity / Velocity:</strong> Check the box for
+<strong>Velocity</strong> under <strong>Opacity</strong>. This lowers
+paint flow as stroke speed increases, producing streaky, broken textures
+during rapid hand movements.</li>
+<li><strong>Size / Pressure:</strong> Check the box for
+<strong>Pressure</strong> under <strong>Size</strong> to allow bristle
+splay on heavier strokes.</li>
+<li><strong>Hardness / Fade:</strong> (Optional) Check
+<strong>Hardness</strong> under <strong>Fade</strong> or
+<strong>Pressure</strong> to soften edges as the simulated paint runs
+out.</li>
+</ul>
+<h2 id="3-customize-the-dynamic-force-curve">3. Customize the Dynamic
+Force Curve</h2>
+<p>To ensure the force does not respond in a flat, linear way, customize
+its response curve in the Paint Dynamics Editor:</p>
+<ol type="1">
+<li>Locate the drop-down menu at the bottom of the Paint Dynamics Editor
+and select <strong>Force</strong>.</li>
+<li>Adjust the curve so it starts low and arches upward quickly in the
+middle-to-high input range. An exponential or S-shaped curve creates a
+distinct threshold where light strokes produce faint bristle scratches,
+while firm strokes deposit thick paint.</li>
+<li>Select <strong>Opacity</strong> from the drop-down menu and adjust
+its velocity curve downward toward the right side. This ensures fast
+movements dramatically reduce pigment deposition.</li>
+</ol>
+<h2 id="4-optimize-tool-options-for-dry-brushing">4. Optimize Tool
+Options for Dry Brushing</h2>
+<p>Once your dynamic preset is configured, adjust your active brush
+settings in the <strong>Tool Options</strong> dock:</p>
+<ul>
+<li><strong>Brush Tip:</strong> Select a textured or multi-bristle brush
+tip, such as <em>Bristles 01</em>, <em>Chalk</em>, or an acrylic
+splatter tip.</li>
+<li><strong>Dynamics:</strong> Set the Dynamics selector to your newly
+created "Dry Brush Force" preset.</li>
+<li><strong>Spacing:</strong> Increase brush spacing slightly (typically
+between <strong>15% and 30%</strong>). Higher spacing breaks the
+continuous flow of the stroke, exposing the underlying canvas
+texture.</li>
+<li><strong>Force Slider:</strong> Set the base <strong>Force</strong>
+slider between <strong>30 and 60</strong> in the Tool Options to prevent
+the stroke from fully saturating immediately.</li>
+</ul>
+<h2 id="5-test-and-refine">5. Test and Refine</h2>
+<p>Select the <strong>Paintbrush Tool (P)</strong> and test your stroke
+on a blank canvas. Vary both your hand speed and stylus pressure:</p>
+<ul>
+<li>Fast, light strokes should yield gritty, translucent, broken
+lines.</li>
+<li>Slow, heavy strokes should apply dense, concentrated color.</li>
+<li>Return to the <strong>Paint Dynamics Editor</strong> to tweak the
+Force and Opacity curves until the resistance matches your preferred
+drawing style.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

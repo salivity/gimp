@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Channel Mixer: How Preserve Luminosity Works - gimp</title>
+    <meta name="description" content="The Channel Mixer in GIMP allows users to create custom color adjustments and high-contrast monochrome conversions by blending color channels, but pushing slider values upward often leads to blown-out highlights. Checking the "Preserve Luminosity" box au">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-channel-mixer-how-preserve-luminosity-works">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Channel Mixer: How Preserve Luminosity Works - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-channel-mixer-how-preserve-luminosity-works" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Channel Mixer in GIMP allows users to create custom color adjustments and high-contrast monochrome conversions by blending color channels, but pushing slider values upward often leads to blown-out highlights. Checking the "Preserve Luminosity" box au" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-channel-mixer-how-preserve-luminosity-works">GIMP Channel
+Mixer: How Preserve Luminosity Works</h1>
+<p>The Channel Mixer in GIMP allows users to create custom color
+adjustments and high-contrast monochrome conversions by blending color
+channels, but pushing slider values upward often leads to blown-out
+highlights. Checking the "Preserve Luminosity" box automatically
+calculates a scaling factor that normalizes the sum of the channel
+weights, keeping the overall brightness stable. This article explains
+the underlying mechanism of the Preserve Luminosity function, how it
+eliminates pixel clipping, and why it keeps your image properly exposed
+during color mixing.</p>
+<h3 id="the-cause-of-overexposure-in-the-channel-mixer">The Cause of
+Overexposure in the Channel Mixer</h3>
+<p>In GIMP, each pixel in an RGB image has values assigned to Red,
+Green, and Blue channels, typically ranging from 0 to 255 in standard
+8-bit depth. The Channel Mixer allows you to redefine an output channel
+by multiplying and combining the input channels:</p>
+<p><span class="math display">\[\text{Output} = (R \times
+\text{Factor}_R) + (G \times \text{Factor}_G) + (B \times
+\text{Factor}_B)\]</span></p>
+<p>When the sum of the factor percentages exceeds 100% (or 1.0), the
+resulting pixel value frequently exceeds 255. Because digital image
+displays cannot render values brighter than pure white, any value
+calculated beyond the upper threshold is clipped. This clipping removes
+tonal details and causes severe overexposure in brighter midtones and
+highlights.</p>
+<h3 id="how-preserve-luminosity-prevents-clipping">How Preserve
+Luminosity Prevents Clipping</h3>
+<p>When you enable "Preserve Luminosity," GIMP dynamically overrides raw
+additive gain by applying a mathematical normalization ratio to the
+channel multipliers.</p>
+<p>Instead of allowing the raw sum of the channels to scale unchecked,
+GIMP analyzes the sum of your slider coefficients. It then divides each
+individual channel coefficient by the total sum of all coefficients:</p>
+<p><span class="math display">\[\text{Normalized Factor} =
+\frac{\text{Factor}}{\sum \text{Factors}}\]</span></p>
+<p>By scaling the factors so their effective sum always equals 100%, the
+total energy output of the pixel cannot exceed the maximum input
+threshold. If you boost the Red channel to 150% and leave Green and Blue
+at 50% (totaling 250%), GIMP internally scales all three channels down
+proportionally, ensuring that white remains white and details are not
+pushed into overexposure.</p>
+<h3 id="maintaining-perceived-brightness">Maintaining Perceived
+Brightness</h3>
+<p>Human vision does not perceive all colors at the same brightness; the
+human eye is naturally most sensitive to green light and least sensitive
+to blue. Standard luminance formulas reflect this by weighting Green at
+roughly 59%, Red at 30%, and Blue at 11%.</p>
+<p>When converting an image to black-and-white or dramatically shifting
+color channels without Preserve Luminosity, boosting a high-luminance
+channel like Green rapidly blows out the scene. Preserve Luminosity
+accounts for total light output, dampening the additive effect so the
+overall visual density and exposure level of the original image are
+maintained throughout the adjustment.</p>
+<h3 id="practical-impact-on-workflow">Practical Impact on Workflow</h3>
+<p>Using the Preserve Luminosity setting eliminates the need to manually
+perform mental arithmetic while editing. Without it, increasing one
+channel requires you to manually decrease the other two to prevent
+clipping. With the option enabled, you can freely experiment with
+extreme channel ratios—such as creating infrared-style landscapes with
+heavy red and green emphasis—while GIMP automatically protects the tonal
+range, prevents harsh highlight blowouts, and preserves highlight
+detail.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

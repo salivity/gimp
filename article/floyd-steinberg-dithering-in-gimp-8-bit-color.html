@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floyd-Steinberg Dithering in GIMP 8-Bit Color - gimp</title>
+    <meta name="description" content="Converting an image to indexed 8-bit color in GIMP reduces the visual color space from 16.7 million 24-bit RGB values to a localized palette of at most 256 colors. Applying Floyd-Steinberg dithering during this indexing process alters the image's spatial">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/floyd-steinberg-dithering-in-gimp-8-bit-color">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Floyd-Steinberg Dithering in GIMP 8-Bit Color - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/floyd-steinberg-dithering-in-gimp-8-bit-color" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting an image to indexed 8-bit color in GIMP reduces the visual color space from 16.7 million 24-bit RGB values to a localized palette of at most 256 colors. Applying Floyd-Steinberg dithering during this indexing process alters the image's spatial" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="floyd-steinberg-dithering-in-gimp-8-bit-color">Floyd-Steinberg
+Dithering in GIMP 8-Bit Color</h1>
+<p>Converting an image to indexed 8-bit color in GIMP reduces the visual
+color space from 16.7 million 24-bit RGB values to a localized palette
+of at most 256 colors. Applying Floyd-Steinberg dithering during this
+indexing process alters the image's spatial and numerical profile by
+mathematically calculating the quantization error for each pixel and
+dispersing it into adjacent unprocessed pixels. This article examines
+the quantitative mechanics behind this conversion, including the
+error-diffusion kernel, spatial frequency modulation, dynamic range
+preservation, and the resulting statistical impact on image data.</p>
+<h3 id="quantization-error-computation">Quantization Error
+Computation</h3>
+<p>When GIMP maps a 24-bit continuous-tone RGB pixel to an 8-bit
+palette, it selects the nearest color match based on Euclidean distance
+in the chosen color space:</p>
+<p><span class="math display">\[\Delta E = \sqrt{(R_1 - R_2)^2 + (G_1 -
+G_2)^2 + (B_1 - B_2)^2}\]</span></p>
+<p>Because an exact match is rarely present in a 256-color palette,
+rounding creates a difference vector known as the quantization
+error:</p>
+<p><span class="math display">\[e = P_{\text{original}} -
+P_{\text{quantized}}\]</span></p>
+<p>Without dithering, this error value is discarded, leading to sharp
+numerical step-downs that manifest visually as posterization or color
+banding.</p>
+<h3 id="error-diffusion-kernel-and-conservation-of-energy">Error
+Diffusion Kernel and Conservation of Energy</h3>
+<p>Floyd-Steinberg dithering prevents banding by treating the
+quantization error as a conserved quantity that must be redistributed.
+The algorithm processes the image sequentially (typically left-to-right,
+top-to-bottom) and distributes the error vector <span
+class="math inline">\(e\)</span> among four neighboring pixels that have
+not yet been evaluated, using the following weighting matrix:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Neighbor Position</th>
+<th style="text-align: left;">Weight</th>
+<th style="text-align: left;">Relative Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Right (<span class="math inline">\(x+1,
+y\)</span>)</td>
+<td style="text-align: left;"><span
+class="math inline">\(7/16\)</span></td>
+<td style="text-align: left;">43.75%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Down-Left (<span
+class="math inline">\(x-1, y+1\)</span>)</td>
+<td style="text-align: left;"><span
+class="math inline">\(3/16\)</span></td>
+<td style="text-align: left;">18.75%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Down (<span class="math inline">\(x,
+y+1\)</span>)</td>
+<td style="text-align: left;"><span
+class="math inline">\(5/16\)</span></td>
+<td style="text-align: left;">31.25%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Down-Right (<span
+class="math inline">\(x+1, y+1\)</span>)</td>
+<td style="text-align: left;"><span
+class="math inline">\(1/16\)</span></td>
+<td style="text-align: left;">6.25%</td>
+</tr>
+</tbody>
+</table>
+<p>The sum of these fractional coefficients equals exactly one:</p>
+<p><span class="math display">\[\frac{7}{16} + \frac{3}{16} +
+\frac{5}{16} + \frac{1}{16} = \frac{16}{16} = 1.0\]</span></p>
+<p>Mathematically, this normalization guarantees the local conservation
+of luminance and chrominance. The average pixel value across any given
+neighborhood converges toward the original average value of that region
+in the source image, preserving continuous tonal gradients despite the
+severely constrained palette.</p>
+<h3 id="spatial-frequency-modulation">Spatial Frequency Modulation</h3>
+<p>Floyd-Steinberg dithering alters the power spectral density of the
+image noise. Without dithering, quantization error manifests as
+low-frequency noise (broad spatial structures like contour bands), to
+which human vision is acutely sensitive.</p>
+<p>The error-diffusion mechanism functions as a high-pass filter for the
+quantization noise, shifting the error energy into high spatial
+frequencies—a phenomenon characteristic of blue noise. By clustering
+errors into rapid, alternating high-frequency patterns, the algorithm
+exploits the human visual system's modulation transfer function, which
+naturally integrates and averages high-frequency variations into smooth
+intermediate tones.</p>
+<h3 id="clamping-and-boundary-non-linearities">Clamping and Boundary
+Non-Linearities</h3>
+<p>While the theoretical sum of the weights preserves total signal
+energy, practical 8-bit implementations encounter boundary constraints.
+If the addition of a distributed error fraction forces a channel value
+outside the standard <span class="math inline">\([0, 255]\)</span>
+range, the value is clamped:</p>
+<p><span class="math display">\[P_{\text{modified}} = \min(255, \max(0,
+P_{\text{original}} + e_{\text{accumulated}}))\]</span></p>
+<p>Clamping introduces non-linear truncation, temporarily breaking the
+strict mathematical conservation of error. In regions of extreme
+saturation or high contrast (pure whites and blacks), this dynamic
+truncation can cause localized error accumulation, occasionally creating
+directional "worm-like" visual artifacts along structural edges.</p>
+<h3 id="impact-on-entropy-and-file-compression">Impact on Entropy and
+File Compression</h3>
+<p>The mathematical introduction of high-frequency noise directly
+affects the information entropy of the indexed image. A non-dithered
+quantized image features large contiguous blocks of identical color
+indices, resulting in low Shannon entropy and high spatial
+redundancy:</p>
+<p><span class="math display">\[H(X) = -\sum_{i=1}^{n} P(x_i) \log_2
+P(x_i)\]</span></p>
+<p>Floyd-Steinberg dithering breaks up uniform pixel runs to simulate
+mid-tones, substantially increasing local entropy and spatial variance.
+Consequently, while Floyd-Steinberg dithering produces superior
+perceived dynamic range and tonal accuracy in GIMP's 8-bit output, it
+significantly degrades the efficiency of lossless run-length and
+dictionary-based compression algorithms, typically resulting in larger
+file sizes for formats such as GIF or indexed PNG.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

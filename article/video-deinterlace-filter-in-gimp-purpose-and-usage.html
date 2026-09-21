@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Deinterlace Filter in GIMP: Purpose and Usage - gimp</title>
+    <meta name="description" content="The Video Deinterlace filter in GIMP is designed to clean up and restore still frames captured from interlaced video sources. Interlaced video displays images using alternating sets of horizontal lines, which creates noticeable jagged distortions or "com">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/video-deinterlace-filter-in-gimp-purpose-and-usage">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Video Deinterlace Filter in GIMP: Purpose and Usage - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/video-deinterlace-filter-in-gimp-purpose-and-usage" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Video Deinterlace filter in GIMP is designed to clean up and restore still frames captured from interlaced video sources. Interlaced video displays images using alternating sets of horizontal lines, which creates noticeable jagged distortions or "com" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="video-deinterlace-filter-in-gimp-purpose-and-usage">Video
+Deinterlace Filter in GIMP: Purpose and Usage</h1>
+<p>The Video Deinterlace filter in GIMP is designed to clean up and
+restore still frames captured from interlaced video sources. Interlaced
+video displays images using alternating sets of horizontal lines, which
+creates noticeable jagged distortions or "combing" artifacts during fast
+motion. This article explains the core purpose of GIMP’s Deinterlace
+filter, how it removes interlacing artifacts, and how to apply it to
+produce clean, progressive still images.</p>
+<h3 id="understanding-interlacing-artifacts">Understanding Interlacing
+Artifacts</h3>
+<p>Older broadcast standards (such as NTSC and PAL) and various digital
+camcorder formats split each video frame into two separate fields:
+odd-numbered horizontal lines and even-numbered horizontal lines. These
+fields are captured milliseconds apart.</p>
+<p>When a moving subject is captured in an interlaced format and viewed
+on a progressive monitor (such as a modern computer screen), the time
+gap between fields causes the odd and even lines to misalign. This
+results in visible horizontal stripes or "combing" along the edges of
+moving objects.</p>
+<h3 id="the-purpose-of-gimps-deinterlace-filter">The Purpose of GIMP’s
+Deinterlace Filter</h3>
+<p>The primary purpose of the Deinterlace filter in GIMP is to eliminate
+these combing artifacts from imported video stills. Instead of
+displaying both misaligned fields simultaneously, the filter
+reconstructs the image using data from a single field, effectively
+converting an interlaced frame into a clean, progressive graphic.</p>
+<p>Key benefits of using the Deinterlace filter include:</p>
+<ul>
+<li>Removing visual noise and jagged edges from legacy video
+captures.</li>
+<li>Preparing clean still frames for use in graphic design, print, or
+web publication.</li>
+<li>Correcting motion artifacts without needing dedicated video editing
+software.</li>
+</ul>
+<h3 id="how-the-filter-functions">How the Filter Functions</h3>
+<p>When applying the filter, GIMP provides two primary methods for
+reconstructing the image:</p>
+<ul>
+<li><strong>Keep Even Fields:</strong> Discards the odd scanlines and
+uses the even scanlines to interpolate and recreate the full image
+height.</li>
+<li><strong>Keep Odd Fields:</strong> Discards the even scanlines and
+interpolates the missing areas using the odd scanlines.</li>
+</ul>
+<p>Interpolation fills in the gaps between lines to maintain the
+original pixel height and aspect ratio of the image, producing a smooth
+final picture.</p>
+<h3 id="how-to-apply-the-filter-in-gimp">How to Apply the Filter in
+GIMP</h3>
+<ol type="1">
+<li>Open the interlaced image or video frame in GIMP.</li>
+<li>Go to the top menu bar and select <strong>Filters &gt; Enhance &gt;
+Deinterlace</strong>.</li>
+<li>In the dialog box, select either <strong>Keep odd fields</strong> or
+<strong>Keep even fields</strong>. Preview the image to see which option
+provides the sharper, cleaner result.</li>
+<li>Click <strong>OK</strong> to apply the filter to the active
+layer.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

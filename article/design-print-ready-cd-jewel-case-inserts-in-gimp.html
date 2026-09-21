@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Print-Ready CD Jewel Case Inserts in GIMP - gimp</title>
+    <meta name="description" content="Designing professional, print-ready CD jewel case inserts in GIMP requires precise dimensions, high-resolution canvas settings, and proper bleed management. This guide walks you through the step-by-step process of creating both the front cover booklet an">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-print-ready-cd-jewel-case-inserts-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Print-Ready CD Jewel Case Inserts in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-print-ready-cd-jewel-case-inserts-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing professional, print-ready CD jewel case inserts in GIMP requires precise dimensions, high-resolution canvas settings, and proper bleed management. This guide walks you through the step-by-step process of creating both the front cover booklet an" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="design-print-ready-cd-jewel-case-inserts-in-gimp">Design
+Print-Ready CD Jewel Case Inserts in GIMP</h1>
+<p>Designing professional, print-ready CD jewel case inserts in GIMP
+requires precise dimensions, high-resolution canvas settings, and proper
+bleed management. This guide walks you through the step-by-step process
+of creating both the front cover booklet and the back tray inlay
+(including side spines), setting up guides for safe printing zones, and
+exporting your final graphics for optimal print quality.</p>
+<h3 id="1-determine-standard-cd-insert-dimensions">1. Determine Standard
+CD Insert Dimensions</h3>
+<p>Standard jewel cases require two separate inserts: the front cover
+and the back tray card. To ensure high-quality printing, always work at
+<strong>300 DPI (dots per inch)</strong> and include a <strong>1/8-inch
+(3mm) bleed</strong> on all sides to prevent white edges after
+cutting.</p>
+<ul>
+<li><strong>Front Cover (Single Sheet):</strong>
+<ul>
+<li><em>Trim Size:</em> 4.75" x 4.75" (120mm x 120mm)</li>
+<li><em>Bleed Size:</em> 5.00" x 5.00" (127mm x 127mm)</li>
+</ul></li>
+<li><strong>Back Tray Inlay (with Spines):</strong>
+<ul>
+<li><em>Trim Size:</em> 5.90" x 4.625" (150mm x 117.5mm)</li>
+<li><em>Bleed Size:</em> 6.15" x 4.875" (156mm x 123.5mm)</li>
+<li><em>Spine Widths:</em> 0.25" (6.5mm) on both the left and right
+sides.</li>
+</ul></li>
+</ul>
+<h3 id="2-set-up-the-canvas-in-gimp">2. Set Up the Canvas in GIMP</h3>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>File &gt; New</strong>.</li>
+<li>Set the unit selector from pixels to <strong>Inches</strong> or
+<strong>Millimeters</strong>.</li>
+<li>For the <strong>Front Cover</strong>, enter <code>5.0</code> in
+width and <code>5.0</code> in height (including bleed).</li>
+<li>Expand <strong>Advanced Options</strong>:
+<ul>
+<li>Set <strong>X resolution</strong> and <strong>Y resolution</strong>
+to <code>300.000</code> pixels/in.</li>
+<li>Set <strong>Color space</strong> to <code>RGB color</code>.</li>
+<li>Set <strong>Fill with</strong> to <code>White</code>.</li>
+</ul></li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="3-add-bleed-and-safe-zone-guides">3. Add Bleed and Safe Zone
+Guides</h3>
+<p>Guides keep your artwork aligned and prevent critical text from
+getting trimmed off during production.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)</strong>.
+<ul>
+<li>Add a horizontal guide at 50% and a vertical guide at 50% for
+centering.</li>
+</ul></li>
+<li>Go to <strong>Image &gt; Guides &gt; New Guide...</strong> to create
+bleed lines:
+<ul>
+<li><strong>Horizontal:</strong> <code>0.125 in</code> and
+<code>4.875 in</code>.</li>
+<li><strong>Vertical:</strong> <code>0.125 in</code> and
+<code>4.875 in</code>.</li>
+</ul></li>
+<li>Add a <strong>Safe Zone</strong> guide 0.125 inches inside the trim
+lines (<code>0.25 in</code> and <code>4.75 in</code> from the canvas
+edges). Keep all important text, logos, and tracklists inside this safe
+boundary.</li>
+</ol>
+<h3 id="4-design-the-artwork">4. Design the Artwork</h3>
+<ol type="1">
+<li>Use <strong>Layer &gt; New Layer</strong> to keep your elements
+separated (backgrounds, artwork, typography).</li>
+<li>Extend background colors and images fully to the edges of the canvas
+(into the bleed area).</li>
+<li>Place main titles, album artwork, and copyright notices within the
+safe zone guides.</li>
+<li>Use the <strong>Text Tool (T)</strong> to add your typography,
+adjusting kerning and line spacing via the Tool Options panel.</li>
+</ol>
+<h3 id="5-set-up-the-back-tray-inlay">5. Set Up the Back Tray Inlay</h3>
+<ol type="1">
+<li>Create a new document: <strong>File &gt; New</strong>.</li>
+<li>Set dimensions to <code>6.15 inches</code> width and
+<code>4.875 inches</code> height at <code>300 DPI</code>.</li>
+<li>Add trim guides (0.125" from each outer edge).</li>
+<li>Add vertical spine guides to mark the fold lines:
+<ul>
+<li><strong>Left Spine Fold:</strong> <code>0.375 in</code> (0.125"
+bleed + 0.25" spine width).</li>
+<li><strong>Right Spine Fold:</strong> <code>5.775 in</code> (6.15"
+canvas - 0.125" bleed - 0.25" spine width).</li>
+</ul></li>
+<li>Rotate spine text 90 degrees using the <strong>Rotate Tool (Shift +
+R)</strong> to run vertically down the left and right edges. Ensure the
+barcode and tracklist sit comfortably in the center panel between the
+spine folds.</li>
+</ol>
+<h3 id="6-export-for-print">6. Export for Print</h3>
+<ol type="1">
+<li>Save a master project file via <strong>File &gt; Save As</strong>
+(<code>.xcf</code> format) to preserve your editable layers.</li>
+<li>Flatten or merge unnecessary layers if required by your print
+shop.</li>
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Select <strong>TIFF image</strong> or <strong>PDF</strong> from the
+file format dropdown.</li>
+<li>If exporting as TIFF, choose <code>None</code> or <code>LZW</code>
+for compression to avoid quality loss.</li>
+<li>If exporting as PDF, check the option to <strong>Apply layer masks
+before saving</strong> and ensure high-resolution rasterization is
+enabled.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

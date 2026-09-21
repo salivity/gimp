@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Select by Color Tool in GIMP - gimp</title>
+    <meta name="description" content="GIMP’s color selection feature—primarily accessed through the Select by Color Tool—allows you to isolate and select all pixels across an image or layer that share a similar color profile. This guide provides a clear walkthrough on how to locate the">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-the-select-by-color-tool-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Select by Color Tool in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-the-select-by-color-tool-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP’s color selection feature—primarily accessed through the Select by Color Tool—allows you to isolate and select all pixels across an image or layer that share a similar color profile. This guide provides a clear walkthrough on how to locate the" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-use-the-select-by-color-tool-in-gimp">How to Use the
+Select by Color Tool in GIMP</h1>
+<p>GIMP’s color selection feature—primarily accessed through the
+<strong>Select by Color Tool</strong>—allows you to isolate and select
+all pixels across an image or layer that share a similar color profile.
+This guide provides a clear walkthrough on how to locate the tool,
+configure its essential settings like threshold and antialiasing, make
+precise selections on your canvas, and refine those selections for
+editing, recoloring, or background removal.</p>
+<hr />
+<h3 id="step-1-access-the-select-by-color-tool">Step 1: Access the
+Select by Color Tool</h3>
+<p>You can activate the tool using any of the following methods:</p>
+<ul>
+<li><strong>Keyboard Shortcut:</strong> Press
+<code>Shift + O</code>.</li>
+<li><strong>Menu Bar:</strong> Navigate to <strong>Tools &gt; Selection
+Tools &gt; By Color</strong>.</li>
+<li><strong>Toolbox:</strong> Click the <strong>Select by Color</strong>
+icon (a hand pointing at three colored boxes).</li>
+</ul>
+<hr />
+<h3 id="step-2-configure-tool-options">Step 2: Configure Tool
+Options</h3>
+<p>Before clicking your image, adjust the <strong>Tool Options</strong>
+panel (typically located beneath the main toolbox on the left) to match
+your needs:</p>
+<ul>
+<li><strong>Mode:</strong> Choose whether the new selection replaces the
+current one, adds to it (<code>Shift</code>), subtracts from it
+(<code>Ctrl</code>), or intersects with it
+(<code>Shift + Ctrl</code>).</li>
+<li><strong>Antialiasing:</strong> Check this box to smooth the jagged
+edges of your selection.</li>
+<li><strong>Feather Edges:</strong> Enable this to create a soft,
+blurred boundary around the selection. You can set the blur radius as
+needed.</li>
+<li><strong>Select Transparent Areas:</strong> Turn this on if you want
+to include fully transparent pixels of the selected color.</li>
+<li><strong>Sample Merged:</strong> Check this box if you want the tool
+to sample colors from all visible layers combined, rather than only the
+active layer.</li>
+<li><strong>Threshold:</strong> This slider controls how strictly the
+tool matches colors. A low value (e.g., 0–15) selects only pixels nearly
+identical to the chosen color, while a higher value expands the range to
+include lighter and darker variations.</li>
+<li><strong>Select by:</strong> Choose the color channel to base the
+selection on (e.g., Composite, Red, Green, Blue, Alpha, Hue, Saturation,
+or Value). The default is <strong>Composite</strong>.</li>
+</ul>
+<hr />
+<h3 id="step-3-make-the-selection">Step 3: Make the Selection</h3>
+<ol type="1">
+<li>Select the layer you want to edit in the <strong>Layers</strong>
+panel.</li>
+<li>Click on the color in your image that you wish to select.</li>
+<li>All areas matching that color across the canvas will be enclosed
+within animated dashed lines ("marching ants").</li>
+<li><strong>Dynamic Threshold Adjustment:</strong> Click and hold your
+left mouse button on the color, then drag downward or to the right to
+increase the threshold, or upward/left to decrease it in real-time
+before releasing.</li>
+</ol>
+<hr />
+<h3 id="step-4-refine-the-selection">Step 4: Refine the Selection</h3>
+<ul>
+<li><strong>Add More Colors:</strong> Hold <code>Shift</code> and click
+on additional color areas to expand your active selection.</li>
+<li><strong>Remove Colors:</strong> Hold <code>Ctrl</code> and click on
+areas you want to exclude from the selection.</li>
+<li><strong>Fine-Tune Boundaries:</strong> Navigate to the top menu
+under <strong>Select</strong> to use options like <strong>Grow</strong>,
+<strong>Shrink</strong>, <strong>Border</strong>, or
+<strong>Feather</strong> to alter the selection boundary by a specific
+number of pixels.</li>
+</ul>
+<hr />
+<h3 id="step-5-apply-your-edits">Step 5: Apply Your Edits</h3>
+<p>Once the color segment is selected, you can perform your intended
+actions:</p>
+<ul>
+<li><strong>Delete/Clear:</strong> Press <code>Delete</code> or
+<code>Backspace</code> to remove the selected pixels (ensure your layer
+has an Alpha Channel via <strong>Layer &gt; Transparency &gt; Add Alpha
+Channel</strong> if you want transparency).</li>
+<li><strong>Color Adjustment:</strong> Go to <strong>Colors &gt;
+Hue-Saturation</strong> or <strong>Colors &gt; Colorize</strong> to
+modify only the selected areas.</li>
+<li><strong>Invert Selection:</strong> Go to <strong>Select &gt;
+Invert</strong> (<code>Ctrl + I</code>) to target everything except the
+chosen color.</li>
+<li><strong>Deselect:</strong> Press <code>Shift + Ctrl + A</code> or go
+to <strong>Select &gt; None</strong> once your edits are complete.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

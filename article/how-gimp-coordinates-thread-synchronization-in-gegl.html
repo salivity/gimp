@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Coordinates Thread Synchronization in GEGL - gimp</title>
+    <meta name="description" content="This article examines how the GNU Image Manipulation Program (GIMP) leverages the Generic Extreme Graphics Library (GEGL) to distribute rendering tasks across multiple CPU cores. It explores the underlying architecture of GEGL's Directed Acyclic Graph (D">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-coordinates-thread-synchronization-in-gegl">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Coordinates Thread Synchronization in GEGL - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-coordinates-thread-synchronization-in-gegl" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines how the GNU Image Manipulation Program (GIMP) leverages the Generic Extreme Graphics Library (GEGL) to distribute rendering tasks across multiple CPU cores. It explores the underlying architecture of GEGL's Directed Acyclic Graph (D" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-coordinates-thread-synchronization-in-gegl">How GIMP
+Coordinates Thread Synchronization in GEGL</h1>
+<p>This article examines how the GNU Image Manipulation Program (GIMP)
+leverages the Generic Extreme Graphics Library (GEGL) to distribute
+rendering tasks across multiple CPU cores. It explores the underlying
+architecture of GEGL's Directed Acyclic Graph (DAG), the role of
+tile-based decomposition, and the specific thread synchronization
+primitives—such as thread pools, mutexes, read-write locks, and atomic
+operations—that ensure thread safety and optimal multi-core efficiency
+without race conditions.</p>
+<h3 id="the-gegl-processing-model-and-graph-decomposition">The GEGL
+Processing Model and Graph Decomposition</h3>
+<p>At the core of GIMP’s modern image processing pipeline is GEGL, an
+image processing framework based on a Directed Acyclic Graph (DAG). In
+this model, image operations (such as blurs, color corrections, and
+compositing) are represented as nodes, while edges represent data flow
+dependencies between them.</p>
+<p>When GIMP initiates a render operation, it uses a
+<code>GeglProcessor</code> to evaluate the graph. Because
+high-resolution images are too large to process uniformly in single
+threads, GEGL breaks image canvases down into discrete, uniform chunks
+called tiles (typically 128×128 pixels), managed by the
+<code>GeglBuffer</code> subsystem. Multi-core parallelism is achieved
+not by processing entire operations concurrently, but by processing
+independent spatial tiles of the graph concurrently across multiple
+threads.</p>
+<h3 id="task-scheduling-and-worker-thread-pools">Task Scheduling and
+Worker Thread Pools</h3>
+<p>GEGL manages concurrency through an internal thread pool built on top
+of GLib's <code>GThreadPool</code> infrastructure. The coordination
+follows a task-pull architecture:</p>
+<ol type="1">
+<li><strong>Work Division:</strong> The requested region of interest
+(ROI) is split into a grid of independent tile-sized computation
+tasks.</li>
+<li><strong>Task Queuing:</strong> Worker threads draw jobs from a
+unified, thread-safe task queue.</li>
+<li><strong>Node Dependency Resolution:</strong> A worker evaluating a
+downstream node checks if the required upstream tiles have already been
+calculated and cached in the buffer. If not, the upstream sub-graph is
+scheduled for computation.</li>
+</ol>
+<p>By decomposing regions into independent tiles, multiple threads can
+execute the same node's operation concurrently on different spatial
+areas of an image without cross-thread contamination.</p>
+<h3 id="synchronization-primitives-in-graph-evaluation">Synchronization
+Primitives in Graph Evaluation</h3>
+<p>Coordinating simultaneous access to shared graph state, intermediate
+buffers, and memory caches requires precise synchronization
+mechanisms:</p>
+<ul>
+<li><strong>Fine-Grained Buffer Locking (<code>GRWLock</code>):</strong>
+Rather than locking an entire image buffer during processing, GEGL uses
+read-write locks at the level of individual tiles or tile blocks.
+Multiple worker threads can hold concurrent read locks to pull pixel
+data from a cached upstream tile, while a write lock is exclusively held
+by the single thread actively rendering into that tile.</li>
+<li><strong>Atomic Reference Counting:</strong> Shared structures, such
+as image metadata, node parameters, and tile pointers, use atomic
+operations (<code>g_atomic_*</code> primitives) to manage reference
+counters. This prevents memory leaks and use-after-free conditions
+without introducing heavy locking overhead.</li>
+<li><strong>Condition Variables (<code>GCond</code>):</strong> When a
+worker thread depends on an upstream tile that is currently in-flight by
+another thread, it blocks on a condition variable associated with that
+tile's completion state rather than busy-waiting. Once the producing
+thread finishes writing and unlocks the tile, it broadcasts the
+condition variable to wake dependent worker threads.</li>
+</ul>
+<h3 id="preventing-redundant-computations">Preventing Redundant
+Computations</h3>
+<p>In complex DAGs where multiple branches depend on a common upstream
+node, there is a risk that multiple worker threads will attempt to
+compute the exact same intermediate tile concurrently.</p>
+<p>GEGL prevents this through an explicit tile-state tracking mechanism.
+When a thread decides that a tile needs computation, it marks the tile's
+state as "in progress" within a synchronized registry. Any other worker
+thread needing that same tile checks the registry, detects the "in
+progress" state, and subscribes to the tile's completion signal instead
+of duplicating the work.</p>
+<h3 id="main-thread-and-ui-synchronization">Main Thread and UI
+Synchronization</h3>
+<p>To maintain interface responsiveness, GIMP coordinates GEGL rendering
+asynchronously from the main GTK application loop. The render threads
+run entirely in the background, updating intermediate tiles in the
+display pipeline. When a chunk of processing completes, worker threads
+dispatch asynchronous notifications to the main thread via GLib's
+<code>GSource</code> and idle loops (<code>g_idle_add</code>). The main
+UI thread then invalidates and repaints only the modified screen
+coordinates on the canvas, ensuring that user interaction remains fluid
+during intensive multi-core processing.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

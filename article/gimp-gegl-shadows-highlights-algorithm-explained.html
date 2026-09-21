@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP GEGL Shadows Highlights Algorithm Explained - gimp</title>
+    <meta name="description" content="The GEGL Shadows-Highlights algorithm in GIMP is a specialized dynamic range adjustment tool designed to correct underexposed shadows and overexposed highlights simultaneously. Unlike standard brightness and contrast adjustments that apply global changes">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-gegl-shadows-highlights-algorithm-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP GEGL Shadows Highlights Algorithm Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-gegl-shadows-highlights-algorithm-explained" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GEGL Shadows-Highlights algorithm in GIMP is a specialized dynamic range adjustment tool designed to correct underexposed shadows and overexposed highlights simultaneously. Unlike standard brightness and contrast adjustments that apply global changes" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-gegl-shadows-highlights-algorithm-explained">GIMP GEGL
+Shadows Highlights Algorithm Explained</h1>
+<p>The GEGL Shadows-Highlights algorithm in GIMP is a specialized
+dynamic range adjustment tool designed to correct underexposed shadows
+and overexposed highlights simultaneously. Unlike standard brightness
+and contrast adjustments that apply global changes across an entire
+image, this filter isolates and modifies specific tonal regions. This
+article explains how the GEGL Shadows-Highlights filter works, its core
+features, and how its localized tone mapping processes image data.</p>
+<h3 id="primary-purpose-of-the-algorithm">Primary Purpose of the
+Algorithm</h3>
+<p>The main function of the Shadows-Highlights tool is to compress the
+dynamic range of an image, bringing lost details back into visibility.
+It operates like a localized tone mapper, allowing you to:</p>
+<ul>
+<li><strong>Recover Shadow Detail:</strong> Brightens dark, underexposed
+areas without washing out true blacks or blowing out properly exposed
+midtones.</li>
+<li><strong>Recover Highlight Detail:</strong> Darkens overly bright or
+harsh highlights to reveal texture and color without making the rest of
+the image muddy.</li>
+<li><strong>Maintain Midtone Balance:</strong> Keeps the natural
+contrast in standard exposure zones stable while altering extreme tonal
+values.</li>
+</ul>
+<h3 id="how-the-algorithm-operates">How the Algorithm Operates</h3>
+<p>The GEGL (Generic Graphical Library) implementation uses
+edge-preserving spatial filtering to separate the image into luminance
+components.</p>
+<ol type="1">
+<li><strong>Luminance Separation:</strong> The algorithm separates color
+information from tonal intensity (luminance). This prevents color
+shifting and saturation artifacts when brightness values are
+altered.</li>
+<li><strong>Local Contrast Masking:</strong> Instead of applying a
+simple tone curve, the algorithm uses a localized blurring mechanism
+(often based on a bilateral or guided filter) to determine whether a
+pixel is part of a bright or dark region relative to its immediate
+surroundings.</li>
+<li><strong>Halo Suppression:</strong> Traditional unsharp masking and
+tone adjustments can cause bright or dark "halos" along high-contrast
+edges (such as a dark tree against a bright sky). The GEGL algorithm
+minimizes these artifacts by respecting hard geometric edges during the
+blur phase.</li>
+<li><strong>Floating-Point Precision:</strong> Because it is built on
+the GEGL framework, the algorithm processes calculations in high
+bit-depth (up to 32-bit floating point). This avoids color banding,
+posterization, and data loss during dynamic range compression.</li>
+</ol>
+<h3 id="key-parameters-and-their-functions">Key Parameters and Their
+Functions</h3>
+<ul>
+<li><strong>Shadows:</strong> Controls the degree of brightening applied
+to dark areas. Positive values lift the shadows, revealing hidden
+textures.</li>
+<li><strong>Highlights:</strong> Controls the degree of darkening
+applied to bright areas. Negative values pull down high luminance values
+to recover blown-out sections.</li>
+<li><strong>Radius:</strong> Determines the size of the neighborhood
+around each pixel used to calculate local contrast. A smaller radius
+focuses on micro-contrast, while a larger radius applies smoother, more
+global adjustments.</li>
+<li><strong>Compress:</strong> Controls the tonal range affected by the
+shadow and highlight adjustments, determining how strictly the algorithm
+isolates the darkest and brightest values from the midtones.</li>
+<li><strong>White Point / Black Point Shift:</strong> Fine-tunes the
+absolute clipping boundaries to prevent pure whites or blacks from
+appearing gray.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

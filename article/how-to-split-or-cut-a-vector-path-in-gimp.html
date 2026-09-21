@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Split or Cut a Vector Path in GIMP - gimp</title>
+    <meta name="description" content="Cutting a vector path into separate segments in GIMP is a simple process once you understand how the Paths tool handles anchor points and line segments. This guide explains how to split an open or closed path into distinct sections by inserting target no">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-split-or-cut-a-vector-path-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Split or Cut a Vector Path in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-split-or-cut-a-vector-path-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Cutting a vector path into separate segments in GIMP is a simple process once you understand how the Paths tool handles anchor points and line segments. This guide explains how to split an open or closed path into distinct sections by inserting target no" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-split-or-cut-a-vector-path-in-gimp">How to Split or Cut a
+Vector Path in GIMP</h1>
+<p>Cutting a vector path into separate segments in GIMP is a simple
+process once you understand how the Paths tool handles anchor points and
+line segments. This guide explains how to split an open or closed path
+into distinct sections by inserting target nodes, deleting connecting
+line segments using keyboard shortcuts, and optionally separating the
+results into individual path layers.</p>
+<h3 id="step-1-select-the-path-and-the-paths-tool">Step 1: Select the
+Path and the Paths Tool</h3>
+<ol type="1">
+<li>Open your project in GIMP and navigate to the <strong>Paths</strong>
+dockable dialog (go to <strong>Windows &gt; Dockable Dialogs &gt;
+Paths</strong> if it is not visible).</li>
+<li>Click on the path you want to modify to make it active, and click
+the eye icon next to it to ensure it is visible on the canvas.</li>
+<li>Select the <strong>Paths Tool</strong> from the Toolbox or press the
+shortcut key <strong>B</strong>.</li>
+</ol>
+<h3 id="step-2-add-anchor-points-if-necessary">Step 2: Add Anchor Points
+(If Necessary)</h3>
+<p>If you want to cut the path at a location where no anchor point
+currently exists:</p>
+<ol type="1">
+<li>Ensure the Paths tool mode is set to <strong>Design</strong> in the
+Tool Options panel.</li>
+<li>Click directly on the path line where you want the split to occur.
+This creates a new anchor node at the desired cut point.</li>
+</ol>
+<h3 id="step-3-delete-the-connecting-segment">Step 3: Delete the
+Connecting Segment</h3>
+<p>To split a continuous line into two separate segments, you must
+remove the line segment connecting two nodes:</p>
+<ol type="1">
+<li>Hover your mouse over the line segment directly adjacent to the
+point where you want the cut.</li>
+<li>Press and hold <strong>Ctrl + Shift</strong> on Windows/Linux (or
+<strong>Cmd + Shift</strong> on macOS). The cursor will change,
+displaying a small minus or scissor symbol.</li>
+<li>With the keys held down, click the line segment.</li>
+</ol>
+<p>The connecting line will disappear immediately, leaving two separate
+endpoints and effectively cutting the path into two distinct
+segments.</p>
+<h3 id="step-4-separate-into-distinct-path-layers-optional">Step 4:
+Separate into Distinct Path Layers (Optional)</h3>
+<p>Deleting a segment splits the line visually, but both segments remain
+part of the same path object in the Paths dialog. If you need them as
+completely separate path layers:</p>
+<ol type="1">
+<li>Ensure the path is active and go to the Paths tool options.</li>
+<li>Choose <strong>Path from Selection</strong> or manually copy and
+paste the desired segment components:
+<ul>
+<li>In the Paths dialog, right-click your path and choose <strong>Path
+to Selection</strong>.</li>
+<li>Switch to a selection tool (like the Rectangle Select tool), hold
+<strong>Ctrl</strong> to subtract the unwanted portion of the
+selection.</li>
+<li>Go back to the Paths dialog and click the <strong>Selection to
+Path</strong> button at the bottom.</li>
+</ul></li>
+<li>Repeat the process for the second half to obtain two independent
+path items in your list.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

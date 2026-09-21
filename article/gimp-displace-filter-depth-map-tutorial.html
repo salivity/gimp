@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Displace Filter Depth Map Tutorial - gimp</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough on using the Displace filter in GIMP to create realistic depth map effects. You will learn how to generate a custom grayscale depth map from an existing image, apply displacement to wrap text, patterns, o">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-displace-filter-depth-map-tutorial">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Displace Filter Depth Map Tutorial - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-displace-filter-depth-map-tutorial" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough on using the Displace filter in GIMP to create realistic depth map effects. You will learn how to generate a custom grayscale depth map from an existing image, apply displacement to wrap text, patterns, o" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-displace-filter-depth-map-tutorial">GIMP Displace Filter
+Depth Map Tutorial</h1>
+<p>This guide provides a straightforward walkthrough on using the
+Displace filter in GIMP to create realistic depth map effects. You will
+learn how to generate a custom grayscale depth map from an existing
+image, apply displacement to wrap text, patterns, or graphics around
+complex surfaces, and blend the final result for a natural,
+three-dimensional look.</p>
+<h2 id="1-prepare-your-base-image">1. Prepare Your Base Image</h2>
+<p>Open your primary image in GIMP by navigating to <strong>File &gt;
+Open</strong>. This should be the surface you want your graphic to
+conform to, such as fabric, skin, or a textured wall.</p>
+<h2 id="2-generate-the-depth-map">2. Generate the Depth Map</h2>
+<p>The Displace filter uses brightness values to determine distortion:
+white areas shift the pixels in one direction, black areas shift them in
+the opposite direction, and 50% neutral gray remains unaffected.</p>
+<ol type="1">
+<li>Right-click the base layer in the <strong>Layers</strong> panel and
+select <strong>Duplicate Layer</strong>.</li>
+<li>Rename this duplicate layer to <code>Depth Map</code>.</li>
+<li>Convert the layer to grayscale by going to <strong>Colors &gt;
+Desaturate &gt; Desaturate</strong> and selecting
+<strong>Luminance</strong>.</li>
+<li>Increase the contrast to make the depth distinctions clearer by
+going to <strong>Colors &gt; Levels</strong> and dragging the black and
+white point sliders toward the center.</li>
+<li>Soften harsh transitions by applying a slight blur via
+<strong>Filters &gt; Blur &gt; Gaussian Blur</strong>. A radius of 2 to
+5 pixels typically prevents jagged pixel edges during displacement.</li>
+<li>Hide this layer by clicking the eye icon next to it in the Layers
+panel.</li>
+</ol>
+<h2 id="3-add-the-overlay-graphic">3. Add the Overlay Graphic</h2>
+<ol type="1">
+<li>Create a new transparent layer or paste the graphic, texture, or
+text you want to map onto the surface.</li>
+<li>Position and scale the graphic over the desired area of the base
+image.</li>
+<li>If using text, right-click the text layer and select <strong>Discard
+Text Information</strong> to convert it into a standard raster
+layer.</li>
+</ol>
+<h2 id="4-apply-the-displace-filter">4. Apply the Displace Filter</h2>
+<ol type="1">
+<li>Select your graphic layer in the Layers panel.</li>
+<li>Navigate to <strong>Filters &gt; Map &gt; Displace...</strong> to
+open the filter settings.</li>
+<li>In the Displace dialog, set the <strong>Displacement Mode</strong>
+to <strong>Cartesian</strong>.</li>
+<li>Set both the <strong>X displacement</strong> and <strong>Y
+displacement</strong> source inputs to your hidden
+<code>Depth Map</code> layer.</li>
+<li>Adjust the <strong>X/Y displacement shift values</strong>. Start
+with small values (typically between 5 and 20 pixels) depending on the
+resolution of your image. Higher values create stronger distortion along
+the contours of the depth map.</li>
+<li>Click <strong>OK</strong> to apply the displacement.</li>
+</ol>
+<h2 id="5-blend-the-final-image">5. Blend the Final Image</h2>
+<p>To integrate the displaced graphic naturally into the base
+surface:</p>
+<ol type="1">
+<li>Change the graphic layer's <strong>Blend Mode</strong> in the Layers
+panel from <em>Normal</em> to <em>Multiply</em>, <em>Overlay</em>, or
+<em>Soft Light</em>.</li>
+<li>Lower the layer's <strong>Opacity</strong> to between 70% and 90% to
+allow the lighting of the underlying image to show through.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

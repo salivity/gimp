@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make a Vintage Badge Logo in GIMP - gimp</title>
+    <meta name="description" content="Creating a vintage badge logo in GIMP requires combining geometric shapes, vector path manipulation, and text-along-path techniques. This guide outlines the complete process of setting up your canvas, constructing concentric vector badge shapes, curving">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-make-a-vintage-badge-logo-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make a Vintage Badge Logo in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-make-a-vintage-badge-logo-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a vintage badge logo in GIMP requires combining geometric shapes, vector path manipulation, and text-along-path techniques. This guide outlines the complete process of setting up your canvas, constructing concentric vector badge shapes, curving" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-make-a-vintage-badge-logo-in-gimp">How to Make a Vintage
+Badge Logo in GIMP</h1>
+<p>Creating a vintage badge logo in GIMP requires combining geometric
+shapes, vector path manipulation, and text-along-path techniques. This
+guide outlines the complete process of setting up your canvas,
+constructing concentric vector badge shapes, curving typography along
+custom paths, and applying authentic retro design elements to produce a
+polished, scalable badge.</p>
+<h3 id="1-set-up-the-canvas-and-alignment-guides">1. Set Up the Canvas
+and Alignment Guides</h3>
+<ol type="1">
+<li>Open GIMP and create a new square image via <strong>File &gt;
+New</strong> (e.g., 2000 × 2000 pixels at 300 DPI for high
+resolution).</li>
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by
+Percent)</strong>. Add a horizontal guide at 50% and a vertical guide at
+50% to establish the exact center point.</li>
+</ol>
+<h3 id="2-create-the-badge-outline-using-paths">2. Create the Badge
+Outline Using Paths</h3>
+<ol type="1">
+<li>Select the <strong>Ellipse Select Tool</strong>
+(<code>E</code>).</li>
+<li>In the Tool Options, check <strong>Fixed Aspect Ratio (1:1)</strong>
+and <strong>Expand from center</strong>.</li>
+<li>Click the intersection of your guides and drag outward to create a
+circular selection.</li>
+<li>Go to <strong>Select &gt; To Path</strong> to convert this selection
+into a vector path. Name this path "Outer Circle" in the <strong>Paths
+Dialog</strong>.</li>
+<li>Deselect via <strong>Select &gt; None</strong>
+(<code>Shift + Ctrl + A</code>).</li>
+<li>Create a new transparent layer named "Badge Base".</li>
+<li>In the Paths Dialog, right-click the "Outer Circle" path, select
+<strong>Stroke Path</strong>, choose <strong>Line</strong>, set the
+stroke width to your desired thickness (e.g., 12 px), and click
+<strong>Stroke</strong>.</li>
+<li>Repeat this process with smaller circular selections to create
+concentric inner rings, dotted borders, or scalloped edges.</li>
+</ol>
+<h3 id="3-generate-paths-for-curved-text">3. Generate Paths for Curved
+Text</h3>
+<ol type="1">
+<li>Create another circular selection that sits precisely where you want
+your text to curve (between the outer and inner rings).</li>
+<li>Convert it to a path via <strong>Select &gt; To Path</strong>, and
+rename it "Text Path Top".</li>
+<li>To create a path for the bottom text, duplicate "Text Path Top",
+select the <strong>Flip Tool</strong> (<code>Shift + F</code>), set it
+to <strong>Path</strong> mode in Tool Options, and flip the path
+vertically.</li>
+</ol>
+<h3 id="4-align-text-along-the-paths">4. Align Text Along the Paths</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> (<code>T</code>), choose a
+bold retro or serif font, and type your header text on the canvas.</li>
+<li>In the Layers Dialog, right-click the text layer and select
+<strong>Text along Path</strong>. GIMP will generate a new vector path
+outlining your letters along the active circular path.</li>
+<li>Create a new transparent layer named "Top Text".</li>
+<li>Go to the Paths Dialog, right-click the newly generated text path,
+select <strong>Fill Path</strong>, and choose your foreground
+color.</li>
+<li>Repeat the process for the bottom text using the inverted bottom
+path.</li>
+</ol>
+<h3 id="5-add-secondary-vintage-elements">5. Add Secondary Vintage
+Elements</h3>
+<ol type="1">
+<li>Use the <strong>Path Tool</strong> (<code>B</code>) or the
+<strong>Free Select Tool</strong> (<code>F</code>) to draw accent
+ribbons, banners, stars, or divider lines across the center of the
+badge.</li>
+<li>Add a central graphic, such as an icon, year of establishment (e.g.,
+"EST. 1985"), or a monogram using the Text Tool.</li>
+<li>Ensure all secondary elements are centered horizontally along your
+vertical guide.</li>
+</ol>
+<h3 id="6-apply-vintage-colors-and-textures">6. Apply Vintage Colors and
+Textures</h3>
+<ol type="1">
+<li>Replace harsh black-and-white tones with a classic vintage palette,
+such as off-white (cream), deep navy, burgundy, forest green, or mustard
+yellow.</li>
+<li>To add a distressed effect, create a new layer on top, add a
+white-to-black grunge texture, and set the layer blend mode to
+<strong>Screen</strong>, <strong>Multiply</strong>, or use it as a
+<strong>Layer Mask</strong> to create authentic wear and tear across the
+badge.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Print-Ready Door Hangers in GIMP - gimp</title>
+    <meta name="description" content="Designing custom, print-ready door hanger promotional flyers in GIMP requires precise canvas setup, proper bleed and margin measurements, safe zones for the die-cut hole, and proper color management for commercial printing. This guide provides a step-by-">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-print-ready-door-hangers-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Print-Ready Door Hangers in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-print-ready-door-hangers-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom, print-ready door hanger promotional flyers in GIMP requires precise canvas setup, proper bleed and margin measurements, safe zones for the die-cut hole, and proper color management for commercial printing. This guide provides a step-by-" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="design-print-ready-door-hangers-in-gimp">Design Print-Ready Door
+Hangers in GIMP</h1>
+<p>Designing custom, print-ready door hanger promotional flyers in GIMP
+requires precise canvas setup, proper bleed and margin measurements,
+safe zones for the die-cut hole, and proper color management for
+commercial printing. This guide provides a step-by-step walkthrough to
+configure your canvas settings, map out cut lines, design compelling
+promotional artwork, and export high-resolution files that meet standard
+commercial print specifications.</p>
+<h3 id="1-configure-the-canvas-and-print-dimensions">1. Configure the
+Canvas and Print Dimensions</h3>
+<p>Commercial door hangers standardly measure 3.5" x 8.5" or 4.25" x
+11". Printers require a 0.125-inch (1/8") bleed on all four sides to
+prevent white edges during trimming.</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>File &gt; New</strong>.</li>
+<li>Set the <strong>Template</strong> units to
+<strong>Inches</strong>.</li>
+<li>For a standard 3.5" x 8.5" door hanger, calculate dimensions
+including the 0.125" bleed on all sides:
+<ul>
+<li><strong>Width:</strong> 3.75 inches (3.5 + 0.25)</li>
+<li><strong>Height:</strong> 8.75 inches (8.5 + 0.25)</li>
+</ul></li>
+<li>Expand <strong>Advanced Options</strong>.</li>
+<li>Set both <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <strong>300 pixels/in</strong> (standard print
+resolution).</li>
+<li>Set <strong>Color space</strong> to <strong>RGB color</strong> and
+<strong>Fill with</strong> to <strong>White</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="2-set-up-margin-bleed-and-die-cut-guides">2. Set Up Margin,
+Bleed, and Die-Cut Guides</h3>
+<p>Guides ensure critical text and logos do not get trimmed off or
+punctured by the door knob hole.</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by Percent)</strong>
+or <strong>New Guide...</strong> to position guides accurately:
+<ul>
+<li><strong>Bleed Lines:</strong> Set guides 0.125 inches (38 pixels at
+300 DPI) inside from all four outer edges. The area between the canvas
+edge and this line will be trimmed off.</li>
+<li><strong>Safe Zone:</strong> Set guides an additional 0.125 to 0.25
+inches inside the trim line. Keep all critical text, phone numbers, and
+logos inside this safe zone.</li>
+</ul></li>
+<li><strong>Door Knob Cutout Guide:</strong> Standard door hangers
+feature a 1.25-inch or 1.5-inch circular hole centered horizontally,
+usually 1 to 1.5 inches down from the top edge, along with a cut slit
+leading to the side or top.
+<ul>
+<li>Add a horizontal guide at 2 inches from the top.</li>
+<li>Add a vertical guide at 50% (the horizontal center).</li>
+<li>Create a new temporary layer named
+<code>Cutout Template</code>.</li>
+<li>Use the <strong>Ellipse Select Tool</strong> (fixed aspect ratio
+1:1, size ~1.25" x 1.25" or 375x375 px) centered on your guide
+intersection.</li>
+<li>Stroke the selection with a thin red line via <strong>Edit &gt;
+Stroke Selection</strong> to keep a visual reference of where the hole
+will be punched.</li>
+</ul></li>
+</ol>
+<h3 id="3-create-the-background-and-visual-layers">3. Create the
+Background and Visual Layers</h3>
+<ol type="1">
+<li>Add a new layer above the background for your artwork.</li>
+<li>Extend all background colors, patterns, and full-bleed photos all
+the way to the canvas edges (covering the bleed area).</li>
+<li>Do not place critical imagery, text, or primary focal points within
+the top 2.5 inches of the canvas where the hole and slit will be
+punched.</li>
+</ol>
+<h3 id="4-add-promotional-typography-and-layout-elements">4. Add
+Promotional Typography and Layout Elements</h3>
+<ol type="1">
+<li>Use the <strong>Text Tool</strong> to establish a clear visual
+hierarchy:
+<ul>
+<li><strong>Header/Hook:</strong> Place a bold headline in the
+upper-middle section, right below the cutout clearance area.</li>
+<li><strong>Core Offer:</strong> Place key benefits, bullet points,
+discounts, or service descriptions in the center body.</li>
+<li><strong>Call to Action (CTA):</strong> Reserve the bottom third for
+your website, phone number, QR code, and address.</li>
+</ul></li>
+<li>Ensure all text layers remain inside the inner safe zone
+guides.</li>
+<li>Keep contrast high between text colors and background elements for
+maximum readability from a distance.</li>
+</ol>
+<h3 id="5-prepare-and-color-proof-the-design">5. Prepare and Color-Proof
+the Design</h3>
+<p>GIMP operates natively in RGB. To ensure colors print accurately in
+CMYK:</p>
+<ol type="1">
+<li>Enable soft-proofing by going to <strong>View &gt; Color Management
+&gt; Proof Colors</strong>.</li>
+<li>Configure your printer’s CMYK ICC profile under <strong>Edit &gt;
+Preferences &gt; Color Management</strong> (commonly <em>U.S. Web Coated
+(SWOP) v2</em> or <em>GRACoL2006</em>).</li>
+<li>Adjust any oversaturated colors that appear dull or shifted during
+soft-proofing.</li>
+</ol>
+<h3 id="6-export-the-print-ready-file">6. Export the Print-Ready
+File</h3>
+<ol type="1">
+<li>Hide or delete the temporary <code>Cutout Template</code> guide
+layer so the cut lines do not print onto your artwork.</li>
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Choose <strong>PDF</strong> or <strong>TIFF</strong> depending on
+your print shop’s submission requirements:
+<ul>
+<li><strong>For PDF:</strong> Name the file, select
+<strong>Export</strong>, and ensure <strong>Apply layer masks</strong>
+and high-quality rasterization settings are checked.</li>
+<li><strong>For TIFF:</strong> Select <strong>TIFF image</strong>, click
+<strong>Export</strong>, and set compression to <strong>LZW</strong>
+(lossless) with no image degradation.</li>
+</ul></li>
+<li>If designing a double-sided door hanger, repeat the steps for the
+reverse side and save it as a separate page or dedicated file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

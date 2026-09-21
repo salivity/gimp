@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Invert Selection to Isolate a Subject in GIMP - gimp</title>
+    <meta name="description" content="Isolating a subject from a uniform background is one of the quickest photo editing workflows in GIMP. By using tools like the Fuzzy Select or Select by Color tool, you can instantly select the flat background, invert that selection to target only the sub">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-invert-selection-to-isolate-a-subject-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Invert Selection to Isolate a Subject in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-invert-selection-to-isolate-a-subject-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating a subject from a uniform background is one of the quickest photo editing workflows in GIMP. By using tools like the Fuzzy Select or Select by Color tool, you can instantly select the flat background, invert that selection to target only the sub" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-invert-selection-to-isolate-a-subject-in-gimp">How to
+Invert Selection to Isolate a Subject in GIMP</h1>
+<p>Isolating a subject from a uniform background is one of the quickest
+photo editing workflows in GIMP. By using tools like the Fuzzy Select or
+Select by Color tool, you can instantly select the flat background,
+invert that selection to target only the subject, and cut, copy, or mask
+it for use in other projects. This guide covers the exact steps required
+to select a solid background, use the Invert Selection command, and
+cleanly isolate your subject.</p>
+<h2 id="1-add-an-alpha-channel">1. Add an Alpha Channel</h2>
+<p>Before making any selections, ensure your image layer supports
+transparency:</p>
+<ol type="1">
+<li>Look at the <strong>Layers</strong> panel on the right side of the
+screen.</li>
+<li>Right-click your image layer.</li>
+<li>Select <strong>Add Alpha Channel</strong>. If this option is grayed
+out, your image already supports transparency.</li>
+</ol>
+<h2 id="2-select-the-uniform-background">2. Select the Uniform
+Background</h2>
+<p>Choose the selection tool best suited for your background:</p>
+<ul>
+<li><strong>Fuzzy Select Tool (Magic Wand):</strong> Best for
+continuous, solid-color areas. Press <strong>U</strong> on your keyboard
+or click the magic wand icon in the Toolbox.</li>
+<li><strong>Select by Color Tool:</strong> Best if the uniform color
+appears in disconnected areas across the canvas. Press <strong>Shift +
+O</strong> on your keyboard.</li>
+</ul>
+<p>Click anywhere on the uniform background. If parts of the background
+remain unselected, increase the <strong>Threshold</strong> slider in the
+Tool Options panel on the left, or hold <strong>Shift</strong> and click
+the unselected areas to add them to your selection.</p>
+<h2 id="3-invert-the-selection">3. Invert the Selection</h2>
+<p>At this stage, the marching ants outline the background, not the
+subject. To swap the active selection to the subject:</p>
+<ol type="1">
+<li>Click <strong>Select</strong> in the top menu bar.</li>
+<li>Click <strong>Invert</strong> (or press the keyboard shortcut
+<strong>Ctrl + I</strong> on Windows/Linux, or <strong>Cmd + I</strong>
+on macOS).</li>
+</ol>
+<p>The selection boundary will immediately switch from the background to
+the subject.</p>
+<h2 id="4-refine-the-edges-optional">4. Refine the Edges (Optional)</h2>
+<p>To prevent rough edges or residual background color fringing:</p>
+<ol type="1">
+<li>Go to <strong>Select &gt; Feather...</strong> and enter a small
+radius (typically 1 to 3 pixels) to soften the transition.</li>
+<li>If a slight border of the background remains around the subject, go
+to <strong>Select &gt; Shrink...</strong> and reduce the selection by 1
+or 2 pixels before finalizing.</li>
+</ol>
+<h2 id="5-isolate-the-subject">5. Isolate the Subject</h2>
+<p>With the subject selected, choose your preferred method to complete
+the isolation:</p>
+<ul>
+<li><strong>Copy to a New Layer:</strong> Press <strong>Ctrl +
+C</strong> to copy, then <strong>Ctrl + V</strong> to paste. In the
+Layers panel, click the green <strong>Create a new layer</strong> icon
+to anchor the pasted subject onto its own transparent layer.</li>
+<li><strong>Apply a Layer Mask:</strong> Right-click the image layer in
+the Layers panel, choose <strong>Add Layer Mask</strong>, select
+<strong>Selection</strong>, and click <strong>Add</strong>. This hides
+the background non-destructively.</li>
+<li><strong>Export with Transparency:</strong> Hide the original
+background layer, go to <strong>File &gt; Export As...</strong>, and
+save the file in a format that supports transparency, such as
+<strong>PNG</strong>.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

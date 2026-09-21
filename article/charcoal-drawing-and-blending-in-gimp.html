@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charcoal Drawing and Blending in GIMP - gimp</title>
+    <meta name="description" content="Simulating the dry, expressive nature of traditional charcoal in GIMP requires breaking away from default smooth digital brushes. This guide covers how to prepare a high-friction paper canvas, build a custom dynamic profile for the Smudge tool, select th">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/charcoal-drawing-and-blending-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Charcoal Drawing and Blending in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/charcoal-drawing-and-blending-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating the dry, expressive nature of traditional charcoal in GIMP requires breaking away from default smooth digital brushes. This guide covers how to prepare a high-friction paper canvas, build a custom dynamic profile for the Smudge tool, select th" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="charcoal-drawing-and-blending-in-gimp">Charcoal Drawing and
+Blending in GIMP</h1>
+<p>Simulating the dry, expressive nature of traditional charcoal in GIMP
+requires breaking away from default smooth digital brushes. This guide
+covers how to prepare a high-friction paper canvas, build a custom
+dynamic profile for the Smudge tool, select the proper brush tips, and
+execute blending techniques that emulate physical charcoal dust
+spreading across textured paper.</p>
+<h3 id="preparing-the-textured-canvas">Preparing the Textured
+Canvas</h3>
+<p>Charcoal needs paper tooth to catch pigment and break apart
+naturally. Without a textured base, smudging in GIMP will look like
+liquid paint rather than dry dust.</p>
+<ol type="1">
+<li><strong>Create the Paper Base:</strong> Open a new canvas and fill
+the background layer with an off-white or warm gray tone (such as
+<code>#E6E2D8</code>).</li>
+<li><strong>Add Canvas Grain:</strong> Create a new transparent layer
+above the background, name it "Canvas Texture," and fill it with 50%
+neutral gray (<code>#808080</code>).</li>
+<li><strong>Generate Noise:</strong> Go to <strong>Filters &gt; Noise
+&gt; RGB Noise</strong>. Deselect "Independent RGB" and set the noise
+value between <code>0.20</code> and <code>0.35</code> to produce a fine,
+uniform grain.</li>
+<li><strong>Emboss the Texture:</strong> Go to <strong>Filters &gt;
+Distorts &gt; Emboss</strong>. Select the "Bumpmap" function, set the
+depth to <code>1</code> or <code>2</code>, and set the elevation to
+around <code>45</code> to give the grain light and shadow.</li>
+<li><strong>Set Layer Mode:</strong> Change the "Canvas Texture" layer
+mode to <strong>Overlay</strong> or <strong>Soft Light</strong> and drop
+the opacity to between <code>15%</code> and <code>30%</code>. Lock this
+layer so you do not paint directly onto it.</li>
+</ol>
+<h3 id="creating-a-custom-smudge-dynamic">Creating a Custom Smudge
+Dynamic</h3>
+<p>Standard smudging uniformly drags pixels, destroying the grainy
+quality of charcoal. Custom paint dynamics introduce pressure
+sensitivity and jitter to replicate the friction of fingers or paper
+stumps (tortillons).</p>
+<ol type="1">
+<li>Open the <strong>Paint Dynamics</strong> dockable dialog
+(<strong>Windows &gt; Dockable Dialogs &gt; Paint
+Dynamics</strong>).</li>
+<li>Click the <strong>Create a new dynamic</strong> icon at the bottom
+of the dialog. Name it <code>Charcoal Smudge</code>.</li>
+<li>In the dynamics matrix, configure the following parameters:
+<ul>
+<li><strong>Pressure row:</strong> Check <strong>Opacity</strong>,
+<strong>Size</strong>, and <strong>Rate</strong>. Applying more stylus
+pressure will blend larger areas more thoroughly, while light pressure
+preserves the underlying grain.</li>
+<li><strong>Jitter row:</strong> Check <strong>Pressure</strong> or
+<strong>Random</strong>. This introduces micro-gaps in the smudge
+stroke, preventing uniform, muddy streaks.</li>
+</ul></li>
+<li>Save the dynamic profile.</li>
+</ol>
+<h3 id="setting-up-the-smudge-tool">Setting Up the Smudge Tool</h3>
+<p>Once the dynamic profile is built, adjust the Smudge Tool settings to
+ensure the charcoal dust does not turn into wet paint.</p>
+<ol type="1">
+<li>Select the <strong>Smudge Tool</strong> (<code>S</code> on the
+keyboard).</li>
+<li><strong>Select Brush Tip:</strong> Choose a textured brush tip
+rather than a soft round brush. Good built-in options include
+<strong>Chalk 01</strong>, <strong>Chalk 02</strong>, or
+<strong>Bristles 01</strong>.</li>
+<li><strong>Assign Dynamics:</strong> Under the tool options, assign the
+newly created <code>Charcoal Smudge</code> dynamic.</li>
+<li><strong>Adjust Tool Parameters:</strong>
+<ul>
+<li><strong>Rate:</strong> Set between <code>20%</code> and
+<code>40%</code>. A low rate prevents the tool from dragging color too
+far from the initial stroke.</li>
+<li><strong>Flow:</strong> Set between <code>30%</code> and
+<code>50%</code>.</li>
+<li><strong>Spacing:</strong> In the brush settings, increase spacing
+slightly (around <code>15%</code> to <code>25%</code>) to allow the
+texture of the brush tip to stamp repeatedly rather than form a
+continuous solid line.</li>
+</ul></li>
+</ol>
+<h3 id="execution-and-blending-techniques">Execution and Blending
+Techniques</h3>
+<p>To mimic traditional charcoal workflows, separate the application of
+charcoal marks from the blending process.</p>
+<ul>
+<li><strong>Lay Down Pigment:</strong> Create a new layer named
+"Charcoal Artwork" above the background but beneath the texture layer.
+Use the Paintbrush tool with a high-contrast textured chalk brush in
+pure black or deep charcoal gray. Keep the strokes deliberate, leaving
+white paper showing through the gaps.</li>
+<li><strong>Blend Along the Grain:</strong> Switch to the Smudge tool.
+Work from dark areas into mid-tones using small, circular strokes or
+quick cross-hatched dabs. Avoid long, sweeping continuous strokes, which
+cause artificial-looking gradients.</li>
+<li><strong>Simulate a Kneaded Eraser:</strong> To pull highlights out
+of smudged areas without clean-cutting digital edges, switch to the
+<strong>Eraser Tool</strong>, select the same textured chalk brush,
+lower the opacity to <code>20%</code>, and tap gently over highlighted
+areas to lift pigment in layers.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

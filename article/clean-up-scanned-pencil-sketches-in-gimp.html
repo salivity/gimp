@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Up Scanned Pencil Sketches in GIMP - gimp</title>
+    <meta name="description" content="Cleaning up scanned pencil sketches in GIMP prepares traditional artwork for seamless digital inking and coloring. This guide outlines the essential workflow to eliminate paper textures, remove graphite smudges, enhance line contrast, and isolate the dra">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/clean-up-scanned-pencil-sketches-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Clean Up Scanned Pencil Sketches in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/clean-up-scanned-pencil-sketches-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Cleaning up scanned pencil sketches in GIMP prepares traditional artwork for seamless digital inking and coloring. This guide outlines the essential workflow to eliminate paper textures, remove graphite smudges, enhance line contrast, and isolate the dra" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="clean-up-scanned-pencil-sketches-in-gimp">Clean Up Scanned
+Pencil Sketches in GIMP</h1>
+<p>Cleaning up scanned pencil sketches in GIMP prepares traditional
+artwork for seamless digital inking and coloring. This guide outlines
+the essential workflow to eliminate paper textures, remove graphite
+smudges, enhance line contrast, and isolate the drawing onto a
+transparent layer. Following these steps ensures your original line work
+serves as a crisp, non-destructive guide for digital illustration.</p>
+<h3 id="1-import-and-crop-the-scan">1. Import and Crop the Scan</h3>
+<ul>
+<li>Open GIMP and go to <strong>File &gt; Open</strong> to load your
+scanned image (ideally scanned at 300 to 600 DPI).</li>
+<li>Select the <strong>Crop Tool</strong> (<code>Shift + C</code>) from
+the toolbox.</li>
+<li>Drag a box around the sketch area to eliminate unused margins and
+press <strong>Enter</strong> to crop.</li>
+</ul>
+<h3 id="2-remove-color-casts-desaturate">2. Remove Color Casts
+(Desaturate)</h3>
+<p>Scanners often introduce faint blue, yellow, or gray color casts to
+white paper.</p>
+<ul>
+<li>Go to <strong>Colors &gt; Desaturate &gt;
+Desaturate...</strong></li>
+<li>Choose the <strong>Luminance</strong> mode and click
+<strong>OK</strong>. This converts the sketch into a clean grayscale
+image.</li>
+</ul>
+<h3 id="3-boost-contrast-with-levels">3. Boost Contrast with Levels</h3>
+<p>Enhancing the contrast makes the pencil lines darker while pushing
+off-white paper tones to pure white.</p>
+<ul>
+<li>Navigate to <strong>Colors &gt; Levels...</strong></li>
+<li>In the histogram, locate the <strong>Input Levels</strong> sliders:
+<ul>
+<li>Drag the <strong>black slider (left)</strong> toward the center to
+darken the pencil lines.</li>
+<li>Drag the <strong>white slider (right)</strong> toward the center to
+force the paper background to become pure white.</li>
+<li>Adjust the <strong>gray slider (middle)</strong> to preserve fine
+line details without exposing unwanted paper grain.</li>
+</ul></li>
+<li>Click <strong>OK</strong> once the lines are solid and the
+background appears completely white.</li>
+</ul>
+<h3 id="4-remove-smudges-and-artifacts">4. Remove Smudges and
+Artifacts</h3>
+<ul>
+<li>Select the <strong>Eraser Tool</strong> (<code>Shift + E</code>) or
+the <strong>Paintbrush Tool</strong> (<code>P</code>) set to pure white
+(<code>#FFFFFF</code>).</li>
+<li>Set brush hardness to a moderate level.</li>
+<li>Paint over any stray marks, scanning artifacts, or remaining
+graphite smudges outside the primary drawing.</li>
+</ul>
+<h3 id="5-convert-lines-to-a-transparent-layer">5. Convert Lines to a
+Transparent Layer</h3>
+<p>Isolating the pencil strokes allows you to ink digitally on separate
+layers above or below the original sketch.</p>
+<ul>
+<li>Go to <strong>Layer &gt; Transparency &gt; Color to
+Alpha...</strong></li>
+<li>Ensure the <strong>Color</strong> is set to white
+(<code>#FFFFFF</code>).</li>
+<li>Click <strong>OK</strong>. The white background will disappear,
+leaving only the dark pencil marks on a transparent grid.</li>
+</ul>
+<h3 id="6-prepare-the-layer-for-digital-inking">6. Prepare the Layer for
+Digital Inking</h3>
+<ul>
+<li>Rename the sketch layer to "Pencil Sketch" in the
+<strong>Layers</strong> panel.</li>
+<li>Lower the layer's <strong>Opacity</strong> slider to around
+<strong>30% - 50%</strong>.</li>
+<li>Click the <strong>Lock pixels</strong> icon in the Layers panel to
+avoid accidentally drawing on the original sketch.</li>
+<li>Click the <strong>New Layer</strong> button to create a transparent
+layer above your sketch, name it "Inking", and begin tracing your clean
+line art using your preferred brush tools.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

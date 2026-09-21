@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Crop Tool: Delete Cropped Pixels Explained - gimp</title>
+    <meta name="description" content="When using the Crop tool in GIMP, leaving the "Delete cropped pixels" option unchecked alters the visible image area without discarding any underlying image data. This article explains how GIMP manages these hidden off-canvas pixels, how they behave with">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-crop-tool-delete-cropped-pixels-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Crop Tool: Delete Cropped Pixels Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-crop-tool-delete-cropped-pixels-explained" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When using the Crop tool in GIMP, leaving the "Delete cropped pixels" option unchecked alters the visible image area without discarding any underlying image data. This article explains how GIMP manages these hidden off-canvas pixels, how they behave with" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-crop-tool-delete-cropped-pixels-explained">GIMP Crop Tool:
+Delete Cropped Pixels Explained</h1>
+<p>When using the Crop tool in GIMP, leaving the "Delete cropped pixels"
+option unchecked alters the visible image area without discarding any
+underlying image data. This article explains how GIMP manages these
+hidden off-canvas pixels, how they behave within your project, and how
+you can access or reveal them later.</p>
+<h3 id="canvas-resizing-vs-layer-cropping">Canvas Resizing vs. Layer
+Cropping</h3>
+<p>In GIMP, the image canvas and individual layers are separate
+entities. The canvas represents the visible, active window of your
+project, while layers can be smaller, equal to, or significantly larger
+than the canvas itself.</p>
+<p>When "Delete cropped pixels" is unchecked:</p>
+<ul>
+<li><strong>The Canvas Resizes:</strong> The canvas shrinks or expands
+to match your crop boundary.</li>
+<li><strong>The Layers Remain Intact:</strong> Layers are not clipped to
+the new canvas edges. Instead, any layer pixels falling outside the new
+crop box simply extend beyond the active canvas boundaries into
+off-canvas space.</li>
+</ul>
+<h3 id="what-happens-to-the-hidden-pixels">What Happens to the Hidden
+Pixels</h3>
+<ul>
+<li><strong>They Remain in Memory and the XCF File:</strong> Because the
+pixel data is preserved, the project retains the original detail of all
+layers. Saving the project as an XCF file will store this hidden
+information, meaning the file size will reflect the entire uncut layer
+data rather than just the visible cropped area.</li>
+<li><strong>They Can Be Re-positioned:</strong> You can select the Move
+tool and drag a cropped layer around within the canvas. As you drag, the
+previously hidden pixels will slide back into view seamlessly.</li>
+<li><strong>They Are Ignored During Standard Export:</strong> If you
+export your work to standard formats like PNG, JPEG, or WebP, GIMP only
+renders what is inside the canvas boundary. Any pixels resting outside
+the canvas will not appear in the final exported file.</li>
+</ul>
+<h3 id="how-to-reveal-off-canvas-pixels">How to Reveal Off-Canvas
+Pixels</h3>
+<p>If you later decide that you want to restore the hidden data to the
+visible workspace, you can expand the canvas without losing quality:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Image &gt; Fit Canvas to
+Layers</strong>. This expands the project boundary to encompass all
+pixels, including those previously pushed off-canvas.</li>
+<li>Alternatively, navigate to <strong>Image &gt; Canvas Size</strong>
+to manually expand the canvas dimensions to your preferred width and
+height.</li>
+</ol>
+<p>By keeping "Delete cropped pixels" unchecked, GIMP acts
+non-destructively, allowing you to crop for framing while safeguarding
+your raw layer content for future edits.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

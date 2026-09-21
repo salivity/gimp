@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Neon Cyberpunk Sign in GIMP - gimp</title>
+    <meta name="description" content="Creating a glowing neon cyberpunk street sign in GIMP involves setting a dark urban backdrop, designing stylized typography, layering progressive Gaussian blurs with dynamic blend modes to simulate light emission, and adding realistic environmental refle">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-neon-cyberpunk-sign-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Neon Cyberpunk Sign in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-neon-cyberpunk-sign-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a glowing neon cyberpunk street sign in GIMP involves setting a dark urban backdrop, designing stylized typography, layering progressive Gaussian blurs with dynamic blend modes to simulate light emission, and adding realistic environmental refle" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-a-neon-cyberpunk-sign-in-gimp">How to Create a
+Neon Cyberpunk Sign in GIMP</h1>
+<p>Creating a glowing neon cyberpunk street sign in GIMP involves
+setting a dark urban backdrop, designing stylized typography, layering
+progressive Gaussian blurs with dynamic blend modes to simulate light
+emission, and adding realistic environmental reflections. By carefully
+balancing vibrant color saturations and bright white light cores, you
+can turn flat vector text or paths into an atmospheric, futuristic city
+sign.</p>
+<h3 id="step-1-set-up-the-dark-background">Step 1: Set Up the Dark
+Background</h3>
+<ol type="1">
+<li>Create a new canvas with a resolution of at least 1920x1080
+pixels.</li>
+<li>Fill the background layer with a very dark blue, dark purple, or
+near-black tone (<code>#05050b</code>).</li>
+<li>Optional: Paste a dark brick, concrete, or metal wall texture on a
+layer above the background, reduce its opacity, and set its layer mode
+to <strong>Multiply</strong> or <strong>Overlay</strong>.</li>
+</ol>
+<h3 id="step-2-design-the-sign-typography-and-frame">Step 2: Design the
+Sign Typography and Frame</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> and type your desired text
+using a clean, rounded, or tubular font (such as a dedicated neon or
+sans-serif font).</li>
+<li>Set the text color to pure white (<code>#FFFFFF</code>) or a very
+pale tint of your chosen neon color (such as cyan, magenta, or electric
+green).</li>
+<li>Use the <strong>Rectangle Select Tool</strong> or <strong>Path
+Tool</strong> to draw structural frames, borders, or wires around the
+text on a new transparent layer, stroking the path with 4–8 pixels of
+white.</li>
+<li>Merge your white text and frame layers into a single layer named
+<code>Neon Core</code>.</li>
+</ol>
+<h3 id="step-3-create-the-inner-tube-highlight">Step 3: Create the Inner
+Tube Highlight</h3>
+<ol type="1">
+<li>Duplicate the <code>Neon Core</code> layer and rename the copy to
+<code>Neon Tube</code>.</li>
+<li>Keep the <code>Neon Tube</code> layer on top. This layer represents
+the physical glass tube and will remain sharp and predominantly white
+throughout the process.</li>
+</ol>
+<h3 id="step-4-build-the-multi-layered-neon-glow">Step 4: Build the
+Multi-Layered Neon Glow</h3>
+<p>Neon glow is simulated by stacking multiple blurred layers with
+increasing radiuses and lower opacities.</p>
+<ol type="1">
+<li>Duplicate the original <code>Neon Core</code> layer three times,
+placing them beneath the top <code>Neon Tube</code> layer. Rename them
+<code>Glow Small</code>, <code>Glow Medium</code>, and
+<code>Glow Large</code>.</li>
+<li>Apply your primary neon color to these three glow layers by locking
+the alpha channel (or using <strong>Colorize</strong> / <strong>Color
+Overlay</strong>) with a saturated cyberpunk color (e.g.,
+<code>#00FFFF</code> for cyan or <code>#FF007F</code> for hot
+pink).</li>
+<li>Apply <strong>Gaussian Blur</strong> (<strong>Filters &gt; Blur &gt;
+Gaussian Blur</strong>) to each layer with escalating values:
+<ul>
+<li><strong>Glow Small</strong>: Set blur radius to approximately 5–10
+pixels. Set layer mode to <strong>Addition</strong> or
+<strong>Screen</strong>.</li>
+<li><strong>Glow Medium</strong>: Set blur radius to approximately 25–40
+pixels. Set layer mode to <strong>Addition</strong> or
+<strong>Screen</strong>.</li>
+<li><strong>Glow Large</strong>: Set blur radius to approximately 80–120
+pixels. Set layer mode to <strong>Screen</strong> and lower the opacity
+to around 50–70%.</li>
+</ul></li>
+</ol>
+<h3 id="step-5-add-atmospheric-wall-reflection">Step 5: Add Atmospheric
+Wall Reflection</h3>
+<ol type="1">
+<li>Create a new transparent layer directly above your background
+texture and name it <code>Wall Reflection</code>.</li>
+<li>Set the layer mode to <strong>Color Dodge</strong> or
+<strong>Addition</strong>.</li>
+<li>Select a large, soft brush with 0% hardness, select your neon color,
+and paint broad strokes across the background behind and around the sign
+where light would naturally bounce.</li>
+<li>Lower the layer opacity to around 30–50% to ensure the illumination
+blends naturally into the ambient scene.</li>
+</ol>
+<h3 id="step-6-add-cyberpunk-details-and-final-polish">Step 6: Add
+Cyberpunk Details and Final Polish</h3>
+<ol type="1">
+<li><strong>Mounting Brackets</strong>: Create a new layer behind the
+neon glow and paint small, dark gray rectangles connecting the sign to
+the wall to simulate metal mounting brackets and power cables.</li>
+<li><strong>Color Contrast / Bloom</strong>: Create a merged layer at
+the very top (<strong>Layer &gt; New from Visible</strong>), set its
+mode to <strong>Soft Light</strong> or <strong>Overlay</strong>, and
+apply a subtle Gaussian Blur (15–20 pixels) to increase the overall
+scene contrast and bloom.</li>
+<li><strong>Vignette</strong>: Add a dark vignette around the edges of
+the canvas via <strong>Filters &gt; Light and Shadow &gt;
+Vignette</strong> to focus attention onto the center of the glowing
+sign.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

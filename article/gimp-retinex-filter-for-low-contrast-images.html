@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Retinex Filter for Low-Contrast Images - gimp</title>
+    <meta name="description" content="The Retinex filter in GIMP is an advanced image enhancement tool designed to improve low-contrast, hazy, or unevenly lit photographs by simulating how human visual perception adapts to varying light conditions. By balancing the dynamic range, brightening">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-retinex-filter-for-low-contrast-images">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Retinex Filter for Low-Contrast Images - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-retinex-filter-for-low-contrast-images" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Retinex filter in GIMP is an advanced image enhancement tool designed to improve low-contrast, hazy, or unevenly lit photographs by simulating how human visual perception adapts to varying light conditions. By balancing the dynamic range, brightening" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-retinex-filter-for-low-contrast-images">GIMP Retinex Filter
+for Low-Contrast Images</h1>
+<p>The Retinex filter in GIMP is an advanced image enhancement tool
+designed to improve low-contrast, hazy, or unevenly lit photographs by
+simulating how human visual perception adapts to varying light
+conditions. By balancing the dynamic range, brightening deep shadows,
+and preserving highlight details, the filter extracts hidden textures
+and restores natural color definition in images that would otherwise
+appear dull or underexposed.</p>
+<h2 id="understanding-the-retinex-principle">Understanding the Retinex
+Principle</h2>
+<p>The term "Retinex" is a blend of <em>retina</em> and <em>cortex</em>,
+derived from Edwin Land's theory of human color vision. Unlike digital
+camera sensors, which capture raw, absolute luminance values, the human
+eye and brain constantly adjust to perceive consistent colors and
+details across varying illumination levels.</p>
+<p>In low-contrast scenes—such as foggy landscapes, underwater
+photography, medical imaging, or strongly backlit subjects—camera
+sensors often produce flat, dark, or washed-out images. The Retinex
+algorithm processes the image by separating the illumination component
+from the reflectance component, boosting local contrast while
+normalizing global illumination.</p>
+<h2 id="key-functions-of-the-retinex-filter-in-gimp">Key Functions of
+the Retinex Filter in GIMP</h2>
+<h3 id="1-dynamic-range-compression">1. Dynamic Range Compression</h3>
+<p>Retinex compresses the global dynamic range while expanding local
+contrast. It automatically lifts details out of dark underexposed areas
+without blowing out properly exposed or bright areas, balancing scenes
+with extreme lighting differences.</p>
+<h3 id="2-dehazing-and-atmospheric-correction">2. Dehazing and
+Atmospheric Correction</h3>
+<p>For outdoor shots obscured by fog, smoke, or atmospheric haze,
+Retinex strips away the uniform veil of light scattered across the
+frame, revealing the underlying saturation, contrast, and structure.</p>
+<h3 id="3-local-contrast-enhancement">3. Local Contrast Enhancement</h3>
+<p>Standard contrast adjustments apply uniform changes across an entire
+image, which can clip highlights and crush shadows. Retinex analyzes
+neighboring pixels to boost contrast locally, making fine edges,
+textures, and subtle tonal variations visible.</p>
+<h2 id="key-parameters-in-gimp">Key Parameters in GIMP</h2>
+<p>To use the filter, navigate to <strong>Colors &gt; Tone Mapping &gt;
+Retinex...</strong> in GIMP. The tool provides several controls to
+fine-tune the output:</p>
+<ul>
+<li><strong>Level:</strong> Determines the processing method.
+<ul>
+<li><em>Uniform:</em> Treats dark and bright areas equally; ideal for
+images with low contrast throughout the entire frame.</li>
+<li><em>Low:</em> Focuses enhancement on darker, underexposed
+areas.</li>
+<li><em>High:</em> Focuses enhancement on brighter areas, preventing
+highlight clipping.</li>
+</ul></li>
+<li><strong>Scale:</strong> Sets the segment size or radius of the
+neighborhood used for luminance analysis. Smaller scales enhance fine
+details, while larger scales provide a smoother, more global tonal
+adjustment.</li>
+<li><strong>Scale Division:</strong> Defines the number of iterations or
+multi-scale passes computed across different scale sizes.</li>
+<li><strong>Dynamic:</strong> Adjusts the intensity of the dynamic range
+adjustment, controlling how aggressively shadows are lifted and contrast
+is applied.</li>
+</ul>
+<h2 id="best-practices-for-using-retinex">Best Practices for Using
+Retinex</h2>
+<p>Because Retinex aggressively boosts local details, it can amplify
+image noise and introduce color artifacts or unnatural halos around
+high-contrast edges. To achieve optimal results:</p>
+<ol type="1">
+<li><strong>Work on a Duplicate Layer:</strong> Duplicate the original
+image layer before applying the Retinex filter.</li>
+<li><strong>Adjust Opacity:</strong> Lower the opacity of the filtered
+layer to blend the enhancement naturally with the original image.</li>
+<li><strong>Change Blend Modes:</strong> Set the blend mode of the
+Retinex layer to <strong>Value</strong> or <strong>Luminance</strong> to
+improve contrast and detail without causing severe color shifts, or use
+<strong>Color</strong> to selectively enhance hue and saturation.</li>
+<li><strong>Apply Noise Reduction:</strong> Run a subtle noise reduction
+or median blur filter beforehand if working with high-ISO, low-light
+photographs.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

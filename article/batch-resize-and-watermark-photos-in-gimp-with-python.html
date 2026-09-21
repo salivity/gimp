@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Resize and Watermark Photos in GIMP with Python - gimp</title>
+    <meta name="description" content="Automating repetitive image editing tasks saves time and ensures consistency across large image sets. This guide provides a complete Python-Fu script for GIMP to batch-process an entire folder of photos, scaling each image to fit specific dimensions whil">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/batch-resize-and-watermark-photos-in-gimp-with-python">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Batch Resize and Watermark Photos in GIMP with Python - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/batch-resize-and-watermark-photos-in-gimp-with-python" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Automating repetitive image editing tasks saves time and ensures consistency across large image sets. This guide provides a complete Python-Fu script for GIMP to batch-process an entire folder of photos, scaling each image to fit specific dimensions whil" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="batch-resize-and-watermark-photos-in-gimp-with-python">Batch
+Resize and Watermark Photos in GIMP with Python</h1>
+<p>Automating repetitive image editing tasks saves time and ensures
+consistency across large image sets. This guide provides a complete
+Python-Fu script for GIMP to batch-process an entire folder of photos,
+scaling each image to fit specific dimensions while preserving aspect
+ratios, applying a customized text watermark, and saving the results to
+an output directory.</p>
+<h2 id="setting-up-the-script">Setting Up the Script</h2>
+<p>GIMP provides a built-in Python environment known as Python-Fu, which
+accesses GIMP’s Procedural Database (PDB).</p>
+<p>To install the script:</p>
+<ol type="1">
+<li>Locate your GIMP plug-ins folder by navigating to <strong>Edit &gt;
+Preferences &gt; Folders &gt; Plug-ins</strong>.</li>
+<li>Create a new file named <code>batch_resize_watermark.py</code>
+inside that folder.</li>
+<li>On Linux or macOS, make the script executable by running
+<code>chmod +x batch_resize_watermark.py</code> in your terminal.</li>
+<li>Paste the Python script below into the file and restart GIMP.</li>
+</ol>
+<h2 id="the-python-fu-script">The Python-Fu Script</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># -*- coding: utf-8 -*-</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gimpfu <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> batch_resize_and_watermark(input_dir, output_dir, max_width, max_height, watermark_text):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.exists(output_dir):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        os.makedirs(output_dir)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    valid_extensions <span class="op">=</span> (<span class="st">&#39;.png&#39;</span>, <span class="st">&#39;.jpg&#39;</span>, <span class="st">&#39;.jpeg&#39;</span>, <span class="st">&#39;.tiff&#39;</span>, <span class="st">&#39;.bmp&#39;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    files <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> os.listdir(input_dir) <span class="cf">if</span> f.lower().endswith(valid_extensions)]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> filename <span class="kw">in</span> files:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        input_path <span class="op">=</span> os.path.join(input_dir, filename)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        output_path <span class="op">=</span> os.path.join(output_dir, filename)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Load the image</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        image <span class="op">=</span> pdb.gimp_file_load(input_path, input_path)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate aspect-ratio-preserving dimensions</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        orig_width <span class="op">=</span> image.width</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        orig_height <span class="op">=</span> image.height</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        ratio <span class="op">=</span> <span class="bu">min</span>(<span class="bu">float</span>(max_width) <span class="op">/</span> orig_width, <span class="bu">float</span>(max_height) <span class="op">/</span> orig_height)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Only downscale if the image exceeds the target bounds</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ratio <span class="op">&lt;</span> <span class="fl">1.0</span>:</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            new_width <span class="op">=</span> <span class="bu">int</span>(orig_width <span class="op">*</span> ratio)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            new_height <span class="op">=</span> <span class="bu">int</span>(orig_height <span class="op">*</span> ratio)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            pdb.gimp_image_scale(image, new_width, new_height)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            new_width <span class="op">=</span> orig_width</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            new_height <span class="op">=</span> orig_height</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create the watermark layer</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        font_size <span class="op">=</span> <span class="bu">max</span>(<span class="dv">16</span>, <span class="bu">int</span>(new_height <span class="op">*</span> <span class="fl">0.03</span>))  <span class="co"># 3% of image height</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        text_layer <span class="op">=</span> pdb.gimp_text_fontname(</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            image, </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            <span class="va">None</span>, </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            <span class="dv">0</span>, </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            <span class="dv">0</span>, </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            watermark_text, </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="dv">10</span>, </span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            <span class="va">True</span>, </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            font_size, </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            PIXELS, </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Sans&quot;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set watermark appearance and position</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_layer_set_opacity(text_layer, <span class="fl">50.0</span>)  <span class="co"># 50% opacity</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Position in bottom-right corner with padding</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        padding <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        pos_x <span class="op">=</span> new_width <span class="op">-</span> text_layer.width <span class="op">-</span> padding</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        pos_y <span class="op">=</span> new_height <span class="op">-</span> text_layer.height <span class="op">-</span> padding</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_layer_set_offsets(text_layer, <span class="bu">max</span>(<span class="dv">0</span>, pos_x), <span class="bu">max</span>(<span class="dv">0</span>, pos_y))</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Merge layers and save</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>        merged_layer <span class="op">=</span> pdb.gimp_image_flatten(image)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_file_save(image, merged_layer, output_path, output_path)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Clean up image from memory</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>        pdb.gimp_image_delete(image)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>register(</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;python_fu_batch_resize_watermark&quot;</span>,</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Batch Resize and Watermark&quot;</span>,</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Batch-resizes photos and adds a watermark to an output directory.&quot;</span>,</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Author&quot;</span>,</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Open Source&quot;</span>,</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;2024&quot;</span>,</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;&lt;Image&gt;/Filters/Batch/Resize and Watermark...&quot;</span>,</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        (PF_DIRNAME, <span class="st">&quot;input_dir&quot;</span>, <span class="st">&quot;Input Folder&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        (PF_DIRNAME, <span class="st">&quot;output_dir&quot;</span>, <span class="st">&quot;Output Folder&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>        (PF_INT, <span class="st">&quot;max_width&quot;</span>, <span class="st">&quot;Max Width (px)&quot;</span>, <span class="dv">1920</span>),</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        (PF_INT, <span class="st">&quot;max_height&quot;</span>, <span class="st">&quot;Max Height (px)&quot;</span>, <span class="dv">1080</span>),</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>        (PF_STRING, <span class="st">&quot;watermark_text&quot;</span>, <span class="st">&quot;Watermark Text&quot;</span>, <span class="st">&quot;© My Studio&quot;</span>)</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    [],</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    batch_resize_and_watermark</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div>
+<h2 id="how-the-script-works">How the Script Works</h2>
+<ol type="1">
+<li><strong>File Scanning</strong>: The script uses Python's
+<code>os</code> library to iterate over image files matching common file
+formats (<code>.jpg</code>, <code>.png</code>, <code>.jpeg</code>,
+<code>.tiff</code>, <code>.bmp</code>) within the target directory.</li>
+<li><strong>Proportional Rescaling</strong>:
+<code>pdb.gimp_image_scale</code> dynamically scales the image downward
+if its dimensions exceed the defined boundaries, maintaining the
+original aspect ratio without distortion.</li>
+<li><strong>Text Watermarking</strong>:
+<code>pdb.gimp_text_fontname</code> creates a new text layer. The script
+calculates font size relative to image height, shifts layer opacity to
+50% using <code>pdb.gimp_layer_set_opacity</code>, and offsets the text
+to the bottom-right corner.</li>
+<li><strong>Flatten and Export</strong>:
+<code>pdb.gimp_image_flatten</code> combines all layers before
+<code>pdb.gimp_file_save</code> writes the finalized file into the
+designated output folder.</li>
+<li><strong>Memory Management</strong>:
+<code>pdb.gimp_image_delete</code> purges each processed image from
+GIMP's memory cache, preventing memory leaks during large batch
+runs.</li>
+</ol>
+<h2 id="running-the-tool">Running the Tool</h2>
+<p>Once installed, the script appears in GIMP under <strong>Filters &gt;
+Batch &gt; Resize and Watermark...</strong>. Select the source
+directory, output destination, maximum bounds, and watermark text, then
+click <strong>OK</strong> to begin processing.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

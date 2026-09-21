@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Sharpen Selection Creates Binary Masks - gimp</title>
+    <meta name="description" content="In GIMP, selections are stored as grayscale channel masks that allow for semi-transparent, anti-aliased boundaries along edge pixels. The "Sharpen" selection command (Select > Sharpen) strips this smoothing effect by applying a strict mathematical thresh">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-sharpen-selection-creates-binary-masks">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Sharpen Selection Creates Binary Masks - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-sharpen-selection-creates-binary-masks" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, selections are stored as grayscale channel masks that allow for semi-transparent, anti-aliased boundaries along edge pixels. The "Sharpen" selection command (Select > Sharpen) strips this smoothing effect by applying a strict mathematical thresh" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-sharpen-selection-creates-binary-masks">How GIMP
+Sharpen Selection Creates Binary Masks</h1>
+<p>In GIMP, selections are stored as grayscale channel masks that allow
+for semi-transparent, anti-aliased boundaries along edge pixels. The
+"Sharpen" selection command (<code>Select &gt; Sharpen</code>) strips
+this smoothing effect by applying a strict mathematical threshold to
+every pixel in the selection mask. This article explains how GIMP
+evaluates intermediate 8-bit values and converts feathered or
+anti-aliased edges into fully binary, all-or-nothing selections.</p>
+<h3 id="gimp-selections-as-8-bit-grayscale-channels">GIMP Selections as
+8-Bit Grayscale Channels</h3>
+<p>Behind the user interface, GIMP represents an active selection as an
+internal grayscale channel known as the selection mask. Each pixel in
+this mask is assigned an 8-bit integer value ranging from 0 to 255:</p>
+<ul>
+<li><strong>0:</strong> Fully unselected (0% selection strength).</li>
+<li><strong>255:</strong> Fully selected (100% selection strength).</li>
+<li><strong>1 to 254:</strong> Partially selected (anti-aliased or
+feathered edge pixels).</li>
+</ul>
+<p>When an anti-aliased selection is made—such as with the Ellipse
+Select Tool or the Free Select Tool with anti-aliasing enabled—the
+software renders smooth boundaries by assigning intermediate fractional
+values along the perimeter. This gradual transition prevents the harsh,
+jagged appearance known as pixel aliasing.</p>
+<h3 id="the-thresholding-mechanism-of-the-sharpen-command">The
+Thresholding Mechanism of the Sharpen Command</h3>
+<p>The Sharpen command bypasses gradients by executing a standard 50%
+threshold across the entire selection mask. It evaluates each pixel
+individually without altering the spatial geometry of the selection
+boundary:</p>
+<ol type="1">
+<li><strong>Pixel Scanning:</strong> GIMP reads the intensity value of
+every pixel currently stored in the selection mask.</li>
+<li><strong>Threshold Comparison:</strong> The value is compared against
+the midpoint of the 8-bit range (128):
+<ul>
+<li>If the pixel value is <strong>greater than or equal to 128</strong>
+(at least 50% selected), the value is rounded up to
+<strong>255</strong>.</li>
+<li>If the pixel value is <strong>less than 128</strong> (less than 50%
+selected), the value is rounded down to <strong>0</strong>.</li>
+</ul></li>
+<li><strong>Buffer Replacement:</strong> The new binary values overwrite
+the existing grayscale buffer.</li>
+</ol>
+<h3 id="the-resulting-binary-mask">The Resulting Binary Mask</h3>
+<p>By eliminating all intermediate values (1 through 254), the Sharpen
+command transforms the 8-bit selection mask into a strictly binary 1-bit
+representation:</p>
+<ul>
+<li><strong>Elimination of Feathering:</strong> Any soft blur, feather
+radius, or anti-aliasing gradient is completely removed.</li>
+<li><strong>Stair-Stepped Edges:</strong> Diagonal and curved borders
+take on a visible pixelated, "stair-step" edge because sub-pixel
+smoothing no longer exists.</li>
+<li><strong>Predictable Masking:</strong> Operations applied through the
+sharpened selection—such as fills, cuts, or layer mask conversions—act
+entirely upon the target pixels with 100% opacity, leaving no residual
+semi-transparency along the edges.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

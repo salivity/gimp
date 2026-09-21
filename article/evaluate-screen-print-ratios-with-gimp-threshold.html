@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluate Screen Print Ratios with GIMP Threshold - gimp</title>
+    <meta name="description" content="Preparing artwork for screen printing requires careful management of tonal values to prevent fine highlight dots from blowing out on the screen or shadow areas from filling in with excess ink. This guide explains how to use the Threshold tool in GIMP as">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/evaluate-screen-print-ratios-with-gimp-threshold">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Evaluate Screen Print Ratios with GIMP Threshold - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/evaluate-screen-print-ratios-with-gimp-threshold" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing artwork for screen printing requires careful management of tonal values to prevent fine highlight dots from blowing out on the screen or shadow areas from filling in with excess ink. This guide explains how to use the Threshold tool in GIMP as" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="evaluate-screen-print-ratios-with-gimp-threshold">Evaluate
+Screen Print Ratios with GIMP Threshold</h1>
+<p>Preparing artwork for screen printing requires careful management of
+tonal values to prevent fine highlight dots from blowing out on the
+screen or shadow areas from filling in with excess ink. This guide
+explains how to use the Threshold tool in GIMP as a diagnostic utility
+to map your image’s dynamic range, identify critical tonal cutoffs, and
+balance shadow-to-highlight ratios before converting to halftones for
+film output.</p>
+<h3 id="why-shadow-to-highlight-ratios-matter-in-screen-printing">Why
+Shadow-to-Highlight Ratios Matter in Screen Printing</h3>
+<p>Screen printing physics naturally limits tonal reproduction. Most
+screen printing setups (depending on mesh count, emulsion type, and ink
+viscosity) cannot reliably hold halftone dots smaller than 5% in the
+highlights or larger than 90% in the shadows. Dots below 5% wash out
+during screen washout, creating harsh, stepped edges. Dots above 90%
+bridge and fill in on the press due to dot gain, turning deep shadows
+into solid, blotchy pools of ink.</p>
+<h3 id="step-1-prepare-your-artwork-in-gimp">Step 1: Prepare Your
+Artwork in GIMP</h3>
+<ol type="1">
+<li>Open your color-separated channel or grayscale artwork in GIMP.</li>
+<li>Duplicate your working layer by pressing <strong>Shift + Ctrl +
+D</strong> or right-clicking the layer and selecting <strong>Duplicate
+Layer</strong>. Rename this layer <code>Threshold Check</code>.</li>
+<li>If your image is in RGB mode, convert the duplicated layer to
+grayscale by going to <strong>Colors &gt; Desaturate &gt;
+Desaturate</strong>. Choose <strong>Luminance</strong> for the most
+accurate tonal representation.</li>
+</ol>
+<h3 id="step-2-use-threshold-to-find-your-highlight-clipping-point">Step
+2: Use Threshold to Find Your Highlight Clipping Point</h3>
+<p>The highlight clipping point reveals which light values will
+disappear or produce unprintable micro-dots.</p>
+<ol type="1">
+<li>Select your <code>Threshold Check</code> layer.</li>
+<li>Navigate to <strong>Colors &gt; Threshold</strong>.</li>
+<li>In the Threshold dialog, you will see a histogram with two slider
+handles beneath it.</li>
+<li>Drag the <strong>left slider handle</strong> slowly to the right
+while keeping the right handle at 255.</li>
+<li>Watch the canvas: the white areas represent pixels falling above
+your threshold value, and black areas represent pixels below it.</li>
+<li>Note the input number where your critical highlight details begin to
+turn entirely white. If this occurs below a value of 13 to 25 (roughly
+5% to 10% on an 8-bit scale of 0–255), your highlights are too faint and
+will not burn onto the screen.</li>
+</ol>
+<h3 id="step-3-use-threshold-to-find-your-shadow-plugging-point">Step 3:
+Use Threshold to Find Your Shadow Plugging Point</h3>
+<p>The shadow plugging point reveals where dark tones will merge into
+solid blocks of ink.</p>
+<ol type="1">
+<li>Reset the Threshold tool or reopen it on a fresh duplicate
+layer.</li>
+<li>Keep the left slider at 0 and drag the <strong>right slider
+handle</strong> to the left.</li>
+<li>Observe where your darkest shadows turn completely black.</li>
+<li>Note the input value where distinct shadow details collapse into
+pure black. If fine details are clustered between values 230 and 255
+(roughly 90% to 100%), dot gain on the press will fill those areas
+completely, destroying detail in the final print.</li>
+</ol>
+<h3 id="step-4-correcting-tonal-ratios-with-levels-or-curves">Step 4:
+Correcting Tonal Ratios with Levels or Curves</h3>
+<p>Once you have identified the weak highlight and plugged shadow zones
+using the Threshold tool, delete or hide the
+<code>Threshold Check</code> layer and adjust the original artwork:</p>
+<ol type="1">
+<li>Select the original art layer and open <strong>Colors &gt;
+Levels</strong> or <strong>Colors &gt; Curves</strong>.</li>
+<li><strong>Fixing Highlights:</strong> Under <em>Output Levels</em>,
+raise the minimum black point slightly, or in <em>Curves</em>, lift the
+bottom-left point vertically to ensure faint tones have enough density
+to produce solid halftone dots.</li>
+<li><strong>Fixing Shadows:</strong> Lower the maximum white point under
+<em>Output Levels</em> to around 230–240, or pull down the top-right
+point in <em>Curves</em> slightly downward. This caps the deepest shadow
+tone at 90–95%, leaving sufficient open mesh space to prevent dots from
+bridging during printing.</li>
+<li>Run the Threshold diagnostic again on a new duplicate to verify that
+your active tonal range safely sits between the printable bounds of your
+screen printing setup.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

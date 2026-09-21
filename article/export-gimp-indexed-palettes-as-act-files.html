@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export GIMP Indexed Palettes as ACT Files - gimp</title>
+    <meta name="description" content="This guide explains how to convert an image to an indexed color palette in GIMP and export it as an Adobe Color Table (.act) file. Because GIMP natively saves palettes in its proprietary .gpl format, generating a Photoshop-compatible .act file involves p">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/export-gimp-indexed-palettes-as-act-files">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export GIMP Indexed Palettes as ACT Files - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/export-gimp-indexed-palettes-as-act-files" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert an image to an indexed color palette in GIMP and export it as an Adobe Color Table (.act) file. Because GIMP natively saves palettes in its proprietary .gpl format, generating a Photoshop-compatible .act file involves p" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="export-gimp-indexed-palettes-as-act-files">Export GIMP Indexed
+Palettes as ACT Files</h1>
+<p>This guide explains how to convert an image to an indexed color
+palette in GIMP and export it as an Adobe Color Table (.act) file.
+Because GIMP natively saves palettes in its proprietary
+<code>.gpl</code> format, generating a Photoshop-compatible
+<code>.act</code> file involves preparing the indexed color table and
+utilizing a dedicated Python export script or converter to write the
+final binary file.</p>
+<h3 id="step-1-install-the-act-export-plug-in">Step 1: Install the ACT
+Export Plug-in</h3>
+<p>GIMP does not support the binary <code>.act</code> format out of the
+box. To enable native export:</p>
+<ol type="1">
+<li>Download a GIMP-compatible ACT export script (commonly distributed
+as <code>export_act.py</code> or <code>act_export.py</code>).</li>
+<li>Open GIMP and navigate to <strong>Edit &gt; Preferences &gt; Folders
+&gt; Plug-ins</strong> to locate your local plug-in directory.</li>
+<li>Place the script inside the designated <code>plug-ins</code>
+folder.</li>
+<li>Ensure the file has execution permissions (on macOS/Linux:
+<code>chmod +x export_act.py</code>).</li>
+<li>Restart GIMP so the new script is recognized.</li>
+</ol>
+<h3 id="step-2-convert-the-image-to-indexed-mode">Step 2: Convert the
+Image to Indexed Mode</h3>
+<p>If your artwork is in RGB mode, you must first generate the indexed
+color map:</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Go to <strong>Image &gt; Mode &gt; Indexed...</strong> in the top
+menu.</li>
+<li>In the Indexed Color Conversion dialog:
+<ul>
+<li>Select <strong>Generate optimum palette</strong>.</li>
+<li>Set the <strong>Maximum number of colors</strong> (typically up to
+256 for standard <code>.act</code> files).</li>
+<li>Choose your preferred <strong>Dithering</strong> method if
+applicable.</li>
+</ul></li>
+<li>Click <strong>Convert</strong>.</li>
+</ol>
+<h3 id="step-3-extract-the-palette">Step 3: Extract the Palette</h3>
+<p>Once the image is indexed, make the palette accessible for
+export:</p>
+<ol type="1">
+<li>Open the Colormap dialog by navigating to <strong>Windows &gt;
+Dockable Dialogs &gt; Colormap</strong>.</li>
+<li>Click the colormap menu icon or right-click within the list of
+swatches.</li>
+<li>Select <strong>Colormap to Palette</strong> to generate a reusable
+palette entry.</li>
+<li>Enter a name for your new palette and click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="step-4-export-to-act-format">Step 4: Export to .act Format</h3>
+<p>With the plug-in installed and the palette created:</p>
+<ol type="1">
+<li>Open the Palettes dialog via <strong>Windows &gt; Dockable Dialogs
+&gt; Palettes</strong>.</li>
+<li>Locate the newly created palette in the list.</li>
+<li>Right-click the palette and select the export option added by the
+script (typically <strong>Export as... &gt; Adobe Color Table
+(.act)</strong> or <strong>Export ACT</strong>).</li>
+<li>Choose the destination folder on your drive and save the file.</li>
+</ol>
+<h3 id="alternative-method-using-an-external-converter">Alternative
+Method: Using an External Converter</h3>
+<p>If you cannot run Python plug-ins in your GIMP installation:</p>
+<ol type="1">
+<li>In the <strong>Palettes</strong> dialog, right-click your palette
+and choose <strong>Export As &gt; Text file</strong> or save it as a
+native GIMP <code>.gpl</code> file.</li>
+<li>Use an open-source palette converter or web-based converter tool to
+transform the <code>.gpl</code> plain text RGB values into a 768-byte
+binary <code>.act</code> file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

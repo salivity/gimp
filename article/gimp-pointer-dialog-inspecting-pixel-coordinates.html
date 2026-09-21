@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Pointer Dialog: Inspecting Pixel Coordinates - gimp</title>
+    <meta name="description" content="The Pointer dialog in GIMP is a dedicated dockable utility designed to provide real-time, precise data about the mouse cursor's exact position and the color values beneath it on the canvas. This article explains the primary role of the Pointer dialog, ho">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-pointer-dialog-inspecting-pixel-coordinates">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Pointer Dialog: Inspecting Pixel Coordinates - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-pointer-dialog-inspecting-pixel-coordinates" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Pointer dialog in GIMP is a dedicated dockable utility designed to provide real-time, precise data about the mouse cursor's exact position and the color values beneath it on the canvas. This article explains the primary role of the Pointer dialog, ho" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-pointer-dialog-inspecting-pixel-coordinates">GIMP Pointer
+Dialog: Inspecting Pixel Coordinates</h1>
+<p>The Pointer dialog in GIMP is a dedicated dockable utility designed
+to provide real-time, precise data about the mouse cursor's exact
+position and the color values beneath it on the canvas. This article
+explains the primary role of the Pointer dialog, how it functions when
+inspecting pixel coordinates, and why it is a critical tool for
+precision-oriented image editing, web asset preparation, and graphic
+design tasks.</p>
+<h3 id="real-time-coordinate-tracking">Real-Time Coordinate
+Tracking</h3>
+<p>The fundamental function of the Pointer dialog is tracking the
+cursor’s <span class="math inline">\(X\)</span> (horizontal) and <span
+class="math inline">\(Y\)</span> (vertical) coordinates across the
+active image canvas. As you move the mouse, the dialog updates
+instantaneously, displaying the exact pixel position where the cursor
+rests.</p>
+<p>Unlike reading coordinates from the status bar or the canvas rulers,
+the Pointer dialog offers a static, dedicated interface where you can
+monitor positional changes without cluttering your main workspace or
+losing sight of the data during complex multi-step operations. You can
+also configure the displayed units to show measurements in inches,
+millimeters, points, or percentages alongside standard pixels.</p>
+<h3 id="pixel-level-color-inspection">Pixel-Level Color Inspection</h3>
+<p>Beyond spatial location, the Pointer dialog reports the color values
+of the exact pixel under the pointer. It reads multiple color models
+simultaneously, including:</p>
+<ul>
+<li><strong>RGB:</strong> Red, green, and blue values on a standard
+0–255 scale.</li>
+<li><strong>HSV:</strong> Hue, saturation, and value
+representations.</li>
+<li><strong>Hexadecimal:</strong> Web-standard hex color codes.</li>
+<li><strong>Alpha Channel:</strong> Transparency levels of the sampled
+pixel.</li>
+</ul>
+<p>This feature allows you to inspect color consistency across different
+regions of an image without switching away from your currently selected
+editing tool to use the Color Picker.</p>
+<h3 id="sample-merged-vs-active-layer-inspection">Sample Merged vs.
+Active Layer Inspection</h3>
+<p>The dialog provides options to inspect pixel data either from the
+currently active layer or as a composite "Sample Merged" readout.</p>
+<ul>
+<li>When <strong>Sample Merged</strong> is enabled, the dialog reports
+the combined visual result of all visible layers at that
+coordinate.</li>
+<li>When disabled, it reports only the coordinate data and color
+information specific to the currently selected layer, ignoring layers
+above or below it.</li>
+</ul>
+<h3 id="practical-use-cases">Practical Use Cases</h3>
+<ul>
+<li><strong>Precision Alignment:</strong> Verifying that elements align
+to exact pixel boundaries to avoid anti-aliasing blur.</li>
+<li><strong>Asset Slicing and Cropping:</strong> Determining precise
+pixel bounds for exporting UI elements or sprite sheets.</li>
+<li><strong>Color Quality Control:</strong> Checking background
+uniformity or verifying that pure white (#FFFFFF) or pure black
+(#000000) limits are maintained at specific coordinates.</li>
+</ul>
+<h3 id="how-to-access-the-pointer-dialog">How to Access the Pointer
+Dialog</h3>
+<p>To open the Pointer dialog in GIMP, go to the top menu and select
+<strong>Windows &gt; Dockable Dialogs &gt; Pointer</strong>. The panel
+can remain floating or be docked alongside your standard tool options
+and layers panels for continuous reference during your workflow.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

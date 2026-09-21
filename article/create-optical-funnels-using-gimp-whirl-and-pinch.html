@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Optical Funnels Using GIMP Whirl and Pinch - gimp</title>
+    <meta name="description" content="This guide explains how to use the Whirl and Pinch filter in GIMP to generate convincing optical funnel effects. By manipulating the Pinch parameter alongside radius and whirl settings, you can warp flat patterns, grids, or starfields into deep, perspect">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-optical-funnels-using-gimp-whirl-and-pinch">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Optical Funnels Using GIMP Whirl and Pinch - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-optical-funnels-using-gimp-whirl-and-pinch" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the Whirl and Pinch filter in GIMP to generate convincing optical funnel effects. By manipulating the Pinch parameter alongside radius and whirl settings, you can warp flat patterns, grids, or starfields into deep, perspect" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-optical-funnels-using-gimp-whirl-and-pinch">Create
+Optical Funnels Using GIMP Whirl and Pinch</h1>
+<p>This guide explains how to use the Whirl and Pinch filter in GIMP to
+generate convincing optical funnel effects. By manipulating the Pinch
+parameter alongside radius and whirl settings, you can warp flat
+patterns, grids, or starfields into deep, perspective-bending spatial
+vortexes and gravitational wells.</p>
+<h2 id="understanding-the-pinch-parameter">Understanding the Pinch
+Parameter</h2>
+<p>The Pinch setting controls whether pixels are drawn toward the center
+of the selection or pushed outward toward the boundary:</p>
+<ul>
+<li><strong>Positive Values (0.000 to 1.000):</strong> Pull the image
+inward toward the center point. This compresses pixels radially,
+creating the illusion of extreme depth, recess, or an inward-sloping
+funnel.</li>
+<li><strong>Negative Values (-1.000 to 0.000):</strong> Push the image
+outward from the center, producing a bulbous or convex lens effect.</li>
+</ul>
+<p>To simulate an optical funnel, you will primarily work with positive
+values to produce an inward cone.</p>
+<h2 id="step-by-step-implementation">Step-by-Step Implementation</h2>
+<h3 id="1-prepare-the-base-layer">1. Prepare the Base Layer</h3>
+<p>Funnel distortions rely on underlying structure to convey depth.
+Start with a layer featuring high-contrast geometric detail:</p>
+<ul>
+<li>A checkerboard pattern
+(<code>Filters &gt; Render &gt; Pattern &gt; Checkerboard</code>)</li>
+<li>A radial grid or concentric circular lines</li>
+<li>A dense starfield or abstract linear texture</li>
+</ul>
+<p>Ensure your target layer or selection is square if you want a
+uniform, symmetrical funnel.</p>
+<h3 id="2-open-the-filter">2. Open the Filter</h3>
+<p>Navigate to <strong>Filters &gt; Distorts &gt; Whirl and
+Pinch...</strong> to open the tool dialog and enable the on-canvas
+preview.</p>
+<h3 id="3-configure-the-funnel-geometry">3. Configure the Funnel
+Geometry</h3>
+<ul>
+<li><strong>Pinch:</strong> Set this to a high positive value, typically
+between <code>0.600</code> and <code>1.000</code>. This draws the
+texture tightly inward, creating the steep walls of the funnel.</li>
+<li><strong>Radius:</strong> Adjust the radius slider to define how far
+outward the funnel reaches. A value between <code>1.000</code> and
+<code>2.000</code> ensures a smooth transition between the distorted
+center and the undistorted outer edges of the canvas.</li>
+<li><strong>Whirl Angle:</strong> Set this between <code>0.0</code> and
+<code>90.0</code>. A setting of <code>0</code> creates a straight,
+symmetrical plunge, while a moderate angle adds a rotational twist
+typical of accretion disks and fluid vortexes.</li>
+</ul>
+<h3 id="4-compound-the-pinch-for-greater-depth">4. Compound the Pinch
+for Greater Depth</h3>
+<p>A single pass at maximum pinch (<code>1.000</code>) may not create
+enough depth for extreme perspective. To achieve a deeper funnel:</p>
+<ol type="1">
+<li>Apply the filter with <strong>Pinch</strong> set to
+<code>0.700</code>–<code>0.800</code>.</li>
+<li>Press <code>Ctrl + F</code> (or <code>Cmd + F</code>) to re-apply
+the filter, compounding the inward pull without causing severe pixel
+distortion at the outer boundary.</li>
+</ol>
+<h3 id="5-enhance-the-optical-illusion-with-shading">5. Enhance the
+Optical Illusion with Shading</h3>
+<p>An optical funnel requires lighting cues to establish physical
+volume:</p>
+<ol type="1">
+<li>Create a new transparent layer above your distorted texture.</li>
+<li>Select the <strong>Gradient Tool</strong> (<code>G</code>), set the
+shape to <strong>Radial</strong>, and choose a gradient that fades from
+transparent to black.</li>
+<li>Drag the gradient from the center of the funnel outward to place
+deep shadow at the core and highlight the outer rim.</li>
+<li>Set the shadow layer’s blend mode to <strong>Multiply</strong> or
+<strong>Overlay</strong> and lower the opacity to suit your scene.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

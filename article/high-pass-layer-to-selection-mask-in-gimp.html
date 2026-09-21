@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Pass Layer to Selection Mask in GIMP - gimp</title>
+    <meta name="description" content="Converting a black-and-white high-pass layer into an active selection mask in GIMP allows you to isolate high-frequency edge details for targeted sharpening, local contrast adjustments, or texture isolation. This guide explains how to use GIMP's channel">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/high-pass-layer-to-selection-mask-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="High Pass Layer to Selection Mask in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/high-pass-layer-to-selection-mask-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a black-and-white high-pass layer into an active selection mask in GIMP allows you to isolate high-frequency edge details for targeted sharpening, local contrast adjustments, or texture isolation. This guide explains how to use GIMP's channel" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="high-pass-layer-to-selection-mask-in-gimp">High Pass Layer to
+Selection Mask in GIMP</h1>
+<p>Converting a black-and-white high-pass layer into an active selection
+mask in GIMP allows you to isolate high-frequency edge details for
+targeted sharpening, local contrast adjustments, or texture isolation.
+This guide explains how to use GIMP's channel mapping and layer mask
+systems to quickly transform high-pass edge data into an active
+"marching ants" selection.</p>
+<h2 id="the-technique-channel-to-selection">The Technique: Channel to
+Selection</h2>
+<p>The primary method for converting a black-and-white or grayscale
+layer into an active selection is the <strong>Channel to
+Selection</strong> technique. Because a high-pass layer contains edge
+data represented as varying shades of gray, white, and black, its
+luminance values correspond directly to selection opacity.</p>
+<h3 id="method-1-direct-selection-via-the-channels-dialog">Method 1:
+Direct Selection via the Channels Dialog</h3>
+<p>This is the fastest method to turn grayscale pixel data into an
+active selection:</p>
+<ol type="1">
+<li>In the <strong>Layers</strong> panel, click the eye icon next to all
+other layers to hide them, leaving only your black-and-white high-pass
+layer visible.</li>
+<li>Open the <strong>Channels</strong> dockable dialog (<strong>Windows
+&gt; Dockable Dialogs &gt; Channels</strong>).</li>
+<li>Because the layer is black and white, the Red, Green, and Blue
+channels hold identical luminance data. Right-click on the
+<strong>Red</strong>, <strong>Green</strong>, or <strong>Blue</strong>
+channel.</li>
+<li>Select <strong>Channel to Selection</strong> from the context menu
+(or click the red square selection icon at the bottom of the
+dialog).</li>
+<li>Unhide your other layers and select the target layer where you wish
+to apply the selection.</li>
+</ol>
+<p>White pixels are now 100% selected, black pixels are completely
+unselected, and mid-tones are partially selected.</p>
+<h3 id="method-2-mask-to-selection-via-a-grayscale-layer-mask">Method 2:
+Mask to Selection via a Grayscale Layer Mask</h3>
+<p>If you prefer keeping all layers visible while generating the
+selection, you can extract the data through a layer mask:</p>
+<ol type="1">
+<li>Select the layer you want to isolate or affect.</li>
+<li>Go to <strong>Layer &gt; Mask &gt; Add Layer Mask</strong> (or
+right-click the layer and select <strong>Add Layer Mask</strong>).</li>
+<li>In the dialog, select <strong>Grayscale copy of layer</strong> and
+select your high-pass layer from the dropdown list, or copy your
+high-pass layer (<code>Ctrl+C</code>), add a white mask, and paste
+(<code>Ctrl+V</code>) directly into the mask.</li>
+<li>Right-click the newly created layer mask thumbnail in the Layers
+panel.</li>
+<li>Click <strong>Mask to Selection</strong>.</li>
+</ol>
+<p>Once the selection is active, you can invert it with <strong>Select
+&gt; Invert</strong> (<code>Ctrl+I</code>), feather it, or apply
+adjustments specifically to the high-contrast edges of your image.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

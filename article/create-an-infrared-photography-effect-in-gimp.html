@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Infrared Photography Effect in GIMP - gimp</title>
+    <meta name="description" content="Simulating an infrared photography effect in GIMP transforms standard landscapes into surreal scenes by turning green foliage bright white or crimson while dramatically darkening skies and bodies of water. This visual transformation is achieved primarily">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-an-infrared-photography-effect-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create an Infrared Photography Effect in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-an-infrared-photography-effect-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating an infrared photography effect in GIMP transforms standard landscapes into surreal scenes by turning green foliage bright white or crimson while dramatically darkening skies and bodies of water. This visual transformation is achieved primarily" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-an-infrared-photography-effect-in-gimp">Create an
+Infrared Photography Effect in GIMP</h1>
+<p>Simulating an infrared photography effect in GIMP transforms standard
+landscapes into surreal scenes by turning green foliage bright white or
+crimson while dramatically darkening skies and bodies of water. This
+visual transformation is achieved primarily through the Channel Mixer
+tool, where you redistribute and balance the color data between the red
+and green channels to mimic the way infrared light reflects off organic
+matter. By carefully re-weighting these channel values and enhancing the
+overall contrast, you can quickly produce both monochrome and faux-color
+infrared styles without expensive infrared camera filters.</p>
+<h3 id="step-1-select-and-prepare-the-base-image">Step 1: Select and
+Prepare the Base Image</h3>
+<p>Choose a landscape photograph that contains healthy green foliage and
+clear blue skies, as the high chlorophyll content in plants creates the
+most striking infrared contrast. Open your image in GIMP and right-click
+the base layer in the Layers panel, then select <strong>Duplicate
+Layer</strong>. Working on this duplicate preserves your original photo
+and allows you to adjust the effect's intensity later by changing layer
+opacity.</p>
+<h3 id="step-2-open-the-channel-mixer">Step 2: Open the Channel
+Mixer</h3>
+<p>With the duplicated layer selected, navigate to the top menu and
+select <strong>Colors</strong> &gt; <strong>Components</strong> &gt;
+<strong>Channel Mixer</strong> (or use the GEGL filter <strong>Channel
+Mixer</strong> in modern GIMP versions). The Channel Mixer window
+displays controls for Red, Green, and Blue output channels, each
+containing sliders for their component color contributions.</p>
+<h3 id="step-3-re-weight-the-red-and-green-channels">Step 3: Re-weight
+the Red and Green Channels</h3>
+<p>Depending on whether you want a classic black-and-white infrared look
+or a false-color "Aerochrome" infrared look, apply the following channel
+calculations:</p>
+<h4 id="for-black-and-white-infrared">For Black-and-White Infrared:</h4>
+<ol type="1">
+<li>Check the <strong>Monochrome</strong> option in the Channel
+Mixer.</li>
+<li>Set the <strong>Green</strong> slider to <strong>+100%</strong> (or
+up to <strong>+150%</strong>). Because vegetation primarily stores its
+brightness data in the green channel, drastically increasing its weight
+forces trees and grass to turn bright white.</li>
+<li>Set the <strong>Red</strong> slider to balance the tonal range,
+typically between <strong>+20%</strong> and <strong>+50%</strong>,
+ensuring mid-tones maintain detail without clipping highlights.</li>
+<li>Set the <strong>Blue</strong> slider between <strong>-20%</strong>
+and <strong>-50%</strong>. A negative blue value deepens the blue sky
+and water into deep grays or pitch black, completing the traditional
+Wood effect.</li>
+<li>Click <strong>OK</strong> to apply the channel distribution.</li>
+</ol>
+<h4 id="for-false-color-aerochrome-infrared">For False-Color
+(Aerochrome) Infrared:</h4>
+<ol type="1">
+<li>Ensure the <strong>Monochrome</strong> option is unchecked.</li>
+<li>Select the <strong>Red Output Channel</strong>:
+<ul>
+<li>Set the <strong>Red</strong> input slider to
+<strong>0%</strong>.</li>
+<li>Set the <strong>Green</strong> input slider to
+<strong>+100%</strong>. This moves the green foliage data directly into
+the red spectrum, turning leaves vivid red or pink.</li>
+</ul></li>
+<li>Select the <strong>Green Output Channel</strong>:
+<ul>
+<li>Set the <strong>Green</strong> input slider to
+<strong>0%</strong>.</li>
+<li>Set the <strong>Red</strong> input slider to
+<strong>+100%</strong>.</li>
+</ul></li>
+<li>Leave the <strong>Blue Output Channel</strong> at its default
+settings (0% Red, 0% Green, 100% Blue).</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-4-refine-contrast-with-curves">Step 4: Refine Contrast with
+Curves</h3>
+<p>Infrared images naturally feature extreme contrast. Go to
+<strong>Colors</strong> &gt; <strong>Curves</strong> to fine-tune the
+dynamic range. Create a slight "S-curve" by dragging down the lower-left
+section of the line to crush shadows in the sky, and pulling up the
+upper-right section to make the foliage highlights pop.</p>
+<h3 id="step-5-add-an-infrared-glow-optional">Step 5: Add an Infrared
+Glow (Optional)</h3>
+<p>Classic infrared film is known for an ethereal bloom around bright
+areas. To recreate this:</p>
+<ol type="1">
+<li>Duplicate your processed infrared layer.</li>
+<li>Go to <strong>Filters</strong> &gt; <strong>Blur</strong> &gt;
+<strong>Gaussian Blur</strong> and set the radius between 10 and 20
+pixels depending on your image resolution.</li>
+<li>Change the blurred layer's mode to <strong>Screen</strong> or
+<strong>Overlay</strong> in the Layers panel.</li>
+<li>Lower the layer opacity to around <strong>20%–30%</strong> to
+produce a soft, dreamy infrared halo.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

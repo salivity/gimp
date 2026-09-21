@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purpose of the Pagecurl Filter in GIMP - gimp</title>
+    <meta name="description" content="The Pagecurl filter in GIMP is a specialized distortion tool designed to simulate the visual effect of a turning or curling page corner on a digital image. This article provides a straightforward breakdown of what the Pagecurl filter does, how it manipul">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/purpose-of-the-pagecurl-filter-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Purpose of the Pagecurl Filter in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/purpose-of-the-pagecurl-filter-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Pagecurl filter in GIMP is a specialized distortion tool designed to simulate the visual effect of a turning or curling page corner on a digital image. This article provides a straightforward breakdown of what the Pagecurl filter does, how it manipul" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="purpose-of-the-pagecurl-filter-in-gimp">Purpose of the Pagecurl
+Filter in GIMP</h1>
+<p>The Pagecurl filter in GIMP is a specialized distortion tool designed
+to simulate the visual effect of a turning or curling page corner on a
+digital image. This article provides a straightforward breakdown of what
+the Pagecurl filter does, how it manipulates layers and gradients to
+create realistic depth, and the common design scenarios where it is most
+effectively used.</p>
+<h3 id="the-core-purpose-of-the-pagecurl-filter">The Core Purpose of the
+Pagecurl Filter</h3>
+<p>The primary function of the Pagecurl filter is to transform a flat,
+two-dimensional image into an object that appears three-dimensional by
+peeling back one of its four corners. This creates an optical illusion
+that the viewer is looking at a physical sheet of paper, a book page, or
+a sticker being lifted to reveal what lies beneath.</p>
+<h3 id="how-the-filter-works">How the Filter Works</h3>
+<p>When applied, the filter automates several complex graphic design
+steps into a single action:</p>
+<ul>
+<li><strong>Layer Generation:</strong> The filter automatically
+generates a new layer specifically for the curled portion of the image,
+keeping it separate from your original layer for easier editing.</li>
+<li><strong>Gradient Shading:</strong> It applies calculated highlight
+and shadow gradients along the fold to mimic natural lighting and
+depth.</li>
+<li><strong>Under-Layer Reveal:</strong> The area vacated by the curled
+corner becomes transparent, revealing whichever layer is placed directly
+below the active image, or filled with a designated background
+color.</li>
+</ul>
+<h3 id="key-adjustable-settings">Key Adjustable Settings</h3>
+<p>To give users control over the final appearance, the Pagecurl dialog
+box provides several customizable parameters:</p>
+<ul>
+<li><strong>Curl Location:</strong> You can choose which corner to curl:
+top-left, top-right, bottom-left, or bottom-right.</li>
+<li><strong>Curl Orientation:</strong> The curl can be set horizontally
+or vertically, altering the angle at which the edge folds.</li>
+<li><strong>Shade Under Curl:</strong> This option adds a realistic drop
+shadow beneath the curled corner to enhance the illusion of
+elevation.</li>
+<li><strong>Color and Opacity:</strong> Users can define the color of
+the outer fold (the underside of the page) and adjust the opacity of the
+shadows.</li>
+</ul>
+<h3 id="common-use-cases">Common Use Cases</h3>
+<p>The Pagecurl filter is widely used in graphic design and digital
+media for several practical purposes:</p>
+<ul>
+<li><strong>Digital Publications:</strong> Creating realistic page
+transitions for digital magazines, e-books, and brochures.</li>
+<li><strong>Photo Albums:</strong> Adding a nostalgic, physical album
+feel to digital photo galleries.</li>
+<li><strong>Web UI Elements:</strong> Highlighting "peel-away"
+call-to-action buttons, promotional banners, or special discount reveals
+on websites.</li>
+<li><strong>Document Mockups:</strong> Enhancing realistic product
+mockups and stationery presentations.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

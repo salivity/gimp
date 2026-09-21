@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Folder Jackets with Die-Cut Flaps in GIMP - gimp</title>
+    <meta name="description" content="Designing custom, print-ready corporate identity folder jackets with die-cut flaps in GIMP requires precise dimensioning, proper bleed configuration, and dedicated layer management for die-lines. This guide explains how to set up your flat unfolded canva">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-folder-jackets-with-die-cut-flaps-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Folder Jackets with Die-Cut Flaps in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-folder-jackets-with-die-cut-flaps-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom, print-ready corporate identity folder jackets with die-cut flaps in GIMP requires precise dimensioning, proper bleed configuration, and dedicated layer management for die-lines. This guide explains how to set up your flat unfolded canva" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="design-folder-jackets-with-die-cut-flaps-in-gimp">Design Folder
+Jackets with Die-Cut Flaps in GIMP</h1>
+<p>Designing custom, print-ready corporate identity folder jackets with
+die-cut flaps in GIMP requires precise dimensioning, proper bleed
+configuration, and dedicated layer management for die-lines. This guide
+explains how to set up your flat unfolded canvas, configure critical
+guides for folds and pockets, incorporate corporate branding, and export
+your files to meet commercial printing standards.</p>
+<h2 id="1-obtain-specifications-and-calculate-canvas-dimensions">1.
+Obtain Specifications and Calculate Canvas Dimensions</h2>
+<p>Presentation folders are printed flat on a single sheet of cardstock
+and folded into shape. A standard folder holds 9" x 12" documents,
+meaning the flat unfolded size (front cover, back cover, and bottom
+flaps) is typically around 18" wide by 16" high (including 4" pocket
+flaps).</p>
+<p>Before creating your canvas, add a standard 0.125-inch (1/8") bleed
+to all outer edges:</p>
+<ul>
+<li><strong>Width:</strong> (Front 9" + Back 9") + 0.25" total bleed =
+18.25 inches</li>
+<li><strong>Height:</strong> (Cover 12" + Flap 4") + 0.25" total bleed =
+16.25 inches</li>
+<li><strong>Resolution:</strong> Set strictly to 300 DPI.</li>
+</ul>
+<h2 id="2-set-up-the-workspace-in-gimp">2. Set Up the Workspace in
+GIMP</h2>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>File &gt; New</strong>.</li>
+<li>Change the units to <strong>Inches</strong>.</li>
+<li>Enter the calculated dimensions (e.g., 18.25" x 16.25").</li>
+<li>Expand <strong>Advanced Options</strong>, set the <strong>X and Y
+resolution</strong> to <code>300.000</code> pixels/inch, and set the
+<strong>Color space</strong> to <strong>RGB color</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h2 id="3-configure-guides-for-folds-safe-zones-and-bleeds">3. Configure
+Guides for Folds, Safe Zones, and Bleeds</h2>
+<p>Guides ensure your artwork aligns perfectly with the printer's
+cutting and folding machinery.</p>
+<ul>
+<li><strong>Bleed Lines:</strong> Set guides 0.125 inches inward from
+all four canvas edges to mark the trim line.</li>
+<li><strong>Spine / Center Fold:</strong> Place a vertical guide at
+9.125 inches (center fold separating front and back covers).</li>
+<li><strong>Pocket Fold:</strong> Place a horizontal guide at 12.125
+inches from the top to define the fold line where the pocket flaps bend
+upward.</li>
+<li><strong>Safe Zone:</strong> Add guides 0.25 inches inside all trim
+and fold lines. Keep all critical logos, text, and contact information
+inside these boundaries to prevent them from being cut off during
+finishing.</li>
+</ul>
+<h2 id="4-construct-the-die-cut-flap-path">4. Construct the Die-Cut Flap
+Path</h2>
+<p>The die-cut line instructs the printer where to cut the pocket
+shapes, glue tabs, and business card slits.</p>
+<ol type="1">
+<li>Create a new transparent layer named
+<code>Die Line - DO NOT PRINT</code>.</li>
+<li>Select the <strong>Paths Tool</strong> (<code>B</code>).</li>
+<li>Draw the outline of the folder pocket flaps at the bottom:
+<ul>
+<li>Include the contour of the pocket flap (straight, curved, or
+angled).</li>
+<li>Include the glue tabs on the outer left and right edges (typically
+0.5" wide tabs that fold in).</li>
+<li>Add horizontal slits (usually two 3.5" horizontal slits spaced 2"
+apart) if the flap requires a business card holder.</li>
+</ul></li>
+<li>Go to <strong>Edit &gt; Stroke Path</strong>. Select a solid line
+with a width of <code>1 px</code> or <code>2 px</code> using a
+high-contrast color (traditionally 100% Magenta).</li>
+</ol>
+<h2 id="5-lay-out-the-corporate-identity-artwork">5. Lay Out the
+Corporate Identity Artwork</h2>
+<p>Organize your layers to ensure clean separation between artwork and
+production marks:</p>
+<ul>
+<li><strong>Layer Structure:</strong>
+<ul>
+<li><code>Die Line</code> (Top layer, locked)</li>
+<li><code>Text &amp; Logos</code> (Vector/text layers for company name,
+contact info, taglines)</li>
+<li><code>Design Elements</code> (Brand graphics, color blocks,
+patterns)</li>
+<li><code>Background</code> (Base color or photography extending fully
+to the canvas edge for full-bleed coverage)</li>
+</ul></li>
+<li><strong>Orientation Awareness:</strong> The front cover is on the
+right side of the main area; the back cover is on the left. Pocket flaps
+fold upward, so any graphics or text placed directly on the pocket flap
+must be oriented correctly relative to the fold.</li>
+</ul>
+<h2 id="6-prepare-and-export-for-commercial-print">6. Prepare and Export
+for Commercial Print</h2>
+<p>Commercial printers require the die-line and the artwork to be
+separated or provided as vector outlines to avoid printing the cutting
+lines directly onto the paper.</p>
+<ol type="1">
+<li><strong>Artwork File:</strong> Hide the <code>Die Line</code> layer
+by clicking the eye icon. Go to <strong>File &gt; Export As</strong>,
+select <strong>PDF</strong> or <strong>TIFF</strong>, and save the file
+(e.g., <code>Folder_Artwork_Print.pdf</code>). Ensure high-quality
+compression is selected.</li>
+<li><strong>Die-Line File:</strong> Hide all artwork layers and unhide
+the <code>Die Line</code> layer on a plain white background. Export this
+separately (e.g., <code>Folder_DieLine.pdf</code>).</li>
+<li><strong>Color Conversion:</strong> If your commercial print vendor
+requires native CMYK files, import your exported TIFF or PDF into an
+image separation tool or convert it using a CMYK plugin (such as Cyan or
+ImageMagick) matching the printer's specified ICC color profile.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

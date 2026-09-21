@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Contribute to GIMP Documentation - gimp</title>
+    <meta name="description" content="Contributing improvements to the GIMP documentation team is an accessible way to support the open-source creative community. Contributors can submit updates by reporting inaccuracies or typos, editing DocBook XML source files directly, opening merge requ">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-contribute-to-gimp-documentation">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Contribute to GIMP Documentation - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-contribute-to-gimp-documentation" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Contributing improvements to the GIMP documentation team is an accessible way to support the open-source creative community. Contributors can submit updates by reporting inaccuracies or typos, editing DocBook XML source files directly, opening merge requ" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-contribute-to-gimp-documentation">How to Contribute to
+GIMP Documentation</h1>
+<p>Contributing improvements to the GIMP documentation team is an
+accessible way to support the open-source creative community.
+Contributors can submit updates by reporting inaccuracies or typos,
+editing DocBook XML source files directly, opening merge requests
+through the official GNOME GitLab repository, or translating content
+into other languages. This guide outlines the exact steps required to
+prepare, submit, and discuss your documentation contributions with the
+GIMP team.</p>
+<h2 id="1-report-issues-on-gitlab">1. Report Issues on GitLab</h2>
+<p>If you notice a typo, broken link, or outdated information and do not
+want to edit the code directly, you can submit an issue:</p>
+<ol type="1">
+<li>Visit the official GNOME GitLab instance and navigate to the
+<code>GNOME/gimp-help</code> repository.</li>
+<li>Create or log in to your GNOME GitLab account.</li>
+<li>Open a new issue under the <strong>Issues</strong> tab.</li>
+<li>Clearly state the problem, provide the URL or manual section name,
+and describe the suggested correction.</li>
+</ol>
+<h2 id="2-submit-changes-via-merge-requests">2. Submit Changes via Merge
+Requests</h2>
+<p>For direct edits, code updates, or writing new sections, submitting a
+Git Merge Request (MR) is the standard procedure.</p>
+<h3 id="step-1-fork-the-repository">Step 1: Fork the Repository</h3>
+<p>Go to the <code>gimp-help</code> project on GNOME GitLab and click
+<strong>Fork</strong> to create a personal copy of the repository.</p>
+<h3 id="step-2-clone-and-create-a-branch">Step 2: Clone and Create a
+Branch</h3>
+<p>Clone your fork locally and create a dedicated branch for your
+changes:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://gitlab.gnome.org/YOUR-USERNAME/gimp-help.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gimp-help</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> fix-documentation-topic</span></code></pre></div>
+<h3 id="step-3-edit-the-source-files">Step 3: Edit the Source Files</h3>
+<p>GIMP documentation is written primarily in XML using the DocBook
+format:</p>
+<ul>
+<li>Locate the relevant XML files within the <code>src/</code>
+directory.</li>
+<li>Make your text or structural edits using any standard text
+editor.</li>
+<li>Ensure your XML tags are properly closed and adhere to existing
+styling conventions.</li>
+</ul>
+<h3 id="step-4-validate-and-test-build">Step 4: Validate and Test
+Build</h3>
+<p>Before submitting your work, build the documentation locally to check
+for XML syntax errors or broken formatting. Refer to the repository’s
+<code>INSTALL</code> or <code>README</code> file for the specific build
+requirements and commands (typically requiring tools like
+<code>xsltproc</code> and <code>gettext</code>).</p>
+<h3 id="step-5-commit-and-open-a-merge-request">Step 5: Commit and Open
+a Merge Request</h3>
+<ol type="1">
+<li>Commit your changes with a clear, concise commit message explaining
+the update.</li>
+<li>Push the branch to your GitLab fork:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin fix-documentation-topic</span></code></pre></div></li>
+<li>Navigate to your fork on GitLab and click <strong>Create Merge
+Request</strong>.</li>
+<li>Describe the changes you made in detail and submit the request for
+review by the documentation maintainers.</li>
+</ol>
+<h2 id="3-contribute-translations">3. Contribute Translations</h2>
+<p>GIMP documentation translations are managed through GNOME’s
+translation infrastructure, <strong>Damned Lies</strong>:</p>
+<ol type="1">
+<li>Join the GNOME Translation Project for your specific language
+team.</li>
+<li>Coordinate with your language team coordinator to prevent duplicate
+work.</li>
+<li>Translate the <code>.po</code> files associated with the
+<code>gimp-help</code> module and submit them through the Damned Lies
+platform.</li>
+</ol>
+<h2 id="4-contact-the-documentation-team">4. Contact the Documentation
+Team</h2>
+<p>If you plan to write extensive new sections or need guidance on
+complex topics, contact the team before starting:</p>
+<ul>
+<li><strong>IRC / Matrix:</strong> Connect to the <code>#gimp</code> or
+<code>#gimp-docs</code> channels on the GIMP or GNOME Matrix/IRC
+networks.</li>
+<li><strong>Mailing Lists:</strong> Participate in discussions on the
+official GIMP developer mailing lists to propose large-scale structural
+changes or ask technical questions.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

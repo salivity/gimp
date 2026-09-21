@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Ripple Filter for Liquid Simulation - gimp</title>
+    <meta name="description" content="The Ripple filter in GIMP is a distortion tool primarily used to generate realistic liquid surfaces, fluid ripples, and aquatic reflections. By mathematically displacing an image's pixels into undulating wave patterns, this filter enables digital artists">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-ripple-filter-for-liquid-simulation">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Ripple Filter for Liquid Simulation - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-ripple-filter-for-liquid-simulation" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Ripple filter in GIMP is a distortion tool primarily used to generate realistic liquid surfaces, fluid ripples, and aquatic reflections. By mathematically displacing an image's pixels into undulating wave patterns, this filter enables digital artists" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-ripple-filter-for-liquid-simulation">GIMP Ripple Filter for
+Liquid Simulation</h1>
+<p>The Ripple filter in GIMP is a distortion tool primarily used to
+generate realistic liquid surfaces, fluid ripples, and aquatic
+reflections. By mathematically displacing an image's pixels into
+undulating wave patterns, this filter enables digital artists to
+transform flat, static graphics into dynamic representations of water,
+submerged objects, or heat hazes. This article breaks down the purpose
+of the Ripple filter in fluid design, its key controls, and how to apply
+it effectively for realistic liquid simulation.</p>
+<h3 id="simulating-natural-water-mechanics">Simulating Natural Water
+Mechanics</h3>
+<p>At its core, the Ripple filter shifts pixels along a specified axis
+using mathematical waveforms. In natural environments, liquid surfaces
+constantly deform light and reflections due to wind, movement, and
+surface tension. The Ripple filter recreates this optical distortion by
+bending lines and textures across an image, mimicking how light refracts
+through moving water.</p>
+<h3 id="key-parameters-for-liquid-effects">Key Parameters for Liquid
+Effects</h3>
+<p>To achieve convincing fluid behavior, GIMP provides several
+parameters within the Ripple filter dialog:</p>
+<ul>
+<li><strong>Wave Type:</strong> Users can select between Sine and
+Sawtooth waves. For liquid simulation, Sine is the standard choice
+because it produces smooth, organic curves that replicate natural water
+swells. Sawtooth produces sharp, linear transitions better suited for
+stylized glass refraction.</li>
+<li><strong>Period (Wavelength):</strong> This setting dictates the
+distance between the crests of the waves. A low period creates tight,
+high-frequency ripples suitable for light rain on a puddle, while a high
+period creates broad swells typical of deep lakes or oceans.</li>
+<li><strong>Amplitude (Wave Height):</strong> Amplitude controls the
+intensity of the pixel displacement. Low amplitude values simulate calm,
+subtle fluid movement, whereas higher values generate chaotic, turbulent
+water.</li>
+<li><strong>Orientation and Angle:</strong> Fluids react to gravity and
+perspective. Setting the ripples to a horizontal orientation allows
+artists to simulate water planes receding into the horizon, while custom
+angles help simulate directional currents or wakes.</li>
+<li><strong>Phase Shift:</strong> Modifying the phase shifts the wave
+offset, which is essential when creating sequential frames for water
+surface animations.</li>
+</ul>
+<h3 id="common-liquid-simulation-use-cases">Common Liquid Simulation Use
+Cases</h3>
+<ol type="1">
+<li><strong>Water Reflections:</strong> Designers frequently duplicate a
+landscape or subject layer, flip it vertically, and apply the Ripple
+filter with a horizontal orientation to create instant, believable
+reflections on a water surface.</li>
+<li><strong>Submerged Textures:</strong> Applying a low-amplitude ripple
+across a seabed, swimming pool floor, or submerged object simulates the
+visual distortion caused by looking through water currents.</li>
+<li><strong>Heat and Fluid Dynamics:</strong> Beyond water, the filter
+simulates the visual refraction of hot liquids, steam, and heat shimmer
+rising above boiling fluid surfaces.</li>
+</ol>
+<h3 id="achieving-maximum-realism">Achieving Maximum Realism</h3>
+<p>While the Ripple filter creates the foundational distortion,
+combining it with other GIMP tools yields the most realistic results.
+Applying a slight Gaussian Blur softens the hard edges of the
+displacement, mimicking the natural light dispersion of liquid.
+Additionally, layering the rippled surface with highlights, blend modes
+like Soft Light or Overlay, and gradient masks provides depth, making
+the simulated liquid appear three-dimensional.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clip a Raster Layer with a Path in GIMP - gimp</title>
+    <meta name="description" content="Clipping a raster layer with a vector path in GIMP allows you to hide unwanted areas of an image without permanently deleting pixels. This guide explains how to use GIMP's layer mask system to apply a vector path as a precise, non-destructive clipping bo">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/clip-a-raster-layer-with-a-path-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Clip a Raster Layer with a Path in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/clip-a-raster-layer-with-a-path-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Clipping a raster layer with a vector path in GIMP allows you to hide unwanted areas of an image without permanently deleting pixels. This guide explains how to use GIMP's layer mask system to apply a vector path as a precise, non-destructive clipping bo" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="clip-a-raster-layer-with-a-path-in-gimp">Clip a Raster Layer
+with a Path in GIMP</h1>
+<p>Clipping a raster layer with a vector path in GIMP allows you to hide
+unwanted areas of an image without permanently deleting pixels. This
+guide explains how to use GIMP's layer mask system to apply a vector
+path as a precise, non-destructive clipping boundary for any raster
+layer.</p>
+<h2 id="method-1-add-a-layer-mask-directly-from-a-path">Method 1: Add a
+Layer Mask Directly from a Path</h2>
+<p>The fastest and most flexible way to clip a raster layer using a
+vector path is by initializing a layer mask directly from the Paths
+panel.</p>
+<ol type="1">
+<li><strong>Draw or Select Your Path:</strong> Use the <strong>Paths
+Tool</strong> (shortcut: <code>B</code>) to draw your vector shape
+around the area you want to keep. Ensure the path is closed if you want
+a complete shape.</li>
+<li><strong>Select the Target Layer:</strong> In the
+<strong>Layers</strong> panel, click on the raster layer you want to
+clip.</li>
+<li><strong>Open the Mask Dialog:</strong> Right-click the selected
+layer and choose <strong>Add Layer Mask...</strong> (or go to
+<strong>Layer &gt; Mask &gt; Add Layer Mask...</strong> in the top
+menu).</li>
+<li><strong>Choose Path as the Mask Source:</strong> In the dialog
+window that appears, select the <strong>Path</strong> option under the
+"Initialize Layer Mask to:" section.</li>
+<li><strong>Select Your Path:</strong> Use the dropdown menu next to the
+Path option to choose the vector path you created.</li>
+<li><strong>Apply the Mask:</strong> Check the <strong>Invert
+mask</strong> box if you want to hide the area inside the path instead
+of outside. Click <strong>Add</strong>.</li>
+</ol>
+<p>The raster layer is now clipped to the exact contour of your vector
+path.</p>
+<h2 id="method-2-convert-path-to-selection-and-mask">Method 2: Convert
+Path to Selection and Mask</h2>
+<p>If you are using an older version of GIMP or prefer working through
+selections, you can convert the vector path to a raster selection
+first.</p>
+<ol type="1">
+<li><strong>Select the Path:</strong> Open the <strong>Paths</strong>
+tab (found alongside the Layers and Channels tabs). Right-click your
+path and select <strong>Path to Selection</strong> (or click the red
+square icon at the bottom of the panel).</li>
+<li><strong>Return to Layers:</strong> Click the <strong>Layers</strong>
+tab and select the raster layer you wish to clip.</li>
+<li><strong>Add Mask from Selection:</strong> Right-click the layer,
+choose <strong>Add Layer Mask...</strong>, select
+<strong>Selection</strong>, and click <strong>Add</strong>.</li>
+</ol>
+<h2 id="adjusting-the-clipping-boundary">Adjusting the Clipping
+Boundary</h2>
+<p>Because GIMP utilizes raster-based layer masks, changes to the
+original vector path do not automatically update the mask in real time.
+To adjust your clipping boundary:</p>
+<ul>
+<li><strong>Update the Mask After Editing:</strong> If you modify your
+vector path with the Paths Tool, delete the existing layer mask
+(right-click the layer mask thumbnail and choose <strong>Delete Layer
+Mask</strong>), then re-apply the updated path using the steps
+above.</li>
+<li><strong>Invert the Boundary:</strong> To switch between keeping the
+inside or outside of the path, select the layer mask thumbnail in the
+Layers panel, go to <strong>Colors &gt; Invert</strong> in the main
+menu.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

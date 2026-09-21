@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using GIMP Procedure Browser to Search Internal APIs - gimp</title>
+    <meta name="description" content="This article provides an overview of how developers utilize GIMP's Procedure Browser (PDB) to discover, inspect, and implement internal API functions and signatures. It covers accessing the built-in documentation tool, searching for specific image manipu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/using-gimp-procedure-browser-to-search-internal-ap-is">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using GIMP Procedure Browser to Search Internal APIs - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/using-gimp-procedure-browser-to-search-internal-ap-is" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of how developers utilize GIMP's Procedure Browser (PDB) to discover, inspect, and implement internal API functions and signatures. It covers accessing the built-in documentation tool, searching for specific image manipu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="using-gimp-procedure-browser-to-search-internal-apis">Using GIMP
+Procedure Browser to Search Internal APIs</h1>
+<p>This article provides an overview of how developers utilize GIMP's
+Procedure Browser (PDB) to discover, inspect, and implement internal API
+functions and signatures. It covers accessing the built-in documentation
+tool, searching for specific image manipulation routines, interpreting
+parameter and return data types, and mapping these procedures directly
+into custom scripts and plugins using languages like Python and
+Script-Fu.</p>
+<h2 id="accessing-the-procedure-browser">Accessing the Procedure
+Browser</h2>
+<p>GIMP's Procedural Database (PDB) acts as the central registry for all
+callable functions within the application, including native core
+routines, file-format loaders, and third-party plug-ins. Developers can
+open the Procedure Browser directly within the GIMP user interface by
+navigating to <strong>Help &gt; Procedure Browser</strong>. It is also
+accessible within the Python-Fu console via the <strong>Browse</strong>
+button, allowing real-time reference while writing code.</p>
+<h2 id="searching-and-filtering-the-registry">Searching and Filtering
+the Registry</h2>
+<p>The Procedure Browser includes an integrated search bar at the top of
+the window that allows developers to filter hundreds of procedures
+instantly.</p>
+<ul>
+<li><strong>Name Matching:</strong> Searching by prefix or keyword (such
+as <code>gimp-image</code>, <code>file-png</code>, or <code>blur</code>)
+filters procedures by their registered programmatic names.</li>
+<li><strong>Metadata and Description Search:</strong> The search
+algorithm indexes not only function names but also the "blurb" (short
+summary), detailed help text, author information, and date. This allows
+developers to find relevant operations using natural language terms even
+if the exact programmatic name is unknown.</li>
+</ul>
+<h2 id="inspecting-signatures-and-data-types">Inspecting Signatures and
+Data Types</h2>
+<p>Selecting any procedure from the search results populates the main
+panel with its complete signature and operational requirements. This
+breakdown includes:</p>
+<ul>
+<li><strong>Description and Documentation:</strong> A summary explaining
+the purpose of the procedure and any operational side effects, such as
+whether it creates an undo group.</li>
+<li><strong>Input Parameters:</strong> A sequential list of all
+arguments required by the function. Each parameter displays its
+technical name, type (such as <code>INT32</code>, <code>FLOAT</code>,
+<code>STRING</code>, <code>IMAGE</code>, <code>DRAWABLE</code>, or
+<code>COLOR</code>), and a brief description explaining valid input
+ranges or expected formats.</li>
+<li><strong>Return Values:</strong> A list detailing the data types and
+counts of values output by the function upon successful execution.</li>
+<li><strong>Procedure Type:</strong> Identifies whether the call is an
+internal C routine, a Script-Fu script, or an external plug-in
+process.</li>
+</ul>
+<h2 id="applying-pdb-signatures-in-code">Applying PDB Signatures in
+Code</h2>
+<p>The signatures displayed in the Procedure Browser map directly to
+GIMP's scripting interfaces:</p>
+<ul>
+<li><strong>In Python-Fu:</strong> Hyphens in procedure names are
+converted to underscores, and calls are prefixed with <code>pdb</code>.
+For example, a procedure listed as <code>gimp-image-new</code> in the
+browser is invoked as
+<code>pdb.gimp_image_new(width, height, type)</code>.</li>
+<li><strong>In Script-Fu:</strong> The procedure name retains its
+hyphenated syntax and is wrapped in parentheses following standard
+Lisp-like conventions, such as
+<code>(gimp-image-new width height type)</code>.</li>
+</ul>
+<p>By providing clear parameter orders, strict type definitions, and
+detailed execution contexts, the Procedure Browser eliminates guesswork
+when integrating GIMP's internal capabilities into automated
+workflows.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

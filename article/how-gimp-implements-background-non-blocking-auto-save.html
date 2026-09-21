@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Implements Background Non-Blocking Auto-Save - gimp</title>
+    <meta name="description" content="This article explores how the GNU Image Manipulation Program (GIMP) writes large background auto-save files without freezing the user interface. It examines the architectural combination of GEGL tile management, state snapshotting, asynchronous worker th">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-implements-background-non-blocking-auto-save">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Implements Background Non-Blocking Auto-Save - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-implements-background-non-blocking-auto-save" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how the GNU Image Manipulation Program (GIMP) writes large background auto-save files without freezing the user interface. It examines the architectural combination of GEGL tile management, state snapshotting, asynchronous worker th" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-implements-background-non-blocking-auto-save">How GIMP
+Implements Background Non-Blocking Auto-Save</h1>
+<p>This article explores how the GNU Image Manipulation Program (GIMP)
+writes large background auto-save files without freezing the user
+interface. It examines the architectural combination of GEGL tile
+management, state snapshotting, asynchronous worker threads via GLib,
+and atomic file system operations that collectively enable non-blocking
+disk I/O.</p>
+<h3 id="the-challenge-of-background-saving">The Challenge of Background
+Saving</h3>
+<p>Large image files often contain multiple high-resolution layers,
+masks, and undo history, totaling gigabytes of uncompressed memory.
+Writing this volume of data directly from the main application thread
+causes the graphical user interface (GUI) to hang, as the GTK main event
+loop cannot process user input while waiting for synchronous disk I/O.
+To prevent interface locking, GIMP decouples the serialization process
+from the primary thread.</p>
+<h3 id="gegl-buffer-architecture-and-snapshotting">GEGL Buffer
+Architecture and Snapshotting</h3>
+<p>At the core of GIMP’s modern image handling is GEGL (Generic Graphics
+Library). GEGL does not treat an image as a single contiguous array in
+RAM. Instead, it organizes image data into a sparse grid of fixed-size
+blocks called tiles (typically 128x128 or 64x64 pixels).</p>
+<p>When an auto-save process begins, GIMP must ensure that subsequent
+user edits do not mutate the data being written to disk. GIMP and GEGL
+resolve this through reference counting and copy-on-write (CoW)
+semantics:</p>
+<ol type="1">
+<li><strong>Buffer Duplication:</strong> GIMP creates a shadow reference
+or duplicate of the <code>GeglBuffer</code>. Because GEGL relies on
+reference-counted tile indices, duplicating a buffer is
+near-instantaneous and does not duplicate the actual pixel memory
+immediately.</li>
+<li><strong>Copy-on-Write:</strong> If the user draws on the canvas
+while the background save is running, the main thread allocates new
+tiles for the modified regions. The background task retains read-only
+access to the original tiles as they existed at the exact moment the
+auto-save was triggered.</li>
+</ol>
+<h3 id="offloading-io-via-glib-worker-threads">Offloading I/O via GLib
+Worker Threads</h3>
+<p>Once the image state is isolated, GIMP offloads the serialization and
+file-writing tasks using GLib's threading infrastructure
+(<code>GThread</code>, <code>GThreadPool</code>, or
+<code>GTask</code>):</p>
+<ul>
+<li><strong>Thread Dispatch:</strong> The main thread spawns or assigns
+the serialization job to a background worker thread.</li>
+<li><strong>Data Serialization:</strong> The worker thread iterates over
+the frozen GEGL tiles, processes compression algorithms (such as RLE or
+zlib compression used in the XCF format), and formats the output
+data.</li>
+<li><strong>Asynchronous Streams (GIO):</strong> GIMP utilizes
+<code>GIO</code> file streams (<code>GOutputStream</code>) to write the
+serialized chunks to disk. This ensures that the operating system
+handles the block-level I/O operations asynchronously relative to the
+main UI thread.</li>
+</ul>
+<h3 id="atomic-disk-writing">Atomic Disk Writing</h3>
+<p>To prevent file corruption if the program crashes or the system shuts
+down during an auto-save, GIMP performs atomic writes:</p>
+<ol type="1">
+<li>Data is written to a temporary file (e.g.,
+<code>filename.xcf.tmp</code>) in the background.</li>
+<li>The background thread flushes the file descriptor to ensure all data
+is physically committed to disk.</li>
+<li>Once the write operation succeeds, the worker thread informs the
+main thread via an idle callback (<code>g_idle_add()</code>).</li>
+<li>The file is renamed to its final target path using an atomic file
+system operation (<code>rename()</code>), instantly replacing the
+previous save file without intermediate corruption.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

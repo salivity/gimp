@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Simulate Printer Gamuts in GIMP - gimp</title>
+    <meta name="description" content="Simulating a printer gamut directly on your monitor—a process known as soft proofing—allows you to preview how colors will shift when printed onto specific paper and ink sets. This guide explains how to configure GIMP’s color management settings an">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-simulate-printer-gamuts-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Simulate Printer Gamuts in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-simulate-printer-gamuts-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating a printer gamut directly on your monitor—a process known as soft proofing—allows you to preview how colors will shift when printed onto specific paper and ink sets. This guide explains how to configure GIMP’s color management settings an" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-simulate-printer-gamuts-in-gimp">How to Simulate Printer
+Gamuts in GIMP</h1>
+<p>Simulating a printer gamut directly on your monitor—a process known
+as soft proofing—allows you to preview how colors will shift when
+printed onto specific paper and ink sets. This guide explains how to
+configure GIMP’s color management settings and display filters using
+target ICC printer profiles. By following these steps, you will learn
+how to set up soft proofing, toggle printer simulations, and identify
+out-of-gamut colors before sending files to the press.</p>
+<h3 id="1-acquire-and-install-the-printer-icc-profile">1. Acquire and
+Install the Printer ICC Profile</h3>
+<p>Before configuring GIMP, you must have the specific ICC profile for
+your target printer, ink, and paper combination. Printer manufacturers
+and print labs typically provide these profiles on their websites. Once
+downloaded, install the profile to your operating system's default color
+directory, or place it in a dedicated folder on your computer so GIMP
+can access it.</p>
+<h3 id="2-configure-color-management-in-preferences">2. Configure Color
+Management in Preferences</h3>
+<p>To establish the baseline profile for your printer simulation, set up
+GIMP's global color management preferences:</p>
+<ol type="1">
+<li>Open GIMP and navigate to <strong>Edit &gt; Preferences</strong> (or
+<strong>GIMP &gt; Preferences</strong> on macOS).</li>
+<li>In the left panel, click on <strong>Color Management</strong>.</li>
+<li>Set <strong>Image color management</strong> to <strong>Color managed
+display</strong>.</li>
+<li>In the <strong>Color proofing profiles</strong> section, locate the
+<strong>Soft-proofing profile</strong> field. Click the dropdown menu,
+select <strong>Select color profile from disk...</strong>, and browse to
+your downloaded printer ICC profile.</li>
+<li>Set the <strong>Soft-proofing rendering intent</strong> according to
+your workflow:
+<ul>
+<li><strong>Perceptual:</strong> Preserves visual relationships between
+colors, ideal for general photography.</li>
+<li><strong>Relative Colorimetric:</strong> Retains all in-gamut colors
+exactly and maps out-of-gamut colors to the closest printable
+alternative, standard for high-accuracy commercial printing.</li>
+</ul></li>
+<li>Check <strong>Mark out of gamut colors</strong> if you want GIMP to
+highlight colors your printer cannot reproduce.</li>
+<li>Click <strong>OK</strong> to save the settings.</li>
+</ol>
+<h3 id="3-apply-the-display-filter-via-view-menu">3. Apply the Display
+Filter via View Menu</h3>
+<p>Once the profile is defined in Preferences, you can toggle the
+printer simulation directly on your active canvas:</p>
+<ol type="1">
+<li>Open the image you want to evaluate.</li>
+<li>Navigate to <strong>View &gt; Color Management</strong>.</li>
+<li>Select <strong>Soft-Proofing</strong> to activate the printer gamut
+simulation.</li>
+</ol>
+<p>Your screen will adjust to reflect the dynamic range, contrast, and
+color limits of the selected paper and printer profile. To see which
+specific colors cannot be printed accurately, go back to <strong>View
+&gt; Color Management</strong> and select <strong>Out of Gamut
+Warning</strong>. Unprintable pixels will be overlaid with a highlight
+color (typically magenta or black, depending on your configuration).</p>
+<h3 id="4-alternative-method-using-the-display-filters-dialog">4.
+Alternative Method: Using the Display Filters Dialog</h3>
+<p>If you prefer applying the simulation via the dedicated display
+filter stack rather than the global view settings:</p>
+<ol type="1">
+<li>Navigate to <strong>View &gt; Display Filters...</strong></li>
+<li>In the <strong>Available Filters</strong> list on the left, select
+<strong>Color Management</strong> and click the right arrow to move it
+to the <strong>Active Filters</strong> column.</li>
+<li>Select <strong>Color Management</strong> under the active list to
+display its properties at the bottom of the window.</li>
+<li>Set the <strong>Filter profile</strong> option to your target
+printer ICC profile.</li>
+<li>Choose your desired <strong>Rendering intent</strong> and decide
+whether to enable the <strong>Out of gamut</strong> display
+checkbox.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p>You can adjust contrast, levels, and saturation layers beneath this
+filter until the soft proof matches your desired visual outcome within
+the printer's physical limitations.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

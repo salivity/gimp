@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure GIMP Ink Tool for Asian Calligraphy - gimp</title>
+    <meta name="description" content="This guide explains how to configure the Ink tool in GIMP to simulate the expressive, dynamic strokes of traditional East Asian calligraphy (such as Chinese Shufa or Japanese Shodo). By fine-tuning the Ink tool's specialized velocity controls, nib geomet">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/configure-gimp-ink-tool-for-asian-calligraphy">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure GIMP Ink Tool for Asian Calligraphy - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/configure-gimp-ink-tool-for-asian-calligraphy" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure the Ink tool in GIMP to simulate the expressive, dynamic strokes of traditional East Asian calligraphy (such as Chinese Shufa or Japanese Shodo). By fine-tuning the Ink tool's specialized velocity controls, nib geomet" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="configure-gimp-ink-tool-for-asian-calligraphy">Configure GIMP
+Ink Tool for Asian Calligraphy</h1>
+<p>This guide explains how to configure the Ink tool in GIMP to simulate
+the expressive, dynamic strokes of traditional East Asian calligraphy
+(such as Chinese Shufa or Japanese Shodo). By fine-tuning the Ink tool's
+specialized velocity controls, nib geometry, and sensitivity settings,
+you can replicate the organic behavior of a sumi brush, where stroke
+width dynamically responds to your drawing speed and direction.</p>
+<h3 id="1-select-the-ink-tool-and-set-the-base-parameters">1. Select the
+Ink Tool and Set the Base Parameters</h3>
+<p>Activate the Ink tool from the toolbox or by pressing the
+<strong>K</strong> key. In the <strong>Tool Options</strong> dock, begin
+with these foundational settings:</p>
+<ul>
+<li><strong>Size:</strong> Set between <strong>15.0</strong> and
+<strong>25.0</strong> pixels depending on your canvas resolution. This
+defines the maximum stroke width achievable during slow, deliberate
+presses.</li>
+<li><strong>Angle:</strong> Set to roughly <strong>-45°</strong> to
+<strong>-30°</strong>. Traditional calligraphy brushes meet the paper at
+a natural diagonal slant, producing broad diagonal strokes and
+razor-thin cross-strokes.</li>
+</ul>
+<h3 id="2-configure-the-nib-shape">2. Configure the Nib Shape</h3>
+<p>Traditional brush tufts deform into asymmetric, pointed profiles when
+dragged across rice paper. In the <strong>Shape</strong> section:</p>
+<ul>
+<li><strong>Type:</strong> Choose <strong>Diamond</strong> or
+<strong>Circle</strong>. The Diamond type yields crisp, authentic
+directional transitions similar to stiffer weasel-hair brushes
+(<em>langhao</em>), while Circle behaves more like softer goat-hair
+brushes (<em>yanghao</em>).</li>
+<li><strong>Shape (Aspect Ratio):</strong> Drag the slider to flatten
+the nib horizontally, creating an elliptical or diamond profile. An
+aspect ratio value between <strong>0.20</strong> and
+<strong>0.40</strong> provides strong contrast between thick vertical
+downstrokes and thin horizontal transitions.</li>
+</ul>
+<h3 id="3-adjust-velocity-and-size-sensitivity">3. Adjust Velocity and
+Size Sensitivity</h3>
+<p>The Ink tool uses an internal algorithmic curve to calculate stroke
+width based on cursor velocity rather than standard tablet pressure
+dynamics. Expand the <strong>Sensitivity</strong> settings within the
+Ink Tool Options:</p>
+<ul>
+<li><strong>Size (Velocity Sensitivity):</strong> Set this slider
+between <strong>0.70</strong> and <strong>0.90</strong>. A higher value
+increases the disparity between fast and slow movements. Slow movements
+will allow the stroke to swell to its maximum width, mimicking ink
+pooling during deliberate brush contact.</li>
+<li><strong>Tilt Sensitivity:</strong> If using a mouse or non-tilt
+stylus, leave this at <strong>0.00</strong>. If using a stylus with tilt
+capability, set it to <strong>0.20</strong> to introduce subtle line
+variations when tilting the pen.</li>
+<li><strong>Speed:</strong> Set between <strong>0.60</strong> and
+<strong>0.80</strong>. This slider dictates how quickly the brush
+reaches its minimum stroke size as hand speed increases. A higher value
+ensures that swift flicking motions taper smoothly into sharp, wispy
+points.</li>
+</ul>
+<h3 id="4-calibrating-stroke-mechanics">4. Calibrating Stroke
+Mechanics</h3>
+<p>To write authentically with these settings, adjust your stroke
+mechanics to match traditional calligraphy principles:</p>
+<ul>
+<li><strong>Tome (Stops):</strong> Pause momentarily at the beginning
+and end of strokes. The low velocity triggers maximum ink expansion,
+forming the distinct, weighted anchor points typical of standard script
+(<em>Kaishu</em>).</li>
+<li><strong>Harau (Sweeps) and Hane (Hooks):</strong> Accelerate your
+stroke rapidly off the canvas. As speed peaks, the velocity curve forces
+the ink profile down to its minimum width, rendering sharp, natural
+points without requiring manual opacity or size adjustments.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

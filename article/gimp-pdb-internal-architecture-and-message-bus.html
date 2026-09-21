@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP PDB Internal Architecture and Message Bus - gimp</title>
+    <meta name="description" content="This article provides an overview of the internal architecture of the GNU Image Manipulation Program (GIMP) Procedural Database (PDB) message-passing bus. It examines how the PDB acts as a centralized procedure registry and inter-process communication (I">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-pdb-internal-architecture-and-message-bus">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP PDB Internal Architecture and Message Bus - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-pdb-internal-architecture-and-message-bus" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of the internal architecture of the GNU Image Manipulation Program (GIMP) Procedural Database (PDB) message-passing bus. It examines how the PDB acts as a centralized procedure registry and inter-process communication (I" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-pdb-internal-architecture-and-message-bus">GIMP PDB
+Internal Architecture and Message Bus</h1>
+<p>This article provides an overview of the internal architecture of the
+GNU Image Manipulation Program (GIMP) Procedural Database (PDB)
+message-passing bus. It examines how the PDB acts as a centralized
+procedure registry and inter-process communication (IPC) coordinator,
+details the wire protocol connecting the core engine to isolated plug-in
+processes, and breaks down the lifecycle of remote procedure calls
+between decoupled image-processing components.</p>
+<h2 id="the-role-of-the-procedural-database-pdb">The Role of the
+Procedural Database (PDB)</h2>
+<p>The PDB is the central integration registry within GIMP. It maintains
+a searchable catalog of all functions available across the application,
+including native C functions in the core, scripts written in external
+languages, and third-party compiled plug-ins.</p>
+<p>Rather than running plug-ins inside the primary application memory
+space, GIMP executes external plug-ins in isolated, independent
+operating system processes. This sandboxing prevents a crashing plug-in
+from bringing down the main application and corrupting user data.
+Consequently, the PDB must function not only as an internal symbol table
+but also as the orchestration layer for an IPC message-passing bus that
+routes commands, parameters, and pixel data between the host process and
+client processes.</p>
+<h2 id="the-ipc-transport-mechanism">The IPC Transport Mechanism</h2>
+<p>The message-passing bus relies on low-level operating system pipes
+rather than heavy network stacks or complex general-purpose message
+brokers.</p>
+<ul>
+<li><strong>Communication Channels:</strong> When the GIMP core spawns a
+plug-in process, it establishes a bidirectional pair of anonymous pipes
+(standard input and standard output on POSIX systems, and anonymous
+pipes on Windows).</li>
+<li><strong>Process Roles:</strong> The main GIMP process acts as the
+server/coordinator, while the spawned plug-in acts as a client governed
+by <code>libgimp</code>.</li>
+<li><strong>Synchronization:</strong> Communication across the bus is
+primarily synchronous for procedure execution. The calling process
+writes a request packet and blocks on read until the target process
+processes the command and returns an acknowledgement or result
+packet.</li>
+</ul>
+<h2 id="the-gimpwire-protocol">The GimpWire Protocol</h2>
+<p>Data flowing over the anonymous pipes is framed and serialized by an
+internal binary subsystem known as the <strong>GimpWire</strong>
+protocol. GimpWire provides platform-agnostic marshaling and
+unmarshaling of primitives and complex data structures.</p>
+<h3 id="message-framing">Message Framing</h3>
+<p>Every transmission across the wire begins with a lightweight packet
+header that defines:</p>
+<ol type="1">
+<li>The message type identifier (opcode).</li>
+<li>The payload length to allow deterministic buffering without
+premature parsing.</li>
+</ol>
+<h3 id="message-types-gp-packets">Message Types (GP Packets)</h3>
+<p>The protocol defines a finite set of command structures prefixed with
+<code>GP_</code> (Gimp Protocol). Primary message structures
+include:</p>
+<ul>
+<li><strong><code>GP_CONFIG</code>:</strong> Transmits initial
+environmental context and configuration from the core to the plug-in
+upon launch.</li>
+<li><strong><code>GP_PROC_RUN</code>:</strong> Initiates the execution
+of a registered PDB procedure. This packet carries the target procedure
+name, the argument count, and serialized parameter data.</li>
+<li><strong><code>GP_PROC_RETURN</code>:</strong> Conveys the execution
+status (success, execution error, or cancellation) and marshaled return
+values back to the invoker.</li>
+<li><strong><code>GP_QUIT</code>:</strong> Commands the plug-in process
+to cleanly terminate its main loop and release resources.</li>
+</ul>
+<h3 id="type-marshaling">Type Marshaling</h3>
+<p>Data arguments must match types registered in the PDB. Primitive
+types like integers, floating-point numbers, and strings are serialized
+directly into the byte stream. Complex types—such as color structures,
+image identifiers, layer identifiers, and vectors—are serialized into
+standardized data representations that both <code>gimp-core</code> and
+<code>libgimp</code> understand.</p>
+<h2 id="pdb-call-lifecycle">PDB Call Lifecycle</h2>
+<p>The interaction between the core and a plug-in across the PDB bus
+proceeds through four main stages:</p>
+<h3 id="1-discovery-and-registration">1. Discovery and Registration</h3>
+<p>During application startup or plug-in querying, GIMP spawns the
+plug-in with a query flag. The plug-in sends a series of registration
+messages across the bus to declare its procedures, parameter signatures,
+and menu integration paths. The core indexes these declarations into the
+PDB hash table and closes the process.</p>
+<h3 id="2-dispatch-and-invocation">2. Dispatch and Invocation</h3>
+<p>When an action or script invokes a plug-in procedure:</p>
+<ol type="1">
+<li>The core locates the procedure metadata in the PDB.</li>
+<li>The core spawns the plug-in binary (if not already running via an
+extension loop).</li>
+<li>The core creates a <code>GP_PROC_RUN</code> packet containing the
+validated argument array and sends it down the plug-in's input
+pipe.</li>
+</ol>
+<h3 id="3-execution-and-callbacks">3. Execution and Callbacks</h3>
+<p>The client-side <code>libgimp</code> library intercepts the
+<code>GP_PROC_RUN</code> message within its main loop and dispatches the
+execution to the registered C, Python, or Script-Fu handler. If the
+plug-in needs to call another PDB procedure (such as fetching pixel
+regions or creating layers), it sends a nested <code>GP_PROC_RUN</code>
+back upstream over its output pipe, awaiting the core's response before
+proceeding.</p>
+<h3 id="4-return-and-cleanup">4. Return and Cleanup</h3>
+<p>Once execution finishes:</p>
+<ol type="1">
+<li>The plug-in packages its output arguments into a
+<code>GP_PROC_RETURN</code> packet and transmits it over the pipe.</li>
+<li>The core unmarshals the return packet, converts the binary payload
+into internal objects, and resumes the calling context.</li>
+<li>For non-persistent plug-ins, the core issues a <code>GP_QUIT</code>
+message and tears down the pipe handles.</li>
+</ol>
+<h2 id="architectural-evolution">Architectural Evolution</h2>
+<p>Historically, GIMP relied on internal integer handles (IDs) to
+reference drawables, images, and layers across the wire protocol. In
+modernized architectures (GIMP 3.x), the PDB message bus integrates
+closely with <strong>GObject Introspection</strong> and standard
+<strong>GEGL</strong> (Generic Graphical Library) buffers. While the
+underlying pipe transport and GimpWire serialization patterns remain the
+backbone for process separation, modern versions replace custom
+procedural signatures with <code>GParamSpec</code> types, enabling
+dynamic language bindings without custom serialization logic for every
+language runtime.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

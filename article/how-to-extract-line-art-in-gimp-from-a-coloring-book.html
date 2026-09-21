@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Extract Line Art in GIMP from a Coloring Book - gimp</title>
+    <meta name="description" content="Extracting line art from a physical coloring book allows you to digitize hand-drawn illustrations for digital coloring, archiving, or printing. This guide walks you through the step-by-step process of importing a scanned coloring page into GIMP, removing">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-extract-line-art-in-gimp-from-a-coloring-book">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Extract Line Art in GIMP from a Coloring Book - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-extract-line-art-in-gimp-from-a-coloring-book" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Extracting line art from a physical coloring book allows you to digitize hand-drawn illustrations for digital coloring, archiving, or printing. This guide walks you through the step-by-step process of importing a scanned coloring page into GIMP, removing" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-extract-line-art-in-gimp-from-a-coloring-book">How to
+Extract Line Art in GIMP from a Coloring Book</h1>
+<p>Extracting line art from a physical coloring book allows you to
+digitize hand-drawn illustrations for digital coloring, archiving, or
+printing. This guide walks you through the step-by-step process of
+importing a scanned coloring page into GIMP, removing paper texture and
+background shadows using Levels, converting the white areas into a
+transparent layer using the Color to Alpha tool, and exporting a clean,
+isolated line drawing.</p>
+<h3 id="step-1-scan-or-photograph-the-page">Step 1: Scan or Photograph
+the Page</h3>
+<p>Digitize the coloring book page using a flatbed scanner or a
+smartphone camera. If scanning, set the resolution to at least 300 DPI
+in grayscale or color mode. If using a camera, ensure the page is
+completely flat, evenly lit with natural light, and captured directly
+from above to avoid perspective distortion and harsh shadows.</p>
+<h3 id="step-2-open-and-crop-the-image-in-gimp">Step 2: Open and Crop
+the Image in GIMP</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; Open</strong> to select your
+digitized image.</li>
+<li>Select the <strong>Crop Tool</strong> (<code>Shift + C</code>) from
+the toolbox.</li>
+<li>Drag a box around the specific illustration you want to extract to
+eliminate the page edges and book binding. Press <strong>Enter</strong>
+to crop.</li>
+</ol>
+<h3 id="step-3-convert-the-image-to-grayscale">Step 3: Convert the Image
+to Grayscale</h3>
+<p>Remove any unwanted paper tint or scanner color cast:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Image &gt; Mode &gt;
+Grayscale</strong>.</li>
+<li>Alternatively, go to <strong>Colors &gt; Desaturate &gt;
+Desaturate</strong> and select the <strong>Luminance</strong> mode, then
+click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-4-clean-up-the-background-with-levels">Step 4: Clean Up the
+Background with Levels</h3>
+<p>Adjusting the tonal range ensures the paper turns pure white and the
+lines become solid black.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Levels</strong>.</li>
+<li>In the <strong>Input Levels</strong> section, locate the three
+sliders below the histogram:
+<ul>
+<li>Drag the <strong>black point slider</strong> (left) toward the
+center to darken the lines.</li>
+<li>Drag the <strong>white point slider</strong> (right) toward the
+center to turn the gray paper background pure white.</li>
+<li>Fine-tune the <strong>gray midpoint slider</strong> (middle) to
+preserve thin or faint line details without introducing noise.</li>
+</ul></li>
+<li>Click <strong>OK</strong> once the background is clean white and the
+lines are crisp.</li>
+</ol>
+<h3 id="step-5-convert-the-white-background-to-transparency">Step 5:
+Convert the White Background to Transparency</h3>
+<p>To isolate the line drawing so you can color beneath it, remove the
+white pixels:</p>
+<ol type="1">
+<li>Go to the top menu and select <strong>Colors &gt; Color to
+Alpha</strong>.</li>
+<li>Ensure the <strong>Color</strong> swatch is set to pure white
+(<code>#FFFFFF</code>). GIMP defaults to white automatically.</li>
+<li>The preview will show a checkerboard pattern behind the black lines,
+indicating that all white and off-white pixels have been converted to
+transparency.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-6-clean-up-stray-marks">Step 6: Clean Up Stray Marks</h3>
+<ol type="1">
+<li>Select the <strong>Eraser Tool</strong> (<code>Shift + E</code>)
+from the toolbox.</li>
+<li>Zoom in using the <code>+</code> key and erase any leftover scanner
+dust, stray pencil marks, or unwanted paper texture artifacts.</li>
+<li>If any line segments are broken or faded, switch to the
+<strong>Paintbrush Tool</strong> (<code>P</code>), set your foreground
+color to black, and fill in the gaps.</li>
+</ol>
+<h3 id="step-7-export-the-transparent-line-art">Step 7: Export the
+Transparent Line Art</h3>
+<p>To preserve the transparent background for digital painting:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As</strong>.</li>
+<li>Name your file and ensure the extension is set to <code>.png</code>
+(e.g., <code>line_art.png</code>).</li>
+<li>Click <strong>Export</strong>, leave the default PNG settings, and
+click <strong>Export</strong> again.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

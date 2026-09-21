@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use GIMP Pass-Through Mode for Adjustment Layers - gimp</title>
+    <meta name="description" content="In GIMP, layer groups act as isolated containers by default, preventing blend modes applied inside the group from affecting the canvas below. Setting a layer group's blend mode to Pass-Through removes this isolation boundary, allowing adjustment layers,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/use-gimp-pass-through-mode-for-adjustment-layers">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Use GIMP Pass-Through Mode for Adjustment Layers - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/use-gimp-pass-through-mode-for-adjustment-layers" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, layer groups act as isolated containers by default, preventing blend modes applied inside the group from affecting the canvas below. Setting a layer group's blend mode to Pass-Through removes this isolation boundary, allowing adjustment layers," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="use-gimp-pass-through-mode-for-adjustment-layers">Use GIMP
+Pass-Through Mode for Adjustment Layers</h1>
+<p>In GIMP, layer groups act as isolated containers by default,
+preventing blend modes applied inside the group from affecting the
+canvas below. Setting a layer group's blend mode to Pass-Through removes
+this isolation boundary, allowing adjustment layers, color grading
+stacks, and blend modes inside the group to directly influence all
+underlying canvas elements.</p>
+<h3 id="understanding-pass-through-vs-normal-group-mode">Understanding
+Pass-Through vs. Normal Group Mode</h3>
+<p>When a layer group is set to <strong>Normal</strong> mode, GIMP
+processes all the layers within that group internally into a single
+composite before rendering it onto the layers below. Consequently, blend
+modes like Multiply, Screen, or Overlay applied to individual layers
+inside the folder will only interact with other layers inside that same
+folder.</p>
+<p>When a layer group is set to <strong>Pass-Through</strong> mode, GIMP
+treats the layers inside the group as if they were sitting directly in
+the main layer stack. This maintains full organizational tidiness within
+folders while enabling adjustments, effects, and blend modes to pass
+straight through to the underlying artwork.</p>
+<h3 id="step-by-step-enabling-pass-through-mode-in-gimp">Step-by-Step:
+Enabling Pass-Through Mode in GIMP</h3>
+<ol type="1">
+<li><p><strong>Organize Layers into a Group:</strong> Click the
+<strong>Create a new layer group</strong> icon (the folder icon) at the
+bottom of the <strong>Layers</strong> dock. Name the group according to
+your task (e.g., "Color Adjustments").</p></li>
+<li><p><strong>Add Your Adjustment Layers:</strong> Drag existing layers
+into the group, or create new layers inside it. Apply your desired blend
+modes (such as Soft Light, Overlay, or Color) or painting effects to
+these internal layers.</p></li>
+<li><p><strong>Select the Layer Group:</strong> Click directly on the
+parent layer group folder in the <strong>Layers</strong> panel to
+highlight it.</p></li>
+<li><p><strong>Change the Group Mode to Pass-Through:</strong> Locate
+the <strong>Mode</strong> dropdown menu at the top of the
+<strong>Layers</strong> dock. Open the menu and select
+<strong>Pass-Through</strong> (located near the top of the
+list).</p></li>
+</ol>
+<p>Once Pass-Through is enabled, the layers inside the folder will
+immediately affect every visible layer beneath the group on the
+canvas.</p>
+<h3 id="practical-use-cases">Practical Use Cases</h3>
+<ul>
+<li><strong>Global Color Grading:</strong> Keep tone curves, gradient
+maps, and tint layers consolidated in a single folder without flattening
+the composition or losing blend behavior.</li>
+<li><strong>Organized Non-Destructive Editing:</strong> Group multiple
+highlight and shadow passes together while ensuring their blend modes
+continue to interact with the original base artwork.</li>
+<li><strong>Layer Masking:</strong> Add a single layer mask to the
+Pass-Through group to restrict a complex stack of adjustments to a
+specific subject or region on the canvas.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

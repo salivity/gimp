@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Close Line Art Gaps in GIMP Automatically - gimp</title>
+    <meta name="description" content="Digital artists often encounter unclosed line art, which causes colors to bleed into surrounding areas when using traditional fill tools. GIMP solves this issue through its smart Line Art Detection algorithm within the Bucket Fill tool. This guide explai">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-close-line-art-gaps-in-gimp-automatically">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Close Line Art Gaps in GIMP Automatically - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-close-line-art-gaps-in-gimp-automatically" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Digital artists often encounter unclosed line art, which causes colors to bleed into surrounding areas when using traditional fill tools. GIMP solves this issue through its smart Line Art Detection algorithm within the Bucket Fill tool. This guide explai" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-close-line-art-gaps-in-gimp-automatically">How to Close
+Line Art Gaps in GIMP Automatically</h1>
+<p>Digital artists often encounter unclosed line art, which causes
+colors to bleed into surrounding areas when using traditional fill
+tools. GIMP solves this issue through its smart Line Art Detection
+algorithm within the Bucket Fill tool. This guide explains how to
+locate, configure, and adjust the line art closure
+threshold—specifically the Maximum Gap Length setting—to automatically
+detect, bridge, and fill shapes that have small gaps without altering
+the original linework.</p>
+<h3 id="step-1-select-the-bucket-fill-tool">Step 1: Select the Bucket
+Fill Tool</h3>
+<ol type="1">
+<li>Open your project in GIMP.</li>
+<li>Select the <strong>Bucket Fill Tool</strong> from the Tools panel or
+press <strong>Shift + B</strong>.</li>
+<li>Open the <strong>Tool Options</strong> dialog (if not visible, go to
+<strong>Windows &gt; Dockable Dialogs &gt; Tool Options</strong>).</li>
+</ol>
+<h3 id="step-2-enable-line-art-detection">Step 2: Enable Line Art
+Detection</h3>
+<ol type="1">
+<li>In the Tool Options panel, scroll down to find the <strong>Fill
+by</strong> setting.</li>
+<li>Change the dropdown menu from <em>Similar colors</em> to
+<strong>Line art detection</strong>.</li>
+<li>Under the <strong>Source</strong> section, set where GIMP should
+read the lines:
+<ul>
+<li>Choose <strong>All visible layers</strong> if your line art is
+separated from your background.</li>
+<li>Choose <strong>Active layer</strong> if your line art resides on the
+currently selected layer.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-configure-the-gap-closure-threshold">Step 3: Configure
+the Gap Closure Threshold</h3>
+<p>The closure threshold in GIMP is defined by the <strong>Maximum gap
+length</strong> parameter, which dictates the size of open line gaps the
+tool will automatically bridge:</p>
+<ol type="1">
+<li>Locate the <strong>Maximum gap length</strong> slider under the Line
+Art Detection settings.</li>
+<li>Set the value in pixels:
+<ul>
+<li><strong>Small breaks (default: 3–5 px):</strong> Ideal for subtle
+imperfections, textured brushes, or fine pencil strokes.</li>
+<li><strong>Larger breaks (8–15+ px):</strong> Useful for loose, sketchy
+linework. Avoid setting this value too high, as it may cause narrow
+intentional openings (such as between fingers or hair strands) to close
+unintentionally.</li>
+</ul></li>
+<li>Check the <strong>Spline stroke ends</strong> box. Enabling this
+allows GIMP to curve the closure lines naturally following the
+trajectory of the strokes, creating a cleaner boundary than a straight
+line bridge.</li>
+</ol>
+<h3 id="step-4-test-and-fine-tune-the-fill">Step 4: Test and Fine-Tune
+the Fill</h3>
+<ol type="1">
+<li>Click inside an unclosed area on your canvas to fill it.</li>
+<li><strong>If paint leaks outside the lines:</strong> Increase the
+<strong>Maximum gap length</strong> slider incrementally until the leak
+stops.</li>
+<li><strong>If adjacent areas are incorrectly blocked off:</strong>
+Decrease the <strong>Maximum gap length</strong> slider to allow tighter
+spaces to remain open.</li>
+<li>Optional: Adjust <strong>Maximum growing size</strong> to push the
+fill pixels slightly beneath the line art, preventing white halos around
+the edges.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

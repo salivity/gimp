@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Stroke a Path with the Smudge Tool in GIMP - gimp</title>
+    <meta name="description" content="GIMP allows artists to automate manual brush strokes along precise vector paths, including using the Smudge tool to blend pixels and generate fluid, dynamic motion trails. This guide explains the exact method for configuring your brush settings, drawing">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-stroke-a-path-with-the-smudge-tool-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Stroke a Path with the Smudge Tool in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-stroke-a-path-with-the-smudge-tool-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP allows artists to automate manual brush strokes along precise vector paths, including using the Smudge tool to blend pixels and generate fluid, dynamic motion trails. This guide explains the exact method for configuring your brush settings, drawing" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-stroke-a-path-with-the-smudge-tool-in-gimp">How to Stroke
+a Path with the Smudge Tool in GIMP</h1>
+<p>GIMP allows artists to automate manual brush strokes along precise
+vector paths, including using the Smudge tool to blend pixels and
+generate fluid, dynamic motion trails. This guide explains the exact
+method for configuring your brush settings, drawing a vector guide, and
+using the "Stroke Path" function to generate seamless directional
+smudges along any custom curve.</p>
+<h3 id="step-1-prepare-your-artwork-layer">Step 1: Prepare Your Artwork
+Layer</h3>
+<p>Because the Smudge tool distorts and drags existing color data rather
+than applying new pigment, you must apply the effect to a layer
+containing pixels.</p>
+<ol type="1">
+<li>Select the layer containing the graphic, subject, or color spot you
+want to stretch into a motion trail.</li>
+<li>If you want to preserve your original layer, duplicate it by
+pressing <strong>Shift + Ctrl + D</strong> (or <strong>Shift + Cmd +
+D</strong> on macOS) and work on the duplicate.</li>
+</ol>
+<h3 id="step-2-draw-the-vector-path">Step 2: Draw the Vector Path</h3>
+<p>The motion trail will follow the exact trajectory of a vector
+line.</p>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> from the Toolbox or press the
+shortcut key <strong>B</strong>.</li>
+<li>Click on the canvas to place anchor points along the direction you
+want the motion trail to flow, starting directly on the pixels you wish
+to smudge.</li>
+<li>Click and drag the handles between nodes to create smooth curves
+that match the intended movement.</li>
+</ol>
+<h3 id="step-3-configure-the-smudge-tool-settings">Step 3: Configure the
+Smudge Tool Settings</h3>
+<p>The Stroke Path command inherits whatever settings are currently
+active on the chosen paint tool.</p>
+<ol type="1">
+<li>Select the <strong>Smudge Tool</strong> from the Toolbox (keyboard
+shortcut <strong>S</strong>).</li>
+<li>In the <strong>Tool Options</strong> panel, choose a brush tip. A
+soft, round brush creates smooth, vapor-like trails, while a textured
+brush creates speed-line effects.</li>
+<li>Set the <strong>Size</strong> to dictate the thickness of the motion
+streak.</li>
+<li>Adjust the <strong>Rate</strong> slider. A higher rate (between 60%
+and 90%) pulls pixels farther along the path, while a lower rate creates
+subtle, short-distance blending.</li>
+<li>In the <strong>Dynamics</strong> section, optionally select
+<strong>Fade Tapering</strong> or <strong>Pressure Opacity</strong> if
+you want the motion trail to thin out or fade toward the end of the
+path.</li>
+</ol>
+<h3 id="step-4-stroke-the-path">Step 4: Stroke the Path</h3>
+<p>Once your tool settings are ready, apply the stroke along the vector
+line.</p>
+<ol type="1">
+<li>Open the <strong>Paths Dialog</strong> dock (accessible via
+<strong>Windows &gt; Dockable Dialogs &gt; Paths</strong> if not
+visible).</li>
+<li>Ensure your active path is selected in the list.</li>
+<li>Go to the top menu and select <strong>Edit &gt; Stroke
+Path...</strong> (alternatively, click the <strong>Paint along the
+path</strong> icon at the bottom of the Paths Dialog).</li>
+<li>In the dialog box that appears, select the <strong>Stroke with a
+paint tool</strong> radio button.</li>
+<li>From the drop-down menu, select <strong>Smudge</strong>.</li>
+<li>Check <strong>Emulate brush dynamics</strong> if you configured your
+brush to fade or taper along the stroke.</li>
+<li>Click <strong>Stroke</strong>.</li>
+</ol>
+<p>GIMP will instantly pull the color data along the vector curve
+according to your Smudge settings, producing a precise and uniform
+motion trail. If the effect needs to be longer or more pronounced, you
+can repeat the stroke by pressing <strong>Ctrl + Z</strong> to undo,
+increasing the Smudge Rate, and running the command again.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

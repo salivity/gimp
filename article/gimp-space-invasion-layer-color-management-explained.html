@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Space Invasion: Layer Color Management Explained - gimp</title>
+    <meta name="description" content="The Space Invasion project is a foundational architectural upgrade within GIMP that introduces per-layer color space management. Powered by the GEGL (Generic Graphical Library) and babl color conversion engines, this initiative fundamentally overhauls ho">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-space-invasion-layer-color-management-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Space Invasion: Layer Color Management Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-space-invasion-layer-color-management-explained" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Space Invasion project is a foundational architectural upgrade within GIMP that introduces per-layer color space management. Powered by the GEGL (Generic Graphical Library) and babl color conversion engines, this initiative fundamentally overhauls ho" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-space-invasion-layer-color-management-explained">GIMP Space
+Invasion: Layer Color Management Explained</h1>
+<p>The Space Invasion project is a foundational architectural upgrade
+within GIMP that introduces per-layer color space management. Powered by
+the GEGL (Generic Graphical Library) and babl color conversion engines,
+this initiative fundamentally overhauls how the application handles
+color by allowing individual layers, masks, and channels within a single
+project to operate in distinct color spaces, dynamic ranges, and
+profiles.</p>
+<p>Historically, image editors, including older versions of GIMP,
+enforced a rigid color model: the entire image document was constrained
+to a single global color space, such as sRGB or Adobe RGB. If a user
+imported an asset with a wider color gamut or a different transfer
+function (such as linear light versus gamma-corrected light), the layer
+had to be permanently converted to the master document's color space,
+often causing clipping, posterization, or banding.</p>
+<p>Space Invasion eliminates these constraints by decoupling the image's
+canvas profile from individual layer properties. Under this
+architecture, babl tracks the exact color space of every pixel buffer
+throughout the processing pipeline. A layer can retain its native
+wide-gamut space (such as DCI-P3 or ProPhoto RGB) alongside an sRGB
+layer without requiring destructive downsampling or manual color profile
+conversions.</p>
+<p>This independence transforms layer compositing and blending. Users
+can choose whether layer blending and filtering occur in linear light,
+non-linear gamma-corrected space, or custom spaces optimized for
+specific artistic tasks. Linear light compositing prevents the dark
+fringing artifacts commonly seen when blending contrasting colors, while
+perceptual spaces remain available for operations that require
+traditional paint-mixing behavior.</p>
+<p>Space Invasion also enables hybrid workflows where grayscale masks,
+high-dynamic-range floating-point buffers, and different RGB profiles
+interact dynamically. When rendering to the screen or exporting to a
+final file format, GIMP computes the exact color conversions on the fly,
+preserving the maximum possible fidelity of every asset until the final
+composite is generated.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

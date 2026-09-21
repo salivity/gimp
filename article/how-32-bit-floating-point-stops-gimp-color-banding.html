@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How 32-Bit Floating Point Stops GIMP Color Banding - gimp</title>
+    <meta name="description" content="Color banding occurs when subtle gradients in an image separate into distinct, visible stripes due to an insufficient number of tonal values during heavy post-processing. In GIMP, switching to a high-bit-depth 32-bit floating-point precision eliminates t">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-32-bit-floating-point-stops-gimp-color-banding">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How 32-Bit Floating Point Stops GIMP Color Banding - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-32-bit-floating-point-stops-gimp-color-banding" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Color banding occurs when subtle gradients in an image separate into distinct, visible stripes due to an insufficient number of tonal values during heavy post-processing. In GIMP, switching to a high-bit-depth 32-bit floating-point precision eliminates t" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-32-bit-floating-point-stops-gimp-color-banding">How 32-Bit
+Floating Point Stops GIMP Color Banding</h1>
+<p>Color banding occurs when subtle gradients in an image separate into
+distinct, visible stripes due to an insufficient number of tonal values
+during heavy post-processing. In GIMP, switching to a high-bit-depth
+32-bit floating-point precision eliminates this issue by replacing
+rigid, integer-based values with continuous mathematical coordinates.
+This article explains the technical mechanics of 8-bit quantization
+errors, how floating-point architecture preserves continuous tones under
+extreme curve adjustments, and why this prevents posterization in your
+final output.</p>
+<h3 id="the-cause-of-color-banding-integer-quantization">The Cause of
+Color Banding: Integer Quantization</h3>
+<p>Standard digital images commonly rely on 8-bit integer precision. In
+an 8-bit channel, tone is mapped to 256 discrete steps (values 0 through
+255). When you shoot or create a smooth gradient, such as a clear sky or
+a studio backdrop, adjacent pixels occupy neighboring values on this
+256-step ladder.</p>
+<p>When you apply an extreme tonal curve—such as dragging up deep shadow
+tones or drastically steepening the midtone contrast—you stretch these
+256 values across a much broader dynamic range. Because integer math
+cannot accommodate fractions, the space between those 256 values expands
+into empty gaps. Pixels that previously differed by a single step are
+forced apart, and the intermediate values remain missing. The human eye
+detects these abrupt tonal jumps as harsh lines or "bands."</p>
+<h3 id="how-32-bit-floating-point-precision-works">How 32-Bit
+Floating-Point Precision Works</h3>
+<p>Unlike integer formats that rely on fixed whole numbers, 32-bit
+floating-point precision represents pixel values as decimal
+fractions—typically mapping absolute black to <code>0.0</code> and pure
+white to <code>1.0</code>.</p>
+<p>Because a 32-bit single-precision float uses 1 bit for the sign, 8
+bits for an exponent, and 23 bits for the mantissa (significand), it
+provides approximately seven decimal digits of precision across billions
+of possible numerical states per channel.</p>
+<p>Instead of jumping directly from <code>120</code> to <code>121</code>
+as an 8-bit integer must, a 32-bit float can represent fine gradations
+such as <code>0.4705882</code>, <code>0.4705883</code>, and so
+forth.</p>
+<h3 id="why-floating-point-solves-extreme-curve-degradation">Why
+Floating-Point Solves Extreme Curve Degradation</h3>
+<p>When you perform extreme curve adjustments under 32-bit
+floating-point precision, GIMP's GEGL (Generic Graphics Library) engine
+processes the data with several distinct advantages:</p>
+<ul>
+<li><strong>Elimination of Rounding Errors:</strong> In 8-bit or 16-bit
+integer modes, repeated mathematical calculations force intermediate
+results to round to the nearest whole integer, accumulating truncation
+errors. Floating-point calculations calculate pixel adjustments with
+microscopic fractional precision, preventing intermediate rounding
+loss.</li>
+<li><strong>Virtually Infinite Mid-Tone Granularity:</strong> Stretching
+a smooth gradient with a steep S-curve or an aggressive tone curve does
+not create empty gaps between shades. The floating-point format inserts
+millions of addressable fractional steps between any two tonal points,
+ensuring the transition between adjacent pixels remains smooth and
+continuous.</li>
+<li><strong>Out-of-Gamut and Unbounded Values:</strong> Integer systems
+hard-clip values that exceed maximum white (255) or fall below pure
+black (0). 32-bit floating point in GIMP is unbounded, meaning values
+can mathematically exist below <code>0.0</code> and above
+<code>1.0</code>. If a curve temporarily pushes highlights or shadows
+out of range, the underlying data is not permanently clipped; subsequent
+operations or inverted curves can pull that color information back down
+into the visible spectrum without dynamic range loss.</li>
+</ul>
+<h3 id="preserving-quality-for-final-export">Preserving Quality for
+Final Export</h3>
+<p>While most consumer displays and standard image formats (such as
+JPEG) remain limited to 8-bit sRGB, working internally at 32-bit
+floating-point precision keeps gradients intact right up until the final
+render. When you eventually export your project to an 8-bit output
+format, GIMP applies spatial dithering. This process scatters
+microscopic noise across the mathematically continuous 32-bit gradients,
+tricking the human eye into perceiving a seamless transition rather than
+quantized bands.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

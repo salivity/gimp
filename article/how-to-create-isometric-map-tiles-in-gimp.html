@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Isometric Map Tiles in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to design seamless 2:1 standard isometric map tiles from scratch using GIMP. You will learn how to configure your workspace, transform flat top-down textures into an isometric perspective using mathematical scaling, construct 3D d">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-isometric-map-tiles-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Isometric Map Tiles in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-isometric-map-tiles-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design seamless 2:1 standard isometric map tiles from scratch using GIMP. You will learn how to configure your workspace, transform flat top-down textures into an isometric perspective using mathematical scaling, construct 3D d" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-isometric-map-tiles-in-gimp">How to Create
+Isometric Map Tiles in GIMP</h1>
+<p>This guide explains how to design seamless 2:1 standard isometric map
+tiles from scratch using GIMP. You will learn how to configure your
+workspace, transform flat top-down textures into an isometric
+perspective using mathematical scaling, construct 3D depth, and export
+your finished assets for game engines or mapping projects.</p>
+<h3 id="step-1-set-up-the-canvas">Step 1: Set Up the Canvas</h3>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Set your canvas dimensions. For standard 2:1 dimetric/isometric
+projection (common in video games), use powers of two where width is
+double the height (e.g., <strong>256 x 128 px</strong> or <strong>512 x
+256 px</strong>).</li>
+<li>Expand <strong>Advanced Options</strong> and set <strong>Fill
+with</strong> to <strong>Transparency</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="step-2-configure-the-isometric-guide-grid">Step 2: Configure the
+Isometric Guide Grid</h3>
+<ol type="1">
+<li>Go to <strong>Image &gt; Configure Grid</strong>.</li>
+<li>Under the <strong>Spacing</strong> section, unlink the width and
+height chain icon.</li>
+<li>Set the <strong>Width</strong> to half your canvas width (e.g., 128
+px) and the <strong>Height</strong> to half your canvas height (e.g., 64
+px).</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Enable the grid by checking <strong>View &gt; Show Grid</strong> and
+<strong>View &gt; Snap to Grid</strong>.</li>
+</ol>
+<h3 id="step-3-create-the-isometric-top-face">Step 3: Create the
+Isometric Top Face</h3>
+<p>You can create the base diamond shape using one of two
+approaches:</p>
+<h4 id="method-a-transforming-a-flat-square-texture">Method A:
+Transforming a Flat Square Texture</h4>
+<ol type="1">
+<li>Open or draw a seamless square texture on a separate layer (e.g.,
+256 x 256 px).</li>
+<li>Select the <strong>Rotate Tool</strong> (<code>Shift + R</code>) and
+rotate the layer by <strong>45 degrees</strong>.</li>
+<li>Select the <strong>Scale Tool</strong> (<code>Shift + S</code>),
+unlink the aspect ratio chain, and reduce the <strong>Height</strong> by
+exactly <strong>50%</strong> (or multiply the original height by 0.5)
+while keeping the scaled width unchanged.</li>
+<li>Center the resulting diamond on your canvas.</li>
+</ol>
+<h4 id="method-b-manual-path-drawing">Method B: Manual Path Drawing</h4>
+<ol type="1">
+<li>Select the <strong>Paths Tool</strong> (<code>B</code>).</li>
+<li>Click four points using the grid intersections: Top-Center (128, 0),
+Right-Center (256, 64), Bottom-Center (128, 128), and Left-Center (0,
+64).</li>
+<li>Click the first point again to close the path.</li>
+<li>In the tool options, click <strong>Selection from
+Path</strong>.</li>
+<li>Fill the selection on a new layer with your base color or
+texture.</li>
+</ol>
+<h3 id="step-4-add-vertical-depth-block-base">Step 4: Add Vertical Depth
+(Block Base)</h3>
+<ol type="1">
+<li>Duplicate your diamond top layer and move it downward to create the
+bottom edge of the tile (e.g., 32 to 64 pixels down depending on desired
+thickness).</li>
+<li>Create a new transparent layer between the top face and the bottom
+duplicate.</li>
+<li>Use the <strong>Rectangle Select Tool</strong> or <strong>Free
+Select Tool</strong> to connect the side vertices:
+<ul>
+<li><strong>Left Side Wall:</strong> Connect the far-left point to the
+bottom-left point, then down to the extruded base.</li>
+<li><strong>Right Side Wall:</strong> Connect the far-right point to the
+bottom-right point, then down to the extruded base.</li>
+</ul></li>
+<li>Fill each side with a solid tone. Make the right face darker than
+the left face to simulate a directional light source.</li>
+</ol>
+<h3 id="step-5-clean-up-and-export">Step 5: Clean Up and Export</h3>
+<ol type="1">
+<li>Merge the visible tile layers into a single layer by right-clicking
+the layer stack and selecting <strong>Merge Visible
+Layers</strong>.</li>
+<li>Use the <strong>Crop to Content</strong> feature under <strong>Image
+&gt; Crop to Content</strong> to remove excess transparent margins if
+needed.</li>
+<li>Go to <strong>File &gt; Export As...</strong>, select <strong>PNG
+Image (*.png)</strong>, and make sure <strong>Save background
+color</strong> is disabled to retain transparency.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

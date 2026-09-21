@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Path and Bucket Fill in GIMP Comic Art - gimp</title>
+    <meta name="description" content="When coloring comic art in GIMP, combining the Stroke Path function with the Bucket Fill workflow allows colorists to eliminate unsightly gaps, bridge unclosed linework, and create seamless "color traps" beneath line art. This guide explains how using pa">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/stroke-path-and-bucket-fill-in-gimp-comic-art">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stroke Path and Bucket Fill in GIMP Comic Art - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/stroke-path-and-bucket-fill-in-gimp-comic-art" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When coloring comic art in GIMP, combining the Stroke Path function with the Bucket Fill workflow allows colorists to eliminate unsightly gaps, bridge unclosed linework, and create seamless "color traps" beneath line art. This guide explains how using pa" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="stroke-path-and-bucket-fill-in-gimp-comic-art">Stroke Path and
+Bucket Fill in GIMP Comic Art</h1>
+<p>When coloring comic art in GIMP, combining the Stroke Path function
+with the Bucket Fill workflow allows colorists to eliminate unsightly
+gaps, bridge unclosed linework, and create seamless "color traps"
+beneath line art. This guide explains how using paths in conjunction
+with bucket filling provides clean color flats, prevents color bleeding,
+and ensures anti-aliased linework does not leave pixelated white halos
+around character art.</p>
+<h3 id="the-role-of-paths-in-comic-inking-and-flatting">The Role of
+Paths in Comic Inking and Flatting</h3>
+<p>Traditional scanned or digitally inked comic linework often features
+anti-aliased (semi-transparent) edges or tiny breaks where lines fail to
+meet. When applying flat colors using the standard Bucket Fill tool,
+these breaks cause paint to leak across the canvas, while the
+anti-aliasing often leaves a faint white fringe between the ink and the
+color fill.</p>
+<p>Using paths solves these issues by establishing sharp, mathematically
+defined vector boundaries around specific elements of your illustration
+before or during the fill process.</p>
+<h3 id="preventing-color-bleeding-gap-closing">Preventing Color Bleeding
+(Gap Closing)</h3>
+<p>If your comic linework contains open gaps, the Bucket Fill tool
+cannot distinguish between the inside of a character and the background.
+By drawing a quick path across open gaps and using Stroke Path with a
+minimal brush size on a utility or mask layer, you temporarily bridge
+the gaps. This restricts the Bucket Fill tool strictly to the intended
+coloring zone without requiring you to alter your original ink
+layer.</p>
+<h3 id="eliminating-halos-with-color-trapping">Eliminating Halos with
+Color Trapping</h3>
+<p>A primary challenge in digital comic coloring is ensuring that color
+flats sit comfortably beneath the inked lines without leaving uncolored
+pixels. The path-to-fill workflow automates color trapping through the
+following mechanics:</p>
+<ol type="1">
+<li><strong>Path Generation:</strong> You create a path along the outer
+contour of a character or shadow region using the Paths Tool.</li>
+<li><strong>Stroking the Path:</strong> By stroking the path on a
+dedicated color or underlay layer using a solid color, GIMP lays down a
+precise, uniform border directly aligned with the center of your
+linework.</li>
+<li><strong>Flood Filling:</strong> Once the boundary is stroked, the
+Bucket Fill tool can instantly flood the enclosed area up to that
+stroked edge.</li>
+</ol>
+<p>Because the stroke extends halfway beneath the black line art, the
+color overlaps the ink layer. This ensures that when the black linework
+is placed on top in Multiply or Normal mode, no empty pixels or white
+fringes remain visible.</p>
+<h3 id="line-art-detection-integration">Line Art Detection
+Integration</h3>
+<p>In modern versions of GIMP, the Bucket Fill tool includes dedicated
+Line Art Detection. When working alongside paths, GIMP can use vector
+guides to calculate closure algorithms. Applying strokes along loose
+guide paths enables the detection engine to register faint or broken
+lines as fully closed geometry, significantly speeding up the flatting
+stage for multi-page comic production.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

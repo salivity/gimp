@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Normal Maps in GIMP Using GEGL - gimp</title>
+    <meta name="description" content="This guide explains how to generate 3D normal maps from 2D images directly inside GIMP using the native GEGL Normal Map filter. Normal maps are essential for 3D modeling, game development, and rendering engines to simulate surface depth, bumps, and fine">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-normal-maps-in-gimp-using-gegl">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Normal Maps in GIMP Using GEGL - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-normal-maps-in-gimp-using-gegl" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate 3D normal maps from 2D images directly inside GIMP using the native GEGL Normal Map filter. Normal maps are essential for 3D modeling, game development, and rendering engines to simulate surface depth, bumps, and fine" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-normal-maps-in-gimp-using-gegl">How to Create
+Normal Maps in GIMP Using GEGL</h1>
+<p>This guide explains how to generate 3D normal maps from 2D images
+directly inside GIMP using the native GEGL Normal Map filter. Normal
+maps are essential for 3D modeling, game development, and rendering
+engines to simulate surface depth, bumps, and fine details without
+increasing polygon counts. By following these clear steps, you will
+learn how to prepare your texture, apply the filter, adjust critical
+depth settings, and export your final texture map.</p>
+<h3 id="step-1-prepare-your-base-image">Step 1: Prepare Your Base
+Image</h3>
+<ol type="1">
+<li>Open GIMP and load the image you want to convert into a normal map
+via <strong>File &gt; Open</strong>.</li>
+<li>For the most accurate results, convert the texture to a grayscale
+heightmap. Go to <strong>Image &gt; Mode &gt; Grayscale</strong>, or use
+<strong>Colors &gt; Desaturate &gt; Desaturate</strong> so white
+represents high points and black represents low points.</li>
+<li>If your texture needs to tile seamlessly in a 3D environment, ensure
+edges are seamless beforehand by using <strong>Filters &gt; Map &gt;
+Tile Seamless</strong>.</li>
+</ol>
+<h3 id="step-2-open-the-gegl-normal-map-filter">Step 2: Open the GEGL
+Normal Map Filter</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Filters &gt; Generic
+&gt; Normal Map</strong>.</li>
+<li>Alternatively, if your version requires manual GEGL operations, go
+to <strong>Tools &gt; GEGL Operation...</strong> and choose
+<strong>normal-map</strong> from the dropdown menu.</li>
+<li>Ensure the <strong>Preview</strong> checkbox is enabled so you can
+see changes in real-time. The image will turn into the standard
+purple/blue-tinted normal map spectrum.</li>
+</ol>
+<h3 id="step-3-configure-filter-settings">Step 3: Configure Filter
+Settings</h3>
+<p>Adjust the parameters in the dialog box according to your 3D project
+requirements:</p>
+<ul>
+<li><strong>Scale:</strong> Controls the strength and intensity of the
+surface bump effect. Higher values produce deeper, more aggressive
+bumps, while lower values produce subtle surface variations.</li>
+<li><strong>Filter Type (Kernel):</strong> Choose the algorithm used to
+calculate slopes (e.g., Sobel, Prewitt, or Gradient). The 3x3 or 5x5
+Sobel filter generally provides the smoothest and most standard
+results.</li>
+<li><strong>Invert X / Invert Y:</strong> Switches the direction of the
+light vector. Invert the Y-axis if you are creating normal maps for
+DirectX-based engines (such as Unreal Engine), or leave it standard for
+OpenGL-based engines (such as Blender, Unity, and Godot).</li>
+<li><strong>Wrap:</strong> Enable this setting if your texture needs to
+wrap seamlessly around 3D geometry to prevent visible seams at the
+texture boundaries.</li>
+</ul>
+<h3 id="step-4-apply-and-export">Step 4: Apply and Export</h3>
+<ol type="1">
+<li>Click <strong>OK</strong> to render the normal map onto your
+layer.</li>
+<li>Go to <strong>File &gt; Export As...</strong> and save your image in
+a lossless format like <strong>PNG</strong> or <strong>TGA</strong> to
+preserve fine color gradients and prevent compression artifacts in your
+3D application.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

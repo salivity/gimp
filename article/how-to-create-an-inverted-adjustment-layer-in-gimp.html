@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create an Inverted Adjustment Layer in GIMP - gimp</title>
+    <meta name="description" content="This guide explains how to construct a non-destructive, inverted adjustment layer stack in GIMP using layer groups, blend modes, and inverted layer masks. Because GIMP does not feature dedicated adjustment layer tools out of the box, combining these feat">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-an-inverted-adjustment-layer-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create an Inverted Adjustment Layer in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-an-inverted-adjustment-layer-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to construct a non-destructive, inverted adjustment layer stack in GIMP using layer groups, blend modes, and inverted layer masks. Because GIMP does not feature dedicated adjustment layer tools out of the box, combining these feat" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-an-inverted-adjustment-layer-in-gimp">How to
+Create an Inverted Adjustment Layer in GIMP</h1>
+<p>This guide explains how to construct a non-destructive, inverted
+adjustment layer stack in GIMP using layer groups, blend modes, and
+inverted layer masks. Because GIMP does not feature dedicated adjustment
+layer tools out of the box, combining these features allows you to
+target specific areas of your image with precise color, exposure, and
+tonal adjustments while leaving the underlying data intact.</p>
+<h3 id="1-set-up-the-layer-group">1. Set Up the Layer Group</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>In the <strong>Layers</strong> panel, click the <strong>Create a new
+layer group</strong> icon at the bottom.</li>
+<li>Name this group "Adjustment Group".</li>
+<li>Ensure the Layer Group's mode is set to <strong>Normal</strong> (or
+<strong>Pass-through</strong> depending on whether you want the blend
+effects contained solely within the group).</li>
+</ol>
+<h3 id="2-add-the-adjustment-layer">2. Add the Adjustment Layer</h3>
+<ol type="1">
+<li>Duplicate your base image layer by selecting it and clicking the
+<strong>Duplicate layer</strong> icon (or pressing
+<code>Shift + Ctrl + D</code>).</li>
+<li>Drag this duplicated layer into your "Adjustment Group".</li>
+<li>Apply your desired changes directly to this layer using the
+<strong>Colors</strong> menu (such as <strong>Curves</strong>,
+<strong>Levels</strong>, <strong>Hue-Saturation</strong>, or
+<strong>Exposure</strong>).</li>
+<li>Alternatively, you can create a solid color or gradient layer inside
+the group and set its blend mode to <strong>Overlay</strong>,
+<strong>Multiply</strong>, or <strong>Soft Light</strong> to alter tone
+and contrast.</li>
+</ol>
+<h3 id="3-add-an-inverted-layer-mask-to-the-group">3. Add an Inverted
+Layer Mask to the Group</h3>
+<p>Adding a mask directly to the group controls the visibility of the
+entire adjustment stack at once.</p>
+<ol type="1">
+<li>Right-click the "Adjustment Group" in the Layers panel and select
+<strong>Add Layer Mask</strong>.</li>
+<li>In the dialog box, select <strong>Black (full transparency)</strong>
+to hide the adjustments completely from the start, or select
+<strong>White (full opacity)</strong>. Click <strong>Add</strong>.</li>
+<li>If you selected White, invert it immediately by clicking the mask
+thumbnail in the Layers panel, then navigating to <strong>Layer &gt;
+Mask &gt; Invert</strong> (or pressing <code>Ctrl + I</code>). The mask
+thumbnail will turn black, concealing all adjustments inside the
+group.</li>
+</ol>
+<h3 id="4-paint-to-reveal-the-adjustments">4. Paint to Reveal the
+Adjustments</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush Tool</strong> (<code>P</code>) from
+the Toolbox.</li>
+<li>Set your foreground color to <strong>White</strong>
+(<code>#FFFFFF</code>).</li>
+<li>Click on the black layer mask thumbnail next to the layer group to
+ensure the mask is active.</li>
+<li>Paint over the areas of your canvas where you want the adjustments
+to appear. Painting with white reveals the adjustments; painting with
+black hides them again.</li>
+<li>Lower the brush <strong>Opacity</strong> or adjust its
+<strong>Hardness</strong> for smoother transitions and subtle
+blending.</li>
+</ol>
+<h3 id="5-expand-the-stack">5. Expand the Stack</h3>
+<p>To add multiple adjustments under the same inverted mask:</p>
+<ul>
+<li>Add additional layers inside the "Adjustment Group" above the first
+adjustment layer.</li>
+<li>Adjust their individual opacities and blend modes.</li>
+<li>The single inverted group mask will continue to dictate where all
+contained adjustments are visible across the canvas.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

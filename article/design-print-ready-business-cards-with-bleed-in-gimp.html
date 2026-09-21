@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Print-Ready Business Cards with Bleed in GIMP - gimp</title>
+    <meta name="description" content="Designing professional, print-ready business cards in GIMP requires proper document sizing, correct resolution settings, and precise margins to prevent critical content from being trimmed off during production. By incorporating bleed areas, trim lines, a">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/design-print-ready-business-cards-with-bleed-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Print-Ready Business Cards with Bleed in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/design-print-ready-business-cards-with-bleed-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing professional, print-ready business cards in GIMP requires proper document sizing, correct resolution settings, and precise margins to prevent critical content from being trimmed off during production. By incorporating bleed areas, trim lines, a" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="design-print-ready-business-cards-with-bleed-in-gimp">Design
+Print-Ready Business Cards with Bleed in GIMP</h1>
+<p>Designing professional, print-ready business cards in GIMP requires
+proper document sizing, correct resolution settings, and precise margins
+to prevent critical content from being trimmed off during production. By
+incorporating bleed areas, trim lines, and safety zones using guides,
+you ensure that your design translates seamlessly from the screen to the
+physical print. This guide outlines the exact step-by-step process to
+set up, design, and export high-quality business cards using GIMP.</p>
+<h3 id="step-1-create-a-new-document-with-bleed-dimensions">Step 1:
+Create a New Document with Bleed Dimensions</h3>
+<p>A standard US business card trims to 3.5 × 2.0 inches. Printers
+require a standard bleed of 0.125 inches (1/8") on all four sides to
+prevent white edges after cutting. This makes the total canvas size 3.75
+× 2.25 inches.</p>
+<ol type="1">
+<li>Open GIMP and go to <strong>File &gt; New</strong>.</li>
+<li>Change the unit dropdown from <strong>pixels (px)</strong> to
+<strong>inches (in)</strong>.</li>
+<li>Set the <strong>Width</strong> to <code>3.75</code> and the
+<strong>Height</strong> to <code>2.25</code>.</li>
+<li>Click on <strong>Advanced Options</strong>.</li>
+<li>Set the <strong>X resolution</strong> and <strong>Y
+resolution</strong> to <code>300.000</code> pixels per inch (PPI) to
+ensure crisp print quality.</li>
+<li>Set the <strong>Color space</strong> to <strong>RGB
+color</strong>.</li>
+<li>Click <strong>OK</strong> to generate the canvas.</li>
+</ol>
+<h3 id="step-2-set-up-guides-for-bleed-cut-line-and-safe-zone">Step 2:
+Set Up Guides for Bleed, Cut Line, and Safe Zone</h3>
+<p>Guides help you visualize the three essential zones: the
+<strong>Bleed Line</strong> (canvas edge), the <strong>Cut/Trim
+Line</strong> (where the card is sliced), and the <strong>Safe
+Zone</strong> (where all text and logos must stay).</p>
+<ol type="1">
+<li>Go to <strong>Image &gt; Guides &gt; New Guide (by Percent)</strong>
+or <strong>New Guide...</strong> (under Image &gt; Guides).</li>
+<li>Create the <strong>Cut Lines</strong> (0.125 inches inside the
+canvas):
+<ul>
+<li>Horizontal Guide at <code>0.125 in</code> and
+<code>2.125 in</code>.</li>
+<li>Vertical Guide at <code>0.125 in</code> and
+<code>3.625 in</code>.</li>
+</ul></li>
+<li>Create the <strong>Safe Zone Lines</strong> (0.125 inches inside the
+Cut Line):
+<ul>
+<li>Horizontal Guide at <code>0.25 in</code> and
+<code>2.00 in</code>.</li>
+<li>Vertical Guide at <code>0.25 in</code> and
+<code>3.50 in</code>.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-design-the-business-card">Step 3: Design the Business
+Card</h3>
+<ol type="1">
+<li><strong>Background Elements:</strong> Extend all background colors,
+photos, and patterns completely to the outer canvas edge (the bleed
+line). This guarantees no unprinted margins remain if the cutting blade
+shifts slightly.</li>
+<li><strong>Critical Content:</strong> Place all essential elements—such
+as text, icons, and logos—strictly within the innermost set of guides
+(the Safe Zone).</li>
+<li><strong>Layer Management:</strong> Keep your background, artwork,
+and typography on separate layers to make adjustments
+straightforward.</li>
+</ol>
+<h3 id="step-4-export-to-a-print-ready-format">Step 4: Export to a
+Print-Ready Format</h3>
+<p>Most commercial print shops accept high-resolution PDFs or
+uncompressed TIFF files.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Export As...</strong>.</li>
+<li>Name your file and choose <strong>Portable Document Format
+(*.pdf)</strong> from the file type list.</li>
+<li>Click <strong>Export</strong>.</li>
+<li>In the PDF export dialogue, check <strong>Apply layer masks before
+saving</strong> and ensure compression settings do not degrade image
+quality.</li>
+<li>Click <strong>Export</strong> to finalize the print-ready file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

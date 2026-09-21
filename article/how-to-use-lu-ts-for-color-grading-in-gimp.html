@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use LUTs for Color Grading in GIMP - gimp</title>
+    <meta name="description" content="Color Lookup Tables (LUTs) serve as essential tools in GIMP for remapping colors, adjusting tones, and establishing unified visual aesthetics across images. By acting as mathematical blueprints that convert input color values into specific target values,">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-lu-ts-for-color-grading-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use LUTs for Color Grading in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-lu-ts-for-color-grading-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Color Lookup Tables (LUTs) serve as essential tools in GIMP for remapping colors, adjusting tones, and establishing unified visual aesthetics across images. By acting as mathematical blueprints that convert input color values into specific target values," />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-use-luts-for-color-grading-in-gimp">How to Use LUTs for
+Color Grading in GIMP</h1>
+<p>Color Lookup Tables (LUTs) serve as essential tools in GIMP for
+remapping colors, adjusting tones, and establishing unified visual
+aesthetics across images. By acting as mathematical blueprints that
+convert input color values into specific target values, LUTs allow
+creators to apply complex, cinematic color grades instantly. This
+article outlines the fundamental role of LUTs in GIMP color grading,
+their workflow advantages, and the methods used to apply and fine-tune
+them.</p>
+<h2 id="understanding-color-lookup-tables-luts">Understanding Color
+Lookup Tables (LUTs)</h2>
+<p>A Color Lookup Table is a data file containing an index of color
+transformations. When applied to an image, the LUT reads the original
+RGB values of each pixel and replaces them with predetermined
+alternative values. Instead of manually adjusting individual color
+channels, curves, and saturation sliders, a single LUT performs all
+these adjustments simultaneously to alter contrast, hue, and
+luminance.</p>
+<h2 id="the-key-roles-of-luts-in-gimp">The Key Roles of LUTs in
+GIMP</h2>
+<h3 id="1-achieving-cinematic-and-stylized-aesthetics">1. Achieving
+Cinematic and Stylized Aesthetics</h3>
+<p>LUTs allow editors to replicate specific film stocks, artistic color
+palettes, and cinematic color schemes (such as the popular
+teal-and-orange look). They provide precise control over split-toning in
+shadows and highlights, making it easy to create distinct moods without
+manual multi-step grading.</p>
+<h3 id="2-streamlining-workflow-and-consistency">2. Streamlining
+Workflow and Consistency</h3>
+<p>Grading large batches of images manually often leads to color
+discrepancies. Applying the same LUT file across an entire series
+ensures that lighting, contrast, and color balance remain uniform. This
+makes LUTs an industry standard for maintaining visual branding across
+multi-image projects.</p>
+<h3 id="3-cross-platform-compatibility">3. Cross-Platform
+Compatibility</h3>
+<p>LUT formats like <code>.cube</code> and <code>.3dl</code> are
+universally recognized across digital photo and video software. GIMP
+users can utilize the same LUT files designed for video editing suites
+(such as DaVinci Resolve or Adobe Premiere Pro), bridging the gap
+between photography and cinematography workflows.</p>
+<h2 id="applying-luts-in-gimp">Applying LUTs in GIMP</h2>
+<p>GIMP users typically utilize LUTs through two primary methods:</p>
+<ul>
+<li><strong>The G'MIC Plugin:</strong> The third-party G'MIC filter
+library is the most common and versatile way to apply 3D LUTs in GIMP.
+Navigating to <strong>Filters &gt; G'MIC-Qt &gt; Colors &gt; Apply 3D
+LUT</strong> allows users to load external <code>.cube</code> files
+directly onto a layer.</li>
+<li><strong>GEGL Operations:</strong> Modern versions of GIMP
+incorporate native GEGL graph processing, enabling non-destructive color
+transformations and LUT-based mapping directly within the core
+interface.</li>
+</ul>
+<h2 id="best-practices-for-color-grading-with-luts-in-gimp">Best
+Practices for Color Grading with LUTs in GIMP</h2>
+<ul>
+<li><strong>Perform Base Corrections First:</strong> Always correct
+exposure, white balance, and contrast on a separate layer before
+applying a LUT. LUTs are designed to grade properly balanced images;
+uncorrected dynamic range can cause banding or clipping.</li>
+<li><strong>Control Intensity via Layer Opacity:</strong> Direct
+application of a LUT can sometimes appear overly aggressive. Applying
+the LUT to a duplicate layer allows you to reduce the layer opacity to
+blend the effect subtly with the original image.</li>
+<li><strong>Combine with Blending Modes:</strong> Experimenting with
+layer blend modes—such as <strong>Color</strong>, <strong>Soft
+Light</strong>, or <strong>Overlay</strong>—enables you to separate the
+LUT’s color information from its contrast profile.</li>
+<li><strong>Use Layer Masks for Selective Grading:</strong> Apply layer
+masks to restrict the LUT effect to specific areas, such as landscapes
+or clothing, while preserving natural skin tones.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

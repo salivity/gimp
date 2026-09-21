@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Cross Process Effect in GIMP - gimp</title>
+    <meta name="description" content="Cross-processing is a traditional film technique where photographic film is intentionally developed in the chemical solution intended for a different type of film, resulting in quirky color shifts, heightened contrast, and rich saturation. This guide pro">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-a-cross-process-effect-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a Cross Process Effect in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-a-cross-process-effect-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Cross-processing is a traditional film technique where photographic film is intentionally developed in the chemical solution intended for a different type of film, resulting in quirky color shifts, heightened contrast, and rich saturation. This guide pro" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-a-cross-process-effect-in-gimp">How to Create a
+Cross Process Effect in GIMP</h1>
+<p>Cross-processing is a traditional film technique where photographic
+film is intentionally developed in the chemical solution intended for a
+different type of film, resulting in quirky color shifts, heightened
+contrast, and rich saturation. This guide provides a straightforward,
+step-by-step method to simulate this vintage film aesthetic in the free
+image editor GIMP using the Curves tool, color balance adjustments, and
+layer blend modes.</p>
+<h3 id="step-1-open-and-duplicate-the-image">Step 1: Open and Duplicate
+the Image</h3>
+<ol type="1">
+<li>Open GIMP and load your photo by going to <strong>File &gt;
+Open</strong>.</li>
+<li>Duplicate the base image layer to preserve the original by
+navigating to <strong>Layer &gt; Duplicate Layer</strong> (or pressing
+<code>Shift + Ctrl + D</code>).</li>
+<li>Rename the duplicated layer to "Cross Process" in the Layers
+dock.</li>
+</ol>
+<h3 id="step-2-apply-the-color-curves">Step 2: Apply the Color
+Curves</h3>
+<p>The primary tool for mimicking cross-processing is the Curves tool,
+which allows you to manipulate color channels independently.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Curves</strong>.</li>
+<li>Set the <strong>Channel</strong> dropdown to <strong>Red</strong>:
+<ul>
+<li>Create a subtle "S-curve" by dragging the upper-right section
+slightly upward (boosting highlight reds) and the lower-left section
+slightly downward (deepening shadow cyans).</li>
+</ul></li>
+<li>Switch the <strong>Channel</strong> dropdown to
+<strong>Green</strong>:
+<ul>
+<li>Create another gentle "S-curve" to enhance contrast and add a slight
+green cast to the midtones and highlights.</li>
+</ul></li>
+<li>Switch the <strong>Channel</strong> dropdown to
+<strong>Blue</strong>:
+<ul>
+<li>This channel creates the signature cross-process look.</li>
+<li>Drag the bottom-left point (shadows) upward to introduce blue/cyan
+into the dark areas.</li>
+<li>Drag the top-right point (highlights) downward to introduce yellow
+into the bright areas.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to apply the curve changes.</li>
+</ol>
+<h3 id="step-3-boost-contrast-and-saturation">Step 3: Boost Contrast and
+Saturation</h3>
+<p>Cross-processed film typically features punchy tones and vivid
+saturation.</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Brightness-Contrast</strong>.</li>
+<li>Slightly increase the <strong>Contrast</strong> slider (around +10
+to +20) to enhance the punchiness of the image, then click
+<strong>OK</strong>.</li>
+<li>Go to <strong>Colors &gt; Saturation</strong> and increase the scale
+slightly if the colors need more intensity.</li>
+</ol>
+<h3 id="step-4-add-a-color-overlay-optional">Step 4: Add a Color Overlay
+(Optional)</h3>
+<p>To add a uniform retro cast:</p>
+<ol type="1">
+<li>Create a new transparent layer by clicking <strong>Layer &gt; New
+Layer</strong>.</li>
+<li>Select the <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>) and fill this layer with a solid color, such as
+pale yellow, cyan, or magenta.</li>
+<li>In the Layers dock, change the layer <strong>Mode</strong> to
+<strong>Overlay</strong> or <strong>Soft Light</strong>.</li>
+<li>Lower the layer <strong>Opacity</strong> slider to between 10% and
+25% for a subtle tint.</li>
+</ol>
+<h3 id="step-5-add-film-grain-optional">Step 5: Add Film Grain
+(Optional)</h3>
+<ol type="1">
+<li>Create another new transparent layer.</li>
+<li>Go to <strong>Filters &gt; Noise &gt; CIE lch Noise</strong> or
+<strong>RGB Noise</strong>.</li>
+<li>Set the noise to a moderate amount to simulate analog grain.</li>
+<li>Set this layer's <strong>Mode</strong> to <strong>Soft
+Light</strong> or <strong>Overlay</strong> and reduce the
+<strong>Opacity</strong> to around 15–30%.</li>
+</ol>
+<h3 id="step-6-export-the-final-image">Step 6: Export the Final
+Image</h3>
+<ol type="1">
+<li>Inspect the image and adjust individual layer opacities if the
+effect is too intense.</li>
+<li>Go to <strong>File &gt; Export As...</strong> to save the final
+photo in your preferred format (e.g., JPEG or PNG).</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

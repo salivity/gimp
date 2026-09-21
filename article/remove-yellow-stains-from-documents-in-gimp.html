@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Yellow Stains from Documents in GIMP - gimp</title>
+    <meta name="description" content="Aging historic legal documents often suffer from severe yellowing, foxing, and oxidation that obscure critical handwriting, signatures, and printed text. Utilizing the Channel Mixer tool in GIMP offers a precise method to eliminate these yellow aging sta">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/remove-yellow-stains-from-documents-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Remove Yellow Stains from Documents in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/remove-yellow-stains-from-documents-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Aging historic legal documents often suffer from severe yellowing, foxing, and oxidation that obscure critical handwriting, signatures, and printed text. Utilizing the Channel Mixer tool in GIMP offers a precise method to eliminate these yellow aging sta" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="remove-yellow-stains-from-documents-in-gimp">Remove Yellow
+Stains from Documents in GIMP</h1>
+<p>Aging historic legal documents often suffer from severe yellowing,
+foxing, and oxidation that obscure critical handwriting, signatures, and
+printed text. Utilizing the Channel Mixer tool in GIMP offers a precise
+method to eliminate these yellow aging stains by isolating the color
+channels that hold text data while discarding the channels where paper
+decay is most pronounced. This guide outlines the exact, step-by-step
+workflow required to isolate the contrast between ink and paper,
+neutralize discoloration, and produce a high-contrast, archival-grade
+digital restoration.</p>
+<h3 id="1-digitize-and-prepare-the-document">1. Digitize and Prepare the
+Document</h3>
+<p>Begin by importing a high-resolution, uncompressed scan (minimum 300
+to 600 DPI in full 24-bit RGB color) into GIMP. Do not scan the original
+in grayscale; retaining the original RGB color data is necessary for the
+Channel Mixer to differentiate between the yellow stains and the ink.
+Once opened:</p>
+<ol type="1">
+<li>Navigate to the <strong>Layers</strong> panel.</li>
+<li>Right-click the background layer and select <strong>Duplicate
+Layer</strong> to ensure all edits are performed non-destructively.</li>
+<li>Rename this new layer <code>Restoration Working Layer</code>.</li>
+</ol>
+<h3 id="2-inspect-the-color-channels">2. Inspect the Color Channels</h3>
+<p>Yellow stains absorb blue light and reflect red and green light.
+Consequently:</p>
+<ul>
+<li>The <strong>Blue Channel</strong> displays the yellow stains as dark
+patches, blending them directly into the dark ink.</li>
+<li>The <strong>Red Channel</strong> shows the yellowed paper as very
+bright or near-white, creating high contrast between the paper and the
+darker ink.</li>
+<li>The <strong>Green Channel</strong> provides a balanced midrange that
+retains stroke weight and fine penmanship details.</li>
+</ul>
+<p>Understanding this distribution allows you to weight the channels
+appropriately in the next step.</p>
+<h3 id="3-apply-the-channel-mixer-adjustment">3. Apply the Channel Mixer
+Adjustment</h3>
+<p>With the working layer selected, open the tool by navigating to
+<strong>Colors &gt; Components &gt; Channel Mixer</strong> (or use the
+GEGL <strong>Mono Mixer</strong> in newer GIMP versions):</p>
+<ol type="1">
+<li>Check the <strong>Monochrome</strong> box. This forces the output
+into a grayscale image based on custom percentages of the red, green,
+and blue input channels.</li>
+<li>Set the <strong>Red</strong> channel slider to a high positive
+value, typically between <strong>+80% and +120%</strong>. Because yellow
+contains high red values, this pushes the yellowed background directly
+toward pure white.</li>
+<li>Set the <strong>Green</strong> channel slider between <strong>+10%
+and +30%</strong> to preserve intermediate ink densities, pencil marks,
+or faint stamp impressions.</li>
+<li>Set the <strong>Blue</strong> channel slider to <strong>0%</strong>
+or slightly negative (e.g., <strong>-10% to -20%</strong>). Minimizing
+the blue channel completely eliminates the dark tone of yellow
+stains.</li>
+<li>Ensure the sum of the channel values remains around
+<strong>100%</strong> to prevent clipping midtones, adjusting slightly
+until the background appears uniformly bright and the text remains dark
+and sharp.</li>
+<li>Click <strong>OK</strong> to apply the mix.</li>
+</ol>
+<h3 id="4-fine-tune-levels-and-clean-background-residuals">4. Fine-Tune
+Levels and Clean Background Residuals</h3>
+<p>Residual noise or faint paper grain can be neutralized using the
+Levels tool without compromising letterforms:</p>
+<ol type="1">
+<li>Go to <strong>Colors &gt; Levels</strong>.</li>
+<li>Select the <strong>White Point Eyedropper</strong> tool and click on
+the darkest remaining patch of aging stain on the document background.
+This remaps that shade to pure white across the entire layer.</li>
+<li>Slightly move the <strong>Black Input Slider</strong> to the right
+to deepen faded ink and restore solid black densities to text
+strokes.</li>
+<li>Move the <strong>Middle (Gamma) Slider</strong> slightly to the
+right or left to fine-tune legibility and prevent delicate pen strokes
+from breaking apart.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="5-final-touch-ups-and-archival-export">5. Final Touch-Ups and
+Archival Export</h3>
+<p>Inspect the document at 100% zoom to verify that critical legal
+notations, stamps, or marginalia were not accidentally clipped:</p>
+<ol type="1">
+<li>If specific non-yellow elements (such as red wax seals or blue
+registry stamps) need preservation, add a layer mask to the restoration
+layer and paint with black over those regions to reveal the original
+color from the base layer below.</li>
+<li>Flatten the image if necessary via <strong>Image &gt; Flatten
+Image</strong>.</li>
+<li>Export the restored file via <strong>File &gt; Export As</strong>
+using a lossless format such as TIFF or PDF to preserve archival
+fidelity.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

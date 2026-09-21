@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEGL Gaussian Blur for Smooth GIMP Depth Maps - gimp</title>
+    <meta name="description" content="Depth maps rely on seamless grayscale transitions to accurately represent three-dimensional space in a two-dimensional image. In GIMP, the GEGL Gaussian Blur filter plays a vital role in generating smooth depth maps by blending harsh tonal boundaries, el">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gegl-gaussian-blur-for-smooth-gimp-depth-maps">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GEGL Gaussian Blur for Smooth GIMP Depth Maps - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gegl-gaussian-blur-for-smooth-gimp-depth-maps" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Depth maps rely on seamless grayscale transitions to accurately represent three-dimensional space in a two-dimensional image. In GIMP, the GEGL Gaussian Blur filter plays a vital role in generating smooth depth maps by blending harsh tonal boundaries, el" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gegl-gaussian-blur-for-smooth-gimp-depth-maps">GEGL Gaussian
+Blur for Smooth GIMP Depth Maps</h1>
+<p>Depth maps rely on seamless grayscale transitions to accurately
+represent three-dimensional space in a two-dimensional image. In GIMP,
+the GEGL Gaussian Blur filter plays a vital role in generating smooth
+depth maps by blending harsh tonal boundaries, eliminating digital
+stepping artifacts, and creating continuous gradations of distance. This
+article explains how the filter functions, why GEGL’s high-precision
+processing is crucial for depth estimation, and how to use it
+effectively to achieve realistic 3D and depth-of-field effects.</p>
+<h3 id="how-depth-maps-work">How Depth Maps Work</h3>
+<p>A depth map uses grayscale values to encode distance information for
+3D modeling, parallax effects, or synthetic depth of field. Typically,
+pure white represents points closest to the camera, pure black
+represents the furthest background, and shades of gray represent
+intermediate distances. For software to interpret these distances
+naturally, the tonal changes across continuous surfaces must be smooth
+and mathematically consistent.</p>
+<h3 id="the-purpose-of-the-gegl-gaussian-blur-filter">The Purpose of the
+GEGL Gaussian Blur Filter</h3>
+<ol type="1">
+<li><p><strong>Eliminating Stepping and Posterization Artifacts</strong>
+When creating depth maps manually or extracting them via AI tools, hard
+edges or color banding often occur across single surfaces (such as a
+sloping floor or a curved object). The GEGL Gaussian Blur filter
+redistributes pixel values using a bell-shaped Gaussian distribution
+curve, transforming abrupt tonal steps into continuous gradients that
+represent smooth spatial transitions.</p></li>
+<li><p><strong>Leveraging GEGL's High-Bit Depth Architecture</strong>
+GIMP's GEGL (Generic Graphical Library) engine processes filters in
+16-bit or 32-bit floating-point precision and linear light. When
+blurring grayscale depth values, GEGL avoids the quantization errors,
+gamma clipping, and dark haloing common in standard 8-bit blur filters.
+This ensures that the resulting depth values remain mathematically
+accurate for external 3D rendering engines or displacement
+maps.</p></li>
+<li><p><strong>Softening Abrupt Depth Discontinuities</strong> While
+true physical objects often have defined silhouettes, 3D mesh
+displacements and bokeh simulations look unnatural if depth transitions
+are razor-sharp. Applying a controlled Gaussian blur softens sharp depth
+edges just enough to simulate optical roll-off and prevent tearing or
+distortion along the edges of displaced geometry.</p></li>
+<li><p><strong>Simulating Realistic Focal Falloff</strong> Because the
+Gaussian algorithm weights pixels closer to the center more heavily than
+distant ones, it closely mimics the natural optical diffusion seen in
+physical camera lenses. Applying this blur across intermediate depth
+layers allows for gradual, believable focus falloff in post-processing
+pipelines.</p></li>
+</ol>
+<h3 id="best-practices-for-applying-the-filter">Best Practices for
+Applying the Filter</h3>
+<p>To achieve optimal results when smoothing depth maps in GIMP:</p>
+<ul>
+<li><strong>Set Image Precision:</strong> Ensure your image mode is set
+to at least 16-bit integer or 32-bit floating point via
+<code>Image &gt; Precision</code> before applying the filter to avoid
+banding during the blur operation.</li>
+<li><strong>Use Edge Masks:</strong> If specific foreground objects need
+to maintain crisp silhouettes against a distant background, apply the
+GEGL Gaussian Blur through a layer mask to smooth interior surface
+gradients without blurring the outer boundaries of the subject.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

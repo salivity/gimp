@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GIMP Manages Floating Selection States - gimp</title>
+    <meta name="description" content="GIMP handles floating selections as temporary, specialized pseudo-layers that attach directly to an existing target layer rather than functioning as independent elements in the main layer stack. This article explains how GIMP’s internal image architect">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-gimp-manages-floating-selection-states">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GIMP Manages Floating Selection States - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-gimp-manages-floating-selection-states" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP handles floating selections as temporary, specialized pseudo-layers that attach directly to an existing target layer rather than functioning as independent elements in the main layer stack. This article explains how GIMP’s internal image architect" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gimp-manages-floating-selection-states">How GIMP Manages
+Floating Selection States</h1>
+<p>GIMP handles floating selections as temporary, specialized
+pseudo-layers that attach directly to an existing target layer rather
+than functioning as independent elements in the main layer stack. This
+article explains how GIMP’s internal image architecture represents these
+selections, how they integrate into the document's layer tree hierarchy,
+and the operational constraints that govern their lifecycle until they
+are either anchored or converted into standard layers.</p>
+<h3 id="the-nature-of-a-floating-selection">The Nature of a Floating
+Selection</h3>
+<p>In GIMP's internal data model, a floating selection (represented
+programmatically as <code>GimpFloatingSel</code>) is a subclass of a
+standard layer (<code>GimpLayer</code>). It possesses its own pixel
+buffer (backed by GEGL buffers in modern GIMP versions), transformation
+coordinates, and blend modes.</p>
+<p>However, unlike a regular layer, an image can contain only one active
+floating selection at any time. Rather than residing as an autonomous
+node in the root or group layers of the image's tree hierarchy, it is
+directly tethered to a specific target drawable (an existing layer or
+channel).</p>
+<h3 id="attachment-to-the-layer-hierarchy">Attachment to the Layer
+Hierarchy</h3>
+<p>GIMP's core image object (<code>GimpImage</code>) maintains an
+explicit reference to the floating selection. When a user pastes image
+data or cuts a selection without immediately creating a new layer, GIMP
+executes the following structural steps:</p>
+<ol type="1">
+<li><strong>Node Instantiation:</strong> GIMP allocates a new
+<code>GimpLayer</code> configured with a floating selection flag.</li>
+<li><strong>Parent-Child Linkage:</strong> The floating selection is
+associated with the active <code>GimpDrawable</code>. The target
+drawable stores a pointer to the floating layer, and the floating layer
+stores a back-pointer to the target.</li>
+<li><strong>Z-Order Placement:</strong> Within the visual rendering
+graph, the floating selection is dynamically evaluated immediately above
+its parent drawable. It does not exist as a global sibling to other
+layers; it moves and renders relative to the layer it is tethered
+to.</li>
+</ol>
+<h3 id="hierarchy-locking-and-operational-constraints">Hierarchy Locking
+and Operational Constraints</h3>
+<p>Because the floating selection sits in an indeterminate state between
+an active selection mask and an independent layer, GIMP enforces strict
+transactional integrity across the layer tree:</p>
+<ul>
+<li><strong>Tree Mutation Locks:</strong> Most layer-tree
+modifications—such as adding regular layers, deleting underlying layers,
+or reordering the stack—are blocked while a floating selection
+exists.</li>
+<li><strong>Input Redirection:</strong> Paint tools, transformations,
+and filters are restricted to modify only the floating selection node,
+preventing accidental divergence of the underlying layer's state.</li>
+<li><strong>Selection Mask Deactivation:</strong> The global selection
+boundary is temporarily replaced by the boundary of the floating
+selection.</li>
+</ul>
+<h3 id="resolution-anchoring-vs-promotion">Resolution: Anchoring vs.
+Promotion</h3>
+<p>A floating selection cannot persist indefinitely in the layer tree.
+To restore the hierarchy to a regular state, the node must be resolved
+through one of three pathways:</p>
+<ul>
+<li><strong>Anchoring (<code>gimp_floating_sel_anchor</code>):</strong>
+The pixel data inside the floating selection is composited directly into
+the target drawable's pixel buffer according to the floating selection's
+offset and opacity. Once the merge is complete, the floating selection
+node is destroyed, its reference in <code>GimpImage</code> is cleared to
+<code>NULL</code>, and standard tree operations resume.</li>
+<li><strong>Promotion to Layer
+(<code>gimp_floating_sel_to_layer</code>):</strong> GIMP severs the
+tether between the floating selection and its parent drawable. The node
+is stripped of its floating selection flags and inserted into the layer
+tree as an autonomous <code>GimpLayer</code> node at the index
+immediately above the original parent.</li>
+<li><strong>Deletion (<code>gimp_floating_sel_remove</code>):</strong>
+The floating selection node and its buffer are deallocated entirely
+without altering the underlying parent drawable.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

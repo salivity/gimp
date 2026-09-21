@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restoring Torn and Faded Photos in GIMP - gimp</title>
+    <meta name="description" content="Restoring damaged vintage photographs in GIMP involves digitizing the original print, correcting faded contrast and tonal ranges, repairing physical damage like rips and creases using cloning and healing tools, and applying final sharpening adjustments.">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/restoring-torn-and-faded-photos-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Restoring Torn and Faded Photos in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/restoring-torn-and-faded-photos-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Restoring damaged vintage photographs in GIMP involves digitizing the original print, correcting faded contrast and tonal ranges, repairing physical damage like rips and creases using cloning and healing tools, and applying final sharpening adjustments." />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="restoring-torn-and-faded-photos-in-gimp">Restoring Torn and
+Faded Photos in GIMP</h1>
+<p>Restoring damaged vintage photographs in GIMP involves digitizing the
+original print, correcting faded contrast and tonal ranges, repairing
+physical damage like rips and creases using cloning and healing tools,
+and applying final sharpening adjustments. This guide outlines the
+essential step-by-step workflow required to digitally preserve and
+revitalize old, degraded images using the free, open-source GIMP image
+editor.</p>
+<h3 id="step-1-digitize-and-set-up-the-canvas">Step 1: Digitize and Set
+Up the Canvas</h3>
+<p>Scan the original photograph at a minimum resolution of 300 to 600
+DPI in a lossless format such as TIFF or high-quality PNG to capture
+maximum detail. Open the image in GIMP and immediately duplicate the
+background layer by pressing <code>Shift + Ctrl + D</code> or
+right-clicking the layer and selecting <strong>Duplicate Layer</strong>.
+Always perform repairs on this duplicate layer to keep the original scan
+intact as a reference.</p>
+<h3 id="step-2-fix-faded-tones-and-exposure">Step 2: Fix Faded Tones and
+Exposure</h3>
+<p>Faded vintage photos often suffer from a loss of contrast and dynamic
+range.</p>
+<ol type="1">
+<li>Navigate to <strong>Colors &gt; Levels</strong>.</li>
+<li>Drag the black point slider inward to where the histogram data
+begins, and do the same with the white point slider. This deepens the
+shadows and brightens the highlights.</li>
+<li>Open <strong>Colors &gt; Curves</strong> to fine-tune the midtones.
+Create a subtle "S-curve" to add punch and definition back to washed-out
+areas.</li>
+<li>If the photograph is black and white but has an uneven, discolored
+yellow cast, go to <strong>Colors &gt; Desaturate &gt;
+Desaturate</strong> to normalize the tones into a clean monochrome
+palette before adjusting color.</li>
+</ol>
+<h3 id="step-3-reconstruct-torn-edges-and-missing-areas">Step 3:
+Reconstruct Torn Edges and Missing Areas</h3>
+<p>For large tears or missing pieces, you will need to piece the image
+back together.</p>
+<ol type="1">
+<li>Use the <strong>Free Select Tool (Lasso)</strong> to outline an
+undamaged section that mirrors the missing region (such as an opposite
+shoulder or similar background texture).</li>
+<li>Copy (<code>Ctrl + C</code>) and paste (<code>Ctrl + V</code>) the
+selection.</li>
+<li>Promote the pasted floating selection to a new layer.</li>
+<li>Use the <strong>Rotate Tool</strong> (<code>Shift + R</code>) and
+<strong>Flip Tool</strong> (<code>Shift + F</code>) to align the patch
+over the gap.</li>
+<li>Add a <strong>Layer Mask</strong> (white) to this patch layer and
+use a soft black brush to blend the edges seamlessly into the
+surrounding area.</li>
+</ol>
+<h3 id="step-4-repair-creases-tears-and-scratches">Step 4: Repair
+Creases, Tears, and Scratches</h3>
+<p>For smaller surface damage, utilize GIMP's core restoration
+tools:</p>
+<ul>
+<li><strong>The Healing Tool (<code>H</code>):</strong> This is the best
+tool for fine cracks, scratches, and dust. Hold <code>Ctrl</code> to
+select a clean source area nearby, then paint over the scratch. The
+Healing Tool samples the texture of the source while adapting to the
+local color and lighting.</li>
+<li><strong>The Clone Tool (<code>C</code>):</strong> Use the Clone Tool
+for high-contrast edges and distinct structural lines where the Healing
+Tool might smudge. Sample an aligned edge and paint directly along the
+tear line with a soft-edged brush.</li>
+</ul>
+<h3 id="step-5-smooth-out-noise-and-grain">Step 5: Smooth Out Noise and
+Grain</h3>
+<p>Old photos often have irregular paper grain or digitized noise.</p>
+<ol type="1">
+<li>Go to <strong>Filters &gt; Enhance &gt; Despeckle</strong> to remove
+minor dust spots across uniform areas like skies or flat backgrounds
+without losing edge clarity.</li>
+<li>For severe texture artifacts, apply <strong>Filters &gt; Blur &gt;
+Selective Gaussian Blur</strong>, which smooths out noisy surfaces while
+maintaining sharp boundaries between distinct objects.</li>
+</ol>
+<h3 id="step-6-sharpen-and-finalize">Step 6: Sharpen and Finalize</h3>
+<p>To bring back lost detail and finish the restoration:</p>
+<ol type="1">
+<li>Merge visible layers onto a new top layer by pressing
+<code>Ctrl + Shift + E</code> (or right-click any layer and choose
+<strong>New from Visible</strong>).</li>
+<li>Navigate to <strong>Filters &gt; Enhance &gt; Unsharp
+Mask</strong>.</li>
+<li>Adjust the <strong>Radius</strong> (typically 1.0 to 1.5) and
+<strong>Amount</strong> to crisp up the fine details without
+exaggerating remaining noise.</li>
+<li>If a warm vintage look is desired for a monochrome photo, go to
+<strong>Colors &gt; Colorize</strong> to apply a soft sepia tone.</li>
+<li>Save your progress as an <code>.xcf</code> file to preserve layers,
+then export the finished product via <strong>File &gt; Export
+As</strong> in your desired format (e.g., JPEG or PNG).</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

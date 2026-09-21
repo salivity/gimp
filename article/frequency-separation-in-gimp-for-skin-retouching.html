@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequency Separation in GIMP for Skin Retouching - gimp</title>
+    <meta name="description" content="Frequency separation is an essential skin retouching technique that splits an image into two distinct layers: a low-frequency layer containing color, tone, and transitions, and a high-frequency layer containing fine details like pores, blemishes, and tex">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/frequency-separation-in-gimp-for-skin-retouching">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Frequency Separation in GIMP for Skin Retouching - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/frequency-separation-in-gimp-for-skin-retouching" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Frequency separation is an essential skin retouching technique that splits an image into two distinct layers: a low-frequency layer containing color, tone, and transitions, and a high-frequency layer containing fine details like pores, blemishes, and tex" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="frequency-separation-in-gimp-for-skin-retouching">Frequency
+Separation in GIMP for Skin Retouching</h1>
+<p>Frequency separation is an essential skin retouching technique that
+splits an image into two distinct layers: a low-frequency layer
+containing color, tone, and transitions, and a high-frequency layer
+containing fine details like pores, blemishes, and texture. By
+separating these components in GIMP, you can smooth skin tones without
+blurring away vital texture, or remove blemishes without leaving blotchy
+discolorations. This guide outlines the exact, non-destructive procedure
+for creating a frequency separation layer stack in GIMP.</p>
+<h3 id="1-prepare-the-base-layers">1. Prepare the Base Layers</h3>
+<ol type="1">
+<li>Open your portrait in GIMP.</li>
+<li>In the <strong>Layers</strong> panel, duplicate the base image layer
+twice.</li>
+<li>Rename the middle layer to <code>Low Frequency</code>.</li>
+<li>Rename the top layer to <code>High Frequency</code>.</li>
+</ol>
+<h3 id="2-isolate-the-low-frequency-color-and-tone-layer">2. Isolate the
+Low-Frequency (Color and Tone) Layer</h3>
+<ol type="1">
+<li>Hide the <code>High Frequency</code> layer by clicking the eye icon
+next to it.</li>
+<li>Select the <code>Low Frequency</code> layer.</li>
+<li>Go to <strong>Filters &gt; Blur &gt; Gaussian Blur...</strong></li>
+<li>Adjust the <strong>Size X</strong> and <strong>Size Y</strong>
+radius. Increase the blur just until the fine skin textures and pores
+disappear, leaving only the broader colors and lighting transitions
+visible (typically between 3 to 10 pixels, depending on image
+resolution).</li>
+<li>Click <strong>OK</strong> to apply the blur.</li>
+</ol>
+<h3 id="3-extract-the-high-frequency-texture-layer">3. Extract the
+High-Frequency (Texture) Layer</h3>
+<ol type="1">
+<li>Turn the visibility of the <code>High Frequency</code> layer back on
+and select it.</li>
+<li>Change the layer mode of the <code>High Frequency</code> layer from
+<strong>Normal</strong> to <strong>Grain extract</strong>. The canvas
+will turn neutral gray, displaying only the fine surface textures.</li>
+<li>Right-click anywhere in the <strong>Layers</strong> panel and select
+<strong>New from Visible</strong>.</li>
+<li>Rename this new layer to <code>Texture</code>.</li>
+<li>Delete the temporary <code>High Frequency</code> layer, as it is no
+longer needed.</li>
+<li>Select the <code>Texture</code> layer, move it to the very top of
+the stack, and change its layer mode to <strong>Grain
+merge</strong>.</li>
+</ol>
+<h3 id="4-verify-and-group-the-layer-stack">4. Verify and Group the
+Layer Stack</h3>
+<ol type="1">
+<li>Create a new layer group by clicking the folder icon at the bottom
+of the <strong>Layers</strong> panel and name it
+<code>Frequency Separation</code>.</li>
+<li>Drag both the <code>Texture</code> layer and the
+<code>Low Frequency</code> layer inside this group, keeping
+<code>Texture</code> on top.</li>
+<li>Toggle the visibility of the entire group off and on. The image
+inside the group should look completely identical to the original
+unedited photo.</li>
+</ol>
+<h3 id="5-retouching-the-separated-layers">5. Retouching the Separated
+Layers</h3>
+<ul>
+<li><strong>Fixing Texture:</strong> Select the <code>Texture</code>
+layer and use the <strong>Clone Tool</strong> or <strong>Healing
+Tool</strong> with a hard-edged brush to clean up blemishes, flyaway
+hairs, and wrinkles without altering the underlying skin tones.</li>
+<li><strong>Fixing Tone and Transitions:</strong> Select the
+<code>Low Frequency</code> layer and use a soft-edged brush, the
+<strong>Smudge Tool</strong>, or the <strong>Lasso Tool</strong> paired
+with a gentle Gaussian Blur to smooth out uneven shadows, redness, or
+blotchy makeup without degrading the skin's natural pores.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

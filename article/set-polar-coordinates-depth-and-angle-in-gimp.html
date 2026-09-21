@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Polar Coordinates Depth and Angle in GIMP - gimp</title>
+    <meta name="description" content="This article explains how to locate and configure the Circle Depth Percentage and Mapping Angle parameters within GIMP’s GEGL-based Polar Coordinates filter. By properly adjusting these two core settings, you can control the intensity of circular disto">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/set-polar-coordinates-depth-and-angle-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Set Polar Coordinates Depth and Angle in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/set-polar-coordinates-depth-and-angle-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to locate and configure the Circle Depth Percentage and Mapping Angle parameters within GIMP’s GEGL-based Polar Coordinates filter. By properly adjusting these two core settings, you can control the intensity of circular disto" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="set-polar-coordinates-depth-and-angle-in-gimp">Set Polar
+Coordinates Depth and Angle in GIMP</h1>
+<p>This article explains how to locate and configure the Circle Depth
+Percentage and Mapping Angle parameters within GIMP’s GEGL-based Polar
+Coordinates filter. By properly adjusting these two core settings, you
+can control the intensity of circular distortion and dictate the
+rotational orientation of your transformed image.</p>
+<h3 id="accessing-the-filter">Accessing the Filter</h3>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Select the specific layer you want to distort.</li>
+<li>In the top menu, navigate to <strong>Filters</strong> &gt;
+<strong>Distorts</strong> &gt; <strong>Polar
+Coordinates...</strong></li>
+<li>Ensure the <strong>Preview</strong> checkbox is enabled in the
+dialog window to see real-time updates as you adjust settings.</li>
+</ol>
+<h3 id="configuring-circle-depth-percentage">Configuring Circle Depth
+Percentage</h3>
+<p>The <strong>Circle depth in percent</strong> slider controls the
+degree to which the rectangular image transforms into a circular
+shape.</p>
+<ul>
+<li><strong>Default Behavior (100%):</strong> The image wraps fully into
+a circle or polar projection, bending the edges completely toward the
+center or perimeter.</li>
+<li><strong>Partial Distortion (0% to 99%):</strong> Decreasing the
+percentage reduces the curvature effect, creating a blend between the
+original rectangular orientation and a full polar warp. At 0%, no
+circular deformation occurs.</li>
+<li><strong>Adjustment:</strong> Drag the <strong>Circle depth in
+percent</strong> slider left or right, or type a precise numeric value
+directly into the text box to achieve the desired degree of
+roundness.</li>
+</ul>
+<h3 id="configuring-mapping-angle-offset-angle">Configuring Mapping
+Angle (Offset Angle)</h3>
+<p>The rotational alignment of the distortion is managed via the
+<strong>Offset angle</strong> setting, which functions as the mapping
+angle for the transformation.</p>
+<ul>
+<li><strong>Default Behavior (0°):</strong> The top edge of the source
+image typically anchors at the top (12 o’clock position) or aligns with
+the zero-degree coordinate axis.</li>
+<li><strong>Custom Angles (0° to 359°):</strong> Adjusting this value
+rotates the origin point around the polar center. For example, setting
+the angle to 90°, 180°, or 270° rotates the starting point of the wrap
+by a quarter, half, or three-quarter turn, respectively.</li>
+<li><strong>Adjustment:</strong> Use the <strong>Offset angle</strong>
+slider to spin the projection, or enter a specific degree value to place
+key visual elements at an exact angle within the circular canvas.</li>
+</ul>
+<h3 id="applying-the-changes">Applying the Changes</h3>
+<p>Once you balance the curvature with the circle depth and rotate the
+projection using the offset angle, verify the result in the canvas
+preview and click <strong>OK</strong> to permanently apply the GEGL
+filter to your layer.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

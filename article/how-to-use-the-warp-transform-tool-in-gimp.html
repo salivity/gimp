@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Warp Transform Tool in GIMP - gimp</title>
+    <meta name="description" content="The Warp Transform tool in GIMP is an interactive manipulation feature that allows users to selectively distort, reshape, and transform specific areas of an image using brush-based strokes. Similar to the Liquify tool found in other digital editing softw">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-use-the-warp-transform-tool-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Warp Transform Tool in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-use-the-warp-transform-tool-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Warp Transform tool in GIMP is an interactive manipulation feature that allows users to selectively distort, reshape, and transform specific areas of an image using brush-based strokes. Similar to the Liquify tool found in other digital editing softw" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-use-the-warp-transform-tool-in-gimp">How to Use the Warp
+Transform Tool in GIMP</h1>
+<p>The Warp Transform tool in GIMP is an interactive manipulation
+feature that allows users to selectively distort, reshape, and transform
+specific areas of an image using brush-based strokes. Similar to the
+Liquify tool found in other digital editing software, it provides
+precise control over localized pixel deformation without affecting the
+entire layer. This guide details the primary functions of the Warp
+Transform tool, its core behavioral modes, and how to effectively
+utilize it in photo retouching and graphic design.</p>
+<h3 id="core-function-of-the-warp-transform-tool">Core Function of the
+Warp Transform Tool</h3>
+<p>The Warp Transform tool allows you to manipulate pixels directly on
+the canvas using a customizable brush. Unlike standard transform tools
+that rotate, scale, or shear entire layers or rectangular selections,
+the Warp Transform tool applies localized adjustments based on brush
+pressure, size, and direction. It operates directly within the active
+layer, selection, or path, displaying real-time deformation as you paint
+over the image.</p>
+<h3 id="warp-transform-modes">Warp Transform Modes</h3>
+<p>The tool provides several distinct modes that alter how pixels react
+to brush strokes:</p>
+<ul>
+<li><strong>Move Pixels:</strong> Pushes and drags pixels in the
+direction of the brush stroke. This is the default mode, commonly used
+for reshaping objects, contours, or facial features.</li>
+<li><strong>Grow Area:</strong> Expands and inflates the pixels beneath
+the brush outward from the center, creating a magnifying effect.</li>
+<li><strong>Shrink Area:</strong> Contracts and pinches pixels inward
+toward the center of the brush, reducing the size of the target
+area.</li>
+<li><strong>Swirl Clockwise / Counter-Clockwise:</strong> Twists pixels
+in a rotational direction around the cursor, creating vortex or spiral
+distortions.</li>
+<li><strong>Erase Warp:</strong> Selectively removes applied
+deformations, restoring the image back to its original state in the
+brushed areas without using the standard Undo history.</li>
+<li><strong>Smooth Warp:</strong> Softens abrupt transitions and blends
+warped areas to create natural, seamless gradients between modified and
+unmodified pixels.</li>
+</ul>
+<h3 id="key-tool-settings-and-controls">Key Tool Settings and
+Controls</h3>
+<p>To fine-tune distortions, the Warp Transform tool includes several
+essential settings in the Tool Options panel:</p>
+<ul>
+<li><strong>Size and Hardness:</strong> Controls the diameter and edge
+softness of the deformation brush.</li>
+<li><strong>Strength:</strong> Determines the intensity of the
+transformation per stroke. Lower values allow for subtle, gradual
+adjustments.</li>
+<li><strong>Spacing:</strong> Sets the distance between consecutive
+deformation points along a continuous brush stroke.</li>
+<li><strong>Abyss Policy:</strong> Defines how the tool treats pixels
+that extend beyond the boundaries of the image or layer (e.g., Clamp,
+Loop, Black, or Transparent).</li>
+<li><strong>Animation:</strong> Allows you to export the progressive
+steps of the warping process into separate layers, enabling the creation
+of animated GIFs depicting the transformation.</li>
+</ul>
+<h3 id="common-applications">Common Applications</h3>
+<p>The Warp Transform tool is primarily used for portrait
+retouching—such as adjusting hair volume, refining silhouettes, and
+correcting posture—as well as digital painting, where artists use it to
+tweak character proportions, dynamic poses, and fluid textures.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

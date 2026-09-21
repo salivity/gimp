@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint with Velocity Gradient Dynamics in GIMP - gimp</title>
+    <meta name="description" content="GIMP allows you to dynamically cycle through a gradient based on the speed of your cursor or stylus. By linking brush velocity to the color output in GIMP’s Paint Dynamics system, moving your brush slowly applies colors from one end of a gradient, whil">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/paint-with-velocity-gradient-dynamics-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Paint with Velocity Gradient Dynamics in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/paint-with-velocity-gradient-dynamics-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="GIMP allows you to dynamically cycle through a gradient based on the speed of your cursor or stylus. By linking brush velocity to the color output in GIMP’s Paint Dynamics system, moving your brush slowly applies colors from one end of a gradient, whil" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="paint-with-velocity-gradient-dynamics-in-gimp">Paint with
+Velocity Gradient Dynamics in GIMP</h1>
+<p>GIMP allows you to dynamically cycle through a gradient based on the
+speed of your cursor or stylus. By linking brush velocity to the color
+output in GIMP’s Paint Dynamics system, moving your brush slowly applies
+colors from one end of a gradient, while rapid strokes transition toward
+the opposite end. This guide provides a straightforward method to
+configure, map, and paint with velocity-based gradient dynamics in
+GIMP.</p>
+<h3 id="step-1-select-your-paint-tool-and-gradient">Step 1: Select Your
+Paint Tool and Gradient</h3>
+<ol type="1">
+<li>Select the <strong>Paintbrush</strong> tool from the Toolbox or
+press <code>P</code>.</li>
+<li>Open the <strong>Gradients</strong> dockable dialog
+(<code>Windows &gt; Dockable Dialogs &gt; Gradients</code>).</li>
+<li>Click on the gradient you want to use for your brush strokes.</li>
+</ol>
+<h3 id="step-2-create-a-custom-paint-dynamic">Step 2: Create a Custom
+Paint Dynamic</h3>
+<p>Default dynamics in GIMP are locked from editing, so you must create
+a new dynamic preset:</p>
+<ol type="1">
+<li>Open the <strong>Paint Dynamics</strong> dialog by navigating to
+<code>Windows &gt; Dockable Dialogs &gt; Paint Dynamics</code>.</li>
+<li>Click the <strong>Create a new dynamics</strong> button (the paper
+icon at the bottom of the dialog).</li>
+<li>The <strong>Paint Dynamics Editor</strong> will open automatically.
+Name your preset (e.g., "Velocity Gradient").</li>
+</ol>
+<h3 id="step-3-map-velocity-to-color">Step 3: Map Velocity to Color</h3>
+<p>In the <strong>Paint Dynamics Editor</strong>, you will see a matrix
+of inputs (such as Pressure, Velocity, and Direction) against outputs
+(such as Size, Hardness, and Color):</p>
+<ol type="1">
+<li>Locate the <strong>Color</strong> row in the matrix.</li>
+<li>Check the box at the intersection of the <strong>Velocity</strong>
+column and the <strong>Color</strong> row.</li>
+<li>(Optional) Click the arrow next to the matrix to open the dynamic
+curve editor if you want to fine-tune how quickly the gradient changes
+relative to your stroke speed.</li>
+</ol>
+<h3 id="step-4-configure-tool-options">Step 4: Configure Tool
+Options</h3>
+<ol type="1">
+<li>Return to the <strong>Tool Options</strong> panel for the
+Paintbrush.</li>
+<li>In the <strong>Dynamics</strong> dropdown, select your newly created
+"Velocity Gradient" preset.</li>
+<li>Scroll down and expand the <strong>Color Options</strong> section in
+Tool Options.</li>
+<li>Ensure the gradient preview displays your desired color scheme.</li>
+<li>Set the <strong>Repeat</strong> mode according to your preference:
+<ul>
+<li><strong>None:</strong> Velocity scales smoothly from start to
+end.</li>
+<li><strong>Sawtooth wave:</strong> Cycles through the gradient
+repeatedly as speed increases.</li>
+<li><strong>Triangular wave:</strong> Alternates back and forth through
+the gradient.</li>
+</ul></li>
+</ol>
+<h3 id="step-5-test-and-calibrate">Step 5: Test and Calibrate</h3>
+<p>Draw strokes on your canvas with varying speeds:</p>
+<ul>
+<li>Make a slow, deliberate stroke to paint with the beginning colors of
+the gradient.</li>
+<li>Quickly flick or swipe your brush across the canvas to watch the
+colors shift to the end of the gradient.</li>
+<li>Adjust brush size and spacing in the Tool Options to make the color
+transitions smoother or sharper based on your project requirements.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

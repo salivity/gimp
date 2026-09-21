@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calibrate Lens Focal Length with GExiv2 in GIMP - gimp</title>
+    <meta name="description" content="This article provides a practical guide on calibrating and adjusting lens focal length parameters in GIMP using the GExiv2 metadata library. When camera metadata is missing, incomplete, or inaccurate, automated lens correction tools cannot apply proper d">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/calibrate-lens-focal-length-with-g-exiv-2-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calibrate Lens Focal Length with GExiv2 in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/calibrate-lens-focal-length-with-g-exiv-2-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a practical guide on calibrating and adjusting lens focal length parameters in GIMP using the GExiv2 metadata library. When camera metadata is missing, incomplete, or inaccurate, automated lens correction tools cannot apply proper d" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="calibrate-lens-focal-length-with-gexiv2-in-gimp">Calibrate Lens
+Focal Length with GExiv2 in GIMP</h1>
+<p>This article provides a practical guide on calibrating and adjusting
+lens focal length parameters in GIMP using the GExiv2 metadata library.
+When camera metadata is missing, incomplete, or inaccurate, automated
+lens correction tools cannot apply proper distortion and vignetting
+profiles. By utilizing GExiv2 through GIMP's Python interface, you can
+inspect, calibrate, and write precise optical parameters to image files
+so that lens calibration algorithms function correctly.</p>
+<h3 id="the-role-of-gexiv2-in-lens-correction">The Role of GExiv2 in
+Lens Correction</h3>
+<p>GIMP utilizes GExiv2—a GObject-based wrapper around the Exiv2
+library—to manage EXIF, XMP, and IPTC metadata. Automated optical
+correction modules (such as those powered by the Lensfun database) rely
+entirely on specific EXIF tags to identify the lens model, actual focal
+length, crop factor, and aperture. If an adapted vintage lens, manual
+prime, or third-party optical system is used, these tags are often
+absent or erroneous, preventing correction filters from calculating
+accurate geometric transformations.</p>
+<h3 id="step-1-open-the-python-fu-console">Step 1: Open the Python-Fu
+Console</h3>
+<p>To manipulate metadata directly using GExiv2 within GIMP:</p>
+<ol type="1">
+<li>Open the target image in GIMP.</li>
+<li>Navigate to <strong>Filters &gt; Python-Fu &gt; Console</strong>
+from the top menu.</li>
+<li>This interface gives you direct access to the GIMP procedural
+database and system-level Python bindings, including
+<code>gi.repository.GExiv2</code>.</li>
+</ol>
+<h3 id="step-2-initialize-gexiv2-and-read-image-metadata">Step 2:
+Initialize GExiv2 and Read Image Metadata</h3>
+<p>In the Python console, access the active image path and load its
+metadata buffer via GExiv2:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gi</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gi.require_version(<span class="st">&#39;GExiv2&#39;</span>, <span class="st">&#39;0.10&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gi.repository <span class="im">import</span> GExiv2</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the active image filepath</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> gimp.image_list()[<span class="dv">0</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>filepath <span class="op">=</span> image.filename</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the metadata container</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>metadata <span class="op">=</span> GExiv2.Metadata()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>metadata.open_path(filepath)</span></code></pre></div>
+<h3 id="step-3-calibrate-focal-length-and-lens-tags">Step 3: Calibrate
+Focal Length and Lens Tags</h3>
+<p>Accurate profile-based lens correction requires three critical EXIF
+tags:</p>
+<ul>
+<li><code>Exif.Photo.FocalLength</code>: The physical focal length of
+the lens at capture.</li>
+<li><code>Exif.Photo.FocalLengthIn35mmFilm</code>: The 35mm equivalent
+focal length based on sensor crop factor.</li>
+<li><code>Exif.Photo.LensModel</code>: The exact name of the lens
+matching calibration databases.</li>
+</ul>
+<p>Set these tags using rational numbers or appropriate strings. For
+example, to calibrate a 50mm manual lens on an APS-C sensor (1.5x crop
+factor, resulting in a 75mm equivalent):</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the physical focal length as a rational string (numerator/denominator)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>metadata.set_tag_string(<span class="st">&quot;Exif.Photo.FocalLength&quot;</span>, <span class="st">&quot;50/1&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the 35mm equivalent focal length</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>metadata.set_tag_string(<span class="st">&quot;Exif.Photo.FocalLengthIn35mmFilm&quot;</span>, <span class="st">&quot;75&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the exact lens model for database matching</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>metadata.set_tag_string(<span class="st">&quot;Exif.Photo.LensModel&quot;</span>, <span class="st">&quot;Manual 50mm f/1.8&quot;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: Ensure aperture is defined if vignetting calibration is needed</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>metadata.set_tag_string(<span class="st">&quot;Exif.Photo.FNumber&quot;</span>, <span class="st">&quot;28/10&quot;</span>)  <span class="co"># f/2.8</span></span></code></pre></div>
+<h3 id="step-4-commit-metadata-to-the-file-and-reload-in-gimp">Step 4:
+Commit Metadata to the File and Reload in GIMP</h3>
+<p>Save the calibrated EXIF data back to the image file:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>metadata.save_file(filepath)</span></code></pre></div>
+<p>After saving, close and reload the image in GIMP, or update the
+image's internal metadata buffer via <strong>Image &gt; Metadata &gt;
+View Metadata</strong> to verify that the calibrated focal length and
+lens model appear correctly in the file properties.</p>
+<h3 id="step-5-execute-profile-based-lens-correction">Step 5: Execute
+Profile-Based Lens Correction</h3>
+<p>Once the metadata accurately reflects the calibrated optical
+parameters:</p>
+<ol type="1">
+<li>Open <strong>Filters &gt; Distorts &gt; Lens Distortion</strong> or
+invoke a Lensfun-backed correction plug-in (such as
+<code>gegl:lens-correction</code> or G'MIC).</li>
+<li>The filter will query the image's updated
+<code>Exif.Photo.LensModel</code> and
+<code>Exif.Photo.FocalLength</code> fields.</li>
+<li>The engine automatically maps the calibrated values against known
+distortion curves (barrel, pincushion, and chromatic aberrations) to
+perform mathematically precise geometric corrections across the
+frame.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

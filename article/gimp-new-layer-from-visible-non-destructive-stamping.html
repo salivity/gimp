@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP New Layer from Visible: Non-Destructive Stamping - gimp</title>
+    <meta name="description" content="In GIMP, the "New Layer from Visible" command allows editors to merge all active, visible elements of an image into a single, unified layer at the top of the layer stack without altering the underlying work. This article explains why this feature is crit">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-new-layer-from-visible-non-destructive-stamping">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP New Layer from Visible: Non-Destructive Stamping - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-new-layer-from-visible-non-destructive-stamping" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the "New Layer from Visible" command allows editors to merge all active, visible elements of an image into a single, unified layer at the top of the layer stack without altering the underlying work. This article explains why this feature is crit" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-new-layer-from-visible-non-destructive-stamping">GIMP New
+Layer from Visible: Non-Destructive Stamping</h1>
+<p>In GIMP, the "New Layer from Visible" command allows editors to merge
+all active, visible elements of an image into a single, unified layer at
+the top of the layer stack without altering the underlying work. This
+article explains why this feature is critical for non-destructive
+stamping, detailing how it preserves layer hierarchies, enables global
+adjustments without flattening, and streamlines advanced editing
+workflows.</p>
+<h3 id="preservation-of-underlying-layers">Preservation of Underlying
+Layers</h3>
+<p>The primary benefit of "New Layer from Visible" is the absolute
+preservation of your original document structure. Traditional commands
+like "Merge Visible Layers" or "Flatten Image" are destructive because
+they permanently combine your separate layers into one, discarding layer
+masks, individual blend modes, and isolate adjustments. By contrast,
+creating a new layer from visible acts as a snapshot. All existing text,
+adjustment masks, and component layers remain completely intact and
+editable beneath the new composite. If an adjustment needs to be tweaked
+later, you can simply delete the stamped layer, make your correction on
+the original layer, and stamp a new one.</p>
+<h3 id="applying-global-filters-and-sharpening">Applying Global Filters
+and Sharpening</h3>
+<p>Certain operations in GIMP require pixel data from the entire
+composite rather than individual components. For instance, final
+sharpening, High Pass filtering, frequency separation, and comprehensive
+color grading often need to evaluate the whole composition. Without a
+stamped layer, an editor would be forced to flatten the project to apply
+these effects. "New Layer from Visible" produces a dedicated pixel layer
+containing the final image state, providing an ideal canvas for these
+global filters while maintaining a non-destructive workflow.</p>
+<h3 id="creating-workflow-checkpoints">Creating Workflow
+Checkpoints</h3>
+<p>Complex photo manipulations and digital paintings often involve
+dozens of iterative steps. Stamping visible layers provides a visual and
+operational checkpoint in the project timeline. Editors can turn off the
+visibility of the stamped layer to check progress against earlier
+stages, or use layer opacity to blend the stamped result with previous
+iterations. This offers a flexible safety net, enabling rapid
+experimentation without the risk of irreversible changes to the
+component assets.</p>
+<h3 id="how-to-access-the-feature">How to Access the Feature</h3>
+<p>To stamp your visible layers in GIMP, ensure that all the layers you
+wish to include are set to visible (eye icon enabled), then right-click
+any layer in the Layers dialog and select <strong>New Layer from
+Visible</strong> (or navigate to <strong>Layer &gt; New Layer from
+Visible</strong> in the main menu). The newly generated composite will
+immediately appear at the top of your stack, ready for finishing
+touches.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

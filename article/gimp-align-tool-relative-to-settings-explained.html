@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Align Tool: Relative To Settings Explained - gimp</title>
+    <meta name="description" content="In GIMP, the "Relative to" dropdown menu in the Align tool determines the reference boundary used to position your layers, paths, or text boxes. Instead of moving items blindly, this setting establishes an anchor—such as the full canvas, a specific sel">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-align-tool-relative-to-settings-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Align Tool: Relative To Settings Explained - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-align-tool-relative-to-settings-explained" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, the "Relative to" dropdown menu in the Align tool determines the reference boundary used to position your layers, paths, or text boxes. Instead of moving items blindly, this setting establishes an anchor—such as the full canvas, a specific sel" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-align-tool-relative-to-settings-explained">GIMP Align Tool:
+Relative To Settings Explained</h1>
+<p>In GIMP, the "Relative to" dropdown menu in the Align tool determines
+the reference boundary used to position your layers, paths, or text
+boxes. Instead of moving items blindly, this setting establishes an
+anchor—such as the full canvas, a specific selection, or another
+layer—against which your selected objects are aligned horizontally or
+vertically. Understanding how each option works ensures precise,
+predictable placement across your design projects.</p>
+<h3 id="how-the-relative-to-setting-works">How the "Relative To" Setting
+Works</h3>
+<p>When you activate the Align tool (shortcut <strong>Q</strong>) and
+click on an element on your canvas, the alignment buttons (such as Align
+Left, Center, or Top) shift that element toward a specific target. The
+"Relative to" dropdown dictates what that target is.</p>
+<p>Here is what each option does:</p>
+<ul>
+<li><strong>Image:</strong> Uses the edges of the entire image canvas as
+the reference point. For example, clicking "Align Center" with "Image"
+selected will move your target layer to the exact horizontal or vertical
+center of the entire canvas.</li>
+<li><strong>Selection:</strong> Uses the bounding box of the currently
+active selection (the area surrounded by marching ants) as the reference
+point. If you have drawn a small rectangular selection in the corner of
+your canvas, aligning an object will position it relative to the borders
+of that specific selection rather than the full image.</li>
+<li><strong>Active Layer:</strong> Uses the boundaries of the layer
+currently highlighted in the Layers dialog as the reference point. This
+allows you to position one layer directly relative to another layer's
+size and location without altering the position of the active layer
+itself.</li>
+<li><strong>Active Channel:</strong> Uses the boundaries of the
+currently selected channel in the Channels dialog as the reference
+point. This is typically used when you have saved complex masks or
+selections as channels and want to align elements to the extents of that
+channel's content.</li>
+<li><strong>Active Path:</strong> Uses the bounding box of the currently
+active vector path (selected in the Paths dialog) as the reference
+point. Any alignment actions will align your chosen element to the
+outermost edges of that specific vector shape or line.</li>
+</ul>
+<h3 id="using-the-tool-effectively">Using the Tool Effectively</h3>
+<p>To use these settings, choose your desired reference in the "Relative
+to" dropdown first. Next, click on the element on the canvas you wish to
+move. Finally, click the desired alignment button (Left, Center, Right,
+Top, Middle, Bottom) in the tool options panel to instantly snap the
+element into place relative to your chosen reference.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

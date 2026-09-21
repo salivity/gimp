@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Architecture: Core Engine and GUI Separation - gimp</title>
+    <meta name="description" content="The GNU Image Manipulation Program (GIMP) achieves modularity and stability by enforcing a strict architectural separation between its core image processing engine and its graphical user interface (GUI). This article examines how GIMP decouples data mana">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-architecture-core-engine-and-gui-separation">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Architecture: Core Engine and GUI Separation - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-architecture-core-engine-and-gui-separation" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The GNU Image Manipulation Program (GIMP) achieves modularity and stability by enforcing a strict architectural separation between its core image processing engine and its graphical user interface (GUI). This article examines how GIMP decouples data mana" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-architecture-core-engine-and-gui-separation">GIMP
+Architecture: Core Engine and GUI Separation</h1>
+<p>The GNU Image Manipulation Program (GIMP) achieves modularity and
+stability by enforcing a strict architectural separation between its
+core image processing engine and its graphical user interface (GUI).
+This article examines how GIMP decouples data management, pixel
+operations, and tool logic from visual presentation, utilizing a
+Model-View-Controller (MVC) pattern, GObject signaling, and underlying
+processing frameworks like GEGL to ensure independent, headless, and
+scriptable operation.</p>
+<h3 id="the-model-view-paradigm">The Model-View Paradigm</h3>
+<p>At the structural level, GIMP organizes its code according to classic
+Model-View separation principles:</p>
+<ul>
+<li><strong>The Core (Model):</strong> Located primarily within the
+<code>app/core</code> directory of the source tree, the core maintains
+the internal representation of an image. It manages data structures such
+as images, layers, channels, paths, selections, and the undo/redo stack.
+The core has zero dependencies on visual interface elements.</li>
+<li><strong>The Display and Widgets (View/Controller):</strong> Located
+across directories like <code>app/display</code> and
+<code>app/widgets</code>, this layer handles user input, tool
+manipulation feedback, canvas rendering, windowing, and menu structures.
+It uses the GTK toolkit to render controls and present the image data
+visually to the user.</li>
+</ul>
+<p>Because the core functions purely as a data and processing model, it
+can run without initializing a display server, enabling headless
+execution and batch scripting.</p>
+<h3 id="the-role-of-gegl-and-babl">The Role of GEGL and Babl</h3>
+<p>The computational work of the core engine relies on two foundational
+libraries that exist entirely outside the UI layer:</p>
+<ul>
+<li><strong>GEGL (Generic Graphics Library):</strong> A graph-based
+image processing framework where operations (filters, adjustments,
+blending) are constructed as directed acyclic graphs (DAGs). GEGL
+handles pixel-level computation, non-destructive editing pipelines,
+caching, and multi-threaded processing.</li>
+<li><strong>Babl:</strong> A pixel-format and color-space conversion
+library that provides GEGL and the core with consistent pixel
+manipulation regardless of bit depth or color model.</li>
+</ul>
+<p>The GIMP core manages the state of these GEGL nodes, while the GUI
+displays the output of the graph onto a display canvas using rendering
+toolkits like Cairo.</p>
+<h3 id="decoupled-communication-via-gobject-signals">Decoupled
+Communication via GObject Signals</h3>
+<p>The core engine does not make direct calls into the GUI. Instead,
+communication flows in one direction, while asynchronous updates are
+handled through GObject signals:</p>
+<ol type="1">
+<li><strong>User Actions:</strong> When a user interacts with the canvas
+or a dialog, the GUI layer translates mouse movements, keyboard presses,
+or slider adjustments into core method calls (e.g., executing a command
+or modifying a layer's properties).</li>
+<li><strong>Core State Changes:</strong> The core processes the
+modification, updates the image data, and registers an undo step.</li>
+<li><strong>Signal Emission:</strong> Rather than refreshing windows
+directly, the core emits generic GObject signals such as
+<code>image-dirty</code>, <code>layer-added</code>, or
+<code>selection-changed</code>.</li>
+<li><strong>UI Updates:</strong> The display layer listens for these
+signals. When a signal is caught, the display subsystem calculates the
+invalidated screen regions and requests a redraw of only the affected
+canvas areas.</li>
+</ol>
+<p>This event-driven communication ensures that changes within the core
+never require knowledge of how or where the data will be presented
+visually.</p>
+<h3 id="the-procedural-database-pdb-and-plug-in-isolation">The
+Procedural Database (PDB) and Plug-in Isolation</h3>
+<p>The architectural separation is further enforced by GIMP's Procedural
+Database (PDB). The PDB serves as an internal registry and dispatch
+mechanism that exposes core capabilities to plug-ins, scripts, and
+internal UI tools uniformly.</p>
+<p>External plug-ins run in distinct operating system processes. They
+communicate with the GIMP core through Inter-Process Communication (IPC)
+pipes using the PDB protocol. This design ensures that third-party code
+and scripts interact only with the core engine's exposed endpoints,
+completely isolated from both the internal core logic and the primary
+GUI loop.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

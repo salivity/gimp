@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconstruct Backgrounds in GIMP Using Resynthesizer - gimp</title>
+    <meta name="description" content="Reconstructing missing background textures behind cut-out subjects in GIMP is made effortless using the Resynthesizer plugin and its "Heal Selection" tool. This guide walks you through preparing your cutout, selecting the missing background area, configu">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/reconstruct-backgrounds-in-gimp-using-resynthesizer">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Reconstruct Backgrounds in GIMP Using Resynthesizer - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/reconstruct-backgrounds-in-gimp-using-resynthesizer" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Reconstructing missing background textures behind cut-out subjects in GIMP is made effortless using the Resynthesizer plugin and its "Heal Selection" tool. This guide walks you through preparing your cutout, selecting the missing background area, configu" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="reconstruct-backgrounds-in-gimp-using-resynthesizer">Reconstruct
+Backgrounds in GIMP Using Resynthesizer</h1>
+<p>Reconstructing missing background textures behind cut-out subjects in
+GIMP is made effortless using the Resynthesizer plugin and its "Heal
+Selection" tool. This guide walks you through preparing your cutout,
+selecting the missing background area, configuring the Resynthesizer
+algorithm to sample surrounding pixels, and refining the final composite
+for a seamless, natural-looking texture replacement.</p>
+<h3 id="1-install-and-verify-the-resynthesizer-plugin">1. Install and
+Verify the Resynthesizer Plugin</h3>
+<p>The Resynthesizer engine operates in the background, primarily
+accessed via the <strong>Heal Selection</strong> Python script. Ensure
+you have the plugin installed in your GIMP <code>plug-ins</code> folder.
+Once installed, the tool appears in the menu bar under <strong>Filters
+&gt; Enhance &gt; Heal Selection</strong>.</p>
+<h3 id="2-isolate-the-subject-on-a-separate-layer">2. Isolate the
+Subject on a Separate Layer</h3>
+<p>Keep your original background intact while isolating your
+subject:</p>
+<ol type="1">
+<li>Open your image in GIMP.</li>
+<li>Use a selection tool (such as the <strong>Paths Tool</strong> or
+<strong>Free Select Tool</strong>) to trace the foreground subject.</li>
+<li>Copy the selection and paste it onto a new layer named
+"Subject".</li>
+<li>Return to your original background layer where the subject still
+resides.</li>
+</ol>
+<h3 id="3-select-the-area-to-fill">3. Select the Area to Fill</h3>
+<p>To allow the Resynthesizer tool to generate pixels, you must define
+the target zone on the background layer:</p>
+<ol type="1">
+<li>Re-select the area occupied by the cut-out subject on the background
+layer.</li>
+<li>Expand the selection slightly by going to <strong>Select &gt;
+Grow</strong>. Enter a value between <strong>3 and 10 pixels</strong>
+depending on image resolution. This ensures the algorithm covers the
+edges and samples adjacent context pixels rather than boundary
+remnants.</li>
+<li>Soften the edge slightly by going to <strong>Select &gt;
+Feather</strong> by <strong>2 to 5 pixels</strong> to prevent hard
+seams.</li>
+</ol>
+<h3 id="4-run-the-heal-selection-tool">4. Run the Heal Selection
+Tool</h3>
+<ol type="1">
+<li>With the grown selection active on the background layer, navigate to
+<strong>Filters &gt; Enhance &gt; Heal Selection</strong>.</li>
+<li>Configure the parameters in the dialog window:
+<ul>
+<li><strong>Context sampling width (pixels):</strong> Set this to
+determine how far outside the selection GIMP will search for replacement
+texture. A value of 50–100 pixels works well for repetitive textures
+like grass, sand, or brick.</li>
+<li><strong>Sample from:</strong> Choose <strong>All around</strong>,
+<strong>Sides</strong>, or <strong>Above and below</strong> depending on
+the flow of your background patterns. For directional patterns like
+horizontal floorboards, selecting "Sides" yields the most coherent
+results.</li>
+<li><strong>Filling order:</strong> Select <strong>Random</strong> or
+<strong>Inwards towards center</strong>. "Random" usually creates the
+most natural, non-repeating organic texture.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to run the algorithm.</li>
+</ol>
+<h3 id="5-touch-up-artifacts">5. Touch Up Artifacts</h3>
+<p>Once the processing finishes, press <strong>Ctrl + Shift + A</strong>
+to deselect. Turn on the visibility of your cut-out "Subject" layer to
+check the results. If any visible repeating patterns or misalignments
+occur in the reconstructed area:</p>
+<ul>
+<li>Use the standard <strong>Clone Tool (C)</strong> to break up
+repetitive details.</li>
+<li>Use the <strong>Healing Tool (H)</strong> to smooth out harsh
+transitions between synthesized blocks.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

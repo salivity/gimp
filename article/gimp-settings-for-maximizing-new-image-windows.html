@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIMP Settings for Maximizing New Image Windows - gimp</title>
+    <meta name="description" content="In GIMP, whether a newly opened image appears maximized or expands to fill the screen depends primarily on the workspace layout mode—specifically Single-Window Mode—alongside the Zoom & Resize Behavior options found in the Preferences menu. While GIM">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/gimp-settings-for-maximizing-new-image-windows">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GIMP Settings for Maximizing New Image Windows - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/gimp-settings-for-maximizing-new-image-windows" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In GIMP, whether a newly opened image appears maximized or expands to fill the screen depends primarily on the workspace layout mode—specifically Single-Window Mode—alongside the Zoom & Resize Behavior options found in the Preferences menu. While GIM" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="gimp-settings-for-maximizing-new-image-windows">GIMP Settings
+for Maximizing New Image Windows</h1>
+<p>In GIMP, whether a newly opened image appears maximized or expands to
+fill the screen depends primarily on the workspace layout
+mode—specifically <strong>Single-Window Mode</strong>—alongside the
+<strong>Zoom &amp; Resize Behavior</strong> options found in the
+Preferences menu. While GIMP does not feature a single button labeled
+"Auto-Maximize," the combination of Single-Window Mode and window resize
+preferences dictates whether an image opens within a full-screen unified
+workspace or as a floating window sized to the image canvas.</p>
+<h2 id="single-window-mode-vs-multi-window-mode">Single-Window Mode vs.
+Multi-Window Mode</h2>
+<p>The most common reason newly opened images automatically fill the
+entire screen is that GIMP is operating in Single-Window Mode.</p>
+<ul>
+<li><strong>Single-Window Mode (Enabled):</strong> All toolboxes,
+panels, and image canvases are locked inside one unified master window.
+When you open a new image, it appears as a tab inside the central canvas
+area. If the main GIMP window is maximized, the image automatically
+takes up the entire available working space.</li>
+<li><strong>Multi-Window Mode (Disabled):</strong> Each open image
+spawns in its own detached, floating window separate from the toolbox
+and dockable dialogs.</li>
+</ul>
+<h3 id="how-to-toggle-single-window-mode">How to Toggle Single-Window
+Mode</h3>
+<ol type="1">
+<li>Open GIMP.</li>
+<li>Click <strong>Windows</strong> in the top menu bar.</li>
+<li>Click <strong>Single-Window Mode</strong> to check or uncheck the
+option.</li>
+</ol>
+<p>When unchecked, GIMP switches to floating windows, preventing images
+from automatically expanding to fill the entire application
+container.</p>
+<hr />
+<h2 id="image-window-zoom-and-resize-preferences">Image Window Zoom and
+Resize Preferences</h2>
+<p>If you are using multi-window mode and floating image windows are
+still expanding to the edges of your display, GIMP’s internal resize
+behaviors are responsible.</p>
+<p>By default, GIMP attempts to size a floating window to fit the pixel
+dimensions of the image being opened. For high-resolution files, this
+causes the floating window to expand to the maximum allowable dimensions
+of your monitor.</p>
+<h3 id="adjusting-window-resize-settings">Adjusting Window Resize
+Settings</h3>
+<ol type="1">
+<li>Navigate to <strong>Edit &gt; Preferences</strong> (or <strong>GIMP
+&gt; Preferences</strong> on macOS).</li>
+<li>In the left-hand sidebar, expand or click on <strong>Image
+Windows</strong>.</li>
+<li>Under the <strong>Zoom &amp; Resize Behavior</strong> section,
+locate the following settings:
+<ul>
+<li><strong>Resize window on zoom:</strong> Automatically alters the
+floating window's boundaries whenever you zoom in or out.</li>
+<li><strong>Resize window on image size change:</strong> Resizes the
+window whenever canvas dimensions change or a new image is loaded.</li>
+</ul></li>
+<li>Uncheck these boxes to stop floating image windows from dynamically
+expanding across your desktop.</li>
+<li>Click <strong>OK</strong> to save changes.</li>
+</ol>
+<hr />
+<h2 id="window-management-and-saved-positions">Window Management and
+Saved Positions</h2>
+<p>GIMP can also remember the window state from your previous session
+through your operating system's window manager.</p>
+<p>If an image window was manually maximized and saved, future image
+windows may inherit that maximized state upon launch.</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences &gt; Window
+Management</strong>.</li>
+<li>Review the <strong>Window Positions</strong> section:
+<ul>
+<li>If <strong>Save window positions on exit</strong> is checked, GIMP
+reopens image windows in the exact state (maximized or restored) they
+were in when last closed.</li>
+<li>To reset unintended maximized states, click the <strong>Reset Saved
+Window Positions to Default Values</strong> button.</li>
+</ul></li>
+<li>Click <strong>OK</strong> and restart GIMP.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

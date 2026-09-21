@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch GIMP on a Second Desktop in Wayland - gimp</title>
+    <meta name="description" content="Under the Wayland display protocol, applications cannot position themselves on specific virtual desktops due to built-in security isolation. To launch GIMP on a secondary workspace, you must configure placement rules within your Wayland compositor rather">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/launch-gimp-on-a-second-desktop-in-wayland">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Launch GIMP on a Second Desktop in Wayland - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/launch-gimp-on-a-second-desktop-in-wayland" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Under the Wayland display protocol, applications cannot position themselves on specific virtual desktops due to built-in security isolation. To launch GIMP on a secondary workspace, you must configure placement rules within your Wayland compositor rather" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="launch-gimp-on-a-second-desktop-in-wayland">Launch GIMP on a
+Second Desktop in Wayland</h1>
+<p>Under the Wayland display protocol, applications cannot position
+themselves on specific virtual desktops due to built-in security
+isolation. To launch GIMP on a secondary workspace, you must configure
+placement rules within your Wayland compositor rather than within GIMP
+itself. This guide covers how to identify GIMP's application identifier
+and configure automatic placement rules for popular Wayland compositors,
+including Sway, Hyprland, KDE Plasma, and GNOME.</p>
+<h3 id="step-1-identify-gimps-app-id">Step 1: Identify GIMP’s App
+ID</h3>
+<p>Wayland compositors identify windows using an <code>app_id</code>
+(similar to <code>WM_CLASS</code> in X11). For GIMP, this is typically
+either <code>gimp</code> (for native package installs) or
+<code>org.gimp.GIMP</code> (for Flatpak installs).</p>
+<p>To confirm your version's ID, launch GIMP and run one of the
+following commands in a terminal depending on your desktop:</p>
+<ul>
+<li><strong>Sway:</strong> Run <code>swaymsg -t get_tree</code> and
+search for GIMP.</li>
+<li><strong>Hyprland:</strong> Run <code>hyprctl clients</code> and
+check the <code>class</code> field for GIMP.</li>
+</ul>
+<hr />
+<h3 id="step-2-configure-your-window-manager">Step 2: Configure Your
+Window Manager</h3>
+<h4 id="sway">Sway</h4>
+<p>In Sway, window assignments are configured in your Sway configuration
+file (usually located at <code>~/.config/sway/config</code>).</p>
+<p>Add the following directive to map GIMP to workspace 2:</p>
+<pre class="text"><code>assign [app_id=&quot;(?i)gimp&quot;] workspace number 2</code></pre>
+<p>If using the Flatpak version, specify the exact ID:</p>
+<pre class="text"><code>assign [app_id=&quot;org.gimp.GIMP&quot;] workspace number 2</code></pre>
+<p>Reload Sway using <code>swaymsg reload</code> to apply the
+changes.</p>
+<hr />
+<h4 id="hyprland">Hyprland</h4>
+<p>In Hyprland, rules are configured in
+<code>~/.config/hypr/hyprland.conf</code>. Use the
+<code>windowrulev2</code> syntax to target the application class and
+assign it to workspace 2.</p>
+<p>Add the following line to your configuration:</p>
+<pre class="text"><code>windowrulev2 = workspace 2, class:^(.*gimp.*)$</code></pre>
+<p>Hyprland automatically reloads configuration files upon saving.</p>
+<hr />
+<h4 id="kde-plasma-wayland">KDE Plasma (Wayland)</h4>
+<p>KDE Plasma handles window placement through KWin rules via the
+graphical interface:</p>
+<ol type="1">
+<li>Open <strong>System Settings</strong> and navigate to <strong>Window
+Management</strong> &gt; <strong>Window Rules</strong>.</li>
+<li>Click <strong>Add New...</strong>.</li>
+<li>Set the <strong>Description</strong> to "GIMP to Desktop 2".</li>
+<li>Set <strong>Window class (application)</strong> to <strong>Substring
+Match</strong> and enter <code>gimp</code>.</li>
+<li>Click <strong>Add Property...</strong> at the bottom and select
+<strong>Desktop</strong>.</li>
+<li>Set the rule condition to <strong>Apply Initially</strong> or
+<strong>Force</strong>, and set the value to desktop number
+<strong>2</strong>.</li>
+<li>Click <strong>Save</strong> and <strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h4 id="gnome-wayland">GNOME (Wayland)</h4>
+<p>The default GNOME Shell compositor (Mutter) does not support manual
+window rule text files. To assign GIMP to a specific workspace in
+GNOME:</p>
+<ol type="1">
+<li>Install the official GNOME Shell extension called <strong>Auto Move
+Windows</strong>.</li>
+<li>Open the extension's preferences using the
+<strong>Extensions</strong> app.</li>
+<li>Click <strong>Add Rule</strong>, select <strong>GNU Image
+Manipulation Program</strong> from the application list, and assign it
+to workspace <strong>2</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

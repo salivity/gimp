@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Realistic Drop Shadows in GIMP with Feathering - gimp</title>
+    <meta name="description" content="This guide explains how to manually craft natural, realistic drop shadows in GIMP using feathered selections and layer transformations. While automated shadow filters exist, building a shadow manually gives you complete control over lighting direction, e">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/create-realistic-drop-shadows-in-gimp-with-feathering">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Realistic Drop Shadows in GIMP with Feathering - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/create-realistic-drop-shadows-in-gimp-with-feathering" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to manually craft natural, realistic drop shadows in GIMP using feathered selections and layer transformations. While automated shadow filters exist, building a shadow manually gives you complete control over lighting direction, e" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="create-realistic-drop-shadows-in-gimp-with-feathering">Create
+Realistic Drop Shadows in GIMP with Feathering</h1>
+<p>This guide explains how to manually craft natural, realistic drop
+shadows in GIMP using feathered selections and layer transformations.
+While automated shadow filters exist, building a shadow manually gives
+you complete control over lighting direction, edge softness,
+perspective, and proximity falloff, resulting in a much more convincing
+integration of your subject into its background.</p>
+<h3 id="step-1-isolate-your-subject">Step 1: Isolate Your Subject</h3>
+<p>Ensure the object you want to cast a shadow from is on its own
+transparent layer. Right-click the subject's layer in the
+<strong>Layers</strong> dialog and select <strong>Alpha to
+Selection</strong>. This creates an active selection outline that
+matches the exact shape of your subject.</p>
+<h3 id="step-2-create-and-position-the-shadow-layer">Step 2: Create and
+Position the Shadow Layer</h3>
+<p>With the selection active, create a new transparent layer by clicking
+the <strong>New Layer</strong> icon. Name this layer "Drop Shadow" and
+drag it directly beneath your subject layer in the layer stack so the
+shadow renders behind the object.</p>
+<h3 id="step-3-apply-selection-feathering">Step 3: Apply Selection
+Feathering</h3>
+<p>Go to the top menu and select <strong>Select &gt;
+Feather...</strong>. The feather radius determines how soft or diffused
+the edges of your shadow will be:</p>
+<ul>
+<li><strong>Contact/Hard Shadows:</strong> Use a low feather radius
+(e.g., 5 to 15 pixels) for light sources close to the object.</li>
+<li><strong>Ambient/Soft Shadows:</strong> Use a larger feather radius
+(e.g., 30 to 80+ pixels) to simulate distant, diffused light
+sources.</li>
+</ul>
+<p>Click <strong>OK</strong> to apply the feathering to the active
+selection boundary.</p>
+<h3 id="step-4-fill-the-shadow-area">Step 4: Fill the Shadow Area</h3>
+<p>Select the <strong>Bucket Fill Tool</strong>
+(<code>Shift + B</code>). Set your foreground color to black (or a dark
+tint sampled from the environment's ambient light for added realism).
+Ensure the "Drop Shadow" layer is selected, then click inside the
+feathered selection to fill it. Press <code>Ctrl + Shift + A</code> to
+deselect.</p>
+<h3 id="step-5-adjust-perspective-and-orientation">Step 5: Adjust
+Perspective and Orientation</h3>
+<p>Real shadows are rarely identical in shape to the original object
+unless the light source is directly overhead. Use GIMP's transformation
+tools to align the shadow with your scene's light source:</p>
+<ul>
+<li><strong>Unified Transform Tool (<code>Shift + T</code>) or
+Perspective Tool (<code>Shift + P</code>):</strong> Pull the top handles
+downward and slant them to lay the shadow flat against the ground
+plane.</li>
+<li><strong>Move Tool (<code>M</code>):</strong> Shift the shadow layer
+slightly away from the light source.</li>
+</ul>
+<h3 id="step-6-fine-tune-opacity-and-blending">Step 6: Fine-Tune Opacity
+and Blending</h3>
+<ol type="1">
+<li>Set the shadow layer's blend mode to <strong>Multiply</strong> in
+the Layers dialog to ensure it darkens underlying textures rather than
+painting over them flatly.</li>
+<li>Reduce the layer <strong>Opacity</strong> (typically between 30% and
+70%) until the shadow density looks natural relative to other shadows in
+the image.</li>
+</ol>
+<h3 id="step-7-add-a-contact-shadow-for-maximum-realism">Step 7: Add a
+Contact Shadow for Maximum Realism</h3>
+<p>Real-world light produces a darker, sharper shadow right where the
+object touches the surface:</p>
+<ol type="1">
+<li>Repeat steps 1 through 4 on a new layer named "Contact Shadow."</li>
+<li>Use a much smaller feather radius (2 to 5 pixels).</li>
+<li>Erase or mask out everything except the narrow area directly beneath
+the base of the object.</li>
+<li>Keep this layer's opacity slightly higher than the main diffused
+shadow.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

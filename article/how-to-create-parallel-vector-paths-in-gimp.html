@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Parallel Vector Paths in GIMP - gimp</title>
+    <meta name="description" content="Creating parallel vector strokes in GIMP allows you to design double lines, outlines, and complex geometric shapes using the Paths tool. While GIMP does not include a single-click "offset path" tool, you can achieve exact parallel strokes by duplicating">
+    <link rel="canonical" href="https://salivity.github.io/gimp/article/how-to-create-parallel-vector-paths-in-gimp">
+    <link rel="search" type="application/opensearchdescription+xml" title="gimp" href="/gimp/opensearch.xml">
+    <link rel="icon" href="/gimp/favicon.ico">
+    <link rel="stylesheet" href="/gimp/css/style.css">
+    <link media="print" rel="stylesheet" href="/gimp/css/print.css">
+    <script src="/gimp/js/fuse.min.js"></script>
+    <script src="/gimp/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Parallel Vector Paths in GIMP - gimp" />
+    <meta property="og:url" content="https://salivity.github.io/gimp/article/how-to-create-parallel-vector-paths-in-gimp" />
+    <meta property="og:image" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/gimp/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating parallel vector strokes in GIMP allows you to design double lines, outlines, and complex geometric shapes using the Paths tool. While GIMP does not include a single-click "offset path" tool, you can achieve exact parallel strokes by duplicating" />
+    <link rel="manifest" href="/gimp/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/gimp/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>gimp</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/gimp/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-create-parallel-vector-paths-in-gimp">How to Create
+Parallel Vector Paths in GIMP</h1>
+<p>Creating parallel vector strokes in GIMP allows you to design double
+lines, outlines, and complex geometric shapes using the Paths tool.
+While GIMP does not include a single-click "offset path" tool, you can
+achieve exact parallel strokes by duplicating the path layer,
+translating or scaling the duplicate to your desired offset, merging the
+components back into a single active path, and applying your stroke
+settings.</p>
+<h3 id="step-1-open-the-paths-dialog">Step 1: Open the Paths Dialog</h3>
+<ol type="1">
+<li>Go to the <strong>Windows</strong> menu, select <strong>Dockable
+Dialogs</strong>, and click <strong>Paths</strong>.</li>
+<li>Click on the path you want to duplicate to make it active. Ensure
+the eye icon next to it is toggled on so it remains visible on your
+canvas.</li>
+</ol>
+<h3 id="step-2-duplicate-the-path">Step 2: Duplicate the Path</h3>
+<ol type="1">
+<li>Right-click the active path in the Paths dialog and select
+<strong>Duplicate Path</strong> (or click the duplicate icon at the
+bottom of the dialog).</li>
+<li>Make both the original path and the duplicate path visible by
+toggling their eye icons on.</li>
+<li>Select the duplicated path to ensure it is the active layer.</li>
+</ol>
+<h3 id="step-3-offset-to-create-the-parallel-distance">Step 3: Offset to
+Create the Parallel Distance</h3>
+<ol type="1">
+<li>Select the <strong>Move Tool</strong> from the Toolbox (shortcut:
+<strong>M</strong>).</li>
+<li>In the Tool Options panel, under the <strong>Move:</strong> section,
+click the <strong>Path</strong> icon (the red curve with anchor
+points).</li>
+<li>Click and drag the duplicate path on the canvas to offset it
+parallel to the original. Hold <strong>Ctrl</strong> (or
+<strong>Cmd</strong> on macOS) while dragging to constrain movement
+along the horizontal or vertical axis.</li>
+<li>Alternatively, if your shape is closed and you need concentric
+parallel lines, select the <strong>Scale Tool</strong> (shortcut:
+<strong>Shift + S</strong>), set its mode to <strong>Path</strong> in
+Tool Options, and resize the duplicate outward or inward.</li>
+</ol>
+<h3 id="step-4-merge-paths-into-a-single-vector-item">Step 4: Merge
+Paths into a Single Vector Item</h3>
+<ol type="1">
+<li>In the Paths dialog, ensure only the two parallel paths are visible
+(eye icons enabled).</li>
+<li>Right-click either path and choose <strong>Merge Visible
+Paths</strong>.</li>
+<li>Both strokes now exist as distinct components within a single active
+path.</li>
+</ol>
+<h3 id="step-5-render-the-parallel-strokes">Step 5: Render the Parallel
+Strokes</h3>
+<ol type="1">
+<li>Create a new raster layer in the <strong>Layers</strong> dialog
+where the strokes will be drawn.</li>
+<li>Select your merged path in the Paths dialog.</li>
+<li>Click <strong>Stroke Path</strong> at the bottom of the dialog or
+select <strong>Edit</strong> &gt; <strong>Stroke Path</strong>.</li>
+<li>Choose <strong>Stroke line</strong>, define your line width, join
+style, and cap style, then click <strong>Stroke</strong>.</li>
+</ol>
+<p>GIMP will render both vector components at the same time, producing
+uniform, parallel raster lines.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/gimp'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/gimp/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/gimp/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
